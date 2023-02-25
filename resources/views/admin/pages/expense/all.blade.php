@@ -88,7 +88,7 @@
                                                             class="text-danger">*</strong></label>
                                                     <select name="category" id="category"
                                                         class="form-control form-control-sm">
-                                                        <option value="">--select--</option>
+                                                        <option >--select--</option>
                                                         <option value="office_rent"> Office Rent</option>
                                                         <option value="utility_bills"> Utility Bills </option>
                                                         <option value="service_bill"> Service Bill</option>
@@ -97,13 +97,12 @@
                                                         <option value="marketing"> Marketing </option>
                                                         <option value="remuneration"> Remuneration </option>
                                                         <option value="conveyance"> Conveyance </option>
-                                                        <option value="groceries"> Stationariers </option>
+                                                        <option value="stationariers"> Stationariers </option>
                                                         <option value="groceries"> Groceries </option>
                                                         <option value="old_debts ">Old / Debts </option>
                                                         <option value="incentives">Incentives </option>
                                                         <option value="return">Return </option>
-                                                        <option value="tender_securities">Tender Securities
-                                                        </option>
+                                                        <option value="tender_securities">Tender Securities</option>
                                                         <option value="md_personal">Md Personal </option>
                                                         <option value="outstrading">Outstrading </option>
                                                         <option value="travel_tour">Travel / Tour </option>

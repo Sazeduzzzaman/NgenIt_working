@@ -41,9 +41,9 @@ class AuthenticatedSessionController extends Controller
         if ($request->user()->role === 'admin') {
             $url = 'admin/dashboard';
         } elseif ($request->user()->role === 'sales') {
-            $url = 'partner/dashboard';
-        } elseif ($request->user()->role === 'client') {
-            $url = 'client/dashboard';
+            $url = 'sales/dashboard';
+        } elseif ($request->user()->role === 'accounts') {
+            $url = 'accounts/dashboard';
         }
         return redirect()->intended($url)->with($notification);
         // return redirect()->intended(RouteServiceProvider::HOME);

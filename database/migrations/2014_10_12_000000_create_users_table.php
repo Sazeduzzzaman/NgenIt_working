@@ -25,7 +25,7 @@ return new class extends Migration
             $table->string('country')->nullable();
             $table->string('postal')->nullable();
             $table->string('last_seen')->nullable();
-            $table->enum('role',  ['admin','sales','client'])->default('client');
+            $table->enum('role',  ['admin','sales','accounts'])->default('sales');
             $table->enum('status', ['active', 'inactive'])->default('active');
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');

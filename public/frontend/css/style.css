@@ -6499,6 +6499,12 @@ switch input:checked+.slider {
     object-fit: fill;
     display: block;
     height: 480px;
+    background-repeat: no-repeat;
+    background-color: #222;
+    background-repeat: no-repeat;
+    background-position: top center;
+    background-size: cover;
+
 }
 @media only screen and (max-width: 600px) {
     .slider_inage img {

@@ -182,14 +182,13 @@
                                                 </div>
                                                 <div class="form-group col-sm-8 text-secondary">
                                                     <select name="cat_id" class="form-control select" data-width="250"
-                                                     data-minimum-results-for-search="Infinity">
-                                                     <option value=""> -- Select Category -- </option>
-                                                     @foreach ($cats as $cat )
-                                                     <option value="{{$cat->id}}">{{$cat->title}}</option>
-                                                     @endforeach
+                                                        data-minimum-results-for-search="Infinity">
+                                                        <option value=""> -- Select Category -- </option>
+                                                        @foreach ($cats as $cat )
+                                                        <option value="{{$cat->id}}">{{$cat->title}}</option>
+                                                        @endforeach
 
-
-                                                </select>
+                                                    </select>
                                                 </div>
                                             </div>
 

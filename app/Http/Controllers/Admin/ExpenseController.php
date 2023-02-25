@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use Helper;
+use App\Models\Admin\Rfq;
+use App\Models\Admin\Income;
 use Illuminate\Http\Request;
 use App\Models\Admin\Expense;
 use App\Http\Controllers\Controller;
@@ -189,6 +191,36 @@ class ExpenseController extends Controller
 
     public function Ledger()
     {
-        return view('admin.pages.expense.ledger');
+        $data['incomes']  = Income::get();
+        $data['expenses'] = Expense::get();
+        $data['rfqs'] = Rfq::select('rfqs.id', 'rfqs.name')->get();
+
+        $data['expenseJanuaryAmount']   = Expense::where('month', 'january')->pluck('amount');
+        $data['expenseFebruaryAmount']  = Expense::where('month', 'february')->pluck('amount');
+        $data['expenseMarchAmount']     = Expense::where('month', 'march')->pluck('amount');
+        $data['expenseAprilAmount']     = Expense::where('month', 'april')->pluck('amount');
+        $data['expenseMayAmount']       = Expense::where('month', 'may')->pluck('amount');
+        $data['expenseJuneAmount']      = Expense::where('month', 'june')->pluck('amount');
+        $data['expenseJulyAmount']      = Expense::where('month', 'july')->pluck('amount');
+        $data['expenseAugustAmount']    = Expense::where('month', 'august')->pluck('amount');
+        $data['expenseSeptemberAmount'] = Expense::where('month', 'september')->pluck('amount');
+        $data['expenseOctoberAmount']   = Expense::where('month', 'october')->pluck('amount');
+        $data['expenseNovemberAmount']  = Expense::where('month', 'november')->pluck('amount');
+        $data['expenseDecemberAmount']  = Expense::where('month', 'december')->pluck('amount');
+
+        $data['incomeJanuaryAmount']   = Income::where('month', 'january')->pluck('amount');
+        $data['incomeFebruaryAmount']  = Income::where('month', 'february')->pluck('amount');
+        $data['incomeMarchAmount']     = Income::where('month', 'march')->pluck('amount');
+        $data['incomeAprilAmount']     = Income::where('month', 'april')->pluck('amount');
+        $data['incomeMayAmount']       = Income::where('month', 'may')->pluck('amount');
+        $data['incomeJuneAmount']      = Income::where('month', 'june')->pluck('amount');
+        $data['incomeJulyAmount']      = Income::where('month', 'july')->pluck('amount');
+        $data['incomeAugustAmount']    = Income::where('month', 'august')->pluck('amount');
+        $data['incomeSeptemberAmount'] = Income::where('month', 'september')->pluck('amount');
+        $data['incomeOctoberAmount']   = Income::where('month', 'october')->pluck('amount');
+        $data['incomeNovemberAmount']  = Income::where('month', 'november')->pluck('amount');
+        $data['incomeDecemberAmount']  = Income::where('month', 'december')->pluck('amount');
+
+        return view('admin.pages.expense.ledger', $data);
     }
 }

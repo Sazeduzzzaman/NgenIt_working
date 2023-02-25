@@ -25,7 +25,7 @@ return new class extends Migration
             $table->double('principles_price')->nullable();
             $table->double('principles_payment')->nullable();
             $table->enum('principles_payment_status',['adv_paid','not_paid','half_paid','paid'])->nullable();
-            $table->foreign('rfq_id')->references('id')->on('rfqs')->onUpdate('cascade')->onUpdate('cascade');
+            $table->foreign('rfq_id')->references('id')->on('rfqs')->onUpdate('cascade');
             $table->timestamps();
         });
     }

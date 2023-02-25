@@ -36,18 +36,30 @@
                         <table class="brandDT table table-bordered table-hover">
                             <thead>
                                 <tr>
-                                    <th width="10%">Sl No:</th>
-                                    <th width="40%">Title</th>
-                                    <th width="10%%">Quantity</th>
-                                    <th width="10%">Price</th>
+
+                                    <th width="20%">Order Number</th>
+                                    <th width="20%">Order Date</th>
+                                    <th width="15%">Total Amount</th>
+                                    <th width="15%">Payment Method</th>
                                     <th width="15%">Status</th>
                                     <th width="15%" class="text-center">Actions</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                {{-- @if ()
-
-                                @endif --}}
+                                @foreach ($orders as $item)
+                                    <td>{{$item->order_number}}</td>
+                                    <td>{{$item->order_date}}</td>
+                                    <td>{{$item->amount}}</td>
+                                    <td>{{ucfirst($item->payment_method)}}</td>
+                                    <td>{{ucfirst($item->status)}}</td>
+                                    <td class="text-center">
+                                        @if ($item->status == 'unpaid')
+                                        <a href="{{ route('payment.page', $item->order_number) }}" class="text-success" title="Go to Payment Page">
+                                            <i class="fa fa-dollar-sign fa-1x"></i>
+                                        </a>
+                                        @endif
+                                    </td>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>
@@ -72,7 +84,7 @@
                 "lengthMenu": [10, 26, 30, 50],
                 columnDefs: [{
                     orderable: false,
-                    targets: [4 , 5 ],
+                    targets: [2, 3, 4 , 5 ],
                 }, ],
             });
         </script>

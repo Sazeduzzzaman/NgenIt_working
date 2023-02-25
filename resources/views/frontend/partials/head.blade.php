@@ -29,7 +29,7 @@
     <link rel="stylesheet" href="http://cdn.bootcss.com/toastr.js/latest/css/toastr.min.css">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css">
-
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" />
 
 
     @yield('styles')
@@ -44,6 +44,9 @@
     }
     .ui-slider-handle{
         background-color: rgb(121, 11, 11) !important;
+    }
+    .select2-container .select2-selection--single{
+        height: 39px !important;
     }
  </style>
 

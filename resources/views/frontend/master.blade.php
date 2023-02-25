@@ -8,11 +8,12 @@
     <!--======// Nav Menu //========-->
     @include('frontend.partials.header')
     <!--------End---------->
-
+    <div class="page-wrapper">
     @yield('content')
 
     <!--=======// Footer Section//=========-->
     @include('frontend.partials.footer')
+    </div>
     <!----------End--------->
 
     <!--=======// Cookises Modals //=======-->

@@ -55,213 +55,263 @@
                 <div class="cart_body_left">
                     <div class="your_cart">
                         <!-- header -->
-                        <div class="your_cart_header">
-                            <div class="your_cart_title">Your information</div>
+                        <div class="your_cart_header" style="background: #d3d2d2; color:white;">
+                            <div style="color:black;" class="your_cart_title">Billing information <span class="text-danger"> *</span></div>
                         </div>
 
                         <form action="{{ route('checkout.store') }}" method="post" enctype="multipart/form-data">
                             @csrf
                             <!-- check out form -->
-                            <div class="checkout_form">
-                                <div class="checkout_form_wrapper">
-                                    <input type="hidden" name="client_type" value="{{ $client_type }}">
+                            <table class="table p-2">
+                                <input type="hidden" name="client_type" value="{{ $client_type }}">
                                     @if ($client_type == 'client')
                                     <input type="hidden" name="client_id" value="{{ $id }}">
                                     @else
                                     <input type="hidden" name="partner_id" value="{{ $id }}">
                                     @endif
+                                <tr>
+                                    <th class="border-none">
+                                        <div class="check_form_inner">
+                                            <label for="name">Name <sup>*</sup> </label>
+                                            <input type="text" name="billing_name" value="{{ $name }}" class="form-control"
+                                                id="name" required>
+                                        </div>
+                                    </th>
+                                    <th class="border-none">
+                                        <div class="check_form_inner">
+                                            <label for="Phone">Phone <sup>*</sup> </label>
+                                            <input type="tel" name="billing_phone" value="{{ $phone }}" class="form-control"
+                                                id="Phone" required>
+                                        </div>
+                                    </th>
+                                    <th class="border-none">
+                                        <div class="check_form_inner">
+                                            <label for="Email">Email <sup>*</sup> </label>
+                                            <input type="email" name="billing_email" class="form-control" value="{{ $email }}"
+                                                id="Email" required>
+                                        </div>
+                                    </th>
+                                    <th class="border-none">
+                                        <div class="check_form_inner">
+                                            <label for="address">Address <sup>*</sup> </label>
+                                            <input type="text" name="billing_address" class="form-control" value="{{ $address }}"
+                                                id="address" required>
+                                        </div>
+                                    </th>
+                                </tr>
+                                <tr>
+                                    <th width="25%" class="border-none">
+                                        <div class="check_form_inner">
+                                            <label for="city">City <sup>*</sup> </label>
+                                            <input type="text" name="billing_city" class="form-control" value="{{ $city }}"
+                                                id="city" required>
+                                        </div>
+                                    </th>
+                                    <th width="25%" class="border-none">
+                                        <div class="check_form_inner">
+                                            <label for="state">Company Name <sup>*</sup> </label>
+                                            <input type="text" name="billing_company_name" class="form-control"
+                                                id="state" required>
+                                        </div>
+                                    </th>
+                                    <th width="25%" class="border-none">
+                                        <div class="check_form_inner">
+                                            <label for="zip">Zip Code <sup>*</sup> </label>
+                                            <input type="text" name="billing_postal" class="form-control" value="{{ $postal }}"
+                                                id="zip" required>
+                                        </div>
+                                    </th>
+                                    <th width="25%" class="border-none">
+                                        <div class="check_form_inner row">
+                                            <div class="col-sm-12">
+                                                <label for="zip">Country <sup>*</sup> </label>
+                                            </div>
+                                            <div class="col-sm-12">
+                                                <select name="billing_country" class="form-control select2" aria-label="Searchable Select"
+                                                    data-placeholder="Choose Country" required>
+                                                    <option></option>
+                                                    @foreach ($countries as $item)
+                                                        <option value="{{ $item->country_name }}">{{ $item->country_name }}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </th>
+                                </tr>
+                            </table>
 
-                                    <!-- form item -->
-                                    <div class="check_form_inner">
-                                        <label for="name">Name <sup>*</sup> </label>
-                                        <input type="text" name="name" value="{{ $name }}" class="check_form"
-                                            id="name" required>
-                                    </div>
 
-                                    <!-- form item -->
-                                    <div class="check_form_inner">
-                                        <label for="Phone">Phone <sup>*</sup> </label>
-                                        <input type="tel" name="phone" value="{{ $phone }}" class="check_form"
-                                            id="Phone" required>
-                                    </div>
+                    </div>
 
-                                    <!-- form item -->
-                                    <div class="check_form_inner">
-                                        <label for="Email">Email <sup>*</sup> </label>
-                                        <input type="email" name="email" class="check_form" value="{{ $email }}"
-                                            id="Email" required>
-                                    </div>
+                    <div class="your_cart">
+                        <div class="your_cart_header" style="background: #d3d2d2; color:white;">
+                            <div style="color:black;" class="your_cart_title">
+                                <label class="m-0" style="font-size:20px;" id="bkash">
+                                <input type="checkbox" class="shipAddress fa-2x" name="ship_address" value="1">
+                                    Ship to Another Address ?
+                                </label>
+                            </div>
+                        </div>
+                        <div id="shipExpand" class="d-none">
 
-                                    <!-- form item -->
-                                    <div class="check_form_inner">
-                                        <label for="address">Address <sup>*</sup> </label>
-                                        <input type="text" name="address" class="check_form" value="{{ $address }}"
-                                            id="address" required>
-                                    </div>
+                            <div class="card mt-2 border-none">
+                                <table class="table p-2">
+                                    <input type="hidden" name="client_type" value="{{ $client_type }}">
 
-                                    <!-- form item -->
-                                    <div class="check_form_inner">
-                                        <label for="city">City <sup>*</sup> </label>
-                                        <input type="text" name="city" class="check_form" value="{{ $city }}"
-                                            id="city" required>
-                                    </div>
+                                    <tr>
+                                        <th class="border-none">
+                                            <div class="check_form_inner">
+                                                <label for="name">Name <sup>*</sup> </label>
+                                                <input type="text" name="shipping_name" value="{{ $name }}" class="form-control"
+                                                    id="name">
+                                            </div>
+                                        </th>
+                                        <th class="border-none">
+                                            <div class="check_form_inner">
+                                                <label for="Phone">Phone <sup>*</sup> </label>
+                                                <input type="tel" name="shipping_phone" value="{{ $phone }}" class="form-control"
+                                                    id="Phone">
+                                            </div>
+                                        </th>
+                                        <th class="border-none">
+                                            <div class="check_form_inner">
+                                                <label for="Email">Email <sup>*</sup> </label>
+                                                <input type="email" name="shipping_email" class="form-control" value="{{ $email }}"
+                                                    id="Email">
+                                            </div>
+                                        </th>
+                                        <th class="border-none">
+                                            <div class="check_form_inner">
+                                                <label for="address">Address <sup>*</sup> </label>
+                                                <input type="text" name="shipping_address" class="form-control" value="{{ $address }}"
+                                                    id="address">
+                                            </div>
+                                        </th>
+                                    </tr>
+                                    <tr>
+                                        <th width="25%" class="border-none">
+                                            <div class="check_form_inner">
+                                                <label for="city">City <sup>*</sup> </label>
+                                                <input type="text" name="shipping_city" class="form-control" value="{{ $city }}"
+                                                    id="city">
+                                            </div>
+                                        </th>
+                                        <th width="25%" class="border-none">
+                                            <div class="check_form_inner">
+                                                <label for="state">Company Name  </label>
+                                                <input type="text" name="shipping_company_name" class="form-control" value="{{ $state }}"
+                                                    id="state">
+                                            </div>
+                                        </th>
+                                        <th width="25%" class="border-none">
+                                            <div class="check_form_inner">
+                                                <label for="zip">Zip Code <sup>*</sup> </label>
+                                                <input type="text" name="shipping_postal" class="form-control" value="{{ $postal }}"
+                                                    id="zip">
+                                            </div>
+                                        </th>
+                                        <th width="25%" class="border-none">
+                                            <div class="check_form_inner row">
+                                                <div class="col-sm-12">
+                                                    <label for="zip">Country <sup>*</sup> </label>
+                                                </div>
+                                                <div class="col-sm-12">
+                                                    <select name="shipping_country" class="form-control select_country" aria-label="Searchable Select"
+                                                        data-placeholder="Choose Country" style="width: 14rem;">
+                                                        <option></option>
+                                                        @foreach ($countries as $item)
+                                                            <option value="{{ $item->country_name }}">{{ $item->country_name }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </th>
+                                    </tr>
+                                </table>
+                            </div>
 
-                                    <!-- form item -->
-                                    <div class="check_form_inner">
-                                        <label for="state">State <sup>*</sup> </label>
-                                        <input type="text" name="state" class="check_form" value="{{ $state }}"
-                                            id="state" required>
-                                    </div>
+                        </div>
+                    </div>
 
-                                    <!-- form item -->
-                                    <div class="check_form_inner">
-                                        <label for="zip">Zip Code <sup>*</sup> </label>
-                                        <input type="text" name="postal" class="check_form" value="{{ $postal }}"
-                                            id="zip" required>
-                                    </div>
 
-                                    <!-- form item -->
-                                    <div class="check_form_inner">
-                                        <label for="country">Country <sup>*</sup> </label>
-                                        <input type="text" name="country" class="check_form" value="{{ $country }}"
-                                            id="country" required>
-                                    </div>
 
-                                </div>
+                    <div class="your_cart">
+                        <div class="your_cart_header additionalNotes" style="background: #d3d2d2; color:white;">
+                            <div style="color:black;" class="your_cart_title">
+                                    Additional Notes ?
+                            </div>
+                            <div style="color:black;" class="your_cart_title float-end">
+                                <i class="icon fa fa-plus"></i>
+                            </div>
+                        </div>
+                        <div id="additionalExpand" class="d-none">
+
+                            <div class="card mt-2 border-none p-3">
                                 <div class="check_form_inner pt-1">
-                                    <div class="check_form_inner">
-                                        <label for="notes">Additional Notes </label>
-                                        <textarea class="check_form" id="notes" name="notes" cols="60" rows="5"
-                                            placeholder="Write Additional Notes Here...." style="height: 6rem"></textarea>
-
-                                    </div>
-                                </div>
-
-                                <!-- form item -->
-                                <div class="check_form_inner pt-1 mt-3">
-                                    <label class="mr-2" style="font-size: 16px;">Select Your Order Method : </label>
-
-                                        <input type="radio" class="bankPay" name="payment_method" value="bank" >
-                                        <img src="{{ asset('frontend/images/work_order.png') }}" width="60px" height="40px"
-                                            style="cursor: pointer; margin-right:2rem;" alt="" id="bankPay">
-
-
-                                    {{-- <input type="radio" name="payment_method" value="paypal">
-                                    <img src="{{ asset('frontend/images/paypal-removebg-preview.png') }}" width="120px"
-                                        style="cursor: pointer; padding-right:20px" alt=""> --}}
-
-                                    <input type="radio" name="payment_method" value="online">
-                                    <img src="{{ asset('frontend/images/online_pay.png') }}" width="60px"
-                                        style="cursor: pointer; background:transparent" alt="">
-
-                                    {{-- <input type="radio" id="bkash" name="payment_method" value="cash"
-                                        style="margin-left: 10px">
-                                    <img src="{{ asset('frontend/images/dollar.png') }}" width="80px"
-                                        style="cursor: pointer;" alt=""> --}}
-
-
+                                    <label for="notes">Additional Notes </label>
+                                    <textarea class="form-control" id="notes" name="notes" cols="60" rows="5"
+                                        placeholder="Write Additional Notes Here...." style="height: 6rem"></textarea>
                                 </div>
                             </div>
+
+                        </div>
                     </div>
+
+                    <div class="your_cart">
+                        <div class="your_cart_header orderMethod" style="background: #d3d2d2; color:white;">
+                            <div style="color:black;" class="your_cart_title">
+                                    Order Method <span class="text-danger"> *</span>
+                            </div>
+                            <div style="color:black;" class="your_cart_title float-end">
+                                <i class="iconOrder fa fa-plus"></i>
+                            </div>
+                        </div>
+                        <div id="orderExpand" class="d-none">
+
+                            <div class="check_form_inner pt-1 mt-3 p-4">
+                                <label class="mr-2" style="font-size: 16px;">Select Your Order Method : </label>
+
+                                <input type="radio" class="bankPay" name="payment_method" value="bank" >
+                                <img src="{{ asset('frontend/images/work_order.png') }}" width="60px" height="40px"
+                                    style="cursor: pointer; margin-right:2rem;" alt="" id="bankPay">
+
+                                <input type="radio" name="payment_method" value="online">
+                                <img src="{{ asset('frontend/images/online_pay.png') }}" width="60px"
+                                    style="cursor: pointer; background:transparent" alt="">
+
+                            </div>
+
+                        </div>
+                    </div>
+
+
 
                     <div id="bankPayment" class="d-none">
 
                         <div class="card mt-2 border border-secondary">
-                            <div class="card-title pt-1 pl-2 border border-bottom border-secondary">
+                            {{-- <div class="card-title pt-1 pl-2 border border-bottom border-secondary">
                                 Payment Information (Bank Account ( <span class="text-warning" data-toggle="modal"
                                     data-target="#bankModal"><i class="fa fa-info-circle"></i></span> ))
-                            </div>
+                            </div> --}}
                             <div class="card-body col-12">
                                 <div class="row">
                                     <!-- form item -->
                                     <div class="check_form_inner col-6">
-                                        <label for="Email">Work Order <sup>*</sup> </label>
-                                        <input type="file" name="work_order" class="check_form" id="workorder">
+                                        <label for="Email">Work Order </label>
+                                        <input type="file" name="work_order" class="form-control" id="workorder">
+                                        <span class="text-primary">* Accepts Pdf</span>
                                     </div>
                                     <br>
                                     <!-- form item -->
                                     <div class="check_form_inner col-6">
-                                        <label for="Email">Payment Slip <sup>*</sup> </label>
-                                        <input type="file" name="payment_slip" class="check_form" id="payment">
+                                        <label for="Email">Work Order Number </label>
+                                        <input type="text" name="work_order_no" class="form-control" id="payment">
                                     </div>
                                 </div>
                             </div>
                         </div>
 
                     </div>
-                    {{-- <div id="bkashExpand" class="d-none">
-
-                        <div class="card mt-2 border border-secondary">
-                            <div class="card-title pt-1 pl-2 border border-bottom border-secondary">
-                                Payment Information (Bank Account ( <span class="text-warning" data-toggle="modal" data-target="#bankModal"><i class="fa fa-info-circle"></i></span> ))
-                            </div>
-                            <div class="card-body col-12">
-                                <div class="row">
-                                    <!-- form item -->
-                                    <div class="check_form_inner col-6">
-                                        <label for="Email">Work Order <sup>*</sup> </label>
-                                        <input type="file" name="work_order" class="check_form" id="workorder">
-                                    </div>
-                                    <br>
-                                    <!-- form item -->
-                                    <div class="check_form_inner col-6">
-                                        <label for="Email">Payment Slip <sup>*</sup> </label>
-                                        <input type="file" name="payment_slip" class="check_form" id="payment">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                    <div id="nagadExpand" class="d-none">
-
-                        <div class="card mt-2 border border-secondary">
-                            <div class="card-title pt-1 pl-2 border border-bottom border-secondary">
-                                Payment Information (Bank Account ( <span class="text-warning" data-toggle="modal" data-target="#bankModal"><i class="fa fa-info-circle"></i></span> ))
-                            </div>
-                            <div class="card-body col-12">
-                                <div class="row">
-                                    <!-- form item -->
-                                    <div class="check_form_inner col-6">
-                                        <label for="Email">Work Order <sup>*</sup> </label>
-                                        <input type="file" name="work_order" class="check_form" id="workorder">
-                                    </div>
-                                    <br>
-                                    <!-- form item -->
-                                    <div class="check_form_inner col-6">
-                                        <label for="Email">Payment Slip <sup>*</sup> </label>
-                                        <input type="file" name="payment_slip" class="check_form" id="payment">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-
-                    <div id="rocketExpand" class="d-none">
-
-                        <div class="card mt-2 border border-secondary">
-                            <div class="card-title pt-1 pl-2 border border-bottom border-secondary">
-                                Payment Information (Bank Account ( <span class="text-warning" data-toggle="modal" data-target="#bankModal"><i class="fa fa-info-circle"></i></span> ))
-                            </div>
-                            <div class="card-body col-12">
-                                <div class="row">
-                                    <!-- form item -->
-                                    <div class="check_form_inner col-6">
-                                        <label for="Email">Work Order <sup>*</sup> </label>
-                                        <input type="file" name="work_order" class="check_form" id="workorder">
-                                    </div>
-                                    <br>
-                                    <!-- form item -->
-                                    <div class="check_form_inner col-6">
-                                        <label for="Email">Payment Slip <sup>*</sup> </label>
-                                        <input type="file" name="payment_slip" class="check_form" id="payment">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div> --}}
 
                 </div>
                 <!-- summury -->
@@ -375,6 +425,66 @@
 
 
         });
+        $(document).ready(function() {
+            $(".shipAddress").on('change', function(){
+                if ($(".shipAddress").is(':checked')) {
+                    $("#shipExpand").removeClass('d-none');
+                } else {
+                    $("#shipExpand").addClass('d-none');
+                }
+
+
+            });
+
+
+        });
+        $(document).ready(function() {
+            $(".additionalNotes").on('click', function(){
+                //$("#additionalExpand").toggle();
+                if ($("#additionalExpand").hasClass('d-none')) {
+                    $("#additionalExpand").removeClass('d-none');
+                    $(".icon").removeClass('fa-plus');
+                    $(".icon").addClass('fa-minus');
+                } else {
+                    $("#additionalExpand").addClass('d-none');
+                    $(".icon").removeClass('fa-minus');
+                    $(".icon").addClass('fa-plus');
+                }
+
+
+            });
+
+
+        });
+        $(document).ready(function() {
+            $(".orderMethod").on('click', function(){
+                //$("#additionalExpand").toggle();
+                if ($("#orderExpand").hasClass('d-none')) {
+                    $("#orderExpand").removeClass('d-none');
+                    $(".iconOrder").removeClass('fa-plus');
+                    $(".iconOrder").addClass('fa-minus');
+                } else {
+                    $("#orderExpand").addClass('d-none');
+                    $(".iconOrder").removeClass('fa-minus');
+                    $(".iconOrder").addClass('fa-plus');
+                }
+
+
+            });
+
+
+        });
+    </script>
+    <script>
+        $(document).ready(function() {
+            $(".shipAddress").on('change', function(){
+                if ($(".shipAddress").is(':checked')) {
+                    $("#shipExpand").removeClass('d-none');
+                } else {
+                    $("#shipExpand").addClass('d-none');
+                }
+        });
+        });
     </script>
     <script>
         $(document).ready(function() {
@@ -391,5 +501,7 @@
             $("#rocketExpand").toggle(this.checked);
         });
     </script>
+
 @endsection
 @endonce
+

@@ -96,7 +96,9 @@ class ShopController extends Controller
         if (!empty($_GET['brand'])) {
             $slugs = explode(',',$_GET['brand']);
             $brandIds = Brand::select('id')->whereIn('slug',$slugs)->pluck('id')->toArray();
-           $products = $products->whereIn('brand_id',$brandIds);
+            //dd($brandIds);
+            $products = $products->where('brand_id',$brandIds);
+           //dd($products);
         }
 
 

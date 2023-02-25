@@ -25,7 +25,7 @@ class DealSasController extends Controller
      */
     public function index()
     {
-        $data['deal_sas'] = DealSas::latest()->get()->unique('rfq_code');
+        $data['deal_sas'] = DealSas::latest()->whereNotNull('create')->orderBy('id','Desc')->get()->unique('rfq_code');
         //dd($data['deal_sas']);
         return view('admin.pages.deal_sas.all', $data);
     }

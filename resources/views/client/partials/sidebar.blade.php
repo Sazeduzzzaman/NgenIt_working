@@ -98,43 +98,35 @@
                     </ul>
                 </li>
 
-                <li class="nav-item nav-item-submenu">
-                    <a href="#" class="nav-link">
-                        <i class="ph-user-focus"></i>
-                        <span>RFQ Section</span>
+                <li class="nav-item">
+                    <a href="{{ route('rfq.product.index') }}" class="nav-link">
+                        <i class="ph-circle-wavy-question"></i>
+                        <span>
+                            RFQ Section
+                        </span>
                     </a>
-                    <ul class="nav-group-sub collapse">
-                        <li class="nav-item"><a href="{{ route('rfq.product.index') }}" class="nav-link active"><i
-                                    class="ph-user-focus"></i>
-                                <span>All RFQs</span></a></li>
-                        <li class="nav-item">
-                            <a href="{{ route('client.deals') }}" class="nav-link">
-                                <i class="ph-user-circle-gear"></i>
-                                <span>
-                                    All Deals
-                                </span>
-                            </a>
-                        </li>
-                    </ul>
                 </li>
+
+
+
 
                 <li class="nav-item nav-item-submenu">
                     <a href="#" class="nav-link">
-                        <i class="ph-user-focus"></i>
+                        <i class="ph-shopping-cart"></i>
                         <span>Order Section</span>
                     </a>
                     <ul class="nav-group-sub collapse">
                         <li class="nav-item"><a href="{{ route('client.orders') }}" class="nav-link active"><i
-                                    class="ph-user-focus"></i>
+                                    class="ph-shopping-cart"></i>
                                 <span>All Orders</span></a></li>
-                        <li class="nav-item">
+                        {{-- <li class="nav-item">
                             <a href="" class="nav-link">
                                 <i class="ph-user-circle-gear"></i>
                                 <span>
-                                    All Deals
+                                    Order Tracking
                                 </span>
                             </a>
-                        </li>
+                        </li> --}}
                     </ul>
                 </li>
 

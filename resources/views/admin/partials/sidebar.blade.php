@@ -133,6 +133,16 @@
                                 <span>Sales Forcast</span>
                             </a>
                         </li>
+                        <li class="nav-item"><a href="{{ route('sales-profit-loss.index') }}" class="nav-link"><i
+                                    class="ph-layout"></i>
+                                <span>Sales Profit Loss</span>
+                            </a>
+                        </li>
+                        <li class="nav-item"><a href="{{ route('commercial-document.index') }}" class="nav-link"><i
+                                    class="ph-layout"></i>
+                                <span>Commercial Documents</span>
+                            </a>
+                        </li>
                     </ul>
                 </li>
 
@@ -335,9 +345,9 @@
                                     Partner Account
                                 </span>
                             </a></li>
-                        <li class="nav-item"><a href="{{ route('newsLetter.index') }}" class="nav-link"><i
+                        <li class="nav-item"><a href="{{ route('sales-account.index') }}" class="nav-link"><i
                                     class="ph-user-plus"></i>
-                                <span>Salesman Approval</span></a></li>
+                                <span>Sales Manager Accounts</span></a></li>
                     </ul>
                 </li>
 

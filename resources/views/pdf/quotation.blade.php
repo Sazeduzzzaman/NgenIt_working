@@ -97,8 +97,20 @@
 
     <div class="container mt-5" style=" width: 100%;padding-right: 15px;padding-left: 15px;margin-right: auto;margin-left: auto;margin-top: 1rem!important;">
 
+        <table class="tableCustomice" style="padding: 5px; background: whitesmoke; width:90%; margin:auto; margin-top:15px;">
+            <tr>
+                <th width="45%" style="border: none; text-align:center;">
+                    <img src="http://165.22.48.109/ngenit/upload/logoimage/1755708668937189.png"
+                            class="img-responsive" style="height:50px;width: 120px;">
+                </th>
+                <th width="10%" style="border: none; text-align:center;"></th>
+                <th width="45%" style="border: none; text-align:center;">
+                    <h3 style="line-height: 50px; font-size: 30px!important; text-align: center; color: #FD1C03;"> Quotation </h3>
+                </th>
 
-        <div class="card" style="display: -webkit-box;display: -ms-flexbox;display: flex;-webkit-box-orient: vertical;-webkit-box-direction: normal;-ms-flex-direction: column;flex-direction: column;min-width: 0;word-wrap: break-word;background-color: #fff;background-clip: border-box;border: 1px solid rgba(0,0,0,.125);border-radius: 0.25rem;">
+            </tr>
+        </table>
+        {{-- <div class="card" style="display: -webkit-box;display: -ms-flexbox;display: flex;-webkit-box-orient: vertical;-webkit-box-direction: normal;-ms-flex-direction: column;flex-direction: column;min-width: 0;word-wrap: break-word;background-color: #fff;background-clip: border-box;border: 1px solid rgba(0,0,0,.125);border-radius: 0.25rem;">
             <div class="card-header" style="padding: 0.75rem 0.75rem;margin-bottom: 0;background-color: rgba(0,0,0,.03);border-bottom: 1px solid rgba(0,0,0,.125);">
                 <div class="col-lg-12 float-left quotation-header-banner padding"
                     style="min-height: 40px; background: whitesmoke;">
@@ -142,8 +154,8 @@
 
                     <p style="font-size:12px; padding-left: 20px;">
                         <strong>Date &nbsp;:</strong> {{ \Carbon\Carbon::now() }} <br>
-                        {{-- <span><strong>PQ &nbsp;&nbsp;&nbsp; : </strong> NG-ARCSW/230112_ADSK </span> <br>
-	    	  	     	<span><strong>PQR &nbsp; :</strong> BD-C168(T10)-Mh(L1) </span> --}}
+                        <span><strong>PQ &nbsp;&nbsp;&nbsp; : </strong> NG-ARCSW/230112_ADSK </span> <br>
+	    	  	     	<span><strong>PQR &nbsp; :</strong> BD-C168(T10)-Mh(L1) </span>
                     </p>
 
 
@@ -151,7 +163,7 @@
 
 
             </div>
-        </div>
+        </div> --}}
 
         <div style="display: none;">
             <div class="form-check form-check-inline">
@@ -454,18 +466,18 @@
         </div>
 
 
-        <div class="col-lg-12 product-details-area float-left padding"
-            style="padding: 15px; background: #222222; margin-top:15px; width:90%; margin:auto; height:20px;">
-
-            <div class="col-lg-12 float-left padding small">
-                <span class="text-white" style="font-size:12px; color:white;">
-                    <center>NGen IT, 89/2 (11th FL), Haque Chamber, West Panthopath, Dhaka-1216, Bangladesh
-                        Cell: +880 1714243446, 01971424221 e-mail: sales@ngenitltd.com, URL: www.ngenitltd.com </center>
-                </span>
-            </div>
 
 
-        </div>
+            <table class="tableCustomice" style="padding: 5px; background: #222222; width:90%; margin:auto; margin-top:15px;">
+                <tr>
+                    <span class="text-white" style="font-size:12px; color:white;">
+                        <center>NGen IT, 89/2 (11th FL), Haque Chamber, West Panthopath, Dhaka-1216, Bangladesh
+                            Cell: +880 1714243446, 01971424221 e-mail: sales@ngenitltd.com, URL: www.ngenitltd.com
+                        </center>
+                    </span>
+                </tr>
+            </table>
+
 
 
 

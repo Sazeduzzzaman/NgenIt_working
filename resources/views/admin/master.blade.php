@@ -170,100 +170,106 @@
 		</div>
 	</div> --}}
 	<!-- /notifications -->
-@php
-    $notifications = auth()->user()->unreadNotifications;
-    $old_notifications = auth()->user()->readNotifications;
-@endphp
+        @php
+            $notifications = auth()->user()->unreadNotifications;
+            $old_notifications = auth()->user()->readNotifications;
+        @endphp
 
-    <!-- Notifications -->
-<div class="offcanvas offcanvas-end" tabindex="-1" id="notifications">
-    <div class="offcanvas-header py-0">
-        <h5 class="offcanvas-title py-3">Activity</h5>
-        <button type="button" class="btn btn-light btn-sm btn-icon border-transparent rounded-pill"
-            data-bs-dismiss="offcanvas">
-            <i class="ph-x"></i>
-        </button>
-    </div>
-
-    <div class="offcanvas-body p-0">
-        <div class="bg-light fw-medium py-2 px-3">New notifications</div>
-
-
-        <div class="p-3">
-            @if (auth()->user()->role)
-            @forelse($notifications as $notification)
-            <div class="d-flex align-items-start mb-3">
-                <a href="#" class="status-indicator-container me-3">
-                    <i class="icon-envelope w-40px h-40px rounded-pill"></i>
-                    <span class="status-indicator bg-success"></span>
-                </a>
-                <div class="flex-fill">
-                    {{-- <a href="{{ route('rfq.edit'),$notification->data['link'] }}" class="fw-semibold">{{ $notification->data['name'] }}</a> {{ $notification->data['message'] }} --}}
-                    <a href="javascript:void(0);" data-id="{{ $notification->id }}" class="mark-read">
-                        @if ($notification->link)
-                            <a href="{{ $notification->data['link'] }}" class="fw-semibold">
-                                {{ $notification->data['name'] }}</a> {{ $notification->data['message'] }}
-                            </a>
-                        @else
-                            <a href="" class="fw-semibold">
-                                {{ $notification->data['name'] }}</a> {{ $notification->data['message'] }}
-                            </a>
-                        @endif
-
-
-                    <div class="fs-sm text-muted mt-1">{{ Carbon\Carbon::parse($notification->created_at)->diffForHumans() }}</div>
-                </div>
-                <a href="#" class="float-right mark-as-read px-3" data-id="{{ $notification->id }}">
-                    Mark as read
-                </a>
+            <!-- Notifications -->
+        <div class="offcanvas offcanvas-end" tabindex="-1" id="notifications">
+            <div class="offcanvas-header py-0">
+                <h5 class="offcanvas-title py-3">Activity</h5>
+                <button type="button" class="btn btn-light btn-sm btn-icon border-transparent rounded-pill"
+                    data-bs-dismiss="offcanvas">
+                    <i class="ph-x"></i>
+                </button>
             </div>
-                        @if ($loop->last)
-                        <a href="#" id="mark-all">
-                            Mark all as read
+
+            <div class="offcanvas-body p-0">
+                <div class="bg-light fw-medium py-2 px-3">New notifications</div>
+
+
+                <div class="p-3">
+                    @if (auth()->user()->role)
+                    @forelse($notifications as $notification)
+                    <div class="d-flex align-items-start mb-3">
+                        <a href="#" class="status-indicator-container me-3">
+                            <i class="icon-envelope w-40px h-40px rounded-pill"></i>
+                            <span class="status-indicator bg-success"></span>
                         </a>
+                        <div class="flex-fill">
+                            {{-- <a href="{{ route('rfq.edit'),$notification->data['link'] }}" class="fw-semibold">{{ $notification->data['name'] }}</a> {{ $notification->data['message'] }} --}}
+                            <a href="javascript:void(0);" data-id="{{ $notification->id }}" class="mark-read">
+                                @if ($notification->link)
+                                    <a href="{{ $notification->data['link'] }}" class="fw-semibold">
+                                        {{ $notification->data['name'] }}</a> {{ $notification->data['message'] }}
+                                    </a>
+                                @else
+                                    <a href="" class="fw-semibold">
+                                        {{ $notification->data['name'] }}</a> {{ $notification->data['message'] }}
+                                    </a>
+                                @endif
+
+
+                            <div class="fs-sm text-muted mt-1">{{ Carbon\Carbon::parse($notification->created_at)->diffForHumans() }}</div>
+                        </div>
+                        @if ($notification->link)
+                        <a href="{{ $notification->data['link'] }}" class="float-right mark-as-read px-3" data-id="{{ $notification->id }}">
+                            Go To Link
+                        </a>
+                        @else
+                        <a href="#" class="float-right mark-as-read px-3" data-id="{{ $notification->id }}">
+                            Mark as Read
+                        </a>
+                        @endif
+                    </div>
+                                @if ($loop->last)
+                                <a href="#" id="mark-all">
+                                    Mark all as read
+                                </a>
+                            @endif
+                        @empty
+                            There are no new notifications
+                        @endforelse
                     @endif
-                @empty
-                    There are no new notifications
-                @endforelse
-            @endif
 
-        </div>
+                </div>
 
-        <div class="bg-light fw-medium py-2 px-3">Older notifications</div>
+                <div class="bg-light fw-medium py-2 px-3">Older notifications</div>
 
-        <div class="p-3">
-            @if (auth()->user()->role)
-            @forelse($old_notifications as $old_notification)
-            <div class="d-flex align-items-start mb-3">
-                <a href="#" class="status-indicator-container me-3">
-                    <i class="ph-envelope-open w-40px h-40px rounded-pill"></i>
-                    {{-- <img src="{{ asset('/') }}backend/assets/images/demo/users/face1.jpg"
-                        class="w-40px h-40px rounded-pill" alt=""> --}}
-                    <span class="status-indicator bg-success"></span>
-                </a>
-                <div class="flex-fill">
-                    {{-- @if ($old_notification->data['link'])
-                    <a href="{{ $old_notification->data['link'] }}" class="fw-semibold">{{ $old_notification->data['name'] }}</a> {{ $old_notification->data['message'] }}
-                    @else --}}
-                    <a href="" class="fw-semibold">{{ $old_notification->data['name'] }}</a> {{ $old_notification->data['message'] }}
-                    {{-- @endif --}}
+                <div class="p-3">
+                    @if (auth()->user()->role)
+                    @forelse($old_notifications as $old_notification)
+                    <div class="d-flex align-items-start mb-3">
+                        <a href="#" class="status-indicator-container me-3">
+                            <i class="ph-envelope-open w-40px h-40px rounded-pill"></i>
+                            {{-- <img src="{{ asset('/') }}backend/assets/images/demo/users/face1.jpg"
+                                class="w-40px h-40px rounded-pill" alt=""> --}}
+                            <span class="status-indicator bg-success"></span>
+                        </a>
+                        <div class="flex-fill">
+                            {{-- @if ($old_notification->data['link'])
+                            <a href="{{ $old_notification->data['link'] }}" class="fw-semibold">{{ $old_notification->data['name'] }}</a> {{ $old_notification->data['message'] }}
+                            @else --}}
+                            <a href="" class="fw-semibold">{{ $old_notification->data['name'] }}</a> {{ $old_notification->data['message'] }}
+                            {{-- @endif --}}
 
 
-                    <div class="fs-sm text-muted mt-1">{{ Carbon\Carbon::parse($old_notification->created_at)->diffForHumans() }}</div>
+                            <div class="fs-sm text-muted mt-1">{{ Carbon\Carbon::parse($old_notification->created_at)->diffForHumans() }}</div>
+                        </div>
+
+                    </div>
+
+                        @empty
+                            There are no Old notifications
+                        @endforelse
+                    @endif
+
                 </div>
 
             </div>
-
-                @empty
-                    There are no Old notifications
-                @endforelse
-            @endif
-
         </div>
-
-    </div>
-</div>
-<!-- /notifications -->
+    <!-- /notifications -->
 
 
 

@@ -823,16 +823,20 @@
                 <div class="populer_product_slider">
 
                     <!-- product_item -->
+                    @if ($products)
                     @foreach ($products as $item)
                     <div class="product_item">
                         <!-- image -->
                         <div class="product_item_thumbnail">
                             <img src="{{asset($item->thumbnail)}}" alt="{{$item->name}}" width="150px" height="113px">
                         </div>
-
+                            @php
+                                $product_slug = App\Models\Admin\Product::where('product_code',$item->product_code)->value('slug');
+                                //dd($product_slug);
+                            @endphp
                         <!-- product content -->
                         <div class="product_item_content">
-                            <a href="{{ route('product.details', $item->slug) }}" class="product_item_content_name" style="height: 4rem;">{{$item->name}}</a>
+                            <a href="{{ route('product.details', $product_slug) }}" class="product_item_content_name" style="height: 4rem;">{{$item->name}}</a>
 
                            @if ($item->rfq != 1)
                              <!-- price -->
@@ -864,12 +868,13 @@
                              </form>
                              @endif
                            @else
-                           <a class="product_button mt-3" href="{{ route('product.details', $item->slug) }}">Details</a>
+                           <a class="product_button mt-3" href="{{ route('product.details', $product_slug) }}">Details</a>
                            @endif
                         </div>
 
                     </div>
                     @endforeach
+                    @endif
 
                 </div>
             </div>

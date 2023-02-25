@@ -24,7 +24,7 @@ return new class extends Migration
             $table->double('unit_price')->nullable();
             $table->double('amount')->nullable();
             $table->double('sub_total')->nullable();
-            $table->foreign('rfq_id')->references('id')->on('rfqs')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('rfq_id')->references('id')->on('rfqs')->onUpdate('cascade');
             $table->foreign('purchase_id')->references('id')->on('purchases')->onDelete('cascade')->onUpdate('cascade');
 
             $table->timestamps();

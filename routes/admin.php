@@ -19,6 +19,7 @@ use App\Http\Controllers\Admin\ClientController;
 use App\Http\Controllers\Admin\ClientPermission;
 use App\Http\Controllers\Admin\IncomeController;
 use App\Http\Controllers\Admin\PolicyController;
+use App\Http\Controllers\Admin\RegionController;
 use App\Http\Controllers\Order\ReportController;
 use App\Http\Controllers\Order\ReturnController;
 use App\Http\Middleware\RedirectIfAuthenticated;
@@ -51,15 +52,19 @@ use App\Http\Controllers\Admin\ClientStoryController;
 use App\Http\Controllers\Admin\IndustryPageController;
 use App\Http\Controllers\Admin\SalesForcastController;
 use App\Http\Controllers\Admin\SolutionCardController;
+use App\Http\Controllers\Sales\SalesAccountController;
 use App\Http\Controllers\Marketing\BulkEmailController;
 use App\Http\Controllers\Admin\OfficeLocationController;
 use App\Http\Controllers\Admin\RfqOrderStatusController;
 use App\Http\Controllers\Admin\AccountsPayableController;
+use App\Http\Controllers\Admin\SalesProfitLossController;
 use App\Http\Controllers\Admin\SalesTeamTargetController;
 use App\Http\Controllers\Admin\SalesYearTargetController;
 use App\Http\Controllers\Admin\SolutionDetailsController;
 use App\Http\Controllers\Admin\AccountProfitLossController;
 use App\Http\Controllers\Admin\AccountsReceivableController;
+use App\Http\Controllers\Admin\CommercialDocumentController;
+use App\Http\Controllers\Admin\PaymentMethodDetailsController;
 
 Route::get('/admin/login', [AdminController::class, 'AdminLogin'])->name('admin.login')->middleware(RedirectIfAuthenticated::class);
 
@@ -320,12 +325,13 @@ Route::put('assign_salesmanager/{id}', [RFQController::class,'AssignSalesMan'])-
 Route::controller(RFQController::class)->group(function(){
     Route::get('/edit/{id}/rfq-to-deal', 'DealConvert')->name('deal.convert');
     Route::put('convert-deal/store/{id}', 'ConvertDealStore')->name('convert.deal');
+    Route::get('/client/ajax/{client_id}' , 'GetClient');
   });
 
 //Deal
   Route::resource('deal', DealController::class);
-  Route::get('/partner/ajax/{partner_id}' , [DealController::class,'GetPartner']);
-  Route::get('/client/ajax/{client_id}' , [DealController::class,'GetClient']);
+//   Route::get('/partner/ajax/{partner_id}' , [DealController::class,'GetPartner']);
+//   Route::get('/client/ajax/{client_id}' , [DealController::class,'GetClient']);
   Route::controller(DealController::class)->group(function(){
     Route::get('/partner/ajax/{partner_id}' , 'GetPartner');
     Route::get('/client/ajax/{client_id}' , 'GetClient');
@@ -344,6 +350,7 @@ Route::controller(RFQController::class)->group(function(){
   Route::resource('feature', FeatureController::class);
   Route::resource('brandPage', BrandPageController::class);
   Route::resource('country', CountryController::class);
+  Route::resource('region', RegionController::class);
 
   //Product Sourcing
   Route::resource('product-sourcing', SourcingController::class);
@@ -369,14 +376,7 @@ Route::controller(RFQController::class)->group(function(){
  Route::put('/deal_sas/product_unitprice/update/{id}/', [DealSasController::class, 'UnitPriceUpdate'])->name('update.unitprice');
  Route::put('/deal-sas/approve/{id}/store/', [DealSasController::class, 'DealSasApproveStore'])->name('approve.deal-sas');
 
- // Sales Target
- Route::resource('salesTeamTarget', SalesTeamTargetController::class);
- Route::resource('salesYearTarget', SalesYearTargetController::class);
- Route::resource('rfqOrderStatus', RfqOrderStatusController::class);
 
- // Feedback
- Route::resource('feedback', FeedbackController::class);
- Route::resource('partner-account', PartnerController::class);
 
 
  Route::get('send/mail', [PartnerController::class, 'sendBulkMail'])->name('sendBulkMail');
@@ -384,30 +384,7 @@ Route::controller(RFQController::class)->group(function(){
  Route::get('bulksms',[BulkSmsController::class,'bulksms']);
  Route::post('bulksms',[BulkSmsController::class,'sendSms'])->name('sendSms');
 
- Route::resource('bulkEmail', BulkEmailController::class);
 
- ///Office Location
- Route::resource('office-location', OfficeLocationController::class);
- ///Sales Forecast
- Route::resource('sales-forcast', SalesForcastController::class);
-
- ///Account Profit Loss
- Route::resource('account-profit-loss', AccountProfitLossController::class);
-
-  ///Account Payable
-  Route::resource('account-payable', AccountsPayableController::class);
-
-  ///Account Receivable
-  Route::resource('account-receivable', AccountsReceivableController::class);
-
-  ///Purchase
-  Route::resource('purchase', PurchaseController::class);
-
-  ///Income
-  Route::resource('income', IncomeController::class);
-
-  ///Expense
-  Route::resource('expense', ExpenseController::class);
 
     //Overview
   Route::get('/income-expense/overview', [IncomeController::class, 'Overview'])->name('income-expense.overview');
@@ -415,6 +392,29 @@ Route::controller(RFQController::class)->group(function(){
   //Ledger
   Route::get('/income-expense/ledger', [ExpenseController::class, 'Ledger'])->name('income-expense.ledger');
 
+ //Account Settings
+ Route::resource('partner-account', PartnerController::class);
+ Route::resource('sales-account', SalesAccountController::class);
+
+  Route::resources([
+    'income' => IncomeController::class,
+    'expense' => ExpenseController::class,
+    'bulkEmail' => BulkEmailController::class,
+    'office-location' => OfficeLocationController::class,
+    'sales-forcast' => SalesForcastController::class,
+    'account-profit-loss' => AccountProfitLossController::class,
+    'account-payable' => AccountsPayableController::class,
+    'account-receivable' => AccountsReceivableController::class,
+    'purchase' => PurchaseController::class,
+    'sales-profit-loss' => SalesProfitLossController::class,
+    'salesTeamTarget' => SalesTeamTargetController::class,
+    'salesYearTarget' => SalesYearTargetController::class,
+    'rfqOrderStatus' => RfqOrderStatusController::class,
+    'feedback' => FeedbackController::class,
+    'partner-account' => PartnerController::class,
+    'commercial-document' => CommercialDocumentController::class,
+    'payment-method-details' => PaymentMethodDetailsController::class,
+]);
 
 
 

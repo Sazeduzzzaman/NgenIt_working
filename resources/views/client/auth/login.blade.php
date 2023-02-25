@@ -4,15 +4,15 @@
      <section id="login_form" class="my-4" style="margin-top: 109px !important;">
         <section class="login_form_wrapper">
             <div class="title-text">
-                <div class="title login">Login Form</div>
-                <div class="title signup">Signup Form</div>
+                <div class="title login">Client Login Form</div>
+                <div class="title signup">Client Signup Form</div>
             </div>
             <div class="login_form_container">
                 <div class="login_slide_controls">
                     <input type="radio" name="login_slide" id="login" checked>
                     <input type="radio" name="login_slide" id="signup">
-                    <label for="login" class="login_slide login">Login</label>
-                    <label for="signup" class="login_slide signup">Signup</label>
+                    <label for="login" class="login_slide login">Client Login</label>
+                    <label for="signup" class="login_slide signup">Client Signup</label>
                     <div class="login_slider_tab"></div>
                 </div>
                 <div class="form-inner">

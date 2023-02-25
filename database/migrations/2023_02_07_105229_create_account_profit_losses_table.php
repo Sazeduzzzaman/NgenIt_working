@@ -24,7 +24,7 @@ return new class extends Migration
             $table->double('net_profit_ammount')->nullable();
             $table->double('profit')->nullable();
             $table->double('loss')->nullable();
-            $table->foreign('rfq_id')->references('id')->on('rfqs')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('rfq_id')->references('id')->on('rfqs')->onUpdate('cascade');
             $table->timestamps();
         });
     }

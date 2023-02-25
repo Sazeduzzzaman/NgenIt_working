@@ -1,6 +1,6 @@
 <?php
 
-
+use App\Models\Frontend\Order;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
@@ -19,7 +19,7 @@ class Helper
      * generates the image path if the image path does not exist.
      */
 
-    
+
 
     public static function imageDirectory()
     {
@@ -110,6 +110,25 @@ class Helper
          return $output;
      }
 
+    //  public static function customFileUpload($mainFile , $fileName)
+    //  {
+    //     //  $fileExtention    = $mainFile->getClientOriginalExtension();
+    //     //  $fileOriginalName = $mainFile->getClientOriginalName();
+    //     //  $file_size        = $mainFile->getSize();
+    //     //  $currentTime      = Str::random(17);
+    //     //  $fileName         = $currentTime . '.' . $fileExtention;
+
+    //      $mainFile->storeAs('public/files', $fileName);
+
+    //      $output['status']             = 1;
+    //      $output['file_name']          = $fileName;
+    //      $output['file_original_name'] = $fileOriginalName;
+    //      $output['file_extention']     = $fileExtention;
+    //      $output['file_size']          = $file_size;
+
+    //      return $output;
+    //  }
+
 
     // file uploads methods
 
@@ -152,5 +171,18 @@ class Helper
         else{
             return 0;
         }
+    }
+
+    public static function generateCode()
+    {
+        $prefix = 'NG-';
+        $date = date('dmY');
+        $lastCode = Order::latest()->value('order_number');
+        $lastNumber = intval(substr($lastCode, -3));
+        $newNumber = $lastNumber + 1;
+        $newNumberPadded = str_pad($newNumber, 3, '0', STR_PAD_LEFT);
+        $code = $prefix . $date . $newNumberPadded;
+        //MyModel::create(['code' => $code]);
+        return $code;
     }
 }

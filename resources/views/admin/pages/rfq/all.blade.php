@@ -84,6 +84,7 @@
                                     <tbody>
                                         @if ($rfqs)
                                             @foreach ($rfqs as $key => $rfq)
+
                                                 <tr>
                                                     <td>{{ ++$key }}</td>
                                                     <td>{{ ucfirst($rfq->rfq_code) }}</td>
@@ -91,16 +92,16 @@
                                                     <td>{{ ucfirst($rfq->client_type) }}</td>
                                                     <td>{{ ucfirst($rfq->status) }}</td>
                                                     <td class="text-center">
-                                                        <a href="{{ route('rfq.edit', [$rfq->id]) }}"
+                                                        {{-- <a href="{{ route('rfq.edit', [$rfq->id]) }}"
                                                             class="text-primary">
                                                             <i class="icon-pencil"></i>
-                                                        </a>
+                                                        </a> --}}
                                                         <a href="{{ route('rfq.destroy', [$rfq->id]) }}"
                                                             class="text-danger delete mx-2">
                                                             <i class="delete icon-trash"></i>
                                                         </a>
                                                         <a href="javascript:void(0);" class="text-primary"
-                                                            data-bs-toggle="modal" title="Assign Sales Manager"
+                                                            data-bs-toggle="modal" title="View & Assign Sales Manager"
                                                             data-bs-target="#update_category_{{ $rfq->rfq_code }}">
                                                             <i class="ph-user-circle-plus"></i>
                                                         </a>
@@ -285,16 +286,16 @@
                                                     <td>{{ ucfirst($deal->client_type) }}</td>
                                                     <td>{{ ucfirst($deal->status) }}</td>
                                                     <td class="text-center">
-                                                        <a href="{{ route('rfq.edit', [$deal->id]) }}"
+                                                        {{-- <a href="{{ route('rfq.edit', [$deal->id]) }}"
                                                             class="text-primary">
                                                             <i class="icon-pencil"></i>
-                                                        </a>
+                                                        </a> --}}
                                                         <a href="{{ route('rfq.destroy', [$deal->id]) }}"
                                                             class="text-danger delete mx-2">
                                                             <i class="delete icon-trash"></i>
                                                         </a>
                                                         <a href="{{ route('deal.convert', [$deal->id]) }}"
-                                                            class="text-success" title="Conver To Deal">
+                                                            class="text-success" title="Convert To Deal">
                                                             <i class="icon-pen-plus icon-1x"></i>
                                                         </a>
 

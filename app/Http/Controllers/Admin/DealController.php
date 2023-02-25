@@ -3,10 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 
+use Pdf;
 use Helper;
 use Carbon\Carbon;
 use App\Models\User;
-use Pdf;
 use App\Models\Admin\Rfq;
 use Illuminate\Support\Str;
 use App\Models\Admin\Client;
@@ -22,6 +22,8 @@ use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Storage;
+use App\Models\Admin\CommercialDocument;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Notification;
 
@@ -34,10 +36,10 @@ class DealController extends Controller
      */
     public function index()
     {
-        $data['deals'] = Rfq::where('rfq_type', 'deal')->where('status', 'sas_created')->get();
-        $data['rfqs'] = Rfq::where('rfq_type', 'deal')->where('status', 'deal_created')->get();
-        $data['approved_sas'] = Rfq::where('status', 'sas_approved')->where('rfq_type', 'deal')->get();
-        $data['approved_sas'] = Rfq::where('status', 'sas_approved')->where('rfq_type', 'deal')->get();
+        $data['deals'] = Rfq::where('rfq_type', 'deal')->where('status', 'sas_created')->orderBy('id','Desc')->get();
+        $data['rfqs'] = Rfq::where('rfq_type', 'deal')->where('status', 'deal_created')->orderBy('id','Desc')->get();
+        $data['approved_sas'] = Rfq::where('status', 'sas_approved')->where('rfq_type', 'deal')->orderBy('id','Desc')->get();
+        $data['quoted'] = Rfq::where('status', 'quoted')->where('rfq_type', 'deal')->orderBy('id','Desc')->get();
         return view('admin.pages.deal.all', $data);
     }
 
@@ -66,7 +68,7 @@ class DealController extends Controller
     public function store(Request $request)
     {
 
-        //dd($request->all());
+
         $user = User::latest()->get();
         Helper::imageDirectory();
 
@@ -75,7 +77,8 @@ class DealController extends Controller
         } else {
             $data['deal_type'] = 'new';
         }
-        if (!empty($request->account)) {
+        if (($request->account) !== null) {
+
             if ($request->account == 'client') {
                 $client_id = Client::insertGetId([
                     'name'     => $request->name,
@@ -95,11 +98,11 @@ class DealController extends Controller
                 ]);
                 $data['partner_id'] = $partner_id;
             }
-            else{
+
+        }else{
                 $data['client_id'] =  $request->client_id;
                 $data['partner_id'] = $request->partner_id;
             }
-        }
         $data['pq_code'] = 'NG' . '-' . date('dmy');
 
             $rfq_code='RFQ-'.Str::random(6).date('dmy');
@@ -246,7 +249,13 @@ class DealController extends Controller
      */
     public function show($id)
     {
-        //
+        $data['users'] = User::where('role', 'sales')->select('users.id', 'users.name')->get();
+        $data['products'] = Product::select('products.id', 'products.name')->get();
+        $data['solution_details'] = SolutionDetail::select('solution_details.id', 'solution_details.name')->get();
+        $data['clients'] = Client::select('clients.id', 'clients.name')->get();
+        $data['partners'] = Partner::select('partners.id', 'partners.name')->get();
+        $data['rfq'] = Rfq::find($id);
+        return view('admin.pages.deal.show', $data);
     }
 
     /**
@@ -386,9 +395,13 @@ class DealController extends Controller
         $data['products'] = DealSas::where('rfq_id',  $data['rfq']->id)->get();
         $data['deal_sas'] = DealSas::where('rfq_id',  $data['rfq']->id)->first();
 
-
+        $fileName = 'Qutotation('.$data['rfq']->rfq_code.').pdf';
+        $filePath = 'public/files/' . $fileName;
         $pdf = PDF::loadView('pdf.quotation', $data);
-
+        //$pdf_upload = $pdf->save($filePath);
+        $pdf_output = $pdf->output();
+        Storage::put($filePath, $pdf_output);
+        //dd($pdf_upload);
         $email = $data['email'];
         $subject = 'Quotation From Ngen It';
         $message = 'Here is the Quotation From Ngen It which is generated against your RFQ.';
@@ -403,41 +416,38 @@ class DealController extends Controller
     });
 
     // send the email
-    if (!$mail) {
+    if ($mail) {
         Toastr::success('Quotation Mail Sent Successfully');
     } else {
         Toastr::error($message, 'Quotation Mail Sent Failed', ['timeOut' => 30000]);
     }
 
 
-        return $pdf->download('Quotation-'.$id.'.pdf');
-        return redirect()->back();
-        //dd($data['deal_sas']);
 
+    $document_check = CommercialDocument::where('rfq_id', $data['rfq']->id)->first();
+    if (!empty($document_check)) {
+        CommercialDocument::find($document_check->id)->update([
+            'client_pq'=> $filePath,
+            ]);
+            Toastr::success('PDF Uploaded Successfully');
+    } else {
+        CommercialDocument::create([
+            'rfq_id' => $data['rfq']->id,
+            'client_pq'=> $filePath,
+        ]);
+        Toastr::success('PDF Uploaded Successfully');
     }
 
-    public function CheckQuotation(Request $request, $id)
-    {
-        $data['rfq'] = Rfq::where('rfq_code',$id)->where('rfq_type','deal')->first();
-        $data['products'] = DealSas::where('rfq_id',  $data['rfq']->id)->get();
-        $data['deal_sas'] = DealSas::where('rfq_id',  $data['rfq']->id)->first();
-        //dd($data['rfq']);
-        //dd($data['deal_sas']);
-
-
-
-        return view('pdf.quotation', $data);
-        //$pdf = PDF::loadView('pdf.quotation', $data)->setPaper('a4');
-
-        // Mail::send([], [], function ($message) use ($pdf) {
-        //     $message->to('recipient@example.com')
-        //             ->subject('Custom PDF')
-        //             ->attachData($pdf->output(), 'custom-pdf.pdf');
-        // });
-
+    $rfq = Rfq::find($data['rfq']->id);
+    $rfq->update([
+        'status'  => 'quoted',
+    ]);
         //return $pdf->download('Quotation-'.$id.'.pdf');
-        //dd($data['deal_sas']);
+        return redirect()->back();
+
 
     }
+
+
 
 }

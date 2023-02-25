@@ -6,6 +6,7 @@ use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Models\Admin\Country;
 use App\Http\Controllers\Controller;
+use App\Models\Admin\Region;
 use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Support\Facades\Validator;
 
@@ -18,6 +19,7 @@ class CountryController extends Controller
      */
     public function index()
     {
+        $data['regions'] = Region::latest()->get();
         $data['countrys'] = Country::latest()->get();
         return view('admin.pages.country.all', $data);
     }
@@ -43,15 +45,14 @@ class CountryController extends Controller
         $validator = Validator::make(
             $request->all(),
             [
-                'region_name'  => 'required',
+                'region_id'  => 'required',
                 'country_name' => 'required',
             ],
         );
 
         if ($validator->passes()) {
             Country::create([
-                'region_name'  => $request->region_name,
-                'region_slug'  => Str::slug($request->region_name),
+                'region_id'  => $request->region_id,
                 'country_name' => $request->country_name,
                 'country_slug' => Str::slug($request->country_name),
                 'locale'       => $request->locale,

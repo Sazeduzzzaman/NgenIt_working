@@ -58,7 +58,7 @@ return new class extends Migration
             $table->double('others')->nullable();
             $table->double('total')->nullable();
             $table->text('client_details')->nullable();
-            $table->foreign('rfq_id')->references('id')->on('rfqs')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('rfq_id')->references('id')->on('rfqs')->onUpdate('cascade');
             $table->timestamps();
         });
     }

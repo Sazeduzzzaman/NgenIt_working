@@ -15,8 +15,8 @@ return new class extends Migration
     {
         Schema::create('countries', function (Blueprint $table) {
             $table->id();
-            $table->string('region_name');
-            $table->string('region_slug');
+            $table->unsignedBigInteger('region_id');
+            $table->foreign('region_id')->references('id')->on('regions')->onUpdate('cascade');
             $table->string('country_name');
             $table->string('country_slug');
             $table->string('locale')->nullable();

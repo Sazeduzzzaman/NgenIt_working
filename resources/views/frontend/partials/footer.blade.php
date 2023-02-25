@@ -20,10 +20,10 @@
                         @csrf
                         <p>Sign up to receive the IT content that matters most to you. You can update your preferences or unsubscribe any time.</p>
                     <!-- button -->
-                        <div class="col-lg-12 common_button2" style="padding: 7px 7px">
+                        <div class="col-lg-12 common_button2" style="padding: 7px 7px; border-radius:5px;">
                             <div class="row">
                                 <div class="col-lg-10 p-0 pl-4">
-                                    <input class="form-control" type="email" name="email"  placeholder="Insert Your Email Here.." style="background: transparent; border:1px solid #ffffff; color:white">
+                                    <input class="form-control" type="email" name="email"  placeholder="Insert Your Email Here.." style="background: transparent; border:1px solid #9b0606; color:white">
                                 </div>
                                 <div class="col-lg-1 p-0 pt-2">
                                     <button id="submitbtn" type="submit" style="background: transparent; border:none; color:white"><i class="ph-paper-plane-tilt" style="font-size: 22px"></i></button>

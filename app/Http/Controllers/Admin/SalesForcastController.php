@@ -172,14 +172,10 @@ class SalesForcastController extends Controller
             }
             if ($globalFunWorkOrder['status'] == 1) {
                 File::delete(public_path('storage/files/') . $salesForcast->work_order_pdf);
-                File::delete(public_path('storage/files/') . $salesForcast->work_order_pdf);
-                File::delete(public_path('storage/files/') . $salesForcast->work_order_pdf);
             }
             if ($globalFunClientPo['status'] == 1) {
                 File::delete(public_path('storage/files/') . $salesForcast->client_po_pdf);
-                File::delete(public_path('storage/files/') . $salesForcast->client_po_pdf);
-                File::delete(public_path('storage/files/') . $salesForcast->client_po_pdf);
-            }
+            } 
             $salesForcast->update([
                 'rfq_id'                    => $request->rfq_id,
                 'sales_man_id_l1'           => $request->sales_man_id_l1,
@@ -238,20 +234,8 @@ class SalesForcastController extends Controller
         if (File::exists(public_path('storage/files/') . $salesForcast->work_order_pdf)) {
             File::delete(public_path('storage/files/') . $salesForcast->work_order_pdf);
         }
-        if (File::exists(public_path('storage/files/') . $salesForcast->work_order_pdf)) {
-            File::delete(public_path('storage/files/') . $salesForcast->work_order_pdf);
-        }
-        if (File::exists(public_path('storage/files/') . $salesForcast->work_order_pdf)) {
-            File::delete(public_path('storage/files/') . $salesForcast->work_order_pdf);
-        }
 
         //client_po_pdf
-        if (File::exists(public_path('storage/files/') . $salesForcast->client_po_pdf)) {
-            File::delete(public_path('storage/files/') . $salesForcast->client_po_pdf);
-        }
-        if (File::exists(public_path('storage/files/') . $salesForcast->client_po_pdf)) {
-            File::delete(public_path('storage/files/') . $salesForcast->client_po_pdf);
-        }
         if (File::exists(public_path('storage/files/') . $salesForcast->client_po_pdf)) {
             File::delete(public_path('storage/files/') . $salesForcast->client_po_pdf);
         }

@@ -273,7 +273,7 @@ class ClientController extends Controller
 
     public function ClientOrders(){
 
-        $data['orders'] = Order::where('user_id' , Auth::guard('client')->user()->id)->get();
+        $data['orders'] = Order::where('client_id' , Auth::guard('client')->user()->id)->get();
         return view('client.pages.order.user_order',$data);
 
     }

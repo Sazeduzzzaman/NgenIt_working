@@ -47,10 +47,10 @@ return new class extends Migration
             $table->string('lost_level_one')->nullable()->comment('price_complexity', 'no_controlle', 'logical', 'tander_quote');
             $table->string('lost_level_tow')->nullable()->comment('need_followed_up', 'competitive_pricing');
 
-            $table->foreign('rfq_id')->references('id')->on('rfqs')->onUpdate('cascade')->onUpdate('cascade');
-            $table->foreign('sales_man_id_L1')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
-            $table->foreign('sales_man_id_T1')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
-            $table->foreign('sales_man_id_T2')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('rfq_id')->references('id')->on('rfqs')->onUpdate('cascade');
+            $table->foreign('sales_man_id_L1')->references('id')->on('users')->onUpdate('cascade');
+            $table->foreign('sales_man_id_T1')->references('id')->on('users')->onUpdate('cascade');
+            $table->foreign('sales_man_id_T2')->references('id')->on('users')->onUpdate('cascade');
             $table->timestamps();
         });
     }

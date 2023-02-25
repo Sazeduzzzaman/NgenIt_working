@@ -34,9 +34,9 @@ class RFQController extends Controller
      */
     public function index()
     {
-        $data['users'] = User::where('role', 'sales')->select('users.id', 'users.name')->get();
-        $data['rfqs'] = Rfq::where('rfq_type' , 'rfq')->where('status','rfq_created')->get();
-        $data['deals'] = Rfq::where('rfq_type' , 'rfq')->where('status','assigned')->get();
+        $data['users'] = User::where('role', 'sales')->select('users.id', 'users.name')->orderBy('id', 'DESC')->get();
+        $data['rfqs'] = Rfq::where('rfq_type' , 'rfq')->where('status','rfq_created')->orderBy('id', 'DESC')->get();
+        $data['deals'] = Rfq::where('rfq_type' , 'rfq')->where('status','assigned')->orderBy('id', 'DESC')->get();
         //dd($data);
         return view('admin.pages.rfq.all', $data);
     }
@@ -73,7 +73,7 @@ class RFQController extends Controller
             $data['deal_type'] = 'new';
 
 
-            $rfq_code='RFQ-'.Str::random(6).date('dmy');
+            $rfq_code='RFQ-'.date('dmy').Rfq::latest()->value('id');
             $count=RFQ::where('rfq_code',$rfq_code)->count();
             if($count>0){
                 $rfq_code=$rfq_code.Str::random(3);
@@ -92,18 +92,6 @@ class RFQController extends Controller
                     'mimes' => 'The :attribute must be a file of type:PNG-JPEG-JPG'
                 ],
             );
-            //     $validator = Validator::make(
-            //         $request->all(),
-            //     [
-            //         'name' => 'required',
-            //         'email' => 'required',
-            //         'phone' => 'required',
-            //         'image' => 'file|mimes:jpeg,png,jpg,gif,svg|max:6000'
-            //     ],
-            //     [
-            //         'mimes' => 'The :attribute must be a file of type:PNG-JPEG-JPG'
-            //     ],
-            // );
 
 
         if ($validator->passes()) {
@@ -132,6 +120,7 @@ class RFQController extends Controller
                         'name'                 => $request->name,
                         'email'                => $request->email,
                         'phone'                => $request->phone,
+                        'qty'                  => $request->qty,
                         'company_name'         => $request->company_name,
                         'designation'          => $request->designation,
                         'address'              => $request->address,
@@ -145,6 +134,7 @@ class RFQController extends Controller
 
 
                     $name = $request->name;
+                    $rfq_code = $data['rfq_code'];
 
             Notification::send($user, new RfqDeal($name , $rfq_id));
             Toastr::success('Data Inserted Successfully');
@@ -474,7 +464,7 @@ class RFQController extends Controller
                     'item_name'        => $item_name[$i],
                     'qty'              => $qty[$i],
                     'unit_price'       => $unit_price[$i],
-                    
+
 
                 ];
 

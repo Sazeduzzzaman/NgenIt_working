@@ -24,8 +24,8 @@ return new class extends Migration
             $table->string('client_name')->nullable();
             $table->double('amount')->nullable();
             $table->double('received_value')->nullable();
-            $table->foreign('rfq_id')->references('id')->on('rfqs')->onDelete('cascade')->onUpdate('cascade');
-            $table->foreign('order_id')->references('id')->on('orders')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('rfq_id')->references('id')->on('rfqs')->onUpdate('cascade');
+            $table->foreign('order_id')->references('id')->on('orders')->onUpdate('cascade');
             $table->timestamps();
         });
     }

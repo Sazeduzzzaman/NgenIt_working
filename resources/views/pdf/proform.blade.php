@@ -5,7 +5,7 @@
     <meta charset="utf-8">
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>NGENIT-Quotation | NGenIT</title>
+    <title>NGENIT-Proforma Invoice | NGenIT</title>
     <link rel="stylesheet" type="text/css" href="quoation-css.css">
     {{-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"> --}}
@@ -93,12 +93,15 @@
 </head>
 <body>
     <div class="container mt-5" style=" width: 100%;padding-right: 15px;padding-left: 15px;margin-right: auto;margin-left: auto;margin-top: 1rem!important;">
-        <div class="card" style="display: -webkit-box;display: -ms-flexbox;display: flex;-webkit-box-orient: vertical;-webkit-box-direction: normal;-ms-flex-direction: column;flex-direction: column;min-width: 0;word-wrap: break-word;background-color: #fff;background-clip: border-box;border: 1px solid rgba(0,0,0,.125);border-radius: 0.25rem;">
-            <div class="card-header" style="padding: 0.75rem 0.75rem;margin-bottom: 0;background-color: rgba(0,0,0,.03);border-bottom: 1px solid rgba(0,0,0,.125);">
+        <div class="card" style="display: -webkit-box;display: -ms-flexbox;display: flex;-webkit-box-orient: vertical;
+            -webkit-box-direction: normal;-ms-flex-direction: column;flex-direction: column;min-width: 0;
+            word-wrap: break-word;background-color: #fff;background-clip: border-box;border: 1px solid rgba(0,0,0,.125);
+            border-radius: 0.25rem;">
+            <div class="card-header" style="padding: 0.25rem 0.25rem;margin-bottom: 0;background-color: rgba(0,0,0,.03);border-bottom: 1px solid rgba(0,0,0,.125);">
                 <div class="col-lg-12 float-left quotation-header-banner padding"
                 style="min-height: 40px; background: whitesmoke;">
 
-                      <h4 style="text-align:center;font-size: 30px; margin:auto; padding: 15px;">
+                      <h4 style="text-align:center;font-size: 20px; margin:auto; padding: 7px;">
                     PROFORMA INVOICE</h4>
 
                 </div>
@@ -106,12 +109,13 @@
 
             <div class="card-body" style="width:90%; margin:auto;min-height:120px;">
 
-                <div class="col-lg-6 float-left headerto padding" style="float: left;">
+                <div class="col-lg-6 float-left headerto padding" style="float: left; margin-top:10px;">
 
                     <div class="col-lg-12 padding">
                         <img src="http://165.22.48.109/ngenit/upload/logoimage/1755708668937189.png"
                         alt="" class="img-responsive" style="height:50px;width: 120px;">
-                        <p style="padding: 5px;font-size: 14px;text-align: left;font-weight: 600;font-size: 14px;">
+                        <p style="padding:5px; padding-top:0px;font-size: 14px;text-align: left;font-weight: 600;
+                            font-size: 14px;">
                             89/2, Haque Chamber, Panthapath, Dhaka 1205</p>
                     </div>
 
@@ -144,9 +148,46 @@
 
             </div>
 
+            <div class="col-lg-12 table-responsive" style="margin:auto; width: 100%; height: 100px;
+                background-color: #fff;background-clip: border-box;border: 1px solid rgba(0,0,0,.125);
+                border-radius: 0.25rem;">
+                <table style="width:100%;">
+                    <tr style="width:100%;">
+                        <td class="text-center" style="border:none; width:40%;">
+                            <p style="font-size: 15px;font-weight: 600;">
+                                <label>Invoice No &nbsp;&nbsp;&nbsp;: {{ $invoice_no }}</label> <br>
+                                    <label>Invoice Date : {{ \Carbon\Carbon::now()->format('d F Y') }}</label>
+                            </p>
+
+                        </td>
+                        <td class="text-center" style="border:none;width:10%;">
+
+
+                        </td>
+                        <td class="text-center" style="border:none;width:50%;">
+                            <p style="font-weight: 600;font-size: 14px;">
+                                <label>Customer &nbsp;&nbsp;&nbsp;: {{ $billing_name }}</label> <br>
+                                    <label>Contact &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : 02-Feb-23</label> <br>
+                                        <label>Email &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; :
+                                            {{ $billing_email }}</label>
+                                            <br>
+                                            <label>Address &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; :
+                                                {{ $billing_address }}</label>
+                                                <br>
+                            </p>
+
+                        </td>
+                    </tr>
+                </table>
+            </div>
+
         </div>
-        <div class="card" style="display: -webkit-box;display: -ms-flexbox;display: flex;-webkit-box-orient: vertical;-webkit-box-direction: normal;-ms-flex-direction: column;flex-direction: column;min-width: 0;word-wrap: break-word;background-color: #fff;background-clip: border-box;border: 1px solid rgba(0,0,0,.125);border-radius: 0.25rem;">
+
+
+
+        {{-- <div class="card" style="display: -webkit-box;display: -ms-flexbox;display: flex;-webkit-box-orient: vertical;-webkit-box-direction: normal;-ms-flex-direction: column;flex-direction: column;min-width: 0;word-wrap: break-word;background-color: #fff;background-clip: border-box;border: 1px solid rgba(0,0,0,.125);border-radius: 0.25rem;">
             <div class="card-body" style="width:90%; margin:auto;min-height:80px;">
+
 
                 <div class="col-lg-6 float-left headerto padding" style="float: left;">
 
@@ -183,11 +224,11 @@
 
 
             </div>
-        </div>
+        </div> --}}
 
 
         <div class="col-lg-12 product-details-area float-left padding table-responsive"
-        style="min-height: 120px;background: #fff;margin-top: 10px; width:90%; margin:auto;">
+             style="min-height: 120px;background: #fff; width:90%; margin:auto; margin-top: 20px;">
 
             <table class="tableCustomice" style="width: 100%;height: auto;">
                 <thead>
@@ -244,9 +285,36 @@
             </table>
         </div>
 
-        <div class="col-lg-12" style="width: 100%;height: 70px; float: left;background-color: #fff;">
+        <div class="col-lg-12 table-responsive" style="width: 100%; margin-top:80px; height: 70px; float: left;background-color: #fff;">
 
-            <div style="float: left;width: 37%;">
+
+                <table style="width:100%;">
+                    <tr style="width:100%;">
+                        <td class="text-center" style="border:none;">
+                                <center> {{ $billing_name }}</center>
+                                <b style="text-decoration: overline;">
+                                    <center> Customer, Purchase </center>
+                                </b>
+
+                        </td>
+                        <td class="text-center" style="border:none;">
+                                <center> NGenIT</center>
+                                <b style="text-decoration: overline;">
+                                    <center> Director, Finance </center>
+                                </b>
+
+                        </td>
+                        <td class="text-center" style="border:none;">
+                                <center>{{ \Carbon\Carbon::now()->format('d F Y') }}</center>
+                                <b style="text-decoration: overline;">
+                                    <center> Date </center>
+                                </b>
+
+                        </td>
+                    </tr>
+                </table>
+
+            {{-- <div style="float: left;width: 37%;">
                  <center> {{ $name }}</center>
                 <b style="text-decoration: overline;">
                     <center> Customer, Purchase </center>
@@ -263,7 +331,7 @@
                 <b style="text-decoration: overline;">
                     <center> Date </center>
                 </b>
-            </div>
+            </div> --}}
         </div>
 
 

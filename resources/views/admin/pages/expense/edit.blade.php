@@ -84,7 +84,7 @@
                                                 </option>
                                                 <option @selected($expense->category == 'conveyance') value="conveyance"> Conveyance
                                                 </option>
-                                                <option @selected($expense->category == 'groceries') value="groceries"> Stationariers
+                                                <option @selected($expense->category == 'stationariers') value="stationariers"> Stationariers
                                                 </option>
                                                 <option @selected($expense->category == 'groceries') value="groceries"> Groceries </option>
                                                 <option @selected($expense->category == 'old_debts') value="old_debts ">Old / Debts
