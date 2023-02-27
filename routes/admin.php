@@ -43,6 +43,7 @@ use App\Http\Controllers\Admin\SolutionController;
 use App\Http\Controllers\Admin\SourcingController;
 use App\Http\Controllers\Admin\BrandPageController;
 use App\Http\Controllers\Admin\LearnMoreController;
+use App\Http\Controllers\Admin\RFQManageController;
 use App\Http\Controllers\SAS\RevisedDealController;
 use App\Http\Controllers\Admin\NewsLetterController;
 use App\Http\Controllers\Admin\RowWithColController;
@@ -61,6 +62,7 @@ use App\Http\Controllers\Admin\SalesProfitLossController;
 use App\Http\Controllers\Admin\SalesTeamTargetController;
 use App\Http\Controllers\Admin\SalesYearTargetController;
 use App\Http\Controllers\Admin\SolutionDetailsController;
+use App\Http\Controllers\Sales\SalesAchievementController;
 use App\Http\Controllers\Admin\AccountProfitLossController;
 use App\Http\Controllers\Admin\AccountsReceivableController;
 use App\Http\Controllers\Admin\CommercialDocumentController;
@@ -414,10 +416,12 @@ Route::controller(RFQController::class)->group(function(){
     'partner-account' => PartnerController::class,
     'commercial-document' => CommercialDocumentController::class,
     'payment-method-details' => PaymentMethodDetailsController::class,
+    'rfq-manage'  => RFQManageController::class,
+    'sales-achievement' => SalesAchievementController::class,
 ]);
 
 
-
+Route::post('salesmanager-status', [App\Http\Controllers\Sales\SalesAccountController::class, 'SalesStatus'])->name('sales.status');
 
 
 

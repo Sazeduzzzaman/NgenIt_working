@@ -139,7 +139,8 @@ class DealSasController extends Controller
         //$salesman_name = User::where('id', $rfq->sales_man_id_L1)->first();
         Notification::send($user, new NotificationsDealSas($name = Auth::user()->name , $rfq_id = $rfq->rfq_code));
         Toastr::success('SAS Created Successfully.');
-        return redirect()->route('deal-sas.index');
+        // return redirect()->route('deal-sas.index');
+        return redirect()->route('rfq-manage.index');
     }
 
     /**
@@ -273,7 +274,8 @@ class DealSasController extends Controller
         DealSas::findOrFail($id[$i])->update($datasave);
     }
     Toastr::success('SAS Updated Successfully.');
-    return redirect()->route('deal-sas.index');
+    // return redirect()->route('deal-sas.index');
+    return redirect()->route('rfq-manage.index');
     }
 
     /**
@@ -396,7 +398,8 @@ class DealSasController extends Controller
         DealSas::findOrFail($id[$i])->update($datasave);
     }
     Toastr::success('SAS Updated Successfully.');
-    return redirect()->route('deal.index');
+    // return redirect()->route('deal.index');
+    return redirect()->route('rfq-manage.index');
     }
 
 

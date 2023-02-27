@@ -35,33 +35,43 @@
                 <div class="col-lg-10">
                     <div class="card">
                         <div class="card-header py-1">
-                            <h5 class="text-center p-0 m-0">Your Account Details</h5>
+
+                            <div class="row">
+                                <div class="col-lg-8">
+                                    <h5 class="text-center p-0 m-0">Sales Manager Account Details</h5>
+                                </div>
+
+                                <div class="col-lg-4">
+                                    <a href="{{ route('sales-account.index') }}" type="button"
+                                        class="btn btn-sm btn-success btn-labeled btn-labeled-start float-end">
+                                        <span class="btn-labeled-icon bg-black bg-opacity-20">
+                                            <i class="icon-plus2"></i>
+                                        </span>
+                                        All Sales Manager
+                                    </a>
+                                </div>
+                            </div>
                         </div>
                         <div class="card-body py-0">
-                            <form id="myform" method="post" action="{{ route('admin.profile.store') }}" enctype="multipart/form-data" >
+                            <form id="myform" method="post" action="{{ route('sales-account.store') }}" enctype="multipart/form-data" >
                                 @csrf
 
                                 <div class="row">
-                                    <div class="col-lg-3">
+                                    <div class="col-lg-4">
                                         <div class="mb-1">
                                             <label class="form-label" for="basicpill-firstname-input">Full Name</label>
                                             <input type="text" class="form-control" id="basicpill-firstname-input" name="name" />
                                         </div>
                                     </div>
-                                    <div class="col-lg-3">
-                                        <div class="mb-1">
-                                            <label class="form-label" for="basicpill-firstname-input">User name</label>
-                                            <input type="text" class="form-control" id="basicpill-firstname-input" name="username"  disabled>
-                                        </div>
-                                    </div>
-                                
-                                    <div class="col-lg-3">
+
+
+                                    <div class="col-lg-4">
                                         <div class="mb-1">
                                             <label class="form-label" for="basicpill-phoneno-input">Phone</label>
                                             <input type="text" class="form-control" id="basicpill-phoneno-input" name="phone" />
                                         </div>
                                     </div>
-                                    <div class="col-lg-3">
+                                    <div class="col-lg-4">
                                         <div class="mb-1">
                                             <label class="form-label" for="basicpill-email-input">Email</label>
                                             <input type="email" class="form-control" id="basicpill-email-input" name="email" />
@@ -70,22 +80,26 @@
                                 </div>
 
                                 <div class="row">
-                                    <div class="col-lg-12">
+                                    <div class="col-lg-4">
                                         <div class="mb-1">
                                             <label class="form-label" for="basicpill-address-input">Address</label>
                                             <textarea id="basicpill-address-input" class="form-control" rows="2" name="address"></textarea>
                                         </div>
                                     </div>
-                                </div>
 
-                                <div class="row">
-                                    <div class="col-lg-3">
-                                        <div class="mb-1">
-                                            <label class="form-label" for="basicpill-firstname-input">City</label>
-                                            <input type="text" class="form-control" id="basicpill-firstname-input" name="city"/>
+                                    <div class="col-lg-4">
+                                        <div class="mb-1 basic-form">
+                                            <label class="form-label" for="basicpill-firstname-input">Country</label>
+                                            <select name="country" class="form-control select"
+                                            data-minimum-results-for-search="Infinity" data-placeholder="Chose Country" required>
+                                            <option></option>
+                                            @foreach ($countries as $item)
+                                                <option value="{{$item->country_name}}">{{$item->country_name}}</option>
+                                            @endforeach
+                                        </select>
                                         </div>
                                     </div>
-                                    <div class="col-lg-3">
+                                    <div class="col-lg-4">
                                         <div class="mb-1">
                                             <label class="form-label" for="basicpill-firstname-input">Postal</label>
                                             <input type="text" class="form-control" id="basicpill-firstname-input" name="postal"/>
@@ -94,22 +108,31 @@
                                 </div>
 
                                 <div class="row">
-                                    <div class="col-lg-10">
+                                    <div class="col-lg-4">
                                         <div class="mb-1">
                                             <label class="form-label" for="basicpill-firstname-input">Profile Picture</label>
                                             <input id="image" type="file" class="form-control" id="basicpill-firstname-input" name="photo" />
                                         </div>
                                     </div>
+                                    <div class="col-lg-4">
+                                        <div class="mb-1">
+                                            <label class="form-label" for="basicpill-firstname-input">Password</label>
+                                            <input type="password" name="password"
+                                            class="form-control @error('new_password') is-invalid @enderror"
+                                            id="new_password" placeholder="Password" />
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="mb-1">
+                                            <label class="form-label" for="basicpill-firstname-input">Confirm Password</label>
+                                            <input type="password" name="password_confirmation" class="form-control"
+                                            id="new_password_confirmation" placeholder="Confirm New Password" />
+                                        </div>
+                                    </div>
+
                                 </div>
 
-                                <div class="row mb-1">
-                                    <div class="col-sm-3">
-                                        <h6 class="mb-0"> </h6>
-                                    </div>
-                                    <div class="col-sm-9 text-secondary">
-                                         <img id="showImage" src="" alt="Admin" style="width:100px; height: 100px;"/>
-                                    </div>
-                                </div>
+
 
                                 <div class="row mt-1 mb-1">
                                     <div class="col-lg-12 text-center">

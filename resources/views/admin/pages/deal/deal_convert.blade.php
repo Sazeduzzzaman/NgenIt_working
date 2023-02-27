@@ -33,11 +33,11 @@
             <div class="card">
                 <div class="card-body">
                     <div class="row">
-                        <div class="col-lg-7">
-                            <h5 class="text-center">Convert To Deal</h5>
+                        <div class="col-lg-10">
+                            <h5 class="text-center">Convert To Deal - ({{$rfq->rfq_code}})</h5>
                         </div>
 
-                        <div class="col-lg-3"></div>
+                        {{-- <div class="col-lg-3"></div> --}}
                         <div class="col-lg-2">
                             <a href="{{ route('deal.index') }}" type="button"
                                 class="btn btn-sm btn-warning btn-labeled btn-labeled-start float-end">

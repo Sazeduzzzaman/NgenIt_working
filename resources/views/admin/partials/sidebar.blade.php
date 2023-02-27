@@ -83,6 +83,11 @@
                     </a>
                     <ul class="nav-group-sub collapse">
 
+                        <li class="nav-item"><a href="{{ route('rfq-manage.index') }}" class="nav-link">
+                            <i class="ph-layout"></i>
+                            <span>RFQ Management</span></a>
+                        </li>
+
                         <li class="nav-item"><a href="{{ route('rfq.index') }}" class="nav-link">
                             <i class="ph-layout"></i>
                             <span>RFQ list</span></a>
@@ -121,6 +126,11 @@
                         <li class="nav-item"><a href="{{ route('salesTeamTarget.index') }}" class="nav-link"><i
                                     class="ph-layout"></i>
                                 <span>Team Target</span>
+                            </a>
+                        </li>
+                        <li class="nav-item"><a href="{{ route('sales-achievement.index') }}" class="nav-link"><i
+                                    class="ph-layout"></i>
+                                <span>Sales Achievement</span>
                             </a>
                         </li>
                         <li class="nav-item"><a href="{{ route('rfqOrderStatus.index') }}" class="nav-link"><i

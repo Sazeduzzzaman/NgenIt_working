@@ -11,17 +11,17 @@ class RfqDeal extends Notification
 {
     use Queueable;
     public $name;
-    public $rfq_id;
+    public $rfq_code;
 
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct($name, $rfq_id)
+    public function __construct($name, $rfq_code)
     {
         $this->name = $name;
-        $this->rfq_id = $rfq_id;
+        $this->rfq_code = $rfq_code;
     }
 
     /**
@@ -59,7 +59,7 @@ class RfqDeal extends Notification
     {
         return [
             'name' => $this->name,
-            'link'=> route('deal.index',$this->rfq_id),
+            'link'=> route('deal.index',$this->rfq_code),
             'message' => 'has created A New RFQ/Deal. Need to be checked.',
         ];
     }

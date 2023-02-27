@@ -230,7 +230,7 @@ class DealController extends Controller
             $name = User::where('id', $request->sales_man_id_L1)->value('name');
             Notification::send($user, new RfqDeal($name, $rfq_id = $data['rfq_code']));
             Toastr::success('Deal Registered Successfully');
-            return redirect()->route('deal.index');
+            return redirect()->route('sales-achievement.index');
         } else {
 
             $messages = $validator->messages();
@@ -350,7 +350,8 @@ class DealController extends Controller
                 Toastr::error($message, 'Failed', ['timeOut' => 30000]);
             }
         }
-        return redirect()->route('deal.index');
+        // return redirect()->route('deal.index');
+        return redirect()->route('rfq-manage.index');
     }
 
     /**

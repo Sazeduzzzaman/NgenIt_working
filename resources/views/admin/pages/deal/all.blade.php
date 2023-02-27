@@ -439,13 +439,15 @@
                                                                                                     <th> Sale Price </th>
                                                                                                 </tr>
 
-                                                                                                    @foreach ($deal_products as $item)
-                                                                                                    <tr class="bg-gray text-white">
-                                                                                                        <th>{{$item->item_name}}</th>
-                                                                                                        <th>{{$item->qty}}</th>
-                                                                                                        <th>{{$item->sub_total_cost}}</th>
-                                                                                                    </tr>
-                                                                                                    @endforeach
+                                                                                                    @if ($deal_products)
+                                                                                                        @foreach ($deal_products as $item)
+                                                                                                        <tr class="bg-gray text-white">
+                                                                                                            <th>{{$item->item_name}}</th>
+                                                                                                            <th>{{$item->qty}}</th>
+                                                                                                            <th>{{$item->sub_total_cost}}</th>
+                                                                                                        </tr>
+                                                                                                        @endforeach
+                                                                                                    @endif
 
 
 
@@ -561,13 +563,15 @@
                                                                                                     <th> Sale Price </th>
                                                                                                 </tr>
 
-                                                                                                    @foreach ($deal_products as $item)
-                                                                                                    <tr class="bg-gray text-white">
-                                                                                                        <th>{{$item->item_name}}</th>
-                                                                                                        <th>{{$item->qty}}</th>
-                                                                                                        <th>{{$item->sub_total_cost}}</th>
-                                                                                                    </tr>
-                                                                                                    @endforeach
+                                                                                                    @if ($deal_products)
+                                                                                                        @foreach ($deal_products as $item)
+                                                                                                        <tr class="bg-gray text-white">
+                                                                                                            <th>{{$item->item_name}}</th>
+                                                                                                            <th>{{$item->qty}}</th>
+                                                                                                            <th>{{$item->sub_total_cost}}</th>
+                                                                                                        </tr>
+                                                                                                        @endforeach
+                                                                                                    @endif
 
 
 
@@ -696,6 +700,7 @@
                                                                     <div class="modal-header">
                                                                         @php
                                                                             $rfq_details = App\Models\Admin\Rfq::where('rfq_code', $deal->rfq_code)->first();
+                                                                            $deal_products = App\Models\Admin\DealSas::where('rfq_code', $deal->rfq_code)->get();
                                                                         @endphp
                                                                         <h5 class="modal-title">Deal Details : {{ $rfq_details->rfq_code }}</h5>
                                                                         <button type="button" class="btn-close"
@@ -716,13 +721,15 @@
                                                                                                     <th> Sale Price </th>
                                                                                                 </tr>
 
-                                                                                                    @foreach ($deal_products as $item)
-                                                                                                    <tr class="bg-gray text-white">
-                                                                                                        <th>{{$item->item_name}}</th>
-                                                                                                        <th>{{$item->qty}}</th>
-                                                                                                        <th>{{$item->sub_total_cost}}</th>
-                                                                                                    </tr>
-                                                                                                    @endforeach
+                                                                                                    @if ($deal_products)
+                                                                                                        @foreach ($deal_products as $item)
+                                                                                                        <tr class="bg-gray text-white">
+                                                                                                            <th>{{$item->item_name}}</th>
+                                                                                                            <th>{{$item->qty}}</th>
+                                                                                                            <th>{{$item->sub_total_cost}}</th>
+                                                                                                        </tr>
+                                                                                                        @endforeach
+                                                                                                    @endif
 
 
 

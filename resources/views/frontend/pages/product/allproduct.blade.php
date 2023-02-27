@@ -10,7 +10,7 @@
         </h1>
     </section><br><br>
     <!-------- End--------->
- 
+
     <!--=======// Content & Filter //=======-->
     <section class="container">
         <form action="{{ route('custom.product', $cat->slug) }}" method="POST">
@@ -291,7 +291,8 @@
 
                         <!--------System / Type--------->
                         <div class="client_stories_filter_category">
-                            <h6 onclick="showhide()" class="mb-4"><i class="fa-solid fa-caret-down"></i>Manufacturers
+                            <h6 onclick="showhide()" class="mb-4"><i class="fa-solid fa-caret-down"></i>
+                                Manufacturers
                             </h6>
 
                             <div id="newpost">

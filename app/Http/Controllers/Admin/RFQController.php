@@ -66,7 +66,7 @@ class RFQController extends Controller
     public function store(Request $request)
     {
         //dd($request->all());
-        $user = User::where('role','admin')->get();
+        $user = User::latest()->get();
         Helper::imageDirectory();
 
 
@@ -136,7 +136,7 @@ class RFQController extends Controller
                     $name = $request->name;
                     $rfq_code = $data['rfq_code'];
 
-            Notification::send($user, new RfqDeal($name , $rfq_id));
+            Notification::send($user, new RfqDeal($name , $rfq_code));
             Toastr::success('Data Inserted Successfully');
         } else {
 
@@ -275,7 +275,8 @@ class RFQController extends Controller
                 Toastr::error($message, 'Failed', ['timeOut' => 30000]);
             }
         }
-        return redirect()->route('rfq.index');
+        // return redirect()->route('rfq.index');
+        return redirect()->route('rfq-manage.index');
     }
 
     /**
@@ -478,6 +479,7 @@ class RFQController extends Controller
                 Toastr::error($message, 'Failed', ['timeOut' => 30000]);
             }
         }
-        return redirect()->route('deal.index');
+        // return redirect()->route('deal.index');
+        return redirect()->route('rfq-manage.index');
     }
 }
