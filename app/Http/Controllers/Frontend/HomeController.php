@@ -40,7 +40,7 @@ class HomeController extends Controller
     {
         return view('frontend.auth.login');
     }
-    
+
     public function register()
     {
         return view('frontend.auth.register');
@@ -264,7 +264,7 @@ class HomeController extends Controller
     {
         $data['products'] = Product::latest()->where('product_status', 'product')->get();
         $data['categories'] = Category::latest()->get();
-        $data['brands'] = Brand::latest()->get();
+        $data['brands'] = BrandPage::orderBy('id', 'Desc')->get();
         $data['techglossy'] = TechGlossy::inRandomOrder()->first();
         return view('frontend.pages.product.shop_html', $data);
     }

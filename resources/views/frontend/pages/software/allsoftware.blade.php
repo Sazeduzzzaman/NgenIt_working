@@ -228,7 +228,7 @@
 
                     <!-- product content -->
                     <div class="product_item_content">
-                        <a href="{{ route('product.details', $item->slug) }}" class="product_item_content_name" style="height: 4rem;">{{$item->name}}</a>
+                        <a href="{{ route('product.details', $item->slug) }}" class="product_item_content_name" style="height: 3rem;">{{Str::limit($item->name,50)}}</a>
 
                        @if ($item->rfq != 1)
                          <!-- price -->
@@ -260,7 +260,12 @@
                          </form>
                          @endif
                        @else
-                       <a class="product_button mt-3" href="{{ route('product.details', $item->slug) }}">Details</a>
+                       <div class="product_item_price">
+                             <span class="price_currency_value">---</span>
+                           </div>
+
+                           <a class="product_button" href="{{ route('product.details', $item->slug) }}">Details</a>
+
                        @endif
                     </div>
 
@@ -463,7 +468,7 @@
 <!---------End -------->
 
 <!--======// Our expert //======-->
-<section class="account_benefits_section_wp">
+<section class="account_benefits_section_wp mt-3">
     <div class="container">
         @if ($techglossy)
         <div class="row">

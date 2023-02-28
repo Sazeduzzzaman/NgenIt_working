@@ -17,19 +17,22 @@
     <!--======// Top Brand //=====-->
     <section class="container">
         <!--Title-->
-        <div class="common_product_item_title">
+        <div class="common_product_item_title mt-3">
             <h3>Top brands</h3>
+            <hr style="background-color: #ae0a46 !important;width: 15.0%; height:2px">
         </div>
         <!--Product brands-->
         <div class="row mx-4">
             <!--Category item-->
             @foreach ($top_brands as $item)
-                <div class="col-lg-3 col-md-4 col-sm-4" style="padding:20px; text-align:center;">
+                <div class="col-lg-3 col-md-4 col-sm-4">
+                <div class="categoryitemshow">
                     <a href="{{ route('brandpage.html', App\Models\Admin\Brand::where('id', $item->brand_id)->value('slug')) }}">
-                        <img class="mb-4" src="{{ asset('storage/requestImg/' . App\Models\Admin\Brand::where('id', $item->brand_id)->value('image')) }}"
+                       <center> <img class="mb-4" src="{{ asset('storage/requestImg/' . App\Models\Admin\Brand::where('id', $item->brand_id)->value('image')) }}"
                         alt="{{App\Models\Admin\Brand::where('id', $item->brand_id)->value('title')}}"
-                        width="170px" height="80px">
+                        width="150px" height="65px"></center>
                     </a>
+                </div>
 
                 </div>
             @endforeach
@@ -39,20 +42,23 @@
     <!--------- End -------->
 
     <!--======// Featured brands //=====-->
-    <section class="container">
+    <section class="container mt-3">
         <!--Title-->
         <div class="common_product_item_title">
             <h3>Featured brands</h3>
+            <hr style="background-color: #ae0a46 !important;width: 18.0%; height:2px">
         </div>
         <!--Product brands-->
         <div class="row">
             <!--Category item-->
             @foreach ($featured_brands as $item)
-            <div class="col-xl-2 col-lg-2 col-md-3 col-sm-6">
+            <div class="col-xl-2 col-lg-2 col-md-3 col-sm-6 p-2">
+            <div class="categoryitemshow">
                 <a href="{{ route('custom.product', $item->slug) }}" class="top_brand_image">
-                    <img class="img-fluid mb-4" src="{{ asset('storage/requestImg/' . $item->image) }}"
-                    alt="{{$item->title}}" width="150px" height="83px">
+                    <center><img class="mb-4" src="{{ asset('storage/requestImg/' . $item->image) }}"
+                    alt="{{$item->title}}" width="150px" height="60px"></center>
                 </a>
+            </div>
             </div>
             @endforeach
             <!--Category item-->

@@ -7,17 +7,29 @@
             <!-- slider -->
             @if ($home)
             <div class="slider_inage">
-                <img src="{{ asset('storage/requestImg/' . $home->branner1) }}" alt="" >
+                <img src="{{ asset('storage/requestImg/' . $home->branner1) }}" alt="" style="background-repeat: no-repeat;background-color: #222;
+                background-repeat: no-repeat;
+                background-position: top center;
+                background-size: cover;
+                min-height: 475px;">
             </div>
 
             <!-- slider -->
             <div class="slider_inage">
-                <img src="{{ asset('storage/requestImg/' . $home->branner2) }}" alt="" >
+                <img src="{{ asset('storage/requestImg/' . $home->branner2) }}" alt="" style="background-repeat: no-repeat;background-color: #222;
+                background-repeat: no-repeat;
+                background-position: top center;
+                background-size: cover;
+                min-height: 475px;">
             </div>
 
             <!-- slider -->
             <div class="slider_inage">
-                <img src="{{ asset('storage/requestImg/' . $home->branner3) }}" alt="" >
+                <img src="{{ asset('storage/requestImg/' . $home->branner3) }}" alt="" style="background-repeat: no-repeat;background-color: #222;
+                background-repeat: no-repeat;
+                background-position: top center;
+                background-size: cover;
+                min-height: 475px;">
             </div>
             @endif
         </div>
@@ -59,7 +71,7 @@
     <!-- home card end -->
 
     <!--======// Business section //======-->
-    <section class="container padding_bottom">
+    <section class="container  mb-4">
         <!-- home title -->
         @if ($home)
         <div class="home_title">
@@ -68,7 +80,7 @@
         </div>
         @endif
         <!-- business content -->
-        <div class="business_content_wrapper mb-5">
+        <div class="business_content_wrapper mb-3">
             <!-- business item wrapper -->
             @if ($home)
             <div class="row solution_business_item">
@@ -80,9 +92,9 @@
                     </div>
 
                     <!-- content -->
-                    <div class="business_item_content" style="height: 11rem;">
+                    <div class="business_item_content" style="height: 6rem;">
                         <p class="business_item_title">{{$feature1->badge}}</p>
-                        <p class="business_item_text">{{ Str::limit($feature1->header, 150) }}</p>
+                        <p class="business_item_text">{{ Str::limit($feature1->header, 70) }}</p>
                         <a href="{{route('feature.details',$feature1->id)}}" class="business_item_button"><span>Learn More</span> <span class="business_item_button_icon"><i class="fa-solid fa-arrow-right-long"></i></span></a>
                     </div>
                 </div>
@@ -94,9 +106,9 @@
                     </div>
 
                     <!-- content -->
-                    <div class="business_item_content" style="height: 11rem;">
+                    <div class="business_item_content" style="height: 7rem;">
                         <p class="business_item_title">{{$feature2->badge}}</p>
-                        <p class="business_item_text">{{ Str::limit($feature2->header, 150) }}</p>
+                        <p class="business_item_text">{{ Str::limit($feature2->header, 70) }}</p>
                         <a href="{{route('feature.details',$feature2->id)}}" class="business_item_button"><span>Learn More</span> <span class="business_item_button_icon"><i class="fa-solid fa-arrow-right-long"></i></span></a>
                     </div>
                 </div>
@@ -108,9 +120,9 @@
                     </div>
 
                     <!-- content -->
-                    <div class="business_item_content" style="height: 11rem;">
+                    <div class="business_item_content" style="height: 7rem;">
                         <p class="business_item_title">{{$feature3->badge}}</p>
-                        <p class="business_item_text">{{ Str::limit($feature3->header, 150) }}</p>
+                        <p class="business_item_text">{{ Str::limit($feature3->header, 70) }}</p>
                         <a href="{{route('feature.details',$feature3->id)}}" class="business_item_button"><span>Learn More</span> <span class="business_item_button_icon"><i class="fa-solid fa-arrow-right-long"></i></span></a>
                     </div>
                 </div>
@@ -123,9 +135,9 @@
                     </div>
 
                     <!-- content -->
-                    <div class="business_item_content" style="height: 11rem;">
+                    <div class="business_item_content" style="height: 7rem;">
                         <p class="business_item_title">{{$feature4->badge}}</p>
-                        <p class="business_item_text">{{ Str::limit($feature4->header, 150) }}</p>
+                        <p class="business_item_text">{{ Str::limit($feature4->header, 70) }}</p>
                         <a href="{{route('feature.details',$feature4->id)}}" class="business_item_button"><span>Learn More</span> <span class="business_item_button_icon"><i class="fa-solid fa-arrow-right-long"></i></span></a>
                     </div>
                 </div>
@@ -138,9 +150,9 @@
                     </div>
 
                     <!-- content -->
-                    <div class="business_item_content" style="height: 11rem;">
+                    <div class="business_item_content" style="height: 7rem;">
                         <p class="business_item_title">{{$feature5->badge}}</p>
-                        <p class="business_item_text"> {{ Str::limit($feature5->header, 150) }}</p>
+                        <p class="business_item_text"> {{ Str::limit($feature5->header, 70) }}</p>
                         <a href="{{route('feature.details',$feature5->id)}}" class="business_item_button"><span>Learn More</span> <span class="business_item_button_icon"><i class="fa-solid fa-arrow-right-long"></i></span></a>
                     </div>
                 </div>
@@ -148,8 +160,8 @@
             @endif
         </div>
         <!-- button -->
-        <div class="business_seftion_button mt-5 pt-5">
-            <a href="{{ route('learn.more') }}">Explore all of what we do</a>
+        <div class="business_seftion_button mt-1 pt-3">
+            <a href="ngenit/solution_common.html">Explore all of what we do</a>
         </div>
     </section>
     <!---------End -------->
@@ -159,7 +171,7 @@
         <div class="container">
             <!-- title -->
             <div class="section_title">
-                <h3 class="title_top_heading">Learn more in our client stories.</h3><br>
+                <h3 class="title_top_heading">Learn more in our client stories.</h3>
             </div>
             @if ($home)
             <div class="row">
@@ -169,7 +181,7 @@
                         <a href="{{route('story.details',$story1->id)}}">
                             <img class="" src="{{ asset('storage/' . $story1->image) }}" alt="{{$story1->badge}}" width="280px" height="160px" >
                             <h6 class="mt-4">{{$story1->badge}}</h6>
-                            <h3><strong>{{$story1->title}}</strong></h3>
+                            <h3><strong>{{Str::limit($story1->title,65)}}</strong></h3>
                         </a>
 
                     </div>
@@ -180,7 +192,7 @@
                         <a href="{{route('story.details',$story2->id)}}">
                             <img class="" src="{{ asset('storage/' . $story2->image) }}" alt="{{$story2->badge}}" width="280px" height="160px" >
                             <h6 class="mt-4">{{$story2->badge}}</h6>
-                            <h3><strong>{{$story2->title}}</strong></h3>
+                            <h3><strong>{{Str::limit($story2->title,65)}}</strong></h3>
                         </a>
 
                     </div>
@@ -191,7 +203,7 @@
                         <a href="{{route('story.details',$story3->id)}}">
                             <img class="" src="{{ asset('storage/' . $story3->image) }}" alt="{{$story3->badge}}" width="280px" height="160px" >
                             <h6 class="mt-4">{{$story3->badge}}</h6>
-                            <h3><strong>{{$story3->title}}</strong></h3>
+                            <h3><strong>{{Str::limit($story3->title,65)}}</strong></h3>
                         </a>
 
                     </div>
@@ -202,7 +214,7 @@
                         <a href="{{route('story.details',$story4->id)}}">
                             <img class="" src="{{ asset('storage/' . $story4->image) }}" alt="{{$story4->badge}}" width="280px" height="160px" >
                             <h6 class="mt-4">{{$story4->badge}}</h6>
-                            <h3><strong>{{$story4->title}}</strong></h3>
+                            <h3><strong>{{Str::limit($story4->title,65)}}</strong></h3>
                         </a>
 
                     </div>
@@ -218,16 +230,19 @@
     <!---------End -------->
 
     <!--=======// Shop product //======-->
-    <section class="padding_top">
+    <section class="padding_top padding_bottom" style="border-top: 1px solid #c0c0c0; border-bottom: 1px solid #c0c0c0;">
         <div class="container">
             <div class="row">
                 <!-- content -->
                 <div class="col-lg-6 col-sm-12">
                     <div class="home_shop_product_wrapper">
-                        <h5> Shop Software and Hardware</h5>
-                        <p>Among More than {{ App\Models\Admin\Product::count() }} products and {{ App\Models\Admin\Brand::count() }} brand at your service,
+                        <h5> Shop products and hardware</h5>
+
+                      <p>Among More than {{ App\Models\Admin\Product::count() }} products and
+                        {{ App\Models\Admin\Brand::count() }} brand at your service,
                             we can provide you with the tools you need to succeed.
                             Additionally, you may easily control anything from your NgenIt account.</p>
+
                         <div class="d-flex justify-content-start">
                             <a href="{{  route('shop.html') }}" class="common_button">Shop Now</a>
                         </div>
@@ -238,9 +253,9 @@
                 <!-- product brand -->
                 <div class="col-lg-6 col-sm-12">
                     <ul class="shop_product_brand_list">
-                        <li><a href="{{ route('all.category') }}">Product Categories</a></li>
+                        <li><a href="{{ route('all.category') }}">Product categories</a></li>
                         <li><a href="{{ route('all.brand') }}">Brands</a></li>
-                        <li><a href="{{ route('tech.deals') }}">Tech Deals</a></li>
+                        <li><a href="{{ route('tech.deals') }}">Tech deals</a></li>
                         <li><a href="{{ route('refurbished') }}">Refurbished</a></li>
                     </ul>
                 </div>
@@ -271,40 +286,44 @@
 
                         <!-- product content -->
                         <div class="product_item_content">
-                            <a href="{{ route('product.details', $item->slug) }}" class="product_item_content_name" style="height: 4rem;">{{$item->name}}</a>
+                            <a href="{{ route('product.details', $item->slug) }}" class="product_item_content_name"  style="height: 3rem;">{{Str::limit($item->name,50)}}</a>
 
-                            @if (($item->rfq) != 1)
-                                <!-- price -->
-                                <div class="product_item_price">
-                                    <span class="price_currency">USD</span>
-                                    @if (!empty($item->discount))
-                                    <span class="price_currency_value" style="text-decoration: line-through; color:red">$ {{ $item->price }}</span>
-                                    <span class="price_currency_value" style="color: black">$ {{ $item->discount }}</span>
-                                    @else
-                                    <span class="price_currency_value">$ {{ $item->price }}</span>
-                                    @endif
-                                </div>
+                           @if (($item->rfq) != 1)
+                             <!-- price -->
+                             <div class="product_item_price">
+                                 <span class="price_currency">USD</span>
+                                 @if (!empty($item->discount))
+                                 <span class="price_currency_value" style="text-decoration: line-through; color:red">$ {{ $item->price }}</span>
+                                 <span class="price_currency_value" style="color: black">$ {{ $item->discount }}</span>
+                                 @else
+                                 <span class="price_currency_value">$ {{ $item->price }}</span>
+                                 @endif
+                             </div>
 
-                                <!-- button -->
-                                @php
-                                $cart = Cart::content();
-                                $exist = $cart->where('id' , $item->id );
-                                //dd($cart->where('image' , $item->thumbnail )->count());
-                                @endphp
-                                @if ($cart->where('id' , $item->id )->count())
-                                <a href="javascript:void(0);" class="common_button2 p-0 py-2 px-1 pb-2" style="height: 2.5rem"> Already in Cart</a>
-                                @else
-                                <form action="{{route('add.cart')}}" method="post">
-                                    @csrf
-                                    <input type="hidden" name="product_id" id="product_id" value="{{ $item->id }}">
-                                    <input type="hidden" name="name" id="name" value="{{ $item->name }}">
-                                    <input type="hidden" name="qty" id="qty" value="1">
-                                    <button type="submit" class="product_button" >Add to Basket</button>
-                                </form>
-                                @endif
-                            @else
-                                <a class="product_button mt-3" href="{{ route('product.details', $item->slug) }}">Details</a>
-                            @endif
+                             <!-- button -->
+                             @php
+                             $cart = Cart::content();
+                             $exist = $cart->where('id' , $item->id );
+                             //dd($cart->where('image' , $item->thumbnail )->count());
+                             @endphp
+                             @if ($cart->where('id' , $item->id )->count())
+                             <a href="javascript:void(0);" class="common_button2 p-0 py-2 px-1 pb-2" style="height: 2.5rem"> Already in Cart</a>
+                             @else
+                             <form action="{{route('add.cart')}}" method="post">
+                                 @csrf
+                                 <input type="hidden" name="product_id" id="product_id" value="{{ $item->id }}">
+                                 <input type="hidden" name="name" id="name" value="{{ $item->name }}">
+                                 <input type="hidden" name="qty" id="qty" value="1">
+                                 <button type="submit" class="product_button" >Add to Basket</button>
+                             </form>
+                             @endif
+                           @else
+                           <div class="product_item_price">
+                             <span class="price_currency_value">---</span>
+                           </div>
+
+                           <a class="product_button" href="{{ route('product.details', $item->slug) }}">Details</a>
+                           @endif
                         </div>
 
                     </div>
@@ -327,11 +346,9 @@
                     <img class="img-fluid" src="{{ asset('storage/' . $techglossy->image) }}" alt="{{$techglossy->badge}}" >
                 </div>
                 <div class="col-lg-6 col-sm-12 account_benefits_section">
-                    <h3>Tech Journal</h3>
-                    <h5>{{$techglossy->badge}}</h5>
+                    <h3 style="font-size:25px">Tech Journal</h3>
+                    <h5 style="font-size:18px;">{{$techglossy->badge}}</h5>
                     <p>{{$techglossy->title}}</p>
-                    <p>{!! Str::limit($techglossy->short_des, 200) !!}</p>
-
 
                     <ul>
                         @php
@@ -342,7 +359,7 @@
                         <li>{{ ucwords($item) }}</li>
                         @endforeach
                     </ul>
-                    <a href="{{route('techglossy.details',$techglossy->id)}}" class="common_button2">Read the Journal</a>
+                    <a href="{{route('techglossy.details',$techglossy->id)}}" class="common_button">Read the Journal</a>
                 </div>
             </div>
             @endif

@@ -136,7 +136,8 @@ class ShopController extends Controller
 
 
 
-        $brands = Brand::orderBy('title','ASC')->get();
+        //$categories = Category::orderBy('title','ASC')->limit(8)->get();
+      $brands = Brand::orderBy('title','ASC')->limit(11)->get();
         $newProduct = Product::orderBy('id','DESC')->where('product_status', 'product')->limit(3)->get();
 
 
@@ -295,8 +296,8 @@ class ShopController extends Controller
             $products=$products->paginate(10);
         }
 
-      $categories = Category::orderBy('title','ASC')->get();
-      $brands = Brand::orderBy('title','ASC')->get();
+      $categories = Category::orderBy('title','ASC')->limit(8)->get();
+      $brands = Brand::orderBy('title','ASC')->limit(8)->get();
       $newProduct = Product::orderBy('id','DESC')->where('product_status', 'product')->limit(3)->get();
 
       return view('frontend.pages.product.shop_page',compact('products','categories','newProduct','brands'));

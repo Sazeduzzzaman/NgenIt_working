@@ -67,7 +67,7 @@
             <!--title-->
             <div class="section_text_wrapper">
                 <h3 class="section_title">{{$solution->row_two_title}}</h3>
-                <p class="text-center" style="padding:0px 20%;">{{$solution->row_two_header}}</p>
+                <p class="text-center" style="padding:0px 10%;">{{$solution->row_two_header}}</p>
             </div>
             <!--Content Wrapper-->
             <div class="row mt-4">
@@ -163,9 +163,7 @@
             <div class="row">
                 <div class="col-lg-6 col-sm-12 account_benefits_section">
                     <h3>{{$row_four->title}}</h3>
-                    <p>{!!$row_four->description!!} </p>
-
-
+                    <p class="text-justify">{!!$row_four->description!!} </p>
                     <button href="{{$row_four->link}}" class="common_button mt-4">Learn more</button>
                 </div>
                 <div class="col-lg-6 col-sm-12">

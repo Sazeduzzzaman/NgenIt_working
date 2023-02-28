@@ -10,12 +10,12 @@
             <h3>Explore our Products By categories, Brands to see options for hardware, software and accessories. </h3>
 
             <div class="row d-flex justify-content-center">
-                <div class="col-lg-2"></div>
+                <!-- <div class="col-lg-2"></div> -->
                 <!--BUTTON START-->
-                <div class="col-lg-3 col-sm-12 d-flex justify-content-center mb-4">
+                <div class="col-lg-12 col-sm-12 d-flex justify-content-center mb-4">
                     <a class="search_all_product_btn" href="{{ route('shop') }}">Search all Products</a>
                 </div>
-                <div class="col-lg-3 col-sm-12 d-flex justify-content-center mb-4">
+                <div class="col-lg-12 col-sm-12 d-flex justify-content-center mb-4">
                     @if (Auth::guard('client')->user())
                     <a class="create_your_account_btn " href="{{ route('client.dashboard') }}">Your Dashboard</a>
                     @elseif (Auth::guard('partner')->user())
@@ -26,7 +26,7 @@
 
                 </div>
                 <!--BUTTON END-->
-                <div class="col-lg-2"></div>
+                <!-- <div class="col-lg-2"></div> -->
                 </span>
 
             </div>
@@ -37,11 +37,12 @@
 
 
     <!--=======Popular products Begin=======-->
-    <section class="container">
+    <section class="container mt-4 mb-2">
         <div class="popular_product_section_content">
             <!-- section title -->
             <div class="common_product_item_title">
                 <h3>Top Products</h3>
+                <hr style="background-color: #ae0a46 !important;width: 15.0%; height:2px">
             </div>
             <!-- wrapper -->
             <div class="populer_product_slider">
@@ -56,7 +57,7 @@
 
                         <!-- product content -->
                         <div class="product_item_content">
-                            <a href="{{ route('product.details', $item->slug) }}" class="product_item_content_name" style="height: 4rem;">{{$item->name}}</a>
+                            <a href="{{ route('product.details', $item->slug) }}" class="product_item_content_name" style="height: 3rem;">{{Str::limit($item->name,50)}}</a>
 
                            @if ($item->rfq != 1)
                              <!-- price -->
@@ -77,7 +78,7 @@
                              //dd($cart->where('image' , $item->thumbnail )->count());
                              @endphp
                              @if ($cart->where('id' , $item->id )->count())
-                             <a href="javascript:void(0);" class="common_button2 p-0 py-2 px-1 pb-2" style="height: 2.5rem"> Already in Cart</a>
+                             <a href="javascript:void(0);" class="common_button2 p-0 py-2 px-1 pb-2"  style="height: 2.5rem"> Already in Cart</a>
                              @else
                              <form action="{{route('add.cart')}}" method="post">
                                  @csrf
@@ -88,7 +89,10 @@
                              </form>
                              @endif
                            @else
-                           <a class="product_button mt-3" href="{{ route('product.details', $item->slug) }}">Details</a>
+                           <div class="product_item_price">
+                             <span class="price_currency_value">---</span>
+                           </div>
+                           <a class="product_button" href="{{ route('product.details', $item->slug) }}">Details</a>
                            @endif
                         </div>
 
@@ -97,7 +101,7 @@
                 @endforeach
             </div>
         </div>
-    </section><br>
+    </section>
     <!-- Related Product Section End -->
 
     <!--========Shop by category=======-->
@@ -105,17 +109,21 @@
         <!--Title-->
         <div class="common_product_item_title">
             <h3>Shop By Category</h3>
+            <hr style="background-color: #ae0a46 !important;width: 20.0%; height:2px">
 
         </div>
         <!--Product Category-->
         <div class="row">
             <!--Category item-->
             @foreach ($categories as $item)
-                <div class="col-xl-2 col-lg-2 col-md-3 col-sm-6 p-4">
-                    <img class="img-fluid mb-4" src="{{ asset('storage/requestImg/' . $item->image) }}" alt="" style="height: 60px; width:120px;">
-                    <div class="common_product_item_text">
-                        <a href="{{ route('category.html',$item->slug) }}" style="font-size: 16px">{{ $item->title }}</a>
+                <div class="col-xl-2 col-lg-2 col-md-3 col-sm-6 p-2" >
+                    <div class="category-item">
+                        <center><img class="img-fluid mb-2" src="{{ asset('storage/requestImg/' . $item->image) }}" alt="" style="height: 60px; width:95%;"></center>
+                        <div class="common_product_item_text">
+                            <a href="{{ route('category.html',$item->slug) }}" style="font-size: 14px">{{ Str::limit($item->title,16) }}</a>
+                        </div>
                     </div>
+
                 </div>
             @endforeach
         </div>
@@ -133,10 +141,10 @@
                             alt="{{$techglossy->badge}}">
                     </div>
                     <div class="col-lg-6 col-md-6 col-sm-12 transform_devices_blog">
-                        <img src="images/windows-11.png" alt="">
+                        <!-- <img src="images/windows-11.png" alt=""> -->
                         <h2>{{$techglossy->badge}}</h2>
                         <p>{{$techglossy->header}}</p>
-                        <a href="{{route('techglossy.details',$techglossy->id)}}">Learn more</a>
+                        <a href="{{route('techglossy.details',$techglossy->id)}}">See more</a>
                     </div>
                 </div>
             </div>
@@ -182,22 +190,29 @@
     <!----Technolgy Deals End---->
 
     <!--========Shop by category=======-->
-    <section class="container">
+    <section class="container mt-3">
         <!--Title-->
         <div class="common_product_item_title">
             <h3>Shop by Brands</h3>
-
+            <hr style="background-color: #ae0a46 !important;width: 18.0%; height:2px">
         </div>
         <!--Product Category-->
         <div class="row">
             @foreach ($brands as $item)
+
                 <!--Category item-->
-                <div class="col-xl-2 col-lg-2 col-md-3 col-sm-6 p-4">
-                    <img class="img-fluid mb-4" src="{{ asset('storage/requestImg/'.$item->image) }}" alt="" style="height: 60px; width:120px;">
-                    <div class="common_product_item_text">
-                        <a style="font-size: 16px" href="{{ url('hardware/' . $item->title) }}">Shop
-                            {{ $item->title }}</a>
+                <div class="brand_area_div col-xl-2 col-lg-2 col-md-3 col-sm-6 p-2 mt-2">
+                   <div class="brand_item">
+                   <center>  <img class="img-fluid mb-2" src="{{ asset('storage/requestImg/'.App\Models\Admin\Brand::where('id', $item->brand_id)->value('image')) }}" alt="" style="height: 70px; width:100%;"></center>
+                    <div class="common_product_item_brand">
+
+                        <a href="{{route('custom.product',App\Models\Admin\Brand::where('id', $item->brand_id)->value('slug'))}}" class="brand-shop-btn">Shop</a>
+                        <a href="{{ route('brandpage.html',App\Models\Admin\Brand::where('id', $item->brand_id)->value('slug')) }}" class="brand-details-btn">Details</a>
+
+                        <!-- <a style="font-size: 10px" href="{{ url('hardware/' . $item->title) }}">Shop
+                            {{ $item->title }}</a> -->
                     </div>
+                   </div>
                 </div>
             @endforeach
         </div>

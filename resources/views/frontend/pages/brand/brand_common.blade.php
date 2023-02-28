@@ -13,10 +13,11 @@
     <!--------- End --------->
 
     <!--======// Top Brand //=====-->
-    <section class="container"> 
+    <section class="container">
         <!--Title-->
         <div class="common_product_item_title">
             <h3>Top brands</h3>
+            <hr style="background-color: #ae0a46 !important;width: 15.0%; height:2px">
         </div>
         <!--Product brands-->
         <div class="row">

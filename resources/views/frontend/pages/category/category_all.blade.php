@@ -15,18 +15,21 @@
     <!--======// Top Brand //=====-->
     <section class="container">
         <!--Title-->
-        <div class="common_product_item_title">
+        <div class="common_product_item_title mt-3">
             <h3>All Categories</h3>
+            <hr style="background-color: #ae0a46 !important;width: 18.0%; height:2px">
         </div>
         <!--Product brands-->
         <div class="row">
             <!--Category item-->
             @foreach ($categorys as $item)
-                <div class="col-lg-2 col-md-4 col-sm-6 p-4">
-                    <a href="{{ route('category.html',$item->slug) }}" class="top_brand_image">
-                        <img class="img-fluid mb-4" src="{{ asset('storage/requestImg/' . $item->image) }}" alt="{{$item->title}}" width="180px" height="100px">
-                        <h6 class="text-center">{{$item->title}}</h6>
+                <div class="col-lg-2 col-md-4 col-sm-6 category_item_logo p-2 mb-3 mt-2">
+                   <div class="categoryitemshow">
+                   <a href="{{ route('category.html',$item->slug) }}" class="top_brand_image">
+                       <center> <img class="img-fluid mb-1" src="{{ asset('storage/requestImg/' . $item->image) }}" alt="{{$item->title}}" width="120" height="60"></center>
+                        <h6 class="text-center">{{Str::limit($item->title,20)}}</h6>
                     </a>
+                   </div>
                 </div>
             @endforeach
 
@@ -40,10 +43,11 @@
 
 
     <!--======// Featured Sub Categories //=====-->
-    <section class="container">
+    <section class="container mb-3">
         <!--Title-->
-        <div class="common_product_item_title">
+        <div class="common_product_item_title mt-3">
             <h3>All Sub Categories</h3>
+            <hr style="background-color: #ae0a46 !important;width: 20.0%; height:2px">
         </div>
         <!--Product Sub Categories-->
         <div class="row">
@@ -52,30 +56,35 @@
             @php
                 $slug = App\Models\Admin\Category::where('id',$item->id)->value('slug');
             @endphp
-            <div class="col-xl-2 col-lg-2 col-md-3 col-sm-6">
+            <div class="col-xl-2 col-lg-2 col-md-3 col-sm-6  subcategory_item_logo p-2  mt-5">
+              <div class="subcategoryitemshow">
                 <a href="{{ route('category.html',$item->slug) }}" class="top_brand_image">
-
-                    <img class="img-fluid mb-4" src="{{ asset('storage/requestImg/' . $item->image) }}" alt="{{$item->title}}" width="180px" height="100px">
-                    <h6 class="text-center">{{$item->title}}</h6>
+                    <center><img class="img-fluid mb-4" src="{{ asset('storage/requestImg/' . $item->image) }}" alt="{{$item->title}}" width="120" height="60">
+                    </center>
+                    <h6 class="text-center">{{Str::limit($item->title,20)}}</h6>
                 </a>
+              </div>
             </div>
             @endforeach
             @foreach ($sub_sub_cats as $item)
             @php
                 $slug = App\Models\Admin\Category::where('id',$item->id)->value('slug');
             @endphp
-            <div class="col-xl-2 col-lg-2 col-md-3 col-sm-6">
+            <div class="col-xl-2 col-lg-2 col-md-3 col-sm-6  subcategory_item_logo p-2  mt-5">
+                <div class="subcategoryitemshow">
                 <a href="{{ route('category.html',$item->slug) }}" class="top_brand_image">
-                    <img class="img-fluid mb-4" src="{{ asset('storage/requestImg/' . $item->image) }}" alt="{{$item->title}}" width="180px" height="100px">
-                    <h6 class="text-center">{{$item->title}}</h6>
+                    <center> <img class="img-fluid mb-4" src="{{ asset('storage/requestImg/' . $item->image) }}" alt="{{$item->title}}" width="120" height="60">
+                   </center>
+                <h6 class="text-center">{{Str::limit($item->title,20)}}</h6>
                 </a>
+                </div>
             </div>
             @endforeach
 
             <!--Category item-->
 
         </div>
-    </section><hr>
+    </section>
     <!--------- End -------->
 
 
@@ -823,20 +832,16 @@
                 <div class="populer_product_slider">
 
                     <!-- product_item -->
-                    @if ($products)
                     @foreach ($products as $item)
                     <div class="product_item">
                         <!-- image -->
                         <div class="product_item_thumbnail">
                             <img src="{{asset($item->thumbnail)}}" alt="{{$item->name}}" width="150px" height="113px">
                         </div>
-                            @php
-                                $product_slug = App\Models\Admin\Product::where('product_code',$item->product_code)->value('slug');
-                                //dd($product_slug);
-                            @endphp
+
                         <!-- product content -->
                         <div class="product_item_content">
-                            <a href="{{ route('product.details', $product_slug) }}" class="product_item_content_name" style="height: 4rem;">{{$item->name}}</a>
+                            <a href="{{ route('product.details', $item->slug) }}" class="product_item_content_name" style="height: 3rem;">{{Str::limit($item->name,50)}}</a>
 
                            @if ($item->rfq != 1)
                              <!-- price -->
@@ -868,13 +873,15 @@
                              </form>
                              @endif
                            @else
-                           <a class="product_button mt-3" href="{{ route('product.details', $product_slug) }}">Details</a>
+                           <div class="product_item_price">
+                             <span class="price_currency_value">---</span>
+                           </div>
+                           <a class="product_button" href="{{ route('product.details', $item->slug) }}">Details</a>
                            @endif
                         </div>
 
                     </div>
                     @endforeach
-                    @endif
 
                 </div>
             </div>

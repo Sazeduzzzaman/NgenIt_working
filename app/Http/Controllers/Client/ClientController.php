@@ -288,7 +288,7 @@ class ClientController extends Controller
 
     public function rfqProductIndex()
     {
-        $data['rfqs'] = Rfq::where('client_id' , Auth::guard('client')->user()->id)->get();
+        $data['rfqs'] = Rfq::where('client_id' , Auth::guard('client')->user()->id)->where('status','quoted')->get();
         return view('client.pages.rfq.index', $data);
     }
 

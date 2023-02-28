@@ -5,24 +5,27 @@
         <h2 class="text-center text-white">All Client Stories</h2>
     </div>
 
-    <section class="container padding_bottom">
+    <div class="container">
+        <div class="row">
         <div class="featured_client_stories_wrapper">
             <div class="featured_client_stories">
                 <div class="container">
                     <div class="featured_client_stories_title">
+                        <div class="row">
                         <h2 class="red">Featured Stories</h2>
+                        </div>
                     </div>
 
                     <div class="row">
 
                         <!--------item------->
                         @foreach ($featured_storys as $item )
-                        <div class="col-lg-3 col-md-6 col-sm-12">
+                        <div class="col-lg-4 col-md-4 col-sm-6">
                             <div class="client_stories_item">
                                 <a href="{{ route('story.details',$item->id) }}">
-                                    <img src="{{asset('storage/'.$item->image)}}" alt="{{$item->badge}}" width="268px" height="170px">
+                                    <img src="{{asset('storage/'.$item->image)}}" alt="{{$item->badge}}" style="height:120px;width:100%">
                                     <h6 class="mt-2"><strong>{{$item->badge}}</strong></h6>
-                                    <h3><strong>{{$item->title}}</strong></h3>
+                                    <h3><strong>{{Str::limit($item->title,55)}}</strong></h3>
                                 </a>
 
                             </div>
@@ -35,48 +38,53 @@
                 </div>
             </div>
         </div>
+        </div>
 
-    </section>
+    </div>
     <!-------End------->
-    <hr>
+
     <!--=======// Content & Filter //=======-->
     <section class="container section_padding">
         <!----------Filter Top-nav Bar --------->
-        <div class="clinet_stories_filter_top_bar">
-            <label>Results per page </label>
-            <span class="client_story_filter_page">
-                <select>
-                    <option value="#" selected>10</option>
-                    <option value="20">20</option>
-                    <option value="30">30</option>
-                    <option value="40">40</option>
-                </select>
-            </span>
 
-            <label class="ml-4">Filter By: </label>
-            <span class="client_story_filter_all_year">
-                <select>
-                    <option value="#" selected>All years</option>
-                    <option value="#">2022</option>
-                    <option value="#">2021</option>
-                    <option value="#">2020</option>
-                    <option value="#">2019</option>
-                    <option value="#">2018</option>
-                    <option value="#">2017</option>
-                    <option value="#">2016</option>
-                    <option value="#">2015</option>
-                    <option value="#">2014</option>
-                    <option value="#">2013</option>
-                    <option value="#">2012</option>
-                </select>
-            </span>
+        <div class="row">
+            <div class="clinet_stories_filter_top_bar">
+                <label>Results per page </label>
+                <span class="client_story_filter_page">
+                    <select>
+                        <option value="#" selected>10</option>
+                        <option value="20">20</option>
+                        <option value="30">30</option>
+                        <option value="40">40</option>
+                    </select>
+                </span>
+
+                <label class="ml-4">Filter By: </label>
+                <span class="client_story_filter_all_year">
+                    <select>
+                        <option value="#" selected>All years</option>
+                        <option value="#">2022</option>
+                        <option value="#">2021</option>
+                        <option value="#">2020</option>
+                        <option value="#">2019</option>
+                        <option value="#">2018</option>
+                        <option value="#">2017</option>
+                        <option value="#">2016</option>
+                        <option value="#">2015</option>
+                        <option value="#">2014</option>
+                        <option value="#">2013</option>
+                        <option value="#">2012</option>
+                    </select>
+                </span>
+            </div>
+
         </div>
-        <hr>
+
         <div class="row">
             <!----------Sidebar client stories --------->
             <div class="col-lg-3 col-md-4 col-sm-12">
                 <div class="sidebar_client_stories">
-                    <label> <b>2</b>results matched your search</label>
+                    <label> <b>2</b> &nbsp;results matched your search</label>
 
                     <hr>
                     <!--------Your search--------->
@@ -118,7 +126,7 @@
 
                             <div class="form-check">
                                 <input name="tag" value="{{$item}}" class="form-check-input custom" type="checkbox" id="flexCheckDefault" onchange="this.form.submit()">
-                                <span class="ml-2">{{$item}}</span>
+                                <span class="ml-2">{{ucfirst($item)}}</span>
                             </div>
                             @endforeach
                          @endforeach
@@ -166,10 +174,10 @@
                     <div class="col-lg-6 col-md-6 col-sm-12">
                         <div class="client_stories_content_item">
                             <a href="{{route('story.details',$item->id)}}">
-                                <img class="" src="{{asset('storage/'.$item->image)}}" alt="{{$item->badge}}" width="409px" height="273px">
-                                <h3 class="mt-4">{{$item->title}}</h3>
+                                <img class="" src="{{asset('storage/'.$item->image)}}" alt="{{$item->badge}}" width="409px" height="210px">
+                                <h3 class="mt-4" style="height:4.6rem;">{{$item->title}}</h3>
 
-                                <p>{!! $item->header !!}</p>
+                                <p>{!! Str::limit($item->header, 160) !!}</p>
                                 <h6>{{$item->badge}} / {{$item->created_at->format('Y-m-d')}}</h6>
                             </a>
                         </div>

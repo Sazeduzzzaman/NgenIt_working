@@ -142,6 +142,11 @@ Route::post('add/support', [SupportController::class, 'addSupport'])->name('add.
 Route::get('terms_policy', [HomeController::class, 'TermsPolicy'])->name('terms.policy');
 Route::get('terms_policy/{id}/details', [HomeController::class, 'TermsPolicyDetails'])->name('terms.details');
 
+//Work Order Upload
+Route::put('upload/work-order/{id}', [RFQController::class,'workOrderUpload'])->name('work-order.upload');
+
+//Proof of Payment Upload
+Route::put('upload/payment-proof/{id}', [RFQController::class,'proofPaymentUpload'])->name('payment-proof.upload');
 
 // card route start -----------
  //Route::get('cart', [CartController::class, 'cart'])->name('cart');

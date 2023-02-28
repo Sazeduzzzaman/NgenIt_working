@@ -97,8 +97,15 @@
                                         <table class="table table-bordered text-center">
                                             <thead>
                                                 <tr style="background: gray; padding-top:8px;padding-bottom:8px;">
-                                                    <th class="text-center text-white" colspan="3" style="font-size:22px !important; padding-top:8px !important;padding-bottom:8px !important;">
+                                                    <th class="text-center text-white" colspan="2" style="font-size:22px !important; padding-top:8px !important;padding-bottom:8px !important;">
                                                         Order Details</th>
+                                                        <th class="text-center" style="border:none;">
+                                                            <a href="javascript:void(0);" class="text-white" title="Show SAS"
+                                                            data-bs-toggle="modal"
+                                                            data-bs-target="#show-sas">
+                                                                <i class="icon-eye"></i>
+                                                            </a>
+                                                        </th>
                                                 </tr>
                                                 @if (count($products) > 0)
                                                     <tr>
@@ -153,7 +160,7 @@
                                                     <th width="9%">Shared Quote Percentage</th>
                                                     <th width="9%">Shared Quote Amount</th>
                                                     <th width="9%">Closed Ratio</th>
-                                                    <th width="9%">Profit Margin</th>
+                                                    <th width="9%">Profit Margin (%)</th>
                                                     <th width="9%">Effort</th>
                                                     <th width="9%">Performance Look</th>
                                                     <th width="9%">Rating</th>
@@ -164,11 +171,16 @@
                                                 <tr>
                                                     <td>{{App\Models\User::where('id', $rfq->sales_man_id_L1)->value('name')}}</td>
                                                     <td>{{ $sourcing->grand_total }}</td>
-                                                    <td><input class="w-6" type="text" name="" id=""></td>
-                                                    <td></td>
-                                                    <td></td>
-                                                    <td></td>
-                                                    <td></td>
+                                                    <td><input class="w-6" type="text" name="shared_quote_percentage_L1"></td>
+                                                    <td><input class="w-6" type="text" name="shared_quote_amount_L1" readonly></td>
+                                                    <td><input class="w-6" type="text" name="closed_ratio_L1" readonly></td>
+                                                    <td><input class="w-6 text-center" type="text" name="profit_margin_L1" value="{{($sourcing->net_profit_percentage)*10}}" readonly></td>
+                                                    <td>
+                                                        <select class="form-select" name="effort_L1" required>
+                                                                <option></option>
+                                                                <option value=""></option>
+                                                        </select>
+                                                    </td>
                                                     <td></td>
                                                     <td></td>
                                                     <td></td>
@@ -178,11 +190,15 @@
                                                     <tr>
                                                         <td>{{App\Models\User::where('id', $rfq->sales_man_id_T1)->value('name')}}</td>
                                                         <td>{{ $sourcing->grand_total }}</td>
-                                                        <td><input class="w-6" type="text" name="" id=""></td>
-                                                        <td></td>
-                                                        <td></td>
-                                                        <td></td>
-                                                        <td></td>
+                                                        <td><input class="w-6" type="text" name="shared_quote_percentage_T1"></td>
+                                                        <td><input class="w-6" type="text" name="shared_quote_amount_T1" readonly></td>
+                                                        <td><input class="w-6" type="text" name="closed_ratio_T1" readonly></td>
+                                                        <td><input class="w-6 text-center" type="text" name="profit_margin_T1" value="{{($sourcing->net_profit_percentage)*10}}" readonly></td>
+                                                        <td>
+                                                            <select class="form-select" name="effort_T1" required>
+
+                                                            </select>
+                                                        </td>
                                                         <td></td>
                                                         <td></td>
                                                         <td></td>
@@ -193,11 +209,15 @@
                                                     <tr>
                                                         <td>{{App\Models\User::where('id', $rfq->sales_man_id_T2)->value('name')}}</td>
                                                         <td>{{ $sourcing->grand_total }}</td>
-                                                        <td><input class="w-6" type="text" name="" id=""></td>
-                                                        <td></td>
-                                                        <td></td>
-                                                        <td></td>
-                                                        <td></td>
+                                                        <td><input class="w-6" type="text" name="shared_quote_percentage_T2"></td>
+                                                        <td><input class="w-6" type="text" name="shared_quote_amount_T2" readonly></td>
+                                                        <td><input class="w-6" type="text" name="closed_ratio_T2" readonly></td>
+                                                        <td><input class="w-6 text-center" type="text" name="profit_margin_T2" value="{{($sourcing->net_profit_percentage)*10}}" readonly></td>
+                                                        <td>
+                                                            <select class="form-select" name="effort_T2" required>
+
+                                                            </select>
+                                                        </td>
                                                         <td></td>
                                                         <td></td>
                                                         <td></td>
@@ -224,6 +244,261 @@
         </div>
         <!-- /content area -->
         <!-- /inner content -->
+
+        <div id="show-sas" class="modal fade" tabindex="-1" style="display: none;" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-scrollable modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+
+                        <h5 class="modal-title">SAS Details : {{ $rfq->rfq_code }}</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+
+                    <div class="modal-body border br-7">
+                        <div class="content">
+
+                            <div class="center d-none">
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="checkbox" name="regular" value="1" id="flexRadioDefault1" {{ $rfq->regular == '1' ? 'checked' : '' }}>
+                                    <label class="form-check-label" for="flexRadioDefault1">
+                                    Regular Discount
+                                    </label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="checkbox" name="special" value="1" id="flexRadioDefault1" {{ $rfq->special == '1' ? 'checked' : '' }}>
+                                    <label class="form-check-label" for="flexRadioDefault1">
+                                    Special Discount
+                                    </label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="checkbox" name="tax_status" value="1" id="flexRadioDefault1" {{ $rfq->tax_status == '1' ? 'checked' : '' }}>
+                                    <label class="form-check-label" for="flexRadioDefault1">
+                                    Tax / VAT
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="m-auto" style="width:80%;">
+                                            <div class="bg-dark mb-2">
+                                                <table class="text-center table table-hover br-7">
+                                                    <thead>
+                                                        <tr class="br-7">
+                                                            <th class="text-white">RFQ Code :  {{ $rfq->rfq_code }}
+                                                                <input type="hidden" name="rfq_code" value="{{ $rfq->rfq_code }}">
+                                                                <input type="hidden" name="rfq_id" value="{{ $rfq->id }}">
+                                                            </th>
+                                                            <th class="text-white">SAS Create Date :
+                                                                {{$rfq->create_date}}
+
+                                                            </th>
+                                                            <th class="text-white text-center">
+                                                                This Deal is for our @if ($rfq->client_type == 'partner')
+                                                                    Partner
+                                                                @else
+                                                                    Client
+                                                                @endif
+                                                            </th>
+                                                        </tr>
+                                                    </thead>
+                                                </table>
+                                            </div>
+                                        </div>
+                                        <div class="table-responsive">
+
+
+                                            <div class="mb-2">
+                                                <table class="text-center table table-bordered table-hover mb-3">
+                                                    <thead>
+                                                        <tr class="bg-gray">
+                                                            <th width="40%">Item Name</th>
+                                                            <th width="10%">Quantity</th>
+                                                            <th width="10%">Unit Price</th>
+                                                            <th width="10%">Cost (Cog Price)</th>
+                                                            <th width="10%" class="rg_discount d-none">Regular Discount</th>
+                                                            <th width="10%" class="rg_discount d-none">Discounted Sales Price</th>
+                                                            <th width="10%">Unit Total</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        @foreach ($products as $item)
+
+                                                            <tr class="thd">
+                                                                <td class="border-none">
+                                                                    {{ $item->item_name }}
+                                                                </td>
+
+                                                                <td class="border-none">
+                                                                    {{ $item->qty }}
+                                                                </td>
+                                                                <td class="border-none">
+                                                                    {{ $item->unit_price }}
+                                                                </td>
+                                                                <td class="border-none">
+                                                                    {{ $item->cog_price }}
+                                                                </td>
+                                                                <td class="rg_discount d-none border-none">
+                                                                    {{ $item->regular_discount }}
+                                                                </td>
+
+                                                                <td class="rg_discount d-none border-none">
+                                                                    {{ $item->discounted_sales }}
+                                                                </td>
+                                                                <td class="border-none">
+                                                                    {{ $item->sales_price }}
+                                                                </td>
+                                                            </tr>
+                                                        @endforeach
+                                                        <tr>
+
+
+                                                            <td class="border-none" width="45%" colspan="3">Sub Total</td>
+
+                                                            <td class="border-none">
+                                                                {{ $sourcing->sub_total_cost }}
+                                                            </td>
+                                                            <td class="rg_discount d-none border-none"></td>
+                                                            <td class="rg_discount d-none border-none">{{ $sourcing->sub_total_discounted_sales }}</td>
+
+                                                            <td class="border-none">{{ $sourcing->sub_total_sales }}</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+
+                                                <table class="text-center table table-bordered table-hover">
+                                                    <thead>
+                                                        <tr class="special_discount d-none">
+                                                            <th class="border-none" colspan="5" width="67%">Special Discount</th>
+                                                            <th class="border-none">{{ $sourcing->special_discount }}  %</th>
+                                                            <th class="border-none">{{ $sourcing->special_discounted_sales }}</th>
+                                                        </tr>
+                                                        <tr class="tax d-none">
+
+                                                            <th class="border-none" colspan="5" width="67%">Tax/VAT</th>
+                                                            <th class="border-none">{{ $sourcing->tax }}  %</th>
+                                                            <th class="border-none">{{ $sourcing->tax_sales }}</th>
+                                                        </tr>
+                                                        <tr>
+
+                                                            <th class="border-none" colspan="5" width="67%">Grand Total (With Everything)</th>
+                                                            <th class="border-none" width="18%"></th>
+
+                                                            <th class="border-none" width="15%">{{ $sourcing->grand_total }}</th>
+                                                        </tr>
+                                                    </thead>
+                                                </table>
+                                            </div>
+
+                                            <div class="m-auto" style="width:60%;">
+                                                <table class="text-center table table-bordered table-hover">
+                                                    <tbody class="tb accordion padding text-center" id="accordion_expanded">
+                                                        <tr class="bg-dark accordion_expense">
+                                                            <td class="text-white" colspan="3">
+                                                                <i class="ph-arrow-down"></i>&nbsp;&nbsp; Expenses
+                                                            </td>
+                                                        </tr>
+
+                                                        <tr class="body_expense" style="display: none;">
+                                                            <td class="border-none" >Bank & Remittance Charge - (1.5%)</td>
+                                                            <td class="border-none">{{ $sourcing->bank_charge }}%
+                                                            </td>
+
+                                                        </tr>
+
+                                                        <tr class="body_expense" style="display: none;">
+                                                            <td class="border-none">Customs & Duty - (5.0%)</td>
+                                                            <td class="border-none">{{ $sourcing->customs }} %
+                                                            </td>
+
+                                                        </tr>
+
+                                                        <tr class="body_expense" style="display: none;">
+                                                            <td class="border-none">HR , Office & Utility Cost- (5.0%)</td>
+                                                            <td class="border-none">{{ $sourcing->utility_cost }} %
+                                                            </td>
+
+                                                        </tr>
+
+                                                        <tr class="body_expense" style="display: none;">
+                                                            <td class="border-none">Shipping & Handling Cost- (5.0%)</td>
+                                                            <td class="border-none">{{ $sourcing->shiping_cost }} %
+                                                        </tr>
+
+                                                        <tr class="body_expense" style="display: none;">
+                                                            <td class="border-none">Sales / Consultancy Comission - (5.0%)</td>
+                                                            <td class="border-none">{{ $sourcing->sales_comission }} %
+                                                            </td>
+                                                        </tr>
+
+                                                        <tr class="body_expense" style="display: none;">
+                                                            <td class="border-none">Bank Loan / Liability / Debt - (5.0%)</td>
+                                                            <td class="border-none">{{ $sourcing->liability }} %
+                                                            </td>
+                                                        </tr>
+
+                                                        <tr class="bg-dark accordion_offer">
+                                                            <td class="border-none text-white" colspan="3">
+                                                                <i class="ph-arrow-down"></i>&nbsp;&nbsp;
+                                                                Offering Value Adding
+                                                            </td>
+                                                        </tr>
+
+                                                        <tr class="body_offer" style="display: none;">
+                                                            <td class="border-none">Deal Closing / Rebates</td>
+                                                            <td class="border-none">{{ $sourcing->rebates }} %
+                                                            </td>
+                                                        </tr>
+
+                                                        <tr class="bg-dark accordion_other">
+                                                            <td class="border-none text-white" colspan="3">
+                                                                <i class="ph-arrow-down"></i>&nbsp;&nbsp;
+                                                                Other Income
+                                                            </td>
+                                                        </tr>
+
+                                                        <tr class="body_other" style="display: none;">
+                                                            <td class="border-none">Loan / Capital / Partner Share - (5%)</td>
+                                                            <td class="border-none">{{ $sourcing->capital_share }} %</td>
+                                                        </tr>
+
+                                                        <tr class="body_other" style="display: none;">
+                                                            <td class="border-none">Management Cost - (5%)</td>
+                                                            <td class="border-none">{{ $sourcing->management_cost }} %</td>
+                                                        </tr>
+
+                                                        <tr>
+                                                            <td class="border-none">Gross Profit (%) between Sales and Cost</td>
+                                                            <td class="border-none">{{ $sourcing->gross_profit_subtotal }} %</td>
+                                                            <td class="border-none">$
+                                                                {{ $sourcing->gross_profit_amount }}
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="border-none">Net Profit - (5%)</td>
+                                                            <td class="border-none">
+                                                                {{ $sourcing->net_profit_percentage }} %
+                                                            </td>
+                                                            <td class="border-none">$ {{ $sourcing->net_profit_amount }}
+                                                                </td>
+                                                        </tr>
+
+                                                    </tbody>
+                                                </table>
+                                            </div>
+
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
 
     </div>
 @endsection

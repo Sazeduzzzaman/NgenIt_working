@@ -26,7 +26,7 @@
             </div>
         </div>
         <!-- /page header -->
- 
+
 
         <!-- Content area -->
         <div class="content">
@@ -43,8 +43,7 @@
                                         <input type="hidden" name="rfq_id" value="{{ $rfq->id }}">
                                     </th>
                                     <th class="text-white">SAS Create Date :
-                                        <input type="hidden" name="create" value="{{ \Carbon\Carbon::now() }}">
-                                            {{ \Carbon\Carbon::now() }}
+                                        {{$rfq->create_date->format('Y-m-d')}}
                                     </th>
                                     <th class="text-white text-center">
                                         This Deal is for our @if ($rfq->client_type == 'partner')
@@ -133,7 +132,7 @@
                                                     </tr>
                                                 @endforeach
                                                 <tr>
-                                                    
+
 
                                                     <td class="border-none" width="45%" colspan="3">Sub Total</td>
 
@@ -148,19 +147,19 @@
 
                                         <table class="text-center table table-bordered table-hover">
                                             <thead>
-                                                <tr class="special_discount d-none">                     
+                                                <tr class="special_discount d-none">
                                                     <th class="border-none" colspan="5" width="67%">Special Discount</th>
                                                     <th class="border-none"><input class="w-6" type="text" name="special_discount" value="{{ $sourcing->special_discount }}">  %</th>
                                                     <th class="border-none"><input class="w-6" type="text" name="special_discounted_sales" readonly value="{{ $sourcing->special_discounted_sales }}"></th>
                                                 </tr>
                                                 <tr class="tax d-none">
-                                                    
+
                                                     <th class="border-none" colspan="5" width="67%">Tax/VAT</th>
                                                     <th class="border-none"><input class="w-6" type="text" name="tax" value="{{ $sourcing->tax }}">  %</th>
                                                     <th class="border-none"><input class="w-6" type="text" name="tax_sales" readonly value="{{ $sourcing->tax_sales }}"></th>
                                                 </tr>
                                                 <tr>
-                                                    
+
                                                     <th class="border-none" colspan="5" width="67%">Grand Total (With Everything)</th>
                                                     <th class="border-none" width="18%"></th>
 
@@ -336,7 +335,7 @@
                     </div>
 
                 </div>
-                
+
             </form>
         </div>
         <!-- /content area -->
@@ -459,9 +458,9 @@
             //*
         </script>
     <!-- Special Discount and Tax calculation -->
-        
 
-    
+
+
 
     <!-- Unit Total calculation -->
         <script>
@@ -588,7 +587,7 @@
                     $("input[name='grand_total']").val((sales_mult).toFixed(2));
 
                     // discount and tax
-                    
+
 
                 var discount = $("input[name='special_discount']").val();
                 var subtotal_sales = $("input[name='sub_total_sales']").val();
@@ -618,9 +617,9 @@
                 }
 
 
-                
 
-                
+
+
 
 
             });
@@ -704,8 +703,8 @@
 
         </script>
 
-    <!-- expand table and calculate --> 
+    <!-- expand table and calculate -->
 
-   
+
     @endpush
 @endonce

@@ -13,6 +13,7 @@ use App\Models\Admin\DealSas;
 use App\Models\Admin\Product;
 use App\Notifications\RfqDeal;
 use App\Models\Partner\Partner;
+use Illuminate\Validation\Rule;
 use App\Models\Admin\RfqProduct;
 use App\Notifications\RfqAssign;
 use App\Http\Controllers\Controller;
@@ -21,8 +22,8 @@ use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
+use App\Models\Admin\CommercialDocument;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Notification;
 
 class RFQController extends Controller
@@ -481,5 +482,63 @@ class RFQController extends Controller
         }
         // return redirect()->route('deal.index');
         return redirect()->route('rfq-manage.index');
+    }
+
+    public function workOrderUpload(Request $request, $id)
+    {
+        //dd($request->all());
+        $data['rfq'] = Rfq::where('rfq_code', $id)->first();
+        $document_check = CommercialDocument::where('rfq_id', $data['rfq']->id)->first();
+
+            $mainFileClientPo = $request->file('client_po_pdf');
+            if (isset($mainFileClientPo)) {
+                $globalFunClientPo = Helper::singleFileUpload($mainFileClientPo);
+            } else {
+                $globalFunClientPo = ['status' => 0];
+            }
+
+
+            if (!empty($document_check)) {
+                CommercialDocument::find($document_check->id)->update([
+                    'client_po'          => $globalFunClientPo['status'] == 1 ? $globalFunClientPo['file_name'] : '',
+                    ]);
+                    Toastr::success('PDF Uploaded Successfully');
+            } else {
+                CommercialDocument::create([
+                    'rfq_id' => $data['rfq']->id,
+                    'client_po'          => $globalFunClientPo['status'] == 1 ? $globalFunClientPo['file_name'] : '',
+                ]);
+                Toastr::success('PDF Uploaded Successfully');
+            }
+            return redirect()->back();
+    }
+
+    public function proofPaymentUpload(Request $request, $id)
+    {
+        //dd($request->all());
+        $data['rfq'] = Rfq::where('rfq_code', $id)->first();
+        $document_check = CommercialDocument::where('rfq_id', $data['rfq']->id)->first();
+
+            $mainFileClientPo = $request->file('client_po_pdf');
+            if (isset($mainFileClientPo)) {
+                $globalFunClientPo = Helper::singleFileUpload($mainFileClientPo);
+            } else {
+                $globalFunClientPo = ['status' => 0];
+            }
+
+
+            if (!empty($document_check)) {
+                CommercialDocument::find($document_check->id)->update([
+                    'client_po'          => $globalFunClientPo['status'] == 1 ? $globalFunClientPo['file_name'] : '',
+                    ]);
+                    Toastr::success('PDF Uploaded Successfully');
+            } else {
+                CommercialDocument::create([
+                    'rfq_id' => $data['rfq']->id,
+                    'client_po'          => $globalFunClientPo['status'] == 1 ? $globalFunClientPo['file_name'] : '',
+                ]);
+                Toastr::success('PDF Uploaded Successfully');
+            }
+            return redirect()->back();
     }
 }

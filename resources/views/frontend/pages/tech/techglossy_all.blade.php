@@ -20,9 +20,9 @@
                         <div class="col-lg-3 col-md-6 col-sm-12">
                             <div class="client_stories_item">
                                 <a href="{{ route('techglossy.details',$item->id) }}">
-                                    <img src="{{asset('storage/'.$item->image)}}" alt="{{$item->badge}}" width="268px" height="170px">
+                                    <img src="{{asset('storage/'.$item->image)}}" alt="{{$item->badge}}"  style="width:100%; height:170px" >
                                     <h6 class="mt-2">{{$item->badge}}</h6>
-                                    <h3><strong>{{$item->title}}</strong></h3>
+                                    <h3><strong>{{Str::limit($item->title,55)}}</strong></h3>
                                 </a>
 
                             </div>
@@ -71,14 +71,17 @@
                 </select>
             </span>
         </div>
-        <hr>
+
+
+
+
         <div class="row">
             <!----------Sidebar client stories --------->
             <div class="col-lg-3 col-md-4 col-sm-12">
                 <div class="sidebar_client_stories">
-                    <label> <b>2</b>results matched your search</label>
+                    <label> <b>2</b> results matched your search</label>
 
-                    <hr>
+
                     <!--------Your search--------->
                     {{-- <div class="client_stories_your_search">
                         <h6 class="mb-4">Your search</h6>
@@ -169,10 +172,10 @@
                     <div class="col-lg-6 col-md-6 col-sm-12">
                         <div class="client_stories_content_item">
                             <a href="{{ route('techglossy.details',$item->id) }}">
-                                <img class="img-fluid" src="{{asset('storage/'.$item->image)}}" alt="{{$item->badge}}">
-                                <h3 class="mt-4">{{$item->title}}</h3>
+                                <img class="img-fluid" src="{{asset('storage/'.$item->image)}}" alt="{{$item->badge}}" style="height:200px;width:100%;" >
+                                <h3 class="mt-4">{{Str::limit($item->title,55)}}</h3>
 
-                                <p>{!! $item->header !!}</p>
+                                <p>{!! Str::limit($item->header,250) !!}</p>
                                 <h6>{{$item->badge}} / {{$item->created_at->format('Y-m-d')}}</h6>
                             </a>
                         </div>

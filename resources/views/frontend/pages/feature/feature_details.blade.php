@@ -19,7 +19,7 @@
 
     <!--======// Modern finance //======-->
     @if ($row_one)
-    <section class="container section_padding">
+    <section class="container section_padding" style="border-bottom:1px solid #ddd;">
         <div class="row">
             <div class="col-lg-7 col-sm-12">
                 <div class="section_text_wrapper">

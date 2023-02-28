@@ -5,20 +5,16 @@
 <section class="tech_glossary_header" style="background-image: url('{{ asset('storage/requestImg/' . $techglossy->image) }}'); margin-top:100px; height:27rem;">
     <div class="container">
         <h3>Tech Glossary</h3>
-        <h1 style="font-size: 5rem;">{{$techglossy->badge}}</h1>
+        <h1 style="font-size: 1.5rem;color:#000">{{$techglossy->badge}}</h1>
     </div>
-
 </section>
 <!--------- End--------->
 
 <!--=======// Content //=======-->
-
 <section class="container section_padding">
     <div class="row mb-3">
         <div class="byTopics col-9">
-
-            <p>By <a href="javascript:void(0);"> {{$techglossy->created_by}}</a> <span> / </span><span>{{ date('d-m-Y', strtotime($techglossy->created_at)) }}</span>
-
+            <p>By <a href="javascript:void(0);">{{$techglossy->created_by}}</a> <span> / </span><span>{{ date('d-m-Y', strtotime($techglossy->created_at)) }}</span>
             </p>
         </div>
         <div class="bySocial col-3">
@@ -87,9 +83,9 @@
                 <div class="col-lg-3 col-md-6 col-sm-12">
                     <div class="related-item">
                         <a href="{{route('techglossy.details',$item->id)}}">
-                            <img src="{{ asset('storage/' . $item->image) }}" alt=""  width="268px" height="170px">
+                            <img src="{{ asset('storage/' . $item->image) }}" alt=""  style="height:170px;width:268px;" >
                             <h4>{{$item->badge}}</h6>
-                            <h3><strong>{{$item->title}}</strong></h3>
+                            <h3><strong>{{Str::limit($item->title,55)}}</strong></h3>
                         </a>
 
                     </div>

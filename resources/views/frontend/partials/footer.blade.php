@@ -12,7 +12,7 @@
         <div class="row footer_middle_wrapper">
             <!-- item -->
 
-                <div class="col-lg-5 col-md-8 col-sm-12 footer_item_wrapper">
+                <div class="col-lg-3 col-md-3 col-sm-12 footer_item_wrapper">
                     <!-- title -->
                     <h6>Newsletter</h6>
                     <!-- text -->
@@ -20,19 +20,27 @@
                         @csrf
                         <p>Sign up to receive the IT content that matters most to you. You can update your preferences or unsubscribe any time.</p>
                     <!-- button -->
-                        <div class="col-lg-12 common_button2" style="padding: 7px 7px; border-radius:5px;">
+                        <!-- <div class="col-lg-10 common_button2" style="padding:0px;">
+                            <div class="col-lg-10 float-left" style="padding:0px;">
+                                <input type="email" name="email" class="form-control" placeholder="Enter Your Email Here.." style="background: transparent; border:none; color:white;border-hover:none;">
+                            </div>
+                            <div class="col-lg-2 float-left" style="padding:0px;">
+                                <button id="submitbtn" type="submit" style="background: transparent; border:none; color:white;float:left;"><i class="ph-paper-plane-tilt" style="font-size: 22px;float:left; line-height:35px;"></i></button>
+                            </div>
+
+                        </div> -->
+
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="background-color: var(--crimson); border-radius:0.25rem;">
                             <div class="row">
-                                <div class="col-lg-10 p-0 pl-4">
-                                    <input class="form-control" type="email" name="email"  placeholder="Insert Your Email Here.." style="background: transparent; border:1px solid #9b0606; color:white">
+                                <div class="col-lg-10 col-md-10 col-sm-9 col-xs-8 pl-1" style="padding:0px;">
+                                    <input type="email" name="email" class="placeholderInput" placeholder="Enter Your Email Here.." style="width:100%;height:40px; background: transparent; border:none; color:white;  outline: none!important;color:#fff;" autocomplete="off">
                                 </div>
-                                <div class="col-lg-1 p-0 pt-2">
-                                    <button id="submitbtn" type="submit" style="background: transparent; border:none; color:white"><i class="ph-paper-plane-tilt" style="font-size: 22px"></i></button>
+                                <div class="col-lg-2 col-md-2 col-sm-3 col-xs-4 pt-2" style="padding:0px;">
+                                    <button id="submitbtn" type="submit" style="background: transparent; border:none; color:white; outline: none!important;color:#fff;"><i class="ph-paper-plane-tilt" style="font-size: 22px"></i></button>
                                 </div>
                             </div>
                         </div>
-
                     </form>
-                    {{-- <button href="" class="common_button2"></button> --}}
                 </div>
 
 

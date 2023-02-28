@@ -1,7 +1,7 @@
 @extends('frontend.master')
 @section('content')
 <!--=======// Single blog image //=======-->
-<section class="container" style="margin-top: 110px;">
+<section class="container" style="margin-top: 130px;">
     <div class="assetType">
         <a href="javascript:void(0);">{{$blog->badge}}</a>
     </div>
@@ -81,9 +81,9 @@
                 <div class="col-lg-3 col-md-6 col-sm-12">
                     <div class="related-item">
                         <a href="{{route('blog.details',$item->id)}}">
-                            <img class="img-fluid" src="{{ asset('storage/' . $item->image) }}" alt="">
+                            <img class="img-fluid" src="{{ asset('storage/' . $item->image) }}" alt=""  style="height:150px;width:100%">
                             <h4>{{$item->badge}}</h6>
-                            <h3><strong>{{$item->title}}</strong></h3>
+                            <h3><strong>{{Str::limit($item->title,55)}}</strong></h3>
                         </a>
 
                     </div>

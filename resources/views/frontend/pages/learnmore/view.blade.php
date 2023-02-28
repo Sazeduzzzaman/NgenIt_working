@@ -4,7 +4,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 	<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 <!--======// Header Title //======-->
-<section class="common_product_header " style="background-image: url('{{ asset('storage/'.$learnmore->image_banner) }}'); padding: 40px 0 80px 0; margin-top:100px">
+<section class="common_product_header" style="background-image: url('{{ asset('storage/'.$learnmore->image_banner) }}'); padding: 40px 0 80px 0; margin-top:100px">
     <div class="container">
         <div class="solution_common_header">
             <div class="outcome_assetType mb-4">
@@ -24,12 +24,12 @@
 <!--=======// Techincal Expertise //========-->
 <section class="container padding_top">
     <div class="section_text_wrapper">
-        <h4 class="section_title" style="padding: 0px 10%;">{{$learnmore->header_one}}</h4>
-        <p style="font-size:20px; text-align: center;">{{$learnmore->header_two}}</p>
+        <h4 class="section_title" style="padding: 0px 2%;">{{$learnmore->header_one}}</h4>
+        <p class="text-center">{{$learnmore->header_two}}</p>
     </div>
-    <div class="row padding_top" id="Outcome">
+    <div class="row" id="Outcome">
         <!--Card Item-->
-        <div class="col-4">
+        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
             <div class="solution_card_wrapper">
                 <div class = "solution_card">
                     <div class = "card_item">
@@ -37,7 +37,7 @@
                         <img href = "#" src ="{{asset('frontend')}}/images/solution/business-team-card1.jpg">
                     </div>
                     <div class = "solution_cart_content">
-                        <h4> {{$learnmore->box_one_title}}</h4>
+                        <h4> {{Str::limit($learnmore->box_one_title,18)}}</h4>
                         <p>{!! $learnmore->box_one_short_des !!}</p>
                         <a href="{{$learnmore->box_one_link}}" class="common_button2">Explore {{$learnmore->box_one_title}}</a>
                     </div>
@@ -46,7 +46,7 @@
             </div>
         </div>
         <!--Card Item-->
-        <div class="col-4">
+        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
             <div class="solution_card_wrapper">
                 <div class = "solution_card">
                     <div class = "card_item">
@@ -63,7 +63,7 @@
             </div>
         </div>
         <!--Card Item-->
-        <div class="col-4">
+        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
             <div class="solution_card_wrapper">
                 <div class = "solution_card">
                     <div class = "card_item">
@@ -109,6 +109,7 @@
                 $tags_1=explode(',',$story1->tags);
                 $tags_2=explode(',',$story2->tags);
                 $tags_3=explode(',',$story3->tags);
+
             @endphp
             <!-- clint tab contet area -->
             <div class="tab-content clearfix mt-4">
@@ -269,9 +270,9 @@
 <!---------End -------->
 
 <!--======// our clint tab //======-->
-<section class="container">
+<section class="container mt-5">
     <div class="outcome_smail_bussiness_title">
-        <hr class="lineTop">
+        <!-- <hr class="lineTop"> -->
             <h2>{!! $learnmore->footer !!}</h2>
         <hr class="lineBottom">
     </div>
@@ -286,7 +287,7 @@
             <div class="home_title" style="width: 100%; margin: 0px;">
                 <h5 class="home_title_heading" style="text-align: left; color: #fff;"> {{ $learnmore->consult_title }}</h5>
 
-                <p class="home_title_text" style="text-align: left;color: #fff;line-height: 24px;font-size: 18px;">
+                <p class="home_title_text" style="text-align: left;color: #fff;line-height: 20px;font-size: 14px;">
                     {{ $learnmore->consult_short_des }}</p>
 
                 <div class="business_seftion_button" style="text-align: left;">
@@ -309,7 +310,6 @@
 
         <!-- tech wrapper -->
         <div class="row">
-
             <!-- item -->
             <div class="col-lg-3 col-sm-6">
                 <div class="tech_solution_item">
@@ -416,7 +416,7 @@
                 <!-- item -->
                 @foreach ($industrys as $item)
 
-                <div class="col-lg-3 col-sm-6">
+                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6 col-sm-6">
                     <a href="{{route('industry.details',$item->id)}}" class="we_serve_item" style="height:11rem;">
                         <div class="we_serve_item_image">
                             <img src="{{asset('storage/requestImg/'.$item->logo)}}" alt="{{$item->title}}">
@@ -461,7 +461,7 @@
         <div class="row">
             <div class="col-lg-6 col-sm-12">
                 <div class="contact_left_content">
-                    <h4 class="contact_left_title text-white text-white" style="font-size: 25px">Need immediate assistance?</h4>
+                    <h4 class="contact_left_title text-white text-white" style="font-size: 30px">Need immediate assistance?</h4>
                     <p class="contact_left_text text-white text-white" style="font-size: 18px">Get assistance with tracking an order, requesting a quote, contacting your account representative and more by <a href="tel:01723507989">phone</a> or <a href="">over chat</a>.</p>
 
                     <!-- contact left phone -->
@@ -512,7 +512,7 @@
                         </div>
 
                         <!-- location button -->
-                        <a href="" class="product_button">View all NGentIt office locations</a>
+                        <a href="#" class="product_button">View all NGentIt office locations</a>
 
                     </div>
                 </div>

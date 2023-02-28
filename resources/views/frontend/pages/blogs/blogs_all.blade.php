@@ -20,9 +20,9 @@
                         <div class="col-lg-3 col-md-6 col-sm-12">
                             <div class="client_stories_item">
                                 <a href="{{route('blog.details',$item->id)}}">
-                                    <img class="img-fluid" src="{{asset('storage/'.$item->image)}}" alt="{{$item->badge}}">
-                                    <h6 class="mt-2"><strong>{{$item->badge}}</strong></h6>
-                                    <h3><strong>{{$item->title}}</strong></h3>
+                                    <img class="img-fluid" src="{{asset('storage/'.$item->image)}}" alt="{{$item->badge}}" width="100%" height="150" >
+                                    <h6 class="mt-2"><strong>{{Str::limit($item->badge,18)}}</strong></h6>
+                                    <h3><strong>{{Str::limit($item->title,60)}}</strong></h3>
                                 </a>
 
                             </div>
@@ -38,12 +38,13 @@
 
     </section>
     <!-------End------->
-    <hr>
+
     <!--=======// Content & Filter //=======-->
     <section class="container section_padding">
         <!----------Filter Top-nav Bar --------->
-        <div class="clinet_stories_filter_top_bar">
-            <label>Results per page </label>
+
+       <div class="clinet_stories_filter_top_bar" style="padding:0px;">
+            <label> Results per page </label>
             <span class="client_story_filter_page">
                 <select>
                     <option value="#" selected>10</option>
@@ -70,15 +71,16 @@
                     <option value="#">2012</option>
                 </select>
             </span>
-        </div>
-        <hr>
+
+       </div>
+
         <div class="row">
             <!----------Sidebar client stories --------->
             <div class="col-lg-3 col-md-4 col-sm-12">
                 <div class="sidebar_client_stories">
-                    <label> <b>2</b>results matched your search</label>
+                    <label> <b>2</b> results matched your search</label>
 
-                    <hr>
+
                     <!--------Your search--------->
                     {{-- <div class="client_stories_your_search">
                         <h6 class="mb-4">Your search</h6>
@@ -145,7 +147,7 @@
                     <div class="col-lg-6 col-md-6 col-sm-12">
                         <div class="client_stories_content_item">
                             <a href="{{route('blog.details',$item->id)}}">
-                                <img class="img-fluid" src="{{asset('storage/'.$item->image)}}" alt="{{$item->badge}}">
+                                <img class="img-fluid" src="{{asset('storage/'.$item->image)}}" alt="{{$item->badge}}" height='150px' width='100%' >
                                 <h3 class="mt-4">{{$item->title}}</h3>
 
                                 <p>{!! $item->header !!}</p>

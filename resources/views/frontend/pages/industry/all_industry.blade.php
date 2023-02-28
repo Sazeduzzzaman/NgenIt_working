@@ -26,9 +26,9 @@
     <div class="row">
         <!-- card item-->
         @foreach ($industrys as $item)
-        <div class="col-lg-4 col-sm-12">
+        <div class="col-lg-4 col-sm-12 mt-4 mb-3">
             <div class="industry_solution_item">
-                <div class="industry_solution_item_content" style="height: 15rem;">
+                <div class="industry_solution_item_content" style="height: 13rem;">
                     <!-- img -->
                     <div class="industy_solution_item_image">
                         <img src="{{asset('storage/requestImg/'.$item->logo)}}" alt="{{$item->title}}">
@@ -52,7 +52,7 @@
 <!----------End--------->
 
 <!--======// our clint tab //======-->
-<section class="clint_tab_section">
+<section class="clint_tab_section mt-2 mb-3">
     <div class="container">
         <div class="clint_tab_content">
             <!-- home title -->
@@ -273,9 +273,8 @@
 <!--======// Software show //======-->
 <section class="container">
     <!-- business item wrapper -->
-    <div class="section_title">
+    <div class="section_title mt-2">
         <h5 class="title_top_heading"> <strong class="lineBottom">Featured Contents</strong></h5>
-
     </div>
     <div class="row solution_business_item  my-4">
         <!-- item -->

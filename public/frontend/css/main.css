@@ -4,7 +4,7 @@ body {margin: 0; padding: 0;}
 .section_title{
     font-family: cambian;
     opacity:.9;
-    font-size: 32px;
+    font-size: 25px;
     font-weight: 500;
     text-align: center;
 }
@@ -16,13 +16,13 @@ body {margin: 0; padding: 0;}
     font-weight: 100;
 }
 .section_text_wrapper h4{
-    font-size: 32px;
+    font-size: 25px;
     font-weight: 400;
-    margin: 10px 0px;
     opacity: 9.2;
 }.section_text_wrapper p{
-    font-size: 16px;
-    line-height: 30px;color: var(--navColor);
+    font-size: 14px;
+    line-height: 20px;
+    color: var(--navColor);
 }.section_text_wrapper a{
     color: #ae0a46;
 }.section_text_wrapper a:hover{
@@ -78,23 +78,23 @@ a {
     transition: .3s;
 }
 .common_button2 {
-    padding: 15px 20px;
-    cursor: pointer;
-    font-family: "klinic-slab", "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
-    font-size: 15px;
-    font-weight: 500;
-    text-align: center;
     display: inline-block;
-    background-color: var(--crimson);
-    transition: .3s;
-    outline: none;
-    border: none;
-    color: white !important;
+    padding: 18px 36px;
+    background-color: gray;
+    color: #fff;
+    border: 2px solid;
+    border-color: #5f5753;
+    font-size: 14px;
+    line-height: 15px;
+    transition: all linear 0.3s;
 }
 .common_button2:hover {
-    background-color: var(--dark-crimson);
     color: #fff;
 }
+/* .common_button2:hover {
+    background-color: var(--dark-crimson);
+    color: #fff;
+} */
 .common_button3 {
     padding: 15px 20px;
     cursor: pointer;
@@ -115,13 +115,13 @@ a {
 }
 
 .section_padding{
-    padding: 60px 0px;
+    padding: 30px 0px;
 }
 .padding_top{
-    padding-top: 60px;
+    padding-top: 30px;
 }
 .padding_bottom{
-    padding-bottom: 60px;
+    padding-bottom: 30px;
 }
 .title_top_heading {
     font-size: 36px;
@@ -133,15 +133,15 @@ a {
 }
 .section_wp{
     background: #f7f6f5;
-    padding: 60px 0px;
+    padding: 30px 0px;
     color: #3e332d;
     border-top: .7px solid silver;
     border-bottom: .7px solid silver;
 }
 .section_wp2{
     background: #f7f6f5;
-    padding: 40px 0px;
-    color: #3e332d;
+    padding: 20px 0px;
+    color: #85817f;
 }
 /*-----End-----*/
 
