@@ -42,7 +42,7 @@
                                 <span class="btn-labeled-icon bg-black bg-opacity-20">
                                     <i class="icon-eye"></i>
                                 </span>
-                                All RFQ
+                                All Deals
                             </a>
                         </div>
                     </div>
@@ -56,7 +56,7 @@
                     <div class="card">
 
                         <div class="card-body px-3">
-                            <form method="post" action="{{ route('deal.store') }}" enctype="multipart/form-data">
+                            <form method="post" action="{{ route('deal.store') }}" enctype="multipart/form-data" class="achievement-calculate">
                                 @csrf
 
                                 <div class="row">
@@ -139,7 +139,7 @@
                                                 </tr>
 
                                                 <tr>
-                                                    <th width="30%"> Deal Type : {{ucfirst($rfq->deal_type)}}</th>
+                                                    <th width="30%"> Deal Type : {{ucfirst($rfq->deal_type)}} <input class="deal_type_value" type="hidden" value="{{$deal_type_value}}"></th>
                                                     <th width="30%"> Total Amount : &nbsp; &nbsp; $ {{ $sourcing->grand_total }}</th>
                                                     <th width="30%"></th>
                                                 </tr>
@@ -157,71 +157,79 @@
                                                 <tr>
                                                     <th width="10%">Assigned Manager</th>
                                                     <th width="9%">Quoted Amount</th>
-                                                    <th width="9%">Shared Quote Percentage</th>
-                                                    <th width="9%">Shared Quote Amount</th>
-                                                    <th width="9%">Closed Ratio</th>
-                                                    <th width="9%">Profit Margin (%)</th>
-                                                    <th width="9%">Effort</th>
+                                                    <th width="5%">Shared Quote Percentage</th>
+                                                    <th width="13%">Shared Quote Amount</th>
+                                                    <th width="13%">Closed Ratio</th>
+                                                    <th width="5%">Profit Margin (%)</th>
+                                                    <th width="11%">Effort</th>
                                                     <th width="9%">Performance Look</th>
-                                                    <th width="9%">Rating</th>
-                                                    <th width="9%">Incentive Percentage</th>
-                                                    <th width="9%">Incentive Amount</th>
+                                                    <th width="5%">Rating</th>
+                                                    <th width="5%">Incentive Percentage</th>
+                                                    <th width="13%">Incentive Amount</th>
                                                 </tr>
 
                                                 <tr>
                                                     <td>{{App\Models\User::where('id', $rfq->sales_man_id_L1)->value('name')}}</td>
-                                                    <td>{{ $sourcing->grand_total }}</td>
-                                                    <td><input class="w-6" type="text" name="shared_quote_percentage_L1"></td>
-                                                    <td><input class="w-6" type="text" name="shared_quote_amount_L1" readonly></td>
-                                                    <td><input class="w-6" type="text" name="closed_ratio_L1" readonly></td>
-                                                    <td><input class="w-6 text-center" type="text" name="profit_margin_L1" value="{{($sourcing->net_profit_percentage)*10}}" readonly></td>
+                                                    <td>{{ $sourcing->grand_total }} <input type="hidden" name="total_quoted_amount" value="{{ $sourcing->grand_total }}"></td>
+                                                    <td><input class="form-control w-6" type="text" name="shared_quote_percentage_L1"></td>
+                                                    <td><input class="form-control w-11" type="text" name="shared_quote_amount_L1" readonly></td>
+                                                    <td><input class="form-control w-11" type="text" name="closed_ratio_L1" readonly></td>
+                                                    <td><input class="form-control w-6 text-center" type="text" name="profit_margin_L1" value="{{($sourcing->net_profit_percentage)*10}}" readonly></td>
                                                     <td>
                                                         <select class="form-select" name="effort_L1" required>
                                                                 <option></option>
-                                                                <option value=""></option>
+                                                                @foreach ($efforts as $item)
+                                                                    <option value="{{$item->effort}}">{{$item->effort}} %</option>
+                                                                @endforeach
                                                         </select>
                                                     </td>
-                                                    <td></td>
-                                                    <td></td>
-                                                    <td></td>
-                                                    <td></td>
+                                                    <td><input class="form-control w-6" type="text" name="perform_look_L1" readonly></td>
+                                                    <td><input class="form-control w-6" type="text" name="rating_L1" readonly></td>
+                                                    <td><input class="form-control w-6" type="text" name="incentive_percentage_L1" readonly></td>
+                                                    <td><input class="form-control w-6" type="text" name="incentive_amount_L1" readonly></td>
                                                 </tr>
                                                 @if ($rfq->sales_man_id_T1)
                                                     <tr>
                                                         <td>{{App\Models\User::where('id', $rfq->sales_man_id_T1)->value('name')}}</td>
                                                         <td>{{ $sourcing->grand_total }}</td>
-                                                        <td><input class="w-6" type="text" name="shared_quote_percentage_T1"></td>
-                                                        <td><input class="w-6" type="text" name="shared_quote_amount_T1" readonly></td>
-                                                        <td><input class="w-6" type="text" name="closed_ratio_T1" readonly></td>
-                                                        <td><input class="w-6 text-center" type="text" name="profit_margin_T1" value="{{($sourcing->net_profit_percentage)*10}}" readonly></td>
+                                                        <td><input class="form-control w-6" type="text" name="shared_quote_percentage_T1"></td>
+                                                        <td><input class="form-control w-11" type="text" name="shared_quote_amount_T1" readonly></td>
+                                                        <td><input class="form-control w-11" type="text" name="closed_ratio_T1" readonly></td>
+                                                        <td><input class="form-control w-6 text-center" type="text" name="profit_margin_T1" value="{{($sourcing->net_profit_percentage)*10}}" readonly></td>
                                                         <td>
                                                             <select class="form-select" name="effort_T1" required>
-
+                                                                <option></option>
+                                                                @foreach ($efforts as $item)
+                                                                    <option value="{{$item->effort}}">{{$item->effort}} %</option>
+                                                                @endforeach
                                                             </select>
                                                         </td>
-                                                        <td></td>
-                                                        <td></td>
-                                                        <td></td>
-                                                        <td></td>
+                                                        <td><input class="form-control w-6" type="text" name="perform_look_T1" readonly></td>
+                                                        <td><input class="form-control w-6" type="text" name="rating_T1" readonly></td>
+                                                        <td><input class="form-control w-6" type="text" name="incentive_percentage_T1" readonly></td>
+                                                        <td><input class="form-control w-6" type="text" name="incentive_amount_T1" readonly></td>
                                                     </tr>
                                                 @endif
                                                 @if ($rfq->sales_man_id_T2)
                                                     <tr>
                                                         <td>{{App\Models\User::where('id', $rfq->sales_man_id_T2)->value('name')}}</td>
                                                         <td>{{ $sourcing->grand_total }}</td>
-                                                        <td><input class="w-6" type="text" name="shared_quote_percentage_T2"></td>
-                                                        <td><input class="w-6" type="text" name="shared_quote_amount_T2" readonly></td>
-                                                        <td><input class="w-6" type="text" name="closed_ratio_T2" readonly></td>
-                                                        <td><input class="w-6 text-center" type="text" name="profit_margin_T2" value="{{($sourcing->net_profit_percentage)*10}}" readonly></td>
+                                                        <td><input class="form-control w-6" type="text" name="shared_quote_percentage_T2"></td>
+                                                        <td><input class="form-control w-11" type="text" name="shared_quote_amount_T2" readonly></td>
+                                                        <td><input class="form-control w-11" type="text" name="closed_ratio_T2" readonly></td>
+                                                        <td><input class="form-control w-6 text-center" type="text" name="profit_margin_T2" value="{{($sourcing->net_profit_percentage)*10}}" readonly></td>
                                                         <td>
                                                             <select class="form-select" name="effort_T2" required>
-
+                                                                <option></option>
+                                                                @foreach ($efforts as $item)
+                                                                    <option value="{{$item->effort}}">{{$item->effort}} %</option>
+                                                                @endforeach
                                                             </select>
                                                         </td>
-                                                        <td></td>
-                                                        <td></td>
-                                                        <td></td>
-                                                        <td></td>
+                                                        <td><input class="form-control w-6" type="text" name="perform_look_T2" readonly></td>
+                                                        <td><input class="form-control w-6" type="text" name="rating_T2" readonly></td>
+                                                        <td><input class="form-control w-6" type="text" name="incentive_percentage_T2" readonly></td>
+                                                        <td><input class="form-control w-6" type="text" name="incentive_amount_T2" readonly></td>
                                                     </tr>
                                                 @endif
 
@@ -528,96 +536,18 @@
         });
 </script>
 
-<script>
-    $('thead').on('click' , '.addRow' , function(){
-        var tr = "<tr>"+
-                    // "<td>"+
-                    //     "<div class='basic-form'>"+
-                    //         "<select name='product_name[]' class='form-select'>"+
-                    //             "<option>Choose Product</option>"+
-                    //             "@foreach ($products as $product)"+
-                    //                 "<option value='{{ $product->name }}'>{{ $product->name }}</option>"+
-                    //             "@endforeach"+
-                    //         "</select>"+
-                    //     "</div>"+
-                    // "</td>"+
-                    "<td> <input type='text' class='form-control' name='item_name[]' placeholder='Product Name' required></td>"+
-                    "<td> <input type='text' class='form-control' name='qty[]' placeholder='Quantity' required></td>"+
-                    "<td> <input type='text' class='form-control' name='unit_price[]' ></td>"+
-                    "<td> <input type='text' class='form-control' name='regular_discount[]' ></td>"+
-                    "<td> <a href='javascript:void(0)' class='btn btn-danger removeRow'><i class='ph-minus'></i></a></td>"+
-                "</tr>"
-    $('.repeater').append(tr);
-    });
 
-    $('tbody').on('click' , '.removeRow' , function(){
-        $(this).parent().parent().remove();
-    });
-</script>
 
 
 <script type="text/javascript">
 
     $(document).ready(function(){
-        $('select[name="partner_id"]').on('change', function(){
-            var partner_id = $(this).val();
-            //alert(partner_id);
-            // alert($('select[name="client_id"]').val());
-            // alert($('select[name="partner_id"]').val());
-            if (partner_id) {
-                $.ajax({
-                    url: "{{ url('admin/partner/ajax') }}/"+partner_id,
-                    type: "GET",
-                    dataType:"json",
-                    success:function(data){
-                        $('input[name="name"]').val(data.name);
-                        $('input[name="email"]').val(data.primary_email_address);
-                        $('input[name="company_name"]').val(data.company_name);
-                        $('input[name="address"]').val(data.company_address);
-                        $('input[name="phone"]').val(data.phone_number);
 
-                        //$('select[name="subcategory_id"]').append('<option value="'+ value.id + '">' + value.subcategory_name + '</option>');
-
-                    },
-
-                });
-            }
-            //  else {
-            //     alert('Error Occured. Try Again');
-            // }
-        });
     });
 
 </script>
 
-<script type="text/javascript">
 
-    $(document).ready(function(){
-        $('select[name="client_id"]').on('change', function(){
-            var client_id = $(this).val();
-            //alert(client_id);
-            // alert($('select[name="client_id"]').val());
-            // alert($('select[name="partner_id"]').val());
-            if (client_id) {
-                $.ajax({
-                    url: "{{ url('admin/client/ajax') }}/"+client_id,
-                    type: "GET",
-                    dataType:"json",
-                    success:function(data){
-                        $('input[name="name"]').val(data.name);
-                        $('input[name="email"]').val(data.email);
-                        $('input[name="phone"]').val(data.phone);
-                        $('input[name="address"]').val(data.address);
-                            //$('select[name="subcategory_id"]').append('<option value="'+ value.id + '">' + value.subcategory_name + '</option>');
-
-                    },
-
-                });
-            }
-        });
-    });
-
-</script>
 
 <script>
     $('select[name="client_type"]').on('change', function(){

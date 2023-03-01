@@ -45,7 +45,7 @@
                                         <span class="btn-labeled-icon bg-black bg-opacity-20">
                                             <i class="icon-plus2"></i>
                                         </span>
-                                        Add New
+                                        Add
                                     </a>
                                 </div>
                             </div>
@@ -59,7 +59,7 @@
                                 <div class="tab-pane fade show active" id="js-tab1">
                                     <div class="card p-2">
 
-                                        <table class="regionDT table table-bordered table-hover table-striped p-1">
+                                        <table class="regionDT text-center table table-bordered table-hover table-striped p-1">
                                             <thead>
                                                 <tr>
                                                     <th>Sl No:</th>
@@ -173,7 +173,7 @@
                                 <div class="tab-pane fade show active" id="js-tab1">
                                     <div id="table1" class="card p-2">
 
-                                        <table class="countryDT table table-bordered table-hover table-striped">
+                                        <table class="countryDT text-center table table-bordered table-hover table-striped">
                                             <thead>
                                                 <tr>
                                                     <th>Sl No:</th>

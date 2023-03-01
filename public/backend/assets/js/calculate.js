@@ -260,3 +260,48 @@ document.querySelector('form').addEventListener('keydown', function(event) {
             });
 
     /// expand table and calculate -->
+
+
+
+
+//Achievement Calculation
+
+var $myForm = $('.achievement-calculate');
+     $myForm.find('input, select').on('keyup change', function() {
+
+        // $('select[name="effort_L1"]').on('change', function(){
+            var deal_type_value = $(".deal_type_value").val();
+            //alert(deal_type_value);
+            var total_quoted_amount = $("input[name='total_quoted_amount']").val();
+            var shared_quote_percentage_L1 = $("input[name='shared_quote_percentage_L1']").val();
+            var shared_quote_amount_L1 = (total_quoted_amount * shared_quote_percentage_L1)/100;
+            var closed_ratio_L1 = (shared_quote_amount_L1 * deal_type_value)/100;
+            $('input[name="shared_quote_amount_L1"]').val((shared_quote_amount_L1).toFixed(2));
+            $('input[name="closed_ratio_L1"]').val((closed_ratio_L1).toFixed(2));
+
+            var effort_L1 = $('select[name="effort_L1"]').val();
+            //alert(effort);
+            // alert($('select[name="client_id"]').val());
+            // alert($('select[name="partner_id"]').val());
+            if (effort_L1) {
+                $.ajax({
+                    url: '/admin/effort/ajax/'+effort_L1,
+                    type: "GET",
+                    dataType:"json",
+                    success:function(data){
+                        $('input[name="perform_look_L1"]').val(data.perform_look);
+                        $('input[name="rating_L1"]').val(data.rating);
+
+
+                        //$('select[name="subcategory_id"]').append('<option value="'+ value.id + '">' + value.subcategory_name + '</option>');
+
+                    },
+
+                });
+            }
+            //  else {
+            //     alert('Error Occured. Try Again');
+            // }
+        //});
+
+});

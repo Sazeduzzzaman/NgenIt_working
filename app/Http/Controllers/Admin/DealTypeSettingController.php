@@ -2,15 +2,13 @@
 
 namespace App\Http\Controllers\Admin;
 
-use Illuminate\Support\Str;
 use Illuminate\Http\Request;
-use App\Models\Admin\Country;
 use App\Http\Controllers\Controller;
-use App\Models\Admin\Region;
 use Brian2694\Toastr\Facades\Toastr;
+use App\Models\Admin\DealTypeSetting;
 use Illuminate\Support\Facades\Validator;
 
-class CountryController extends Controller
+class DealTypeSettingController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -19,9 +17,8 @@ class CountryController extends Controller
      */
     public function index()
     {
-        $data['regions'] = Region::latest()->get();
-        $data['countrys'] = Country::latest()->get();
-        return view('admin.pages.country.all', $data);
+        $data['dealTypeSettings'] = DealTypeSetting::latest()->get();
+        return view('admin.pages.dealTypeSetting.all', $data);
     }
 
     /**
@@ -31,7 +28,7 @@ class CountryController extends Controller
      */
     public function create()
     {
-        return view('admin.pages.country.add');
+        return view('admin.pages.dealTypeSetting.add');
     }
 
     /**
@@ -45,22 +42,17 @@ class CountryController extends Controller
         $validator = Validator::make(
             $request->all(),
             [
-                'region_id'  => 'required',
-                'country_name' => 'required|unique:countries',
-            ],
-            [
-                'unique' => 'Country Name already exists!',
+                'deal_type' => 'nullable',
+                'value'     => 'nullable',
             ],
         );
 
         if ($validator->passes()) {
-            Country::create([
-                'region_id'  => $request->region_id,
-                'country_name' => $request->country_name,
-                'country_slug' => Str::slug($request->country_name),
-                'locale'       => $request->locale,
+            DealTypeSetting::create([
+                'deal_type' => $request->deal_type,
+                'value'     => $request->value,
             ]);
-            Toastr::success('Data Insert Successfully');
+            Toastr::success('Data Insert Successfully.');
         } else {
             $messages = $validator->messages();
             foreach ($messages->all() as $message) {
@@ -89,8 +81,8 @@ class CountryController extends Controller
      */
     public function edit($id)
     {
-        $data['country'] = Country::findOrFail($id);
-        return view('admin.pages.country.edit', $data);
+        $data['dealTypeSetting'] = DealTypeSetting::find($id);
+        return view('admin.pages.dealTypeSetting.edit', $data);
     }
 
     /**
@@ -105,23 +97,17 @@ class CountryController extends Controller
         $validator = Validator::make(
             $request->all(),
             [
-                'region_name'  => 'required',
-                'country_name' => 'required|unique:countries',
-            ],
-            [
-                'unique' => 'Country Name already exists!',
+                'deal_type' => 'nullable',
+                'value'     => 'nullable',
             ],
         );
 
         if ($validator->passes()) {
-            Country::find($id)->update([
-                'region_name'  => $request->region_name,
-                'region_slug'  => Str::slug($request->region_name),
-                'country_name' => $request->country_name,
-                'country_slug' => Str::slug($request->country_name),
-                'locale'       => $request->locale,
+            DealTypeSetting::find($id)->update([
+                'deal_type' => $request->deal_type,
+                'value'     => $request->value,
             ]);
-            Toastr::success('Data Insert Successfully');
+            Toastr::success('Data Updated Successfully.');
         } else {
             $messages = $validator->messages();
             foreach ($messages->all() as $message) {
@@ -139,6 +125,6 @@ class CountryController extends Controller
      */
     public function destroy($id)
     {
-        Country::find($id)->delete();
+        DealTypeSetting::find($id)->delete();
     }
 }

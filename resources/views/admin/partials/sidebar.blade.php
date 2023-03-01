@@ -31,7 +31,7 @@
 
 
                 <li class="nav-item">
-                    <a href="{{ route('admin.dashboard') }}" class="nav-link active">
+                    <a href="{{ route('admin.dashboard') }}" class="nav-link">
                         <i class="ph-house"></i>
                         <span>
                             Dashboard
@@ -46,7 +46,7 @@
                         <span>Product Sourcing, SAS</span>
                     </a>
                     <ul class="nav-group-sub collapse">
-                        <li class="nav-item"><a href="{{ route('product-sourcing.index') }}" class="nav-link active"><i
+                        <li class="nav-item"><a href="{{ route('product-sourcing.index') }}" class="nav-link"><i
                                     class="ph-layout"></i>
                                 <span>Product Sourcing</span></a></li>
                         <li class="nav-item"><a href="{{ route('product.approve') }}" class="nav-link"><i class="ph-layout"></i>
@@ -63,7 +63,7 @@
                         <span>Product, Category, Brand</span>
                     </a>
                     <ul class="nav-group-sub collapse">
-                        <li class="nav-item"><a href="{{ route('category.index') }}" class="nav-link active"><i
+                        <li class="nav-item"><a href="{{ route('category.index') }}" class="nav-link"><i
                                     class="ph-layout"></i>
                                 <span>Category</span></a></li>
                         <li class="nav-item"><a href="{{ route('brand.index') }}" class="nav-link"><i
@@ -226,7 +226,7 @@
                         <span>Solution & Industry</span>
                     </a>
                     <ul class="nav-group-sub collapse">
-                        {{-- <li class="nav-item"><a href="{{ route('solution.index') }}" class="nav-link active"><i
+                        {{-- <li class="nav-item"><a href="{{ route('solution.index') }}" class="nav-link"><i
                                     class="ph-layout"></i>
                                 <span>Solution</span></a></li> --}}
                         <li class="nav-item"><a href="{{ route('industry.index') }}" class="nav-link"><i
@@ -245,7 +245,7 @@
                         <span>Success, Features</span>
                     </a>
                     <ul class="nav-group-sub collapse">
-                        <li class="nav-item"><a href="{{ route('success.index') }}" class="nav-link active"><i
+                        <li class="nav-item"><a href="{{ route('success.index') }}" class="nav-link"><i
                                     class="ph-layout"></i>
                                 <span>Client Success</span></a></li>
                         <li class="nav-item">
@@ -307,8 +307,20 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('country.index') }}" class="nav-link active"><i class="ph-layout"></i>
-                                <span>Country</span></a>
+                            <a href="{{ route('country.index') }}" class="nav-link"><i class="ph-layout"></i>
+                                <span>Region & Country</span></a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('payment-method-details.index') }}" class="nav-link"><i class="ph-layout"></i>
+                                <span>Payment Method Details</span></a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('deal-type-settings.index') }}" class="nav-link"><i class="ph-layout"></i>
+                                <span>Deal Type Settings</span></a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('effort-ratings.index') }}" class="nav-link"><i class="ph-layout"></i>
+                                <span>Effort Ratings</span></a>
                         </li>
                     </ul>
                 </li>
@@ -319,7 +331,7 @@
                         <span>Support, Contact, NewsLetter</span>
                     </a>
                     <ul class="nav-group-sub collapse">
-                        <li class="nav-item"><a href="{{ route('support.all') }}" class="nav-link active"><i
+                        <li class="nav-item"><a href="{{ route('support.all') }}" class="nav-link"><i
                                     class="ph-headset"></i>
                                 <span>Support</span></a></li>
                         <li class="nav-item"><a href="{{ route('contact.index') }}" class="nav-link"><i
@@ -412,7 +424,7 @@
                                 </span>
                             </a>
                         </li>
-                        <li class="nav-item"><a href="{{ route('allpage') }}" class="nav-link active"><i
+                        <li class="nav-item"><a href="{{ route('allpage') }}" class="nav-link"><i
                                     class="ph-headset"></i>
                                 <span>Home Page</span></a></li>
                         <li class="nav-item"><a href="{{ route('industryPage.index') }}" class="nav-link"><i
@@ -482,7 +494,7 @@
                         <span>Job</span>
                     </a>
                     <ul class="nav-group-sub collapse">
-                        <li class="nav-item"><a href="{{ route('job.index') }}" class="nav-link active"><i
+                        <li class="nav-item"><a href="{{ route('job.index') }}" class="nav-link"><i
                                     class="ph-headset"></i>
                                 <span>Job Posting</span></a></li>
 
@@ -496,12 +508,12 @@
                         <span>Terms & Policy</span>
                     </a>
                     <ul class="nav-group-sub collapse">
-                        <li class="nav-item"><a href="{{ route('policy.index') }}" class="nav-link active"><i
+                        <li class="nav-item"><a href="{{ route('policy.index') }}" class="nav-link"><i
                                     class="ph-layout"></i>
                                 <span>Policy</span></a></li>
                     </ul>
                 </li>
-                <li class="nav-item"><a href="{{ route('office-location.index') }}" class="nav-link active"><i
+                <li class="nav-item"><a href="{{ route('office-location.index') }}" class="nav-link"><i
                             class="ph-layout"></i>
                         <span>Office Location</span></a></li>
 

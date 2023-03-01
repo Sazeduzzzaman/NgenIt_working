@@ -137,7 +137,7 @@ class ShopController extends Controller
 
 
         //$categories = Category::orderBy('title','ASC')->limit(8)->get();
-      $brands = Brand::orderBy('title','ASC')->limit(11)->get();
+        $brands = Brand::orderBy('title','ASC')->limit(11)->get();
         $newProduct = Product::orderBy('id','DESC')->where('product_status', 'product')->limit(3)->get();
 
 

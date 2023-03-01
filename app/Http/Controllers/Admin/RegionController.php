@@ -43,7 +43,10 @@ class RegionController extends Controller
         $validator = Validator::make(
             $request->all(),
             [
-                'region_name'  => 'required',
+                'region_name'  => 'required|unique:regions',
+            ],
+            [
+                'unique' => 'Region Name already exists!',
             ],
         );
 
@@ -97,7 +100,10 @@ class RegionController extends Controller
         $validator = Validator::make(
             $request->all(),
             [
-                'region_name'  => 'required',
+                'region_name'  => 'required|unique:regions',
+            ],
+            [
+                'unique' => 'Region Name already exists!',
             ],
         );
 

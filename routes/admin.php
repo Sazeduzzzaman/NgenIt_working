@@ -50,6 +50,7 @@ use App\Http\Controllers\Admin\RowWithColController;
 use App\Http\Controllers\Admin\TechGlossyController;
 use App\Http\Controllers\Order\AdminOrderController;
 use App\Http\Controllers\Admin\ClientStoryController;
+use App\Http\Controllers\Admin\EffortRatingController;
 use App\Http\Controllers\Admin\IndustryPageController;
 use App\Http\Controllers\Admin\SalesForcastController;
 use App\Http\Controllers\Admin\SolutionCardController;
@@ -58,6 +59,7 @@ use App\Http\Controllers\Marketing\BulkEmailController;
 use App\Http\Controllers\Admin\OfficeLocationController;
 use App\Http\Controllers\Admin\RfqOrderStatusController;
 use App\Http\Controllers\Admin\AccountsPayableController;
+use App\Http\Controllers\Admin\DealTypeSettingController;
 use App\Http\Controllers\Admin\SalesProfitLossController;
 use App\Http\Controllers\Admin\SalesTeamTargetController;
 use App\Http\Controllers\Admin\SalesYearTargetController;
@@ -418,8 +420,13 @@ Route::controller(RFQController::class)->group(function(){
     'payment-method-details' => PaymentMethodDetailsController::class,
     'rfq-manage'  => RFQManageController::class,
     'sales-achievement' => SalesAchievementController::class,
+    'deal-type-settings' => DealTypeSettingController::class,
+    'effort-ratings' => EffortRatingController::class,
 ]);
 
+    Route::controller(EffortRatingController::class)->group(function(){
+        Route::get('/effort/ajax/{id}' , 'GetEffortRating')->name('get.effort.ajax');;
+    });
 
 Route::post('salesmanager-status', [App\Http\Controllers\Sales\SalesAccountController::class, 'SalesStatus'])->name('sales.status');
 

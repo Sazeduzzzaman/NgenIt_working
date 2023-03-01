@@ -59,6 +59,7 @@ class HomeController extends Controller
             $data['products'] = DB::table('products')
                         ->join('brands', 'products.brand_id', '=', 'brands.id')
                         ->where('brands.category', '=', 'Top')
+                        ->distinct()
                         ->where('product_status', '=', 'product')
                         ->select('products.id','products.rfq','products.slug','products.name','products.thumbnail','products.price','products.discount','products.stock','products.mf_code','products.sku_code','products.short_desc')
                         ->get();

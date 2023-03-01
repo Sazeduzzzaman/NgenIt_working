@@ -510,6 +510,10 @@ class RFQController extends Controller
                 ]);
                 Toastr::success('PDF Uploaded Successfully');
             }
+            $rfq = Rfq::find($id);
+            $rfq->update([
+                'status'     =>'workorder_uploaded',
+            ]);
             return redirect()->back();
     }
 
@@ -539,6 +543,10 @@ class RFQController extends Controller
                 ]);
                 Toastr::success('PDF Uploaded Successfully');
             }
+            $rfq = Rfq::find($id);
+            $rfq->update([
+                'status'     =>'proof_of_payment_uploaded',
+            ]);
             return redirect()->back();
     }
 }
