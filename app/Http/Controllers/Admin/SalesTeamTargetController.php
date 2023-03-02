@@ -63,7 +63,7 @@ class SalesTeamTargetController extends Controller
                 'sales_man_id'         => $request->sales_man_id,
                 'fiscal_year'          => $request->fiscal_year,
                 'year_started'         => $request->year_started,
-                'year_target'             => $request->year_target,
+                'year_target'          => $request->year_target,
                 'quarter_one_target'   => $request->quarter_one_target,
                 'quarter_two_target'   => $request->quarter_two_target,
                 'quarter_three_target' => $request->quarter_three_target,

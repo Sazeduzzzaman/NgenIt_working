@@ -56,97 +56,151 @@
                     <div class="card">
 
                         <div class="card-body px-3">
-                            <form method="post" action="{{ route('deal.store') }}" enctype="multipart/form-data" class="achievement-calculate">
+                            <form method="post" action="{{ route('sales-achievement.store') }}" enctype="multipart/form-data" class="achievement-calculate">
                                 @csrf
-
                                 <div class="row">
-                                    <div class="table-responsive">
-                                        <table class="table table-bordered text-center">
-                                            <thead>
-                                                <tr style="background: gray; padding-top:8px;padding-bottom:8px;">
-                                                    <th class="text-center text-white" colspan="4" style="font-size:22px !important; padding-top:8px !important;padding-bottom:8px !important;"> Client Details</th>
-                                                </tr>
-                                                <tr>
-                                                    <th width="15%">
-                                                        Client Type: {{ucfirst($rfq->client_type)}}
-                                                    </th>
-                                                    <th width="20%">
-                                                        Name: {{ucfirst($rfq->name)}}
-                                                    </th>
-                                                    <th width="30%">
-                                                        Email: {{ucfirst($rfq->email)}}
-                                                    </th>
-                                                    <th width="35%">
-                                                        Company Name: {{ucfirst($rfq->company_name)}}
-                                                    </th>
+                                    <input type="hidden" name="rfq_id" value="{{$rfq->id}}">
+                                    <input type="hidden" name="deal_type" value="{{$rfq->deal_type}}">
+                                    <div class="col-lg-4">
+                                        <div class="table-responsive">
+                                            <table class="table table-bordered">
+                                                <thead>
+                                                    <tr style="background: gray; padding-top:8px;padding-bottom:8px;">
+                                                        <th class="text-center text-white" colspan="4" style="font-size:22px !important; padding-top:8px !important;padding-bottom:8px !important;"> Client Details</th>
+                                                    </tr>
+                                                    <tr>
+                                                        <th width="25%">
+                                                            Client Type: {{ucfirst($rfq->client_type)}}
+                                                        </th>
+                                                        <th width="25%">
+                                                            Name: {{ucfirst($rfq->name)}}
+                                                        </th>
+                                                        <th width="50%">
+                                                            Email: {{ucfirst($rfq->email)}}
+                                                        </th>
 
-                                                </tr>
-                                                <tr>
-                                                    <th>Designation : {{ucfirst($rfq->designation)}}</th>
-                                                    <th>Address : {{ucfirst($rfq->address)}}</th>
-                                                    <th></th>
-                                                    <th></th>
-                                                </tr>
-                                            </thead>
-                                        </table>
+
+                                                    </tr>
+                                                    <tr>
+                                                        <th width="25%">
+                                                            Company Name: {{ucfirst($rfq->company_name)}}
+                                                        </th>
+                                                        <th width="25%">Designation : {{ucfirst($rfq->designation)}}</th>
+                                                        <th width="50%">Address : {{ucfirst($rfq->address)}}</th>
+
+                                                    </tr>
+                                                </thead>
+                                            </table>
+                                        </div>
                                     </div>
-                                </div>
 
-                                <div class="row mt-3">
-                                    <div class="table-responsive">
-                                        <table class="table table-bordered text-center">
-                                            <thead>
-                                                <tr style="background: gray; padding-top:8px;padding-bottom:8px;">
-                                                    <th class="text-center text-white" colspan="2" style="font-size:22px !important; padding-top:8px !important;padding-bottom:8px !important;">
-                                                        Order Details</th>
-                                                        <th class="text-center" style="border:none;">
+                                    <div class="col-lg-4">
+                                        <div class="table-responsive">
+                                            <table class="table table-bordered">
+                                                <thead>
+                                                    <tr class="expand-switch" style="background: gray; padding-top:8px;padding-bottom:8px;">
+
+                                                        <th width="76%" colspan="2" class="text-white" style="border:none; font-size:22px !important; padding-top:8px !important;padding-bottom:8px !important;">
+                                                            <i class="icon fa fa-plus mx-3"></i> Order Details</th>
+                                                        <th width="24%" class="text-center" style="border:none;">
                                                             <a href="javascript:void(0);" class="text-white" title="Show SAS"
                                                             data-bs-toggle="modal"
                                                             data-bs-target="#show-sas">
                                                                 <i class="icon-eye"></i>
                                                             </a>
                                                         </th>
-                                                </tr>
-                                                @if (count($products) > 0)
-                                                    <tr>
-                                                        <th width="60%"> Product Name</th>
-                                                        <th width="20%"> Quantity </th>
-                                                        <th width="20%"> Sale Price </th>
                                                     </tr>
 
-                                                    @foreach ($products as $item)
-                                                    <tr>
-                                                        <th>{{$item->item_name}}</th>
-                                                        <th>{{$item->qty}}</th>
-                                                        <th>{{$item->sub_total_cost}}</th>
-                                                    </tr>
-                                                    @endforeach
-                                                @else
+                                                </thead>
+                                                <tbody class="expand-div d-none">
+                                                    @if (count($products) > 0)
+                                                        <tr class="text-center">
+                                                            <td width="60%"> Product Name</td>
+                                                            <td width="20%"> Quantity </td>
+                                                            <td width="20%"> Sale Price </td>
+                                                        </tr>
+
+                                                        @foreach ($products as $item)
+                                                        <tr>
+                                                            <th><a href="javascript:void(0);" title="{{$item->item_name}}">{{ Str::limit($item->item_name,28) }}</a></th>
+                                                            <th>{{$item->qty}}</th>
+                                                            <th>{{$item->sub_total_cost}}</th>
+                                                        </tr>
+                                                        @endforeach
+                                                    @else
 
                                                 @endif
-                                            </thead>
-                                        </table>
+                                                </tbody>
+                                            </table>
+                                        </div>
                                     </div>
-                                </div>
 
-                                <div class="row mt-3">
-                                    <div class="table-responsive">
-                                        <table class="table table-bordered text-center">
-                                            <thead>
-                                                <tr style="background: gray; padding-top:8px;padding-bottom:8px;">
-                                                    <th class="text-center text-white" colspan="3" style="font-size:22px !important; padding-top:8px !important;padding-bottom:8px !important;">
-                                                        Sales Details</th>
-                                                </tr>
+                                    <div class="col-lg-4">
+                                        <div class="table-responsive">
+                                            <table class="table table-bordered text-center">
+                                                <thead>
+                                                    <tr style="background: gray; padding-top:8px;padding-bottom:8px;">
+                                                        <th class="text-center text-white" colspan="2" style="font-size:22px !important; padding-top:8px !important;padding-bottom:8px !important;">
+                                                            Sales Details</th>
+                                                    </tr>
 
-                                                <tr>
-                                                    <th width="30%"> Deal Type : {{ucfirst($rfq->deal_type)}} <input class="deal_type_value" type="hidden" value="{{$deal_type_value}}"></th>
-                                                    <th width="30%"> Total Amount : &nbsp; &nbsp; $ {{ $sourcing->grand_total }}</th>
-                                                    <th width="30%"></th>
-                                                </tr>
+                                                    <tr>
+                                                        <th width="50%"> <p class="m-0"><strong>Deal Type : {{ucfirst($rfq->deal_type)}}</strong></p> <input class="deal_type_value" name="deal_type_value" type="hidden" value="{{$deal_type_value}}"></th>
+                                                        <th width="50%"> <p class="m-0"><strong>Total Amount : &nbsp; &nbsp; $ {{ $sourcing->grand_total }}</strong></p></th>
+
+                                                    </tr>
+
+                                                    <tr>
+                                                        <th width="50%">
+                                                            @php
+                                                                for ($m = 1; $m <= 12; $m++) {
+                                                                    $months[] = date('F', mktime(0, 0, 0, $m, 1, date('Y')));
+                                                                }
+                                                            @endphp
+                                                            <div class="row m-0">
+                                                                <div class="col-sm-10">
+                                                                    <h6 class="mb-0">Month <span class="text-danger">*</span></h6>
+                                                                </div>
+                                                                <div class="form-group text-secondary col-sm-10">
+                                                                    <select name="month" class="form-select"
+                                                                        data-placeholder="Choose month " required>
+                                                                        <option></option>
+                                                                        @foreach ($months as $month)
+                                                                            <option
+                                                                                value="{{ Str::lower($month) }}">{{ $month }}
+                                                                            </option>
+                                                                        @endforeach
+                                                                    </select>
+                                                                </div>
+                                                            </div>
 
 
-                                            </thead>
-                                        </table>
+
+                                                        </th>
+                                                        <th width="50%">
+                                                            <div class="row m-0">
+                                                                <div class="col-sm-10">
+                                                                    <h6 class="mb-0">Quarter <span class="text-danger">*</span></h6>
+                                                                </div>
+                                                                <div class="form-group text-secondary col-sm-10">
+                                                                    <select name="quarter" class="form-select"
+                                                                        data-placeholder="Chose Quarter " required>
+                                                                        <option></option>
+                                                                        <option value="q1">Q1</option>
+                                                                        <option value="q2">Q2</option>
+                                                                        <option value="q3">Q3</option>
+                                                                        <option value="q4">Q4</option>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                        </th>
+
+                                                    </tr>
+
+
+                                                </thead>
+                                            </table>
+                                        </div>
                                     </div>
                                 </div>
 
@@ -157,24 +211,24 @@
                                                 <tr>
                                                     <th width="10%">Assigned Manager</th>
                                                     <th width="9%">Quoted Amount</th>
-                                                    <th width="5%">Shared Quote Percentage</th>
+                                                    <th width="5%">Shared Quote Percentage (%)</th>
                                                     <th width="13%">Shared Quote Amount</th>
                                                     <th width="13%">Closed Ratio</th>
                                                     <th width="5%">Profit Margin (%)</th>
                                                     <th width="11%">Effort</th>
                                                     <th width="9%">Performance Look</th>
                                                     <th width="5%">Rating</th>
-                                                    <th width="5%">Incentive Percentage</th>
+                                                    <th width="5%">Incentive Percentage (%)</th>
                                                     <th width="13%">Incentive Amount</th>
                                                 </tr>
 
                                                 <tr>
-                                                    <td>{{App\Models\User::where('id', $rfq->sales_man_id_L1)->value('name')}}</td>
+                                                    <td>{{App\Models\User::where('id', $rfq->sales_man_id_L1)->value('name')}} <input type="hidden" name="sales_man_id_L1" value="{{$rfq->sales_man_id_L1}}"></td>
                                                     <td>{{ $sourcing->grand_total }} <input type="hidden" name="total_quoted_amount" value="{{ $sourcing->grand_total }}"></td>
-                                                    <td><input class="form-control w-6" type="text" name="shared_quote_percentage_L1"></td>
-                                                    <td><input class="form-control w-11" type="text" name="shared_quote_amount_L1" readonly></td>
-                                                    <td><input class="form-control w-11" type="text" name="closed_ratio_L1" readonly></td>
-                                                    <td><input class="form-control w-6 text-center" type="text" name="profit_margin_L1" value="{{($sourcing->net_profit_percentage)*10}}" readonly></td>
+                                                    <td><input class="form-control" type="text" name="shared_quote_percentage_L1"></td>
+                                                    <td><input class="form-control" type="text" name="shared_quote_amount_L1" readonly></td>
+                                                    <td><input class="form-control" type="text" name="closed_ratio_L1" readonly></td>
+                                                    <td><input class="form-control text-center" type="text" name="profit_margin_L1" value="{{($sourcing->net_profit_percentage)*10}}" readonly></td>
                                                     <td>
                                                         <select class="form-select" name="effort_L1" required>
                                                                 <option></option>
@@ -183,19 +237,19 @@
                                                                 @endforeach
                                                         </select>
                                                     </td>
-                                                    <td><input class="form-control w-6" type="text" name="perform_look_L1" readonly></td>
-                                                    <td><input class="form-control w-6" type="text" name="rating_L1" readonly></td>
-                                                    <td><input class="form-control w-6" type="text" name="incentive_percentage_L1" readonly></td>
-                                                    <td><input class="form-control w-6" type="text" name="incentive_amount_L1" readonly></td>
+                                                    <td><input class="form-control" type="text" name="perform_look_L1" readonly></td>
+                                                    <td><input class="form-control" type="text" name="rating_L1" readonly></td>
+                                                    <td><input class="form-control incentive_percentage_L1" type="text" name="incentive_percentage_L1" value="0.00" readonly></td>
+                                                    <td><input class="form-control" type="text" name="incentive_amount_L1" readonly></td>
                                                 </tr>
                                                 @if ($rfq->sales_man_id_T1)
                                                     <tr>
-                                                        <td>{{App\Models\User::where('id', $rfq->sales_man_id_T1)->value('name')}}</td>
+                                                        <td>{{App\Models\User::where('id', $rfq->sales_man_id_T1)->value('name')}} <input type="hidden" name="sales_man_id_T1" value="{{$rfq->sales_man_id_T1}}"></td>
                                                         <td>{{ $sourcing->grand_total }}</td>
-                                                        <td><input class="form-control w-6" type="text" name="shared_quote_percentage_T1"></td>
-                                                        <td><input class="form-control w-11" type="text" name="shared_quote_amount_T1" readonly></td>
-                                                        <td><input class="form-control w-11" type="text" name="closed_ratio_T1" readonly></td>
-                                                        <td><input class="form-control w-6 text-center" type="text" name="profit_margin_T1" value="{{($sourcing->net_profit_percentage)*10}}" readonly></td>
+                                                        <td><input class="form-control" type="text" name="shared_quote_percentage_T1"></td>
+                                                        <td><input class="form-control" type="text" name="shared_quote_amount_T1" readonly></td>
+                                                        <td><input class="form-control" type="text" name="closed_ratio_T1" readonly></td>
+                                                        <td><input class="form-control text-center" type="text" name="profit_margin_T1" value="{{($sourcing->net_profit_percentage)*10}}" readonly></td>
                                                         <td>
                                                             <select class="form-select" name="effort_T1" required>
                                                                 <option></option>
@@ -204,20 +258,20 @@
                                                                 @endforeach
                                                             </select>
                                                         </td>
-                                                        <td><input class="form-control w-6" type="text" name="perform_look_T1" readonly></td>
-                                                        <td><input class="form-control w-6" type="text" name="rating_T1" readonly></td>
-                                                        <td><input class="form-control w-6" type="text" name="incentive_percentage_T1" readonly></td>
-                                                        <td><input class="form-control w-6" type="text" name="incentive_amount_T1" readonly></td>
+                                                        <td><input class="form-control" type="text" name="perform_look_T1" readonly></td>
+                                                        <td><input class="form-control" type="text" name="rating_T1" readonly></td>
+                                                        <td><input class="form-control" type="text" name="incentive_percentage_T1" readonly></td>
+                                                        <td><input class="form-control" type="text" name="incentive_amount_T1" readonly></td>
                                                     </tr>
                                                 @endif
                                                 @if ($rfq->sales_man_id_T2)
                                                     <tr>
-                                                        <td>{{App\Models\User::where('id', $rfq->sales_man_id_T2)->value('name')}}</td>
+                                                        <td>{{App\Models\User::where('id', $rfq->sales_man_id_T2)->value('name')}} <input type="hidden" name="sales_man_id_T2" value="{{$rfq->sales_man_id_T2}}"></td>
                                                         <td>{{ $sourcing->grand_total }}</td>
-                                                        <td><input class="form-control w-6" type="text" name="shared_quote_percentage_T2"></td>
-                                                        <td><input class="form-control w-11" type="text" name="shared_quote_amount_T2" readonly></td>
-                                                        <td><input class="form-control w-11" type="text" name="closed_ratio_T2" readonly></td>
-                                                        <td><input class="form-control w-6 text-center" type="text" name="profit_margin_T2" value="{{($sourcing->net_profit_percentage)*10}}" readonly></td>
+                                                        <td><input class="form-control" type="text" name="shared_quote_percentage_T2"></td>
+                                                        <td><input class="form-control" type="text" name="shared_quote_amount_T2" readonly></td>
+                                                        <td><input class="form-control" type="text" name="closed_ratio_T2" readonly></td>
+                                                        <td><input class="form-control text-center" type="text" name="profit_margin_T2" value="{{($sourcing->net_profit_percentage)*10}}" readonly></td>
                                                         <td>
                                                             <select class="form-select" name="effort_T2" required>
                                                                 <option></option>
@@ -226,10 +280,10 @@
                                                                 @endforeach
                                                             </select>
                                                         </td>
-                                                        <td><input class="form-control w-6" type="text" name="perform_look_T2" readonly></td>
-                                                        <td><input class="form-control w-6" type="text" name="rating_T2" readonly></td>
-                                                        <td><input class="form-control w-6" type="text" name="incentive_percentage_T2" readonly></td>
-                                                        <td><input class="form-control w-6" type="text" name="incentive_amount_T2" readonly></td>
+                                                        <td><input class="form-control" type="text" name="perform_look_T2" readonly></td>
+                                                        <td><input class="form-control" type="text" name="rating_T2" readonly></td>
+                                                        <td><input class="form-control" type="text" name="incentive_percentage_T2" readonly></td>
+                                                        <td><input class="form-control" type="text" name="incentive_amount_T2" readonly></td>
                                                     </tr>
                                                 @endif
 
@@ -239,6 +293,12 @@
                                     </div>
                                 </div>
 
+                                <div class="row mt-3">
+                                    <div class="col-lg-8"></div>
+                                    <div class="col-lg-4">
+                                        <button type="submit" class="btn btn-info">Submit <i class="mx-2 ph-paper-plane"></i></button>
+                                    </div>
+                                </div>
 
 
 
@@ -615,21 +675,21 @@
 </script>
 
 <script>
-    $('.client_select').on('change', function() {
+    $(document).ready(function() {
+            $(".expand-switch").on('click', function(){
+                //$("#additionalExpand").toggle();
+                if ($(".expand-div").hasClass('d-none')) {
+                    $(".expand-div").removeClass('d-none');
+                    $(".icon").removeClass('fa-plus');
+                    $(".icon").addClass('fa-minus');
+                } else {
+                    $(".expand-div").addClass('d-none');
+                    $(".icon").removeClass('fa-minus');
+                    $(".icon").addClass('fa-plus');
+                }
 
-        $('input[name="name"]').val('');
-        $('input[name="email"]').val('');
-        $('input[name="company_name"]').val('');
-        $('input[name="address"]').val('');
-        $('input[name="phone"]').val('');
 
-        // $('.clientID').prop('selected', false);
-        // $('.partnerID').prop("selected", false);
-        // $(".clientID option[class='common_client']").prop('selected', true);
-        // $(".partnerID option[class='common_partner']").prop('selected', true);
-        // $('.clientID').attr('placeholder', 'Choose Client');
-        // $('.partnerID').attr('placeholder', 'Choose Partner');
-
+            });
 
 
         });

@@ -47,6 +47,9 @@ class EffortRatingController extends Controller
                 'rating' => 'nullable',
                 'value'  => 'nullable',
             ],
+            [
+                'unique' => 'This rating is already taken.',
+            ]
         );
 
         if ($validator->passes()) {
@@ -101,7 +104,7 @@ class EffortRatingController extends Controller
         $validator = Validator::make(
             $request->all(),
             [
-                'effort' => 'nullable|unique:effort_ratings',
+                'effort' => 'nullable',
                 'rating' => 'nullable',
                 'value'  => 'nullable',
             ],

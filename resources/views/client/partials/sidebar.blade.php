@@ -3,7 +3,7 @@
 @endphp
 
 
-<div class="sidebar sidebar-dark sidebar-main sidebar-expand-lg" style="background:#242424;">
+<div class="sidebar sidebar-dark sidebar-main sidebar-expand-lg" style="background:#000;">
 
     <!-- Sidebar content -->
     <div class="sidebar-content">

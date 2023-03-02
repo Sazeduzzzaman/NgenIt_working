@@ -1,5 +1,5 @@
 <div class="sidebar sidebar-dark sidebar-main sidebar-expand-lg sidebar-main-resized"
-    style="background:#242424">
+    style="background:#000000">
 
     <!-- Sidebar content -->
     <div class="sidebar-content">
@@ -88,7 +88,7 @@
                             <span>RFQ Management</span></a>
                         </li>
 
-                        <li class="nav-item"><a href="{{ route('rfq.index') }}" class="nav-link">
+                        {{-- <li class="nav-item"><a href="{{ route('rfq.index') }}" class="nav-link">
                             <i class="ph-layout"></i>
                             <span>RFQ list</span></a>
                         </li>
@@ -99,7 +99,7 @@
                         <li class="nav-item"><a href="{{ route('deal-sas.index') }}" class="nav-link">
                             <i class="ph-layout"></i>
                             <span>Deals SAS list</span></a>
-                        </li>
+                        </li> --}}
                         <li class="nav-item"><a href="{{ route('deal.create') }}" class="nav-link">
                             <i class="ph-layout"></i>
                             <span>Deal Registration</span></a>

@@ -1,6 +1,6 @@
 @extends('frontend.master')
 @section('content')
-
+ 
     <style>
         .btn-design {
             color: #fff;

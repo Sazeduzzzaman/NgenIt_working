@@ -55,8 +55,8 @@
             <div class="tab-content">
                 <div class="tab-pane fade show active" id="js-tab1">
                     <div class="row">
-                        <div class="col-lg-3"></div>
-                        <div class="col-lg-6">
+                        <div class="col-lg-2"></div>
+                        <div class="col-lg-8">
                             <div id="table1" class="card cardTd">
                                 <div class="card-header">
 
@@ -70,12 +70,12 @@
                                         @method('PUT')
 
                                         <div class="row mb-3 p-2 border">
-                                            <div class="col-lg-4"></div>
-                                            <div class="col-lg-6">
+
+                                            <div class="col-lg-3">
                                                 <div class="col-sm-12">
                                                     <h6 class="mb-0">Sales Manager Name<span class="text-danger">*</span></h6>
                                                 </div>
-                                                <div class="form-group text-secondary col-sm-8">
+                                                <div class="form-group text-secondary col-sm-10">
                                                     <select name="sales_man_id" class="form-control select"
                                                         data-minimum-results-for-search="Infinity"
                                                         data-placeholder="Choose  ">
@@ -86,19 +86,16 @@
                                                     </select>
                                                 </div>
                                             </div>
-                                        </div>
-
-                                        <div class="row mb-3 p-2 border">
-                                            <div class="col-lg-4">
+                                            <div class="col-lg-3">
                                                 <div class="col-sm-12">
                                                     <h6 class="mb-0">Fiscal Year<span class="text-danger">*</span></h6>
                                                 </div>
                                                 <div class="form-group text-secondary col-sm-12">
                                                     {{-- <input class="form-control yearselect" type="text" name="fiscal_year"/> --}}
-                                                    <select class="yearselect form-select" value="{{ $salesTeamTarget->fiscal_year }}" name="fiscal_year"></select>
+                                                    <input type="text" class="yearselect form-control" @selected( $salesTeamTarget->fiscal_year == $salesTeamTarget->fiscal_year)  value="{{ $salesTeamTarget->fiscal_year }}" name="fiscal_year">
                                                 </div>
                                             </div>
-                                            <div class="col-lg-4 mb-3">
+                                            <div class="col-lg-3 mb-3">
                                                 <div class="col-sm-12">
                                                     <h6 class="mb-0">Year Started</h6>
                                                 </div>
@@ -112,7 +109,7 @@
                                                     </select>
                                                 </div>
                                             </div>
-                                            <div class="col-lg-4">
+                                            <div class="col-lg-3">
                                                 <div class="col-sm-12">
                                                     <h6 class="mb-0">Total Target </h6>
                                                 </div>
@@ -122,6 +119,8 @@
                                                 </div>
                                             </div>
                                         </div>
+
+
 
                                         <div class="row mb-3 p-2 border">
                                             <div class="col-lg-3">

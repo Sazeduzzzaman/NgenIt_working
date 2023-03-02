@@ -44,7 +44,7 @@
                                     </th>
                                     <th class="text-white">SAS Create Date :
                                         <input type="hidden" name="create" value="{{ \Carbon\Carbon::now() }}">
-                                            {{ \Carbon\Carbon::now() }}
+                                        {{\Carbon\Carbon::parse($rfq->create_date)->format('d/m/Y')}}
                                     </th>
                                     <th class="text-white text-center">
                                         This Deal is for our @if ($rfq->client_type == 'partner')
@@ -66,14 +66,14 @@
                         </label>
                     </div>
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" name="special" value="1" id="flexRadioDefault1" {{ $rfq->special == '1' ? 'checked' : '' }}>
-                        <label class="form-check-label" for="flexRadioDefault1">
+                        <input class="form-check-input" type="checkbox" name="special" value="1" id="flexRadioDefault2" {{ $rfq->special == '1' ? 'checked' : '' }}>
+                        <label class="form-check-label" for="flexRadioDefault2">
                           Special Discount
                         </label>
                     </div>
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" name="tax_status" value="1" id="flexRadioDefault1" {{ $rfq->tax_status == '1' ? 'checked' : '' }}>
-                        <label class="form-check-label" for="flexRadioDefault1">
+                        <input class="form-check-input" type="checkbox" name="tax_status" value="1" id="flexRadioDefault3" {{ $rfq->tax_status == '1' ? 'checked' : '' }}>
+                        <label class="form-check-label" for="flexRadioDefault3">
                           Tax / VAT
                         </label>
                     </div>
@@ -94,7 +94,7 @@
                                                     <th width="5%">Quantity</th>
                                                     <th width="5%">Unit Price</th>
                                                     <th width="5%">Cost (Cog Price)</th>
-                                                    <th width="5%" class="rg_discount d-none">Regular Discount</th>
+                                                    <th width="5%" class="rg_discount d-none">Regular Discount (%)</th>
                                                     <th width="5%">Discounted Sales Price</th>
                                                     <th width="5%">Unit Total</th>
                                                 </tr>
@@ -349,7 +349,7 @@
         </div>
         <!-- /content area -->
         <!-- /inner content -->
- 
+
     </div>
 @endsection
 

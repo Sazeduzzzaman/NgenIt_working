@@ -280,9 +280,8 @@ var $myForm = $('.achievement-calculate');
             $('input[name="closed_ratio_L1"]').val((closed_ratio_L1).toFixed(2));
 
             var effort_L1 = $('select[name="effort_L1"]').val();
-            //alert(effort);
-            // alert($('select[name="client_id"]').val());
-            // alert($('select[name="partner_id"]').val());
+
+
             if (effort_L1) {
                 $.ajax({
                     url: '/admin/effort/ajax/'+effort_L1,
@@ -291,17 +290,95 @@ var $myForm = $('.achievement-calculate');
                     success:function(data){
                         $('input[name="perform_look_L1"]').val(data.perform_look);
                         $('input[name="rating_L1"]').val(data.rating);
-
-
-                        //$('select[name="subcategory_id"]').append('<option value="'+ value.id + '">' + value.subcategory_name + '</option>');
+                        $('input[name="incentive_percentage_L1"]').val(data.value);
+                        //var incentive_percentage_L1 = data.value;
+                        var incentive_percentage_L1 = $('input[name="incentive_percentage_L1"]').val();
+                        var profit_margin_L1 = $('input[name="profit_margin_L1"]').val();
+                        if (data.value > 0) {
+                            var incentive_amount_L1 = (closed_ratio_L1 * (profit_margin_L1/100) * (incentive_percentage_L1/100)) * 10;
+                        } else {
+                            var incentive_amount_L1 = (closed_ratio_L1 * (profit_margin_L1/100) * (0)) * 10;
+                        }
+                        $('input[name="incentive_amount_L1"]').val((incentive_amount_L1).toFixed(2));
 
                     },
-
                 });
             }
-            //  else {
-            //     alert('Error Occured. Try Again');
-            // }
-        //});
+
+            // Incentive for T1
+
+            var shared_quote_percentage_T1 = $("input[name='shared_quote_percentage_T1']").val();
+            var shared_quote_amount_T1 = (total_quoted_amount * shared_quote_percentage_T1)/100;
+            var closed_ratio_T1 = (shared_quote_amount_T1 * deal_type_value)/100;
+            $('input[name="shared_quote_amount_T1"]').val((shared_quote_amount_T1).toFixed(2));
+            $('input[name="closed_ratio_T1"]').val((closed_ratio_T1).toFixed(2));
+
+            var effort_T1 = $('select[name="effort_T1"]').val();
+
+
+            if (effort_T1) {
+                $.ajax({
+                    url: '/admin/effort/ajax/'+effort_T1,
+                    type: "GET",
+                    dataType:"json",
+                    success:function(data){
+                        $('input[name="perform_look_T1"]').val(data.perform_look);
+                        $('input[name="rating_T1"]').val(data.rating);
+                        $('input[name="incentive_percentage_T1"]').val(data.value);
+                        //var incentive_percentage_T1 = data.value;
+                        var incentive_percentage_T1 = $('input[name="incentive_percentage_T1"]').val();
+
+                        var profit_margin_T1 = $('input[name="profit_margin_T1"]').val();
+                        //alert(data.value);
+                        if (data.value > 0) {
+                            var incentive_amount_T1 = (closed_ratio_T1 * (profit_margin_T1/100) * (incentive_percentage_T1/100)) * 10;
+                        } else {
+                            var incentive_amount_T1 = (closed_ratio_T1 * (profit_margin_T1/100) * (0)) * 10;
+                        }
+
+                        $('input[name="incentive_amount_T1"]').val((incentive_amount_T1).toFixed(2));
+
+                    },
+                });
+            }
+
+            // Incentive for T2
+
+            var shared_quote_percentage_T2 = $("input[name='shared_quote_percentage_T2']").val();
+            var shared_quote_amount_T2 = (total_quoted_amount * shared_quote_percentage_T2)/100;
+            var closed_ratio_T2 = (shared_quote_amount_T2 * deal_type_value)/100;
+            $('input[name="shared_quote_amount_T2"]').val((shared_quote_amount_T2).toFixed(2));
+            $('input[name="closed_ratio_T2"]').val((closed_ratio_T2).toFixed(2));
+
+            var effort_T2 = $('select[name="effort_T2"]').val();
+
+
+            if (effort_T2) {
+                $.ajax({
+                    url: '/admin/effort/ajax/'+effort_T2,
+                    type: "GET",
+                    dataType:"json",
+                    success:function(data){
+                        $('input[name="perform_look_T2"]').val(data.perform_look);
+                        $('input[name="rating_T2"]').val(data.rating);
+                        $('input[name="incentive_percentage_T2"]').val(data.value);
+                        //var incentive_percentage_T2 = data.value;
+                        var incentive_percentage_T2 = $('input[name="incentive_percentage_T2"]').val();
+
+                        var profit_margin_T2 = $('input[name="profit_margin_T2"]').val();
+                        //alert(incentive_percentage_T2);
+                        if (data.value > 0) {
+                            var incentive_amount_T2 = (closed_ratio_T2 * (profit_margin_T2/100) * (incentive_percentage_T2/100)) * 10;
+                        } else {
+                            var incentive_amount_T2 = (closed_ratio_T2 * (profit_margin_T2/100) * (0)) * 10;
+                        }
+
+                        $('input[name="incentive_amount_T2"]').val((incentive_amount_T2).toFixed(2));
+
+                    },
+                });
+            }
+
+
 
 });

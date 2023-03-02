@@ -2,14 +2,17 @@
 
 namespace App\Http\Controllers\Sales;
 
-
+use Helper;
 use App\Models\Admin\Rfq;
 use Illuminate\Http\Request;
 use App\Models\Admin\DealSas;
+use App\Models\Admin\EffortRating;
 use Illuminate\Contracts\View\View;
 use App\Http\Controllers\Controller;
+use Brian2694\Toastr\Facades\Toastr;
 use App\Models\Admin\DealTypeSetting;
-use App\Models\Admin\EffortRating;
+use App\Models\Admin\SalesAchievement;
+use Illuminate\Support\Facades\Validator;
 
 class SalesAchievementController extends Controller
 {
@@ -42,7 +45,72 @@ class SalesAchievementController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //dd($request->all());
+        $validator = Validator::make($request->all(), [
+            'rfq_id'          => 'required',
+            'deal_type'       => 'required',
+            'deal_type_value' => 'required',
+            'month'           => 'required',
+            'quarter'         => 'required',
+        ],
+
+    );
+
+
+    if ($validator->passes()) {
+
+             SalesAchievement::create([
+
+
+                'rfq_id'                     => $request->rfq_id,
+                'deal_type'                  => $request->deal_type,
+                'deal_type_value'            => $request->deal_type_value,
+                'month'                      => $request->month,
+                'quarter'                    => $request->quarter ,
+                'sales_man_id_L1'            => $request->sales_man_id_L1  ,
+                'total_quoted_amount'        => $request->total_quoted_amount  ,
+                'shared_quote_percentage_L1' => $request->shared_quote_percentage_L1,
+                'shared_quote_amount_L1'     => $request->shared_quote_amount_L1,
+                'closed_ratio_L1'            => $request->closed_ratio_L1,
+                'profit_margin_L1'           => $request->profit_margin_L1,
+                'effort_L1'                  => $request->effort_L1,
+                'perform_look_L1'            => $request->perform_look_L1,
+                'rating_L1'                  => $request->rating_L1,
+                'incentive_percentage_L1'    => $request->incentive_percentage_L1,
+                'incentive_amount_L1'        => $request->incentive_amount_L1  ,
+                'sales_man_id_T1'            => $request->sales_man_id_T1,
+                'shared_quote_percentage_T1' => $request->shared_quote_percentage_T1,
+                'shared_quote_amount_T1'     => $request->shared_quote_amount_T1,
+                'closed_ratio_T1'            => $request->closed_ratio_T1,
+                'profit_margin_T1'           => $request->profit_margin_T1,
+                'effort_T1'                  => $request->effort_T1,
+                'perform_look_T1'            => $request->perform_look_T1,
+                'rating_T1'                  => $request->rating_T1,
+                'incentive_percentage_T1'    => $request->incentive_percentage_T1,
+                'incentive_amount_T1'        => $request->incentive_amount_T1,
+                'sales_man_id_T2'            => $request->sales_man_id_T2,
+                'shared_quote_percentage_T2' => $request->shared_quote_percentage_T2,
+                'shared_quote_amount_T2'     => $request->shared_quote_amount_T2,
+                'closed_ratio_T2'            => $request->closed_ratio_T2,
+                'profit_margin_T2'           => $request->profit_margin_T2,
+                'effort_T2'                  => $request->effort_T2,
+                'perform_look_T2'            => $request->perform_look_T2,
+                'rating_T2'                  => $request->rating_T2,
+                'incentive_percentage_T2'    => $request->incentive_percentage_T2,
+                'incentive_amount_T2'        => $request->incentive_amount_T2,
+            ]);
+
+
+
+                Toastr::success('Data Inserted Successfully');
+            } else {
+
+                $messages = $validator->messages();
+                foreach ($messages->all() as $message) {
+                    Toastr::error($message, 'Failed', ['timeOut' => 30000]);
+                }
+            }
+            return redirect()->route('sales-achievement.index');
     }
 
     /**

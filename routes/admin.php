@@ -44,6 +44,7 @@ use App\Http\Controllers\Admin\SourcingController;
 use App\Http\Controllers\Admin\BrandPageController;
 use App\Http\Controllers\Admin\LearnMoreController;
 use App\Http\Controllers\Admin\RFQManageController;
+use App\Http\Controllers\Admin\SingleRfqController;
 use App\Http\Controllers\SAS\RevisedDealController;
 use App\Http\Controllers\Admin\NewsLetterController;
 use App\Http\Controllers\Admin\RowWithColController;
@@ -422,6 +423,7 @@ Route::controller(RFQController::class)->group(function(){
     'sales-achievement' => SalesAchievementController::class,
     'deal-type-settings' => DealTypeSettingController::class,
     'effort-ratings' => EffortRatingController::class,
+    'single-rfq' => SingleRfqController::class,
 ]);
 
     Route::controller(EffortRatingController::class)->group(function(){

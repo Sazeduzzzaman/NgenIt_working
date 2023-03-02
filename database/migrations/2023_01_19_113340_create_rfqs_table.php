@@ -32,13 +32,14 @@ return new class extends Migration
             $table->text('address')->nullable();
             $table->date('create_date')->nullable();
             $table->date('close_date')->nullable();
+            $table->date('sale_date')->nullable();
             $table->string('pq_code')->nullable();
             $table->string('pqr_code_one')->nullable();
             $table->string('pqr_code_two')->nullable();
             $table->integer('qty')->nullable();
             $table->string('image')->nullable();
             $table->text('message')->nullable();
-            $table->enum('rfq_type', ['rfq', 'deal'])->default('rfq')->nullable();
+            $table->enum('rfq_type', ['rfq', 'deal' , 'sales'])->default('rfq')->nullable();
             $table->enum('call', ['0', '1'])->default('0')->nullable();
             $table->enum('regular', ['0', '1'])->default('0')->nullable();
             $table->enum('special', ['0', '1'])->default('0')->nullable();
