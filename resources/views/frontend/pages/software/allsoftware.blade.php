@@ -72,15 +72,29 @@
                                         @foreach ($products as $product)
                                         <tr class="p-1">
                                             <td class="p-1" width="80%"><a href="{{route('product.details',$product->slug)}}">{{$product->name}}</a></td>
-                                            <td class="p-1" width="20%"> $ @if ($product->discount == Null)
-                                                {{$product->price}}
-                                            @else
-                                            {{$product->discount}}
-                                            @endif</td>
+                                            <td class="p-1" width="20%">
+                                                @if ($product->rfq != 1)
+                                                    @if ($product->discount == Null)
+                                                        $ {{$product->price}}
+                                                    @else
+                                                    $ {{$product->discount}}
+                                                    @endif
+                                                @endif
+                                            </td>
                                         </tr>
                                         @endforeach
                                     </tbody>
                                 </table>
+                                <div class="d-flex justify-content-center">
+                                    <nav aria-label="Page navigation example">
+                                        <ul class="pagination">
+                                            {{ $products->links() }}
+                                        </ul>
+
+                                    </nav>
+                                </div>
+
+
                             </div>
 
                         </div>
@@ -112,8 +126,20 @@
                                         <td class="p-1" width="20%">{{App\Models\Admin\Product::where('cat_id',$item->id)->where('product_type','software')->count()}}</td>
                                     </tr>
                                     @endforeach
+
                                 </tbody>
                             </table>
+
+
+                            {{-- <div class="d-flex justify-content-center">
+                                <nav aria-label="Page navigation example">
+                                    <ul class="pagination">
+                                        {{ $categories->links() }}
+                                    </ul>
+
+                                </nav>
+                            </div> --}}
+
 
                         </div>
                     </div>
@@ -143,6 +169,16 @@
                                     @endforeach
                                 </tbody>
                             </table>
+
+                            {{-- <div class="d-flex justify-content-center">
+                                <nav aria-label="Page navigation example">
+                                    <ul class="pagination">
+                                        {{ $brands->links() }}
+                                    </ul>
+
+                                </nav>
+                            </div> --}}
+
                         </div>
                     </div>
                 </div>
@@ -219,7 +255,7 @@
 
                 <!-- product_item -->
 
-                @foreach ($products as $item )
+                @foreach ($software_products as $item )
                 <div class="product_item">
                     <!-- image -->
                     <div class="product_item_thumbnail">

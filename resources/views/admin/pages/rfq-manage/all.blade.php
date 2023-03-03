@@ -203,6 +203,10 @@
                                                             class="text-primary">
                                                             <i class="icon-pencil"></i>
                                                         </a> --}}
+                                                        <a href="{{ route('single-rfq.show',$rfq->rfq_code) }}" class="text-success mx-3 float-start"
+                                                            title="Go to Details">
+                                                            <i class="mi-airplay mi-1x"></i>
+                                                        </a>
                                                         @if ($rfq->status == 'rfq_created')
                                                         <a href="javascript:void(0);" class="text-primary mx-3 mx-3"
                                                             data-bs-toggle="modal" title="View & Assign Sales Manager"
@@ -662,6 +666,10 @@
                                                         class="text-primary">
                                                         <i class="icon-pencil"></i>
                                                     </a> --}}
+                                                    <a href="{{ route('single-rfq.show',$deal->rfq_code) }}" class="text-success mx-3 float-start"
+                                                        title="Go to Details">
+                                                        <i class="mi-airplay mi-1x"></i>
+                                                    </a>
                                                     @if ($deal->status == 'rfq_created')
                                                     <a href="javascript:void(0);" class="text-primary mx-3"
                                                         data-bs-toggle="modal" title="View & Assign Sales Manager"

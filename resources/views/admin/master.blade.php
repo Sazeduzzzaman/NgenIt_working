@@ -172,6 +172,7 @@
 	<!-- /notifications -->
         @php
             $notifications = auth()->user()->unreadNotifications;
+
             $old_notifications = auth()->user()->readNotifications;
         @endphp
 
@@ -192,6 +193,7 @@
                 <div class="p-3">
                     @if (auth()->user()->role)
                     @forelse($notifications as $notification)
+
                     <div class="d-flex align-items-start mb-3">
                         <a href="#" class="status-indicator-container me-3">
                             <i class="icon-envelope w-40px h-40px rounded-pill"></i>
@@ -199,16 +201,19 @@
                         </a>
                         <div class="flex-fill">
                             {{-- <a href="{{ route('rfq.edit'),$notification->data['link'] }}" class="fw-semibold">{{ $notification->data['name'] }}</a> {{ $notification->data['message'] }} --}}
-                            <a href="javascript:void(0);" data-id="{{ $notification->id }}" class="mark-read">
-                                @if ($notification->link)
-                                    <a href="{{ $notification->data['link'] }}" class="fw-semibold">
-                                        {{ $notification->data['name'] }}</a> {{ $notification->data['message'] }}
-                                    </a>
+                            <a href="javascript:void(0);" data-id="{{ $notification->id }}" class="text-black mark-as-read">
+                                @if ($notification->data['link'])
+                                {{ $notification->data['name'] }} {{ $notification->data['message1'] }}
+                                <a href="{{ $notification->data['link'] }}" class="fw-semibold">
+                                    {{ $notification->data['message2'] }}
+                                </a>
                                 @else
                                     <a href="" class="fw-semibold">
-                                        {{ $notification->data['name'] }}</a> {{ $notification->data['message'] }}
+                                        {{ $notification->data['name'] }}</a> {{ $notification->data['message1'] }}
                                     </a>
                                 @endif
+                            </a>
+
 
 
                             <div class="fs-sm text-muted mt-1">{{ Carbon\Carbon::parse($notification->created_at)->diffForHumans() }}</div>
@@ -218,9 +223,7 @@
                             Go To Link
                         </a>
                         @else
-                        <a href="#" class="float-right mark-as-read px-3" data-id="{{ $notification->id }}">
-                            Mark as Read
-                        </a>
+
                         @endif
                     </div>
                                 @if ($loop->last)
@@ -241,18 +244,23 @@
                     @if (auth()->user()->role)
                     @forelse($old_notifications as $old_notification)
                     <div class="d-flex align-items-start mb-3">
-                        <a href="#" class="status-indicator-container me-3">
-                            <i class="ph-envelope-open w-40px h-40px rounded-pill"></i>
-                            {{-- <img src="{{ asset('/') }}backend/assets/images/demo/users/face1.jpg"
-                                class="w-40px h-40px rounded-pill" alt=""> --}}
-                            <span class="status-indicator bg-success"></span>
-                        </a>
+                        
                         <div class="flex-fill">
-                            {{-- @if ($old_notification->data['link'])
-                            <a href="{{ $old_notification->data['link'] }}" class="fw-semibold">{{ $old_notification->data['name'] }}</a> {{ $old_notification->data['message'] }}
-                            @else --}}
-                            <a href="" class="fw-semibold">{{ $old_notification->data['name'] }}</a> {{ $old_notification->data['message'] }}
-                            {{-- @endif --}}
+                            <a href="javascript:void(0);" data-id="{{ $old_notification->id }}" class="text-black mark-as-read">
+                                @if (!empty($old_notification->data['message1']))
+                                    @if ($old_notification->data['link'])
+                                        {{ $old_notification->data['name'] }} {{ $old_notification->data['message1'] }}
+                                        <a href="{{ $old_notification->data['link'] }}" class="fw-semibold">
+                                            {{ $old_notification->data['message2'] }}
+                                        </a>
+
+                                    @else
+                                        <a href="" class="fw-semibold">
+                                            {{ $old_notification->data['name'] }}</a> {{ $old_notification->data['message1'] }}
+                                        </a>
+                                    @endif
+                                @endif
+                            </a>
 
 
                             <div class="fs-sm text-muted mt-1">{{ Carbon\Carbon::parse($old_notification->created_at)->diffForHumans() }}</div>

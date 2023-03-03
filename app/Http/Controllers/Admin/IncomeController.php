@@ -22,7 +22,7 @@ class IncomeController extends Controller
     {
         $data['incomes'] = Income::get();
         $data['rfqs'] = Rfq::select('rfqs.id', 'rfqs.name')->get();
-        $data['orders'] = Order::select('orders.id', 'orders.name')->get();
+        $data['orders'] = Order::select('orders.id', 'orders.order_number')->get();
         return view('admin.pages.income.all', $data);
     }
 

@@ -11,11 +11,11 @@ use App\Models\Admin\Client;
 use Illuminate\Http\Request;
 use App\Models\Admin\DealSas;
 use App\Models\Admin\Product;
-use App\Notifications\RfqDeal;
 use App\Models\Partner\Partner;
 use Illuminate\Validation\Rule;
 use App\Models\Admin\RfqProduct;
 use App\Notifications\RfqAssign;
+use App\Notifications\RfqCreate;
 use App\Http\Controllers\Controller;
 use App\Models\Admin\SolutionDetail;
 use Brian2694\Toastr\Facades\Toastr;
@@ -137,7 +137,7 @@ class RFQController extends Controller
                     $name = $request->name;
                     $rfq_code = $data['rfq_code'];
 
-            Notification::send($user, new RfqDeal($name , $rfq_code));
+            Notification::send($user, new RfqCreate($name , $rfq_code));
             Toastr::success('Data Inserted Successfully');
         } else {
 
@@ -306,7 +306,7 @@ class RFQController extends Controller
     public function AssignSalesMan(Request $request, $id)
     {
         $rfq = Rfq::where('rfq_code' , $id)->first();
-        $user = User::where('role','admin')->get();
+        $user = User::get();
         if (!empty($rfq)) {
 
 
@@ -317,9 +317,29 @@ class RFQController extends Controller
                     'status'               => 'assigned',
                 ]);
             }
-            //$user =
 
-            Notification::send($user, new RfqAssign($name = $request->sales_man_id_L1 , $rfq_code = $rfq->rfq_code));
+            if (!empty($request->sales_man_id_L1)) {
+                $name1 = User::find($request->sales_man_id_L1)->value('name');
+            } else {
+                $name1 = '';
+            }
+
+            if (!empty($request->sales_man_id_T1)) {
+                $name2 = User::find($request->sales_man_id_T1)->value('name');
+            } else {
+                $name2 = '';
+            }
+
+            if (!empty($request->sales_man_id_T2)) {
+                $name3 = User::find($request->sales_man_id_T2)->value('name');
+            } else {
+                $name3 = '';
+            }
+            $rfq_code = $rfq->rfq_code;
+
+
+
+            Notification::send($user, new RfqAssign($name1 ,$name2 , $name3 , $rfq_code ));
             Toastr::success('SalesMan has been Assigned');
 
         return redirect()->back();

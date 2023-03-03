@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\User;
 use App\Models\Admin\Rfq;
 use Illuminate\Http\Request;
 use App\Models\Admin\DealSas;
@@ -17,9 +18,7 @@ class SingleRfqController extends Controller
     public function index()
     {
         //$rfq_details = Rfq::where('rfq_code', $rfq->rfq_code)->first();
-        $data['rfq_details'] = Rfq::latest()->first();
-        $data['deal_products'] = DealSas::where('rfq_code', $data['rfq_details']->rfq_code)->get();
-        return view('admin.pages.singleRfq.all',$data);
+
     }
 
     /**
@@ -51,7 +50,11 @@ class SingleRfqController extends Controller
      */
     public function show($id)
     {
-        //
+        $data['users'] = User::where('role', 'sales')->select('users.id', 'users.name')->orderBy('id', 'DESC')->get();
+        $data['rfq_details'] = Rfq::where('rfq_code',$id)->first();
+        $data['deal_products'] = DealSas::where('rfq_code', $data['rfq_details']->rfq_code)->get();
+        $data['sourcing'] = DealSas::where('rfq_code', $data['rfq_details']->rfq_code)->first();
+        return view('admin.pages.singleRfq.all',$data);
     }
 
     /**

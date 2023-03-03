@@ -424,6 +424,11 @@ Route::controller(RFQController::class)->group(function(){
     'deal-type-settings' => DealTypeSettingController::class,
     'effort-ratings' => EffortRatingController::class,
     'single-rfq' => SingleRfqController::class,
+
+    'marketing-manager-role' => MarketingManagerRoleController::class,
+    'marketing-team-target' => MarketingTeamTargetController::class,
+    'marketing-team-target' => MarketingTeamTargetController::class,
+    'marketing-dmar' => MarketingDmarController::class,
 ]);
 
     Route::controller(EffortRatingController::class)->group(function(){

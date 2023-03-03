@@ -66,7 +66,7 @@ class SourcingController extends Controller
      */
     public function store(Request $request)
     {
-        $input   = $request->all();
+        //$input   = $request->all();
 
 
 
@@ -87,6 +87,13 @@ class SourcingController extends Controller
         );
 
             //dd($request->all());
+            if (($request->source_approval) == 'one') {
+                $source_one_approval= '1';
+                $source_two_approval= '0';
+            } else {
+                $source_one_approval= '0';
+                $source_two_approval= '1';
+            }
             if (($request->action) == 'save') {
                 if ($validator->passes()) {
                 //dd($input);
@@ -159,9 +166,10 @@ class SourcingController extends Controller
                     'competetor_two_price'  => $request->competetor_two_price,
                     'competetor_one_link'   => $request->competetor_one_link,
                     'competetor_two_link'   => $request->competetor_two_link,
-                    'source_one_approval'   => $request->source_one_approval,
-                    'source_two_approval'   => $request->source_two_approval,
-                    //'source_three_approval' => $request->source_three_approval,
+                    'source_one_approval'   => $source_one_approval,
+                    'source_two_approval'   => $source_two_approval,
+                    'notification_days'     => $request->notification_days,
+                    'create_date'           => date('Y-m-d', strtotime(Carbon::now())),
                     'solid_source'          => $request->solid_source,
                     'direct_principal'      => $request->direct_principal,
                     'agreement'             => $request->agreement,
@@ -296,8 +304,10 @@ class SourcingController extends Controller
                     'competetor_two_name'   => $request->competetor_two_name,
                     'competetor_one_link'   => $request->competetor_one_link,
                     'competetor_two_link'   => $request->competetor_two_link,
-                    'source_one_approval'   => $request->source_one_approval,
-                    'source_two_approval'   => $request->source_two_approval,
+                    'source_one_approval'   => $source_one_approval,
+                    'source_two_approval'   => $source_two_approval,
+                    'notification_days'     => $request->notification_days,
+                    'create_date'           => date('Y-m-d', strtotime(Carbon::now())),
                     //'source_three_approval' => $request->source_three_approval,
                     'solid_source'          => $request->solid_source,
                     'direct_principal'      => $request->direct_principal,
@@ -354,6 +364,8 @@ class SourcingController extends Controller
             }
 
 
+
+
                     Toastr::success('Data Inserted Successfully');
                 } else {
                     $messages = $validator->messages();
@@ -365,7 +377,9 @@ class SourcingController extends Controller
                 return redirect()->route('sourcing.sas',$data['product']->slug);
             }
 
-    }
+
+
+        }
 
     /**
      * Display the specified resource.
@@ -410,6 +424,15 @@ class SourcingController extends Controller
     {
             $product_id = $id;
             //dd($product_id);
+            if (($request->source_approval) == 'one') {
+                $source_one_approval= '1';
+                $source_two_approval= '0';
+            } else {
+                $source_one_approval= '0';
+                $source_two_approval= '1';
+            }
+
+
             $slug=Str::slug($request->name);
             $count=Product::where('slug',$slug)->count();
             if($count>0){
@@ -423,6 +446,7 @@ class SourcingController extends Controller
             }
 
              Product::findOrFail($product_id)->update([
+
 
                     'name'                  => $request->name,
                     //'ref_code'              => $data['ref_code'],
@@ -464,8 +488,9 @@ class SourcingController extends Controller
                     'competetor_two_name'   => $request->competetor_two_name,
                     'competetor_one_link'   => $request->competetor_one_link,
                     'competetor_two_link'   => $request->competetor_two_link,
-                    'source_one_approval'   => $request->source_one_approval,
-                    'source_two_approval'   => $request->source_two_approval,
+                    'source_one_approval'   => $source_one_approval,
+                    'source_two_approval'   => $source_two_approval,
+                    'notification_days'     => $request->notification_days,
                     //'source_three_approval' => $request->source_three_approval,
                     'solid_source'          => $request->solid_source,
                     'direct_principal'      => $request->direct_principal,

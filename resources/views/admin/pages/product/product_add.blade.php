@@ -185,7 +185,14 @@
                                                 <input type="text" name="discount" class="form-control"
                                                     id="inputCompareatprice" placeholder="00.00">
                                             </div>
+
+                                                <div class="form-group col-md-6">
+                                                    <label for="inputPrice" class="form-label">Product Notification (days) <span class="text-danger">*</span> :</label>
+                                                    <input class="form-control allow_decimal" placeholder="Days" type="text" name="notification_days">
+                                                </div>
+                                            
                                         </div>
+
 
                                     </div>
 

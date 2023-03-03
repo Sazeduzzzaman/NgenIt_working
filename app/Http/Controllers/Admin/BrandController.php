@@ -42,11 +42,12 @@ class BrandController extends Controller
         $validator = Validator::make(
             $request->all(),
             [
-                'title' => 'required',
+                'title' => 'required|unique:brands',
                 'image'   => 'required|image|mimes:png,jpg,jpeg|max:10000',
             ],
             [
-                'mimes' => 'The :attribute must be a file of type: PNG - JPEG - JPG'
+                'mimes' => 'The :attribute must be a file of type: PNG - JPEG - JPG',
+                'unique' => 'This Brand has already been taken.',
             ],
 
         );

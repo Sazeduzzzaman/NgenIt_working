@@ -123,6 +123,8 @@ class ProductController extends Controller
             'sub_sub_cat_id'     => $request->sub_sub_cat_id,
             'sub_sub_sub_cat_id' => $request->sub_sub_sub_cat_id,
             'brand_id'           => $request->brand_id,
+            'notification_days'  => $request->notification_days,
+            'create_date'        => date('Y-m-d', strtotime(Carbon::now())),
             'created_at'         => Carbon::now(),
 
         ]);
@@ -184,7 +186,7 @@ class ProductController extends Controller
 
     } // End Method
 
- 
+
     public function EditProduct($id){
 
         $data['multiImgs'] = MultiImage::where('product_id',$id)->get();
@@ -247,6 +249,8 @@ class ProductController extends Controller
                 'sub_sub_cat_id'     => $request->sub_sub_cat_id,
                 'sub_sub_sub_cat_id' => $request->sub_sub_sub_cat_id,
                 'brand_id'           => $request->brand_id,
+                'notification_days'  => $request->notification_days,
+                'create_date'        => date('Y-m-d', strtotime(Carbon::now())),
                 'updated_at'         => Carbon::now(),
 
         ]);

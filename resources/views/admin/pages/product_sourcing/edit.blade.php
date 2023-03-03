@@ -361,13 +361,17 @@
                                                         <td><input class="form-control" type="text" name="source_one_name"  value="{{ $products->source_one_name }}" required></td>
                                                         <td><input class="form-control" type="text" name="source_one_link"  value="{{ $products->source_one_link }}" required></td>
                                                         <td><input class="form-control allow_decimal" type="text" name="source_one_price" value="{{ $products->source_one_price }}" required></td>
-                                                        <td><input class="form-check-input" type="checkbox" name="source_one_approval" value="1" {{ $products->source_one_approval == '1' ? 'checked' : '' }}></td>
+                                                        <td><input class="form-check-input" type="radio" name="source_approval" value="1" {{ $products->source_one_approval == '1' ? 'checked' : '' }}></td>
                                                     </tr>
                                                     <tr>
                                                         <td><input class="form-control" type="text" name="source_two_name"  value="{{ $products->source_two_name }}" required></td>
                                                         <td><input class="form-control" type="text" name="source_two_link"  value="{{ $products->source_two_link }}" required></td>
                                                         <td><input class="form-control allow_decimal" type="text" name="source_two_price" value="{{ $products->source_two_price }}" required></td>
-                                                        <td><input class="form-check-input" type="checkbox" name="source_two_approval" value="1" {{ $products->source_two_approval == '1' ? 'checked' : '' }}></td>
+                                                        <td><input class="form-check-input" type="radio" name="source_approval" value="1" {{ $products->source_two_approval == '1' ? 'checked' : '' }}></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="text-center">Price Notification (Days):</td>
+                                                        <td><input class="form-control allow_decimal" type="text" name="notification_days" value="{{ $products->notification_days }}"></td>
                                                     </tr>
 
                                                 </tbody>
@@ -410,18 +414,18 @@
                                             <table class="productDT datatable table table-bordered table-hover">
                                                 <tr>
                                                     <th width="50%">Is this solid source?  ( Y/N )</th>
-                                                    <td width="25%"><input class="margin-right:0.5rem" type="checkbox" name="solid_source" value="yes" {{ $products->solid_source == 'yes' ? 'checked' : '' }}>Yes</td>
-                                                    <td width="25%"><input class="margin-right:0.5rem" type="checkbox" name="solid_source" value="no" {{ $products->solid_source == 'no' ? 'checked' : '' }}>No</td>
+                                                    <td width="25%"><input class="margin-right:0.5rem" type="radio" name="solid_source" value="yes" {{ $products->solid_source == 'yes' ? 'checked' : '' }}>Yes</td>
+                                                    <td width="25%"><input class="margin-right:0.5rem" type="radio" name="solid_source" value="no" {{ $products->solid_source == 'no' ? 'checked' : '' }}>No</td>
                                                 </tr>
                                                 <tr>
                                                     <th width="50%">Is this direct Principal ?  ( Y/N )</th>
-                                                    <td width="25%"><input class="margin-right:0.5rem" type="checkbox" name="direct_principal" value="yes" {{ $products->direct_principal == 'yes' ? 'checked' : '' }}>Yes</td>
-                                                    <td width="25%"><input class="margin-right:0.5rem" type="checkbox" name="direct_principal" value="no" {{ $products->direct_principal == 'no' ? 'checked' : '' }}>No</td>
+                                                    <td width="25%"><input class="margin-right:0.5rem" type="radio" name="direct_principal" value="yes" {{ $products->direct_principal == 'yes' ? 'checked' : '' }}>Yes</td>
+                                                    <td width="25%"><input class="margin-right:0.5rem" type="radio" name="direct_principal" value="no" {{ $products->direct_principal == 'no' ? 'checked' : '' }}>No</td>
                                                 </tr>
                                                 <tr>
                                                     <th width="50%">Does it have Agreement ?  ( Y/N )</th>
-                                                    <td width="25%"><input class="margin-right:0.5rem" type="checkbox" name="agreement" value="yes" {{ $products->agreement == 'yes' ? 'checked' : '' }}>Yes</td>
-                                                    <td width="25%"><input class="margin-right:0.5rem" type="checkbox" name="agreement" value="no" {{ $products->agreement == 'no' ? 'checked' : '' }}>No</td>
+                                                    <td width="25%"><input class="margin-right:0.5rem" type="radio" name="agreement" value="yes" {{ $products->agreement == 'yes' ? 'checked' : '' }}>Yes</td>
+                                                    <td width="25%"><input class="margin-right:0.5rem" type="radio" name="agreement" value="no" {{ $products->agreement == 'no' ? 'checked' : '' }}>No</td>
                                                 </tr>
                                                 <tr>
                                                     <th width="65%">Source Type :</th>

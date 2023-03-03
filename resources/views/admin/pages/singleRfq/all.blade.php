@@ -1,219 +1,6 @@
 @extends('admin.master')
 @section('content')
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <div class="content-wrapper">
-
-        <!-- Inner content -->
-
-
-        <!-- Page header -->
-        <div class="page-header page-header-light shadow">
-
-
-            <div class="page-header-content d-lg-flex border-top">
-                <div class="d-flex">
-                    <div class="breadcrumb py-2">
-                        <a href="index.html" class="breadcrumb-item"><i class="ph-house"></i></a>
-                        <a href="{{ route('admin.dashboard') }}" class="breadcrumb-item">Home</a>
-                        <span class="breadcrumb-item active">RFQ Management</span>
-                    </div>
-
-                    <a href="#breadcrumb_elements"
-                        class="btn btn-light align-self-center collapsed d-lg-none border-transparent rounded-pill p-0 ms-auto"
-                        data-bs-toggle="collapse">
-                        <i class="ph-caret-down collapsible-indicator ph-sm m-1"></i>
-                    </a>
-                </div>
-            </div>
-        </div>
-        <!-- /page header -->
-        <!-- Content area -->
-        <div class="content">
-
-                <article class="card">
-                    <header class="card-header text-center"> <h6 class="m-0 p-0">RFQ Code: OD45345345435</h6> </header>
-                    <div class="card-body">
-
-                        <article class="card">
-                            <div class="card-body row">
-
-                                    <div class="col-lg-6 mb-3">
-                                        <table class="table table-bordered table-striped p-1">
-                                            <thead>
-                                                <tr class="expand-switch2" style="background: rgb(0, 0, 0); padding-top:8px;padding-bottom:8px;">
-                                                    <th width="76%" colspan="3" class="text-white" style="border:none; font-size:18px !important; padding-top:8px !important;padding-bottom:8px !important;">
-                                                        <i class="icon2 fa fa-plus mx-3"></i> Client Details</th>
-                                                </tr>
-
-                                            </thead>
-                                            <tbody class="expand-div2 d-none">
-                                                <tr>
-                                                    <th width="33%" style="padding:8px !important;font-size:15px !important;">
-                                                        Client Type : {{ ucfirst($rfq_details->client_type) }}
-                                                    </th>
-                                                    <th width="33%" style="padding:8px !important;font-size:15px !important;">
-                                                        Name : {{ ucfirst($rfq_details->name) }}
-                                                    </th>
-                                                    <th width="33%" style="padding:8px !important;font-size:15px !important;">
-                                                        Company Name : {{ ucfirst($rfq_details->company_name) }}
-                                                </th>
-                                                </tr>
-
-                                                <tr>
-                                                    <th style="padding:8px !important;font-size:15px !important;">Asking Quantity : @if (App\Models\Admin\DealSas::where('rfq_id' , $rfq_details->id)->sum('qty') > 0)
-                                                            {{App\Models\Admin\DealSas::where('rfq_id' , $rfq_details->id)->sum('qty')}}
-                                                        @else
-                                                        {{ $rfq_details->qty}}
-                                                        @endif
-                                                    </th>
-                                                    <th style="padding:8px !important;font-size:15px !important;">Phone Number : {{ $rfq_details->phone }}</th>
-                                                    <th style="padding:8px !important;font-size:15px !important;">
-                                                        Total Price : $ {{App\Models\Admin\DealSas::where('rfq_id' , $rfq_details->id)->value('grand_total')}}
-                                                    </th>
-                                                </tr>
-                                                <tr>
-                                                    <th colspan="2" style="padding:8px !important;font-size:15px !important;">
-                                                        Assigned Sales Manager (L1) : {{ App\Models\User::where('id',$rfq_details->sales_man_id_L1)->value('name') }} <br>
-                                                        @if ($rfq_details->sales_man_id_T1)
-                                                        Assigned Sales Manager (T1) : {{ App\Models\User::where('id',$rfq_details->sales_man_id_T1)->value('name') }} <br>
-                                                        @endif
-                                                        @if ($rfq_details->sales_man_id_T2)
-                                                            Assigned Sales Manager (T2) : {{ App\Models\User::where('id',$rfq_details->sales_man_id_T2)->value('name') }}
-                                                        @endif
-
-                                                    </th>
-                                                    <th style="padding:8px !important;font-size:15px !important;">
-                                                        Status : <span class="badge bg-success p-1">{{ucfirst(($rfq_details->status))}}</span>
-                                                    </th>
-
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                    <div class="col-lg-6">
-                                        <div class="table-responsive">
-                                            <table class="table table-bordered">
-                                                <thead>
-                                                    <tr class="expand-switch" style="background: rgb(0, 0, 0); padding-top:8px;padding-bottom:8px;">
-                                                        <th width="76%" colspan="2" class="text-white" style="border:none; font-size:18px !important; padding-top:8px !important;padding-bottom:8px !important;">
-                                                            <i class="icon3 fa fa-plus mx-3"></i> Product Details</th>
-                                                        <th width="24%" class="text-center" style="border:none;">
-                                                            <a href="javascript:void(0);" class="text-white" title="Show SAS"
-                                                            data-bs-toggle="modal"
-                                                            data-bs-target="#show-sas">
-                                                                <i class="icon-eye"></i>
-                                                            </a>
-                                                        </th>
-                                                    </tr>
-
-                                                </thead>
-                                                <tbody class="expand-div d-none">
-                                                    @if (count($deal_products) > 0)
-                                                        <tr class="text-center">
-                                                            <td width="60%"> Product Name</td>
-                                                            <td width="20%"> Quantity </td>
-                                                            <td width="20%"> Sale Price </td>
-                                                        </tr>
-
-                                                        @foreach ($deal_products as $item)
-                                                        <tr>
-                                                            <th><a href="javascript:void(0);" title="{{$item->item_name}}">{{ Str::limit($item->item_name,28) }}</a></th>
-                                                            <th>{{$item->qty}}</th>
-                                                            <th>{{$item->sub_total_cost}}</th>
-                                                        </tr>
-                                                        @endforeach
-                                                    @else
-
-                                                    @endif
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                    </div>
-
-
-                            </div>
-                        </article>
-                        <div class="track">
-                            <div class="step active"> <span class="icon"> <i class="fa fa-check"></i>
-                                </span> <span class="text">RFQ Created</span> </div>
-                            <div class="step active"> <span class="icon"> <i class="fa fa-user"></i>
-                                </span> <span class="text"> Salesman Assigned</span> </div>
-                            <div class="step active"> <span class="icon"> <i class="fa fa-truck"></i> </span>
-                                <span class="text"> Deal Created </span> </div>
-                            <div class="step"> <span class="icon"> <i class="fa fa-box"></i> </span>
-                                <span class="text">SAS Created</span> </div>
-                            <div class="step active"> <span class="icon"> <i class="fa fa-user"></i>
-                                </span> <span class="text"> SAS Approved</span> </div>
-                            <div class="step active"> <span class="icon"> <i class="fa fa-truck"></i> </span>
-                                <span class="text"> Quotation Sent </span> </div>
-                            <div class="step"> <span class="icon"> <i class="fa fa-box"></i> </span>
-                                <span class="text">Work Order Uploaded</span> </div>
-                            <div class="step"> <span class="icon"> <i class="fa fa-box"></i> </span>
-                                <span class="text">Invoice Sent</span> </div>
-                            <div class="step"> <span class="icon"> <i class="fa fa-box"></i> </span>
-                                <span class="text">Proof of Payment Uploaded</span> </div>
-                        </div>
-                        <hr>
-                        <ul class="row">
-                            <li class="col-md-4">
-                                <figure class="itemside mb-3">
-                                    <div class="aside"><img src="https://i.imgur.com/iDwDQ4o.png"
-                                            class="img-sm border"></div>
-                                    <figcaption class="info align-self-center">
-                                        <p class="title">Dell Laptop with 500GB HDD <br> 8GB RAM</p> <span
-                                            class="text-muted">$950 </span>
-                                    </figcaption>
-                                </figure>
-                            </li>
-                            <li class="col-md-4">
-                                <figure class="itemside mb-3">
-                                    <div class="aside"><img src="https://i.imgur.com/tVBy5Q0.png"
-                                            class="img-sm border"></div>
-                                    <figcaption class="info align-self-center">
-                                        <p class="title">HP Laptop with 500GB HDD <br> 8GB RAM</p> <span
-                                            class="text-muted">$850 </span>
-                                    </figcaption>
-                                </figure>
-                            </li>
-                            <li class="col-md-4">
-                                <figure class="itemside mb-3">
-                                    <div class="aside"><img src="https://i.imgur.com/Bd56jKH.png"
-                                            class="img-sm border"></div>
-                                    <figcaption class="info align-self-center">
-                                        <p class="title">ACER Laptop with 500GB HDD <br> 8GB RAM</p> <span
-                                            class="text-muted">$650 </span>
-                                    </figcaption>
-                                </figure>
-                            </li>
-                        </ul>
-                        <hr>
-                        <a href="#" class="btn btn-warning" data-abc="true"> <i
-                                class="fa fa-chevron-left"></i> Back to orders</a>
-                    </div>
-                </article>
-
-        </div>
-
-    </div>
-    <!-- /content area -->
-    <!-- /inner content -->
-
-    </div>
-@endsection
-
 <style>
-
-
-    .card-header:first-child {
-        border-radius: calc(0.37rem - 1px) calc(0.37rem - 1px) 0 0
-    }
-
-    .card-header {
-        padding: 0.75rem 1.25rem;
-        margin-bottom: 0;
-        background-color: #fff;
-        border-bottom: 1px solid rgba(0, 0, 0, 0.1)
-    }
 
     .track {
         position: relative;
@@ -223,21 +10,20 @@
         display: -ms-flexbox;
         display: flex;
         margin-bottom: 60px;
-        margin-top: 50px
+        margin-top: 50px;
     }
-
     .track .step {
-        -webkit-box-flex: 1;
-        -ms-flex-positive: 1;
-        flex-grow: 1;
-        width: 25%;
-        margin-top: -18px;
-        text-align: center;
-        position: relative
+    -webkit-box-flex: 1;
+    -ms-flex-positive: 1;
+    flex-grow: 1;
+    width: 25%;
+    margin-top: -18px;
+    text-align: center;
+    position: relative
     }
 
     .track .step.active:before {
-        background: #FF5722
+        background: #09bb20
     }
 
     .track .step::before {
@@ -250,7 +36,7 @@
     }
 
     .track .step.active .icon {
-        background: #ee5435;
+        background: #09bb20;
         color: #fff
     }
 
@@ -261,7 +47,8 @@
         line-height: 40px;
         position: relative;
         border-radius: 100%;
-        background: #ddd
+        background: #ddd;
+        color: #ff2b00;
     }
 
     .track .step.active .text {
@@ -329,7 +116,1092 @@
         border-color: #ff2b00;
         border-radius: 1px
     }
+
 </style>
+
+    <div class="content-wrapper">
+
+        <!-- Inner content -->
+
+
+        <!-- Page header -->
+        <div class="page-header page-header-light shadow">
+
+
+            <div class="page-header-content d-lg-flex border-top">
+                <div class="d-flex">
+                    <div class="breadcrumb py-2">
+                        <a href="index.html" class="breadcrumb-item"><i class="ph-house"></i></a>
+                        <a href="{{ route('admin.dashboard') }}" class="breadcrumb-item">Home</a>
+                        <span class="breadcrumb-item active">RFQ Management</span>
+                    </div>
+
+                    <a href="#breadcrumb_elements"
+                        class="btn btn-light align-self-center collapsed d-lg-none border-transparent rounded-pill p-0 ms-auto"
+                        data-bs-toggle="collapse">
+                        <i class="ph-caret-down collapsible-indicator ph-sm m-1"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <!-- /page header -->
+        <!-- Content area -->
+        <div class="content">
+
+                <article class="card">
+                    <header class="card-header text-center"> <h6 class="m-0 p-0">RFQ Code: {{$rfq_details->rfq_code}}</h6> </header>
+                    <div class="card-body">
+
+                        <article class="card">
+                            <div class="card-body row">
+
+                                    <div class="col-lg-6 mb-3">
+                                        <table class="table table-bordered table-striped p-1">
+                                            <thead>
+                                                <tr class="expand-switch2" style="background: rgb(0, 0, 0); padding-top:8px;padding-bottom:8px;">
+                                                    <th width="76%" colspan="3" class="text-white" style="border:none; font-size:18px !important; padding-top:8px !important;padding-bottom:8px !important;">
+                                                        <i class="icon2 fa fa-plus mx-3"></i> Client Details</th>
+                                                </tr>
+
+                                            </thead>
+                                            <tbody class="expand-div2 d-none">
+                                                <tr>
+                                                    <th width="33%" style="padding:8px !important;font-size:15px !important;">
+                                                        Client Type : {{ ucfirst($rfq_details->client_type) }}
+                                                    </th>
+                                                    <th width="33%" style="padding:8px !important;font-size:15px !important;">
+                                                        Name : {{ ucfirst($rfq_details->name) }}
+                                                    </th>
+                                                    <th width="33%" style="padding:8px !important;font-size:15px !important;">
+                                                        Company Name : {{ ucfirst($rfq_details->company_name) }}
+                                                </th>
+                                                </tr>
+
+                                                <tr>
+                                                    <th style="padding:8px !important;font-size:15px !important;">Asking Quantity : @if (App\Models\Admin\DealSas::where('rfq_id' , $rfq_details->id)->sum('qty') > 0)
+                                                            {{App\Models\Admin\DealSas::where('rfq_id' , $rfq_details->id)->sum('qty')}}
+                                                        @else
+                                                        {{ $rfq_details->qty}}
+                                                        @endif
+                                                    </th>
+                                                    <th style="padding:8px !important;font-size:15px !important;">Phone Number : {{ $rfq_details->phone }}</th>
+                                                    <th style="padding:8px !important;font-size:15px !important;">
+                                                        Total Price : $ {{App\Models\Admin\DealSas::where('rfq_id' , $rfq_details->id)->value('grand_total')}}
+                                                    </th>
+                                                </tr>
+                                                <tr>
+                                                    <th colspan="2" style="padding:8px !important;font-size:15px !important;">
+                                                        Assigned Sales Manager (L1) : {{ App\Models\User::where('id',$rfq_details->sales_man_id_L1)->value('name') }} <br>
+                                                        @if ($rfq_details->sales_man_id_T1)
+                                                        Assigned Sales Manager (T1) : {{ App\Models\User::where('id',$rfq_details->sales_man_id_T1)->value('name') }} <br>
+                                                        @endif
+                                                        @if ($rfq_details->sales_man_id_T2)
+                                                            Assigned Sales Manager (T2) : {{ App\Models\User::where('id',$rfq_details->sales_man_id_T2)->value('name') }}
+                                                        @endif
+
+                                                    </th>
+                                                    <th style="padding:8px !important;font-size:15px !important;">
+                                                        Status : <span class="badge bg-success p-1">{{ucfirst(($rfq_details->status))}}</span>
+                                                    </th>
+
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="table-responsive">
+                                            <table class="table table-bordered">
+                                                <thead>
+                                                    <tr class="expand-switch" style="background: rgb(0, 0, 0); padding-top:8px;padding-bottom:8px;">
+                                                        <th width="76%" colspan="2" class="text-white" style="border:none; font-size:18px !important; padding-top:8px !important;padding-bottom:8px !important;">
+                                                            <i class="icon3 fa fa-plus mx-3"></i> Product Details</th>
+                                                        <th width="24%" class="text-center" style="border:none;">
+                                                            @if ($rfq_details->status == 'rfq_created')
+                                                            @elseif ($rfq_details->status == 'assigned')
+                                                            @elseif ($rfq_details->status == 'deal_created')
+                                                            @else
+                                                                <a href="javascript:void(0);" class="text-white" title="Show SAS"
+                                                                data-bs-toggle="modal"
+                                                                data-bs-target="#show-sas">
+                                                                    <i class="icon-eye"></i>
+                                                                </a>
+                                                            @endif
+                                                        </th>
+                                                    </tr>
+
+                                                </thead>
+                                                <tbody class="expand-div d-none">
+                                                    @if (count($deal_products) > 0)
+                                                        <tr class="text-center">
+                                                            <td width="60%"> Product Name</td>
+                                                            <td width="20%"> Quantity </td>
+                                                            <td width="20%"> Sale Price </td>
+                                                        </tr>
+
+                                                        @foreach ($deal_products as $item)
+                                                        <tr>
+                                                            <th><a href="javascript:void(0);" title="{{$item->item_name}}">{{ Str::limit($item->item_name,28) }}</a></th>
+                                                            <th>{{$item->qty}}</th>
+                                                            <th>{{$item->sub_total_cost}}</th>
+                                                        </tr>
+                                                        @endforeach
+                                                    @else
+
+                                                    @endif
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+
+
+                            </div>
+                        </article>
+                        <div class="table-responsive" style="height:10rem;">
+                            <div class="track">
+                                <div class="step
+                                    {{ $rfq_details->status == 'rfq_created' ? 'active' : ''  }}
+                                    {{ $rfq_details->status == 'assigned' ? 'active' : ''  }}
+                                    {{ $rfq_details->status == 'deal_created' ? 'active' : ''  }}
+                                    {{ $rfq_details->status == 'sas_created' ? 'active' : ''  }}
+                                    {{ $rfq_details->status == 'sas_approved' ? 'active' : ''  }}
+                                    {{ $rfq_details->status == 'quoted' ? 'active' : ''  }}
+                                    {{ $rfq_details->status == 'workorder_uploaded' ? 'active' : ''  }}
+                                    {{ $rfq_details->status == 'proof_of_payment_uploaded' ? 'active' : ''  }}
+                                ">
+
+                                    <span class="icon">
+                                        @if ($rfq_details->status == 'rfq_created')
+                                            <i class="fa fa-check"></i>
+                                        @elseif ($rfq_details->status == 'assigned')
+                                            <i class="fa fa-check"></i>
+                                        @elseif ($rfq_details->status == 'deal_created')
+                                            <i class="fa fa-check"></i>
+                                        @elseif ($rfq_details->status == 'sas_created')
+                                            <i class="fa fa-check"></i>
+                                        @elseif ($rfq_details->status == 'sas_approved')
+                                            <i class="fa fa-check"></i>
+                                        @elseif ($rfq_details->status == 'quoted')
+                                            <i class="fa fa-check"></i>
+                                        @elseif ($rfq_details->status == 'workorder_uploaded')
+                                            <i class="fa fa-check"></i>
+                                        @elseif ($rfq_details->status == 'proof_of_payment_uploaded')
+                                            <i class="fa fa-check"></i>
+                                        @else
+                                            <i class="fa fa-times"></i>
+                                        @endif
+
+                                    </span>
+                                    <span class="text">RFQ Created</span>
+                                </div>
+
+                                <div class="step
+                                {{ $rfq_details->status == 'assigned' ? 'active' : ''  }}
+                                {{ $rfq_details->status == 'deal_created' ? 'active' : ''  }}
+                                {{ $rfq_details->status == 'sas_created' ? 'active' : ''  }}
+                                {{ $rfq_details->status == 'sas_approved' ? 'active' : ''  }}
+                                {{ $rfq_details->status == 'quoted' ? 'active' : ''  }}
+                                {{ $rfq_details->status == 'workorder_uploaded' ? 'active' : ''  }}
+                                {{ $rfq_details->status == 'proof_of_payment_uploaded' ? 'active' : ''  }}
+                                ">
+                                    <span class="icon">
+                                        @if (($rfq_details->status) == 'assigned')
+                                            <i class="fa fa-check"></i>
+                                        @elseif ($rfq_details->status == 'deal_created')
+                                        <i class="fa fa-check"></i>
+                                        @elseif ($rfq_details->status == 'sas_created')
+                                            <i class="fa fa-check"></i>
+                                        @elseif ($rfq_details->status == 'sas_approved')
+                                            <i class="fa fa-check"></i>
+                                        @elseif ($rfq_details->status == 'quoted')
+                                            <i class="fa fa-check"></i>
+                                        @elseif ($rfq_details->status == 'workorder_uploaded')
+                                            <i class="fa fa-check"></i>
+                                        @elseif ($rfq_details->status == 'proof_of_payment_uploaded')
+                                            <i class="fa fa-check"></i>
+
+                                        @else
+                                            <i class="fa fa-times"></i>
+
+                                        @endif
+                                    </span>
+                                    <span class="text"> Salesman Assigned</span>
+                                    <span class="text">@if ($rfq_details->status == 'rfq_created')
+                                        <a href="javascript:void(0);" class="text-primary mx-3 mx-3"
+                                            data-bs-toggle="modal" title="View & Assign Sales Manager"
+                                            data-bs-target="#assign-manager-{{ $rfq_details->rfq_code }}">
+                                            <i class="icon-user-check icon-1x"></i>
+                                        </a>
+                                        @endif
+                                    </span>
+                                </div>
+
+                                <div class="step
+                                    {{ $rfq_details->status == 'deal_created' ? 'active' : ''  }}
+                                    {{ $rfq_details->status == 'sas_created' ? 'active' : ''  }}
+                                    {{ $rfq_details->status == 'sas_approved' ? 'active' : ''  }}
+                                    {{ $rfq_details->status == 'quoted' ? 'active' : ''  }}
+                                    {{ $rfq_details->status == 'workorder_uploaded' ? 'active' : ''  }}
+                                    {{ $rfq_details->status == 'proof_of_payment_uploaded' ? 'active' : ''  }}
+                                        ">
+                                    <span class="icon">
+                                        @if ($rfq_details->status == 'deal_created')
+                                            <i class="fa fa-check"></i>
+
+                                            @elseif ($rfq_details->status == 'sas_created')
+                                            <i class="fa fa-check"></i>
+                                        @elseif ($rfq_details->status == 'sas_approved')
+                                            <i class="fa fa-check"></i>
+                                        @elseif ($rfq_details->status == 'quoted')
+                                            <i class="fa fa-check"></i>
+                                        @elseif ($rfq_details->status == 'workorder_uploaded')
+                                            <i class="fa fa-check"></i>
+                                        @elseif ($rfq_details->status == 'proof_of_payment_uploaded')
+                                            <i class="fa fa-check"></i>
+                                        @else
+                                            <i class="fa fa-times"></i>
+
+                                        @endif
+                                    </span>
+                                    <span class="text"> Deal Created </span>
+                                    <span class="text">
+                                            @if ($rfq_details->status == 'assigned')
+                                            <a href="{{ route('deal.convert', [$rfq_details->id]) }}"
+                                                class="text-success mx-3 mx-3" title="Convert To Deal">
+                                                <i class="icon-pen-plus icon-1x"></i>
+                                            </a>
+                                        @endif
+                                    </span>
+                                </div>
+
+                                <div class="step
+                                    {{ $rfq_details->status == 'sas_created' ? 'active' : ''  }}
+                                    {{ $rfq_details->status == 'sas_approved' ? 'active' : ''  }}
+                                    {{ $rfq_details->status == 'quoted' ? 'active' : ''  }}
+                                    {{ $rfq_details->status == 'workorder_uploaded' ? 'active' : ''  }}
+                                    {{ $rfq_details->status == 'proof_of_payment_uploaded' ? 'active' : ''  }}
+                                    ">
+                                    <span class="icon">
+                                        @if ($rfq_details->status == 'sas_created')
+                                        <i class="fa fa-check"></i>
+                                        @elseif ($rfq_details->status == 'sas_approved')
+                                            <i class="fa fa-check"></i>
+                                        @elseif ($rfq_details->status == 'quoted')
+                                            <i class="fa fa-check"></i>
+                                        @elseif ($rfq_details->status == 'workorder_uploaded')
+                                            <i class="fa fa-check"></i>
+                                        @elseif ($rfq_details->status == 'proof_of_payment_uploaded')
+                                            <i class="fa fa-check"></i>
+                                        @else
+                                            <i class="fa fa-times"></i>
+                                        @endif
+                                    </span>
+                                    <span class="text">SAS Created</span>
+                                    <span class="text">
+                                        @if ($rfq_details->status == 'deal_created')
+                                            <a href="{{ route('deal-sas.show',$rfq_details->rfq_code) }}" class="text-success mx-3 mx-3"
+                                                title="Create SAS">
+                                                <i class="icon-file-plus2 icon-1x"></i>
+                                            </a>
+                                        @endif
+                                    </span>
+
+                                </div>
+
+                                <div class="step
+                                    {{ $rfq_details->status == 'sas_approved' ? 'active' : ''  }}
+                                    {{ $rfq_details->status == 'quoted' ? 'active' : ''  }}
+                                    {{ $rfq_details->status == 'workorder_uploaded' ? 'active' : ''  }}
+                                    {{ $rfq_details->status == 'proof_of_payment_uploaded' ? 'active' : ''  }}
+                                    ">
+                                    <span class="icon">
+                                        @if ($rfq_details->status == 'sas_approved')
+                                        <i class="fa fa-check"></i>
+                                        @elseif ($rfq_details->status == 'quoted')
+                                            <i class="fa fa-check"></i>
+                                        @elseif ($rfq_details->status == 'workorder_uploaded')
+                                            <i class="fa fa-check"></i>
+                                        @elseif ($rfq_details->status == 'proof_of_payment_uploaded')
+                                            <i class="fa fa-check"></i>
+                                        @else
+                                            <i class="fa fa-times"></i>
+                                        @endif
+                                    </span>
+                                    <span class="text"> SAS Approved</span>
+                                    <span class="text">
+                                        @if ($rfq_details->status == 'sas_created')
+                                            <a href="{{ route('deal-sas.edit',$rfq_details->rfq_code) }}" class="text-info mx-2" title="Edit Sas">
+                                                <i class="icon-pencil icon-1x"></i>
+                                            </a>
+                                            <a href="{{ route('dealsasapprove',$rfq_details->rfq_code) }}" class="text-warning mx-3 mx-3" title="Approve Sas">
+                                                <i class="mi-check-circle mi-1x"></i>
+                                            </a>
+                                        @endif
+                                    </span>
+                                </div>
+
+                                <div class="step
+                                    {{ $rfq_details->status == 'quoted' ? 'active' : ''  }}
+                                    {{ $rfq_details->status == 'workorder_uploaded' ? 'active' : ''  }}
+                                    {{ $rfq_details->status == 'proof_of_payment_uploaded' ? 'active' : ''  }}
+                                    ">
+                                    <span class="icon">
+                                        @if ($rfq_details->status == 'quoted')
+                                        <i class="fa fa-check"></i>
+                                        @elseif ($rfq_details->status == 'workorder_uploaded')
+                                            <i class="fa fa-check"></i>
+                                        @elseif ($rfq_details->status == 'proof_of_payment_uploaded')
+                                            <i class="fa fa-check"></i>
+                                        @else
+                                            <i class="fa fa-times"></i>
+                                        @endif
+                                    </span>
+                                    <span class="text"> Quotation Sent </span>
+                                    <span class="text">
+                                        @if ($rfq_details->status == 'sas_approved')
+                                            <a href="javascript:void(0);" class="text-primary mx-3 mx-3"
+                                                data-bs-toggle="modal" title="Send Quotation"
+                                                data-bs-target="#quotation-send-{{ $rfq_details->rfq_code }}">
+                                                <i class="icon-paperplane icon-1x"></i>
+                                            </a>
+                                        @endif
+                                    </span>
+                                </div>
+
+                                <div class="step
+                                {{ $rfq_details->status == 'workorder_uploaded' ? 'active' : ''  }}
+                                {{ $rfq_details->status == 'proof_of_payment_uploaded' ? 'active' : ''  }}
+                                ">
+                                    <span class="icon">
+                                        @if ($rfq_details->status == 'workorder_uploaded')
+                                        <i class="fa fa-check"></i>
+                                        @elseif ($rfq_details->status == 'proof_of_payment_uploaded')
+                                            <i class="fa fa-check"></i>
+                                        @else
+                                            <i class="fa fa-times"></i>
+                                        @endif
+                                    </span>
+                                    <span class="text">Work Order Uploaded</span>
+                                </div>
+
+
+
+                                <div class="step
+                                    {{ $rfq_details->status == 'invoice_sent' ? 'active' : ''  }}
+                                    ">
+                                    <span class="icon">
+                                        @if ($rfq_details->status == 'invoice_sent')
+                                        <i class="fa fa-check"></i>
+                                        @else
+                                            <i class="fa fa-times"></i>
+                                        @endif
+                                    </span>
+                                    <span class="text">Invoice Sent</span>
+                                </div>
+
+                                <div class="step {{ $rfq_details->status == 'proof_of_payment_uploaded' ? 'active' : ''  }}
+                                    ">
+                                    <span class="icon">
+                                        @if ($rfq_details->status == 'proof_of_payment_uploaded')
+                                        <i class="fa fa-check"></i>
+                                        @else
+                                            <i class="fa fa-times"></i>
+                                        @endif
+                                    </span>
+                                    <span class="text">Proof of Payment Uploaded</span>
+                                </div>
+                            </div>
+                        </div>
+                        <hr>
+                        <ul class="row">
+                            <li class="col-md-4 text-center">
+                                <div class="row text-center">
+                                    <figcaption class="info align-self-center">
+                                        <p class="title"><strong>Sales</strong></p>
+                                        @if ($rfq_details->status == 'sale_completed')
+                                            <span class="badge bg-success">Sale Completed</span>
+                                        @else
+                                            <span class="badge bg-warning">On Going</span>
+                                        @endif
+                                    </figcaption>
+
+                                    <div class="table-respnsive">
+
+                                    </div>
+                                </div>
+
+                            </li>
+                            <li class="col-md-4">
+                                <figure class="itemside mb-3">
+
+                                    <figcaption class="info align-self-center">
+                                        <p class="title"><strong>Accounts</strong></p>
+                                    </figcaption>
+                                </figure>
+                            </li>
+                            <li class="col-md-4">
+                                <figure class="itemside mb-3">
+
+                                    <figcaption class="info align-self-center">
+                                        <p class="title"><strong>Purchase</strong></p> 
+                                    </figcaption>
+                                </figure>
+                            </li>
+                        </ul>
+
+
+                    </div>
+                </article>
+
+        </div>
+
+    </div>
+    <!-- /content area -->
+    <!-- /inner content -->
+
+    </div>
+
+    <!-------Modals----->
+
+    <!---Deal Show modal--->
+    <div id="show-deals-{{ $rfq_details->rfq_code }}" class="modal fade" tabindex="-1" style="display: none;" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    @php
+                        $rfq_details = App\Models\Admin\Rfq::where('rfq_code', $rfq_details->rfq_code)->first();
+                        $deal_products = App\Models\Admin\DealSas::where('rfq_code', $rfq_details->rfq_code)->get();
+                    @endphp
+                    <h5 class="modal-title">Deal Details : {{ $rfq_details->rfq_code }}</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+
+                <div class="modal-body border br-7">
+
+
+                        <div class="row mb-3">
+                            <div class="card">
+
+                                <div class="row">
+                                    <table class="table table-bordered table-striped p-1">
+                                        <thead>
+                                            <tr>
+                                                <th>
+                                                    Client Type : {{ ucfirst($rfq_details->client_type) }}
+                                                </th>
+                                                <th>
+                                                    Name : {{ ucfirst($rfq_details->name) }}
+                                                </th>
+                                                <th>
+                                                    Company Name : {{ ucfirst($rfq_details->company_name) }}
+                                            </th>
+                                            </tr>
+
+                                            <tr>
+                                                <th>Asking Quantity : @if (App\Models\Admin\DealSas::where('rfq_id' , $rfq_details->id)->sum('qty') > 0)
+                                                        {{App\Models\Admin\DealSas::where('rfq_id' , $rfq_details->id)->sum('qty')}}
+                                                    @else
+                                                    {{ $rfq_details->qty}}
+                                                    @endif
+                                                </th>
+                                                <th>Phone Number : {{ $rfq_details->phone }}</th>
+                                                <th>
+                                                    Total Price : $ {{App\Models\Admin\DealSas::where('rfq_id' , $rfq_details->id)->value('grand_total')}}
+                                                </th>
+                                            </tr>
+                                            <tr>
+                                                <th>
+                                                    Assigned Sales Manager (L1) : {{ App\Models\User::where('id',$rfq_details->sales_man_id_L1)->value('name') }} <br>
+                                                    @if ($rfq_details->sales_man_id_T1)
+                                                    Assigned Sales Manager (T1) : {{ App\Models\User::where('id',$rfq_details->sales_man_id_T1)->value('name') }} <br>
+                                                    @endif
+                                                    @if ($rfq_details->sales_man_id_T2)
+                                                        Assigned Sales Manager (T2) : {{ App\Models\User::where('id',$rfq_details->sales_man_id_T2)->value('name') }}
+                                                    @endif
+
+                                                </th>
+                                                <th>
+                                                    Status : <span class="badge bg-success p-1">{{ucfirst(($rfq_details->status))}}</span>
+
+
+                                                </th>
+                                                <th></th>
+                                            </tr>
+
+                                        </thead>
+                                    </table>
+                                </div>
+                                <div class="row">
+                                    <table class="table table-bordered table-striped p-1">
+                                        <thead>
+                                            @if (count($deal_products) > 0)
+                                                <tr>
+                                                    <th> Product Name</th>
+                                                    <th> Quantity </th>
+                                                    <th> Sale Price </th>
+                                                </tr>
+
+                                                @foreach ($deal_products as $item)
+                                                <tr class="bg-gray text-white">
+                                                    <th>{{$item->item_name}}</th>
+                                                    <th>{{$item->qty}}</th>
+                                                    <th>{{$item->sub_total_cost}}</th>
+                                                </tr>
+                                                @endforeach
+                                            @else
+
+                                            @endif
+
+
+
+
+                                        </thead>
+                                    </table>
+                                </div>
+
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+    <!---Deal Show modal--->
+
+    <!---Assign Manager modal--->
+    <div id="assign-manager-{{ $rfq_details->rfq_code }}" class="modal fade"
+        tabindex="-1" style="display: none;" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    @php
+                        $rfq_details = App\Models\Admin\Rfq::where('rfq_code', $rfq_details->rfq_code)->first();
+                    @endphp
+                    <h5 class="modal-title">Assign Sales Manager For RFQ No : {{ $rfq_details->rfq_code }}</h5>
+                    <button type="button" class="btn-close"
+                        data-bs-dismiss="modal"></button>
+                </div>
+
+                <div class="modal-body border br-7">
+
+                    <form method="post"
+                        action="{{ route('assign.salesman', $rfq_details->rfq_code) }}"
+                        enctype="multipart/form-data">
+                        @csrf
+                        @method('PUT')
+                        <div class="row mb-3">
+                            <div class="card">
+                                <div class="row">
+                                    <table class="table table-bordered table-striped p-1">
+                                        <thead>
+                                            <tr>
+                                                <th>
+                                                    Client Type : {{ ucfirst($rfq_details->client_type) }}
+                                                </th>
+                                                <th>
+                                                    Name : {{ ucfirst($rfq_details->name) }}
+                                                </th>
+                                                <th>
+                                                    Company Name : {{ ucfirst($rfq_details->company_name) }}
+                                               </th>
+                                            </tr>
+                                            <tr>
+                                                <th colspan="3" style="background: #7e7d7c">
+                                                    <p class="text-center pt-1 text-white">Product Name : {{App\Models\Admin\Product::where('id' , $rfq_details->product_id)->value('name')}}</p>
+                                                </th>
+                                            </tr>
+                                            <tr>
+                                                <th>Asking Quantity : {{ $rfq_details->qty }}</th>
+                                                <th>Phone Number : {{ $rfq_details->phone }}</th>
+                                                <th>
+                                                    @if (($rfq_details->call) == 1)
+                                                        Need To be Called.
+                                                    @else
+
+                                                    @endif
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                    </table>
+                                </div>
+                                <div class="row p-2">
+                                    <div class="col-12">
+                                        Assign Sales Manager :
+                                        <a class="p-1 editRfquser" href="javascript:void(0);">
+                                            <i class="ph-note-pencil" aria-hidden="true"></i>
+                                        </a>
+                                    </div>
+                                    <div class="col-12 Rfquser" style="display:none">
+                                        <div class="row mb-3 p-2 border">
+                                            <div class="col-12">
+                                                <h5 class="text-center">Assigned Sales Manager</h5>
+                                            </div>
+
+                                            <div class="col-lg-4">
+                                                <div class="col-sm-12">
+                                                    <p class="mb-0">Sales Manager Name (Leader - L1) <span class="text-danger">*</span></p>
+                                                </div>
+                                                <div class="form-group text-secondary col-sm-12">
+                                                    <select name="sales_man_id_L1" class="form-control select"
+                                                        data-minimum-results-for-search="Infinity"
+                                                        data-placeholder="Choose  ">
+                                                        <option></option>
+                                                        @foreach ($users as $user)
+                                                            <option value="{{ $user->id }}">{{ $user->name }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-4">
+                                                <div class="col-sm-12">
+                                                    <p class="mb-0">Sales Manager Name (Team - T1)</p>
+                                                </div>
+                                                <div class="form-group text-secondary col-sm-12">
+                                                    <select name="sales_man_id_T1" class="form-control select"
+                                                        data-minimum-results-for-search="Infinity"
+                                                        data-placeholder="Choose  ">
+                                                        <option></option>
+                                                        @foreach ($users as $user)
+                                                            <option value="{{ $user->id }}">{{ $user->name }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-lg-4">
+                                                <div class="col-sm-12">
+                                                    <p class="mb-0">Sales Manager Name (Team - T2)</p>
+                                                </div>
+                                                <div class="form-group text-secondary col-sm-12">
+                                                    <select name="sales_man_id_T2" class="form-control select"
+                                                        data-minimum-results-for-search="Infinity"
+                                                        data-placeholder="Choose ">
+                                                        <option></option>
+                                                        @foreach ($users as $user)
+                                                            <option value="{{ $user->id }}">{{ $user->name }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+
+
+
+                        <div class="row">
+                            <div class="col-sm-3"></div>
+                            <div class="col-sm-9 text-secondary">
+                                <button type="submit"
+                                    class="btn btn-primary">Submit</button>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+    <!---Assign Manager modal--->
+    <!---Send Quotation modal--->
+    <div id="quotation-send-{{ $rfq_details->rfq_code }}" class="modal fade"
+        tabindex="-1" style="display: none;" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    @php
+                        $rfq_details = App\Models\Admin\Rfq::where('rfq_code', $rfq_details->rfq_code)->first();
+                        $deal_products = App\Models\Admin\DealSas::where('rfq_code', $rfq_details->rfq_code)->get();
+                    @endphp
+                    <h5 class="modal-title">Send Quotation : {{ $rfq_details->rfq_code }}</h5>
+                    <button type="button" class="btn-close"
+                        data-bs-dismiss="modal"></button>
+                </div>
+
+                <div class="modal-body border br-7">
+
+                    <form method="post"
+                        action="{{ route('quotation.send', $rfq_details->rfq_code) }}"
+                        enctype="multipart/form-data">
+                        @csrf
+                        @method('PUT')
+                        <div class="row mb-3">
+                            <div class="card">
+                                <div class="row">
+                                    <table class="table table-bordered table-striped p-1">
+                                        <thead>
+                                            <tr>
+                                                <th> Product Name</th>
+                                                <th> Quantity </th>
+                                                <th> Sale Price </th>
+                                            </tr>
+
+                                                @if ($deal_products)
+                                                    @foreach ($deal_products as $item)
+                                                    <tr class="bg-gray text-white">
+                                                        <th>{{$item->item_name}}</th>
+                                                        <th>{{$item->qty}}</th>
+                                                        <th>{{$item->sub_total_cost}}</th>
+                                                    </tr>
+                                                    @endforeach
+                                                @endif
+
+
+
+                                        </thead>
+                                    </table>
+                                </div>
+                                <div class="row">
+                                    <table class="table table-bordered table-striped p-1">
+                                        <thead>
+                                            <tr>
+                                                <th>
+                                                    Client Type : {{ ucfirst($rfq_details->client_type) }}
+                                                </th>
+                                                <th>
+                                                    Name : {{ ucfirst($rfq_details->name) }}
+                                                </th>
+                                                <th>
+                                                    Company Name : {{ ucfirst($rfq_details->company_name) }}
+                                               </th>
+                                            </tr>
+                                            {{-- <tr>
+                                                <th colspan="3" style="background: #7e7d7c">
+                                                    <p class="text-center pt-1 text-white">Product Name : {{App\Models\Admin\DealSas::where('id' , $rfq_details->product_id)->value('name')}}</p>
+                                                </th>
+                                            </tr> --}}
+                                            <tr>
+                                                <th>Asking Quantity : {{App\Models\Admin\DealSas::where('rfq_id' , $rfq_details->id)->sum('qty')}}</th>
+                                                <th>Phone Number : {{ $rfq_details->phone }}</th>
+                                                <th>
+                                                    Total Price : $ {{App\Models\Admin\DealSas::where('rfq_id' , $rfq_details->id)->value('grand_total')}}
+                                                </th>
+                                            </tr>
+                                            <tr>
+                                                <th>
+                                                    Assigned Sales Manager (L1) : {{ App\Models\User::where('id',$rfq_details->sales_man_id_L1)->value('name') }} <br>
+                                                    @if ($rfq_details->sales_man_id_T1)
+                                                    Assigned Sales Manager (T1) : {{ App\Models\User::where('id',$rfq_details->sales_man_id_T1)->value('name') }} <br>
+                                                    @endif
+                                                    @if ($rfq_details->sales_man_id_T2)
+                                                        Assigned Sales Manager (T2) : {{ App\Models\User::where('id',$rfq_details->sales_man_id_T2)->value('name') }}
+                                                    @endif
+
+                                                </th>
+                                                <th>
+                                                    Status : <span class="badge bg-success p-2">{{ucfirst(($rfq_details->status))}}</span>
+
+
+                                                </th>
+                                                <th></th>
+                                            </tr>
+                                            <tr>
+                                                <th colspan="3" style="background: #7e7d7c">
+                                                    <p class="text-center pt-1 text-white">Send Quotation To : <input type="email" name="email" id="" value="{{ $rfq_details->email }}"></p>
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                    </table>
+                                </div>
+
+                            </div>
+                        </div>
+
+
+
+
+                        <div class="row">
+                            <div class="col-sm-3"></div>
+                            <div class="col-sm-9 text-secondary">
+                                <button type="submit"
+                                    class="btn btn-primary">Send Quotation <i class="icon-paperplane ml-2"></i></button>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+    <!---Send Quotation modal--->
+    @if($sourcing !=null)
+    <div id="show-sas" class="modal fade" tabindex="-1" style="display: none;" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+
+                    <h5 class="modal-title">SAS Details : {{ $rfq_details->rfq_code }}</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+
+                <div class="modal-body border br-7">
+                    <div class="content">
+
+                        <div class="center d-none">
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" name="regular" value="1" id="flexRadioDefault1" {{ $rfq_details->regular == '1' ? 'checked' : '' }}>
+                                <label class="form-check-label" for="flexRadioDefault1">
+                                Regular Discount
+                                </label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" name="special" value="1" id="flexRadioDefault1" {{ $rfq_details->special == '1' ? 'checked' : '' }}>
+                                <label class="form-check-label" for="flexRadioDefault1">
+                                Special Discount
+                                </label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" name="tax_status" value="1" id="flexRadioDefault1" {{ $rfq_details->tax_status == '1' ? 'checked' : '' }}>
+                                <label class="form-check-label" for="flexRadioDefault1">
+                                Tax / VAT
+                                </label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="m-auto" style="width:80%;">
+                                        <div class="bg-dark mb-2">
+                                            <table class="text-center table table-hover br-7">
+                                                <thead>
+                                                    <tr class="br-7">
+                                                        <th class="text-white">RFQ Code :  {{ $rfq_details->rfq_code }}
+                                                            <input type="hidden" name="rfq_code" value="{{ $rfq_details->rfq_code }}">
+                                                            <input type="hidden" name="rfq_id" value="{{ $rfq_details->id }}">
+                                                        </th>
+                                                        <th class="text-white">SAS Create Date :
+                                                            {{$rfq_details->create_date}}
+
+                                                        </th>
+                                                        <th class="text-white text-center">
+                                                            This Deal is for our @if ($rfq_details->client_type == 'partner')
+                                                                Partner
+                                                            @else
+                                                                Client
+                                                            @endif
+                                                        </th>
+                                                    </tr>
+                                                </thead>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <div class="table-responsive">
+
+
+                                        <div class="mb-2">
+                                            <table class="text-center table table-bordered table-hover mb-3">
+                                                <thead>
+                                                    <tr class="bg-gray">
+                                                        <th width="40%">Item Name</th>
+                                                        <th width="10%">Quantity</th>
+                                                        <th width="10%">Unit Price</th>
+                                                        <th width="10%">Cost (Cog Price)</th>
+                                                        <th width="10%" class="rg_discount d-none">Regular Discount</th>
+                                                        <th width="10%" class="rg_discount d-none">Discounted Sales Price</th>
+                                                        <th width="10%">Unit Total</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @foreach ($deal_products as $item)
+
+                                                        <tr class="thd">
+                                                            <td class="border-none">
+                                                                {{ $item->item_name }}
+                                                            </td>
+
+                                                            <td class="border-none">
+                                                                {{ $item->qty }}
+                                                            </td>
+                                                            <td class="border-none">
+                                                                {{ $item->unit_price }}
+                                                            </td>
+                                                            <td class="border-none">
+                                                                {{ $item->cog_price }}
+                                                            </td>
+                                                            <td class="rg_discount d-none border-none">
+                                                                {{ $item->regular_discount }}
+                                                            </td>
+
+                                                            <td class="rg_discount d-none border-none">
+                                                                {{ $item->discounted_sales }}
+                                                            </td>
+                                                            <td class="border-none">
+                                                                {{ $item->sales_price }}
+                                                            </td>
+                                                        </tr>
+                                                    @endforeach
+                                                    <tr>
+
+
+                                                        <td class="border-none" width="45%" colspan="3">Sub Total</td>
+
+                                                        <td class="border-none">
+                                                            {{ $sourcing->sub_total_cost }}
+                                                        </td>
+                                                        <td class="rg_discount d-none border-none"></td>
+                                                        <td class="rg_discount d-none border-none">{{ $sourcing->sub_total_discounted_sales }}</td>
+
+                                                        <td class="border-none">{{ $sourcing->sub_total_sales }}</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+
+                                            <table class="text-center table table-bordered table-hover">
+                                                <thead>
+                                                    <tr class="special_discount d-none">
+                                                        <th class="border-none" colspan="5" width="67%">Special Discount</th>
+                                                        <th class="border-none">{{ $sourcing->special_discount }}  %</th>
+                                                        <th class="border-none">{{ $sourcing->special_discounted_sales }}</th>
+                                                    </tr>
+                                                    <tr class="tax d-none">
+
+                                                        <th class="border-none" colspan="5" width="67%">Tax/VAT</th>
+                                                        <th class="border-none">{{ $sourcing->tax }}  %</th>
+                                                        <th class="border-none">{{ $sourcing->tax_sales }}</th>
+                                                    </tr>
+                                                    <tr>
+
+                                                        <th class="border-none" colspan="5" width="67%">Grand Total (With Everything)</th>
+                                                        <th class="border-none" width="18%"></th>
+
+                                                        <th class="border-none" width="15%">{{ $sourcing->grand_total }}</th>
+                                                    </tr>
+                                                </thead>
+                                            </table>
+                                        </div>
+
+                                        <div class="m-auto" style="width:60%;">
+                                            <table class="text-center table table-bordered table-hover">
+                                                <tbody class="tb accordion padding text-center" id="accordion_expanded">
+                                                    <tr class="bg-dark accordion_expense">
+                                                        <td class="text-white" colspan="3">
+                                                            <i class="ph-arrow-down"></i>&nbsp;&nbsp; Expenses
+                                                        </td>
+                                                    </tr>
+
+                                                    <tr class="body_expense" style="display: none;">
+                                                        <td class="border-none" >Bank & Remittance Charge - (1.5%)</td>
+                                                        <td class="border-none">{{ $sourcing->bank_charge }}%
+                                                        </td>
+
+                                                    </tr>
+
+                                                    <tr class="body_expense" style="display: none;">
+                                                        <td class="border-none">Customs & Duty - (5.0%)</td>
+                                                        <td class="border-none">{{ $sourcing->customs }} %
+                                                        </td>
+
+                                                    </tr>
+
+                                                    <tr class="body_expense" style="display: none;">
+                                                        <td class="border-none">HR , Office & Utility Cost- (5.0%)</td>
+                                                        <td class="border-none">{{ $sourcing->utility_cost }} %
+                                                        </td>
+
+                                                    </tr>
+
+                                                    <tr class="body_expense" style="display: none;">
+                                                        <td class="border-none">Shipping & Handling Cost- (5.0%)</td>
+                                                        <td class="border-none">{{ $sourcing->shiping_cost }} %
+                                                    </tr>
+
+                                                    <tr class="body_expense" style="display: none;">
+                                                        <td class="border-none">Sales / Consultancy Comission - (5.0%)</td>
+                                                        <td class="border-none">{{ $sourcing->sales_comission }} %
+                                                        </td>
+                                                    </tr>
+
+                                                    <tr class="body_expense" style="display: none;">
+                                                        <td class="border-none">Bank Loan / Liability / Debt - (5.0%)</td>
+                                                        <td class="border-none">{{ $sourcing->liability }} %
+                                                        </td>
+                                                    </tr>
+
+                                                    <tr class="bg-dark accordion_offer">
+                                                        <td class="border-none text-white" colspan="3">
+                                                            <i class="ph-arrow-down"></i>&nbsp;&nbsp;
+                                                            Offering Value Adding
+                                                        </td>
+                                                    </tr>
+
+                                                    <tr class="body_offer" style="display: none;">
+                                                        <td class="border-none">Deal Closing / Rebates</td>
+                                                        <td class="border-none">{{ $sourcing->rebates }} %
+                                                        </td>
+                                                    </tr>
+
+                                                    <tr class="bg-dark accordion_other">
+                                                        <td class="border-none text-white" colspan="3">
+                                                            <i class="ph-arrow-down"></i>&nbsp;&nbsp;
+                                                            Other Income
+                                                        </td>
+                                                    </tr>
+
+                                                    <tr class="body_other" style="display: none;">
+                                                        <td class="border-none">Loan / Capital / Partner Share - (5%)</td>
+                                                        <td class="border-none">{{ $sourcing->capital_share }} %</td>
+                                                    </tr>
+
+                                                    <tr class="body_other" style="display: none;">
+                                                        <td class="border-none">Management Cost - (5%)</td>
+                                                        <td class="border-none">{{ $sourcing->management_cost }} %</td>
+                                                    </tr>
+
+                                                    <tr>
+                                                        <td class="border-none">Gross Profit (%) between Sales and Cost</td>
+                                                        <td class="border-none">{{ $sourcing->gross_profit_subtotal }} %</td>
+                                                        <td class="border-none">$
+                                                            {{ $sourcing->gross_profit_amount }}
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="border-none">Net Profit - (5%)</td>
+                                                        <td class="border-none">
+                                                            {{ $sourcing->net_profit_percentage }} %
+                                                        </td>
+                                                        <td class="border-none">$ {{ $sourcing->net_profit_amount }}
+                                                            </td>
+                                                    </tr>
+
+                                                </tbody>
+                                            </table>
+                                        </div>
+
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+    @endif
+
+
+
+
+
+
+
+
+
+
+@endsection
+
+
 
 @once
     @push('scripts')

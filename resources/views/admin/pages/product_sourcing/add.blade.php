@@ -361,15 +361,18 @@
                                                     <td><input class="form-control" type="text" name="source_one_name" id=""></td>
                                                     <td><input class="form-control" type="text" name="source_one_link" id=""></td>
                                                     <td><input class="form-control allow_decimal" type="text" name="source_one_price" id=""></td>
-                                                    <td><input class="form-check-input" type="checkbox" name="source_one_approval" value="1"></td>
+                                                    <td class="text-center"><input class="form-check-input" type="radio" name="source_approval" value="one"></td>
                                                 </tr>
                                                 <tr>
                                                     <td><input class="form-control" type="text" name="source_two_name" id=""></td>
                                                     <td><input class="form-control" type="text" name="source_two_link" id=""></td>
                                                     <td><input class="form-control allow_decimal" type="text" name="source_two_price" id=""></td>
-                                                    <td><input class="form-check-input" type="checkbox" name="source_two_approval" value="1"></td>
+                                                    <td class="text-center"><input class="form-check-input" type="radio" name="source_approval" value="two"></td>
                                                 </tr>
-
+                                                <tr>
+                                                    <td class="text-center">Price Notification (Days) : </td>
+                                                    <td><input class="form-control allow_decimal" type="text" name="notification_days"></td>
+                                                </tr>
                                             </tbody>
                                         </table>
                                     </div>
@@ -410,18 +413,18 @@
                                         <table class="productDT datatable table table-bordered table-hover">
                                             <tr>
                                                 <th width="50%">Is this solid source?  ( Y/N )</th>
-                                                <td width="25%"><input class="margin-right:0.5rem" type="checkbox" name="solid_source" value="yes" id="">Yes</td>
-                                                <td width="25%"><input class="margin-right:0.5rem" type="checkbox" name="solid_source" value="no" id="">No</td>
+                                                <td width="25%"><input class="margin-right:0.5rem" type="radio" name="solid_source" value="yes" id="">&nbsp; Yes</td>
+                                                <td width="25%"><input class="margin-right:0.5rem" type="radio" name="solid_source" value="no" id="">&nbsp; No</td>
                                             </tr>
                                             <tr>
                                                 <th width="50%">Is this direct Principal ?  ( Y/N )</th>
-                                                <td width="25%"><input class="margin-right:0.5rem" type="checkbox" name="direct_principal" value="yes" id="">Yes</td>
-                                                <td width="25%"><input class="margin-right:0.5rem" type="checkbox" name="direct_principal" value="no" id="">No</td>
+                                                <td width="25%"><input class="margin-right:0.5rem" type="radio" name="direct_principal" value="yes" id="">&nbsp; Yes</td>
+                                                <td width="25%"><input class="margin-right:0.5rem" type="radio" name="direct_principal" value="no" id="">&nbsp; No</td>
                                             </tr>
                                             <tr>
                                                 <th width="50%">Does it have Agreement ?  ( Y/N )</th>
-                                                <td width="25%"><input class="margin-right:0.5rem" type="checkbox" name="agreement" value="yes" id="">Yes</td>
-                                                <td width="25%"><input class="margin-right:0.5rem" type="checkbox" name="agreement" value="no" id="">No</td>
+                                                <td width="25%"><input class="margin-right:0.5rem" type="radio" name="agreement" value="yes" id="">&nbsp; Yes</td>
+                                                <td width="25%"><input class="margin-right:0.5rem" type="radio" name="agreement" value="no" id="">&nbsp; No</td>
                                             </tr>
                                             <tr>
                                                 <th width="65%">Source Type :</th>
@@ -570,7 +573,7 @@
         });
 </script>
 
-    
+
 
 @endpush
 @endonce

@@ -60,7 +60,7 @@
                                 <table class="table table-bordered">
                                     <thead>
                                         <tr class="bg-dark p-1">
-                                            <th width="80%"><h5 class="text-center text-white">Product List For Softwares</h5></th>
+                                            <th width="80%"><h5 class="text-center text-white">Product List For Hardwares</h5></th>
                                             <th width="20%"><input type="text" placeholder="Search From the table" id="softwareInput"></th>
                                         </tr>
                                         <tr class="p-1 text-center">
@@ -72,15 +72,31 @@
                                         @foreach ($products as $product)
                                         <tr class="p-1">
                                             <td class="p-1" width="80%"><a href="{{route('product.details',$product->slug)}}">{{$product->name}}</a></td>
-                                            <td class="p-1" width="20%"> $ @if ($product->discount == Null)
-                                                {{$product->price}}
-                                            @else
-                                            {{$product->discount}}
-                                            @endif</td>
+                                            <td class="p-1" width="20%">
+                                                @if (($product->rfq) != 1)
+
+                                                    @if ($product->discount == Null)
+                                                        $ {{$product->price}}
+                                                    @else
+                                                    $ {{$product->discount}}
+                                                    @endif
+                                                @else
+
+                                                @endif
+                                            </td>
                                         </tr>
                                         @endforeach
                                     </tbody>
                                 </table>
+                            </div>
+
+                            <div class="d-flex justify-content-center">
+                                <nav aria-label="Page navigation example">
+                                    <ul class="pagination">
+                                        {{ $products->links() }}
+                                    </ul>
+
+                                </nav>
                             </div>
 
                         </div>
@@ -97,7 +113,7 @@
                             <table class="table table-bordered">
                                 <thead>
                                     <tr class="bg-dark p-1">
-                                        <th width="80%"><h5 class="text-center text-white">Category List For Softwares</h5></th>
+                                        <th width="80%"><h5 class="text-center text-white">Category List For Hardwares</h5></th>
                                         <th width="20%"><input type="text" placeholder="Search From the table" id="categoryInput"></th>
                                     </tr>
                                     <tr class="p-1 text-center">
@@ -126,7 +142,7 @@
                             <table class="table table-bordered">
                                 <thead>
                                     <tr class="bg-dark p-1">
-                                        <th width="80%"><h5 class="text-center text-white">Brand List For Softwares</h5></th>
+                                        <th width="80%"><h5 class="text-center text-white">Brand List For Hardwares</h5></th>
                                         <th width="20%"><input type="text" placeholder="Search From the table" id="brandInput"></th>
                                     </tr>
                                     <tr class="p-1 text-center">
@@ -153,7 +169,7 @@
                             <table class="table table-bordered">
                                 <thead>
                                     <tr class="bg-dark p-1">
-                                        <th width="80%"><h5 class="text-center text-white">Industry List For Softwares</h5></th>
+                                        <th width="80%"><h5 class="text-center text-white">Industry List For Hardwares</h5></th>
                                         <th width="20%"><input type="text" placeholder="Search From the table" id="brandInput"></th>
                                     </tr>
                                     <tr class="p-1 text-center">
@@ -181,7 +197,7 @@
                             <table class="table table-bordered">
                                 <thead>
                                     <tr class="bg-dark">
-                                        <th width="80%"><h5 class="text-center text-white">Industry List For Softwares</h5></th>
+                                        <th width="80%"><h5 class="text-center text-white">Industry List For Hardwares</h5></th>
                                         <th width="20%"><input type="text" name="" id=""></th>
                                     </tr>
                                     <tr>

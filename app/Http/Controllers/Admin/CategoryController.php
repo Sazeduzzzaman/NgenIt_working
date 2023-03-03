@@ -58,8 +58,11 @@ class CategoryController extends Controller
         $validator = Validator::make(
             $request->all(),
             [
-                'title' => 'required',
+                'title' => 'required|unique:categories',
                 'image'   => 'required|image|mimes:png,jpg,jpeg|max:5000',
+            ],
+            [
+                'unique' => 'This Category has already been taken.',
             ]
         );
 
@@ -196,8 +199,11 @@ class CategoryController extends Controller
             $request->all(),
             [
                 'cat_id' => 'required',
-                'title' => 'required',
+                'title' => 'required|unique:sub_categories',
                 'image'   => 'required|image|mimes:png,jpg,jpeg|max:5000',
+            ],
+            [
+                'unique' => 'This Category has already been taken.',
             ]
         );
 
@@ -252,8 +258,11 @@ class CategoryController extends Controller
             [
                 'cat_id' => 'required',
                 'sub_cat_id' => 'required',
-                'title' => 'required',
+                'title' => 'required|unique:sub_sub_categories',
                 'image'   => 'required|image|mimes:png,jpg,jpeg|max:5000',
+            ],
+            [
+                'unique' => 'This Category has already been taken.',
             ]
         );
 
@@ -311,7 +320,7 @@ class CategoryController extends Controller
                 'cat_id' => 'required',
                 'sub_cat_id' => 'required',
                 'sub_sub_cat_id' => 'required',
-                'title' => 'required',
+                'title' => 'required|unique:sub_sub_sub_categories',
                 'image'   => 'required|image|mimes:png,jpg,jpeg|max:5000',
             ],
             [
@@ -319,7 +328,10 @@ class CategoryController extends Controller
                     'max'      => 'The image field must be smaller than 10 MB.',
                 ],
                 'image'    => 'The file must be an image.',
-                'mimes' => 'The :attribute must be a file of type: PNG - JPEG - JPG'
+                'mimes' => 'The :attribute must be a file of type: PNG - JPEG - JPG',
+                
+                'unique' => 'This Category has already been taken.',
+
             ]
         );
 

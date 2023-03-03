@@ -59,8 +59,9 @@ class RfqDeal extends Notification
     {
         return [
             'name' => $this->name,
-            'link'=> route('deal.index',$this->rfq_code),
-            'message' => 'has created A New RFQ/Deal. Need to be checked.',
+            'link'=> route('single-rfq.show',$this->rfq_code),
+            'message1' => 'has created',
+            'message2' => 'A New RFQ/Deal.',
         ];
     }
 }

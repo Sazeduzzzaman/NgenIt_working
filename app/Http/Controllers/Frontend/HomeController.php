@@ -59,12 +59,12 @@ class HomeController extends Controller
             $data['products'] = DB::table('products')
                         ->join('brands', 'products.brand_id', '=', 'brands.id')
                         ->where('brands.category', '=', 'Top')
-                        ->distinct()
                         ->where('product_status', '=', 'product')
+                        ->distinct()
                         ->select('products.id','products.rfq','products.slug','products.name','products.thumbnail','products.price','products.discount','products.stock','products.mf_code','products.sku_code','products.short_desc')
                         ->get();
         }else{
-            $data['products'] = Product::inRandomOrder()->where('product_status', 'product')->get();
+            $data['products'] = Product::inRandomOrder()->where('product_status', 'product')->get()->unique('brand_id');
         }
 
         if ($data['home']) {
@@ -495,25 +495,25 @@ class HomeController extends Controller
 
     public function SoftwareCommon()
     {
-        $data['products'] = Product::where('product_type','software')->where('product_status', 'product')->latest()->get();
-        $data['hardware'] = Product::where('product_type','hardware')->where('product_status', 'product')->latest()->get();
+        $data['products'] = Product::where('product_type','software')->where('product_status', 'product')->latest()->paginate(10);
+        $data['hardware'] = Product::where('product_type','hardware')->where('product_status', 'product')->latest()->paginate(10);
         $data['categories'] = DB::table('categories')
                             ->join('products', 'categories.id', '=', 'products.cat_id')
                             ->where('products.product_type', '=', 'software')
                             ->select('categories.id','categories.slug','categories.title','categories.image')
-                            ->distinct()->get();
+                            ->distinct()->paginate(10);
 
         $data['brands']     = DB::table('brands')
                             ->join('products', 'brands.id', '=', 'products.brand_id')
                             ->where('products.product_type', '=', 'software')
                             ->select('brands.id','brands.slug','brands.title','brands.image')
-                            ->distinct()->get();
+                            ->distinct()->paginate(10);
         // $data['industries']  = DB::table('industries')
         //                     ->join('products', 'industires.id', '=', 'products.brand_id')
         //                     ->where('products.product_type', '=', 'software')
         //                     ->select('brands.id','brands.slug','brands.title','brands.image')
         //                     ->distinct()->get();
-
+        $data['software_products'] = Product::where('product_type','software')->where('product_status', 'product')->paginate(10)->unique('brand_id');
         $data['featured_brands'] = Brand::where('category','Featured')->orderBy('id','DESC')->get();
         $data['others'] = Brand::all();
         $data['story1'] = TechGlossy::inRandomOrder()->first();
@@ -530,19 +530,19 @@ class HomeController extends Controller
 
     public function HardwareCommon()
     {
-        $data['products'] = Product::where('product_type','hardware')->where('product_status', 'product')->latest()->get();
-        $data['hardware'] = Product::where('product_type','hardware')->where('product_status', 'product')->latest()->get();
+        $data['products'] = Product::where('product_type','hardware')->where('product_status', 'product')->latest()->paginate(10);
+        $data['hardware'] = Product::where('product_type','hardware')->where('product_status', 'product')->latest()->paginate(10);
         $data['categories'] = DB::table('categories')
                             ->join('products', 'categories.id', '=', 'products.cat_id')
                             ->where('products.product_type', '=', 'hardware')
                             ->select('categories.id','categories.slug','categories.title','categories.image')
-                            ->distinct()->get();
+                            ->distinct()->paginate(10);
 
         $data['brands']     = DB::table('brands')
                             ->join('products', 'brands.id', '=', 'products.brand_id')
                             ->where('products.product_type', '=', 'hardware')
                             ->select('brands.id','brands.slug','brands.title','brands.image')
-                            ->distinct()->get();
+                            ->distinct()->paginate(10);
         // $data['industries']  = DB::table('industries')
         //                     ->join('products', 'industires.id', '=', 'products.brand_id')
         //                     ->where('products.product_type', '=', 'software')

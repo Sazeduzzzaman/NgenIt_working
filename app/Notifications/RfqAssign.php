@@ -10,7 +10,9 @@ use Illuminate\Notifications\Notification;
 class RfqAssign extends Notification
 {
     use Queueable;
-    public $name;
+    public $name1;
+    public $name2;
+    public $name3;
     public $rfq_code;
 
     /**
@@ -18,9 +20,11 @@ class RfqAssign extends Notification
      *
      * @return void
      */
-    public function __construct($name, $rfq_code)
+    public function __construct($name1,$name2,$name3, $rfq_code)
     {
-        $this->name = $name;
+        $this->name1 = $name1;
+        $this->name2 = $name2;
+        $this->name3 = $name3;
         $this->rfq_code = $rfq_code;
     }
 
@@ -58,7 +62,7 @@ class RfqAssign extends Notification
     public function toArray($notifiable)
     {
         return [
-            'name' => $this->name,
+            'name' => $this->name1 $this->name2 $this->name3,
             'link'=> route('deal-sas.show',$this->rfq_code),
             'message' => 'Admin has assigned A New RFQ/Deal to',$this->name.'Need to be checked.',
         ];
