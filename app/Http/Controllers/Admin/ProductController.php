@@ -454,4 +454,20 @@ class ProductController extends Controller
         return view('admin.pages.product.product_stock',compact('products'));
 
     }// End Method
+
+    function toastrIndex()
+    {
+        $data['productsNotifications'] = Product::where('product_status', 'product')
+            ->whereNotNull('notification_days')
+            // create_date notification_days
+            ->select(
+                'products.id',
+                'products.name',
+                'products.notification_days',
+                'products.create_date',
+                'products.price',
+                'products.thumbnail'
+            )->latest()->get();
+        return view('admin.pages.product.productNotification', $data);
+    }
 }

@@ -137,6 +137,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'role:admin']], func
 
         // For Product Stock
         Route::get('/product/stock', 'ProductStock')->name('product.stock');
+        Route::get('toastr', 'toastrIndex')->name('toastr.index');
     });
 
     // SolutionAll Route

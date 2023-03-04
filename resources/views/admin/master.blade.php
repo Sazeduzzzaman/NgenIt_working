@@ -18,6 +18,7 @@
             @include('admin.partials.sidebar')
             <!-- /main sidebar -->
             <div class="content-wrapper">
+                @include('admin.partials.toastr')
                 <div class="content-inner">
                     <!-- Main content -->
                     @yield('content')
