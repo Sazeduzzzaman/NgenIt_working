@@ -7,7 +7,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class RfqDeal extends Notification
+class RfqCreate extends Notification
 {
     use Queueable;
     public $name;

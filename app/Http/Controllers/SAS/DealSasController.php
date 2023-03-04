@@ -10,6 +10,7 @@ use App\Models\Admin\Product;
 use App\Models\Admin\RfqProduct;
 use App\Http\Controllers\Controller;
 use App\Notifications\DealSas as NotificationsDealSas;
+use App\Notifications\SasApprove;
 use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Support\Facades\Notification;
 use DB;
@@ -140,7 +141,7 @@ class DealSasController extends Controller
         Notification::send($user, new NotificationsDealSas($name = Auth::user()->name , $rfq_id = $rfq->rfq_code));
         Toastr::success('SAS Created Successfully.');
         // return redirect()->route('deal-sas.index');
-        return redirect()->route('rfq-manage.index');
+        return redirect()->route('single-rfq.show',$rfq_id);
     }
 
     /**
@@ -397,7 +398,10 @@ class DealSasController extends Controller
         // DB::table('colors')->insert($datasave);
         DealSas::findOrFail($id[$i])->update($datasave);
     }
-    Toastr::success('SAS Updated Successfully.');
+    $user = User::all();
+    Notification::send($user, new SasApprove($name = Auth::user()->name , $rfq_id = $rfq->rfq_code));
+    
+    Toastr::success('SAS Approved Successfully.');
     // return redirect()->route('deal.index');
     return redirect()->route('rfq-manage.index');
     }

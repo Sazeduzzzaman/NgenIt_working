@@ -42,8 +42,8 @@
                                         <input type="hidden" name="rfq_id" value="{{ $rfq->id }}">
                                     </th>
                                     <th class="text-white">SAS Create Date :
-                                        <input type="hidden" name="create" value="{{\Carbon\Carbon::now()->format('d/m/Y')}}">
-                                            {{\Carbon\Carbon::now()->format('d/m/Y')}}
+                                        <input type="hidden" name="create" value="{{\Carbon\Carbon::now()}}">
+                                            {{\Carbon\Carbon::now()->format('d-m-Y')}}
                                     </th>
                                     <th class="text-white text-center">
                                         This Deal is for our @if ($rfq->client_type == 'partner')

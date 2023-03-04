@@ -195,7 +195,7 @@
                     @forelse($notifications as $notification)
 
                     <div class="d-flex align-items-start mb-3">
-                        <a href="#" class="status-indicator-container me-3">
+                        <a href="javascript:void(0);" class="status-indicator-container me-3">
                             <i class="icon-envelope w-40px h-40px rounded-pill"></i>
                             <span class="status-indicator bg-success"></span>
                         </a>
@@ -244,7 +244,10 @@
                     @if (auth()->user()->role)
                     @forelse($old_notifications as $old_notification)
                     <div class="d-flex align-items-start mb-3">
-                        
+                        <a href="javascript:void(0);" class="status-indicator-container me-3">
+                            <i class="ph-envelope-open w-40px h-40px rounded-pill"></i>
+                            <span class="status-indicator bg-warning"></span>
+                        </a>
                         <div class="flex-fill">
                             <a href="javascript:void(0);" data-id="{{ $old_notification->id }}" class="text-black mark-as-read">
                                 @if (!empty($old_notification->data['message1']))

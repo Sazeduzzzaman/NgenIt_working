@@ -329,14 +329,14 @@
                                                 <div id="add_product" class="accordion-collapse collapse show" data-bs-parent="#accordion_expanded">
                                                     <div class="accordion-body">
 
-                                                        <div class="table-responsive center">
+                                                        <div class="table-responsive m-auto" style="width: 80%">
                                                             <table class="table table-bordered text-center">
 
                                                                 <thead>
                                                                     <tr>
-                                                                        <th> Product Name </th>
-                                                                        <th> Qty </th>
-                                                                        <th> Unit Price</th>
+                                                                        <th style="padding:7px !important;"> Product Name </th>
+                                                                        <th style="padding:7px !important;"> Qty </th>
+                                                                        <th style="padding:7px !important;"> Unit Price</th>
                                                                     </tr>
                                                                 </thead>
                                                                 @php
@@ -345,13 +345,10 @@
 
                                                                     <tbody class="repeater">
                                                                         <tr>
-
                                                                             <td style="background: gray; color: white;" class="text-white"> {{ $product->name }}<input type="hidden" class="form-control" name="item_name[]" required value="{{ $product->name }}"></td>
-                                                                            <td> <input type="text" class="form-control" name="qty[]" value="" required value="{{ $rfq->qty }}"></td>
+                                                                            <td> <input type="text" class="form-control" name="qty[]" required value="{{ $rfq->qty }}"></td>
                                                                             <td> <input type="text" class="form-control" name="unit_price[]" ></td>
-
                                                                         </tr>
-
                                                                     </tbody>
                                                             </table>
 

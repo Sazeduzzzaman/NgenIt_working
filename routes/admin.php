@@ -341,6 +341,7 @@ Route::controller(RFQController::class)->group(function(){
     Route::get('/partner/ajax/{partner_id}' , 'GetPartner');
     Route::get('/client/ajax/{client_id}' , 'GetClient');
     Route::put('/send/quotation/{id}',  'SendQuotation')->name('quotation.send');
+    Route::put('/send/invoice/{id}',  'dealInvoiceSent')->name('invoice.send');
     Route::put('/check/quotation/{id}' , 'CheckQuotation')->name('quotation.check');
 });
 

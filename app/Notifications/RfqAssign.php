@@ -62,9 +62,10 @@ class RfqAssign extends Notification
     public function toArray($notifiable)
     {
         return [
-            'name' => $this->name1 $this->name2 $this->name3,
-            'link'=> route('deal-sas.show',$this->rfq_code),
-            'message' => 'Admin has assigned A New RFQ/Deal to',$this->name.'Need to be checked.',
+            'name' => 'Site Admin ',
+            'link'=> route('single-rfq.show',$this->rfq_code),
+            'message1' => 'has assigned this ',
+            'message2'=> $this->rfq_code.' to '.$this->name1.', '.$this->name2.', '. $this->name3.'. Check it',
         ];
     }
 }

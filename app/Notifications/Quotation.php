@@ -7,21 +7,20 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class DealSas extends Notification
+class Quotation extends Notification
 {
     use Queueable;
     public $name;
-    public $rfq_id;
-
+    public $rfq_code;
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct($name , $rfq_id)
+    public function __construct($name , $rfq_code)
     {
         $this->name = $name;
-        $this->rfq_id = $rfq_id;
+        $this->rfq_code = $rfq_code;
     }
 
     /**
@@ -59,9 +58,9 @@ class DealSas extends Notification
     {
         return [
             'name' => $this->name,
-            'link'=>route('single-rfq.show',$this->rfq_id),
-            'message1' => 'has created ',
-            'message2' => 'a SAS for Deal '.$this->rfq_id.' SAS need to be checked and Approved',
+            'link'=> route('single-rfq.show',$this->rfq_code),
+            'message1' => 'has sent Quotation for Deal No: '.$this->rfq_code,
+            'message2'=> '. Check the progress of the Quotation',
         ];
     }
 }

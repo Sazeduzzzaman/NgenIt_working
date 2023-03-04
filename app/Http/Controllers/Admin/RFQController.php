@@ -23,6 +23,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
 use App\Models\Admin\CommercialDocument;
+use App\Notifications\DealConvert;
+use App\Notifications\WorkOrder;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Notification;
 
@@ -105,7 +107,7 @@ class RFQController extends Controller
                 $globalFunImage = ['status' => 0];
             }
 
-            $rfq_id = Rfq::insertGetId([
+                    $rfq_id = Rfq::insertGetId([
 
                         // 'sales_man_id_L1'      => $request->sales_man_id_L1,
                         // 'sales_man_id_T1'      => $request->sales_man_id_T1,
@@ -309,6 +311,23 @@ class RFQController extends Controller
         $user = User::get();
         if (!empty($rfq)) {
 
+            if (!empty($request->sales_man_id_L1)) {
+                $name1 = User::where('id' , $request->sales_man_id_L1)->value('name');
+            } else {
+                $name1 = '';
+            }
+
+            if (!empty($request->sales_man_id_T1)) {
+                $name2 = User::where('id' , $request->sales_man_id_T1)->value('name');
+            } else {
+                $name2 = '';
+            }
+
+            if (!empty($request->sales_man_id_T2)) {
+                $name3 = User::where('id' , $request->sales_man_id_T2)->value('name');
+            } else {
+                $name3 = '';
+            }
 
                 $rfq->update([
                     'sales_man_id_L1'      => $request->sales_man_id_L1,
@@ -318,23 +337,7 @@ class RFQController extends Controller
                 ]);
             }
 
-            if (!empty($request->sales_man_id_L1)) {
-                $name1 = User::find($request->sales_man_id_L1)->value('name');
-            } else {
-                $name1 = '';
-            }
 
-            if (!empty($request->sales_man_id_T1)) {
-                $name2 = User::find($request->sales_man_id_T1)->value('name');
-            } else {
-                $name2 = '';
-            }
-
-            if (!empty($request->sales_man_id_T2)) {
-                $name3 = User::find($request->sales_man_id_T2)->value('name');
-            } else {
-                $name3 = '';
-            }
             $rfq_code = $rfq->rfq_code;
 
 
@@ -493,15 +496,23 @@ class RFQController extends Controller
                 DealSas::insert($datasave);
             }
 
-            Toastr::success('Deal has been created');
+
+            $rfq_code = Rfq::where('id', $id )->value('rfq_code');
+            $user = User::get();
+            $name = Auth::user()->name;
+            // dd($user);
+            Notification::send($user, new DealConvert($name , $rfq_code));
+
+            Toastr::success('The Rfq has been converted into Deal.');
         } else {
             $messages = $validator->messages();
             foreach ($messages->all() as $message) {
                 Toastr::error($message, 'Failed', ['timeOut' => 30000]);
             }
         }
+
         // return redirect()->route('deal.index');
-        return redirect()->route('rfq-manage.index');
+        return redirect()->route('single-rfq.show', $rfq_code);
     }
 
     public function workOrderUpload(Request $request, $id)
@@ -530,10 +541,17 @@ class RFQController extends Controller
                 ]);
                 Toastr::success('PDF Uploaded Successfully');
             }
-            $rfq = Rfq::find($id);
+            $rfq = Rfq::where('rfq_code' , $id)->first();
             $rfq->update([
                 'status'     =>'workorder_uploaded',
             ]);
+            $user = User::latest()->get();
+
+            $name = $data['rfq']->name;
+            $rfq_code = $data['rfq']->rfq_code;
+
+            Notification::send($user, new WorkOrder($name , $rfq_code));
+
             return redirect()->back();
     }
 
@@ -571,4 +589,6 @@ class RFQController extends Controller
             ]);
             return redirect()->back();
     }
+
+    
 }

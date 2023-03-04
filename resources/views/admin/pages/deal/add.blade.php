@@ -350,11 +350,11 @@
 
                                                         <thead>
                                                             <tr>
-                                                                <th> Product Name </th>
-                                                                <th> Qty </th>
-                                                                <th> Unit Price</th>
-                                                                <th> Regular Discount</th>
-                                                                <th> <a href="javascript:void(0)" class="btn btn-primary addRow"><i class="ph-plus"></i></a></th>
+                                                                <th style="padding:7px !important;"> Product Name </th>
+                                                                <th style="padding:7px !important;"> Qty </th>
+                                                                <th style="padding:7px !important;"> Unit Price</th>
+                                                                <th style="padding:7px !important;"> Regular Discount</th>
+                                                                <th style="padding:7px !important;"> <a href="javascript:void(0)" class="btn btn-primary addRow"><i class="ph-plus"></i></a></th>
                                                             </tr>
                                                         </thead>
 

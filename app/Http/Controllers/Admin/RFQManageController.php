@@ -17,8 +17,8 @@ class RFQManageController extends Controller
     public function index()
     {
         $data['users'] = User::where('role', 'sales')->select('users.id', 'users.name')->orderBy('id', 'DESC')->get();
-        $data['rfqs'] = Rfq::where('rfq_type' , 'rfq')->orderBy('id', 'DESC')->get();
-        $data['deals'] = Rfq::where('rfq_type' , 'deal')->orderBy('id', 'DESC')->get();
+        $data['rfqs'] = Rfq::where('rfq_type' , 'rfq')->orderBy('rfqs.updated_at', 'desc')->get();
+        $data['deals'] = Rfq::where('rfq_type' , 'deal')->orderBy('rfqs.updated_at', 'desc')->get();
         return view('admin.pages.rfq-manage.all',$data);
     }
 

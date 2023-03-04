@@ -290,7 +290,7 @@
                                                                                     <div class="modal-body border br-7">
 
                                                                                         <form method="post"
-                                                                                            action="{{ route('work-order.upload', $rfq->rfq_code) }}"
+                                                                                            action="{{ route('payment-proof.upload', $rfq->rfq_code) }}"
                                                                                             enctype="multipart/form-data">
                                                                                             @csrf
                                                                                             @method('PUT')

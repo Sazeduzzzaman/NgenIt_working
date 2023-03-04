@@ -307,14 +307,14 @@
                              //dd($cart->where('image' , $item->thumbnail )->count());
                              @endphp
                              @if ($cart->where('id' , $item->id )->count())
-                             <a href="javascript:void(0);" class="common_button2 p-0 py-2 px-1 pb-2" style="height: 2.5rem"> Already in Cart</a>
+                             <a href="javascript:void(0);" class="common_button2 p-0 py-3 px-2 pb-1" style="height: 2.5rem"> Already in Cart</a>
                              @else
                              <form action="{{route('add.cart')}}" method="post">
                                  @csrf
                                  <input type="hidden" name="product_id" id="product_id" value="{{ $item->id }}">
                                  <input type="hidden" name="name" id="name" value="{{ $item->name }}">
                                  <input type="hidden" name="qty" id="qty" value="1">
-                                 <button type="submit" class="product_button" >Add to Basket</button>
+                                 <button type="submit" class="common_button" >Add to Basket</button>
                              </form>
                              @endif
                            @else
@@ -322,7 +322,7 @@
                              <span class="price_currency_value">---</span>
                            </div>
 
-                           <a class="product_button" href="{{ route('product.details', $item->slug) }}">Details</a>
+                           <a href="{{ route('product.details', $item->slug) }}" class="common_button">Details</a>
                            @endif
                         </div>
 

@@ -16,9 +16,12 @@ use App\Models\Admin\Product;
 use App\Notifications\RfqDeal;
 use App\Models\Partner\Partner;
 use App\Models\Admin\RfqProduct;
+use App\Notifications\Quotation;
+use App\Notifications\DealRegister;
 use App\Http\Controllers\Controller;
 use App\Models\Admin\SolutionDetail;
 use Brian2694\Toastr\Facades\Toastr;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
@@ -105,7 +108,7 @@ class DealController extends Controller
             }
         $data['pq_code'] = 'NG' . '-' . date('dmy');
 
-            $rfq_code='RFQ-'.Str::random(6).date('dmy');
+            $rfq_code='RFQ-'.date('dmy').Rfq::latest()->value('id');
             $count=RFQ::where('rfq_code',$rfq_code)->count();
             if($count>0){
                 $rfq_code=$rfq_code.Str::random(3);
@@ -228,9 +231,9 @@ class DealController extends Controller
             // ]);
 
             $name = User::where('id', $request->sales_man_id_L1)->value('name');
-            Notification::send($user, new RfqDeal($name, $rfq_id = $data['rfq_code']));
+            Notification::send($user, new DealRegister($name, $rfq_code = $data['rfq_code']));
             Toastr::success('Deal Registered Successfully');
-            return redirect()->route('sales-achievement.index');
+            return redirect()->route('single-rfq.show', $data['rfq_code']);
         } else {
 
             $messages = $validator->messages();
@@ -439,6 +442,13 @@ class DealController extends Controller
         Toastr::success('PDF Uploaded Successfully');
     }
 
+            $user = User::latest()->get();
+
+            $name = Auth::user()->name;
+            $rfq_code = $data['rfq']->rfq_code;
+
+            Notification::send($user, new Quotation($name , $rfq_code));
+
     $rfq = Rfq::find($data['rfq']->id);
     $rfq->update([
         'status'  => 'quoted',
@@ -448,6 +458,42 @@ class DealController extends Controller
 
 
     }
+
+
+    public function dealInvoiceSent(Request $request, $id)
+    {
+        //dd($request->all());
+        $data['rfq'] = Rfq::where('rfq_code', $id)->first();
+        $document_check = CommercialDocument::where('rfq_id', $data['rfq']->id)->first();
+
+            $mainFileClientPo = $request->file('client_po_pdf');
+            if (isset($mainFileClientPo)) {
+                $globalFunClientPo = Helper::singleFileUpload($mainFileClientPo);
+            } else {
+                $globalFunClientPo = ['status' => 0];
+            }
+
+
+            if (!empty($document_check)) {
+                CommercialDocument::find($document_check->id)->update([
+                    'client_po'          => $globalFunClientPo['status'] == 1 ? $globalFunClientPo['file_name'] : '',
+                    ]);
+                    Toastr::success('PDF Uploaded Successfully');
+            } else {
+                CommercialDocument::create([
+                    'rfq_id' => $data['rfq']->id,
+                    'client_po'          => $globalFunClientPo['status'] == 1 ? $globalFunClientPo['file_name'] : '',
+                ]);
+                Toastr::success('PDF Uploaded Successfully');
+            }
+            $rfq = Rfq::find($id);
+            $rfq->update([
+                'status'     =>'proof_of_payment_uploaded',
+                'sale_date'  => Carbon::now()->format('d/m/Y'),
+                'rfq_type'  => '',
+            ]);
+            return redirect()->back();
+    } 
 
 
 

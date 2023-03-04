@@ -148,7 +148,7 @@
                                             <label for="inputPrice" class="form-label">Product Notification (days) <span class="text-danger">*</span> :</label>
                                             <input class="form-control allow_decimal" placeholder="Days" type="text" name="notification_days"  value="{{ $products->notification_days }}">
                                         </div>
-                                    
+
 
                                 </div>
 
@@ -218,8 +218,8 @@
                                         <div class="form-group col-md-6 basic-form">
                                             <label class="col-form-label col-lg-12">Product Brand</label>
 
-                                                <select class="form-select" name="brand_id" data-placeholder="Select Brand...">
-                                                    <option value=""></option>
+                                                <select class="form-control select" name="brand_id" data-placeholder="Select Brand...">
+                                                    <option></option>
                                                     @foreach ($brands as $brand)
                                                         <option class="form-select" value="{{ $brand->id }}" {{ ( $products->brand_id == $brand->id ) ? 'selected' : '' }}>
                                                             {{ $brand->title }}</option>
@@ -231,8 +231,8 @@
                                         <div class="form-group col-md-6 basic-form">
                                             <label class="col-form-label col-lg-12">Product Category</label>
 
-                                                <select class="form-select" name="cat_id" data-placeholder="Select Category...">
-                                                    <option value=""></option>
+                                                <select class="form-control select" name="cat_id" data-placeholder="Select Category...">
+                                                    <option></option>
                                                     @foreach ($categories as $cat)
                                                     <option class="form-control" value="{{ $cat->id }}" {{ ( $products->cat_id == $cat->id ) ? 'selected' : '' }}>
                                                         {{ $cat->title }}</option>
@@ -244,10 +244,10 @@
 
                                     <div class="row">
                                         <div class="form-group col-md-6 basic-form">
-                                            <label for="inputCollection" class="form-label">Product Sub Category</label>
-                                            <select name="sub_cat_id" class="form-select"
-                                                id="inputCollection" data-placeholder="Select Sub Category...">
-                                                <option value=""></option>
+                                            <label for="inputCollection6" class="col-form-label ">Product Sub Category</label>
+                                            <select class="form-control select" name="sub_cat_id"
+                                                id="inputCollection6" data-placeholder="Select Sub Category...">
+                                                <option></option>
                                                 @foreach ($sub_cats as $item)
                                                 <option class="form-control" value="{{ $item->id }}" {{ ( $products->sub_cat_id == $item->id ) ? 'selected' : '' }}>
                                                     {{ $item->title }}</option>
@@ -256,10 +256,10 @@
                                         </div>
 
                                         <div class="form-group col-md-6 basic-form">
-                                            <label for="inputCollection" class="form-label">Product Sub Sub Category</label>
-                                            <select name="sub_sub_cat_id" class="form-select"
-                                                id="inputCollection" data-placeholder="Select Sub Sub Category...">
-                                                <option value=""></option>
+                                            <label for="inputCollection4" class="col-form-label">Product Sub Sub Category</label>
+                                            <select class="form-control select" name="sub_sub_cat_id"
+                                                id="inputCollection4" data-placeholder="Select Sub Sub Category...">
+                                                <option></option>
                                                 @foreach ($sub_sub_cats as $item)
                                                 <option class="form-control" value="{{ $item->id }}" {{ ( $products->sub_sub_cat_id == $item->id ) ? 'selected' : '' }}>
                                                     {{ $item->title }}</option>
@@ -269,9 +269,9 @@
 
                                         <div class="form-group col-md-6 basic-form">
                                             <label for="inputCollection" class="form-label">Product Sub Sub Sub Category</label>
-                                            <select name="sub_sub_sub_cat_id" class="form-select"
+                                            <select name="sub_sub_sub_cat_id" class="form-control select"
                                                 id="inputCollection" data-placeholder="Select Sub Sub Sub Category..." >
-                                                <option value=""></option>
+                                                <option></option>
                                                 @foreach ($sub_sub_sub_cats as $item)
                                                 <option class="form-control" value="{{ $item->id }}" {{ ( $products->sub_sub_sub_cat_id == $item->id ) ? 'selected' : '' }}>
                                                     {{ $item->title }}</option>
