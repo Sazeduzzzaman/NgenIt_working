@@ -17,11 +17,14 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('client_id')->nullable();
             $table->unsignedBigInteger('partner_id')->nullable();
-            $table->enum('client_type',['client','partner'])->default('client')->nullable();
+            $table->unsignedBigInteger('rfq_id')->nullable();
             $table->string('order_number')->nullable();
+            $table->enum('client_type',['client','partner'])->default('client')->nullable();
             $table->string('invoice_no')->nullable();
             $table->string('work_order')->nullable()->comment('file');
             $table->string('work_order_no')->nullable()->comment('number');
+
+            $table->enum('order_type',['online','deal'])->default('online')->nullable();
 
             $table->string('billing_name');
             $table->string('billing_phone');
@@ -71,8 +74,9 @@ return new class extends Migration
             $table->string('return_date')->nullable();
             $table->string('return_reason')->nullable();
             $table->string('status')->nullable();
-            $table->foreign('client_id')->references('id')->on('clients')->onDelete('cascade')->onUpdate('cascade');
-            $table->foreign('partner_id')->references('id')->on('partners')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('client_id')->references('id')->on('clients')->onUpdate('cascade');
+            $table->foreign('partner_id')->references('id')->on('partners')->onUpdate('cascade');
+            $table->foreign('rfq_id')->references('id')->on('rfqs')->onUpdate('cascade');
             $table->timestamps();
         });
     }

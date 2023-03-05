@@ -131,6 +131,7 @@ class RFQController extends Controller
                         'close_date'           => $request->close_date,
                         'image'                => $globalFunImage['status']  == 1 ? $globalFunImage['file_name'] : '',
                         'status'               => 'rfq_created',
+                        'created_at'           => Carbon::now(),
                     ]);
 
 
@@ -590,5 +591,5 @@ class RFQController extends Controller
             return redirect()->back();
     }
 
-    
+
 }

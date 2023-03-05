@@ -173,7 +173,7 @@
 	<!-- /notifications -->
         @php
             $notifications = auth()->user()->unreadNotifications;
-
+            //dd($notifications);
             $old_notifications = auth()->user()->readNotifications;
         @endphp
 
@@ -194,7 +194,7 @@
                 <div class="p-3">
                     @if (auth()->user()->role)
                     @forelse($notifications as $notification)
-
+                    {{-- @dd($notification) --}}
                     <div class="d-flex align-items-start mb-3">
                         <a href="javascript:void(0);" class="status-indicator-container me-3">
                             <i class="icon-envelope w-40px h-40px rounded-pill"></i>

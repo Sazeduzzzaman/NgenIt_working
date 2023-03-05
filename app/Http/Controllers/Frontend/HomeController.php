@@ -351,11 +351,12 @@ class HomeController extends Controller
                             ->join('categories','products.cat_id', '=','categories.id' )
                             ->where('categories.id', '=', $data['category']->id)
                             ->select('brands.id','brands.title','brands.image')
+                            ->distinct()
                             ->get();
         } elseif((SubCategory::where('slug',$category)->count()) > 0) {
             $data['category'] = SubCategory::where('slug',$category)->first();
-            $data['sub_cats'] = SubSubCategory::where('cat_id',$data['category']->id)->get();
-            $data['sub_sub_cats'] = SubSubSubCategory::where('cat_id',$data['category']->id)->get();
+            $data['sub_cats'] = SubSubCategory::where('sub_cat_id',$data['category']->id)->get();
+            $data['sub_sub_cats'] = SubSubSubCategory::where('sub_cat_id',$data['category']->id)->get();
             //$data['sub_sub_sub_cats'] = SubSubSubCategory::where('cat_id',$data['category']->id)->get();
 
             $data['products'] = Product::where('sub_cat_id', $data['category']->id)->where('product_status', 'product')->paginate(10);
@@ -364,8 +365,26 @@ class HomeController extends Controller
                             ->join('sub_categories','products.sub_cat_id', '=','sub_categories.id' )
                             ->where('sub_categories.id', '=', $data['category']->id)
                             ->select('brands.id','brands.title','brands.image')
+                            ->distinct()
                             ->get();
         }
+
+        elseif((SubSubCategory::where('slug',$category)->count()) > 0) {
+            $data['category'] = SubSubCategory::where('slug',$category)->first();
+            $data['sub_cats'] = '';
+            $data['sub_sub_cats'] = '';
+            //$data['sub_sub_sub_cats'] = SubSubSubCategory::where('cat_id',$data['category']->id)->get();
+
+            $data['products'] = Product::where('sub_sub_cat_id', $data['category']->id)->where('product_status', 'product')->paginate(10);
+            $data['brands'] = DB::table('brands')
+                            ->join('products', 'brands.id', '=', 'products.brand_id')
+                            ->join('sub_sub_categories','products.sub_sub_cat_id', '=','sub_sub_categories.id' )
+                            ->where('sub_sub_categories.id', '=', $data['category']->id)
+                            ->select('brands.id','brands.title','brands.image')
+                            ->distinct()
+                            ->get();
+        }
+
 
 
 

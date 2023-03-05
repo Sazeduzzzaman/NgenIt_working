@@ -10,6 +10,7 @@ use App\Models\Admin\SubCategory;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Models\Admin\SubSubCategory;
+use App\Models\Admin\SubSubSubCategory;
 
 class ShopController extends Controller
 {
@@ -26,6 +27,55 @@ class ShopController extends Controller
                 $cat =Category::where('slug', $slug)->first();
                 $categories = SubCategory::where('cat_id',$cat->id)->orderBy('title','ASC')->get();
                 $subcategories = SubSubCategory::where('cat_id',$cat->id)->orderBy('title','ASC')->get();
+
+                $brands   = DB::table('brands')
+                            ->join('products', 'brands.id', '=', 'products.brand_id')
+                            ->join('categories', 'products.cat_id', '=', 'categories.id')
+                            ->where('categories.slug', '=', $slug)
+                            ->select( 'brands.id','brands.title','brands.slug')
+                            ->distinct()
+                            ->paginate(10);
+
+                            //dd($brands);
+            }
+            elseif (SubCategory::getProductBySubCat($slug)) {
+                $cat =SubCategory::where('slug', $slug)->first();
+                $categories = SubCategory::where('cat_id',$cat->id)->orderBy('title','ASC')->get();
+                $subcategories = SubSubCategory::where('cat_id',$cat->id)->orderBy('title','ASC')->get();
+
+                $brands   = DB::table('brands')
+                            ->join('products', 'brands.id', '=', 'products.brand_id')
+                            ->join('sub_categories', 'products.sub_cat_id', '=', 'sub_categories.id')
+                            ->where('sub_categories.slug', '=', $slug)
+                            ->select( 'brands.id','brands.title','brands.slug')
+                            ->distinct()
+                            ->paginate(10);
+            }
+            elseif (SubSubCategory::getProductBySubSubCat($slug)) {
+                $cat =SubSubCategory::where('slug', $slug)->first();
+                $categories = SubCategory::where('cat_id',$cat->id)->orderBy('title','ASC')->get();
+                $subcategories = SubSubCategory::where('cat_id',$cat->id)->orderBy('title','ASC')->get();
+
+                $brands   = DB::table('brands')
+                            ->join('products', 'brands.id', '=', 'products.brand_id')
+                            ->join('sub_sub_categories', 'products.sub_sub_cat_id', '=', 'sub_sub_categories.id')
+                            ->where('sub_sub_categories.slug', '=', $slug)
+                            ->select( 'brands.id','brands.title','brands.slug')
+                            ->distinct()
+                            ->paginate(10);
+            }
+            elseif (SubSubSubCategory::getProductBySubSubSubCat($slug)) {
+                $cat =SubSubSubCategory::where('slug', $slug)->first();
+                $categories = SubCategory::where('cat_id',$cat->id)->orderBy('title','ASC')->get();
+                $subcategories = SubSubCategory::where('cat_id',$cat->id)->orderBy('title','ASC')->get();
+
+                $brands   = DB::table('brands')
+                            ->join('products', 'brands.id', '=', 'products.brand_id')
+                            ->join('sub_sub_sub_categories', 'products.sub_sub_sub_cat_id', '=', 'sub_sub_sub_categories.id')
+                            ->where('sub_sub_sub_categories.slug', '=', $slug)
+                            ->select( 'brands.id','brands.title','brands.slug')
+                            ->distinct()
+                            ->paginate(10);
             }
 
         }
@@ -58,7 +108,35 @@ class ShopController extends Controller
                             ->join('categories', 'products.cat_id', '=', 'categories.id')
                             ->select( '*')
                             ->where('categories.slug', '=', $slug);
-                }
+
+
+
+            }
+            elseif (SubCategory::getProductBySubCat($slug)) {
+                $products =  DB::table('products')
+                            ->join('sub_categories', 'products.sub_cat_id', '=', 'sub_categories.id')
+                            ->select( '*')
+                            ->where('sub_categories.slug', '=', $slug);
+
+
+
+            }
+            elseif (SubSubCategory::getProductBySubSubCat($slug)) {
+                $products =  DB::table('products')
+                            ->join('sub_sub_categories', 'products.sub_sub_cat_id', '=', 'sub_sub_categories.id')
+                            ->select( '*')
+                            ->where('sub_sub_categories.slug', '=', $slug);
+
+
+            }
+            elseif (SubSubSubCategory::getProductBySubSubSubCat($slug)) {
+                $products =  DB::table('products')
+                            ->join('sub_sub_sub_categories', 'products.sub_sub_sub_cat_id', '=', 'sub_sub_sub_categories.id')
+                            ->select( '*')
+                            ->where('sub_sub_sub_categories.slug', '=', $slug);
+
+
+            }
         }
 
         if (!empty($_GET['customBrand'])) {
@@ -72,6 +150,7 @@ class ShopController extends Controller
                             ->select('products.id','products.slug','products.name','products.thumbnail','products.price','products.discount','products.stock','products.mf_code','products.sku_code','products.short_desc')
                             ;
                             //dd($products);
+                $brands = Brand::inRandomOrder()->paginate(10);
             }
 
         }
@@ -97,7 +176,7 @@ class ShopController extends Controller
             $slugs = explode(',',$_GET['brand']);
             $brandIds = Brand::select('id')->whereIn('slug',$slugs)->pluck('id')->toArray();
             //dd($brandIds);
-            $products = $products->where('brand_id',$brandIds);
+            $products = $products->whereIn('brand_id',$brandIds);
            //dd($products);
         }
 
@@ -137,7 +216,7 @@ class ShopController extends Controller
 
 
         //$categories = Category::orderBy('title','ASC')->limit(8)->get();
-        $brands = Brand::orderBy('title','ASC')->limit(11)->get();
+
         $newProduct = Product::orderBy('id','DESC')->where('product_status', 'product')->limit(3)->get();
 
 
@@ -159,7 +238,17 @@ class ShopController extends Controller
         if(!empty($slug)){
             if (Category::getProductByCat($slug)) {
             $customURL .='&customCategory='.$slug;
-            }else{
+            }
+            elseif (SubCategory::getProductBySubCat($slug)) {
+            $customURL .='&customCategory='.$slug;
+            }
+            elseif (SubSubCategory::getProductBySubSubCat($slug)) {
+            $customURL .='&customCategory='.$slug;
+            }
+            elseif (SubSubSubCategory::getProductBySubSubSubCat($slug)) {
+            $customURL .='&customCategory='.$slug;
+            }
+            else{
             $customURL .='&customBrand='.$slug;
             }
         }

@@ -329,7 +329,7 @@ class CategoryController extends Controller
                 ],
                 'image'    => 'The file must be an image.',
                 'mimes' => 'The :attribute must be a file of type: PNG - JPEG - JPG',
-                
+
                 'unique' => 'This Category has already been taken.',
 
             ]
@@ -388,13 +388,13 @@ class CategoryController extends Controller
             $validator =
                 [
                     [
-                        'title' => 'required|max: 30',
-                        'image' => 'required|image|mimes:png,jpg,jpeg|max:5000',
+                        'title' => 'required',
+                        //'image' => 'image|mimes:png,jpg,jpeg|max:5000',
                     ],
-                    [
-                        'image' => 'The file must be an image.',
-                        'mimes' => 'The: attribute must be a file of type: PNG - JPEG - JPG'
-                    ]
+                    // [
+                    //     'image' => 'The file must be an image.',
+                    //     'mimes' => 'The: attribute must be a file of type: PNG - JPEG - JPG'
+                    // ]
                 ];
         } else {
             $validator =
@@ -447,8 +447,8 @@ class CategoryController extends Controller
         if (!empty($subsubcategory)) {
             $validator =
                 [
-                    'title' => 'required|max: 30',
-                    'image' => 'required|image|mimes:png,jpg,jpeg|max:5000',
+                    'title' => 'required',
+                    //'image' => 'required|image|mimes:png,jpg,jpeg|max:5000',
                 ];
         } else {
             $validator =
@@ -501,8 +501,8 @@ class CategoryController extends Controller
             $validator =
                 [
 
-                    'title' => 'required|max: 30',
-                    'image' => 'required|image|mimes:png,jpg,jpeg|max:5000',
+                    'title' => 'required',
+                    //'image' => 'required|image|mimes:png,jpg,jpeg|max:5000',
 
                 ];
         } else {

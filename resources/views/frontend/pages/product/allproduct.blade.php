@@ -303,7 +303,7 @@
                                 @endif
                                 @foreach ($brands as $brand)
                                     @php
-                                        $products_brand = App\Models\Admin\Product::where('brand_id', $brand->id)->get();
+                                        // $products_brand = App\Models\Admin\Product::where('brand_id', $brand->id)->where('')->get();
                                     @endphp
                                     <div class="form-check">
                                         <input class="form-check-input custom" type="checkbox" name="brand[]"
@@ -312,7 +312,7 @@
                                             onchange="this.form.submit()">
                                         <span class="ml-2"
                                             for="exampleBrand{{ $brand->id }}">{{ $brand->title }}</span>
-                                        <span class="float-right">({{ count($products_brand) }})</span>
+                                        {{-- <span class="float-right">({{ count($products_brand) }})</span> --}}
                                     </div>
                                 @endforeach
                             </div>

@@ -49,7 +49,7 @@
                         @php
                             $resulValues = [];
                             $presentDate = date('Y-m-d');
-                            $createDateNotificationDays = App\Models\Admin\Product::all('id', 'name', 'thumbnail', 'price', 'create_date', 'notification_days');
+                            $createDateNotificationDays = App\Models\Admin\Product::all('id', 'name', 'thumbnail', 'price', 'create_date', 'notification_days')->whereNotNull('notification_days');
                             foreach ($createDateNotificationDays as $createDateNotificationDay) {
                                 $value = date('Y-m-d', strtotime($createDateNotificationDay->create_date . ' + ' . $createDateNotificationDay->notification_days . ' days'));
                                 if ($value <= $presentDate) {
