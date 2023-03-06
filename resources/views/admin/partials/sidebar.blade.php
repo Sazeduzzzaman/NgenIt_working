@@ -322,6 +322,10 @@
                             <a href="{{ route('effort-ratings.index') }}" class="nav-link"><i class="ph-layout"></i>
                                 <span>Effort Ratings</span></a>
                         </li>
+                        <li class="nav-item">
+                            <a href="{{ route('technology-data.index') }}" class="nav-link"><i class="ph-layout"></i>
+                                <span>Technology Data</span></a>
+                        </li>
                     </ul>
                 </li>
 

@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Admin\Purchase;
 use App\Http\Controllers\Controller;
 use App\Models\Admin\AccountsPayable;
+use App\Models\Admin\PurchaseProduct;
 use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\DB;
@@ -50,7 +51,7 @@ class PurchaseController extends Controller
             ],
         );
         if ($validator->passes()) {
-            Purchase::create([
+            $purchase_id = Purchase::insertGetId([
                 'rfq_id'                   => $request->rfq_id,
                 'pq_number'                => $request->pq_number,
                 'pq_reference'             => $request->pq_reference,
@@ -95,6 +96,34 @@ class PurchaseController extends Controller
                 'total'                    => $request->total,
                 'client_details'           => $request->client_details,
             ]);
+
+            //dd($request->qty);
+            $rfq_id           = $request->rfq_id;
+            $purchase_id      = $purchase_id;
+            $product_name     = $request->item_name;
+            $qty              = $request->qty;
+            $unit_price       = $request->unit_price;
+            // $sub_total = $request->regular_discount;
+            // $amount = $request->regular_discount;
+
+
+
+            for ($i = 0; $i < count($product_name); $i++) {
+                $datasave = [
+                    'rfq_id'           => $rfq_id,
+                    'purchase_id'      => $purchase_id,
+                    'product_name'     => $product_name[$i],
+                    'qty'              => $qty[$i],
+                    'unit_price'       => $unit_price[$i],
+                    'sub_total'        => $qty[$i] * $unit_price[$i],
+                    //'amount'           => $amount[$i],
+
+                ];
+
+                // DB::table('colors')->insert($datasave);
+                PurchaseProduct::insert($datasave);
+            }
+
             Toastr::success('Data Insert Successfully');
         } else {
             $messages = $validator->messages();

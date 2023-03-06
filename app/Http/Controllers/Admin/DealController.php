@@ -7,12 +7,14 @@ use Pdf;
 use Helper;
 use Carbon\Carbon;
 use App\Models\User;
+use NumberFormatter;
 use App\Models\Admin\Rfq;
 use Illuminate\Support\Str;
 use App\Models\Admin\Client;
 use Illuminate\Http\Request;
 use App\Models\Admin\DealSas;
 use App\Models\Admin\Product;
+use App\Models\Frontend\Order;
 use App\Notifications\RfqDeal;
 use App\Models\Partner\Partner;
 use App\Models\Admin\RfqProduct;
@@ -413,49 +415,56 @@ class DealController extends Controller
 
 
 
-    // create a new email message
-    $mail = Mail::raw($message, function ($message) use ($email, $subject, $pdf) {
-        $message->to($email)
-                ->subject($subject)
-                ->attachData($pdf->output(), 'quotation-Ngenit.pdf');
-    });
+        // create a new email message
+            $mail = Mail::raw($message, function ($message) use ($email, $subject, $pdf) {
+            $message->to($email)
+                    ->subject($subject)
+                    ->attachData($pdf->output(), 'quotation-Ngenit.pdf');
+        });
 
-    // send the email
-    if ($mail) {
-        Toastr::success('Quotation Mail Sent Successfully');
-    } else {
-        Toastr::error($message, 'Quotation Mail Sent Failed', ['timeOut' => 30000]);
-    }
+        // send the email
+        if ($mail) {
+            Toastr::success('Quotation Mail Sent Successfully');
+        } else {
+            Toastr::error($message, 'Quotation Mail Sent Failed', ['timeOut' => 30000]);
+        }
 
 
 
-    $document_check = CommercialDocument::where('rfq_id', $data['rfq']->id)->first();
-    if (!empty($document_check)) {
-        CommercialDocument::find($document_check->id)->update([
-            'client_pq'=> $filePath,
+        $document_check = CommercialDocument::where('rfq_id', $data['rfq']->id)->first();
+        if (!empty($document_check)) {
+            CommercialDocument::find($document_check->id)->update([
+                'client_pq'=> $filePath,
+                ]);
+                Toastr::success('PDF Uploaded Successfully');
+        } else {
+            CommercialDocument::create([
+                'rfq_id' => $data['rfq']->id,
+                'client_pq'=> $filePath,
             ]);
             Toastr::success('PDF Uploaded Successfully');
-    } else {
-        CommercialDocument::create([
-            'rfq_id' => $data['rfq']->id,
-            'client_pq'=> $filePath,
+        }
+
+                $user = User::latest()->get();
+
+                $name = Auth::user()->name;
+                $rfq_code = $data['rfq']->rfq_code;
+
+                Notification::send($user, new Quotation($name , $rfq_code));
+
+        $rfq = Rfq::find($data['rfq']->id);
+        if (!empty($data['deal_sas']->tax_sales)) {
+            $quoted_price = ($data['deal_sas']->grand_total) - ($data['deal_sas']->tax_sales);
+        } else {
+            $quoted_price = $data['deal_sas']->grand_total;
+        }
+
+        $rfq->update([
+            'status'  => 'quoted',
+            'quoted_price' => $quoted_price,
         ]);
-        Toastr::success('PDF Uploaded Successfully');
-    }
-
-            $user = User::latest()->get();
-
-            $name = Auth::user()->name;
-            $rfq_code = $data['rfq']->rfq_code;
-
-            Notification::send($user, new Quotation($name , $rfq_code));
-
-    $rfq = Rfq::find($data['rfq']->id);
-    $rfq->update([
-        'status'  => 'quoted',
-    ]);
-        //return $pdf->download('Quotation-'.$id.'.pdf');
-        return redirect()->back();
+            //return $pdf->download('Quotation-'.$id.'.pdf');
+            return redirect()->back();
 
 
     }
@@ -491,7 +500,7 @@ class DealController extends Controller
         $data['invoice_no'] = 'NI-'.date('dmY').Order::latest()->value('order_number');
 
 
-        
+
 
         return view('pdf.invoice', $data);
 

@@ -30,7 +30,7 @@
         <!-- Content area -->
         <div class="content">
             <div class="row">
-                <div class="card" style="width:70%; margin:auto;">
+                <div class="card" style="width:90%; margin:auto;">
                     <div class="card-header">
                         <div class="row">
                             <div class="col-lg-6">
@@ -71,7 +71,7 @@
                                             <th width="15%">Create Date</th>
                                             <th width="15%">Details</th>
                                             <th width="15%">Status</th>
-                                            <th width="15%" class="text-center">Actions</th>
+                                            <th width="25%" class="text-center">Actions</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -528,14 +528,14 @@
                     <div class="tab-content">
                         <div class="tab-pane fade" id="js-tab2">
                             <div class="card-body">
-                                <table class="rfqDT2 table table-bordered table-hover">
+                                <table class="rfqDT2 table table-bordered table-hover text-center">
                                     <thead>
                                         <tr>
-                                            <th width="15%">RFQ Code</th>
-                                            <th width="10%">Create Date</th>
+                                            <th width="20%">RFQ Code</th>
+                                            <th width="15%">Create Date</th>
                                             <th width="7%">Details</th>
-                                            <th width="13%">Status</th>
-                                            <th width="15%" class="text-center">Actions</th>
+                                            <th style="width:20px !important;">Status</th>
+                                            <th width="25%" class="text-center">Actions</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -552,120 +552,119 @@
                                                     </a>
 
                                                     <!---Category Update modal--->
-                                                <div id="show-deals-{{ $deal->rfq_code }}" class="modal fade" tabindex="-1" style="display: none;" aria-hidden="true">
-                                                    <div class="modal-dialog modal-dialog-scrollable modal-lg">
-                                                        <div class="modal-content">
-                                                            <div class="modal-header">
-                                                                @php
-                                                                    $rfq_details = App\Models\Admin\Rfq::where('rfq_code', $deal->rfq_code)->first();
-                                                                    $deal_products = App\Models\Admin\DealSas::where('rfq_code', $rfq_details->rfq_code)->get();
-                                                                @endphp
-                                                                <h5 class="modal-title">Deal Details : {{ $rfq_details->rfq_code }}</h5>
-                                                                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                                                            </div>
+                                                    <div id="show-deals-{{ $deal->rfq_code }}" class="modal fade" tabindex="-1" style="display: none;" aria-hidden="true">
+                                                        <div class="modal-dialog modal-dialog-scrollable modal-lg">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    @php
+                                                                        $rfq_details = App\Models\Admin\Rfq::where('rfq_code', $deal->rfq_code)->first();
+                                                                        $deal_products = App\Models\Admin\DealSas::where('rfq_code', $rfq_details->rfq_code)->get();
+                                                                    @endphp
+                                                                    <h5 class="modal-title">Deal Details : {{ $rfq_details->rfq_code }}</h5>
+                                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                                                </div>
 
-                                                            <div class="modal-body border br-7">
-
-
-                                                                    <div class="row mb-3">
-                                                                        <div class="card">
-
-                                                                            <div class="row">
-                                                                                <table class="table table-bordered table-striped p-1">
-                                                                                    <thead>
-                                                                                        <tr>
-                                                                                            <th>
-                                                                                                Client Type : {{ ucfirst($rfq_details->client_type) }}
-                                                                                            </th>
-                                                                                            <th>
-                                                                                                Name : {{ ucfirst($rfq_details->name) }}
-                                                                                            </th>
-                                                                                            <th>
-                                                                                                Company Name : {{ ucfirst($rfq_details->company_name) }}
-                                                                                           </th>
-                                                                                        </tr>
-
-                                                                                        <tr>
-                                                                                            <th>Asking Quantity : @if (App\Models\Admin\DealSas::where('rfq_id' , $rfq_details->id)->sum('qty') > 0)
-                                                                                                    {{App\Models\Admin\DealSas::where('rfq_id' , $rfq_details->id)->sum('qty')}}
-                                                                                                @else
-                                                                                                {{ $rfq_details->qty}}
-                                                                                                @endif
-                                                                                            </th>
-                                                                                            <th>Phone Number : {{ $rfq_details->phone }}</th>
-                                                                                            <th>
-                                                                                                Total Price : $ {{App\Models\Admin\DealSas::where('rfq_id' , $rfq_details->id)->value('grand_total')}}
-                                                                                            </th>
-                                                                                        </tr>
-                                                                                        <tr>
-                                                                                            <th>
-                                                                                                Assigned Sales Manager (L1) : {{ App\Models\User::where('id',$rfq_details->sales_man_id_L1)->value('name') }} <br>
-                                                                                                @if ($rfq_details->sales_man_id_T1)
-                                                                                                Assigned Sales Manager (T1) : {{ App\Models\User::where('id',$rfq_details->sales_man_id_T1)->value('name') }} <br>
-                                                                                                @endif
-                                                                                                @if ($rfq_details->sales_man_id_T2)
-                                                                                                    Assigned Sales Manager (T2) : {{ App\Models\User::where('id',$rfq_details->sales_man_id_T2)->value('name') }}
-                                                                                                @endif
-
-                                                                                            </th>
-                                                                                            <th>
-                                                                                                Status : <span class="badge bg-success p-1">{{ucfirst(($rfq_details->status))}}</span>
+                                                                <div class="modal-body border br-7">
 
 
-                                                                                            </th>
-                                                                                            <th></th>
-                                                                                        </tr>
+                                                                        <div class="row mb-3">
+                                                                            <div class="card">
 
-                                                                                    </thead>
-                                                                                </table>
-                                                                            </div>
-                                                                            <div class="row">
-                                                                                <table class="table table-bordered table-striped p-1">
-                                                                                    <thead>
-                                                                                        @if (count($deal_products) > 0)
+                                                                                <div class="row">
+                                                                                    <table class="table table-bordered table-striped p-1">
+                                                                                        <thead>
                                                                                             <tr>
-                                                                                                <th> Product Name</th>
-                                                                                                <th> Quantity </th>
-                                                                                                <th> Sale Price </th>
+                                                                                                <th>
+                                                                                                    Client Type : {{ ucfirst($rfq_details->client_type) }}
+                                                                                                </th>
+                                                                                                <th>
+                                                                                                    Name : {{ ucfirst($rfq_details->name) }}
+                                                                                                </th>
+                                                                                                <th>
+                                                                                                    Company Name : {{ ucfirst($rfq_details->company_name) }}
+                                                                                            </th>
                                                                                             </tr>
 
-                                                                                            @foreach ($deal_products as $item)
-                                                                                            <tr class="bg-gray text-white">
-                                                                                                <th>{{$item->item_name}}</th>
-                                                                                                <th>{{$item->qty}}</th>
-                                                                                                <th>{{$item->sub_total_cost}}</th>
+                                                                                            <tr>
+                                                                                                <th>Asking Quantity : @if (App\Models\Admin\DealSas::where('rfq_id' , $rfq_details->id)->sum('qty') > 0)
+                                                                                                        {{App\Models\Admin\DealSas::where('rfq_id' , $rfq_details->id)->sum('qty')}}
+                                                                                                    @else
+                                                                                                    {{ $rfq_details->qty}}
+                                                                                                    @endif
+                                                                                                </th>
+                                                                                                <th>Phone Number : {{ $rfq_details->phone }}</th>
+                                                                                                <th>
+                                                                                                    Total Price : $ {{App\Models\Admin\DealSas::where('rfq_id' , $rfq_details->id)->value('grand_total')}}
+                                                                                                </th>
                                                                                             </tr>
-                                                                                            @endforeach
-                                                                                        @else
+                                                                                            <tr>
+                                                                                                <th>
+                                                                                                    Assigned Sales Manager (L1) : {{ App\Models\User::where('id',$rfq_details->sales_man_id_L1)->value('name') }} <br>
+                                                                                                    @if ($rfq_details->sales_man_id_T1)
+                                                                                                    Assigned Sales Manager (T1) : {{ App\Models\User::where('id',$rfq_details->sales_man_id_T1)->value('name') }} <br>
+                                                                                                    @endif
+                                                                                                    @if ($rfq_details->sales_man_id_T2)
+                                                                                                        Assigned Sales Manager (T2) : {{ App\Models\User::where('id',$rfq_details->sales_man_id_T2)->value('name') }}
+                                                                                                    @endif
 
-                                                                                        @endif
+                                                                                                </th>
+                                                                                                <th>
+                                                                                                    Status : <span class="badge bg-success p-1">{{ucfirst(($rfq_details->status))}}</span>
+
+
+                                                                                                </th>
+                                                                                                <th></th>
+                                                                                            </tr>
+
+                                                                                        </thead>
+                                                                                    </table>
+                                                                                </div>
+                                                                                <div class="row">
+                                                                                    <table class="table table-bordered table-striped p-1">
+                                                                                        <thead>
+                                                                                            @if (count($deal_products) > 0)
+                                                                                                <tr>
+                                                                                                    <th> Product Name</th>
+                                                                                                    <th> Quantity </th>
+                                                                                                    <th> Sale Price </th>
+                                                                                                </tr>
+
+                                                                                                @foreach ($deal_products as $item)
+                                                                                                <tr class="bg-gray text-white">
+                                                                                                    <th>{{$item->item_name}}</th>
+                                                                                                    <th>{{$item->qty}}</th>
+                                                                                                    <th>{{$item->sub_total_cost}}</th>
+                                                                                                </tr>
+                                                                                                @endforeach
+                                                                                            @else
+
+                                                                                            @endif
 
 
 
 
-                                                                                    </thead>
-                                                                                </table>
+                                                                                        </thead>
+                                                                                    </table>
+                                                                                </div>
+
                                                                             </div>
-
                                                                         </div>
-                                                                    </div>
-                                                                </form>
+                                                                    </form>
+                                                                </div>
+
+
                                                             </div>
-
-
                                                         </div>
                                                     </div>
-                                                </div>
-                                                <!---Category Update modal--->
-
-
+                                                    <!---Category Update modal--->
                                                 </td>
-                                                <td><span class="badge bg-success p-1">{{ucfirst(($deal->status))}}</span></td>
+
+                                                <td>
+                                                    <span class="badge bg-success">{{ucfirst(($deal->status))}}</span>
+                                                </td>
+
                                                 <td class="text-center">
-                                                    {{-- <a href="{{ route('rfq.edit', [$rfq->id]) }}"
-                                                        class="text-primary">
-                                                        <i class="icon-pencil"></i>
-                                                    </a> --}}
+
                                                     <a href="{{ route('single-rfq.show',$deal->rfq_code) }}" class="text-success mx-3 float-start"
                                                         title="Go to Details">
                                                         <i class="mi-airplay mi-1x"></i>
@@ -689,8 +688,6 @@
                                                             title="Create SAS">
                                                             <i class="ph-file-plus"></i>
                                                         </a>
-
-
                                                     @endif
                                                     @if ($deal->status == 'sas_created')
                                                         <a href="{{ route('deal-sas.edit',$deal->rfq_code) }}" class="text-info mx-2">
@@ -1010,7 +1007,7 @@
                 "lengthMenu": [10, 26, 30, 50],
                 columnDefs: [{
                     orderable: false,
-                    targets: [2,4],
+                    targets: [2, 3, 4],
                 }, ],
             });
             $('.rfqDT2').DataTable({
@@ -1019,7 +1016,7 @@
                 "lengthMenu": [10, 26, 30, 50],
                 columnDefs: [{
                     orderable: false,
-                    targets: [2,4],
+                    targets: [2, 3, 4],
                 }, ],
             });
         </script>

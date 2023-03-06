@@ -21,6 +21,7 @@ return new class extends Migration
             $table->unsignedBigInteger('sales_man_id_T2')->nullable();
             $table->enum('quarter', ['q1', 'q2', 'q3', 'q4'])->nullable();
             $table->string('month')->nullable();
+            $table->year('fiscal_year')->nullable();
             $table->enum('deal_type', ['new', 'renew'])->nullable();
             $table->double('deal_type_value')->nullable();
             //$table->double('total_')->nullable();

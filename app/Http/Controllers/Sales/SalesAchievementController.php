@@ -12,6 +12,9 @@ use App\Http\Controllers\Controller;
 use Brian2694\Toastr\Facades\Toastr;
 use App\Models\Admin\DealTypeSetting;
 use App\Models\Admin\SalesAchievement;
+use App\Models\Admin\SalesTeamTarget;
+use App\Models\Admin\SalesYearTarget;
+use App\Models\User;
 use Illuminate\Support\Facades\Validator;
 
 class SalesAchievementController extends Controller
@@ -23,9 +26,19 @@ class SalesAchievementController extends Controller
      */
     public function index()
     {
-        $data['rfqs'] = Rfq::where('rfq_type' , 'deal')->orderBy('id', 'DESC')->get();
-        return view('admin.pages.sales-achievement.all',$data);
+        $data['sales_year_target']  = SalesYearTarget::where('fiscal_year' , date('Y'))->first();
+        $data['sales_team_targets'] = SalesTeamTarget::where('fiscal_year' , date('Y'))->get();
+        $data['q1_quoted_amount'] = SalesAchievement::where('quarter', 'q1')->sum('total_quoted_amount');
+        $data['q2_quoted_amount'] = SalesAchievement::where('quarter', 'q2')->sum('total_quoted_amount');
+        $data['q3_quoted_amount'] = SalesAchievement::where('quarter', 'q3')->sum('total_quoted_amount');
+        $data['q4_quoted_amount'] = SalesAchievement::where('quarter', 'q4')->sum('total_quoted_amount');
+        $data['total_quoted_amount'] = $data['q1_quoted_amount']+$data['q2_quoted_amount']+$data['q3_quoted_amount']+$data['q4_quoted_amount'];
+        $data['sales_managers'] = User::where('role' , 'sales')->get();
+        //dd($data['sales_team_targets']);
+        return view('admin.pages.sales-achievement.summary',$data);
     }
+
+
 
     /**
      * Show the form for creating a new resource.
@@ -34,7 +47,9 @@ class SalesAchievementController extends Controller
      */
     public function create()
     {
-        //
+
+        $data['rfqs'] = Rfq::where('rfq_type' , 'deal')->orderBy('id', 'DESC')->get();
+        return view('admin.pages.sales-achievement.all',$data);
     }
 
     /**
@@ -67,6 +82,7 @@ class SalesAchievementController extends Controller
                 'deal_type_value'            => $request->deal_type_value,
                 'month'                      => $request->month,
                 'quarter'                    => $request->quarter ,
+                'fiscal_year'                => $request->fiscal_year ,
                 'sales_man_id_L1'            => $request->sales_man_id_L1  ,
                 'total_quoted_amount'        => $request->total_quoted_amount  ,
                 'shared_quote_percentage_L1' => $request->shared_quote_percentage_L1,
@@ -98,6 +114,7 @@ class SalesAchievementController extends Controller
                 'rating_T2'                  => $request->rating_T2,
                 'incentive_percentage_T2'    => $request->incentive_percentage_T2,
                 'incentive_amount_T2'        => $request->incentive_amount_T2,
+
             ]);
 
 
@@ -167,4 +184,8 @@ class SalesAchievementController extends Controller
     {
         //
     }
+
+
+
+
 }

@@ -71,7 +71,7 @@
             <div class="content">
                 <!-- Table components -->
                 <div class="card m-auto w-50 mb-3 p-2">
-                    <table class="table table-bordered table-xs table-responsive">
+                    <table class="table  table-bordered table-xs table-responsive">
                         <tr>
                             <th colspan="7">
                                 <h5 class="mb-0"> Sales Profit & Loss
@@ -114,10 +114,11 @@
                                                     <select name="rfq_id" id="rfq_id"
                                                         class="form-control form-control-sm" required>
                                                         <option value="0">--select--</option>
-                                                        {{-- @foreach ($dealSasWithRfqs as $dealSasWithRfq)
-                                                            <option value="{{ $dealSasWithRfq->id }}"> {{ $dealSasWithRfq->name }}
+                                                        @foreach ($dealSasWithRfqs as $dealSasWithRfq)
+                                                            <option value="{{ $dealSasWithRfq->rfqsId }}">
+                                                                {{ e($dealSasWithRfq->rfq_code) . ',' . ' ' . 'Client Name:' . ' ' . e($dealSasWithRfq->name) }}
                                                             </option>
-                                                        @endforeach --}}
+                                                        @endforeach
                                                     </select>
                                                 </div>
                                             </td>
@@ -439,7 +440,7 @@
                     <div class="card-body">
                         <div class="tab-content table-responsive">
                             <div class="tab-pane fade active show" id="js-January-tab" role="tabpanel">
-                                <table class="table table-xs table-bordered datatable-basic">
+                                <table class="table january table-xs table-bordered datatable-basic">
                                     <thead>
                                         <tr>
                                             <th style="width:5%;">SL</th>
@@ -474,7 +475,7 @@
                                 </table>
                             </div>
                             <div class="tab-pane fade" id="js-February-tab" role="tabpanel">
-                                <table class="table table-xs table-bordered datatable-basic">
+                                <table class="table february table-xs table-bordered datatable-basic">
                                     <thead>
                                         <tr>
                                             <th style="width:5%;">SL</th>
@@ -509,7 +510,7 @@
                                 </table>
                             </div>
                             <div class="tab-pane fade" id="js-March-tab" role="tabpanel">
-                                <table class="table table-xs table-bordered datatable-basic">
+                                <table class="table march table-xs table-bordered datatable-basic">
                                     <thead>
                                         <tr>
                                             <th style="width:5%;">SL</th>
@@ -544,7 +545,7 @@
                                 </table>
                             </div>
                             <div class="tab-pane fade" id="js-April-tab" role="tabpanel">
-                                <table class="table table-xs table-bordered datatable-basic">
+                                <table class="table april table-xs table-bordered datatable-basic">
                                     <thead>
                                         <tr>
                                             <th style="width:5%;">SL</th>
@@ -579,7 +580,7 @@
                                 </table>
                             </div>
                             <div class="tab-pane fade" id="js-May-tab" role="tabpanel">
-                                <table class="table table-xs table-bordered datatable-basic">
+                                <table class="table may table-xs table-bordered datatable-basic">
                                     <thead>
                                         <tr>
                                             <th style="width:5%;">SL</th>
@@ -614,7 +615,7 @@
                                 </table>
                             </div>
                             <div class="tab-pane fade" id="js-June-tab" role="tabpanel">
-                                <table class="table table-xs table-bordered datatable-basic">
+                                <table class="table june table-xs table-bordered datatable-basic">
                                     <thead>
                                         <tr>
                                             <th style="width:5%;">SL</th>
@@ -649,7 +650,7 @@
                                 </table>
                             </div>
                             <div class="tab-pane fade" id="js-July-tab" role="tabpanel">
-                                <table class="table table-xs table-bordered datatable-basic">
+                                <table class="table july table-xs table-bordered datatable-basic">
                                     <thead>
                                         <tr>
                                             <th style="width:5%;">SL</th>
@@ -684,7 +685,7 @@
                                 </table>
                             </div>
                             <div class="tab-pane fade" id="js-August-tab" role="tabpanel">
-                                <table class="table table-xs table-bordered datatable-basic">
+                                <table class="table august table-xs table-bordered datatable-basic">
                                     <thead>
                                         <tr>
                                             <th style="width:5%;">SL</th>
@@ -719,7 +720,7 @@
                                 </table>
                             </div>
                             <div class="tab-pane fade" id="js-September-tab" role="tabpanel">
-                                <table class="table table-xs table-bordered datatable-basic">
+                                <table class="table september table-xs table-bordered datatable-basic">
                                     <thead>
                                         <tr>
                                             <th style="width:5%;">SL</th>
@@ -754,7 +755,7 @@
                                 </table>
                             </div>
                             <div class="tab-pane fade" id="js-October-tab" role="tabpanel">
-                                <table class="table table-xs table-bordered datatable-basic">
+                                <table class="table october table-xs table-bordered datatable-basic">
                                     <thead>
                                         <tr>
                                             <th style="width:5%;">SL</th>
@@ -789,7 +790,7 @@
                                 </table>
                             </div>
                             <div class="tab-pane fade" id="js-November-tab" role="tabpanel">
-                                <table class="table table-xs table-bordered datatable-basic">
+                                <table class="table november table-xs table-bordered datatable-basic">
                                     <thead>
                                         <tr>
                                             <th style="width:5%;">SL</th>
@@ -824,7 +825,7 @@
                                 </table>
                             </div>
                             <div class="tab-pane fade" id="js-December-tab" role="tabpanel">
-                                <table class="table table-xs table-bordered datatable-basic">
+                                <table class="table december table-xs table-bordered datatable-basic">
                                     <thead>
                                         <tr>
                                             <th style="width:5%;">SL</th>
@@ -897,6 +898,16 @@
                     });
                 }
             });
+            $('.january, .february, .march, .april, .may, .june, .july, .august, .september, .october, .november, .december')
+                .DataTable({
+                    dom: '<"datatable-header"fl><"datatable-scroll"t><"datatable-footer"ip>',
+                    "iDisplayLength": 10,
+                    "lengthMenu": [10, 25, 30, 50],
+                    columnDefs: [{
+                        orderable: false,
+                        targets: [5],
+                    }, ],
+                });
         });
     </script>
 @endpush

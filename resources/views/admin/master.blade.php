@@ -202,10 +202,10 @@
                         </a>
                         <div class="flex-fill">
                             {{-- <a href="{{ route('rfq.edit'),$notification->data['link'] }}" class="fw-semibold">{{ $notification->data['name'] }}</a> {{ $notification->data['message'] }} --}}
-                            <a href="javascript:void(0);" data-id="{{ $notification->id }}" class="text-black mark-as-read">
+                            <a href="javascript:void(0);"  class="text-black">
                                 @if ($notification->data['link'])
                                 {{ $notification->data['name'] }} {{ $notification->data['message1'] }}
-                                <a href="{{ $notification->data['link'] }}" class="fw-semibold">
+                                <a href="{{ $notification->data['link'] }}" data-id="{{ $notification->id }}" class="fw-semibold mark-as-read">
                                     {{ $notification->data['message2'] }}
                                 </a>
                                 @else

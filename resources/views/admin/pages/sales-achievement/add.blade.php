@@ -145,23 +145,23 @@
                                                     </tr>
 
                                                     <tr>
-                                                        <th width="50%"> <p class="m-0"><strong>Deal Type : {{ucfirst($rfq->deal_type)}}</strong></p> <input class="deal_type_value" name="deal_type_value" type="hidden" value="{{$deal_type_value}}"></th>
-                                                        <th width="50%"> <p class="m-0"><strong>Total Amount : &nbsp; &nbsp; $ {{ $sourcing->grand_total }}</strong></p></th>
+                                                        <th> <p class="m-0"><strong>Deal Type : {{ucfirst($rfq->deal_type)}}</strong></p> <input class="deal_type_value" name="deal_type_value" type="hidden" value="{{$deal_type_value}}"></th>
+                                                        <th colspan="2"> <p class="m-0"><strong>Total Amount : &nbsp; &nbsp; $ {{ $sourcing->grand_total }}</strong></p></th>
 
                                                     </tr>
 
                                                     <tr>
-                                                        <th width="50%">
+                                                        <th width="33%">
                                                             @php
                                                                 for ($m = 1; $m <= 12; $m++) {
                                                                     $months[] = date('F', mktime(0, 0, 0, $m, 1, date('Y')));
                                                                 }
                                                             @endphp
                                                             <div class="row m-0">
-                                                                <div class="col-sm-10">
+                                                                <div class="col-sm-12">
                                                                     <h6 class="mb-0">Month <span class="text-danger">*</span></h6>
                                                                 </div>
-                                                                <div class="form-group text-secondary col-sm-10">
+                                                                <div class="form-group text-secondary col-sm-12">
                                                                     <select name="month" class="form-select"
                                                                         data-placeholder="Choose month " required>
                                                                         <option></option>
@@ -177,12 +177,12 @@
 
 
                                                         </th>
-                                                        <th width="50%">
+                                                        <th width="33%">
                                                             <div class="row m-0">
-                                                                <div class="col-sm-10">
+                                                                <div class="col-sm-12">
                                                                     <h6 class="mb-0">Quarter <span class="text-danger">*</span></h6>
                                                                 </div>
-                                                                <div class="form-group text-secondary col-sm-10">
+                                                                <div class="form-group text-secondary col-sm-12">
                                                                     <select name="quarter" class="form-select"
                                                                         data-placeholder="Chose Quarter " required>
                                                                         <option></option>
@@ -193,6 +193,17 @@
                                                                     </select>
                                                                 </div>
                                                             </div>
+                                                        </th>
+                                                        <th width="33%">
+
+                                                                <div class="col-sm-12">
+                                                                    <h6 class="mb-0">Fiscal Year</h6>
+                                                                </div>
+                                                                <div class="form-group col-sm-12 text-secondary">
+                                                                    <input type="text" name="fiscal_year" id="datepicker"
+                                                                        class="yearselect form-control" />
+                                                                </div>
+                                                            
                                                         </th>
 
                                                     </tr>

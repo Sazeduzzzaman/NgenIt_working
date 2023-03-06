@@ -53,6 +53,7 @@ use App\Http\Controllers\Order\AdminOrderController;
 use App\Http\Controllers\Admin\ClientStoryController;
 use App\Http\Controllers\Admin\EffortRatingController;
 use App\Http\Controllers\Admin\IndustryPageController;
+use App\Http\Controllers\Admin\NotificationController;
 use App\Http\Controllers\Admin\SalesForcastController;
 use App\Http\Controllers\Admin\SolutionCardController;
 use App\Http\Controllers\Sales\SalesAccountController;
@@ -431,11 +432,18 @@ Route::controller(RFQController::class)->group(function(){
     'marketing-team-target' => MarketingTeamTargetController::class,
     'marketing-team-target' => MarketingTeamTargetController::class,
     'marketing-dmar' => MarketingDmarController::class,
+    'notification' => NotificationController::class,
+    'technology-data' => TechnologyDataController::class,
 ]);
 
+    Route::post('notifiy/multi-delete', [NotificationController::class, 'multiDelete'])->name('notifiy.multi-delete');
     Route::controller(EffortRatingController::class)->group(function(){
-        Route::get('/effort/ajax/{id}' , 'GetEffortRating')->name('get.effort.ajax');;
+        Route::get('/effort/ajax/{id}' , 'GetEffortRating')->name('get.effort.ajax');
     });
+
+
+    Route::get('/sales-achievement/summary' , [SalesAchievementController::class, 'salesAchievementSummary'])->name('dashboard.salesachievement');
+
 
 Route::post('salesmanager-status', [App\Http\Controllers\Sales\SalesAccountController::class, 'SalesStatus'])->name('sales.status');
 

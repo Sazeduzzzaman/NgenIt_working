@@ -336,12 +336,9 @@
                                                                                     <h6 class="mb-0">Sub Category Name
                                                                                     </h6>
                                                                                 </div>
-                                                                                <div
-                                                                                    class="form-group col-sm-8 text-secondary">
-                                                                                    <input type="text" name="title"
-                                                                                        class="form-control maxlength"
-                                                                                        maxlength="100"
-                                                                                        value="{{ $sub_cat->title }}" />
+                                                                                <div class="form-group col-sm-8 text-secondary">
+                                                                                    <input type="text" name="title" class="form-control maxlength"
+                                                                                        maxlength="100" value="{{ $sub_cat->title }}" />
                                                                                 </div>
                                                                             </div>
 

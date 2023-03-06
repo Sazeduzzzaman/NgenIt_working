@@ -71,9 +71,9 @@
                                                     </label>
                                                     <select name="order_id" id="order_id"
                                                         class="form-control form-control-sm">
-                                                        <option>--select--</option>
                                                         @foreach ($orders as $order)
-                                                            <option value="{{ $order->id }}"> {{ $order->name }}
+                                                            <option value="{{ $order->id }}">
+                                                                {{ $order->order_number . $order->client_type . App\Models\Client\Client::where('id', $order->client_id) }}
                                                             </option>
                                                         @endforeach
                                                     </select>
@@ -95,7 +95,7 @@
                                                     </label>
                                                     <select name="month" id="month"
                                                         class="form-control form-control-sm" required>
-                                                        <option >--select--</option>
+                                                        <option>--select--</option>
                                                         <option value="january"> January</option>
                                                         <option value="february"> February</option>
                                                         <option value="march"> March</option>

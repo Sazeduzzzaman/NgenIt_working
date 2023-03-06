@@ -22,8 +22,8 @@ return new class extends Migration
             $table->string('client_name')->nullable();
             $table->bigInteger('qty')->nullable();
             $table->double('unit_price')->nullable();
-            $table->double('amount')->nullable();
             $table->double('sub_total')->nullable();
+            $table->double('amount')->nullable();
             $table->foreign('rfq_id')->references('id')->on('rfqs')->onUpdate('cascade');
             $table->foreign('purchase_id')->references('id')->on('purchases')->onDelete('cascade')->onUpdate('cascade');
 

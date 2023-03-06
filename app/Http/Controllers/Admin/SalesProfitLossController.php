@@ -20,8 +20,9 @@ class SalesProfitLossController extends Controller
     public function index()
     {
         $data['dealSasWithRfqs'] = DealSas::join('rfqs', 'deal_sas.rfq_id', 'rfqs.id')->select(
-            'rfqs.id',
+            'rfqs.id  as rfqsId',
             'rfqs.create_date',
+            'rfqs.name',
             'rfqs.rfq_code',
             'rfqs.client_type',
             'deal_sas.net_profit_percentage',
@@ -30,7 +31,7 @@ class SalesProfitLossController extends Controller
             'deal_sas.gross_profit_amount',
             'deal_sas.sub_total_cost',
             'deal_sas.grand_total',
-        )->take(1)->get();
+        )->get();
 
         $data['grandTotalSum'] = $data['dealSasWithRfqs']->pluck('grand_total')->sum();
         $data['netProfitSum'] = $data['dealSasWithRfqs']->pluck('net_profit_amount')->sum();

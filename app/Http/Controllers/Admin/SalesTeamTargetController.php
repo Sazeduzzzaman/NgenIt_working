@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use App\Models\Admin\Country;
 use App\Models\Admin\Product;
 use App\Models\Client\Client;
 use App\Models\Partner\Partner;
@@ -33,6 +34,7 @@ class SalesTeamTargetController extends Controller
      */
     public function create()
     {
+        $data['country'] = Country::select('countries.id', 'countries.country_name')->get();
         $data['users'] = User::where('role', 'sales')->select('users.id', 'users.name')->get();
         return view('admin.pages.salesTeamTarget.add', $data);
     }
@@ -45,13 +47,15 @@ class SalesTeamTargetController extends Controller
      */
     public function store(Request $request)
     {
+        $name = User::find($request->sales_man_id)->name;
+        // dd($name);
         $validator = Validator::make(
             $request->all(),
             [
                 'sales_man_id'         => 'nullable',
                 'fiscal_year'          => 'nullable',
                 'year_started'         => 'nullable',
-                'year_target'             => 'nullable',
+                'year_target'          => 'nullable',
                 'quarter_one_target'   => 'nullable',
                 'quarter_two_target'   => 'nullable',
                 'quarter_three_target' => 'nullable',
@@ -60,6 +64,8 @@ class SalesTeamTargetController extends Controller
         );
         if ($validator->passes()) {
             SalesTeamTarget::create([
+                'name'                 => $name,
+                'country_id'           => $request->country_id,
                 'sales_man_id'         => $request->sales_man_id,
                 'fiscal_year'          => $request->fiscal_year,
                 'year_started'         => $request->year_started,
@@ -87,7 +93,8 @@ class SalesTeamTargetController extends Controller
      */
     public function show($id)
     {
-        //
+        $data['salesTeamTarget'] = SalesTeamTarget::findOrfail($id);
+        return view('admin.pages.salesTeamTarget.show',$data);
     }
 
     /**

@@ -30,12 +30,12 @@
         <!-- Content area -->
         <div class="content">
             <div class="row">
-                <div class="col-lg-12">
+                <div class="col-lg-12 m-auto" style="width: 60%;">
                     <div class="card mt-1">
-                        <div class="card-body">
+                        <div class="card-body p-1">
                             <div class="row">
                                 <div class="col-lg-9">
-                                    <h4 class="text-center">All Sales Team Target</h4>
+                                    <h4 class="text-center mb-0">All Sales Team Target</h4>
                                 </div>
 
 
@@ -55,49 +55,53 @@
 
                     <div class="row">
                         <div class="content">
-                            <div class="tab-content">
-                                <div class="tab-pane fade show active" id="js-tab1">
-                                    <div id="table1" class="card cardT">
+                            <div class="card">
+                                <div class="card-body">
+                                    <table class="datatable table table-bordered table-hover contactDT">
+                                        <thead>
+                                            <tr>
+                                                <th width="10%">Sl No:</th>
+                                                <th width="12%">Country Name</th>
+                                                <th width="20%">Sales Manager Name</th>
+                                                <th width="12%">Fiscal Year</th>
+                                                <th width="15%">Year Target</th>
+                                                <th width="12%">Year Started</th>
+                                                <th width="19%" class="text-center">Actions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
 
-                                        <table class="datatable table table-bordered table-hover contactDT">
-                                            <thead>
-                                                <tr>
-                                                    <th width="10%">Sl No:</th>
-                                                    <th width="15%">Country Name</th>
-                                                    <th width="15%">Fiscal Year</th>
-                                                    <th width="15%">Year Target</th>
-                                                    <th width="35%">Year Started</th>
-                                                    <th width="10%" class="text-center">Actions</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
+                                            @if ($salesTeamTargets)
+                                                @foreach ($salesTeamTargets as $key => $salesTeamTarget)
+                                                    <tr>
+                                                        <td>{{ ++$key }}</td>
+                                                        <td> {{ App\Models\Admin\Country::where('id', $salesTeamTarget->country_id)
+                                                        ->value('country_name') }}</td>
+                                                        <td> {{ App\Models\User::where('id', $salesTeamTarget->sales_man_id)
+                                                        ->value('name') }}</td>
+                                                        <td>{{ $salesTeamTarget->fiscal_year }}</td>
+                                                        <td>{{ $salesTeamTarget->year_target }}</td>
+                                                        <td>{{ Str::ucfirst($salesTeamTarget->year_started) }}</td>
+                                                        <td class="text-center">
+                                                            <a href="{{ route('salesTeamTarget.show', [$salesTeamTarget->id]) }}"
+                                                                class="text-success" title="Target Vs Achievement">
+                                                                <i class="icon-eye"></i>
+                                                            </a>
+                                                            <a href="{{ route('salesTeamTarget.edit', [$salesTeamTarget->id]) }}"
+                                                                class="text-primary">
+                                                                <i class="icon-pencil"></i>
+                                                            </a>
+                                                            <a href="{{ route('salesTeamTarget.destroy', [$salesTeamTarget->id]) }}"
+                                                                class="text-danger delete mx-2">
+                                                                <i class="delete icon-trash"></i>
+                                                            </a>
 
-                                                @if ($salesTeamTargets)
-                                                    @foreach ($salesTeamTargets as $key => $salesTeamTarget)
-                                                        <tr>
-                                                            <td>{{ ++$key }}</td>
-                                                            <td> {{ App\Models\Admin\Country::where('id', $salesTeamTarget->country_id)
-                                                            ->value('country_name') }}</td>
-                                                            <td>{{ $salesTeamTarget->fiscal_year }}</td>
-                                                            <td>{{ $salesTeamTarget->year_target }}</td>
-                                                            <td>{{ Str::ucfirst($salesTeamTarget->year_started) }}</td>
-                                                            <td class="text-center">
-                                                                <a href="{{ route('salesTeamTarget.edit', [$salesTeamTarget->id]) }}"
-                                                                    class="text-primary">
-                                                                    <i class="icon-pencil"></i>
-                                                                </a>
-                                                                <a href="{{ route('salesTeamTarget.destroy', [$salesTeamTarget->id]) }}"
-                                                                    class="text-danger delete mx-2">
-                                                                    <i class="delete icon-trash"></i>
-                                                                </a>
-
-                                                            </td>
-                                                        </tr>
-                                                    @endforeach
-                                                @endif
-                                            </tbody>
-                                        </table>
-                                    </div>
+                                                        </td>
+                                                    </tr>
+                                                @endforeach
+                                            @endif
+                                        </tbody>
+                                    </table>
                                 </div>
                             </div>
                         </div>
@@ -125,7 +129,7 @@
                 "lengthMenu": [10, 26, 30, 50],
                 columnDefs: [{
                     orderable: false,
-                    targets: [4, 5],
+                    targets: [0, 1, 2, 4, 5, 6],
                 }, ],
             });
         </script>

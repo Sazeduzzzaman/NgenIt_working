@@ -22,7 +22,7 @@ class IncomeController extends Controller
     {
         $data['incomes'] = Income::get();
         $data['rfqs'] = Rfq::select('rfqs.id', 'rfqs.name')->get();
-        $data['orders'] = Order::select('orders.id', 'orders.order_number')->get();
+        $data['orders'] = Order::select('orders.id', 'orders.order_number','orders.client_type','orders.client_id')->get();
         return view('admin.pages.income.all', $data);
     }
 
@@ -178,6 +178,6 @@ class IncomeController extends Controller
         $data['incomeNovemberAmount']  = Income::where('month', 'november')->pluck('amount');
         $data['incomeDecemberAmount']  = Income::where('month', 'december')->pluck('amount');
 
-        return view('admin.pages.income.overview',$data);
+        return view('admin.pages.income.overview', $data);
     }
 }

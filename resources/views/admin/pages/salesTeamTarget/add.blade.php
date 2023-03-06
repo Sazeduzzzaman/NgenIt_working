@@ -75,7 +75,7 @@
                                                 data-placeholder="Choose  ">
                                                 <option></option>
                                                 @foreach ($users as $user)
-                                                    <option value="{{ $user->id }}">{{ $user->name }}</option>
+                                                    <option value="{{ $user->id }}" >{{ $user->name }}</option>
                                                 @endforeach
                                             </select>
                                         </div>
@@ -83,7 +83,22 @@
                                 </div>
 
                                 <div class="row mb-3 p-2 border">
-                                    <div class="col-lg-4">
+                                    <div class="col-lg-3 mb-3 basic-form">
+                                        <div class="col-sm-12">
+                                            <h6 class="mb-0">Country Name</h6>
+                                        </div>
+                                        <div class="form-group text-secondary col-sm-12">
+                                            <select name="country_id" class="form-control select"
+                                                data-placeholder="Chose country name" required>
+                                                <option></option>
+                                                @foreach ($country as $item)
+                                                    <option value="{{ $item->id }}">{{ $item->country_name }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3">
                                         <div class="col-sm-12">
                                             <h6 class="mb-0">Fiscal Year<span class="text-danger">*</span></h6>
                                         </div>
@@ -92,7 +107,7 @@
                                             <select class="yearselect form-select" name="fiscal_year"></select>
                                         </div>
                                     </div>
-                                    <div class="col-lg-4 mb-3">
+                                    <div class="col-lg-3 mb-3">
                                         <div class="col-sm-12">
                                             <h6 class="mb-0">Year Started</h6>
                                         </div>
@@ -106,7 +121,7 @@
                                             </select>
                                         </div>
                                     </div>
-                                    <div class="col-lg-4">
+                                    <div class="col-lg-3">
                                         <div class="col-sm-12">
                                             <h6 class="mb-0">Total Target </h6>
                                         </div>

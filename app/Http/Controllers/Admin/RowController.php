@@ -19,7 +19,7 @@ class RowController extends Controller
      */
     public function index()
     {
-        $data['rows'] = Row::get();
+        $data['rows'] = Row::orderBy('id' , 'desc')->get();
         return view('admin.pages.row.all', $data);
     }
 

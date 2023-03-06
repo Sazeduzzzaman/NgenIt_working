@@ -325,7 +325,7 @@ class CategoryController extends Controller
             ],
             [
                 'image' => [
-                    'max'      => 'The image field must be smaller than 10 MB.',
+                    'max'      => 'The image field must be smaller than 5 MB.',
                 ],
                 'image'    => 'The file must be an image.',
                 'mimes' => 'The :attribute must be a file of type: PNG - JPEG - JPG',
@@ -384,29 +384,29 @@ class CategoryController extends Controller
     public function UpdateSubCategory(Request $request, $id)
     {
         $subcategory = SubCategory::find($id);
-        if (!empty($subcategory)) {
-            $validator =
-                [
+
+
+        $validator = Validator::make(
+            $request->all(),
+
                     [
+
                         'title' => 'required',
                         //'image' => 'image|mimes:png,jpg,jpeg|max:5000',
-                    ],
-                    // [
-                    //     'image' => 'The file must be an image.',
-                    //     'mimes' => 'The: attribute must be a file of type: PNG - JPEG - JPG'
-                    // ]
-                ];
-        } else {
-            $validator =
-                [
-                    [
-                        'title' => 'required',
-                    ]
-                ];
-        }
-        $validator = Validator::make($request->all(), $validator);
 
+                    ],
+                    [
+                        // 'image' => 'The file must be an image.',
+                        // 'mimes' => 'The: attribute must be a file of type: PNG - JPEG - JPG'
+                        'required' => 'The title field is required.',
+                    ]
+                );
+
+
+        //$validator = Validator::make($request->all(), $validator);
         if ($validator->passes()) {
+        //dd($request->all());
+
             $mainFile = $request->image;
             $uploadPath = storage_path('app/public/');
 

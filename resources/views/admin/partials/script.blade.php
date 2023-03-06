@@ -66,6 +66,23 @@
 
 
 
+<script>
+    $('.product thead').on('click' , '.addRow' , function(){
+        var tr = "<tr>"+
+
+                    "<td> <input type='text' class='form-control' name='item_name[]' placeholder='Product Name' required></td>"+
+                    "<td> <input type='text' class='form-control' name='qty[]' placeholder='Quantity' required></td>"+
+                    "<td> <input type='text' class='form-control' name='unit_price[]' ></td>"+
+                    "<td> <a href='javascript:void(0)' class='btn btn-danger removeRow p-1'><i class='ph-minus'></i></a></td>"+
+                "</tr>"
+    $('.repeater').append(tr);
+    });
+
+    $('tbody').on('click' , '.removeRow' , function(){
+        $(this).parent().parent().remove();
+    });
+</script>
+
 
 <script>
     $(document).ready(function(){

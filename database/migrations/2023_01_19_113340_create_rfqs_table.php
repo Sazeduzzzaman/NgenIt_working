@@ -60,6 +60,7 @@ return new class extends Migration
             $table->double('tax')->nullable();
             $table->double('vat')->nullable();
             $table->double('total_price')->nullable();
+            $table->double('quoted_price')->nullable();
             $table->text('price_text')->nullable();
 
             $table->foreign('sales_man_id_L1')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');

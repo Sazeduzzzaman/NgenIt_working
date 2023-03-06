@@ -1,10 +1,7 @@
 @extends('admin.master')
 @section('content')
     <div class="content-wrapper">
-
         <!-- Inner content -->
-
-
         <!-- Page header -->
         <div class="page-header page-header-light shadow">
 

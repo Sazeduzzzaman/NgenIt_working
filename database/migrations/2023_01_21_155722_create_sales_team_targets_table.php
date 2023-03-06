@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('sales_team_targets', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('sales_man_id')->nullable();
+            $table->unsignedBigInteger('country_id')->nullable();
             $table->string('name')->nullable();
             $table->year('fiscal_year')->nullable();
             $table->double('year_target')->nullable();
@@ -25,6 +26,7 @@ return new class extends Migration
             $table->double('quarter_four_target')->nullable();
             $table->enum('year_started',['january','june'])->nullable();
             $table->foreign('sales_man_id')->references('id')->on('users')->onUpdate('cascade');
+            $table->foreign('country_id')->references('id')->on('countries')->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
         });
     }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class NotificationController extends Controller
 {
@@ -14,7 +15,8 @@ class NotificationController extends Controller
      */
     public function index()
     {
-        //
+        $data['notifications'] = DB::table('notifications')->get();
+        return view('admin.pages.notification.all', $data);
     }
 
     /**
@@ -24,7 +26,12 @@ class NotificationController extends Controller
      */
     public function create()
     {
-        //
+        //id": "005b0661-7a5b-4ba6-80d4-5222e3b8e64a"
+        //   +"type": "App\Notifications\RfqDeal"
+        //   +"notifiable_type": "App\Models\User"
+        //   +"notifiable_id": 1
+        //   +"data": "{"name":"client","link":"","message":"A New RFQ\/Deal is created. Need to be checked."}"
+        //   +"read_at": "2023-01-29 23:36:24"
     }
 
     /**
@@ -80,6 +87,13 @@ class NotificationController extends Controller
      */
     public function destroy($id)
     {
-        //
+        DB::table('notifications')->where('id', $id)->delete();
+    }
+
+    public function multiDelete(Request $request)
+    {
+        $id = $request->id;
+        DB::table('notifications')->whereIn('id', $id)->delete();
+        return response()->json("Selected notifications deleted successfully.", 200);
     }
 }
