@@ -44,22 +44,149 @@
                                 enctype="multipart/form-data" id="myform">
                                 @csrf
                                 @method('PUT')
-                                <div class="row mb-3">
-                                    <div class="col-sm-3">
-                                        <h6 class="mb-0">Author</h6>
+                                <div class="row mb-3 border p-3">
+                                    <div class="col-lg-4">
+                                        <div class="col-sm-12">
+                                            <h6 class="mb-0">Author <span class="text-danger"> * </span></h6>
+                                        </div>
+                                        <div class="form-group col-sm-10 text-secondary">
+                                            <input type="text" name="created_by" class="form-control maxlength"
+                                                maxlength="255" value="{{$blog->created_by}}"/>
+                                        </div>
                                     </div>
-                                    <div class="form-group col-sm-9 text-secondary">
-                                        <input type="text" value="{{ $blog->created_by }}" name="created_by"
-                                            class="form-control maxlength" maxlength="100" />
+                                    <div class="col-lg-4">
+                                        <div class="col-sm-12">
+                                            <h6 class="mb-0">Badge Name <span class="text-danger"> * </span></h6>
+                                        </div>
+                                        <div class="form-group col-sm-10 text-secondary">
+                                            <input type="text" name="badge" class="form-control maxlength"
+                                                maxlength="255" value="{{$blog->badge}}"/>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 mt-4">
+                                        <div class="form-check">
+                                            <input type="checkbox" class="form-check-input" name="featured" value="1" {{ ($blog->featured == 1) ? 'checked' : '' }}>
+                                            <label class="form-check-label" for="cc_ls_c" >Featured</label>
+                                        </div>
                                     </div>
                                 </div>
+
                                 <div class="row mb-3">
-                                    <div class="col-sm-3">
-                                        <h6 class="mb-0">Badge Name</h6>
+                                    <div class="col-lg-3 mb-3">
+                                        <div class="col-sm-12">
+                                            <h6 class="mb-0"> Brands</h6>
+                                        </div>
+                                        <div class="form-group text-secondary col-sm-12">
+                                            <select name="brand_id[]" class="form-control multiselect"
+                                                multiple="multiple" data-include-select-all-option="true"
+                                                data-enable-filtering="true"
+                                                data-enable-case-insensitive-filtering="true">
+                                                    @php
+                                                        if (isset($blog->brand_id)) {
+                                                            $brand_ids = json_decode($blog->brand_id);
+                                                        } else {
+                                                            $brand_ids = [];
+                                                        }
+                                                    @endphp
+                                                    @if (isset($brand_ids))
+                                                        @foreach ($brand_ids as $id)
+                                                            <option value="{{ $id }}"
+                                                                {{ in_array($id, $brand_ids) ? 'selected' : '' }}>
+                                                                {{ App\Models\Admin\Brand::where('id', $id)->value('title') }}
+                                                            </option>
+                                                        @endforeach
+                                                    @else
+                                                        <option></option>
+                                                    @endif
+                                            </select>
+                                        </div>
                                     </div>
-                                    <div class="form-group col-sm-9 text-secondary">
-                                        <input type="text" name="badge" class="form-control maxlength"
-                                            maxlength="100" value="{{ $blog->badge }}"/>
+                                    <div class="col-lg-3 mb-3">
+                                        <div class="col-sm-12">
+                                            <h6 class="mb-0"> Categories</h6>
+                                        </div>
+                                        <div class="form-group text-secondary col-sm-12">
+                                            <select name="category_id[]" class="form-control multiselect"
+                                                multiple="multiple" data-include-select-all-option="true"
+                                                data-enable-filtering="true"
+                                                data-enable-case-insensitive-filtering="true">
+                                                    @php
+                                                        if (isset($blog->category_id)) {
+                                                            $category_ids = json_decode($blog->category_id);
+                                                        } else {
+                                                            $category_ids = [];
+                                                        }
+                                                    @endphp
+                                                    @if (isset($category_ids))
+                                                        @foreach ($category_ids as $id)
+                                                            <option value="{{ $id }}"
+                                                                {{ in_array($id, $category_ids) ? 'selected' : '' }}>
+                                                                {{ App\Models\Admin\Category::where('id', $id)->value('title') }}
+                                                            </option>
+                                                        @endforeach
+                                                    @else
+                                                        <option></option>
+                                                    @endif
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 mb-3">
+                                        <div class="col-sm-12">
+                                            <h6 class="mb-0">Industries</h6>
+                                        </div>
+                                        <div class="form-group text-secondary col-sm-12">
+                                            <select name="industry_id[]" class="form-control multiselect"
+                                                multiple="multiple" data-include-select-all-option="true"
+                                                data-enable-filtering="true"
+                                                data-enable-case-insensitive-filtering="true">
+                                                    @php
+                                                        if (isset($blog->industry_id)) {
+                                                            $industry_ids = json_decode($blog->industry_id);
+                                                        } else {
+                                                            $industry_ids = [];
+                                                        }
+                                                    @endphp
+                                                    @if (isset($industry_ids))
+                                                        @foreach ($industry_ids as $id)
+                                                            <option value="{{ $id }}"
+                                                                {{ in_array($id, $industry_ids) ? 'selected' : '' }}>
+                                                                {{ App\Models\Admin\Industry::where('id', $id)->value('title') }}
+                                                            </option>
+                                                        @endforeach
+                                                    @else
+                                                        <option></option>
+                                                    @endif
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 mb-3">
+                                        <div class="col-sm-12">
+                                            <h6 class="mb-0">Solutions</h6>
+                                        </div>
+                                        <div class="form-group text-secondary col-sm-12">
+                                            <select name="solution_id[]" class="form-control multiselect"
+                                                multiple="multiple" data-include-select-all-option="true"
+                                                data-enable-filtering="true"
+                                                data-enable-case-insensitive-filtering="true">
+                                                    @php
+                                                        if (isset($blog->solution_id)) {
+                                                            $solution_ids = json_decode($blog->solution_id);
+                                                        } else {
+                                                            $solution_ids = [];
+                                                        }
+                                                    @endphp
+                                                    @if (isset($solution_ids))
+                                                        @foreach ($solution_ids as $id)
+                                                            <option value="{{ $id }}"
+                                                                {{ in_array($id, $solution_ids) ? 'selected' : '' }}>
+                                                                {{ App\Models\Admin\SolutionDetail::where('id', $id)->value('name') }}
+                                                            </option>
+                                                        @endforeach
+                                                    @else
+                                                        <option></option>
+                                                    @endif
+                                            </select>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="row mb-3">
@@ -86,28 +213,8 @@
                                             Tags</h6>
                                     </div>
                                     <div class="form-group col-sm-9 text-secondary">
-                                        <input type="text" name="tags" class="form-control visually-hidden" data-role="tagsinput" value="{{ $blog->tags }}">
-                                        {{-- <select data-placeholder="Select Your tags" class="form-control select"
-                                            id="tags" name="tags[]" multiple="multiple" data-tags="true"
-                                            data-maximum-input-length="30">
-                                            @php
-                                                if (isset($blog->tags)) {
-                                                    $tags = json_decode($blog->tags);
-                                                } else {
-                                                    $tags = [];
-                                                }
-                                            @endphp
-                                            @if (isset($tags))
-                                                @foreach ($tags as $tag)
-                                                    <option value="{{ $tag }}"
-                                                        {{ in_array($tag, $tags) ? 'selected' : '' }}>
-                                                        {{ $tag }}
-                                                    </option>
-                                                @endforeach
-                                            @else
-                                                <option value=""></option>
-                                            @endif
-                                        </select> --}}
+                                        <input type="text" class="form-control tokenfield-basic" placeholder="Related Tags" name="tags" value="{{ $blog->tags }}">
+                                        
                                     </div>
                                 </div>
 

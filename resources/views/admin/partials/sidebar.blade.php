@@ -1,20 +1,16 @@
 <div class="sidebar sidebar-dark sidebar-main sidebar-expand-lg sidebar-main-resized"
     style="background:#000000">
-
     <!-- Sidebar content -->
     <div class="sidebar-content">
-
         <!-- Sidebar header -->
         <div class="sidebar-section">
             <div class="sidebar-section-body d-flex justify-content-center">
                 <h5 class="sidebar-resize-hide flex-grow-1 my-auto">Ngen It</h5>
-
                 <div>
                     <button type="button"
                         class="btn btn-flat-white btn-icon btn-sm rounded-pill border-transparent sidebar-control sidebar-main-resize d-none d-lg-inline-flex">
                         <i class="ph-arrows-left-right"></i>
                     </button>
-
                     <button type="button"
                         class="btn btn-flat-white btn-icon btn-sm rounded-pill border-transparent sidebar-mobile-main-toggle d-lg-none">
                         <i class="ph-x"></i>
@@ -23,23 +19,17 @@
             </div>
         </div>
         <!-- /sidebar header -->
-
-
         <!-- Main navigation -->
         <div class="sidebar-section">
             <ul class="nav nav-sidebar" data-nav-type="accordion">
-
-
                 <li class="nav-item">
                     <a href="{{ route('admin.dashboard') }}" class="nav-link">
                         <i class="ph-house"></i>
                         <span>
                             Dashboard
-
                         </span>
                     </a>
                 </li>
-
                 <li class="nav-item nav-item-submenu">
                     <a href="#" class="nav-link">
                         <i class="fas fa-boxes"></i>
@@ -56,7 +46,6 @@
                                 <span>SAS List </span></a></li>
                     </ul>
                 </li>
-
                 <li class="nav-item nav-item-submenu">
                     <a href="#" class="nav-link">
                         <i class="fas fa-boxes"></i>
@@ -74,20 +63,16 @@
                                 <span>Product</span></a></li>
                     </ul>
                 </li>
-
-
                 <li class="nav-item nav-item-submenu">
                     <a href="#" class="nav-link">
                         <i class="fas fa-industry"></i>
                         <span>RFQ, Deal, Quote</span>
                     </a>
                     <ul class="nav-group-sub collapse">
-
                         <li class="nav-item"><a href="{{ route('rfq-manage.index') }}" class="nav-link">
                             <i class="ph-layout"></i>
                             <span>RFQ Management</span></a>
                         </li>
-
                         {{-- <li class="nav-item"><a href="{{ route('rfq.index') }}" class="nav-link">
                             <i class="ph-layout"></i>
                             <span>RFQ list</span></a>
@@ -108,10 +93,8 @@
                             <i class="ph-layout"></i>
                             <span>Revised Deal</span></a>
                         </li>
-
                     </ul>
                 </li>
-
                 <li class="nav-item nav-item-submenu">
                     <a href="#" class="nav-link">
                         <i class="fas fa-boxes"></i>
@@ -155,7 +138,6 @@
                         </li>
                     </ul>
                 </li>
-
                 <li class="nav-item nav-item-submenu">
                     <a href="#" class="nav-link">
                         <i class="fas fa-boxes"></i>
@@ -192,34 +174,31 @@
                                 <span>Income & Expense</span>
                             </a>
                         </li>
-
                     </ul>
                 </li>
-
                 <li class="nav-item nav-item-submenu">
                     <a href="#" class="nav-link">
                         <i class="fas fa-boxes"></i>
                         <span>Marketing</span>
                     </a>
                     <ul class="nav-group-sub collapse">
-                        <li class="nav-item"><a href="{{ route('salesYearTarget.index') }}" class="nav-link"><i
+                        <li class="nav-item"><a href="{{ route('marketing-manager-role.index') }}" class="nav-link"><i
                                     class="ph-layout"></i>
-                                <span>Year Target</span>
+                                <span>Marketing Manager Role</span>
                             </a>
                         </li>
-                        <li class="nav-item"><a href="{{ route('salesTeamTarget.index') }}" class="nav-link"><i
+                        <li class="nav-item"><a href="{{ route('marketing-team-target.index') }}" class="nav-link"><i
                                     class="ph-layout"></i>
-                                <span>Team Target</span>
+                                <span>Marketing Team Target</span>
                             </a>
                         </li>
-                        <li class="nav-item"><a href="{{ route('bulkEmail.index') }}" class="nav-link"><i
+                        <li class="nav-item"><a href="{{ route('marketing-dmar.index') }}" class="nav-link"><i
                                     class="ph-layout"></i>
-                                <span>Bulk Email</span>
+                                <span>Marketing DMAR</span>
                             </a>
                         </li>
                     </ul>
                 </li>
-
                 <li class="nav-item nav-item-submenu">
                     <a href="#" class="nav-link">
                         <i class="fas fa-industry"></i>
@@ -235,10 +214,8 @@
                         <li class="nav-item"><a href="{{ route('solutionDetails.index') }}" class="nav-link"><i
                                     class="ph-layout"></i>
                                 <span>Solution Details</span></a></li>
-
                     </ul>
                 </li>
-
                 <li class="nav-item nav-item-submenu">
                     <a href="#" class="nav-link">
                         <i class="ph-layout"></i>
@@ -258,7 +235,6 @@
                         </li>
                     </ul>
                 </li>
-
                 <li class="nav-item nav-item-submenu">
                     <a href="#" class="nav-link">
                         <i class="ph-layout"></i>
@@ -291,7 +267,6 @@
                         </li>
                     </ul>
                 </li>
-
                 <li class="nav-item nav-item-submenu">
                     <a href="#" class="nav-link">
                         <i class="ph-layout"></i>
@@ -328,7 +303,6 @@
                         </li>
                     </ul>
                 </li>
-
                 <li class="nav-item nav-item-submenu">
                     <a href="#" class="nav-link">
                         <i class="icon-envelop4"></i>
@@ -346,7 +320,6 @@
                                 <span>NewsLetter</span></a></li>
                     </ul>
                 </li>
-
                 <li class="nav-item nav-item-submenu">
                     <a href="#" class="nav-link">
                         <i class="icon-envelop4"></i>
@@ -376,11 +349,6 @@
                                 <span>Sales Manager Accounts</span></a></li>
                     </ul>
                 </li>
-
-
-
-
-
                 <li class="nav-item nav-item-submenu">
                     <a href="#" class="nav-link">
                         <i class="ph-buildings"></i>
@@ -413,7 +381,6 @@
                         </li>
                     </ul>
                 </li>
-
                 <li class="nav-item nav-item-submenu">
                     <a href="#" class="nav-link">
                         <i class="ph-buildings"></i>
@@ -437,10 +404,8 @@
                         <li class="nav-item"><a href="{{ route('brandPage.index') }}" class="nav-link"><i
                                     class="mi-message"></i>
                                 <span>Brand Page</span></a></li>
-
                     </ul>
                 </li>
-
                 <li class="nav-item nav-item-submenu">
                     <a href="#" class="nav-link">
                         <i class="ph-shopping-cart"></i>
@@ -459,10 +424,8 @@
                         <li class="nav-item"> <a class="nav-link" href="{{ route('admin.delivered.order') }}"><i
                                     class="ph-shopping-bag"></i><span>Delivered Order</span> </a>
                         </li>
-
                     </ul>
                 </li>
-
                 <li class="nav-item nav-item-submenu">
                     <a href="#" class="nav-link">
                         <i class="ph-lock-key"></i>
@@ -477,21 +440,16 @@
                                 <i class="ph-lock-key-open"></i>
                                 <span>All Roles</span> </a>
                         </li>
-
                         <li class="nav-item"> <a class="nav-link" href="{{ route('add.roles.permission') }}">
                                 <i class="ph-lock"></i>
                                 <span> Roles in Permission</span></a>
                         </li>
-
                         <li class="nav-item"> <a class="nav-link" href="{{ route('all.roles.permission') }}">
                                 <i class="ph-lock-key"></i>
                                 <span> All Roles in Permission</span></a>
                         </li>
-
-
                     </ul>
                 </li>
-
                 <li class="nav-item nav-item-submenu">
                     <a href="#" class="nav-link">
                         <i class="icon-envelop4"></i>
@@ -501,11 +459,8 @@
                         <li class="nav-item"><a href="{{ route('job.index') }}" class="nav-link"><i
                                     class="ph-headset"></i>
                                 <span>Job Posting</span></a></li>
-
-
                     </ul>
                 </li>
-
                 <li class="nav-item nav-item-submenu">
                     <a href="#" class="nav-link">
                         <i class="ph-layout"></i>
@@ -520,12 +475,9 @@
                 <li class="nav-item"><a href="{{ route('office-location.index') }}" class="nav-link"><i
                             class="ph-layout"></i>
                         <span>Office Location</span></a></li>
-
             </ul>
         </div>
         <!-- /main navigation -->
-
     </div>
     <!-- /sidebar content -->
-
 </div>

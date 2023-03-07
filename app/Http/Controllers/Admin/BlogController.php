@@ -7,9 +7,13 @@ use IntlChar;
 use Carbon\Carbon;
 use App\Models\Admin\Blog;
 use Illuminate\Http\Request;
+use App\Models\Admin\Product;
 use App\Models\Admin\Industry;
 use App\Models\Admin\Solution;
 use App\Http\Controllers\Controller;
+use App\Models\Admin\Brand;
+use App\Models\Admin\Category;
+use App\Models\Admin\SolutionDetail;
 use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Validator;
@@ -34,8 +38,12 @@ class BlogController extends Controller
      */
     public function create()
     {
-        $data['industries'] = Industry::get();
-        $data['solutions'] = Solution::get();
+        $data['products'] = Product::select('products.id', 'products.name')->get();
+        $data['categories'] = Category::select('categories.id', 'categories.title')->get();
+        $data['brands'] = Brand::select('brands.id', 'brands.title')->get();
+        $data['industries'] = Industry::select('industries.id', 'industries.title')->get();
+        $data['solutionDetails'] = SolutionDetail::select('solution_details.id','solution_details.name')->get();
+
         return view('admin.pages.blog.add', $data);
     }
 
@@ -67,20 +75,30 @@ class BlogController extends Controller
             $imgPath = storage_path('app/public/');
             if (empty($mainFile)) {
                 Blog::create([
-                    'badge'       => $request->badge,
-                    'title'       => $request->title,
-                    'header'      => $request->header,
-                    'created_by'  => $request->created_by,
-                    'tags'        => $request->tags,
-                    'short_des'   => $request->short_des,
-                    'long_des'    => $request->long_des,
-                    'footer'      => $request->footer,
-                    'created_at'  => Carbon::now(),
+                        'category_id' => json_encode($request->category_id),
+                        'brand_id'    => json_encode($request->brand_id),
+                        'industry_id' => json_encode($request->industry_id),
+                        'solution_id' => json_encode($request->solution_id),
+                        'featured'    => $request->featured,
+                        'badge'       => $request->badge,
+                        'title'       => $request->title,
+                        'header'      => $request->header,
+                        'created_by'  => $request->created_by,
+                        'tags'        => $request->tags,
+                        'short_des'   => $request->short_des,
+                        'long_des'    => $request->long_des,
+                        'footer'      => $request->footer,
+                        'created_at'  => Carbon::now(),
                 ]);
             } else {
                 $globalFunImg =  Helper::singleImageUpload($mainFile, $imgPath, 1180, 400);
                 if ($globalFunImg['status'] == 1) {
                     Blog::create([
+                        'category_id' => json_encode($request->category_id),
+                        'brand_id'    => json_encode($request->brand_id),
+                        'industry_id' => json_encode($request->industry_id),
+                        'solution_id' => json_encode($request->solution_id),
+                        'featured'    => $request->featured,
                         'badge'       => $request->badge,
                         'title'       => $request->title,
                         'header'      => $request->header,
@@ -127,6 +145,11 @@ class BlogController extends Controller
     public function edit($id)
     {
         $data['blog'] = Blog::find($id);
+        $data['products'] = Product::select('products.id', 'products.name')->get();
+        $data['brands'] = Brand::select('brands.id', 'brands.title')->get();
+        $data['categories'] = Category::select('categories.id', 'categories.title')->get();
+        $data['industries'] = Industry::select('industries.id', 'industries.title')->get();
+        $data['solutionDetails'] = SolutionDetail::select('solution_details.id','solution_details.name')->get();
         return view('admin.pages.blog.edit', $data);
     }
 
@@ -180,15 +203,20 @@ class BlogController extends Controller
                 }
 
                 $blog->update([
-                    'badge'       => $request->badge,
-                    'title'       => $request->title,
-                    'header'      => $request->header,
-                    'created_by'  => $request->created_by,
-                    'tags'        => $request->tags,
-                    'short_des'   => $request->short_des,
-                    'long_des'    => $request->long_des,
-                    'footer'      => $request->footer,
-                    'image'       => $globalFunImg['status'] == 1 ? $globalFunImg['file_name'] : $blog->image,
+                        'category_id' => json_encode($request->category_id),
+                        'brand_id'    => json_encode($request->brand_id),
+                        'industry_id' => json_encode($request->industry_id),
+                        'solution_id' => json_encode($request->solution_id),
+                        'featured'    => $request->featured,
+                        'badge'       => $request->badge,
+                        'title'       => $request->title,
+                        'header'      => $request->header,
+                        'created_by'  => $request->created_by,
+                        'tags'        => $request->tags,
+                        'short_des'   => $request->short_des,
+                        'long_des'    => $request->long_des,
+                        'footer'      => $request->footer,
+                        'image'       => $globalFunImg['status'] == 1 ? $globalFunImg['file_name'] : $blog->image,
                 ]);
             }
 

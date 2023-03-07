@@ -68,9 +68,11 @@ use App\Http\Controllers\Admin\SalesYearTargetController;
 use App\Http\Controllers\Admin\SolutionDetailsController;
 use App\Http\Controllers\Sales\SalesAchievementController;
 use App\Http\Controllers\Admin\AccountProfitLossController;
+use App\Http\Controllers\Marketing\MarketingDmarController;
 use App\Http\Controllers\Admin\AccountsReceivableController;
 use App\Http\Controllers\Admin\CommercialDocumentController;
 use App\Http\Controllers\Admin\PaymentMethodDetailsController;
+use App\Http\Controllers\Marketing\MarketingTeamTargetController;
 
 Route::get('/admin/login', [AdminController::class, 'AdminLogin'])->name('admin.login')->middleware(RedirectIfAuthenticated::class);
 
@@ -429,7 +431,6 @@ Route::controller(RFQController::class)->group(function(){
     'single-rfq' => SingleRfqController::class,
 
     'marketing-manager-role' => MarketingManagerRoleController::class,
-    'marketing-team-target' => MarketingTeamTargetController::class,
     'marketing-team-target' => MarketingTeamTargetController::class,
     'marketing-dmar' => MarketingDmarController::class,
     'notification' => NotificationController::class,

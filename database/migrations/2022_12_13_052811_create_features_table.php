@@ -15,6 +15,12 @@ return new class extends Migration
     {
         Schema::create('features', function (Blueprint $table) {
             $table->id();
+            $table->string('category_id')->nullable()->comment('multi_id');
+            $table->string('brand_id')->nullable()->comment('multi_id');
+            $table->string('industry_id')->nullable()->comment('multi_id');
+            $table->string('solution_id')->nullable()->comment('multi_id');
+            // $table->enum('featured',['0','1'])->default('0')->nullable();
+
             $table->string('badge')->nullable();
             $table->string('title')->nullable();
             $table->text('header')->nullable();

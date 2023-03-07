@@ -60,25 +60,35 @@ class ClientStoryController extends Controller
             $imgPath = storage_path('app/public/');
             if (empty($mainFile)) {
                 ClientStory::create([
-                    'badge'       => $request->badge,
-                    'title'       => $request->title,
-                    'header'      => $request->header,
-                    'created_by'  => $request->created_by,
-                    'tags'        => $request->tags,
-                    'short_des'   => $request->short_des,
-                    'long_des'    => $request->long_des,
-                    'footer'      => $request->footer,
-                    'created_at'  => Carbon::now(),
+                        'category_id' => json_encode($request->category_id),
+                        'brand_id'    => json_encode($request->brand_id),
+                        'industry_id' => json_encode($request->industry_id),
+                        'solution_id' => json_encode($request->solution_id),
+                        'featured'    => $request->featured,
+                        'badge'       => $request->badge,
+                        'title'       => $request->title,
+                        'header'      => $request->header,
+                        'created_by'  => $request->created_by,
+                        'tags'        => json_encode($request->tags),,
+                        'short_des'   => $request->short_des,
+                        'long_des'    => $request->long_des,
+                        'footer'      => $request->footer,
+                        'created_at'  => Carbon::now(),
                 ]);
             } else {
                 $globalFunImg =  Helper::singleImageUpload($mainFile, $imgPath, 1180, 400);
                 if ($globalFunImg['status'] == 1) {
                     ClientStory::create([
+                        'category_id' => json_encode($request->category_id),
+                        'brand_id'    => json_encode($request->brand_id),
+                        'industry_id' => json_encode($request->industry_id),
+                        'solution_id' => json_encode($request->solution_id),
+                        'featured'    => $request->featured,
                         'badge'       => $request->badge,
                         'title'       => $request->title,
                         'header'      => $request->header,
                         'created_by'  => $request->created_by,
-                        'tags'        => $request->tags,
+                        'tags'        => json_encode($request->tags),,
                         'short_des'   => $request->short_des,
                         'long_des'    => $request->long_des,
                         'footer'      => $request->footer,
@@ -169,11 +179,16 @@ class ClientStoryController extends Controller
                 }
 
                 $story->update([
+                    'category_id' => json_encode($request->category_id),
+                    'brand_id'    => json_encode($request->brand_id),
+                    'industry_id' => json_encode($request->industry_id),
+                    'solution_id' => json_encode($request->solution_id),
+                    'featured'    => $request->featured,
                     'badge'       => $request->badge,
                     'title'       => $request->title,
                     'header'      => $request->header,
                     'created_by'  => $request->created_by,
-                    'tags'        => $request->tags,
+                    'tags'        => json_encode($request->tags),,
                     'short_des'   => $request->short_des,
                     'long_des'    => $request->long_des,
                     'footer'      => $request->footer,

@@ -15,15 +15,20 @@ return new class extends Migration
     {
         Schema::create('client_stories', function (Blueprint $table) {
             $table->id();
-            $table->string('badge');
-            $table->string('title');
+            $table->string('category_id')->nullable()->comment('multi_id');
+            $table->string('brand_id')->nullable()->comment('multi_id');
+            $table->string('industry_id')->nullable()->comment('multi_id');
+            $table->string('solution_id')->nullable()->comment('multi_id');
+            $table->enum('featured',['0','1'])->default('0')->nullable();
+            $table->string('badge')->nullable();
+            $table->string('title')->nullable();
             $table->text('header')->nullable();
             $table->string('created_by')->nullable();
-            $table->string('tags');
+            $table->string('tags')->nullable();
             $table->string('image')->nullable();
-            $table->longText('short_des')->comment('summernote');
-            $table->longText('long_des')->comment('summernote');
-            $table->text('footer')->nullable()->comment('summernote');
+            $table->longText('short_des')->comment('summernote')->nullable();
+            $table->longText('long_des')->comment('summernote')->nullable();
+            $table->text('footer')->nullable()->comment('summernote')->nullable();
             $table->timestamps();
         });
     }

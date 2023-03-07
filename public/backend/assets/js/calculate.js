@@ -1,4 +1,10 @@
-document.querySelector('form').addEventListener('keydown', function(event) {
+document.querySelector('.achievement-calculate').addEventListener('keydown', function(event) {
+    if (event.keyCode === 13) {
+        event.preventDefault();
+    }
+});
+
+document.querySelector('.calculate').addEventListener('keydown', function(event) {
     if (event.keyCode === 13) {
         event.preventDefault();
     }

@@ -23,7 +23,7 @@ class BrandPageController extends Controller
      */
     public function index()
     {
-        $data['brandPages'] = BrandPage::get();
+        $data['brandPages'] = BrandPage::orderBy('id' , 'desc')->get();
         return view('admin.pages.brandPage.all', $data);
     }
 
