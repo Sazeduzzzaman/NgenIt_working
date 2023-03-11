@@ -89,9 +89,9 @@
 
                                     <div class="col-lg-4">
                                         <div class="mb-1 basic-form">
-                                            <label class="form-label" for="basicpill-firstname-input">Country</label>
+                                            <label class="form-label">Country</label>
                                             <select name="country" class="form-control select"
-                                            data-minimum-results-for-search="Infinity" data-placeholder="Chose Country" required>
+                                             data-placeholder="Chose Country" required>
                                             <option></option>
                                             @foreach ($countries as $item)
                                                 <option value="{{$item->country_name}}">{{$item->country_name}}</option>
@@ -129,6 +129,19 @@
                                             id="new_password_confirmation" placeholder="Confirm New Password" />
                                         </div>
                                     </div>
+
+                                    {{-- <div class="col-lg-4">
+                                        <div class="mb-1 basic-form">
+                                            <label class="form-label">Assign Roles</label>
+                                            <select name="country" class="form-control select"
+                                             data-placeholder="Chose Country" required>
+                                            <option></option>
+                                            @foreach ($roles as $item)
+                                                <option value="{{$item->country_name}}">{{$item->country_name}}</option>
+                                            @endforeach
+                                        </select>
+                                        </div>
+                                    </div> --}}
 
                                 </div>
 

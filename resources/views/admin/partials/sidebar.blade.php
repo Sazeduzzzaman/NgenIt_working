@@ -30,22 +30,36 @@
                         </span>
                     </a>
                 </li>
-                <li class="nav-item nav-item-submenu">
-                    <a href="#" class="nav-link">
-                        <i class="fas fa-boxes"></i>
-                        <span>Product Sourcing, SAS</span>
-                    </a>
-                    <ul class="nav-group-sub collapse">
-                        <li class="nav-item"><a href="{{ route('product-sourcing.index') }}" class="nav-link"><i
-                                    class="ph-layout"></i>
-                                <span>Product Sourcing</span></a></li>
-                        <li class="nav-item"><a href="{{ route('product.approve') }}" class="nav-link"><i class="ph-layout"></i>
-                                <span>Product Approval</span></a></li>
-                        <li class="nav-item"><a href="{{ route('sas.index') }}" class="nav-link"><i
-                                    class="ph-layout"></i>
-                                <span>SAS List </span></a></li>
-                    </ul>
-                </li>
+                @if (Auth::user()->can('sourcing-management.menu'))
+                    <li class="nav-item nav-item-submenu">
+                        <a href="#" class="nav-link">
+                            <i class="fas fa-boxes"></i>
+                            <span>Product Sourcing, SAS</span>
+                        </a>
+                        <ul class="nav-group-sub collapse">
+                            @if (Auth::user()->can('product-sourcing.menu'))
+                                <li class="nav-item"><a href="{{ route('product-sourcing.index') }}" class="nav-link"><i
+                                            class="ph-layout"></i>
+                                        <span>Product Sourcing</span>
+                                    </a>
+                                </li>
+                            @endif
+                            @if (Auth::user()->can('product-approval.menu'))
+                                <li class="nav-item"><a href="{{ route('product.approve') }}" class="nav-link"><i class="ph-layout"></i>
+                                        <span>Product Approval</span>
+                                    </a>
+                                </li>
+                            @endif
+                            @if (Auth::user()->can('product-sas.menu'))
+                                <li class="nav-item"><a href="{{ route('sas.index') }}" class="nav-link"><i
+                                            class="ph-layout"></i>
+                                        <span>SAS List </span>
+                                    </a>
+                                </li>
+                            @endif
+                        </ul>
+                    </li>
+                @endif
                 <li class="nav-item nav-item-submenu">
                     <a href="#" class="nav-link">
                         <i class="fas fa-boxes"></i>
@@ -197,6 +211,21 @@
                                 <span>Marketing DMAR</span>
                             </a>
                         </li>
+                        <li class="nav-item"><a href="{{ route('knowledge.index') }}" class="nav-link"><i
+                            class="ph-layout"></i>
+                                <span>Knowledge</span>
+                            </a>
+                        </li>
+                        <li class="nav-item"><a href="{{ route('presentation.index') }}" class="nav-link"><i
+                                    class="ph-layout"></i>
+                                <span>Presentation</span>
+                            </a>
+                        </li>
+                        <li class="nav-item"><a href="{{ route('show-case-video.index') }}" class="nav-link"><i
+                                    class="ph-layout"></i>
+                                <span>Show Case Video</span>
+                            </a>
+                        </li>
                     </ul>
                 </li>
                 <li class="nav-item nav-item-submenu">
@@ -323,7 +352,7 @@
                 <li class="nav-item nav-item-submenu">
                     <a href="#" class="nav-link">
                         <i class="icon-envelop4"></i>
-                        <span>Account Approval</span>
+                        <span>Account Approval & Settings</span>
                     </a>
                     <ul class="nav-group-sub collapse">
                         <li class="nav-item"><a href="{{ route('clientPermission.index') }}" class="nav-link">
@@ -331,22 +360,38 @@
                                 <span>
                                     Client Approval
                                 </span>
-                            </a></li>
+                            </a>
+                        </li>
                         <li class="nav-item"><a href="{{ route('partnerPermission.index') }}" class="nav-link">
                                 <i class="ph-user-plus"></i>
                                 <span>
                                     Partner Approval
                                 </span>
-                            </a></li>
+                            </a>
+                        </li>
                         <li class="nav-item"><a href="{{ route('partner-account.index') }}" class="nav-link">
                                 <i class="ph-user-plus"></i>
                                 <span>
-                                    Partner Account
+                                    Partners
                                 </span>
-                            </a></li>
+                            </a>
+                        </li>
                         <li class="nav-item"><a href="{{ route('sales-account.index') }}" class="nav-link"><i
                                     class="ph-user-plus"></i>
-                                <span>Sales Manager Accounts</span></a></li>
+                                <span>Sales Manager </span>
+                            </a>
+                        </li>
+                        <li class="nav-item"><a href="{{ route('accounts-manager.index') }}" class="nav-link"><i
+                                    class="ph-user-plus"></i>
+                                <span>Accounts Manager </span>
+                            </a>
+                        </li>
+                        <li class="nav-item"><a href="{{ route('all.admin') }}" class="nav-link"><i
+                            class="ph-user-plus"></i>
+                        <span>Admin Accounts</span>
+                    </a>
+                </li>
+
                     </ul>
                 </li>
                 <li class="nav-item nav-item-submenu">

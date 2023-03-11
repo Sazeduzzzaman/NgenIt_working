@@ -1,24 +1,24 @@
 <?php
 
-namespace App\Http\Controllers\Sales;
+namespace App\Http\Controllers\Admin;
 
-use Image;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Models\Admin\Country;
-use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use App\Notifications\AccountsManagerAdd;
+use Image;
+use Illuminate\Support\Facades\DB;
 use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
-use App\Notifications\SalesManagerAdd;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Notification;
 
-class SalesAccountController extends Controller
+class AccountsManagerController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -29,8 +29,8 @@ class SalesAccountController extends Controller
     {
         $data['roles'] = Role::all();
         $data['countries'] = Country::orderBy('country_name' , 'ASC')->get();
-        $data['salesmans'] = User::where('role' , 'sales')->orderBy('id','DESC')->get();
-        return view('admin.pages.SalesAccount.all',$data);
+        $data['salesmans'] = User::where('role' , 'accounts')->orderBy('id','DESC')->get();
+        return view('admin.pages.AccountsManager.all',$data);
     }
 
     /**
@@ -40,9 +40,8 @@ class SalesAccountController extends Controller
      */
     public function create()
     {
-        $data['roles'] = Role::all();
         $data['countries'] = Country::orderBy('country_name' , 'ASC')->get();
-        return view('admin.pages.SalesAccount.add',$data);
+        return view('admin.pages.AccountsManager.add',$data);
     }
 
     /**
@@ -100,7 +99,7 @@ class SalesAccountController extends Controller
                 'address'     => $request->address,
                 'postal'      => $request->postal,
                 'status'      => 'inactive',
-                'role'        => 'sales',
+                'role'        => 'accounts',
                 'photo'       => $data['photo'],
                 'password'    => Hash::make($request->password),
             ]);
@@ -111,9 +110,9 @@ class SalesAccountController extends Controller
 
             $name = Auth::user()->name;
 
-            Notification::send($user, new SalesManagerAdd($name , $salesmanager_name));
+            Notification::send($user, new AccountsManagerAdd($name , $salesmanager_name));
             Toastr::success('Sales Manager have registered Successfully');
-            return redirect()->route('sales-account.index');
+            return redirect()->route('accounts-manager.index');
         } else {
             $messages = $validator->messages();
             foreach ($messages->all() as $message) {
@@ -145,7 +144,7 @@ class SalesAccountController extends Controller
         $data['countries'] = Country::orderBy('country_name' , 'ASC')->get();
         $data['user'] = User::findOrFail($id);
         $data['roles'] = Role::all();
-        return view('admin.pages.SalesAccount.edit',$data);
+        return view('admin.pages.AccountsManager.edit',$data);
     }
 
     /**
@@ -167,10 +166,10 @@ class SalesAccountController extends Controller
             $user->assignRole($request->roles);
         }
 
-        Toastr::success('Sales Manager Account Updated Successfully');
+        Toastr::success('Account Manager Details Updated Successfully');
 
 
-        return redirect()->route('sales-account.index');
+        return redirect()->route('accounts-manager.index');
     }
 
     /**
@@ -191,32 +190,5 @@ class SalesAccountController extends Controller
             File::delete($destination);
         }
         $client->delete();
-    }
-
-    public function SalesStatus(Request $request)
-    {
-
-        //dd($request->id);
-        if ($request->mode == 'true') {
-            DB::table('users')->where('id', $request->id)->update(['status' => 'inactive']);
-        } else {
-
-
-            DB::table('users')->where('id', $request->id)->update(['status' => 'active']);
-        }
-        return response()->json(['msg' => 'Successfully Updated Status', 'status' => true]);
-    }
-
-    public function assignSalesManagerRole(Request $request, $id)
-    {
-        //dd($request->all());
-        $user = User::find($id);
-        $user->roles()->detach();
-        if ($request->roles) {
-            $user->assignRole($request->roles);
-        }
-
-        Toastr::success('Roles Have Successfully Updated');
-        return redirect()->back();
     }
 }

@@ -26,7 +26,7 @@ class CheckoutController extends Controller
     // Checkout Method
     public function CheckoutCreate(){
 
-        $data['countries'] = Country::all();
+        $data['countries'] = Country::orderBy('country_name' , 'ASC')->get();
          if (Auth::guard('client')->check()) {
              if (Cart::total() > 0) {
 

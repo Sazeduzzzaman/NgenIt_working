@@ -42,6 +42,7 @@ use App\Http\Controllers\Admin\PurchaseController;
 use App\Http\Controllers\Admin\SolutionController;
 use App\Http\Controllers\Admin\SourcingController;
 use App\Http\Controllers\Admin\BrandPageController;
+use App\Http\Controllers\Admin\KnowledgeController;
 use App\Http\Controllers\Admin\LearnMoreController;
 use App\Http\Controllers\Admin\RFQManageController;
 use App\Http\Controllers\Admin\SingleRfqController;
@@ -54,12 +55,15 @@ use App\Http\Controllers\Admin\ClientStoryController;
 use App\Http\Controllers\Admin\EffortRatingController;
 use App\Http\Controllers\Admin\IndustryPageController;
 use App\Http\Controllers\Admin\NotificationController;
+use App\Http\Controllers\Admin\PresentationController;
 use App\Http\Controllers\Admin\SalesForcastController;
 use App\Http\Controllers\Admin\SolutionCardController;
 use App\Http\Controllers\Sales\SalesAccountController;
+use App\Http\Controllers\Admin\ShowCaseVideoController;
 use App\Http\Controllers\Marketing\BulkEmailController;
 use App\Http\Controllers\Admin\OfficeLocationController;
 use App\Http\Controllers\Admin\RfqOrderStatusController;
+use App\Http\Controllers\Admin\AccountsManagerController;
 use App\Http\Controllers\Admin\AccountsPayableController;
 use App\Http\Controllers\Admin\DealTypeSettingController;
 use App\Http\Controllers\Admin\SalesProfitLossController;
@@ -76,7 +80,7 @@ use App\Http\Controllers\Marketing\MarketingTeamTargetController;
 
 Route::get('/admin/login', [AdminController::class, 'AdminLogin'])->name('admin.login')->middleware(RedirectIfAuthenticated::class);
 
-Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'role:admin']], function () {
+Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
 
     Route::post('/mark-as-read', [AdminController::class, 'markNotification'])->name('markNotification');
     Route::post('/markread', [AdminController::class, 'markAsRead'])->name('markAsRead');
@@ -87,6 +91,16 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'role:admin']], func
     Route::post('/profile/store',    [AdminController::class, 'AdminProfileStore'])->name('admin.profile.store');
     Route::get('/change/password',  [AdminController::class, 'AdminChangePassword'])->name('admin.change.password');
     Route::post('/update/password',  [AdminController::class, 'AdminUpdatePassword'])->name('update.password');
+
+    //All Admin
+    Route::get('/all/admin',        [AdminController::class, 'AllAdmin'])->name('all.admin');
+    Route::get('/add/admin',        [AdminController::class, 'AddAdmin'])->name('add.admin');
+    Route::get('/edit/admin/{id}',  [AdminController::class, 'EditAdminUser'])->name('edit.admin');
+    Route::put('/edit/admin/{id}',  [AdminController::class, 'AdminUserUpdate'])->name('update.admin');
+    Route::post('/admin/user/store',[AdminController::class, 'AdminUserStore'])->name('admin.user.store');
+    Route::post('admin-status', [AdminController::class, 'AdminStatus'])->name('admin.status');
+
+
 
     // Category All Route
     Route::resource('category', CategoryController::class);
@@ -435,7 +449,16 @@ Route::controller(RFQController::class)->group(function(){
     'marketing-dmar' => MarketingDmarController::class,
     'notification' => NotificationController::class,
     'technology-data' => TechnologyDataController::class,
+    'accounts-manager' => AccountsManagerController::class,
+
+    'knowledge' => KnowledgeController::class,
+    'presentation' => PresentationController::class,
+    'show-case-video' => ShowCaseVideoController::class,
 ]);
+
+    //Assign Roles to Sales Manager
+    Route::put('assign_roles/SalesManager/{id}', [SalesAccountController::class,'assignSalesManagerRole'])->name('assign.salesmanager-role');
+
 
     Route::post('notifiy/multi-delete', [NotificationController::class, 'multiDelete'])->name('notifiy.multi-delete');
     Route::controller(EffortRatingController::class)->group(function(){
@@ -446,7 +469,7 @@ Route::controller(RFQController::class)->group(function(){
     Route::get('/sales-achievement/summary' , [SalesAchievementController::class, 'salesAchievementSummary'])->name('dashboard.salesachievement');
 
 
-Route::post('salesmanager-status', [App\Http\Controllers\Sales\SalesAccountController::class, 'SalesStatus'])->name('sales.status');
+    Route::post('salesmanager-status', [App\Http\Controllers\Sales\SalesAccountController::class, 'SalesStatus'])->name('sales.status');
 
 
 

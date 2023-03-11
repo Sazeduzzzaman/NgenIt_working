@@ -85,8 +85,7 @@
                                     <hr class="p-0 m-0">
 
                                     <div class="row mb-3">
-                                        <div class="col-sm-3"></div>
-                                        <div class="form-group col-sm-6 text-secondary">
+                                        <div class="col-lg-6 text-secondary">
                                             <label for="brand_id"><h5 class="text-center mb-1">Slect Brand <span class="text-danger">*</span></h5></label>
                                             <select name="brand_id" data-placeholder="Select brand_id.."
                                                 class="form-control select" id="brand_id">
@@ -96,6 +95,19 @@
                                                         {{ $brand->title }}</option>
                                                 @endforeach
                                             </select>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="col-sm-12">
+                                                <h6 class="mb-0">Brand Logo <span class="text-danger">*</span></h6>
+                                            </div>
+                                            <div class="col-sm-10 text-secondary">
+                                                <input type="file" name="brand_logo" class="form-control"
+                                                    id="image1" accept="image/*" />
+                                                <div class="form-text">Accepts only png, jpg, jpeg images</div>
+                                                <img id="showImage1" height="70px" width="70px"
+                                                    src="https://cdn.pixabay.com/photo/2017/02/07/02/16/cloud-2044823_960_720.png"
+                                                    alt="">
+                                            </div>
                                         </div>
                                     </div>
 
@@ -416,7 +428,7 @@
                                     </div>
                                 </div>
 
- 
+
 
 <div class="row border mb-1">
     <div class="row my-2">

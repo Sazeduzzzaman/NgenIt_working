@@ -69,9 +69,10 @@
                                         <tr>
                                             <td> {{ $key + 1 }} </td>
                                             <td>{{ $item->name }}</td>
-                                            <td>{{ $item->group_name }}</td>
+                                            <td>{{ ucfirst($item->group_name) }}</td>
 
                                             <td>
+                                                
                                                 <a href="{{ route('edit.permission', $item->id) }}" class="text-primary">
                                                     <i class="icon-pencil"></i>
                                                 </a>
@@ -79,7 +80,7 @@
                                                     class="text-danger delete mx-2">
                                                     <i class="delete icon-trash"></i>
                                                 </a>
-                                                
+
 
                                             </td>
                                         </tr>

@@ -126,8 +126,9 @@
                                                 <h6 class="mb-0">Fiscal Year </h6>
                                             </div>
                                             <div class="form-group col-sm-8 text-secondary">
-                                                <input type="text" @selected( $marketingTeamTarget->year ==$marketingTeamTarget->year) value="{{ $marketingTeamTarget->year }}"
-                                                    name="year" id="datepicker" class="yearselect form-control" />
+                                                <input type="text" @selected($marketingTeamTarget->year == $marketingTeamTarget->year)
+                                                    value="{{ $marketingTeamTarget->year }}" name="year" id="datepicker"
+                                                    class="yearselect form-control" />
                                             </div>
                                         </div>
                                         <div class="row mb-3">
@@ -140,22 +141,16 @@
                                                     data-enable-filtering="true"
                                                     data-enable-case-insensitive-filtering="true">
                                                     @php
-                                                        if (isset($marketingTeamTarget->product_id)) {
-                                                            $product_ids = json_decode($marketingTeamTarget->product_id);
-                                                        } else {
-                                                            $product_ids = [];
-                                                        }
+                                                        $productIds = isset($marketingTeamTarget->product_id) ? json_decode($marketingTeamTarget->product_id, true) : [];
+                                                        $products = app\Models\Admin\Product::pluck('name', 'id')->toArray();
                                                     @endphp
-                                                    @if (isset($product_ids))
-                                                        @foreach ($product_ids as $id)
-                                                            <option value="{{ $id }}"
-                                                                {{ in_array($id, $product_ids) ? 'selected' : '' }}>
-                                                                {{ app\Models\Admin\Product::where('id', $id)->value('name') }}
-                                                            </option>
-                                                        @endforeach
-                                                    @else
-                                                        <option></option>
-                                                    @endif
+
+                                                    @foreach ($products as $id => $name)
+                                                        <option value="{{ $id }}"
+                                                            {{ is_array($productIds) && in_array($id, $productIds) ? 'selected' : '' }}>
+                                                            {{ $name }}
+                                                        </option>
+                                                    @endforeach
                                                 </select>
                                             </div>
                                         </div>
@@ -168,30 +163,23 @@
                                                     multiple="multiple" data-include-select-all-option="true"
                                                     data-enable-filtering="true"
                                                     data-enable-case-insensitive-filtering="true">
-
                                                     @php
-                                                        if (isset($marketingTeamTarget->client_id)) {
-                                                            $client_ids = json_decode($marketingTeamTarget->client_id);
-                                                        } else {
-                                                            $client_ids = [];
-                                                        }
+                                                        $clientIds = isset($marketingTeamTarget->client_id) ? json_decode($marketingTeamTarget->client_id, true) : [];
+                                                        $clients = app\Models\Admin\Client::pluck('name', 'id')->toArray();
                                                     @endphp
-                                                    @if (isset($client_ids))
-                                                        @foreach ($client_ids as $id)
-                                                            <option value="{{ $id }}"
-                                                                {{ in_array($id, $client_ids) ? 'selected' : '' }}>
-                                                                {{ app\Models\Admin\Client::where('id', $id)->value('name') }}
-                                                            </option>
-                                                        @endforeach
-                                                    @else
-                                                        <option></option>
-                                                    @endif
+
+                                                    @foreach ($clients as $id => $name)
+                                                        <option value="{{ $id }}"
+                                                            {{ is_array($clientIds) && in_array($id, $clientIds) ? 'selected' : '' }}>
+                                                            {{ $name }}
+                                                        </option>
+                                                    @endforeach
                                                 </select>
                                             </div>
                                         </div>
                                         <div class="row mb-3">
                                             <div class="col-sm-4">
-                                                <h6 class="mb-0">Industry Name</h6>
+                                                <h6 class="mb-0">Industry Title</h6>
                                             </div>
                                             <div class="form-group text-secondary col-sm-8">
                                                 <select name="industry_id[]" class="form-control multiselect"
@@ -199,22 +187,16 @@
                                                     data-enable-filtering="true"
                                                     data-enable-case-insensitive-filtering="true">
                                                     @php
-                                                        if (isset($marketingTeamTarget->industry_id)) {
-                                                            $industry_ids = json_decode($marketingTeamTarget->industry_id);
-                                                        } else {
-                                                            $industry_ids = [];
-                                                        }
+                                                        $industryIds = isset($marketingTeamTarget->industry_id) ? json_decode($marketingTeamTarget->industry_id, true) : [];
+                                                        $industrys = app\Models\Admin\Industry::pluck('title', 'id')->toArray();
                                                     @endphp
-                                                    @if (isset($industry_ids))
-                                                        @foreach ($industry_ids as $id)
-                                                            <option value="{{ $id }}"
-                                                                {{ in_array($id, $industry_ids) ? 'selected' : '' }}>
-                                                                {{ app\Models\Admin\Industry::where('id', $id)->value('title') }}
-                                                            </option>
-                                                        @endforeach
-                                                    @else
-                                                        <option></option>
-                                                    @endif
+
+                                                    @foreach ($industrys as $id => $title)
+                                                        <option value="{{ $id }}"
+                                                            {{ is_array($industryIds) && in_array($id, $industryIds) ? 'selected' : '' }}>
+                                                            {{ $title }}
+                                                        </option>
+                                                    @endforeach
                                                 </select>
                                             </div>
                                         </div>
@@ -227,23 +209,18 @@
                                                     multiple="multiple" data-include-select-all-option="true"
                                                     data-enable-filtering="true"
                                                     data-enable-case-insensitive-filtering="true">
+
                                                     @php
-                                                        if (isset($marketingTeamTarget->solution_id)) {
-                                                            $solution_ids = json_decode($marketingTeamTarget->solution_id);
-                                                        } else {
-                                                            $solution_ids = [];
-                                                        }
+                                                        $solutionIds = isset($marketingTeamTarget->solution_id) ? json_decode($marketingTeamTarget->solution_id, true) : [];
+                                                        $solutions = app\Models\Admin\SolutionDetail::pluck('name', 'id')->toArray();
                                                     @endphp
-                                                    @if (isset($solution_ids))
-                                                        @foreach ($solution_ids as $id)
-                                                            <option value="{{ $id }}"
-                                                                {{ in_array($id, $solution_ids) ? 'selected' : '' }}>
-                                                                {{ app\Models\Admin\SolutionDetail::where('id', $id)->value('name') }}
-                                                            </option>
-                                                        @endforeach
-                                                    @else
-                                                        <option></option>
-                                                    @endif
+
+                                                    @foreach ($solutions as $id => $name)
+                                                        <option value="{{ $id }}"
+                                                            {{ is_array($solutionIds) && in_array($id, $solutionIds) ? 'selected' : '' }}>
+                                                            {{ $name }}
+                                                        </option>
+                                                    @endforeach
                                                 </select>
                                             </div>
                                         </div>

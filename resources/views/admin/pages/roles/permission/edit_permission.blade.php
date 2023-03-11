@@ -70,66 +70,69 @@
                                 <div class="col-sm-3">
                                     <h6 class="mb-0">Group Name</h6>
                                 </div>
-                                <div class="form-group col-sm-9 text-secondary">
-                                    <select name="group_name" class="form-select mb-3"
-                                        aria-label="Default select example">
-                                        <option selected="">Open this select Group</option>
-                                        <option value="brand"
-                                            {{ $permission->group_name == 'brand' ? 'selected' : '' }}>Brand</option>
+                                <div class="basic-form col-sm-9 text-secondary">
+                                    <select name="group_name" class="form-control select mb-3"
+                                        data-placeholder="Choose Group">
+                                        <option></option>
+                                        <option value="product-management"
+                                            {{ $permission->group_name == 'product-management' ? 'selected' : '' }}>Product Management</option>
+
                                         <option
-                                            value="category"{{ $permission->group_name == 'category' ? 'selected' : '' }}>
-                                            Category</option>
+                                            value="sourcing-management"{{ $permission->group_name == 'sourcing-management' ? 'selected' : '' }}>
+                                            Sourcing Management</option>
+
                                         <option
-                                            value="subcategory"{{ $permission->group_name == 'subcategory' ? 'selected' : '' }}>
-                                            Subcategory</option>
+                                            value="rfq-management"{{ $permission->group_name == 'rfq-management' ? 'selected' : '' }}>
+                                            RFQ Management</option>
                                         <option
-                                            value="product"{{ $permission->group_name == 'product' ? 'selected' : '' }}>
-                                            Product</option>
+                                            value="sales-management"{{ $permission->group_name == 'sales-management' ? 'selected' : '' }}>
+                                            Sales Management</option>
                                         <option
-                                            value="slider"{{ $permission->group_name == 'slider' ? 'selected' : '' }}>
-                                            Slider</option>
+                                            value="accounts-management"{{ $permission->group_name == 'accounts-management' ? 'selected' : '' }}>
+                                            Accounts Management</option>
                                         <option
-                                            value="ads"{{ $permission->group_name == 'ads' ? 'selected' : '' }}>
-                                            Ads</option>
+                                            value="marketing-management"{{ $permission->group_name == 'marketing-management' ? 'selected' : '' }}>
+                                            Marketing Management</option>
                                         <option
-                                            value="coupon"{{ $permission->group_name == 'coupon' ? 'selected' : '' }}>
-                                            Coupon</option>
+                                            value="industry-solutions"{{ $permission->group_name == 'industry-solutions' ? 'selected' : '' }}>
+                                            Industry Management</option>
                                         <option
-                                            value="area"{{ $permission->group_name == 'area' ? 'selected' : '' }}>
-                                            Area</option>
+                                            value="feature-management"{{ $permission->group_name == 'feature-management' ? 'selected' : '' }}>
+                                            Feature Management</option>
                                         <option
-                                            value="vendor"{{ $permission->group_name == 'vendor' ? 'selected' : '' }}>
-                                            Vendor</option>
+                                            value="blog-management"{{ $permission->group_name == 'blog-management' ? 'selected' : '' }}>
+                                            Blog Management</option>
                                         <option
-                                            value="order"{{ $permission->group_name == 'order' ? 'selected' : '' }}>
-                                            Order</option>
+                                            value="sitesettings-management"{{ $permission->group_name == 'sitesettings-management' ? 'selected' : '' }}>
+                                            Site settings Management</option>
                                         <option
-                                            value="return"{{ $permission->group_name == 'return' ? 'selected' : '' }}>
-                                            Return</option>
+                                            value="support-management"{{ $permission->group_name == 'support-management' ? 'selected' : '' }}>
+                                            Support Management</option>
                                         <option
-                                            value="report"{{ $permission->group_name == 'report' ? 'selected' : '' }}>
-                                            Report</option>
+                                            value="account-approval-management"{{ $permission->group_name == 'account-approval-management' ? 'selected' : '' }}>
+                                            Account Management</option>
                                         <option
-                                            value="user"{{ $permission->group_name == 'user' ? 'selected' : '' }}>
-                                            User Management</option>
+                                            value="row-builder-management"{{ $permission->group_name == 'row-builder-management' ? 'selected' : '' }}>
+                                            Row Builder Management</option>
                                         <option
-                                            value="review"{{ $permission->group_name == 'review' ? 'selected' : '' }}>
-                                            Review</option>
+                                            value="page-builder-management"{{ $permission->group_name == 'page-builder-management' ? 'selected' : '' }}>
+                                            Page Builder Management Management</option>
                                         <option
-                                            value="setting"{{ $permission->group_name == 'setting' ? 'selected' : '' }}>
-                                            Setting</option>
+                                            value="order-management"{{ $permission->group_name == 'order-management' ? 'selected' : '' }}>
+                                            Order Management</option>
                                         <option
-                                            value="blog"{{ $permission->group_name == 'blog' ? 'selected' : '' }}>
-                                            Blog</option>
+                                            value="role-permission-management"{{ $permission->group_name == 'role-permission-management' ? 'selected' : '' }}>
+                                            Role Management</option>
                                         <option
-                                            value="role"{{ $permission->group_name == 'role' ? 'selected' : '' }}>
-                                            Role</option>
+                                            value="job-management"{{ $permission->group_name == 'job-management' ? 'selected' : '' }}>
+                                            Job Management</option>
                                         <option
-                                            value="admin"{{ $permission->group_name == 'admin' ? 'selected' : '' }}>
-                                            Admin</option>
+                                            value="terms-policy-management"{{ $permission->group_name == 'terms-policy-management' ? 'selected' : '' }}>
+                                            Terms and Policy Management</option>
                                         <option
-                                            value="stock"{{ $permission->group_name == 'stock' ? 'selected' : '' }}>
-                                            Stock</option>
+                                            value="dashboard"{{ $permission->group_name == 'dashboard' ? 'selected' : '' }}>
+                                            Dashboard</option>
+
                                     </select>
                                 </div>
                             </div>

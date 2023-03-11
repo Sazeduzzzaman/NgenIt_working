@@ -15,7 +15,7 @@
                     <div class="breadcrumb py-2">
                         <a href="index.html" class="breadcrumb-item"><i class="ph-house"></i></a>
                         <a href="{{ route('admin.dashboard') }}" class="breadcrumb-item">Home</a>
-                        <span class="breadcrumb-item active">Admins</span>
+                        <span class="breadcrumb-item active">Accounts Managers</span>
                     </div>
 
                     <a href="#breadcrumb_elements"
@@ -31,15 +31,15 @@
         <div class="content">
             <div class="row">
                 <div class="col-lg-12">
-                    <div class="card">
+                    <div class="card cardT">
                         <div class="card-header">
                             <div class="row">
                                 <div class="col-lg-8">
-                                    <h4 class="mb-0 text-center">All Admins</h4>
+                                    <h4 class="mb-0 text-center">All Accounts Manager</h4>
                                 </div>
 
                                 <div class="col-lg-4">
-                                    <a href="{{ route('add.admin') }}" type="button"
+                                    <a href="{{ route('accounts-manager.create') }}" type="button"
                                         class="btn btn-sm btn-success btn-labeled btn-labeled-start float-end">
                                         <span class="btn-labeled-icon bg-black bg-opacity-20">
                                             <i class="icon-plus2"></i>
@@ -49,83 +49,78 @@
                                 </div>
                             </div>
                         </div>
+
                         <div class="card-body">
-                            <div class="table-responsive">
-                                <table class="table table-striped table-bordered">
-                                    <thead>
-                                        <tr class="text-center">
-                                            <th width="10%">Sl</th>
-                                            <th width="10%">Image </th>
-                                            <th width="15%">Name </th>
-                                            <th width="20%">Email </th>
-                                            <th width="10%">Designation </th>
-                                            <th width="15%">Role </th>
-                                            <th width="20%">Action</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @foreach($alladminuser as $key => $item)
-                                        <tr>
-                                            <td> {{ $key+1 }} </td>
-                                            <td>
-                                                <img src="{{ (!empty($item->photo)) ? url('upload/Admin/'.$item->photo):url('upload/no_image.jpg') }}"
-                                                    style="width: 50px; height:50px;"/>
-                                            </td>
-
-                                            <td>{{ $item->name }}</td>
-                                            <td>{{ $item->email }}</td>
-                                            <td><span class="badge bg-success p-1">{{ $item->designation }}</span></td>
-                                            <td>
-                                                @foreach($item->roles as $role)
-                                                <span class="badge bg-danger">{{ $role->name }}</span>
-                                                @endforeach
-                                            </td>
-
-                                            <td>
-                                                {{-- <a href="{{ route('edit.admin.role',$item->id) }}" class="btn btn-info">Edit</a>
-                                                <a href="{{ route('delete.admin.role',$item->id) }}" class="btn btn-danger"
-                                                    id="delete">Delete</a> --}}
+                            <table class="table table-bordered table-hover salesaccountDT">
+                                <thead>
+                                    <tr class="text-center">
+                                        <th width="10%">Sl</th>
+                                        <th width="10%">Image </th>
+                                        <th width="15%">Name </th>
+                                        <th width="20%">Email </th>
+                                        <th width="10%">Designation </th>
+                                        <th width="15%">Role </th>
+                                        <th width="20%">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @if ($salesmans)
+                                        @foreach ($salesmans as $key => $salesman)
+                                            <tr>
+                                                <td>{{ ++$key }}</td>
+                                                <td class="text-center"><img class="rounded-circle"
+                                                    src="{{ asset('upload/Profile/Admin/' . $salesman->photo) }}"
+                                                        height="50" width="50" alt=""></td>
+                                                <td>{{ $salesman->name }}</td>
+                                                <td>{{ $salesman->email }}</td>
+                                                <td>{{ $salesman->designation }}</td>
+                                                <td>
+                                                    @foreach($salesman->roles as $role)
+                                                        <span class="badge bg-danger">{{ $role->name }}</span>
+                                                    @endforeach
+                                                </td>
+                                                <td>
 
                                                     <div class="row">
-                                                        <div class="col-2">
+                                                        <div class="col-3">
                                                             <div class="form-switch">
                                                                 <input name="toggle" type="checkbox"
                                                                     class="form-check-input form-check-input-danger"
-                                                                    value="{{ $item->id }}" id="sc_r_danger"
-                                                                    {{ $item->status == 'inactive' ? 'checked' : '' }}>
+                                                                    value="{{ $salesman->id }}" id="sc_r_danger"
+                                                                    {{ $salesman->status == 'inactive' ? 'checked' : '' }}>
                                                             </div>
                                                         </div>
-                                                        <div class="col-10">
-                                                            <a href="javascript:void(0);" class="text-success mx-2"
-                                                                data-bs-toggle="modal" title="View & Assign Roles to Admin"
-                                                                data-bs-target="#assign-manager-{{ $item->id }}">
+                                                        <div class="col-9">
+                                                            <a href="javascript:void(0);" class="text-success mx-3"
+                                                                data-bs-toggle="modal" title="View & Assign Roles to Accounts Manager"
+                                                                data-bs-target="#assign-manager-{{ $salesman->id }}">
                                                                 <i class="icon-user-check icon-1x"></i>
                                                             </a>
-                                                            <a href="{{ route('edit.admin', [$item->id]) }}"
+                                                            <a href="{{ route('accounts-manager.edit', [$salesman->id]) }}"
                                                                 class="text-primary mx-2">
                                                                 <i class="icon-pencil"></i>
                                                             </a>
-                                                            {{-- <a href="{{ route('sales-account.destroy', [$item->id]) }}"
+                                                            <a href="{{ route('accounts-manager.destroy', [$salesman->id]) }}"
                                                                 class="text-danger delete mx-2">
                                                                 <i class="delete icon-trash"></i>
-                                                            </a> --}}
+                                                            </a>
 
                                                             <!---Assign Manager modal--->
-                                                                <div id="assign-manager-{{ $item->id }}" class="modal fade" tabindex="-1" style="display: none;"
+                                                                <div id="assign-manager-{{ $salesman->id }}" class="modal fade" tabindex="-1" style="display: none;"
                                                                     aria-hidden="true">
                                                                     <div class="modal-dialog modal-dialog-scrollable modal-lg">
                                                                         <div class="modal-content">
                                                                             <div class="modal-header">
                                                                                 @php
-                                                                                    $admin = App\Models\User::where('id', $item->id)->first();
+                                                                                    $sales_manager = App\Models\User::where('id', $salesman->id)->first();
                                                                                 @endphp
-                                                                                <h5 class="modal-title">Assign Role for Sales Manager : {{ $admin->name }}</h5>
+                                                                                <h5 class="modal-title">Assign Role for Sales Manager : {{ $sales_manager->name }}</h5>
                                                                                 <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                                                                             </div>
 
                                                                             <div class="modal-body border br-7">
 
-                                                                                <form method="post" action="{{ route('assign.salesmanager-role',$item->id) }}"
+                                                                                <form method="post" action="{{ route('assign.salesmanager-role',$salesman->id) }}"
                                                                                     enctype="multipart/form-data">
                                                                                     @csrf
                                                                                     @method('PUT')
@@ -137,13 +132,13 @@
                                                                                                         <tr>
 
                                                                                                             <th style="padding:7px !important;">
-                                                                                                                Name : {{ ucfirst($admin->name) }}
+                                                                                                                Name : {{ ucfirst($sales_manager->name) }}
                                                                                                             </th>
                                                                                                             <th style="padding:7px !important;">
-                                                                                                                Country: {{ ucfirst($admin->country) }}
+                                                                                                                Country: {{ ucfirst($sales_manager->country) }}
                                                                                                             </th>
                                                                                                             <th style="padding:7px !important;">
-                                                                                                                Designation: {{ ucfirst($admin->designation) }}
+                                                                                                                Designation: {{ ucfirst($sales_manager->designation) }}
                                                                                                             </th>
 
                                                                                                         </tr>
@@ -151,7 +146,6 @@
                                                                                                     </thead>
                                                                                                 </table>
                                                                                             </div>
-
                                                                                             <div class="row mt-2 p-2 text-center">
                                                                                                 <div class="col-12 text-white py-1" style="background:black;">
                                                                                                     Assign Roles :
@@ -171,14 +165,19 @@
                                                                                                                 <h6 class="mb-0 text-black">Assign Roles</h6>
                                                                                                             </div>
                                                                                                             <div class="form-group text-secondary col-sm-12">
+                                                                                                                {{-- <select name="roles" class="form-control select"
+                                                                                                                    data-placeholder="Choose Role...">
+                                                                                                                    <option></option>
+                                                                                                                    @foreach($roles as $role)
+                                                                                                                        <option value="{{ $role->id }}">{{ $role->name }}</option>
+                                                                                                                    @endforeach
+                                                                                                                </select> --}}
                                                                                                                 <select name="roles" class="form-control select"
                                                                                                                     data-placeholder="Choose Role...">
                                                                                                                     <option></option>
-                                                                                                                    {{-- @foreach($roles as $role)
-                                                                                                                        <option value="{{ $role->id }}" >{{ $role->name }}</option>
-                                                                                                                    @endforeach --}}
+
                                                                                                                     @foreach($roles as $role)
-                                                                                                                    <option value="{{ $role->id }}" {{ $admin->hasRole($role->name) ? 'selected' : '' }} >
+                                                                                                                    <option value="{{ $role->id }}" {{ $sales_manager->hasRole($role->name) ? 'selected' : '' }} >
                                                                                                                         {{ $role->name }}</option>
                                                                                                                     @endforeach
                                                                                                                 </select>
@@ -216,15 +215,12 @@
                                                         </div>
                                                     </div>
 
-                                            </td>
-                                        </tr>
+                                                </td>
+                                            </tr>
                                         @endforeach
-
-
-                                    </tbody>
-
-                                </table>
-                            </div>
+                                    @endif
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
@@ -243,7 +239,7 @@
                 var mode = $(this).prop('checked');
                 var id = $(this).val();
                 $.ajax({
-                    url: "{{ route('admin.status') }}",
+                    url: "{{ route('sales.status') }}",
                     type: "POST",
                     data: {
                         _token: '{{ csrf_token() }}',
@@ -265,6 +261,13 @@
 
 
     </script>
+    <script>
+        $(document).ready(function() {
+            $('.editRfquser').click(function() {
+                $(".Rfquser").toggle(this.checked);
+            });
+        });
+    </script>
 @endsection
 
 @once
@@ -276,25 +279,9 @@
                 "lengthMenu": [10, 26, 30, 50],
                 columnDefs: [{
                     orderable: false,
-                    targets: [1,2,3,5,7],
+                    targets: [2, 6, 7],
                 }, ],
-            });
-        </script>
-
-        <script>
-            $(document).ready(function() {
-                $('.editRfquser').click(function() {
-                    $(".Rfquser").toggle(this.checked);
-                });
             });
         </script>
     @endpush
 @endonce
-
-
-
-
-
-
-
-

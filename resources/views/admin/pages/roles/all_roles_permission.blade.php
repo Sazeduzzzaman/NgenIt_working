@@ -67,7 +67,7 @@
                                     <td>{{ $item->name }}</td>
                                     <td>
                                         @foreach($item->permissions as $perm)
-                                        <span class="badge rounded-pill bg-danger"> {{ $perm->name }}</span>
+                                        <span class="badge bg-danger m-1"> {{ $perm->name }}</span>
                                         @endforeach
                                     </td>
 

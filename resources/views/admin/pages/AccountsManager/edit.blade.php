@@ -12,7 +12,7 @@
                     <div class="breadcrumb py-2">
                         <a href="index.html" class="breadcrumb-item"><i class="ph-house"></i></a>
                         <a href="{{route('admin.dashboard')}}" class="breadcrumb-item">Home</a>
-                        <span class="breadcrumb-item active">Admin Manage</span>
+                        <span class="breadcrumb-item active">Accounts Managers</span>
                     </div>
 
                     <a href="#breadcrumb_elements" class="btn btn-light align-self-center collapsed d-lg-none border-transparent rounded-pill p-0 ms-auto" data-bs-toggle="collapse">
@@ -26,18 +26,26 @@
     <div class="content">
         <div class="card">
             <div class="card-header py-1">
-                <h5 class="text-center p-0 m-0">Edit Admin</h5>
-                <a href="{{ route('all.admin') }}" type="button"
-                    class="btn btn-sm btn-warning btn-labeled btn-labeled-start float-end">
-                    <span class="btn-labeled-icon bg-black bg-opacity-20">
-                        <i class="icon-eye"></i>
-                    </span>
-                    All Admins
-                </a>
+
+                <div class="row">
+                    <div class="col-lg-8">
+                        <h5 class="text-center p-0 m-0"> Edit Accounts Manager</h5>
+                    </div>
+
+                    <div class="col-lg-4">
+                        <a href="{{ route('accounts-manager.index') }}" type="button"
+                            class="btn btn-sm btn-success btn-labeled btn-labeled-start float-end">
+                            <span class="btn-labeled-icon bg-black bg-opacity-20">
+                                <i class="icon-plus2"></i>
+                            </span>
+                            All Accounts Manager
+                        </a>
+                    </div>
+                </div>
             </div>
             <div class="card-body">
 
-                <form method="post" action="{{ route('update.admin',$user->id) }}" enctype="multipart/form-data">
+                <form method="post" action="{{ route('accounts-manager.update',$user->id) }}" enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
                     <div class="row">

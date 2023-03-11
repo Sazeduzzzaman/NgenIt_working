@@ -67,6 +67,7 @@ class BrandPageController extends Controller
         if ($validator->passes()) {
             $rowSixImage = $request->row_six_image;
             $banner_image = $request->banner_image;
+            $brand_logo = $request->brand_logo;
             $uploadPath = storage_path('app/public/');
             if (isset($banner_image)) {
                 $globalFunImgBanner = Helper::singleImageUpload($banner_image, $uploadPath, 1920, 1080);
@@ -79,9 +80,15 @@ class BrandPageController extends Controller
             } else {
                 $rowSixImage = ['status' => 0];
             }
+            if (isset($brand_logo)) {
+                $brand_logo = Helper::singleImageUpload($brand_logo, $uploadPath, 220, 100);
+            } else {
+                $brand_logo = ['status' => 0];
+            }
             BrandPage::create([
                 'banner_image'           => $globalFunImgBanner['status'] == 1 ? $globalFunImgBanner['file_name'] : '',
                 'row_six_image'          => $rowSixImage['status']        == 1 ? $rowSixImage['file_name']       : '',
+                'brand_logo'             => $brand_logo['status']        == 1 ? $brand_logo['file_name']       : '',
                 'brand_id'               => $request->brand_id,
                 'solution_card_one_id'   => $request->solution_card_one_id,
                 'solution_card_two_id'   => $request->solution_card_two_id,
@@ -151,6 +158,7 @@ class BrandPageController extends Controller
 
             $banner_image     = $request->banner_image;
             $row_six_image = $request->row_six_image;
+            $brand_logo = $request->brand_logo;
             $uploadPath    = storage_path('app/public/');
             if (isset($banner_image)) {
                 $globalFunImgimage_banner_image = Helper::singleImageUpload($banner_image, $uploadPath, 1800, 625);
@@ -163,6 +171,11 @@ class BrandPageController extends Controller
             } else {
                 $globalFunrow_six_image = ['status' => 0];
             }
+            if (isset($brand_logo)) {
+                $globalFunbrand_logo = Helper::singleImageUpload($brand_logo, $uploadPath, 220, 100);
+            } else {
+                $globalFunbrand_logo = ['status' => 0];
+            }
 
             if ($globalFunImgimage_banner_image['status'] == 1) {
                 File::delete(public_path('storage/') . $brandPage->banner_image);
@@ -174,10 +187,16 @@ class BrandPageController extends Controller
                 File::delete(public_path('storage/requestImg/') . $brandPage->row_six_image);
                 File::delete(public_path('storage/thumb/') . $brandPage->row_six_image);
             }
+            if ($globalFunbrand_logo['status'] == 1) {
+                File::delete(public_path('storage/') . $brandPage->brand_logo);
+                File::delete(public_path('storage/requestImg/') . $brandPage->brand_logo);
+                File::delete(public_path('storage/thumb/') . $brandPage->brand_logo);
+            }
 
             $brandPage->update([
-                'banner_image'       => $globalFunImgimage_banner_image['status'] == 1 ? $globalFunImgimage_banner_image['file_name'] : $brandPage->banner_image,
-                'row_six_image'      => $globalFunrow_six_image['status']   == 1 ? $globalFunrow_six_image['file_name']  : $brandPage->row_six_image,
+                'banner_image'          => $globalFunImgimage_banner_image['status'] == 1 ? $globalFunImgimage_banner_image['file_name'] : $brandPage->banner_image,
+                'row_six_image'         => $globalFunrow_six_image['status']   == 1 ? $globalFunrow_six_image['file_name']  : $brandPage->row_six_image,
+                'brand_logo'            => $globalFunbrand_logo['status']   == 1 ? $globalFunbrand_logo['file_name']  : $brandPage->brand_logo,
                 'brand_id'               => $request->brand_id,
                 'solution_card_one_id'   => $request->solution_card_one_id,
                 'solution_card_two_id'   => $request->solution_card_two_id,
@@ -229,6 +248,16 @@ class BrandPageController extends Controller
         }
         if (File::exists(public_path('storage/thumb/') . $brandPage->row_six_image)) {
             File::delete(public_path('storage/thumb/') . $brandPage->row_six_image);
+        }
+        //brand_logo
+        if (File::exists(public_path('storage/') . $brandPage->brand_logo)) {
+            File::delete(public_path('storage/') . $brandPage->brand_logo);
+        }
+        if (File::exists(public_path('storage/requestImg/') . $brandPage->brand_logo)) {
+            File::delete(public_path('storage/requestImg/') . $brandPage->brand_logo);
+        }
+        if (File::exists(public_path('storage/thumb/') . $brandPage->brand_logo)) {
+            File::delete(public_path('storage/thumb/') . $brandPage->brand_logo);
         }
         $brandPage->delete();
     }

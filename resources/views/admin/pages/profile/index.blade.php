@@ -30,15 +30,15 @@
         <!-- Content area -->
         <div class="content">
             <div class="row">
-                <div class="col-lg-2"></div>
-                <div class="col-lg-3">
+
+                <div class="col-lg-4">
                     <div class="card p-0">
                         <div class="card-body">
                             <div class="d-flex flex-column align-items-center text-center">
                                 <img src="{{ (!empty($data->photo)) ? url('upload/Profile/user/'.$data->photo):url('upload/no_image.jpg') }}" alt="Admin" class="rounded-circle p-1 bg-primary" width="150">
                                 <div class="mt-3">
                                     <h4>{{ $data->name }}</h4>
-                                    <p class="text-secondary mb-1">{{ $data->username }}</p>
+                                    <p class="text-secondary mb-1">{{ $data->designation }}</p>
 
                                 </div>
                             </div>
@@ -46,7 +46,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-6">
+                <div class="col-lg-8">
                     <div class="card">
                         <div class="card-header py-1">
                             <h5 class="text-center p-0 m-0">Your Account Details</h5>
@@ -64,8 +64,8 @@
                                     </div>
                                     <div class="col-lg-6">
                                         <div class="mb-1">
-                                            <label class="form-label" for="basicpill-firstname-input">User name</label>
-                                            <input type="text" class="form-control" id="basicpill-firstname-input" name="username" value="{{ $data->username }}" disabled>
+                                            <label class="form-label" for="basicpill-email-input">Designation</label>
+                                            <input type="text" class="form-control" id="basicpill-email-input" name="designation" />
                                         </div>
                                     </div>
                                 </div>

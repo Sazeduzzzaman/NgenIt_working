@@ -30,9 +30,12 @@ class RedirectIfAuthenticated
             if (Auth::guard($guard)->check()) {
 
                 if(Auth::check() && Auth::user()->role == 'sales'){
-                    return redirect('/sales/dashboard');
+                    return redirect('/admin/dashboard');
 
-                }if(Auth::check() && Auth::user()->role == 'admin'){
+                }elseif(Auth::check() && Auth::user()->role == 'admin'){
+                    return redirect('/admin/dashboard');
+
+                }elseif(Auth::check() && Auth::user()->role == 'accounts'){
                     return redirect('/admin/dashboard');
 
                 }

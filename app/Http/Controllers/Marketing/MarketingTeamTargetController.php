@@ -39,7 +39,7 @@ class MarketingTeamTargetController extends Controller
         $data['products'] = Product::select('products.id', 'products.name')->get();
         $data['clients'] = Client::select('clients.id', 'clients.name')->get();
         $data['industries'] = Industry::select('industries.id', 'industries.title')->get();
-        $data['solutionDetails'] = SolutionDetail::select('solution_details.id','solution_details.name')->get();
+        $data['solutionDetails'] = SolutionDetail::select('solution_details.id', 'solution_details.name')->get();
         return view('admin.pages.marketingTeamTarget.add', $data);
     }
 
@@ -58,10 +58,10 @@ class MarketingTeamTargetController extends Controller
                 'country_id'           => 'nullable',
                 'month'                => 'nullable',
                 'year'                 => 'nullable',
-                'product_id.*'         => 'nullable',
-                'client_id.*'          => 'nullable',
-                'industry_id.*'        => 'nullable',
-                'solution_id.*'        => 'nullable',
+                'product_id'           => 'nullable',
+                'client_id'            => 'nullable',
+                'industry_id'          => 'nullable',
+                'solution_id'          => 'nullable',
                 'email'                => 'nullable',
                 'social'               => 'nullable',
                 'call'                 => 'nullable',
@@ -132,14 +132,15 @@ class MarketingTeamTargetController extends Controller
      */
     public function edit($id)
     {
-        $data['users'] = User::where('role', 'sales')->select('users.id', 'users.name')->get();
-        $data['countrys'] = Country::select('countries.id', 'countries.country_name')->get();
-        $data['products'] = Product::select('products.id', 'products.name')->get();
-        $data['clients'] = Client::select('clients.id', 'clients.name')->get();
-        $data['industries'] = Industry::select('industries.id', 'industries.title')->get();
-        $data['solutionDetails'] = SolutionDetail::select('solution_details.id','solution_details.name')->get();
-        $data['marketingTeamTarget'] = MarketingTeamTarget::find($id);
-        return view('admin.pages.marketingTeamTarget.edit', $data);
+        return view('admin.pages.marketingTeamTarget.edit')->with([
+            'users' => User::where('role', 'sales')->select('users.id', 'users.name')->get(),
+            'countrys' => Country::select('countries.id', 'countries.country_name')->get(),
+            'marketingTeamTarget' => MarketingTeamTarget::find($id),
+            'products' => Product::pluck('name', 'id'),
+            'clients' => Client::pluck('name', 'id'),
+            'industries' => Industry::pluck('title', 'id'),
+            'solutionDetails' => SolutionDetail::pluck('name', 'id'),
+        ]);
     }
 
     /**

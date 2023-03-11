@@ -3,9 +3,11 @@
 <!--======// Header Title //======-->
 <section class="common_product_header" style="background-image: url('{{asset('storage/requestImg/'.$brandpage->banner_image)}}');margin-top:100px;">
     <div class="container">
-        <div class="d-flex justify-content-center m-0">
-            <a href=""><img src="{{asset('storage/requestImg/'.$brand->image)}}" alt="" width="220px" height="80px"></a>
-        </div>
+        @if (!empty($brandpage->brand_logo))
+            <div class="d-flex justify-content-center m-0">
+                <a href=""><img src="{{asset('storage/'.$brandpage->brand_logo)}}" alt="" width="200px" height="80px"></a>
+            </div>
+        @endif
         <h1>Shop for {{$brand->title}}</h1>
         <h3>{{$brandpage->header}}</h3>
 
@@ -40,7 +42,7 @@
                     @if (!empty($row_one->link))
                         <a href="{{$row_one->link}}" class="common_button">{{$row_one->btn_name}}</a>
                         @else
-                            
+
                         @endif
                 </div>
                 <div class="col-lg-6 col-sm-12">
@@ -108,9 +110,9 @@
                         @if (!empty($row_three->link))
                         <a href="{{$row_three->link}}" class="common_button">{{$row_three->btn_name}}</a>
                         @else
-                            
+
                         @endif
-                    
+
                 </div>
             </div>
         </div>
@@ -145,7 +147,7 @@
                     <a href="{{$row_four->link}}" class="common_button">{{$row_four->btn_name}}</a>
                     @else
                     @endif
-                    
+
                 </div>
                 <div class="col-lg-6 col-sm-12">
                     <img class=" p-4" src="{{asset('storage/requestImg/'.$row_four->image)}}" alt="" width="580px" height="363px">
@@ -170,7 +172,7 @@
                         @if (!empty($row_five->link))
                         <a href="{{$row_five->link}}" class="common_button">{{$row_five->btn_name}}</a>
                         @else
-                            
+
                         @endif
                 </div>
             </div>

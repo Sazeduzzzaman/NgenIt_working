@@ -5,12 +5,19 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\User;
 use Illuminate\Http\Request;
-use App\Http\Middleware\Role;
+// use App\Http\Middleware\Role;
+use App\Models\Admin\Country;
+use App\Notifications\AdminAdd;
+use Illuminate\Support\Facades\DB;
+use Spatie\Permission\Models\Role;
 use App\Http\Controllers\Controller;
+use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
 use Intervention\Image\Facades\Image;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Notification;
 
 class AdminController extends Controller
 {
@@ -98,20 +105,14 @@ class AdminController extends Controller
 
         $status = $profile->fill($data)->save();
         if($status){
-            $notification = array(
-                'message' => 'Admin Profile Updated Successfully',
-                'alert-type' => 'success'
-            );
-
+            Toastr::success('Profile Updated Successfully');
 
         }
         else{
-            $notification = array(
-                'message' => 'Something error is happened!! Please try again.',
-                'alert-type' => 'error'
-            );
+            Toastr::error('Something error is happened!! Please try again.');
+
         }
-        return redirect()->back()->with($notification);
+        return redirect()->back();
 
 
     } // End Mehtod
@@ -142,83 +143,128 @@ class AdminController extends Controller
 
     } // End Mehtod
 
+
+
+
     ///////////// Admin All Method //////////////
 
 
     public function AllAdmin(){
-        $alladminuser = User::where('role','admin')->latest()->get();
-        return view('admin.pages.admin.all_admin',compact('alladminuser'));
+        $data['roles'] = Role::all();
+        $data['alladminuser'] = User::where('role','admin')->latest()->get();
+        return view('admin.pages.admin.all_admin',$data);
     }// End Mehtod
 
 
-    // public function AddAdmin(){
-    //     $roles = Role::all();
-    //     return view('admin.pages.admin.add_admin',compact('roles'));
-    // }// End Mehtod
+    public function AddAdmin(){
+        $roles = Role::all();
+        return view('admin.pages.admin.add_admin',compact('roles'));
+    }// End Mehtod
 
 
 
     public function AdminUserStore(Request $request){
 
-        $user = new User();
-        $user->username = $request->username;
-        $user->name = $request->name;
-        $user->email = $request->email;
-        $user->phone = $request->phone;
-        $user->address = $request->address;
-        $user->password = Hash::make($request->password);
-        $user->role = 'admin';
-        $user->status = 'active';
-        $user->save();
-
-        if ($request->roles) {
-            $user->assignRole($request->roles);
-        }
-
-         $notification = array(
-            'message' => 'New Admin User Inserted Successfully',
-            'alert-type' => 'success'
+        $user = User::all();
+        $salesmanager_name = $request->name;
+        $validator = Validator::make(
+            $request->all(),
+            [
+                'name'      => 'required',
+                'email'     => 'required|unique: users',
+                'image'     => 'image|mimes    : png,jpg,jpeg|max: 5000',
+                'password'  => 'required|confirmed',
+            ],
+            [
+                'image'     => [
+                    'max'   => 'The image field must be smaller than 4 MB.',
+                ],
+                'image'     => 'The file must be an image.',
+                'unique'    => 'The Email has already been taken.',
+                'confirmed' => 'The Confirmation Password is incorrect.',
+                'mimes'     => 'The :attribute must be a file of type: PNG - JPEG - JPG'
+            ]
         );
+        if ($request->photo)
+                {
+                    $destination = 'upload/Profile/Admin/'.$request->photo;
+                    if (File::exists($destination))
+                    {
+                        File::delete($destination);
+                    }
+                    $image = $request->file('photo');
+                    $name_gen = hexdec(uniqid()).'.'.$image->getClientOriginalExtension();
+                    $path = public_path('upload/Profile/Admin/'.$name_gen);
+                    Image::make($image)->resize(176,176)->save($path);
+                    $data['photo'] = $name_gen;
+                }
+        else{
+            $data['photo'] ="";
+        }
+        if ($validator->passes()) {
+            $salesmanager = User::create([
+                'name'        => $request->name,
+                'email'       => $request->email,
+                'phone'       => $request->phone,
+                'designation' => $request->designation,
+                'country'     => $request->country,
+                'address'     => $request->address,
+                'postal'      => $request->postal,
+                'status'      => 'inactive',
+                'role'        => 'admin',
+                'photo'       => $data['photo'],
+                'password'    => Hash::make($request->password),
+            ]);
 
-        return redirect()->route('all.admin')->with($notification);
+            // if ($request->roles) {
+            //     $user->assignRole($request->roles);
+            // }
+
+            $name = Auth::user()->name;
+
+            Notification::send($user, new AdminAdd($name , $salesmanager_name));
+            Toastr::success('Admin have registered Successfully');
+            return redirect()->route('all.admin');
+        } else {
+            $messages = $validator->messages();
+            foreach ($messages->all() as $message) {
+                Toastr::error($message, 'Failed', ['timeOut' => 30000]);
+            }
+            return redirect()->back();
+        }
 
     }// End Mehtod
 
 
 
 
-    // public function EditAdminRole($id){
+    public function EditAdminUser($id){
 
-    //     $user = User::findOrFail($id);
-    //     $roles = Role::all();
-    //     return view('admin.pages.admin.edit_admin',compact('user','roles'));
-    // }// End Mehtod
+        $data['countries'] = Country::orderBy('country_name' , 'ASC')->get();
+        $data['user'] = User::findOrFail($id);
+        $data['roles'] = Role::all();
+        return view('admin.pages.admin.edit_admin',$data);
+    }// End Mehtod
 
 
     public function AdminUserUpdate(Request $request,$id){
 
 
+
         $user = User::findOrFail($id);
-        $user->username = $request->username;
-        $user->name = $request->name;
-        $user->email = $request->email;
-        $user->phone = $request->phone;
-        $user->address = $request->address;
-        $user->role = 'admin';
-        $user->status = 'active';
-        $user->save();
+        $data = $request->all();
+        //dd($data);
+        $status = $user->fill($data)->save();
 
         $user->roles()->detach();
         if ($request->roles) {
             $user->assignRole($request->roles);
         }
 
-         $notification = array(
-            'message' => 'New Admin User Updated Successfully',
-            'alert-type' => 'success'
-        );
+        Toastr::success('Admin User Updated Successfully');
 
-        return redirect()->route('all.admin')->with($notification);
+
+        return redirect()->route('all.admin');
 
     }// End Mehtod
 
@@ -238,6 +284,21 @@ class AdminController extends Controller
         return redirect()->back()->with($notification);
 
     }// End Mehtod
+
+
+    public function AdminStatus(Request $request)
+    {
+
+        //dd($request->id);
+        if ($request->mode == 'true') {
+            DB::table('users')->where('id', $request->id)->update(['status' => 'inactive']);
+        } else {
+
+
+            DB::table('users')->where('id', $request->id)->update(['status' => 'active']);
+        }
+        return response()->json(['msg' => 'Successfully Updated Status', 'status' => true]);
+    }
 
 
 

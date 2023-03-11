@@ -69,28 +69,28 @@
                                 <div class="col-sm-3">
                                     <h6 class="mb-0">Group Name</h6>
                                 </div>
-                                <div class="form-group col-sm-9 text-secondary">
-                                    <select name="group_name" class="form-select mb-3" aria-label="Default select example">
-                                        <option selected="">Open this select Group</option>
-                                        <option value="brand">Brand</option>
-                                        <option value="category">Category</option>
-                                        <option value="subcategory">Subcategory</option>
-                                        <option value="product">Product</option>
-                                        <option value="slider">Slider</option>
-                                        <option value="ads">Ads</option>
-                                        <option value="coupon">Coupon</option>
-                                        <option value="area">Area</option>
-                                        <option value="vendor">Vendor</option>
-                                        <option value="order">Order</option>
-                                        <option value="return">Return</option>
-                                        <option value="report">Report</option>
-                                        <option value="user">User Management</option>
-                                        <option value="review">Review</option>
-                                        <option value="setting">Setting</option>
-                                        <option value="blog">Blog</option>
-                                        <option value="role">Role</option>
-                                        <option value="admin">Admin</option>
-                                        <option value="stock">Stock</option>
+                                <div class="form-group col-sm-9 text-secondary basic-form">
+                                    <select name="group_name" class="form-control select mb-3" data-placeholder="Choose Group Name....">
+                                        <option></option>
+                                        <option value="product-management">Product Management</option>
+                                        <option value="sourcing-management">Sourcing Management</option>
+                                        <option value="rfq-management">RFQ Management</option>
+                                        <option value="sales-management">Sales Management</option>
+                                        <option value="accounts-management">Accounts Management</option>
+                                        <option value="marketing-management">Marketing Management</option>
+                                        <option value="industry-solutions">Industry Management</option>
+                                        <option value="feature-management">Feature Management</option>
+                                        <option value="blog-management">Blog Management</option>
+                                        <option value="sitesettings-management">Site settings Management</option>
+                                        <option value="support-management">Support Management</option>
+                                        <option value="account-approval-management">Account Management</option>
+                                        <option value="row-builder-management">Row Builder Management</option>
+                                        <option value="page-builder-management">Page Builder Management</option>
+                                        <option value="order-management">Order Management</option>
+                                        <option value="role-permission-management">Role Management</option>
+                                        <option value="job-management">Job Management</option>
+                                        <option value="terms-policy-management">Terms and Policy Management</option>
+                                        <option value="dashboard">Dashboard</option>
                                     </select>
                                 </div>
                             </div>
