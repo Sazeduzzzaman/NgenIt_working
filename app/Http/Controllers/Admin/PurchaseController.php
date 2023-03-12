@@ -2,15 +2,16 @@
 
 namespace App\Http\Controllers\Admin;
 
+use Carbon\Carbon;
 use App\Models\Admin\Rfq;
 use Illuminate\Http\Request;
 use App\Models\Admin\Purchase;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use Brian2694\Toastr\Facades\Toastr;
 use App\Models\Admin\AccountsPayable;
 use App\Models\Admin\PurchaseProduct;
-use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Support\Facades\DB;
 
 
 class PurchaseController extends Controller
@@ -95,6 +96,7 @@ class PurchaseController extends Controller
                 'others'                   => $request->others,
                 'total'                    => $request->total,
                 'client_details'           => $request->client_details,
+                'created_at'               => Carbon::now(),
             ]);
 
             //dd($request->qty);
@@ -115,7 +117,7 @@ class PurchaseController extends Controller
                     'product_name'     => $product_name[$i],
                     'qty'              => $qty[$i],
                     'unit_price'       => $unit_price[$i],
-                    'sub_total'        => $qty[$i] * $unit_price[$i],
+                    // 'sub_total'        => $qty[$i] * $unit_price[$i],
                     //'amount'           => $amount[$i],
 
                 ];
@@ -218,6 +220,7 @@ class PurchaseController extends Controller
                 'others'                   => $request->others,
                 'total'                    => $request->total,
                 'client_details'           => $request->client_details,
+                'updated_at'               => Carbon::now(),
             ]);
             Toastr::success('Data Updated Successfully');
         } else {

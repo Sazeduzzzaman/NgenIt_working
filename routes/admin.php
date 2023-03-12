@@ -1,5 +1,71 @@
 <?php
 
+
+
+
+// use App\Http\Controllers\Admin\{
+//     JobController,
+//     RFQController,
+//     RowController,
+//     BlogController,
+//     DealController,
+//     PageController,
+//     RoleController,
+//     AdminController,
+//     BrandController,
+//     ClientController,
+//     ClientPermission,
+//     IncomeController,
+//     PolicyController,
+//     RegionController,
+//     BulkSmsController,
+//     ContactController,
+//     CountryController,
+//     ExpenseController,
+//     FeatureController,
+//     PartnerController,
+//     PartnerPermission,
+//     ProductController,
+//     SettingController,
+//     SuccessController,
+//     CategoryController,
+//     FeedbackController,
+//     HomepageController,
+//     IndustryController,
+//     PurchaseController,
+//     SolutionController,
+//     SourcingController,
+//     BrandPageController,
+//     KnowledgeController,
+//     LearnMoreController,
+//     RFQManageController,
+//     SingleRfqController,
+//     NewsLetterController,
+//     RowWithColController,
+//     TechGlossyController,
+//     ClientStoryController,
+//     EffortRatingController,
+//     IndustryPageController,
+//     NotificationController,
+//     PresentationController,
+//     SalesForcastController,
+//     SolutionCardController,
+//     ShowCaseVideoController,
+//     OfficeLocationController,
+//     RfqOrderStatusController,
+//     TechnologyDataController,
+//     AccountsPayableController,
+//     DealTypeSettingController,
+//     SalesProfitLossController,
+//     SalesTeamTargetController,
+//     SalesYearTargetController,
+//     SolutionDetailsController,
+//     AccountProfitLossController,
+//     AccountsReceivableController,
+//     CommercialDocumentController,
+//     PaymentMethodDetailsController,
+// };
+
 use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Artisan;
@@ -77,6 +143,7 @@ use App\Http\Controllers\Admin\AccountsReceivableController;
 use App\Http\Controllers\Admin\CommercialDocumentController;
 use App\Http\Controllers\Admin\PaymentMethodDetailsController;
 use App\Http\Controllers\Marketing\MarketingTeamTargetController;
+use App\Http\Controllers\Marketing\MarketingManagerRoleController;
 
 Route::get('/admin/login', [AdminController::class, 'AdminLogin'])->name('admin.login')->middleware(RedirectIfAuthenticated::class);
 
@@ -360,6 +427,7 @@ Route::controller(RFQController::class)->group(function(){
     Route::get('/client/ajax/{client_id}' , 'GetClient');
     Route::put('/send/quotation/{id}',  'SendQuotation')->name('quotation.send');
     Route::put('/send/invoice/{id}',  'dealInvoiceSent')->name('invoice.send');
+    //Route::put('/upload/payment-proof/{id}',  'proofPaymentUpload')->name('payment-proof.upload');
     Route::put('/check/quotation/{id}' , 'CheckQuotation')->name('quotation.check');
 });
 

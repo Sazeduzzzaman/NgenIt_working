@@ -142,7 +142,7 @@
         </div>
 
 
-    
+
 
 
 
@@ -152,6 +152,16 @@
     <!-- /inner content -->
 
     </div>
+
+
+    
+
+
+
+
+
+
+
 @endsection
 
 @once

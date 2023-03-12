@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class NotificationController extends Controller
@@ -15,7 +16,7 @@ class NotificationController extends Controller
      */
     public function index()
     {
-        $data['notifications'] = DB::table('notifications')->get();
+        $data['notifications'] = DB::table('notifications')->where('notifiable_id', Auth::user()->id)->orderBy('created_at' , 'DESC')->get();
         return view('admin.pages.notification.all', $data);
     }
 

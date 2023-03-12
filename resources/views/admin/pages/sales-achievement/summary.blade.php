@@ -40,11 +40,26 @@
                   <tbody class="gridjs-tbody text-center">
                     <tr class="gridjs-tr ">
                       <td data-column-id="name" class="gridjs-td border ">Target</td>
-                      <td data-column-id="email" class="gridjs-td border">{{$sales_year_target->quarter_one_target}}</td>
-                      <td data-column-id="phoneNumber" class="gridjs-td border">{{$sales_year_target->quarter_two_target}}</td>
-                      <td data-column-id="country" class="gridjs-td border">{{$sales_year_target->quarter_three_target}}</td>
-                      <td data-column-id="name" class="gridjs-td border border-top border-bottom">{{$sales_year_target->quarter_four_target}}</td>
-                      <td data-column-id="phoneNumber" class="gridjs-td border border-top border-bottom">{{$sales_year_target->year_target}}</td>
+                      <td data-column-id="email" class="gridjs-td border">@if ($sales_year_target)
+                        {{$sales_year_target->quarter_one_target}}
+                        @else 0
+                      @endif</td>
+                      <td data-column-id="phoneNumber" class="gridjs-td border">@if ($sales_year_target)
+                        {{$sales_year_target->quarter_two_target}}
+                        @else 0
+                      @endif</td>
+                      <td data-column-id="country" class="gridjs-td border">@if ($sales_year_target)
+                        {{$sales_year_target->quarter_three_target}}
+                        @else 0
+                      @endif</td>
+                      <td data-column-id="name" class="gridjs-td border border-top border-bottom">@if ($sales_year_target)
+                        {{$sales_year_target->quarter_four_target}}
+                        @else 0
+                      @endif</td>
+                      <td data-column-id="phoneNumber" class="gridjs-td border border-top border-bottom">@if ($sales_year_target)
+                        {{$sales_year_target->year_target}}
+                        @else 0
+                      @endif</td>
                     </tr>
                     {{-- <tr class="gridjs-tr">
                       <td data-column-id="name" class="gridjs-td border">Quoted</td>
@@ -71,27 +86,47 @@
                       <th data-column-id="email" class="gridjs-th">
                         <div class="gridjs-th-content text-white text-center">
 
-                            {{( $q1_quoted_amount/($sales_year_target->quarter_one_target)) * 100}} %
+                            @if ($sales_year_target)
+                                {{( $q1_quoted_amount/($sales_year_target->quarter_one_target)) * 100}}
+                            @else
+                                0
+                            @endif %
                         </div>
                       </th>
                       <th data-column-id="phoneNumber" class="gridjs-th">
                         <div class="gridjs-th-content text-white text-center">
-                            {{($q2_quoted_amount/($sales_year_target->quarter_two_target)) * 100}} %
+                            @if ($sales_year_target)
+                                {{($q2_quoted_amount/($sales_year_target->quarter_two_target)) * 100}}
+                            @else
+                                0
+                            @endif %
                         </div>
                       </th>
                       <th data-column-id="country" class="gridjs-th">
                         <div class="gridjs-th-content text-white text-center">
-                            {{($q3_quoted_amount/($sales_year_target->quarter_three_target)) * 100}} %
+                            @if ($sales_year_target)
+                                {{($q3_quoted_amount/($sales_year_target->quarter_three_target)) * 100}}
+                            @else
+                                0
+                            @endif %
                         </div>
                       </th>
                       <th data-column-id="country" class="gridjs-th">
                         <div class="gridjs-th-content text-white text-center">
-                            {{($q4_quoted_amount/($sales_year_target->quarter_four_target)) * 100}} %
+                            @if ($sales_year_target)
+                                {{($q4_quoted_amount/($sales_year_target->quarter_four_target)) * 100}}
+                            @else
+                                0
+                            @endif %
                         </div>
                       </th>
                       <th data-column-id="country" class="gridjs-th">
                         <div class="gridjs-th-content text-white text-center">
-                            {{($total_quoted_amount/($sales_year_target->year_target)) * 100}} %
+                            @if ($sales_year_target)
+                                {{($total_quoted_amount/($sales_year_target->year_target)) * 100}}
+                            @else
+                                0
+                            @endif %
                         </div>
                       </th>
                     </tr>
@@ -122,41 +157,51 @@
                   <tbody class="gridjs-tbody text-center">
                     <tr class="gridjs-tr">
                       <td data-column-id="name" class="gridjs-td border">Status</td>
-                      <td data-column-id="name" class="gridjs-td border text-black fw-bolder">
-                        @if (($total_quoted_amount/($sales_year_target->year_target)) * 100 > 100)
-                        Outstanding
-                        @elseif (($total_quoted_amount/($sales_year_target->year_target)) * 100 > 90)
-                        Outstanding
-                        @elseif (($total_quoted_amount/($sales_year_target->year_target)) * 100 > 80)
-                        Performer
-                        @elseif (($total_quoted_amount/($sales_year_target->year_target)) * 100 > 70)
-                        Performer
-                        @elseif (($total_quoted_amount/($sales_year_target->year_target)) * 100 > 60)
-                        Good
-                        @elseif (($total_quoted_amount/($sales_year_target->year_target)) * 100 > 50)
-                        Fair
-                        @elseif (($total_quoted_amount/($sales_year_target->year_target)) * 100 > 40)
-                        Not Good
-                        @elseif (($total_quoted_amount/($sales_year_target->year_target)) * 100 > 30)
-                        Bad Performer
-                        @elseif (($total_quoted_amount/($sales_year_target->year_target)) * 100 > 20)
-                        Very Bad
-                        @elseif (($total_quoted_amount/($sales_year_target->year_target)) * 100 > 10)
-                        Worst
-                        @else
-                        Worst
-                        @endif
-                      </td>
+                      @if ($sales_year_target)
+                        <td data-column-id="name" class="gridjs-td border text-black fw-bolder">
+                          @if (($total_quoted_amount/($sales_year_target->year_target)) * 100 > 100)
+                          Outstanding
+                          @elseif (($total_quoted_amount/($sales_year_target->year_target)) * 100 > 90)
+                          Outstanding
+                          @elseif (($total_quoted_amount/($sales_year_target->year_target)) * 100 > 80)
+                          Performer
+                          @elseif (($total_quoted_amount/($sales_year_target->year_target)) * 100 > 70)
+                          Performer
+                          @elseif (($total_quoted_amount/($sales_year_target->year_target)) * 100 > 60)
+                          Good
+                          @elseif (($total_quoted_amount/($sales_year_target->year_target)) * 100 > 50)
+                          Fair
+                          @elseif (($total_quoted_amount/($sales_year_target->year_target)) * 100 > 40)
+                          Not Good
+                          @elseif (($total_quoted_amount/($sales_year_target->year_target)) * 100 > 30)
+                          Bad Performer
+                          @elseif (($total_quoted_amount/($sales_year_target->year_target)) * 100 > 20)
+                          Very Bad
+                          @elseif (($total_quoted_amount/($sales_year_target->year_target)) * 100 > 10)
+                          Worst
+                          @else
+                          Worst
+                          @endif
+                        </td>
+                      @else
+                            <td data-column-id="name" class="gridjs-td border text-black fw-bolder"></td>
+                      @endif
                     </tr>
                     <tr class="gridjs-tr">
                       <td data-column-id="name" class="gridjs-td border">Differences</td>
                       <td data-column-id="name" class="gridjs-td border text-black fw-bolder">
-                        {{($sales_year_target->year_target) - $total_quoted_amount}}
+                        @if ($sales_year_target)
+                            {{($sales_year_target->year_target) - $total_quoted_amount}}
+                        @endif
                       </td>
                     </tr>
                     <tr class="gridjs-tr">
                       <td data-column-id="name" class="gridjs-td border">Ratio</td>
-                      <td data-column-id="name" class="gridjs-td border text-black fw-bolder">{{($total_quoted_amount/($sales_year_target->year_target)) * 100}} %</td>
+                      <td data-column-id="name" class="gridjs-td border text-black fw-bolder">
+                        @if ($sales_year_target)
+                            {{($total_quoted_amount/($sales_year_target->year_target)) * 100}} %
+                        @endif
+                      </td>
                     </tr>
 
                   </tbody>
@@ -182,7 +227,9 @@
                         <div class="gridjs-th-content text-white">TARGET</div>
                       </th>
                       <th data-column-id="email" class="gridjs-th ">
-                        <div class="gridjs-th-content text-white">{{$sales_year_target->year_target}}</div>
+                        <div class="gridjs-th-content text-white">@if ($sales_year_target)
+                            {{$sales_year_target->year_target}}
+                        @endif</div>
                       </th>
                     </tr>
                   </thead>
@@ -202,7 +249,9 @@
                         <div class="gridjs-th-content text-white">Ratio</div>
                       </th>
                       <th data-column-id="email" class="gridjs-th">
-                        <div class="gridjs-th-content text-white">{{($total_quoted_amount/($sales_year_target->year_target)) * 100}} %</div>
+                        <div class="gridjs-th-content text-white">@if ($sales_year_target)
+                            {{($total_quoted_amount/($sales_year_target->year_target)) * 100}} %
+                        @endif</div>
                       </th>
                     </tr>
                   </thead>

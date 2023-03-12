@@ -56,7 +56,9 @@ class ClientRegister extends Notification
     {
         return [
             'name' => $this->data,
-            'message' => 'New Client is Registered In Ngen It. Need To Approve.'
+            'link' => route('clientPermission.index'),
+            'message1' => 'New Client is Registered In Ngen It.',
+            'message2' => ' Need To Approve.',
         ];
     }
 }

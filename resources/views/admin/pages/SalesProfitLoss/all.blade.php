@@ -74,10 +74,10 @@
                     <table class="table  table-bordered table-xs table-responsive">
                         <tr>
                             <th colspan="7">
-                                <h5 class="mb-0"> Sales Profit & Loss
-                                    <button type="button" class="bg-teal float-end text-white" data-bs-toggle="modal"
+                                <h5 class="mb-0 text-center"> Sales Profit & Loss
+                                    {{-- <button type="button" class="bg-teal float-end text-white" data-bs-toggle="modal"
                                         data-bs-target="#modal_sale_profit_loss"> <i
-                                            class="ph-plus-circle ph-1x"></i></button>
+                                            class="ph-plus-circle ph-1x"></i></button> --}}
                                 </h5>
                             </th>
                         </tr>
@@ -94,7 +94,7 @@
                     </table>
                 </div>
                 <!-- Basic modal for profit save -->
-                <form action="{{ route('sales-profit-loss.store') }}" class="form-validate-jquery-profit-loss"
+                {{-- <form action="{{ route('sales-profit-loss.store') }}" class="form-validate-jquery-profit-loss"
                     method="post">
                     @csrf
                     <div id="modal_sale_profit_loss" class="modal fade" tabindex="-1">
@@ -224,10 +224,10 @@
                             </div>
                         </div>
                     </div>
-                </form>
+                </form> --}}
                 <!-- model-end -->
                 <!-- Basic modal for profit Update -->
-                <form action="" class="form-validate-jquery-profit-loss" method="post"
+                {{-- <form action="" class="form-validate-jquery-profit-loss" method="post"
                     enctype="multipart/form-data">
                     <div id="modal_sale_profit_loss_update" class="modal fade" tabindex="-1">
                         <div class="modal-dialog modal-lg">
@@ -357,7 +357,7 @@
                             </div>
                         </div>
                     </div>
-                </form>
+                </form> --}}
                 <!-- model-Update end -->
                 <div class="card">
                     <!-- tab menu start-->

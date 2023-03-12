@@ -85,6 +85,8 @@ class AccountsManagerController extends Controller
                     $path = public_path('upload/Profile/Admin/'.$name_gen);
                     Image::make($image)->resize(176,176)->save($path);
                     $data['photo'] = $name_gen;
+
+                    
                 }
         else{
             $data['photo'] ="";

@@ -47,7 +47,7 @@ class Quotation extends Notification
                     ->action('Notification Action', url('/'))
                     ->line('Thank you for using our application!');
     }
-
+ 
     /**
      * Get the array representation of the notification.
      *

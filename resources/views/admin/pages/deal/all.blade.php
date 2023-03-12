@@ -102,10 +102,6 @@
                                                             class="text-primary">
                                                             <i class="icon-pencil"></i>
                                                         </a>
-                                                        <a href="{{ route('rfq.destroy', [$rfq->id]) }}"
-                                                            class="text-danger delete mx-2">
-                                                            <i class="delete icon-trash"></i>
-                                                        </a>
                                                         <a href="{{ route('deal-sas.show',$rfq->rfq_code) }}" class="text-success"
                                                             title="Create SAS">
                                                             <i class="ph-file-plus"></i>
@@ -114,6 +110,10 @@
                                                             data-bs-toggle="modal"
                                                             data-bs-target="#update_category_{{ $rfq->rfq_code }}">
                                                             <i class="icon-eye"></i>
+                                                        </a>
+                                                        <a href="{{ route('deal.destroy', [$rfq->id]) }}"
+                                                            class="text-danger delete mx-2">
+                                                            <i class="delete icon-trash"></i>
                                                         </a>
                                                         <!---Category Update modal--->
                                                         <div id="update_category_{{ $rfq->rfq_code }}" class="modal fade"
@@ -261,15 +261,15 @@
                                                             class="text-primary">
                                                             <i class="icon-pencil"></i>
                                                         </a>
-                                                        <a href="{{ route('rfq.destroy', [$deal->id]) }}"
-                                                            class="text-danger delete mx-2">
-                                                            <i class="delete icon-trash"></i>
-                                                        </a>
                                                         <a href="javascript:void(0);" class="text-info mx-2" title="Show Deal"
-                                                            data-bs-toggle="modal"
-                                                            data-bs-target="#update_category_{{ $deal->rfq_code }}">
-                                                            <i class="icon-eye"></i>
-                                                        </a>
+                                                        data-bs-toggle="modal"
+                                                        data-bs-target="#update_category_{{ $deal->rfq_code }}">
+                                                        <i class="icon-eye"></i>
+                                                    </a>
+                                                    <a href="{{ route('deal.destroy', [$deal->id]) }}"
+                                                        class="text-danger delete mx-2">
+                                                        <i class="delete icon-trash"></i>
+                                                    </a>
                                                         <!---Category Update modal--->
                                                         <div id="update_category_{{ $deal->rfq_code }}" class="modal fade"
                                                             tabindex="-1" style="display: none;" aria-hidden="true">

@@ -102,7 +102,7 @@
                 style="min-height: 40px; background: whitesmoke;">
 
                       <h4 style="text-align:center;font-size: 20px; margin:auto; padding: 7px;">
-                    INVOICE From </h4>
+                    INVOICE From NGENIT</h4>
 
                 </div>
             </div>
@@ -166,13 +166,13 @@
                         </td>
                         <td class="text-center" style="border:none;width:50%;">
                             <p style="font-weight: 600;font-size: 14px;">
-                                <label>Customer &nbsp;&nbsp;&nbsp;: {{ $billing_name }}</label> <br>
-                                    <label>Contact &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : 02-Feb-23</label> <br>
+                                <label>Customer &nbsp;&nbsp;&nbsp;: {{ $rfq->name }}</label> <br>
+                                    <label>Contact &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : {{ $rfq->phone }}</label> <br>
                                         <label>Email &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; :
-                                            {{ $billing_email }}</label>
+                                            {{ $rfq->email }}</label>
                                             <br>
                                             <label>Address &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; :
-                                                {{ $billing_address }}</label>
+                                                {{ $rfq->address }}</label>
                                                 <br>
                             </p>
 
@@ -185,46 +185,7 @@
 
 
 
-        {{-- <div class="card" style="display: -webkit-box;display: -ms-flexbox;display: flex;-webkit-box-orient: vertical;-webkit-box-direction: normal;-ms-flex-direction: column;flex-direction: column;min-width: 0;word-wrap: break-word;background-color: #fff;background-clip: border-box;border: 1px solid rgba(0,0,0,.125);border-radius: 0.25rem;">
-            <div class="card-body" style="width:90%; margin:auto;min-height:80px;">
 
-
-                <div class="col-lg-6 float-left headerto padding" style="float: left;">
-
-                    <div class="col-lg-12 padding">
-
-                        <p style="float: left;padding: 5px;font-size: 15px;font-weight: 600;">
-                            <label>Invoice No &nbsp;&nbsp;&nbsp;: {{ $invoice_no }}</label> <br>
-                                <label>Invoice Date : {{ \Carbon\Carbon::now()->format('d F Y') }}</label>
-                        </p>
-                    </div>
-
-
-
-
-                </div>
-
-                <div class="col-lg-2 float-left" style="float: left;"></div>
-
-                <div class="col-lg-4 float-left headertocontact padding" style="float: right;">
-
-                    <p style="font-weight: 600;font-size: 14px;float: left;padding: 5px;">
-                        <label>Customer &nbsp;&nbsp;&nbsp;: {{ $name }}</label> <br>
-                            <label>Contact &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : 02-Feb-23</label> <br>
-                                <label>Email &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; :
-                                    {{ $email }}</label>
-                                    <br>
-                                    <label>Address &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; :
-                                        {{ $address }}</label>
-                                        <br>
-                    </p>
-
-
-                </div>
-
-
-            </div>
-        </div> --}}
 
 
         <div class="col-lg-12 product-details-area float-left padding table-responsive"
@@ -245,21 +206,21 @@
 
 
 
-                    @foreach ($carts as $key => $item)
+                    @foreach ($products as $key => $item)
                         <tr>
                             <td style="padding: 5px;border: 1px solid #ddd;font-size: 12px;text-align: center;">
-                                {{$loop->iteration}}
+                                {{++$key}}
                             </td>
                             <td style="padding: 5px;border: 1px solid #ddd;font-size: 12px;text-align: left;">
-                                {{ $item->name }}
+                                {{ $item->item_name }}
                             </td>
                             <td style="padding: 5px;border: 1px solid #ddd;font-size: 12px;text-align: center;">
                                 {{ $item->qty }}
                             </td>
                             <td style="padding: 5px;border: 1px solid #ddd;font-size: 12px;text-align: center;"> $
-                                {{ $item->price }}</td>
+                                {{ number_format($item->sales_price / $item->qty, 2) }}</td>
                             <td style="padding: 5px;border: 1px solid #ddd;font-size: 12px;text-align: center;"> $
-                                {{ $item->subtotal}} </td>
+                                {{ $item->sales_price}} </td>
                         </tr>
                     @endforeach
 
@@ -271,16 +232,16 @@
                             <b>Total Amount : </b>
                         </td>
                         <td style="text-align:center;padding: 5px;border: 1px solid #ddd;font-size: 15px;text-transform:capitalize">
-                            <b> {{ $cartTotal }}</b>
+                            <b> {{ $deal_sas->grand_total }}</b>
                         </td>
 
                     </tr>
-                    <tr>
+                    {{-- <tr>
 
                         <td colspan="5" style="text-align:center;padding: 5px;border: 1px solid #ddd;font-size: 12px;text-transform:capitalize"><b>In Word : {{ $total_amount }}</b>
                         </td>
 
-                    </tr>
+                    </tr> --}}
                 </tbody>
             </table>
         </div>
@@ -291,7 +252,7 @@
                 <table style="width:100%;">
                     <tr style="width:100%;">
                         <td class="text-center" style="border:none;">
-                                <center> {{ $billing_name }}</center>
+                                <center> {{ $rfq->name }}</center>
                                 <b style="text-decoration: overline;">
                                     <center> Customer, Purchase </center>
                                 </b>

@@ -1,3 +1,6 @@
+
+
+
 <div class="tab-pane fade active show" id="js-closed-tab1" role="tabpanel">
 
 
@@ -10,6 +13,7 @@
 
 
     <!-- Basic modal for Closed -->
+
 
     <form action="" class="form-validate-jquery-Closed" method="post">
         <div id="modal_default_Closed" class="modal fade" tabindex="-1">
@@ -24,12 +28,15 @@
                             <tr>
 
                                 <td>
-                                    <div class="form-group">
+                                    <div class="form-group basic-form">
                                         <label for="Quarter"> RFQ CODE </label>
-                                        <select name="rfq_id" id="rfq_id" class="form-control form-control-sm" required>
-                                            <option value="0">--Select RFQ CODE--</option>
-                                            <option value="rfq->id"> RFQ Code</option>
-                                            <option value="rfq->id"> RFQ Code</option>
+                                        <select name="rfq_id" id="rfq_id" class="form-control select" data-placeholder="Select RFQ" required>
+                                            <option></option>
+                                            @foreach ($rfqs as $item)
+                                                <option value="{{$item['id']}}"> RFQ Code:{{$item['rfq_code']}} <br>
+                                                    Client Name:{{$item['name']}} <br>
+                                                </option>
+                                            @endforeach
                                         </select>
                                     </div>
                                 </td>
@@ -45,11 +52,11 @@
                                     <div class="form-group">
                                         <label for="Quarter"> Quarter </label>
                                         <select name="Quarter" id="Quarter" class="form-control form-control-sm" required>
-                                            <option value="0">--select--</option>
-                                            <option value="1"> Q1</option>
-                                            <option value="2"> Q2 </option>
-                                            <option value="3"> Q3</option>
-                                            <option value="4"> Q4 </option>
+                                            <option></option>
+                                            <option value="q1"> Q1</option>
+                                            <option value="q2"> Q2 </option>
+                                            <option value="q3"> Q3</option>
+                                            <option value="q4"> Q4 </option>
                                         </select>
                                     </div>
                                 </td>
@@ -58,7 +65,7 @@
                                     <div class="form-group">
                                         <label for="Quarter"> Month </label>
                                         <select name="Quarter" id="Quarter" class="form-control form-control-sm" required>
-                                            <option value="0">--select--</option>
+                                            <option></option>
                                             <option value="jan"> January</option>
                                             <option value="feb"> February</option>
                                             <option value="march"> March</option>

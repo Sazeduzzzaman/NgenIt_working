@@ -22,7 +22,7 @@ class SalesForcastController extends Controller
     public function index()
     {
         $data['salesforcasts'] = SalesForcast::get();
-        return view('admin.pages.salesforcast.all', $data);
+        return view('admin.pages.salesForcastUpdate.all', $data);
     }
 
     /**
@@ -32,9 +32,9 @@ class SalesForcastController extends Controller
      */
     public function create()
     {
-        $data['rfqs'] = Rfq::get();
+        $data['rfqs'] = Rfq::select('rfqs.rfq_code', 'rfqs.name')->get();
         $data['users'] = User::get();
-        return view('admin.pages.salesforcast.add', $data);
+        return view('admin.pages.salesForcastUpdate.add', $data);
     }
 
     /**
@@ -132,10 +132,10 @@ class SalesForcastController extends Controller
      */
     public function edit($id)
     {
-        $data['rfqs'] = Rfq::get();
+        $data['rfqs'] = Rfq::select('rfqs.rfq_code', 'rfqs.name')->get();
         $data['users'] = User::get();
         $data['salesforcast'] = SalesForcast::find($id);
-        return view('admin.pages.salesforcast.edit', $data);
+        return view('admin.pages.salesForcastUpdate.edit', $data);
     }
 
     /**
@@ -175,7 +175,7 @@ class SalesForcastController extends Controller
             }
             if ($globalFunClientPo['status'] == 1) {
                 File::delete(public_path('storage/files/') . $salesForcast->client_po_pdf);
-            } 
+            }
             $salesForcast->update([
                 'rfq_id'                    => $request->rfq_id,
                 'sales_man_id_l1'           => $request->sales_man_id_l1,
@@ -209,7 +209,7 @@ class SalesForcastController extends Controller
                 'client_po_pdf'          => $globalFunClientPo['status'] == 1 ? $globalFunClientPo['file_name'] : '',
             ]);
 
-            Toastr::success('Data Inserted Successfully');
+            Toastr::success('Data Updated Successfully');
         } else {
 
             $messages = $validator->messages();

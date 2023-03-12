@@ -1,14 +1,24 @@
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>NgenIt Corporate</title>
+<title>NgenIt Corporate</title>
 
-    <!--Fav-Icon-->
-    @php
+<!--Fav-Icon-->
+@php
         $setting=App\Models\Admin\Setting::first();
-    @endphp
+        @endphp
+
+
+        {{-- Custom Style 12-03-2023 Start--}}
+        <link rel="stylesheet" href="{{ asset('frontend/css/custom_main.css')}}">
+        <link rel="stylesheet" href="{{ asset('frontend/css/custom_style_main.css')}}">
+        <link rel="stylesheet" href="{{ asset('frontend/css/sidebar_tab.css')}}">
+        <link rel="stylesheet" href="{{ asset('frontend/css/sidebar_tab.css')}}">
+        {{-- Custom Style 12-03-2023 End--}}
+
+
     {{-- <script type="text/javascript" src="https://platform-api.sharethis.com/js/sharethis.js#property=63b14113592bb2001af01a1d&product=inline-share-buttons&source=platform" async="async"></script> --}}
     <link rel="icon" type="image/x-icon" href="{{ (!file_exists($setting->favicon)) ? url('upload/faviconimage/'.$setting->favicon):url('upload/no_image.jpg') }}">
 
@@ -25,13 +35,14 @@
     <link rel="stylesheet" href="{{ asset('frontend/lib/font-awesome/css/font-awesome.css')}}">
 
     <!-- Css link -->
-    <link rel="stylesheet" href="{{ asset('frontend/css/main.css')}}">
-    <link rel="stylesheet" href="{{ asset('frontend/css/style.css')}}">
+    {{-- <link rel="stylesheet" href="{{ asset('frontend/css/main.css')}}">
+    <link rel="stylesheet" href="{{ asset('frontend/css/style.css')}}"> --}}
     <link rel="stylesheet" href="{{ asset('frontend/css/sidebar_tab.css')}}">
     <link rel="stylesheet" href="http://cdn.bootcss.com/toastr.js/latest/css/toastr.min.css">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" />
+
 
 
     @yield('styles')

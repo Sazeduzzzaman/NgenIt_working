@@ -572,22 +572,24 @@ class RFQController extends Controller
 
             if (!empty($document_check)) {
                 CommercialDocument::find($document_check->id)->update([
-                    'client_po'          => $globalFunClientPo['status'] == 1 ? $globalFunClientPo['file_name'] : '',
+                    'client_payment'          => $globalFunClientPo['status'] == 1 ? $globalFunClientPo['file_name'] : '',
                     ]);
                     Toastr::success('PDF Uploaded Successfully');
             } else {
                 CommercialDocument::create([
                     'rfq_id' => $data['rfq']->id,
-                    'client_po'          => $globalFunClientPo['status'] == 1 ? $globalFunClientPo['file_name'] : '',
+                    'client_payment'          => $globalFunClientPo['status'] == 1 ? $globalFunClientPo['file_name'] : '',
                 ]);
                 Toastr::success('PDF Uploaded Successfully');
             }
-            $rfq = Rfq::find($id);
+            $rfq = Rfq::where('id' , $data['rfq']->id)->first();
+            //dd($rfq);
             $rfq->update([
                 'status'     =>'proof_of_payment_uploaded',
-                'sale_date'  => Carbon::now()->format('d/m/Y'),
-                'rfq_type'  => '',
+                'sale_date'  => Carbon::now()->format('dmy'),
+                'rfq_type'  => 'sales',
             ]);
+
             return redirect()->back();
     }
 

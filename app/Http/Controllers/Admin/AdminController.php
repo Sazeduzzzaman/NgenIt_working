@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\DB;
 use Spatie\Permission\Models\Role;
 use App\Http\Controllers\Controller;
 use Brian2694\Toastr\Facades\Toastr;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
@@ -28,8 +29,13 @@ class AdminController extends Controller
             ->unreadNotifications
             ->when($request->input('id'), function ($query) use ($request) {
                 return $query->where('id', $request->input('id'));
+
             })
             ->markAsRead();
+            // $notification->update([
+            //     'read_at' => Carbon::now(),
+
+            // ]);
         return response()->noContent();
     }
 
@@ -38,6 +44,10 @@ class AdminController extends Controller
         $notification = auth()->user()->unreadNotifications->find($id);
         if ($notification) {
             $notification->markAsRead();
+            $notification->update([
+                'read_at' => Carbon::now(),
+
+            ]);
         }
         return redirect()->back();
     }

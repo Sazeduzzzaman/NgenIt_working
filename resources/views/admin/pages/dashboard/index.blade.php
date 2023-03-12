@@ -80,12 +80,12 @@
                             <div class="card card-body">
                                 <div class="d-flex align-items-center mb-3">
                                     <div class="flex-fill">
-                                        <a href="../full/purchase_module.html">
+                                        <a href="{{route('notification.index')}}">
                                             <h6 class="mb-0 text-primary"><strong>Notifications</strong></h6>
                                         </a>
                                         <span class="text-muted">Until {{Carbon\Carbon::now()->format('d-m-Y')}}</span>
                                     </div>
-                                    <a href="../full/purchase_module.html">
+                                    <a href="{{route('notification.index')}}">
                                         <button type="button" class="btn btn-primary rounded-circle"
                                             style="width: 30px; height: 30px">
                                             <i class="ph-arrow-right"></i>

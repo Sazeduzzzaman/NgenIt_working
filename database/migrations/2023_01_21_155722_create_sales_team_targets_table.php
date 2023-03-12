@@ -26,7 +26,7 @@ return new class extends Migration
             $table->double('quarter_four_target')->nullable();
             $table->enum('year_started',['january','june'])->nullable();
             $table->foreign('sales_man_id')->references('id')->on('users')->onUpdate('cascade');
-            $table->foreign('country_id')->references('id')->on('countries')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('country_id')->references('id')->on('countries')->onUpdate('cascade');
             $table->timestamps();
         });
     }

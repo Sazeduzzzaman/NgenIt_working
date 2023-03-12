@@ -10,7 +10,7 @@
                     <div class="breadcrumb py-2">
                         <a href="index.html" class="breadcrumb-item"><i class="ph-house"></i></a>
                         <a href="{{ route('admin.dashboard') }}" class="breadcrumb-item">Home</a>
-                        <span class="breadcrumb-item active">Deal Type Setting Management</span>
+                        <span class="breadcrumb-item active">Marketing DMAR Management</span>
                     </div>
 
                     <a href="#breadcrumb_elements"
@@ -30,7 +30,7 @@
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-lg-9">
-                                    <h4 class="text-center">All Deal Type Setting</h4>
+                                    <h4 class="text-center">Marketing DMAR</h4>
                                 </div>
                                 <div class="col-lg-3">
                                     <a href="{{ route('marketing-dmar.create') }}" type="button"
@@ -56,8 +56,12 @@
                                             <thead>
                                                 <tr>
                                                     <th width="10%">Sl No:</th>
-                                                    <th width="50%">Deal Type</th>
-                                                    <th width="30%">Value</th>
+                                                    <th width="25%">Marketing Manager Name</th>
+                                                    <th width="10%">Month</th>
+                                                    <th width="10%">Area</th>
+                                                    <th width="10%">Sector</th>
+                                                    <th width="10%">Company Name</th>
+                                                    <th width="10%">Current Status</th>
                                                     <th width="10%" class="text-center">Actions</th>
                                                 </tr>
                                             </thead>
@@ -66,8 +70,10 @@
                                                     @foreach ($MarketingDmars as $key => $MarketingDmar)
                                                         <tr>
                                                             <td>{{ ++$key }}</td>
-                                                            <td>{{ $MarketingDmar->deal_type }}</td>
-                                                            <td>{{ $MarketingDmar->value }}</td>
+                                                            <td>{{ App\Models\user::('id',$MarketingDmar->marketing_manager_id)->value('name') }}</td>
+                                                            <td>{{ ucfirst($MarketingDmar->month) }}</td>
+                                                            <td>{{ ucfirst($MarketingDmar->area) }}</td>
+                                                            <td>{{ ucfirst($MarketingDmar->sector) }}</td>
                                                             <td class="text-center">
                                                                 <a href="{{ route('marketing-dmar.edit', [$MarketingDmar->id]) }}"
                                                                     class="text-primary">

@@ -28,10 +28,19 @@ class SalesAchievementController extends Controller
     {
         $data['sales_year_target']  = SalesYearTarget::where('fiscal_year' , date('Y'))->first();
         $data['sales_team_targets'] = SalesTeamTarget::where('fiscal_year' , date('Y'))->get();
-        $data['q1_quoted_amount'] = SalesAchievement::where('quarter', 'q1')->sum('total_quoted_amount');
-        $data['q2_quoted_amount'] = SalesAchievement::where('quarter', 'q2')->sum('total_quoted_amount');
-        $data['q3_quoted_amount'] = SalesAchievement::where('quarter', 'q3')->sum('total_quoted_amount');
-        $data['q4_quoted_amount'] = SalesAchievement::where('quarter', 'q4')->sum('total_quoted_amount');
+        $data['sales_achievement']  = SalesAchievement::where('fiscal_year' , date('Y'))->get();
+
+        if ($data['sales_achievement']){
+            $data['q1_quoted_amount'] = SalesAchievement::where('quarter', 'q1')->sum('total_quoted_amount');
+            $data['q2_quoted_amount'] = SalesAchievement::where('quarter', 'q2')->sum('total_quoted_amount');
+            $data['q3_quoted_amount'] = SalesAchievement::where('quarter', 'q3')->sum('total_quoted_amount');
+            $data['q4_quoted_amount'] = SalesAchievement::where('quarter', 'q4')->sum('total_quoted_amount');
+        }else{
+            $data['q1_quoted_amount'] = 0;
+            $data['q2_quoted_amount'] = 0;
+            $data['q3_quoted_amount'] = 0;
+            $data['q4_quoted_amount'] = 0;
+        }
         $data['total_quoted_amount'] = $data['q1_quoted_amount']+$data['q2_quoted_amount']+$data['q3_quoted_amount']+$data['q4_quoted_amount'];
         $data['sales_managers'] = User::where('role' , 'sales')->get();
         //dd($data['sales_team_targets']);

@@ -350,51 +350,20 @@
                             </td>
                             <td>
                                 <div class="form-group">
-                                    <label for="subtotal">Subtotal </label>
-                                    <input type="text" name="subtotal" id="subtotal"
-                                        placeholder="e.g: 00.00" class="form-control form-control-sm">
-                                </div>
-                            </td>
-                            <td>
-                                <div class="form-group">
-                                    <label for="shipping">Shipping<strong
-                                            class="text-danger">*</strong> </label>
-                                    <input type="text" name="shipping" id="shipping"
-                                        placeholder="e.g: 00"class="form-control form-control-sm">
-                                </div>
-                            </td>
-                            <td>
-                                <div class="form-group">
-                                    <label for="tax">Tax</label>
-                                    <input type="text" name="tax" id="tax"
-                                        placeholder="00" class="form-control form-control-sm">
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <div class="form-group">
-                                    <label for="others">Others</label>
-                                    <input type="text" name="others" id="others"
-                                        placeholder="Other's" class="form-control form-control-sm">
-                                </div>
-                            </td>
-                            <td>
-                                <div class="form-group">
-                                    <label for="total">Total </label>
-                                    <input type="text" name="total" id="total"
-                                        placeholder="00.00" class="form-control form-control-sm">
-                                </div>
-                            </td>
-                            <td colspan="2">
-                                <div class="form-group">
                                     <label for="client_details">Client details </label>
                                     <input type="text" name="client_details" id="client_details"
                                         placeholder="Client details"
                                         class="form-control form-control-sm">
                                 </div>
                             </td>
+                            <td>
+
+                            </td>
+                            <td>
+
+                            </td>
                         </tr>
+
                     </table>
                     <div class="accordion-item m-auto" style="width: 60%;">
                         <h2 class="accordion-header bg-black p-1 text-center">
@@ -423,12 +392,69 @@
                                                     <td> <input type="text" class="form-control" name="item_name[]" required></td>
                                                     <td> <input type="text" class="form-control" name="qty[]" ></td>
                                                     <td> <input type="text" class="form-control" name="unit_price[]" ></td>
-
-
                                                     <td class="text-center"> <a href="javascript:void(0)" class="btn btn-danger removeRow p-1"><i class="ph-minus"></i></a></td>
                                                 </tr>
 
+
                                             </tbody>
+                                    </table>
+
+                                    <table class="table table-bordered">
+                                        <tr>
+                                            <td width="62%" colspan="2" class="text-center"><strong>Subtotal <span class="text-danger"></span></strong>  </td>
+                                            <td width="30%">
+                                                    <div class="form-group">
+                                                        <input type="text" name="subtotal" id="subtotal"
+                                                            placeholder="e.g: 00.00" class="form-control form-control-sm">
+                                                    </div>
+                                            </td>
+                                            <td width="8%"></td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2" class="text-center"><strong>Shipping <span class="text-danger"></span></strong>  </td>
+                                            <td>
+                                                <div class="form-group">
+
+
+                                                        <input type="text" name="shipping" id="shipping"
+                                                            placeholder="e.g: 00"class="form-control form-control-sm">
+                                                    </div>
+                                            </td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2" class="text-center"><strong>Tax <span class="text-danger"></span></strong>  </td>
+                                            <td>
+                                                    <div class="form-group">
+
+                                                        <input type="text" name="tax" id="tax"
+                                                            placeholder="00" class="form-control form-control-sm">
+                                                    </div>
+                                            </td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2" class="text-center"><strong>Others <span class="text-danger"></span></strong>  </td>
+                                            <td>
+                                                    <div class="form-group">
+
+                                                        <input type="text" name="others" id="others"
+                                                            placeholder="Other's" class="form-control form-control-sm">
+                                                    </div>
+                                            </td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2" class="text-center"><strong>Total <span class="text-danger"></span></strong>  </td>
+                                            <td>
+                                                    <div class="form-group">
+
+                                                        <input type="text" name="total" id="total"
+                                                            placeholder="00.00" class="form-control form-control-sm">
+                                                    </div>
+                                            </td>
+                                            <td></td>
+                                        </tr>
                                     </table>
 
                                 </div>

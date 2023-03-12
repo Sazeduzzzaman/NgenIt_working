@@ -31,7 +31,7 @@ class SalesProfitLossController extends Controller
             'deal_sas.gross_profit_amount',
             'deal_sas.sub_total_cost',
             'deal_sas.grand_total',
-        )->get();
+        )->where('rfq_type' , 'sales')->get();
 
         $data['grandTotalSum'] = $data['dealSasWithRfqs']->pluck('grand_total')->sum();
         $data['netProfitSum'] = $data['dealSasWithRfqs']->pluck('net_profit_amount')->sum();

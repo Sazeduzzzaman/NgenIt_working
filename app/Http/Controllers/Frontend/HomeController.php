@@ -61,10 +61,12 @@ class HomeController extends Controller
                         ->where('brands.category', '=', 'Top')
                         ->where('product_status', '=', 'product')
                         ->distinct()
-                        ->select('products.id','products.rfq','products.slug','products.name','products.thumbnail','products.price','products.discount','products.stock','products.mf_code','products.sku_code','products.short_desc')
+                        ->select('products.id','products.rfq','products.slug','products.name','products.thumbnail','products.price','products.discount')
                         ->limit(12)->get();
         }else{
-            $data['products'] = Product::inRandomOrder()->where('product_status', 'product')->limit(12)->get()->unique('brand_id');
+            $data['products'] = DB::table('products')->inRandomOrder()->where('product_status', 'product')
+            ->select('products.id','products.rfq','products.slug','products.name','products.thumbnail','products.price','products.discount')
+            ->limit(12)->get()->unique('brand_id');
         }
 
         if ($data['home']) {

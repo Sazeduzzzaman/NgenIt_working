@@ -48,9 +48,11 @@
                                     <tr>
                                         <th width="5%"><input id="select-all-checkbox" type="checkbox"
                                                 class="form-check-input"></th>
-                                        <th>Sl No:</th>
-                                        <th>Notifiable Id</th>
-                                        <th>name</th>
+                                        {{-- <th>Sl No:</th>
+                                        <th>Notifiable Id</th> --}}
+                                        <th>Name</th>
+                                        <th>Message</th>
+                                        <th>Created Time</th>
                                         <th class="text-center">Actions</th>
                                     </tr>
                                 </thead>
@@ -62,15 +64,40 @@
                                                 // $notificationObject = cache()->remember("notification.{$notification->id}", now()->addHour(), function () use ($notification) {
                                                 //     return json_decode($notification->data, true);
                                                 // });
+                                                //dd($notificationObject['link']);
                                             @endphp
                                             <tr>
                                                 <td><input type="checkbox" name="id[]"
                                                         class="form-check-input"
                                                         value="{{ $notification->id }}" />
                                                 </td>
-                                                <td>{{ ++$key }}</td>
-                                                <td>{{ $notification->notifiable_id }}</td>
+                                                {{-- <td>{{ ++$key }}</td>
+                                                <td>{{ $notification->notifiable_id }}</td> --}}
                                                 <td>{{ $notificationObject['name'] }}</td>
+                                                <td>
+                                                    @if (isset($notificationObject['message1']))
+                                                        @if (!empty($notification->read_at))
+                                                            <span>
+                                                                {{ $notificationObject['name'] }} {{ $notificationObject['message1'] }}
+                                                                <a href="{{ $notificationObject['link'] }}" data-id="{{ $notification->id }}"
+                                                                    class="fw-semibold mark-as-read">
+                                                                    {{ $notificationObject['message2'] }}
+                                                            </span>
+                                                        @else
+
+                                                            <span class="text-danger">
+                                                                {{ $notificationObject['name'] }} {{ $notificationObject['message1'] }}
+                                                                <a href="{{ $notificationObject['link'] }}" data-id="{{ $notification->id }}"
+                                                                    class="fw-semibold mark-as-read">
+                                                                    {{ $notificationObject['message2'] }}
+                                                            </span>
+
+                                                        @endif
+                                                    @endif
+                                                </td>
+                                                <td>
+                                                    {{ Carbon\Carbon::parse($notification->created_at)->diffForHumans() }}
+                                                </td>
                                                 <td class="text-center">
                                                     <a href="{{ route('notification.edit', [$notification->id]) }}"
                                                         class="text-primary">

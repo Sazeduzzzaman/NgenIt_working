@@ -369,7 +369,8 @@ class DealController extends Controller
     public function destroy($id)
     {
 
-        $rfq = RFQ::find($id);
+        //dd($id);
+        $rfq = RFQ::findOrFail($id);
 
         if (File::exists(public_path('storage/') . $rfq->image)) {
             File::delete(public_path('storage/') . $rfq->image);
@@ -479,32 +480,21 @@ class DealController extends Controller
         $data['products'] = DealSas::where('rfq_id',  $data['rfq']->id)->get();
         $data['deal_sas'] = DealSas::where('rfq_id',  $data['rfq']->id)->first();
 
-        $mainFileWorkOrder = $request->file('work_order');
-            if (isset($mainFileWorkOrder)) {
-                $globalFunWorkOrder =  Helper::singleFileUpload($mainFileWorkOrder);
-            } else {
-                $globalFunWorkOrder = ['status' => 0];
-            }
+
 
     	$data['work_order_no'] = $request->work_order_no;
 
     	$data['notes'] = $request->notes;
-        $data['carts'] = Cart::content();
-        $data['client_type'] = $request->client_type;
-    	$data['cartTotal'] = Cart::total();
-        $formattedNumber = Cart::total();
-        $formatter = new NumberFormatter('en_US', NumberFormatter::SPELLOUT);
 
-        $data['total_amount'] = $formatter->format($formattedNumber);
-        $data['order_number'] = Helper::generateCode();
+
         $data['invoice_no'] = 'NI-'.date('dmY').Order::latest()->value('order_number');
 
 
 
 
-        return view('pdf.invoice', $data);
+        //return view('pdf.invoice', $data);
 
-        $fileName = 'Qutotation('.$data['rfq']->rfq_code.').pdf';
+        $fileName = 'Invoice('.$data['invoice_no'].').pdf';
         $filePath = 'public/files/' . $fileName;
         $pdf = PDF::loadView('pdf.quotation', $data);
         //$pdf_upload = $pdf->save($filePath);
@@ -512,8 +502,8 @@ class DealController extends Controller
         Storage::put($filePath, $pdf_output);
         //dd($pdf_upload);
         $email = $data['email'];
-        $subject = 'Quotation From Ngen It';
-        $message = 'Here is the Quotation From Ngen It which is generated against your RFQ.';
+        $subject = 'Invoice From Ngen It';
+        $message = 'Here is the Invoice From Ngen It which is generated against your RFQ.';
 
 
 
@@ -521,14 +511,14 @@ class DealController extends Controller
     $mail = Mail::raw($message, function ($message) use ($email, $subject, $pdf) {
         $message->to($email)
                 ->subject($subject)
-                ->attachData($pdf->output(), 'quotation-Ngenit.pdf');
+                ->attachData($pdf->output(), 'Invoice-Ngenit.pdf');
     });
 
     // send the email
     if ($mail) {
-        Toastr::success('Quotation Mail Sent Successfully');
+        Toastr::success('Invoice Mail Sent Successfully');
     } else {
-        Toastr::error($message, 'Quotation Mail Sent Failed', ['timeOut' => 30000]);
+        Toastr::error($message, 'Invoice Mail Sent Failed', ['timeOut' => 30000]);
     }
 
 
@@ -536,13 +526,13 @@ class DealController extends Controller
     $document_check = CommercialDocument::where('rfq_id', $data['rfq']->id)->first();
     if (!empty($document_check)) {
         CommercialDocument::find($document_check->id)->update([
-            'client_pq'=> $filePath,
+            'client_invoice'=> $filePath,
             ]);
             Toastr::success('PDF Uploaded Successfully');
     } else {
         CommercialDocument::create([
             'rfq_id' => $data['rfq']->id,
-            'client_pq'=> $filePath,
+            'client_invoice'=> $filePath,
         ]);
         Toastr::success('PDF Uploaded Successfully');
     }
@@ -556,7 +546,7 @@ class DealController extends Controller
 
     $rfq = Rfq::find($data['rfq']->id);
     $rfq->update([
-        'status'  => 'quoted',
+        'status'  => 'invoice_sent',
     ]);
         //return $pdf->download('Quotation-'.$id.'.pdf');
         return redirect()->back();

@@ -14,7 +14,7 @@
                     <div class="breadcrumb py-2">
                         <a href="index.html" class="breadcrumb-item"><i class="ph-house"></i></a>
                         <a href="{{ route('admin.dashboard') }}" class="breadcrumb-item">Home</a>
-                        <span class="breadcrumb-item active">Contact Management</span>
+                        <span class="breadcrumb-item active">Newsletter Management</span>
                     </div>
 
                     <a href="#breadcrumb_elements"
@@ -33,46 +33,8 @@
             <div class="card">
                 <div class="card-body">
                     <div class="row">
-                        <div class="col-lg-7">
-                            <ul class="nav nav-tabs">
-                                <li class="nav-item">
-                                    <a href="#js-tab1" class="nav-link active" data-bs-toggle="tab">
-                                        Category
-                                    </a>
-                                </li>
 
-                                <li class="nav-item">
-                                    <a href="#js-tab2" class="nav-link" data-bs-toggle="tab">
-                                        Sub Category
-                                    </a>
-                                </li>
-
-                                <li class="nav-item">
-                                    <a href="#js-tab3" class="nav-link" data-bs-toggle="tab">
-                                        Sub Sub Category
-                                    </a>
-                                </li>
-
-                                <li class="nav-item">
-                                    <a href="#js-tab4" class="nav-link" data-bs-toggle="tab">
-                                        Sub Sub Sub Category
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                        {{-- <div class="col-lg-3">
-                        <label class="text-center" for="category">Chose from the dropdown</label>
-                        <select onchange="dropdownCategory(value)" id="dropdownCategory" name="category"
-                            class="form-control select col-lg-2 category" data-width="250"
-                            data-minimum-results-for-search="Infinity">
-                            <option value="table1">Category</option>
-                            <option value="table2">Sub Category</option>
-                            <option value="table3">Sub Sub Category</option>
-                            <option value="table4">Sub Sub Sub Category</option>
-                        </select>
-                    </div> --}}
-                        <div class="col-lg-3"></div>
-                        <div class="col-lg-2">
+                        <div class="col-lg-10">
                             <a href="{{ route('newsLetter.index') }}" type="button"
                                 class="btn btn-sm btn-warning btn-labeled btn-labeled-start float-end">
                                 <span class="btn-labeled-icon bg-black bg-opacity-20">

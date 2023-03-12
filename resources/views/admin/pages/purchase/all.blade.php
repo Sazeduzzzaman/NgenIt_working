@@ -27,8 +27,8 @@
                             <th class="bg-black text-center text-white"> Total Number </th>
                         </tr>
                         <tr>
-                            <td class="text-center"> 00.00</td>
-                            <td class="text-center"> 00</td>
+                            <td class="text-center"> {{App\Models\Admin\Purchase::sum('total')}}</td>
+                            <td class="text-center"> {{App\Models\Admin\Purchase::count()}}</td>
                         </tr>
                     </table>
                         @include('admin.pages.purchase.add')
@@ -119,7 +119,7 @@
                                 <thead>
                                     <tr class="text-small">
                                         <th style="width:5%;">ID</th>
-                                        <th style="width:13%;">RFQ Name</th>
+                                        <th style="width:13%;">RFQ Code</th>
                                         <th style="width:10%;">PQ Reference</th>
                                         <th style="width:15%;">PO Reference</th>
                                         <th style="width:30%;">Principal Name</th>
@@ -132,12 +132,12 @@
                                         @if ($purchase->created_at->format('F') == 'January')
                                             <tr>
                                                 <td>{{ ++$key }}</td>
-                                                <td>{{ App\Models\Admin\Rfq::where('id', $purchase->rfq_id)->value('name') }}
+                                                <td>{{ App\Models\Admin\Rfq::where('id', $purchase->rfq_id)->value('rfq_code') }}
                                                 </td>
                                                 <td>{{ $purchase->pq_reference }}</td>
                                                 <td>{{ $purchase->po_reference }}</td>
                                                 <td>{{ $purchase->principal_name }}</td>
-                                                <td>{{ $purchase->payment_amount_reference }}</td>
+                                                <td>{{ $purchase->total }}</td>
                                                 <td class="text-center">
                                                     <a href="{{ route('purchase.show', [$purchase->id]) }}"
                                                         class="text-info">
@@ -165,7 +165,7 @@
                                 <thead>
                                     <tr class="text-small">
                                         <th style="width:5%;">ID</th>
-                                        <th style="width:13%;">RFQ Name</th>
+                                        <th style="width:13%;">RFQ Code</th>
                                         <th style="width:10%;">PQ Reference</th>
                                         <th style="width:15%;">PO Reference</th>
                                         <th style="width:30%;">Principal Name</th>
@@ -178,12 +178,12 @@
                                         @if ($purchase->created_at->format('F') == 'February')
                                             <tr>
                                                 <td>{{ ++$key }}</td>
-                                                <td>{{ App\Models\Admin\Rfq::where('id', $purchase->rfq_id)->value('name') }}
+                                                <td>{{ App\Models\Admin\Rfq::where('id', $purchase->rfq_id)->value('rfq_code') }}
                                                 </td>
                                                 <td>{{ $purchase->pq_reference }}</td>
                                                 <td>{{ $purchase->po_reference }}</td>
                                                 <td>{{ $purchase->principal_name }}</td>
-                                                <td>{{ $purchase->payment_amount_reference }}</td>
+                                                <td>{{ $purchase->total }}</td>
                                                 <td class="text-center">
                                                     <a href="{{ route('purchase.show', [$purchase->id]) }}"
                                                         class="text-info">
@@ -211,7 +211,7 @@
                                 <thead>
                                     <tr class="text-small">
                                         <th style="width:5%;">ID</th>
-                                        <th style="width:13%;">RFQ Name</th>
+                                        <th style="width:13%;">RFQ Code</th>
                                         <th style="width:10%;">PQ Reference</th>
                                         <th style="width:15%;">PO Reference</th>
                                         <th style="width:30%;">Principal Name</th>
@@ -224,12 +224,12 @@
                                         @if ($purchase->created_at->format('F') == 'March')
                                             <tr>
                                                 <td>{{ ++$key }}</td>
-                                                <td>{{ App\Models\Admin\Rfq::where('id', $purchase->rfq_id)->value('name') }}
+                                                <td>{{ App\Models\Admin\Rfq::where('id', $purchase->rfq_id)->value('rfq_code') }}
                                                 </td>
                                                 <td>{{ $purchase->pq_reference }}</td>
                                                 <td>{{ $purchase->po_reference }}</td>
                                                 <td>{{ $purchase->principal_name }}</td>
-                                                <td>{{ $purchase->payment_amount_reference }}</td>
+                                                <td>{{ $purchase->total }}</td>
                                                 <td class="text-center">
                                                     <a href="{{ route('purchase.show', [$purchase->id]) }}"
                                                         class="text-info">
@@ -257,7 +257,7 @@
                                 <thead>
                                     <tr class="text-small">
                                         <th style="width:5%;">ID</th>
-                                        <th style="width:13%;">RFQ Name</th>
+                                        <th style="width:13%;">RFQ Code</th>
                                         <th style="width:10%;">PQ Reference</th>
                                         <th style="width:15%;">PO Reference</th>
                                         <th style="width:30%;">Principal Name</th>
@@ -270,12 +270,12 @@
                                         @if ($purchase->created_at->format('F') == 'April')
                                             <tr>
                                                 <td>{{ ++$key }}</td>
-                                                <td>{{ App\Models\Admin\Rfq::where('id', $purchase->rfq_id)->value('name') }}
+                                                <td>{{ App\Models\Admin\Rfq::where('id', $purchase->rfq_id)->value('rfq_code') }}
                                                 </td>
                                                 <td>{{ $purchase->pq_reference }}</td>
                                                 <td>{{ $purchase->po_reference }}</td>
                                                 <td>{{ $purchase->principal_name }}</td>
-                                                <td>{{ $purchase->payment_amount_reference }}</td>
+                                                <td>{{ $purchase->total }}</td>
                                                 <td class="text-center">
                                                     <a href="{{ route('purchase.show', [$purchase->id]) }}"
                                                         class="text-info">
@@ -303,7 +303,7 @@
                                 <thead>
                                     <tr class="text-small">
                                         <th style="width:5%;">ID</th>
-                                        <th style="width:13%;">RFQ Name</th>
+                                        <th style="width:13%;">RFQ Code</th>
                                         <th style="width:10%;">PQ Reference</th>
                                         <th style="width:15%;">PO Reference</th>
                                         <th style="width:30%;">Principal Name</th>
@@ -316,12 +316,12 @@
                                         @if ($purchase->created_at->format('F') == 'May')
                                             <tr>
                                                 <td>{{ ++$key }}</td>
-                                                <td>{{ App\Models\Admin\Rfq::where('id', $purchase->rfq_id)->value('name') }}
+                                                <td>{{ App\Models\Admin\Rfq::where('id', $purchase->rfq_id)->value('rfq_code') }}
                                                 </td>
                                                 <td>{{ $purchase->pq_reference }}</td>
                                                 <td>{{ $purchase->po_reference }}</td>
                                                 <td>{{ $purchase->principal_name }}</td>
-                                                <td>{{ $purchase->payment_amount_reference }}</td>
+                                                <td>{{ $purchase->total }}</td>
                                                 <td class="text-center">
                                                     <a href="{{ route('purchase.show', [$purchase->id]) }}"
                                                         class="text-info">
@@ -349,7 +349,7 @@
                                 <thead>
                                     <tr class="text-small">
                                         <th style="width:5%;">ID</th>
-                                        <th style="width:13%;">RFQ Name</th>
+                                        <th style="width:13%;">RFQ Code</th>
                                         <th style="width:10%;">PQ Reference</th>
                                         <th style="width:15%;">PO Reference</th>
                                         <th style="width:30%;">Principal Name</th>
@@ -362,12 +362,12 @@
                                         @if ($purchase->created_at->format('F') == 'June')
                                             <tr>
                                                 <td>{{ ++$key }}</td>
-                                                <td>{{ App\Models\Admin\Rfq::where('id', $purchase->rfq_id)->value('name') }}
+                                                <td>{{ App\Models\Admin\Rfq::where('id', $purchase->rfq_id)->value('rfq_code') }}
                                                 </td>
                                                 <td>{{ $purchase->pq_reference }}</td>
                                                 <td>{{ $purchase->po_reference }}</td>
                                                 <td>{{ $purchase->principal_name }}</td>
-                                                <td>{{ $purchase->payment_amount_reference }}</td>
+                                                <td>{{ $purchase->total }}</td>
                                                 <td class="text-center">
                                                     <a href="{{ route('purchase.show', [$purchase->id]) }}"
                                                         class="text-info">
@@ -395,7 +395,7 @@
                                 <thead>
                                     <tr class="text-small">
                                         <th style="width:5%;">ID</th>
-                                        <th style="width:13%;">RFQ Name</th>
+                                        <th style="width:13%;">RFQ Code</th>
                                         <th style="width:10%;">PQ Reference</th>
                                         <th style="width:15%;">PO Reference</th>
                                         <th style="width:30%;">Principal Name</th>
@@ -408,12 +408,12 @@
                                         @if ($purchase->created_at->format('F') == 'July')
                                             <tr>
                                                 <td>{{ ++$key }}</td>
-                                                <td>{{ App\Models\Admin\Rfq::where('id', $purchase->rfq_id)->value('name') }}
+                                                <td>{{ App\Models\Admin\Rfq::where('id', $purchase->rfq_id)->value('rfq_code') }}
                                                 </td>
                                                 <td>{{ $purchase->pq_reference }}</td>
                                                 <td>{{ $purchase->po_reference }}</td>
                                                 <td>{{ $purchase->principal_name }}</td>
-                                                <td>{{ $purchase->payment_amount_reference }}</td>
+                                                <td>{{ $purchase->total }}</td>
                                                 <td class="text-center">
                                                     <a href="{{ route('purchase.show', [$purchase->id]) }}"
                                                         class="text-info">
@@ -441,7 +441,7 @@
                                 <thead>
                                     <tr class="text-small">
                                         <th style="width:5%;">ID</th>
-                                        <th style="width:13%;">RFQ Name</th>
+                                        <th style="width:13%;">RFQ Code</th>
                                         <th style="width:10%;">PQ Reference</th>
                                         <th style="width:15%;">PO Reference</th>
                                         <th style="width:30%;">Principal Name</th>
@@ -454,12 +454,12 @@
                                         @if ($purchase->created_at->format('F') == 'August')
                                             <tr>
                                                 <td>{{ ++$key }}</td>
-                                                <td>{{ App\Models\Admin\Rfq::where('id', $purchase->rfq_id)->value('name') }}
+                                                <td>{{ App\Models\Admin\Rfq::where('id', $purchase->rfq_id)->value('rfq_code') }}
                                                 </td>
                                                 <td>{{ $purchase->pq_reference }}</td>
                                                 <td>{{ $purchase->po_reference }}</td>
                                                 <td>{{ $purchase->principal_name }}</td>
-                                                <td>{{ $purchase->payment_amount_reference }}</td>
+                                                <td>{{ $purchase->total }}</td>
                                                 <td class="text-center">
                                                     <a href="{{ route('purchase.show', [$purchase->id]) }}"
                                                         class="text-info">
@@ -487,7 +487,7 @@
                                 <thead>
                                     <tr class="text-small">
                                         <th style="width:5%;">ID</th>
-                                        <th style="width:13%;">RFQ Name</th>
+                                        <th style="width:13%;">RFQ Code</th>
                                         <th style="width:10%;">PQ Reference</th>
                                         <th style="width:15%;">PO Reference</th>
                                         <th style="width:30%;">Principal Name</th>
@@ -500,12 +500,12 @@
                                         @if ($purchase->created_at->format('F') == 'September')
                                             <tr>
                                                 <td>{{ ++$key }}</td>
-                                                <td>{{ App\Models\Admin\Rfq::where('id', $purchase->rfq_id)->value('name') }}
+                                                <td>{{ App\Models\Admin\Rfq::where('id', $purchase->rfq_id)->value('rfq_code') }}
                                                 </td>
                                                 <td>{{ $purchase->pq_reference }}</td>
                                                 <td>{{ $purchase->po_reference }}</td>
                                                 <td>{{ $purchase->principal_name }}</td>
-                                                <td>{{ $purchase->payment_amount_reference }}</td>
+                                                <td>{{ $purchase->total }}</td>
                                                 <td class="text-center">
                                                     <a href="{{ route('purchase.show', [$purchase->id]) }}"
                                                         class="text-info">
@@ -533,7 +533,7 @@
                                 <thead>
                                     <tr class="text-small">
                                         <th style="width:5%;">ID</th>
-                                        <th style="width:13%;">RFQ Name</th>
+                                        <th style="width:13%;">RFQ Code</th>
                                         <th style="width:10%;">PQ Reference</th>
                                         <th style="width:15%;">PO Reference</th>
                                         <th style="width:30%;">Principal Name</th>
@@ -546,12 +546,12 @@
                                         @if ($purchase->created_at->format('F') == 'October')
                                             <tr>
                                                 <td>{{ ++$key }}</td>
-                                                <td>{{ App\Models\Admin\Rfq::where('id', $purchase->rfq_id)->value('name') }}
+                                                <td>{{ App\Models\Admin\Rfq::where('id', $purchase->rfq_id)->value('rfq_code') }}
                                                 </td>
                                                 <td>{{ $purchase->pq_reference }}</td>
                                                 <td>{{ $purchase->po_reference }}</td>
                                                 <td>{{ $purchase->principal_name }}</td>
-                                                <td>{{ $purchase->payment_amount_reference }}</td>
+                                                <td>{{ $purchase->total }}</td>
                                                 <td class="text-center">
                                                     <a href="{{ route('purchase.show', [$purchase->id]) }}"
                                                         class="text-info">
@@ -579,7 +579,7 @@
                                 <thead>
                                     <tr class="text-small">
                                         <th style="width:5%;">ID</th>
-                                        <th style="width:13%;">RFQ Name</th>
+                                        <th style="width:13%;">RFQ Code</th>
                                         <th style="width:10%;">PQ Reference</th>
                                         <th style="width:15%;">PO Reference</th>
                                         <th style="width:30%;">Principal Name</th>
@@ -592,12 +592,12 @@
                                         @if ($purchase->created_at->format('F') == 'November')
                                             <tr>
                                                 <td>{{ ++$key }}</td>
-                                                <td>{{ App\Models\Admin\Rfq::where('id', $purchase->rfq_id)->value('name') }}
+                                                <td>{{ App\Models\Admin\Rfq::where('id', $purchase->rfq_id)->value('rfq_code') }}
                                                 </td>
                                                 <td>{{ $purchase->pq_reference }}</td>
                                                 <td>{{ $purchase->po_reference }}</td>
                                                 <td>{{ $purchase->principal_name }}</td>
-                                                <td>{{ $purchase->payment_amount_reference }}</td>
+                                                <td>{{ $purchase->total }}</td>
                                                 <td class="text-center">
                                                     <a href="{{ route('purchase.show', [$purchase->id]) }}"
                                                         class="text-info">
@@ -625,7 +625,7 @@
                                 <thead>
                                     <tr class="text-small">
                                         <th style="width:5%;">ID</th>
-                                        <th style="width:13%;">RFQ Name</th>
+                                        <th style="width:13%;">RFQ Code</th>
                                         <th style="width:10%;">PQ Reference</th>
                                         <th style="width:15%;">PO Reference</th>
                                         <th style="width:30%;">Principal Name</th>
@@ -638,12 +638,12 @@
                                         @if ($purchase->created_at->format('F') == 'December')
                                             <tr>
                                                 <td>{{ ++$key }}</td>
-                                                <td>{{ App\Models\Admin\Rfq::where('id', $purchase->rfq_id)->value('name') }}
+                                                <td>{{ App\Models\Admin\Rfq::where('id', $purchase->rfq_id)->value('rfq_code') }}
                                                 </td>
                                                 <td>{{ $purchase->pq_reference }}</td>
                                                 <td>{{ $purchase->po_reference }}</td>
                                                 <td>{{ $purchase->principal_name }}</td>
-                                                <td>{{ $purchase->payment_amount_reference }}</td>
+                                                <td>{{ $purchase->total }}</td>
                                                 <td class="text-center">
                                                     <a href="{{ route('purchase.show', [$purchase->id]) }}"
                                                         class="text-info">

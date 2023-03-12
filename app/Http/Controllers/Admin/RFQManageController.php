@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Models\Admin\Rfq;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\File;
 
 class RFQManageController extends Controller
 {
@@ -18,7 +19,7 @@ class RFQManageController extends Controller
     {
         $data['users'] = User::where('role', 'sales')->select('users.id', 'users.name')->orderBy('id', 'DESC')->get();
         $data['rfqs'] = Rfq::where('rfq_type' , 'rfq')->orderBy('rfqs.updated_at', 'desc')->get();
-        $data['deals'] = Rfq::where('rfq_type' , 'deal')->orderBy('rfqs.updated_at', 'desc')->get();
+        $data['deals'] = Rfq::where('rfq_type', '!=', 'rfq')->orderBy('rfqs.updated_at', 'desc')->get();
         return view('admin.pages.rfq-manage.all',$data);
     }
 
@@ -85,6 +86,17 @@ class RFQManageController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $rfq = RFQ::findOrFail($id);
+
+        if (File::exists(public_path('storage/') . $rfq->image)) {
+            File::delete(public_path('storage/') . $rfq->image);
+        }
+        if (File::exists(public_path('storage/requestImg/') . $rfq->image)) {
+            File::delete(public_path('storage/requestImg/') . $rfq->image);
+        }
+        if (File::exists(public_path('storage/thumb/') . $rfq->image)) {
+            File::delete(public_path('storage/thumb/') . $rfq->image);
+        }
+        $rfq->delete();
     }
 }
