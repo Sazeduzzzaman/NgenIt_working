@@ -55,8 +55,8 @@
             <div class="tab-content">
                 <div class="tab-pane fade show active" id="js-tab1">
                     <div class="row">
-                        <div class="col-lg-3"></div>
-                        <div class="col-lg-6">
+                        <div class="col-lg-1"></div>
+                        <div class="col-lg-10">
                             <div id="table1" class="card cardTd">
 
                                 <div class="card-body">
@@ -186,7 +186,7 @@
                                                 <h6 class="mb-0">Email </h6>
                                             </div>
                                             <div class="form-group col-sm-8 text-secondary">
-                                                <input type="text" name="email" class="form-control maxlength"
+                                                <input type="text" name="email" class="form-control allow_decimal maxlength"
                                                     maxlength="100" />
                                             </div>
                                         </div>
@@ -195,7 +195,7 @@
                                                 <h6 class="mb-0">Social </h6>
                                             </div>
                                             <div class="form-group col-sm-8 text-secondary">
-                                                <input type="text" name="social" class="form-control maxlength"
+                                                <input type="text" name="social" class="form-control allow_decimal maxlength"
                                                     maxlength="100" />
                                             </div>
                                         </div>
@@ -204,7 +204,7 @@
                                                 <h6 class="mb-0">Call </h6>
                                             </div>
                                             <div class="form-group col-sm-8 text-secondary">
-                                                <input type="text" name="call" class="form-control maxlength"
+                                                <input type="text" name="call" class="form-control allow_decimal maxlength"
                                                     maxlength="100" />
                                             </div>
                                         </div>
@@ -213,7 +213,7 @@
                                                 <h6 class="mb-0">Press </h6>
                                             </div>
                                             <div class="form-group col-sm-8 text-secondary">
-                                                <input type="text" name="press" class="form-control maxlength"
+                                                <input type="text" name="press" class="form-control allow_decimal maxlength"
                                                     maxlength="100" />
                                             </div>
                                         </div>
@@ -222,7 +222,7 @@
                                                 <h6 class="mb-0">Presentaion </h6>
                                             </div>
                                             <div class="form-group col-sm-8 text-secondary">
-                                                <input type="text" name="presentaion" class="form-control maxlength"
+                                                <input type="text" name="presentaion" class="form-control allow_decimal maxlength"
                                                     maxlength="100" />
                                             </div>
                                         </div>
@@ -231,7 +231,7 @@
                                                 <h6 class="mb-0">Boost </h6>
                                             </div>
                                             <div class="form-group col-sm-8 text-secondary">
-                                                <input type="text" name="boost" class="form-control maxlength"
+                                                <input type="text" name="boost" class="form-control allow_decimal maxlength"
                                                     maxlength="100" />
                                             </div>
                                         </div>
@@ -240,7 +240,7 @@
                                                 <h6 class="mb-0">Meet </h6>
                                             </div>
                                             <div class="form-group col-sm-8 text-secondary">
-                                                <input type="text" name="meet" class="form-control maxlength"
+                                                <input type="text" name="meet" class="form-control allow_decimal maxlength"
                                                     maxlength="100" />
                                             </div>
                                         </div>
@@ -249,7 +249,7 @@
                                                 <h6 class="mb-0">Blog </h6>
                                             </div>
                                             <div class="form-group col-sm-8 text-secondary">
-                                                <input type="text" name="blog" class="form-control maxlength"
+                                                <input type="text" name="blog" class="form-control allow_decimal maxlength"
                                                     maxlength="100" />
                                             </div>
                                         </div>
@@ -259,7 +259,7 @@
                                             </div>
                                             <div class="form-group col-sm-8 text-secondary">
                                                 <input type="text" name="follow_up_meet"
-                                                    class="form-control maxlength" maxlength="100" />
+                                                    class="form-control allow_decimal maxlength" maxlength="100" />
                                             </div>
                                         </div>
                                         <div class="row mb-3">
@@ -267,7 +267,7 @@
                                                 <h6 class="mb-0">Negotiation </h6>
                                             </div>
                                             <div class="form-group col-sm-8 text-secondary">
-                                                <input type="text" name="negotiation" class="form-control maxlength"
+                                                <input type="text" name="negotiation" class="form-control allow_decimal maxlength"
                                                     maxlength="100" />
                                             </div>
                                         </div>
@@ -276,7 +276,7 @@
                                                 <h6 class="mb-0">Deal Closeing </h6>
                                             </div>
                                             <div class="form-group col-sm-8 text-secondary">
-                                                <input type="text" name="deal_closeing" class="form-control maxlength"
+                                                <input type="text" name="deal_closeing" class="form-control allow_decimal maxlength"
                                                     maxlength="100" />
                                             </div>
                                         </div>
@@ -285,7 +285,7 @@
                                                 <h6 class="mb-0">Work Order </h6>
                                             </div>
                                             <div class="form-group col-sm-8 text-secondary">
-                                                <input type="text" name="work_order" class="form-control maxlength"
+                                                <input type="text" name="work_order" class="form-control allow_decimal maxlength"
                                                     maxlength="100" />
                                             </div>
                                         </div>

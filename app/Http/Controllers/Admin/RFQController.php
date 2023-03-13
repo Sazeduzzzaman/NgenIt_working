@@ -587,7 +587,7 @@ class RFQController extends Controller
             $rfq->update([
                 'status'     =>'proof_of_payment_uploaded',
                 'sale_date'  => Carbon::now()->format('dmy'),
-                'rfq_type'  => 'sales',
+                'rfq_type'  => 'accounts',
             ]);
 
             return redirect()->back();

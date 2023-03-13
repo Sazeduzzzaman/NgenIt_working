@@ -287,12 +287,14 @@
 
   /*=======// Header logo //=======*/
   .header_logo img {
-    width: 90px;
+    width:60px;
+    height: 30px;
     vertical-align: middle;
     /* margin: 5px; */
     display: table-cell;
     position: relative;
   }
+
 
   /*======// Header Search //========*/
   .search_menu {
@@ -4183,7 +4185,9 @@
 
   .client_stories_item a {
     color: #222;
-  }
+    text-decoration: none !important;
+}
+
 
   .client_stories_item a:hover {
     color: #ae0a46;
@@ -6674,11 +6678,12 @@
     margin-top: 20px;
   }
   .shop_product_brand_list li {
-    margin-bottom: 20px;
+    margin-bottom: 0px;
     border-left: 2px solid #cbc4c3;
     padding-left: 20px;
     list-style-type: none;
-  }
+ }
+
   .shop_product_brand_list li a {
     font-family: "Klinic Slab";
     color: var(--mainColor);
@@ -6687,7 +6692,11 @@
     font-weight: 400;
   }
   .shop_product_brand_list li a:hover {
-    color: var(--topHover);
+    transition: 0.5s !important;
+    text-align: center !important;
+    transition: 0.5s ease-in-out;
+    color: #fff;
+    background: url(../images/glossary-hero.jpg) no-repeat !important;
   }
   /*------our success section------*/
   .our_success_wrapper {
@@ -6763,14 +6772,60 @@
     line-height: 0px !important;
 }
 
-  .footer_top p {
+  /* .footer_top p {
     font-family: "Klinic Slab";
     text-align: center;
     font-size: 32px;
     line-height: 20px;
     color: var(--text-white);
 
-  }
+  } */
+  .footer_top {
+    font-family: "Klinic Slab";
+    padding: 25px 0px 1px;
+    background: #ae0a46;
+    line-height: 0px !important;
+    height: 54px;
+}
+
+
+.footer_top p {
+    font-family: "Klinic Slab";
+    text-align: center;
+    font-size: 22px;
+    line-height: 0px;
+    color: var(--text-white);
+}
+
+
+  /*------------------------*/
+  .footer_text {
+    font-family: "Allumi Std Extended";
+    color: var(--text-white);
+    padding-right: 5%px;
+    text-align: justify;
+    font-size: 14px;
+}
+.footer_link_text {
+    font-family: "Allumi Std Extended";
+    color: var(--text-white);
+    padding-right: 5%;
+    text-align: justify;
+    font-size: 14px;
+    padding-top: 10px !important;
+}
+
+.footer_bottom_text {
+    font-family: "Allumi Std Extended";
+    color: var(--text-white);
+    padding-right: 5%;
+    text-align: justify;
+    font-size: 14px;
+}
+
+
+
+
 
   /*------------------------*/
   .footer_middle_wrapper {
@@ -6864,7 +6919,7 @@
   /*-------------------------*/
 
   .footer_bottom {
-    padding: 20px 20px;
+    padding: 10px 20px;
     background-color: #222222;
   }
 

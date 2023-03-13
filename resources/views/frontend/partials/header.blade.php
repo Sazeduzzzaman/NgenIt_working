@@ -66,14 +66,14 @@
         </div>
     </div>
 </section>
-<header class="sticky-top bg-white p-2">
+<header class="navbar_menus sticky-top">
     <section class="header_bottom_wrapper container">
         <div class="nav_menu_wrapper d-flex align-items-center">
             <div class="mobile_view_wrapper d-flex justify-content-between">
                 <!--Logo-->
                 <div class="header_logo">
                     <a href="{{ route('homepage') }}">
-                        <img src="{{ !file_exists($setting->logo) ? url('upload/logoimage/logo.png') : url('upload/no_image.jpg') }}"
+                        <img src="{{ !file_exists($setting->logo) ? url('upload/logoimage/'.$setting->logo) : url('upload/no_image.jpg') }}"
                             alt="Ngen It" height="47px">
                     </a>
                 </div>
@@ -584,3 +584,20 @@
         $("#searchProducts").slideDown();
     }
 </script>
+
+{{-- Sticky Menu Start --}}
+<script>
+    const navEl = document.querySelector('.navbar_menus')
+    const navLink = document.querySelector('.navLink')
+
+    window.addEventListener('scroll',()=>{
+        if(window.scrollY >= 56){
+            navEl.classList.add('navbar_scrolled');
+        }
+        else if(window.scrollY < 56){
+            navEl.classList.remove('navbar_scrolled')
+        }
+    })
+</script>
+{{-- Sticky Menu End --}}
+

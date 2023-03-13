@@ -44,22 +44,126 @@
                                 @csrf
                                 @method('PUT')
                                 <input type="hidden" name="id" value="{{$story->id}}"/>
-                                <div class="row mb-3">
-                                    <div class="col-sm-3">
-                                        <h6 class="mb-0">Author</h6>
+                                <div class="row mb-3 border p-3">
+                                    <div class="col-lg-4">
+                                        <div class="col-sm-12">
+                                            <h6 class="mb-0">Author <span class="text-danger"> * </span></h6>
+                                        </div>
+                                        <div class="form-group col-sm-10 text-secondary">
+                                            <input type="text" name="created_by" class="form-control maxlength"
+                                                maxlength="255" value="{{$story->created_by}}"/>
+                                        </div>
                                     </div>
-                                    <div class="form-group col-sm-9 text-secondary">
-                                        <input type="text" value="{{ $story->created_by }}" name="created_by"
-                                            class="form-control maxlength" maxlength="180" />
+                                    <div class="col-lg-4">
+                                        <div class="col-sm-12">
+                                            <h6 class="mb-0">Badge Name <span class="text-danger"> * </span></h6>
+                                        </div>
+                                        <div class="form-group col-sm-10 text-secondary">
+                                            <input type="text" name="badge" class="form-control maxlength"
+                                                maxlength="255" value="{{$story->badge}}"/>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 mt-4">
+                                        <div class="form-check">
+                                            <input type="checkbox" class="form-check-input" name="featured" value="1" {{ ($story->featured == 1) ? 'checked' : '' }}>
+                                            <label class="form-check-label" for="cc_ls_c" >Featured</label>
+                                        </div>
                                     </div>
                                 </div>
+
                                 <div class="row mb-3">
-                                    <div class="col-sm-3">
-                                        <h6 class="mb-0">Badge Name</h6>
+                                    <div class="col-lg-3 mb-3">
+                                        <div class="col-sm-12">
+                                            <h6 class="mb-0"> Brands</h6>
+                                        </div>
+                                        <div class="form-group text-secondary col-sm-12">
+                                            <select name="brand_id[]" class="form-control multiselect"
+                                                multiple="multiple" data-include-select-all-option="true"
+                                                data-enable-filtering="true"
+                                                data-enable-case-insensitive-filtering="true">
+                                                    @php
+                                                        $brandIds = isset($story->brand_id) ? json_decode($story->brand_id, true) : [];
+                                                        $brands = App\Models\Admin\Brand::pluck('title', 'id')->toArray();
+                                                    @endphp
+                                                    @foreach ($brands as $id => $title)
+                                                        <option value="{{ $id }}"
+                                                        {{ is_array($brandIds) && in_array($id, $brandIds) ? 'selected' : '' }}>
+                                                        {{ $title }}
+                                                        </option>
+                                                    @endforeach
+
+                                            </select>
+
+                                        </div>
                                     </div>
-                                    <div class="form-group col-sm-9 text-secondary">
-                                        <input type="text" name="badge" class="form-control maxlength"
-                                            maxlength="100" value="{{ $story->badge }}"/>
+                                    <div class="col-lg-3 mb-3">
+                                        <div class="col-sm-12">
+                                            <h6 class="mb-0"> Categories</h6>
+                                        </div>
+                                        <div class="form-group text-secondary col-sm-12">
+                                            <select name="category_id[]" class="form-control multiselect" multiple="multiple"
+                                                data-include-select-all-option="true" data-enable-filtering="true"
+                                                data-enable-case-insensitive-filtering="true">
+                                                @php
+                                                    $categoryIds = isset($story->category_id) ? json_decode($story->category_id, true) : [];
+                                                    $categories = App\Models\Admin\Category::pluck('title', 'id')->toArray();
+                                                @endphp
+
+                                                @foreach ($categories as $id => $title)
+                                                    <option value="{{ $id }}"
+                                                        {{ is_array($categoryIds) && in_array($id, $categoryIds) ? 'selected' : '' }}>
+                                                        {{ $title }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 mb-3">
+                                        <div class="col-sm-12">
+                                            <h6 class="mb-0">Industries</h6>
+                                        </div>
+                                        <div class="form-group text-secondary col-sm-12">
+                                            <select name="industry_id[]" class="form-control multiselect" multiple="multiple"
+                                                data-include-select-all-option="true" data-enable-filtering="true"
+                                                data-enable-case-insensitive-filtering="true">
+
+                                                @php
+                                                    $industryIds = isset($story->industry_id) ? json_decode($story->industry_id, true) : [];
+                                                    $industries = App\Models\Admin\Industry::pluck('title', 'id')->toArray();
+                                                @endphp
+
+                                                @foreach ($industries as $id => $title)
+                                                    <option value="{{ $id }}"
+                                                        {{ is_array($industryIds) && in_array($id, $industryIds) ? 'selected' : '' }}>
+                                                        {{ $title }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 mb-3">
+                                        <div class="col-sm-12">
+                                            <h6 class="mb-0">Solutions</h6>
+                                        </div>
+                                        <div class="form-group text-secondary col-sm-12">
+
+                                            <select name="solution_id[]" class="form-control multiselect" multiple="multiple"
+                                                data-include-select-all-option="true" data-enable-filtering="true"
+                                                data-enable-case-insensitive-filtering="true">
+
+                                                @php
+                                                    $solutionIds = isset($story->solution_id) ? json_decode($story->solution_id, true) : [];
+                                                    $solutions = App\Models\Admin\SolutionDetail::pluck('name', 'id')->toArray();
+                                                @endphp
+
+                                                @foreach ($solutions as $id => $title)
+                                                    <option value="{{ $id }}"
+                                                        {{ is_array($solutionIds) && in_array($id, $solutionIds) ? 'selected' : '' }}>
+                                                        {{ $title }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="row mb-3">
@@ -86,27 +190,7 @@
                                             Tags</h6>
                                     </div>
                                     <div class="form-group col-sm-9 text-secondary">
-                                        {{-- <select data-placeholder="Select Your tags" class="form-control select"
-                                            id="tags" name="tags[]" multiple="multiple" data-tags="true"
-                                            data-maximum-input-length="30">
-                                            @php
-                                                if (isset($story->tags)) {
-                                                    $tags = json_decode($story->tags);
-                                                } else {
-                                                    $tags = [];
-                                                }
-                                            @endphp
-                                            @if (isset($tags))
-                                                @foreach ($tags as $tag)
-                                                    <option value="{{ $tag }}"
-                                                        {{ in_array($tag, $tags) ? 'selected' : '' }}>
-                                                        {{ $tag }}
-                                                    </option>
-                                                @endforeach
-                                            @else
-                                                <option value=""></option>
-                                            @endif
-                                        </select> --}}
+
                                         <input type="text" name="tags" class="form-control visually-hidden" data-role="tagsinput" value="{{ $story->tags }}">
                                     </div>
                                 </div>

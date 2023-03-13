@@ -32,7 +32,7 @@ class SalesForcastController extends Controller
      */
     public function create()
     {
-        $data['rfqs'] = Rfq::select('rfqs.rfq_code', 'rfqs.name')->get();
+        $data['rfqs'] = Rfq::select('rfqs.id','rfqs.rfq_code', 'rfqs.name')->get();
         $data['users'] = User::get();
         return view('admin.pages.salesForcastUpdate.add', $data);
     }
@@ -132,7 +132,7 @@ class SalesForcastController extends Controller
      */
     public function edit($id)
     {
-        $data['rfqs'] = Rfq::select('rfqs.rfq_code', 'rfqs.name')->get();
+        $data['rfqs'] = Rfq::select('rfqs.id','rfqs.rfq_code', 'rfqs.name')->get();
         $data['users'] = User::get();
         $data['salesforcast'] = SalesForcast::find($id);
         return view('admin.pages.salesForcastUpdate.edit', $data);

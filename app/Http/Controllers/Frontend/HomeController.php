@@ -265,9 +265,14 @@ class HomeController extends Controller
 
     public function shop_html()
     {
-        $data['products'] = Product::latest()->where('product_status', 'product')->get();
-        $data['categories'] = Category::latest()->get();
-        $data['brands'] = BrandPage::orderBy('id', 'Desc')->get();
+        $data['products'] = Product::latest()->where('product_status', 'product')
+                            ->select('products.id','products.rfq','products.slug','products.name','products.thumbnail','products.price','products.discount')->get();
+        $data['categories'] = Category::latest()
+                            ->select('categories.id','categories.slug','categories.title','categories.image')
+                            ->get();
+        $data['brands'] = BrandPage::orderBy('id', 'Desc')
+                        ->select('brand_pages.id','brand_pages.brand_id')
+                          ->get();
         $data['techglossy'] = TechGlossy::inRandomOrder()->first();
         return view('frontend.pages.product.shop_html', $data);
     }

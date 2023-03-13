@@ -48,10 +48,60 @@
     transition: all 0.15s linear;
   }
 
+  .navbar{
+	transition: all 0.5s;
+    color: white !important;
+    }
+    .navbar_scrolled{
+        background-color: white;
+        box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+        color: white !important;
+
+    }
+
+
   #header.active {
      box-shadow: 0 0 10px rgba(0,0,0,0.4);
   }
   /* Header End */
+
+
+  #fed-bg{
+    width: 100% !important;
+}
+#fed-bg:hover {
+    background-color:#ae0a46;
+    background-image:url('../images/glossary-hero.jpg');
+     background-position:left center;
+    background-repeat:no-repeat;
+    background-size:cover;
+    transition: all 0.5s;
+}
+ #fed-bg{
+    background-color:#403b3d;
+}
+ #fed-bg:hover h3 {
+    font-weight:600;
+}
+
+.magazine_section{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.slick-dots{
+    display: none !important;
+}
+
+a {
+
+    text-decoration: none !important;
+
+}
+
+
+
 
   /* Default Css Start */
   .business_item_title{
@@ -605,13 +655,14 @@
     color: #fff;
 
   }
-  .list_order:hover{
+  .list_order:hover {
     transition: 0.5s !important;
     text-align: center !important;
     transition: 0.5s ease-in-out;
     color: #fff;
-    background: url("../images/glossary-hero.jpg") no-repeat !important;
-  }
+    background: url(../images/glossary-hero.jpg) no-repeat !important;
+ }
+
   .list_order::before,
   .list_order::after {
     content: '';
@@ -975,17 +1026,20 @@
       transition: all .4s ease;
   }
 
+  .social-overlap{
+    height: 54px !important;
+  }
   .social-icons a {
-      border-radius: 50px;
-      color: #3f345f;
-      display: inline-block;
-      line-height: 35px;
-      height: 35px;
-      width: 35px;
-      box-shadow: 0 5px 25px rgba(93, 70, 232, 0.15);
-      margin: 15px 15px;
-      font-size: 22px;
-      background-color: black;
+    border-radius: 50px;
+    color: #3f345f;
+    display: inline-block;
+    line-height: 33px;
+    height: 30px;
+    width: 30px;
+    box-shadow: 0 5px 25px rgba(93, 70, 232, 0.15);
+    margin: 12px 20px;
+    font-size: 18px;
+    background-color: black;
   }
 
   .slider-nav-item:before {

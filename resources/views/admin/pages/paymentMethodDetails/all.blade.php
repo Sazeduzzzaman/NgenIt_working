@@ -66,7 +66,7 @@
                                         @foreach ($paymentMethodDetails as $key => $paymentMethodDetail)
                                             <tr>
                                                 <td>{{ ++$key }}</td>
-                                                <td>{{ app\models\admin\Region::where('id',$paymentMethodDetail->region_id)->value('region_name') }}</td>
+                                                <td>{{ App\Models\Admin\Region::where('id',$paymentMethodDetail->region_id)->value('region_name') }}</td>
                                                 <td>{{ $paymentMethodDetail->type }}</td>
                                                 <td>
                                                     {{ $paymentMethodDetail->card_link }}

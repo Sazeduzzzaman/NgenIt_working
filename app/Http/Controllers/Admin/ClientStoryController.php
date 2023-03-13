@@ -2,12 +2,17 @@
 
 namespace App\Http\Controllers\Admin;
 
-use Illuminate\Http\Request;
 use Helper;
+use Carbon\Carbon;
+use App\Models\Admin\Brand;
+use Illuminate\Http\Request;
+use App\Models\Admin\Product;
+use App\Models\Admin\Category;
+use App\Models\Admin\Industry;
 use App\Models\Admin\ClientStory;
 use App\Http\Controllers\Controller;
+use App\Models\Admin\SolutionDetail;
 use Brian2694\Toastr\Facades\Toastr;
-use Carbon\Carbon;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Validator;
 
@@ -31,7 +36,12 @@ class ClientStoryController extends Controller
      */
     public function create()
     {
-        return view('admin.pages.story.add');
+        $data['products'] = Product::select('products.id', 'products.name')->get();
+        $data['categories'] = Category::select('categories.id', 'categories.title')->get();
+        $data['brands'] = Brand::select('brands.id', 'brands.title')->get();
+        $data['industries'] = Industry::select('industries.id', 'industries.title')->get();
+        $data['solutionDetails'] = SolutionDetail::select('solution_details.id','solution_details.name')->get();
+        return view('admin.pages.story.add',$data);
     }
 
     /**
@@ -69,7 +79,7 @@ class ClientStoryController extends Controller
                         'title'       => $request->title,
                         'header'      => $request->header,
                         'created_by'  => $request->created_by,
-                        'tags'        => json_encode($request->tags),,
+                        'tags'        => $request->tags,
                         'short_des'   => $request->short_des,
                         'long_des'    => $request->long_des,
                         'footer'      => $request->footer,
@@ -88,7 +98,7 @@ class ClientStoryController extends Controller
                         'title'       => $request->title,
                         'header'      => $request->header,
                         'created_by'  => $request->created_by,
-                        'tags'        => json_encode($request->tags),,
+                        'tags'        => $request->tags,
                         'short_des'   => $request->short_des,
                         'long_des'    => $request->long_des,
                         'footer'      => $request->footer,
@@ -188,7 +198,7 @@ class ClientStoryController extends Controller
                     'title'       => $request->title,
                     'header'      => $request->header,
                     'created_by'  => $request->created_by,
-                    'tags'        => json_encode($request->tags),,
+                    'tags'        => $request->tags,
                     'short_des'   => $request->short_des,
                     'long_des'    => $request->long_des,
                     'footer'      => $request->footer,

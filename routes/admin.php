@@ -129,6 +129,7 @@ use App\Http\Controllers\Admin\ShowCaseVideoController;
 use App\Http\Controllers\Marketing\BulkEmailController;
 use App\Http\Controllers\Admin\OfficeLocationController;
 use App\Http\Controllers\Admin\RfqOrderStatusController;
+use App\Http\Controllers\Admin\TechnologyDataController;
 use App\Http\Controllers\Admin\AccountsManagerController;
 use App\Http\Controllers\Admin\AccountsPayableController;
 use App\Http\Controllers\Admin\DealTypeSettingController;

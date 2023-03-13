@@ -73,7 +73,7 @@
                                                     data-placeholder="Chose Rfq name ">
                                                     <option></option>
                                                     @foreach ($rfqs as $rfq)
-                                                        <option value="{{ $rfq->rfq_code }}">{{ $rfq->name }} </option>
+                                                        <option value="{{ $rfq->id }}">RFQ Code: {{ $rfq->rfq_code }}; Client Name: {{ $rfq->name }} </option>
                                                     @endforeach
                                                 </select>
                                             </div>
@@ -377,8 +377,8 @@
                                                     data-minimum-results-for-search="Infinity"
                                                     data-placeholder="Chose sales man ">
                                                     <option></option>
-                                                    <option value="medium_controle">Medium Controle</option>
-                                                    <option value="no_controle">No Controle</option>
+                                                    <option value="medium_controle">Medium Control</option>
+                                                    <option value="no_controle">No Control</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -391,6 +391,14 @@
                                                     data-minimum-results-for-search="Infinity"
                                                     data-placeholder="Chose probability_reason ">
                                                     <option></option>
+                                                    <option value="tender_quote">By Teaner Quote</option>
+                                                    <option value="pending_mgt_approval"> Pending Mngt. Approval</option>
+                                                    <option value="backdoor_client">Difficult/Backdoor Client</option>
+                                                    <option value="client_complexity">Price/Client Complexity</option>
+                                                    <option value="no_control">No Control</option>
+                                                    <option value="medium_control">Medium Control</option>
+                                                    <option value="full_control">Full Control</option>
+                                                    <option value="high_competition">High Competition</option>
                                                 </select>
                                             </div>
                                         </div>

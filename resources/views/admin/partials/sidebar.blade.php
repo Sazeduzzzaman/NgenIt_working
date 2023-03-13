@@ -30,36 +30,36 @@
                         </span>
                     </a>
                 </li>
-                @if (Auth::user()->can('sourcing-management.menu'))
+                {{-- @if (Auth::user()->can('sourcing-management.menu')) --}}
                     <li class="nav-item nav-item-submenu">
                         <a href="#" class="nav-link">
                             <i class="fas fa-boxes"></i>
                             <span>Product Sourcing, SAS</span>
                         </a>
                         <ul class="nav-group-sub collapse">
-                            @if (Auth::user()->can('product-sourcing.menu'))
+                            {{-- @if (Auth::user()->can('product-sourcing.menu')) --}}
                                 <li class="nav-item"><a href="{{ route('product-sourcing.index') }}" class="nav-link"><i
                                             class="ph-layout"></i>
                                         <span>Product Sourcing</span>
                                     </a>
                                 </li>
-                            @endif
-                            @if (Auth::user()->can('product-approval.menu'))
+                            {{-- @endif --}}
+                            {{-- @if (Auth::user()->can('product-approval.menu')) --}}
                                 <li class="nav-item"><a href="{{ route('product.approve') }}" class="nav-link"><i class="ph-layout"></i>
                                         <span>Product Approval</span>
                                     </a>
                                 </li>
-                            @endif
-                            @if (Auth::user()->can('product-sas.menu'))
+                            {{-- @endif --}}
+                            {{-- @if (Auth::user()->can('product-sas.menu')) --}}
                                 <li class="nav-item"><a href="{{ route('sas.index') }}" class="nav-link"><i
                                             class="ph-layout"></i>
                                         <span>SAS List </span>
                                     </a>
                                 </li>
-                            @endif
+                            {{-- @endif --}}
                         </ul>
                     </li>
-                @endif
+                {{-- @endif --}}
                 <li class="nav-item nav-item-submenu">
                     <a href="#" class="nav-link">
                         <i class="fas fa-boxes"></i>

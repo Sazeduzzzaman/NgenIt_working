@@ -80,8 +80,8 @@
                                                     data-placeholder="Chose Rfq name ">
                                                     <option></option>
                                                     @foreach ($rfqs as $rfq)
-                                                        <option @selected($salesforcast->rfq_id == $rfq->rfq_code) value="{{ $rfq->rfq_code }}">
-                                                            {{ $rfq->name }} </option>
+                                                        <option @selected($salesforcast->rfq_id == $rfq->id) value="{{ $rfq->id }}">
+                                                            RFQ Code: {{ $rfq->rfq_code }}; Client Name: {{ $rfq->name }} </option>
                                                     @endforeach
                                                 </select>
                                             </div>

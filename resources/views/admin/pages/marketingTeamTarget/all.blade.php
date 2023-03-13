@@ -55,11 +55,19 @@
                                         <table class="datatable table table-bordered table-hover marketingTeamTargetDT">
                                             <thead>
                                                 <tr>
-                                                    <th width="10%">Sl No:</th>
-                                                    <th width="11%">Marketing Manager Id</th>
-                                                    <th width="23%">Dmar</th>
-                                                    <th width="23%">Cmar</th>
-                                                    <th width="23%">Emar</th>
+                                                    <th width="5%">Sl No:</th>
+                                                    <th width="5%">Country</th>
+                                                    <th width="10%">Marketing Manager Id</th>
+                                                    <th width="7%">Email</th>
+                                                    <th width="7%">Social</th>
+                                                    <th width="7%">Call</th>
+                                                    <th width="7%">Press</th>
+                                                    <th width="7%">Presentaion</th>
+                                                    <th width="7%">Boost</th>
+                                                    <th width="7%">Meet</th>
+                                                    <th width="7%">Blog</th>
+                                                    <th width="7%">Follow_Up_Meet</th>
+                                                    <th width="7%">Negotiation</th>
                                                     <th width="10%" class="text-center">Actions</th>
                                                 </tr>
                                             </thead>
@@ -68,10 +76,19 @@
                                                     @foreach ($marketingTeamTargets as $key => $marketingTeamTarget)
                                                         <tr>
                                                             <td>{{ ++$key }}</td>
-                                                            <td>{{ app\models\User::where('id',$marketingTeamTarget->marketing_manager_id)->value('name') }}</td>
-                                                            <td>{{ $marketingTeamTarget->dmar }}</td>
-                                                            <td>{{ $marketingTeamTarget->cmar }}</td>
-                                                            <td>{{ $marketingTeamTarget->emar }}</td>
+                                                            <td>{{ App\Models\Admin\Country::where('id',$marketingTeamTarget->country_id)->value('country_name') }}</td>
+                                                            <td>{{ App\Models\User::where('id',$marketingTeamTarget->marketing_manager_id)->value('name') }}</td>
+                                                            <td>{{ $marketingTeamTarget->email }}</td>
+                                                            <td>{{ $marketingTeamTarget->social }}</td>
+                                                            <td>{{ $marketingTeamTarget->call }}</td>
+                                                            <td>{{ $marketingTeamTarget->press }}</td>
+                                                            <td>{{ $marketingTeamTarget->presentaion }}</td>
+                                                            <td>{{ $marketingTeamTarget->boost }}</td>
+                                                            <td>{{ $marketingTeamTarget->meet }}</td>
+                                                            <td>{{ $marketingTeamTarget->blog }}</td>
+                                                            <td>{{ $marketingTeamTarget->follow_up_meet }}</td>
+                                                            <td>{{ $marketingTeamTarget->negotiation }}</td>
+
                                                             <td class="text-center">
                                                                 <a href="{{ route('marketing-team-target.edit', [$marketingTeamTarget->id]) }}"
                                                                     class="text-primary">

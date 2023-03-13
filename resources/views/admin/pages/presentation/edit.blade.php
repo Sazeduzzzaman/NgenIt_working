@@ -51,8 +51,8 @@
                                         <select name="type" class="form-control select"
                                             data-placeholder="Chose any type">
                                             <option></option>
-                                            <option @selected($knowledge->type == 'sales') value="sales">Sales</option>
-                                            <option @selected($knowledge->type == 'technical') value="technical">Technical</option>
+                                        <option @selected($presentation->type == 'sales') value="sales">Sales</option>
+                                        <option @selected($presentation->type == 'technical') value="technical">Technical</option>
                                         </select>
                                     </div>
                                 </div>

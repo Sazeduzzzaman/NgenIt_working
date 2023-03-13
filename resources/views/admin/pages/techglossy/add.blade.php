@@ -57,22 +57,94 @@
                                 enctype="multipart/form-data">
                                 @csrf
 
-                                <div class="row mb-3">
-                                    <div class="col-sm-3">
-                                        <h6 class="mb-0">Author</h6>
+                                <div class="row mb-3 border p-3">
+                                    <div class="col-lg-4">
+                                        <div class="col-sm-3">
+                                            <h6 class="mb-0">Author <span class="text-danger"> * </span></h6>
+                                        </div>
+                                        <div class="form-group col-sm-10 text-secondary">
+                                            <input type="text" name="created_by" class="form-control maxlength"
+                                                maxlength="255" />
+                                        </div>
                                     </div>
-                                    <div class="form-group col-sm-9 text-secondary">
-                                        <input type="text" name="created_by" class="form-control maxlength"
-                                            maxlength="255" />
+                                    <div class="col-lg-4">
+                                        <div class="col-sm-12">
+                                            <h6 class="mb-0">Badge Name <span class="text-danger"> * </span></h6>
+                                        </div>
+                                        <div class="form-group col-sm-10 text-secondary">
+                                            <input type="text" name="badge" class="form-control maxlength"
+                                                maxlength="255" />
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 mt-4">
+                                        <div class="form-check">
+                                            <input type="checkbox" class="form-check-input" name="featured" value="1">
+                                            <label class="form-check-label" for="cc_ls_c">Featured</label>
+                                        </div>
                                     </div>
                                 </div>
+
                                 <div class="row mb-3">
-                                    <div class="col-sm-3">
-                                        <h6 class="mb-0">Badge Name <span class="text-danger">*</span></h6>
+                                    <div class="col-lg-3 mb-3">
+                                        <div class="col-sm-12">
+                                            <h6 class="mb-0"> Brands</h6>
+                                        </div>
+                                        <div class="form-group text-secondary col-sm-12">
+                                            <select name="brand_id[]" class="form-control multiselect"
+                                                multiple="multiple" data-include-select-all-option="true"
+                                                data-enable-filtering="true"
+                                                data-enable-case-insensitive-filtering="true">
+                                                @foreach ($brands as $brand)
+                                                    <option value="{{ $brand->id }}">{{ $brand->title }} </option>
+                                                @endforeach
+                                            </select>
+                                        </div>
                                     </div>
-                                    <div class="form-group col-sm-9 text-secondary">
-                                        <input type="text" name="badge" class="form-control maxlength"
-                                            maxlength="255" />
+                                    <div class="col-lg-3 mb-3">
+                                        <div class="col-sm-12">
+                                            <h6 class="mb-0"> Categories</h6>
+                                        </div>
+                                        <div class="form-group text-secondary col-sm-12">
+                                            <select name="category_id[]" class="form-control multiselect"
+                                                multiple="multiple" data-include-select-all-option="true"
+                                                data-enable-filtering="true"
+                                                data-enable-case-insensitive-filtering="true">
+                                                @foreach ($categories as $category)
+                                                    <option value="{{ $category->id }}">{{ $category->title }} </option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 mb-3">
+                                        <div class="col-sm-12">
+                                            <h6 class="mb-0">Industries</h6>
+                                        </div>
+                                        <div class="form-group text-secondary col-sm-12">
+                                            <select name="industry_id[]" class="form-control multiselect"
+                                                multiple="multiple" data-include-select-all-option="true"
+                                                data-enable-filtering="true"
+                                                data-enable-case-insensitive-filtering="true">
+                                                @foreach ($industries as $industrie)
+                                                    <option value="{{ $industrie->id }}">{{ $industrie->title }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 mb-3">
+                                        <div class="col-sm-12">
+                                            <h6 class="mb-0">Solutions</h6>
+                                        </div>
+                                        <div class="form-group text-secondary col-sm-12">
+                                            <select name="solution_id[]" class="form-control multiselect"
+                                                multiple="multiple" data-include-select-all-option="true"
+                                                data-enable-filtering="true"
+                                                data-enable-case-insensitive-filtering="true">
+                                                @foreach ($solutionDetails as $solutionDetail)
+                                                    <option value="{{ $solutionDetail->id }}">{{ $solutionDetail->name }} </option>
+                                                @endforeach
+                                            </select>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="row mb-3">

@@ -55,14 +55,22 @@
                                         <table class="datatable table table-bordered table-hover MarketingDmarDT">
                                             <thead>
                                                 <tr>
-                                                    <th width="10%">Sl No:</th>
-                                                    <th width="25%">Marketing Manager Name</th>
-                                                    <th width="10%">Month</th>
-                                                    <th width="10%">Area</th>
-                                                    <th width="10%">Sector</th>
-                                                    <th width="10%">Company Name</th>
-                                                    <th width="10%">Current Status</th>
-                                                    <th width="10%" class="text-center">Actions</th>
+                                                    <th width="6%">Sl No:</th>
+                                                    <th width="6%">Marketing Manager Name</th>
+                                                    <th width="6%">Month</th>
+                                                    <th width="6%">Area</th>
+                                                    <th width="6%">Sector</th>
+                                                    <th width="6%">Company Name</th>
+                                                    <th width="6%">Activity</th>
+                                                    <th width="6%">Current_Status</th>
+                                                    <th width="6%">Solution</th>
+                                                    <th width="6%">Product</th>
+                                                    <th width="6%">Phone</th>
+                                                    <th width="6%">Contact</th>
+                                                    <th width="6%">Comments_By_Sales</th>
+                                                    <th width="6%">Comments_By_Ceo</th>
+                                                    <th width="6%">Action_On_Fail</th>
+                                                    <th width="6%" class="text-center">Actions</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -70,10 +78,20 @@
                                                     @foreach ($MarketingDmars as $key => $MarketingDmar)
                                                         <tr>
                                                             <td>{{ ++$key }}</td>
-                                                            <td>{{ App\Models\user::('id',$MarketingDmar->marketing_manager_id)->value('name') }}</td>
+                                                            <td>{{ App\Models\User::where('id',$MarketingDmar->marketing_manager_id)->value('name') }}</td>
                                                             <td>{{ ucfirst($MarketingDmar->month) }}</td>
                                                             <td>{{ ucfirst($MarketingDmar->area) }}</td>
                                                             <td>{{ ucfirst($MarketingDmar->sector) }}</td>
+                                                            <td>{{ ucfirst($MarketingDmar->company_name) }}</td>
+                                                            <td>{{ ucfirst($MarketingDmar->activity) }}</td>
+                                                            <td>{{ ucfirst($MarketingDmar->current_status) }}</td>
+                                                            <td>{{ ucfirst($MarketingDmar->solution) }}</td>
+                                                            <td>{{ ucfirst($MarketingDmar->product) }}</td>
+                                                            <td>{{ ucfirst($MarketingDmar->phone) }}</td>
+                                                            <td>{{ ucfirst($MarketingDmar->contact) }}</td>
+                                                            <td>{{ ucfirst($MarketingDmar->comments_by_sales) }}</td>
+                                                            <td>{{ ucfirst($MarketingDmar->comments_by_ceo) }}</td>
+                                                            <td>{{ ucfirst($MarketingDmar->action_on_fail) }}</td>
                                                             <td class="text-center">
                                                                 <a href="{{ route('marketing-dmar.edit', [$MarketingDmar->id]) }}"
                                                                     class="text-primary">
@@ -118,7 +136,7 @@
                 "lengthMenu": [10, 26, 30, 50],
                 columnDefs: [{
                     orderable: false,
-                    targets: [3],
+                    targets: [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15],
                 }, ],
             });
         </script>

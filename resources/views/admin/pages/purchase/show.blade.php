@@ -126,7 +126,7 @@
                                     <th width="18%">AMOUNT</th>
                                 </tr>
 
-                                @foreach ($collection as $item)
+                                {{-- @foreach ($collection as $item) --}}
                                     <tr class="text-center">
                                         <td>01</td>
                                         <td>65297929BA01A12 </td>
@@ -135,7 +135,7 @@
                                         <td>180.00</td>
                                         <td>$ 540.00</td>
                                     </tr>
-                                @endforeach
+                                {{-- @endforeach --}}
 
                                 <tr>
                                     <th colspan="3">

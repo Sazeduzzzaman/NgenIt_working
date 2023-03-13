@@ -190,7 +190,7 @@
                                         <h6 class="mb-0">Tags <span class="text-danger"> * </span></h6>
                                     </div>
                                     <div class="form-group col-sm-9 text-secondary">
-                                        <input type="text" class="form-control tokenfield-basic" placeholder="Related Tags" name="tags[]">
+                                        <input type="text" name="tags" class="form-control visually-hidden" data-role="tagsinput" placeholder="Related Tags">
                                     </div>
                                 </div>
 

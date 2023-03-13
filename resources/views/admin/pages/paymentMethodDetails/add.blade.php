@@ -301,13 +301,20 @@
                         showButtonAttribute();
                         break;
                     case 'online-paypal':
-                        showBankNameAttribute();
+                        showCardLinkAttribute();
+                        showCardNoteAttribute();
+                        showButtonAttribute();
                         break;
                     case 'online-payoneer':
-                        showBankAddressAttribute();
+                        showCardLinkAttribute();
+                        showCardNoteAttribute();
+                        showButtonAttribute();
                         break;
                     case 'stripe':
-                        showAccountNameAttribute();
+                        // showAccountNameAttribute();
+                        showCardLinkAttribute();
+                        showCardNoteAttribute();
+                        showButtonAttribute();
                         break;
                     default:
                 }

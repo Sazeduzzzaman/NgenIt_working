@@ -725,38 +725,105 @@
                     </div>
                     <hr>
                     <ul class="row">
-                        <li class="col-md-4 text-center">
-                            <div class="row text-center">
+                        <li class="col-md-4">
+                            <figure class="itemside mb-3">
                                 <figcaption class="info align-self-center">
-                                    <p class="title"><strong>Sales</strong></p>
-                                    @if ($rfq_details->status == 'sale_completed')
-                                        <span class="badge bg-success">Sale Completed</span>
-                                    @else
-                                        <span class="badge bg-warning">On Going</span>
-                                    @endif
+                                    <h5 class="title mb-2 text-center"><strong>Sales</strong> &nbsp;
+                                        @if ($rfq_details->rfq_type == 'accounts')
+                                            <span class="badge bg-success">Sale Completed</span>
+                                        @elseif ($rfq_details->rfq_type == 'purchase')
+                                            <span class="badge bg-success">Sale Completed</span>
+                                        @else
+                                            <span class="badge bg-warning">On Going</span>
+                                        @endif
+                                    </h5>
+
+
+                                    <table class="table">
+                                        <tr style="border: none;">
+                                            <th style="border: none;">Sales Profit Loss</th>
+                                            <th style="border: none;">
+                                                <button type="button" class="bg-success float-end text-white" data-bs-toggle="modal"
+                                                        data-bs-target="#modal_sale_profit_loss">
+                                                        <i class="ph-plus-circle ph-1x"></i>
+                                                </button>
+                                                @include('admin.pages.singleRfq.sales-modal')
+
+                                            </th>
+                                        </tr>
+                                        <tr style="border: none;">
+                                            <th style="border: none;">Sales Forecast</th>
+                                            <th style="border: none;">
+                                                <button type="button" class="bg-success float-end text-white" data-bs-toggle="modal"
+                                                        data-bs-target="#modal_sale_forecast">
+                                                        <i class="ph-plus-circle ph-1x"></i>
+                                                </button>
+
+
+                                            </th>
+                                        </tr>
+                                        <tr style="border: none;">
+                                            <th style="border: none;">Receivable</th>
+                                            <th style="border: none;">
+                                                <button type="button" class="bg-success float-end text-white" data-bs-toggle="modal"
+                                                        data-bs-target="#modal_account_receivable">
+                                                        <i class="ph-plus-circle ph-1x"></i>
+                                                </button>
+
+
+                                            </th>
+                                        </tr>
+                                    </table>
                                 </figcaption>
-
-                                <div class="table-respnsive">
-
-                                </div>
-                            </div>
+                            </figure>
 
                         </li>
                         <li class="col-md-4">
                             <figure class="itemside mb-3">
 
                                 <figcaption class="info align-self-center">
-                                    <p class="title"><strong>Accounts</strong></p>
+                                    <h5 class="title mb-2 text-center"><strong>Accounts</strong> &nbsp;
+                                        @if ($rfq_details->rfq_type == 'purchase')
+                                            <span class="badge bg-success">Accounts Completed</span>
+                                        @elseif ($rfq_details->rfq_type == 'accounts')
+                                            <span class="badge bg-warning">On Going</span>
+                                        @else
 
-                                    <table class="table table-bordered">
-                                        <tr>
-                                            <th>Accounts Profit Loss</th>
-                                            <th>
-                                                <button type="button" class="bg-warning float-end text-white" data-bs-toggle="modal"
+                                        @endif
+                                    </h5>
+
+
+                                    <table class="table">
+                                        <tr style="border: none;">
+                                            <th style="border: none;">Accounts Profit Loss</th>
+                                            <th style="border: none;">
+                                                <button type="button" class="bg-success float-end text-white" data-bs-toggle="modal"
                                                         data-bs-target="#modal_account_profitLoss">
                                                         <i class="ph-plus-circle ph-1x"></i>
                                                 </button>
                                                 @include('admin.pages.singleRfq.accounts-modal')
+
+                                            </th>
+                                        </tr>
+                                        <tr style="border: none;">
+                                            <th style="border: none;">Payable</th>
+                                            <th style="border: none;">
+                                                <button type="button" class="bg-success float-end text-white" data-bs-toggle="modal"
+                                                        data-bs-target="#modal_account_payable">
+                                                        <i class="ph-plus-circle ph-1x"></i>
+                                                </button>
+
+
+                                            </th>
+                                        </tr>
+                                        <tr style="border: none;">
+                                            <th style="border: none;">Receivable</th>
+                                            <th style="border: none;">
+                                                <button type="button" class="bg-success float-end text-white" data-bs-toggle="modal"
+                                                        data-bs-target="#modal_account_receivable">
+                                                        <i class="ph-plus-circle ph-1x"></i>
+                                                </button>
+
 
                                             </th>
                                         </tr>

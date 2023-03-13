@@ -55,8 +55,8 @@
             <div class="tab-content">
                 <div class="tab-pane fade show active" id="js-tab1">
                     <div class="row">
-                        <div class="col-lg-3"></div>
-                        <div class="col-lg-6">
+                        <div class="col-lg-1"></div>
+                        <div class="col-lg-10">
                             <div id="table1" class="card cardTd">
 
                                 <div class="card-body">

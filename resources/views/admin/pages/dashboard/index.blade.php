@@ -146,7 +146,7 @@
                                 <div class="d-flex align-items-center mb-3">
                                     <div class="flex-fill">
                                         <a href="../full/income.html">
-                                            <h6 class="mb-0 text-black">Total RFQ & Deal</h6>
+                                            <h6 class="mb-0 text-primary">Total RFQ & Deal</h6>
                                         </a>
                                         <span class="text-muted">Until  {{Carbon\Carbon::now()->format('d-m-Y')}}</span>
                                     </div>
@@ -183,6 +183,37 @@
 
                             </div>
                         </div>
+
+                        <div class="col-lg-3 col-sm-12">
+                            <div class="card card-body">
+                                <div class="d-flex align-items-center mb-3">
+                                    <div class="flex-fill">
+                                        <a href="javascript:void(0);">
+                                            <h6 class="mb-0 text-black">Total Industry & Solutions</h6>
+                                        </a>
+                                        <span class="text-muted">Until  {{Carbon\Carbon::now()->format('d-m-Y')}}</span>
+                                    </div>
+                                    <a href="javascript:void(0);">
+                                        <button type="button" class="btn btn-primary rounded-circle p-1 dashboard_btn">
+                                            <i class="icon-office icon-1x p-1"></i>
+                                        </button>
+                                    </a>
+                                </div>
+                                <div>
+                                    <a href="{{route('industry.index')}}">
+                                        <span class="float-end">{{App\Models\Admin\Industry::count()}}</span>
+                                        Total Industries
+                                    </a>
+                                </div>
+                                <div>
+                                    <a href="{{route('industry.index')}}">
+                                        <span class="float-end">{{App\Models\Admin\SolutionDetail::count()}}</span>
+                                        Total Solutions
+                                    </a>
+
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
 
@@ -191,14 +222,14 @@
 
                     <!-- /row - 2 -->
                     <div class="row">
-                        <div class="col-lg-4 col-sm-12">
+                        <div class="col-lg-3 col-sm-12">
                             <div class="card card-body">
                                 <div class="d-flex align-items-center mb-3">
                                     <div class="flex-fill">
                                         <a href="../full/payable.html">
-                                            <h6 class="mb-0 text-black">Total Balance</h6>
+                                            <h6 class="mb-0 text-primary">Total Balance</h6>
                                         </a>
-                                        <span class="text-muted">Until 13st of June</span>
+                                        <span class="text-muted">Until  {{Carbon\Carbon::now()->format('d-m-Y')}}</span>
                                     </div>
                                     <a href="../full/payable.html">
                                         <button type="button" class="btn btn-primary rounded-circle dashboard_btn"
@@ -218,14 +249,95 @@
                             </div>
                         </div>
 
-                        <div class="col-lg-4 col-sm-12">
+                        <div class="col-lg-3 col-sm-12">
+                            <div class="card card-body">
+                                <div class="d-flex align-items-center mb-3">
+                                    <div class="flex-fill">
+                                        <a href="{{route('income-expense.ledger')}}">
+                                            <h6 class="mb-0 text-primary">Total Expense</h6>
+                                        </a>
+                                        <span class="text-muted">Until  {{Carbon\Carbon::now()->format('d-m-Y')}}</span>
+                                    </div>
+                                    <a href="{{route('income-expense.ledger')}}">
+                                        <button type="button" class="btn btn-primary rounded-circle dashboard_btn"
+                                            style="width: 30px; height: 30px">
+                                            <i class="ph-arrow-right"></i>
+                                        </button>
+                                    </a>
+                                </div>
+                                <div>
+                                    <span class="float-end">0 <span>$</span></span>
+                                    Today
+                                </div>
+                                <div>
+                                    <span class="float-end">0 <span>$</span></span>
+                                    This Month
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-3 col-sm-12">
+                            <div class="card card-body">
+                                <div class="d-flex align-items-center mb-3">
+                                    <div class="flex-fill">
+                                        <a href="{{route('income-expense.overview')}}">
+                                            <h6 class="mb-0 text-primary">Total Income</h6>
+                                        </a>
+                                        <span class="text-muted">Until  {{Carbon\Carbon::now()->format('d-m-Y')}}</span>
+                                    </div>
+                                    <a href="{{route('income-expense.overview')}}">
+                                        <button type="button" class="btn btn-primary rounded-circle dashboard_btn"
+                                            style="width: 30px; height: 30px">
+                                            <i class="ph-arrow-right"></i>
+                                        </button>
+                                    </a>
+                                </div>
+                                <div>
+                                    <span class="float-end">0 <span>$</span></span>
+                                    Today
+                                </div>
+                                <div>
+                                    <span class="float-end">0 <span>$</span></span>
+                                    This Month
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-3 col-sm-12">
+                            <div class="card card-body">
+                                <div class="d-flex align-items-center mb-3">
+                                    <div class="flex-fill">
+                                        <a href="{{route('pending.order')}}">
+                                            <h6 class="mb-0 text-primary">Total Order</h6>
+                                        </a>
+                                        <span class="text-muted">Until  {{Carbon\Carbon::now()->format('d-m-Y')}}</span>
+                                    </div>
+                                    <a href="{{route('pending.order')}}">
+                                        <button type="button" class="btn btn-primary rounded-circle dashboard_btn"
+                                            style="width: 30px; height: 30px">
+                                            <i class="ph-arrow-right"></i>
+                                        </button>
+                                    </a>
+                                </div>
+                                <div>
+                                    <span class="float-end">0 <span>$</span></span>
+                                    Today
+                                </div>
+                                <div>
+                                    <span class="float-end">0 <span>$</span></span>
+                                    This Month
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-3 col-sm-12">
                             <div class="card card-body">
                                 <div class="d-flex align-items-center mb-3">
                                     <div class="flex-fill">
                                         <a href="../full/stock_module.html">
-                                            <h6 class="mb-0 text-black">Stock Report</h6>
+                                            <h6 class="mb-0 text-primary">Stock Report</h6>
                                         </a>
-                                        <span class="text-muted">April, 19th</span>
+                                        <span class="text-muted">Until  {{Carbon\Carbon::now()->format('d-m-Y')}}</span>
                                     </div>
                                     <a href="../full/stock_module.html">
                                         <button type="button" class="btn btn-primary rounded-circle dashboard_btn"
@@ -244,660 +356,15 @@
                                 </div>
                             </div>
                         </div>
-
-                        <div class="col-lg-4 col-sm-12">
-                            <div class="card card-body">
-                                <div class="d-flex align-items-center mb-3">
-                                    <div class="flex-fill">
-                                        <a href="../full/expense.html">
-                                            <h6 class="mb-0 text-black">Total Expence</h6>
-                                        </a>
-                                        <span class="text-muted">April, 19th</span>
-                                    </div>
-                                    <a href="../full/expense.html">
-                                        <button type="button" class="btn btn-primary rounded-circle dashboard_btn"
-                                            style="width: 30px; height: 30px">
-                                            <i class="ph-arrow-right"></i>
-                                        </button>
-                                    </a>
-                                </div>
-                                <div>
-                                    <span class="float-end">0 <span>$</span></span>
-                                    Today
-                                </div>
-                                <div>
-                                    <span class="float-end">0 <span>$</span></span>
-                                    This Month
-                                </div>
-                            </div>
-                        </div>
                     </div>
                     <!-- /row - 2 -->
 
-
-
-
-
-
-                    <!-- /row - 1 -->
-                    <div class="row">
-                        <div class="col-lg-3">
-
-                            <!-- Members online -->
-                            <div class="card bg-warning">
-                                <div class="card-body">
-                                    <div class="row mb-1 border border-3 br-7">
-                                        <a href="" class="text-black">
-                                            <h4 class="text-center mb-0 text-black">Total Order : 80 </h4>
-                                        </a>
-                                    </div>
-
-                                    <div class="row mb-0">
-                                        <div class="col-lg-5 border br-7">
-                                            <h6 class="p-1 pt-3">Current Order</h6>
-                                        </div>
-                                        <div class="col-lg-7">
-                                            <div class="mb-1 border col-12 br-7">
-                                                <a href="" class="text-white">
-                                                    <p class="text-center mb-0 text-black">Pending : 80000 </p>
-                                                </a>
-                                            </div>
-                                            <div class="mb-1 border col-12 br-7">
-                                                <a href="" class="text-white">
-                                                    <p class="text-center mb-0 text-black">On Process : 80 </p>
-                                                </a>
-                                            </div>
-                                            <div class="mb-0 border col-12 br-7">
-                                                <a href="" class="text-white">
-                                                    <p class="text-center mb-0 text-black">On Delivery : 80 </p>
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-
-                            </div>
-                            <!-- /members online -->
-
-                        </div>
-
-                        <div class="col-lg-3">
-
-                            <!-- Current server load -->
-                            {{-- <div class="card text-white">
-
-                                    <div class="card-body">
-
-
-                                    </div>
-
-
-                                </div> --}}
-                            <div class="row mb-0 border border-3 bg-dark">
-                                <a href="" class="text-white">
-                                    <h5 class="text-center mb-0 text-white">Total Payemnt <span
-                                            class="small">({{ date('Y') }})</span> : 80 </h5>
-                                </a>
-                            </div>
-
-                            <div class="row mb-0">
-                                <div class="col-lg-12 p-1 border border-3">
-                                    <a href="" class="text-white">
-                                        <p class="text-center mb-0 text-black">Payment Done (Verified) : 80 </p>
-                                    </a>
-                                </div>
-                                <div class="col-lg-12 p-1 border border-3 p-0">
-                                    <a href="" class="text-white">
-                                        <p class="text-center mb-0 text-black">Payment Dues (Verified) : 80</p>
-                                    </a>
-                                </div>
-
-                            </div>
-                            <!-- /current server load -->
-
-                        </div>
-
-                        <div class="col-lg-3">
-
-                            <!-- Today's revenue -->
-                            <div class="card bg-info text-white">
-                                <div class="card-body">
-                                    <div class="row mb-0">
-                                        <div class="col-lg-12 mb-1 p-1 border border-3 br-7">
-                                            <a href="" class="text-black">
-                                                <h5 class="text-center mb-0 text-black">Purchase <span
-                                                        class="small">({{ date('M') }})</span> : 80 </h5>
-                                            </a>
-                                        </div>
-                                        <div class="col-lg-12 mb-1 p-1 border border-3 br-7">
-                                            <a href="" class="text-white text-center">
-                                                <p class="text-center mb-0 text-black">Purchase Needed : 80 </p>
-                                                <span class="small text-white text-center">(Needed to be checked)</span>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- /today's revenue -->
-
-                        </div>
-
-                        <div class="col-lg-3">
-
-                            <!-- Today's revenue -->
-                            <div class="card bg-primary text-white">
-                                <div class="card-body">
-                                    <div class="row mb-0">
-                                        <div class="col-lg-5 border br-7">
-                                            <h5 class="p-1 pt-3 text-black">Delivery</h5>
-                                        </div>
-                                        <div class="col-lg-7">
-                                            <div class="mb-1 border col-12 br-7">
-                                                <a href="" class="text-white">
-                                                    <p class="text-center mb-0 text-black">Pending : 80000 </p>
-                                                </a>
-                                            </div>
-                                            <div class="mb-1 border col-12 br-7">
-                                                <a href="" class="text-white">
-                                                    <p class="text-center mb-0 text-black">On Process : 80 </p>
-                                                </a>
-                                            </div>
-                                            <div class="mb-0 border col-12 br-7">
-                                                <a href="" class="text-white">
-                                                    <p class="text-center mb-0 text-black">Done : 80 </p>
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- /today's revenue -->
-
-                        </div>
-                    </div>
-                    <!-- /row - 1 -->
-                    <!-- /row - 2 -->
-                    <div class="row">
-                        <div class="col-lg-4">
-
-                            <!-- Members online -->
-                            <div class="card bg-warning">
-                                <div class="card-body">
-                                    <div class="row mb-0 border border-3 br-7">
-                                        <a href="" class="text-black">
-                                            <h4 class="text-center mb-0 text-black">Sales <span
-                                                    class="small">({{ date('M') }} )</span> : 80 </h4>
-                                        </a>
-                                    </div>
-
-                                    <div class="row mb-0 mt-1">
-                                        <div class="col-lg-5 mr-2 p-1 border border-3 br-7">
-                                            <a href="" class="text-white">
-                                                <p class="text-center mb-0 text-black">Today's Sale : 80 </p>
-                                            </a>
-                                        </div>
-                                        <div class="col-lg-5 p-1 border border-3 p-0 br-7">
-                                            <a href="" class="text-white">
-                                                <p class="text-center mb-0 text-black">Weekly Sale : 80 </p>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- /members online -->
-
-                        </div>
-
-                        <div class="col-lg-4">
-
-                            <!-- Current server load -->
-                            <div class="card bg-pink text-white">
-                                <div class="card-body">
-                                    <div class="row mb-0 border border-3 br-7">
-                                        <a href="" class="text-black">
-                                            <h4 class="text-center mb-0 text-black">Total RFQ : 80 </h4>
-                                        </a>
-                                    </div>
-
-                                    <div class="row mb-0 mt-1">
-                                        <div class="col-lg-5 mr-1 p-1 border border-3 br-7">
-                                            <a href="" class="text-white">
-                                                <p class="text-center mb-0 text-black">Pending : 80 </p>
-                                            </a>
-                                        </div>
-                                        <div class="col-lg-5 p-1 border border-3 p-0 br-7">
-                                            <a href="" class="text-white">
-                                                <p class="text-center mb-0 text-black">Follow Up : 80 </p>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- /current server load -->
-
-                        </div>
-
-                        <div class="col-lg-4">
-
-                            <!-- Today's revenue -->
-                            <div class="card bg-info text-white">
-                                <div class="card-body">
-                                    <div class="row mb-0 border border-3 br-7">
-                                        <a href="" class="text-black">
-                                            <h4 class="text-center mb-0 text-black">Marketing <span
-                                                    class="small">({{ date('M') }})</span> : 80 </h4>
-                                        </a>
-                                    </div>
-
-                                    <div class="row mb-0 mt-1">
-                                        <div class="col-lg-5 mr-1 p-1 border border-3 br-7">
-                                            <a href="" class="text-white">
-                                                <p class="text-center mb-0 text-black">Today : 80 </p>
-                                            </a>
-                                        </div>
-                                        <div class="col-lg-5 p-1 border border-3 p-0 br-7">
-                                            <a href="" class="text-white">
-                                                <p class="text-center mb-0 text-black">Weekly : 80 </p>
-                                            </a>
-                                        </div>
-                                    </div>
-
-                                    <div class="row mb-0 mt-1">
-                                        <div class="col-lg-5 mr-1 p-1 border border-3 br-7">
-                                            <a href="" class="text-white">
-                                                <p class="text-center mb-0 text-black">Email : 80 </p>
-                                            </a>
-                                        </div>
-                                        <div class="col-lg-5 p-1 border border-3 p-0 br-7">
-                                            <a href="" class="text-white">
-                                                <p class="text-center mb-0 text-black">Blog : 80 </p>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- /today's revenue -->
-
-                        </div>
-
-
-                    </div>
-                    <!-- /row - 2 -->
-                    <!-- /row - 3 -->
-                    <div class="row">
-
-
-                        <div class="col-lg-3">
-
-                            <!-- Today's revenue -->
-                            <div class="card bg-info text-white">
-                                <div class="card-body">
-                                    <div class="row mb-0">
-                                        <div class="col-lg-12 mb-1 p-1 border border-3 br-7">
-                                            <a href="" class="text-black">
-                                                <h5 class="text-center mb-0 text-black">Total Partners : 80 </h5>
-                                            </a>
-                                        </div>
-                                        <div class="col-lg-12 mb-1 p-1 border border-3 br-7">
-                                            <a href="" class="text-white text-center">
-                                                <p class="text-center mb-0 text-black">Approval Pending : 80 </p>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- /today's revenue -->
-
-                        </div>
-
-                        <div class="col-lg-3">
-
-                            <!-- Today's revenue -->
-                            <div class="card bg-success text-white">
-                                <div class="card-body">
-                                    <div class="row mb-0">
-                                        <div class="col-lg-12 mb-1 p-1 border border-3 br-7">
-                                            <a href="" class="text-black">
-                                                <h5 class="text-center mb-0 text-black">Total Clients : 80 </h5>
-                                            </a>
-                                        </div>
-                                        <div class="col-lg-12 mb-1 p-1 border border-3 br-7">
-                                            <a href="" class="text-white text-center">
-                                                <p class="text-center mb-0 text-black">Approval Pending : 80 </p>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- /today's revenue -->
-
-                        </div>
-
-
-                    </div>
-                    <!-- /row - 3 -->
                 </div>
             </div>
             <!--Business Operation -->
 
 
-            <!--Site Details -->
-            <div class="card">
-                <div class="card-header">
-                    <h5 class="text-center mb-0">Site Details</h5>
-                </div>
-                <div class="card-body">
-                    <!-- /row - 1 -->
-                    <div class="row">
-                        <div class="col-lg-3">
 
-                            <!-- Members online -->
-                            <div class="card bg-warning">
-                                <div class="card-body">
-                                    <div class="row mb-0">
-                                        <div class="col-lg-12 mb-1 border br-7">
-                                            <a href="" class="text-black">
-                                                <h5 class="text-center mb-0 text-black">Total Products : 80 </h5>
-                                            </a>
-                                        </div>
-                                        <div class="col-lg-12 mb-1 border br-7">
-                                            <a href="" class="text-black">
-                                                <p class="text-center mb-0 text-black">Pending : 80 </p>
-                                            </a>
-                                        </div>
-                                        <div class="col-lg-12 mb-1 border br-7">
-                                            <a href="" class="text-black">
-                                                <p class="text-center mb-0 text-black">Newly Added : 80 </p>
-                                            </a>
-                                        </div>
-                                        <div class="col-lg-12 border br-7">
-                                            <a href="" class="text-black">
-                                                <p class="text-center mb-0 text-black">Update Required : 80 </p>
-                                            </a>
-                                        </div>
-
-                                    </div>
-
-
-                                </div>
-                            </div>
-                            <!-- /members online -->
-
-                        </div>
-
-                        <div class="col-lg-3">
-
-                            <!-- Current server load -->
-                            <div class="card bg-pink text-white">
-                                <div class="card-body">
-                                    <div class="row mb-0">
-                                        <div class="col-lg-12 mb-1 border br-7">
-                                            <a href="" class="text-black">
-                                                <h5 class="text-center mb-0 text-black">Total Brands : 80 </h5>
-                                            </a>
-                                        </div>
-                                        <div class="col-lg-12 mb-1 border br-7">
-                                            <a href="" class="text-black">
-                                                <p class="text-center mb-0 text-black">Newly Added : 80 </p>
-                                            </a>
-                                        </div>
-                                        <div class="col-lg-12 border br-7">
-                                            <a href="" class="text-black">
-                                                <p class="text-center mb-0 text-black">Update Required : 80 </p>
-                                            </a>
-                                        </div>
-
-                                    </div>
-
-
-                                </div>
-                            </div>
-                            <!-- /current server load -->
-
-                        </div>
-
-                        <div class="col-lg-6">
-
-                            <!-- Today's revenue -->
-                            <div class="card bg-info text-white">
-                                <div class="card-body">
-                                    <div class="row mb-0">
-                                        <div class="col-lg-6 mb-1 border br-7">
-                                            <a href="" class="text-black">
-                                                <p class="text-center mb-0 text-black">Total Categories : 80 </p>
-                                            </a>
-                                        </div>
-                                        <div class="col-lg-6 mb-1 border br-7">
-                                            <a href="" class="text-black">
-                                                <p class="text-center mb-0 text-black">Newly Added : 80 </p>
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <div class="row mb-0">
-                                        <div class="col-lg-6 mb-1 border br-7">
-                                            <a href="" class="text-black">
-                                                <p class="text-center mb-0 text-black">Total Sub Categories : 80 </p>
-                                            </a>
-                                        </div>
-                                        <div class="col-lg-6 mb-1 border br-7">
-                                            <a href="" class="text-black">
-                                                <p class="text-center mb-0 text-black">Newly Added : 80 </p>
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <div class="row mb-0">
-                                        <div class="col-lg-6 mb-1 border br-7">
-                                            <a href="" class="text-black">
-                                                <p class="text-center mb-0 text-black">Total Sub Sub Categories : 80 </p>
-                                            </a>
-                                        </div>
-                                        <div class="col-lg-6 mb-1 border br-7">
-                                            <a href="" class="text-black">
-                                                <p class="text-center mb-0 text-black">Newly Added : 80 </p>
-                                            </a>
-                                        </div>
-
-                                    </div>
-
-                                </div>
-                            </div>
-                            <!-- /today's revenue -->
-
-                        </div>
-
-
-                    </div>
-                    <!-- /row - 1 -->
-                    <!-- /row - 2 -->
-                    <div class="row">
-                        <div class="col-lg-4">
-
-                            <!-- Members online -->
-                            <div class="card bg-warning">
-                                <div class="card-body">
-                                    <div class="row mb-0 border border-3 br-7">
-                                        <a href="" class="text-black">
-                                            <h4 class="text-center mb-0 text-black">Solutions : 80 </h4>
-                                        </a>
-                                    </div>
-
-                                    <div class="row mb-0 mt-1">
-                                        <div class="col-lg-5 mr-2 p-1 border border-3 br-7">
-                                            <a href="" class="text-white">
-                                                <p class="text-center mb-0 text-black"> </p>
-                                            </a>
-                                        </div>
-                                        <div class="col-lg-5 p-1 border border-3 p-0 br-7">
-                                            <a href="" class="text-white">
-                                                <p class="text-center mb-0 text-black"> </p>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- /members online -->
-
-                        </div>
-
-                        <div class="col-lg-4">
-
-                            <!-- Current server load -->
-                            <div class="card bg-pink text-white">
-                                <div class="card-body">
-                                    <div class="row mb-0 border border-3 br-7">
-                                        <a href="" class="text-black">
-                                            <h4 class="text-center mb-0 text-black">Industries </h4>
-                                        </a>
-                                    </div>
-
-                                    <div class="row mb-0 mt-1">
-                                        <div class="col-lg-5 mr-1 p-1 border border-3 br-7">
-                                            <a href="" class="text-white">
-                                                <p class="text-center mb-0 text-black"> </p>
-                                            </a>
-                                        </div>
-                                        <div class="col-lg-5 p-1 border border-3 p-0 br-7">
-                                            <a href="" class="text-white">
-                                                <p class="text-center mb-0 text-black"> </p>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- /current server load -->
-
-                        </div>
-
-                        <div class="col-lg-4">
-
-                            <!-- Today's revenue -->
-                            <div class="card bg-info text-white">
-                                <div class="card-body">
-                                    <div class="row mb-0 border border-3 br-7">
-                                        <a href="" class="text-black">
-                                            <h4 class="text-center mb-0 text-black">Services</h4>
-                                        </a>
-                                    </div>
-
-                                    <div class="row mb-0 mt-1">
-                                        <div class="col-lg-5 mr-1 p-1 border border-3 br-7">
-                                            <a href="" class="text-white">
-                                                <p class="text-center mb-0 text-black"></p>
-                                            </a>
-                                        </div>
-                                        <div class="col-lg-5 p-1 border border-3 p-0 br-7">
-                                            <a href="" class="text-white">
-                                                <p class="text-center mb-0 text-black"></p>
-                                            </a>
-                                        </div>
-                                    </div>
-
-
-                                </div>
-                            </div>
-                            <!-- /today's revenue -->
-
-                        </div>
-
-
-                    </div>
-                    <!-- /row - 2 -->
-                    <!-- /row - 3 -->
-                    <div class="row">
-
-
-                        <div class="col-lg-3">
-
-                            <!-- Today's revenue -->
-                            <div class="card bg-info text-white">
-                                <div class="card-body">
-                                    <div class="row mb-0">
-                                        <div class="col-lg-12 mb-1 p-1 border border-3 br-7">
-                                            <a href="" class="text-black">
-                                                <h5 class="text-center mb-0 text-black">Total Front Pages : 80 </h5>
-                                            </a>
-                                        </div>
-                                        <div class="col-lg-12 mb-1 p-1 border border-3 br-7">
-                                            <a href="" class="text-white text-center">
-                                                <p class="text-center mb-0 text-black">Updated : </p>
-                                            </a>
-                                        </div>
-
-                                        <div class="col-lg-12 mb-1 p-1 border border-3 br-7">
-                                            <a href="javascript:void(0);" class="text-white text-center"
-                                                data-bs-toggle="modal" data-bs-target="#update_page">
-                                                <p class="text-center mb-0 text-black">Update Required : </p>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- /today's revenue -->
-
-                        </div>
-
-                        <div class="col-lg-3">
-
-                            <!-- Today's revenue -->
-                            <div class="card bg-success text-white">
-                                <div class="card-body">
-                                    <div class="row mb-0">
-                                        <div class="col-lg-12 mb-1 p-1 border border-3 br-7">
-                                            <a href="" class="text-black">
-                                                <h5 class="text-center mb-0 text-black">All Pages : 80 </h5>
-                                            </a>
-                                        </div>
-                                        <div class="col-lg-12 mb-1 p-1 border border-3 br-7">
-                                            <a id="accordion" href="javascript:void(0);" class="text-white text-center">
-                                                <p class="text-center mb-0 text-black">Update Info : 80 </p>
-                                            </a>
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- /today's revenue -->
-
-                        </div>
-
-
-                    </div>
-                    <!-- /row - 3 -->
-                    <div class="row">
-                        <div class="col-lg-3"></div>
-                        <div class="col-lg-6">
-                            <div class="expandable table-responsive" style="display: none;">
-                                <table class="table table-bordered table-hover datatable-highlight text-center">
-                                    <thead>
-                                        <tr class="bg-dark text-white">
-                                            <th>Pages</th>
-                                            <th>Status</th>
-                                            <th>Action</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>HomePage</td>
-                                            <td>Update Required</td>
-                                            <td>
-                                                <a href="#" class="text-primary">
-                                                    <i class="icon-pencil"></i>
-                                                </a>
-                                                <a href="" class="text-danger delete mx-2">
-                                                    <i class="delete icon-trash"></i>
-                                                </a>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-            <!--Site Details -->
         </div>
         <!-- /content area -->
 
