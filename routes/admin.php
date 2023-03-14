@@ -536,6 +536,7 @@ Route::controller(RFQController::class)->group(function(){
 
 
     Route::get('/sales-achievement/summary' , [SalesAchievementController::class, 'salesAchievementSummary'])->name('dashboard.salesachievement');
+    Route::get('/sales-report/dashboard' , [SalesYearTargetController::class, 'salesReportDashboard'])->name('dashboard.salesreport');
 
 
     Route::post('salesmanager-status', [App\Http\Controllers\Sales\SalesAccountController::class, 'SalesStatus'])->name('sales.status');

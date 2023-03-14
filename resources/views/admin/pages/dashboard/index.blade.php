@@ -24,7 +24,7 @@
                     </a>
                 </div>
 
-                <div class="collapse d-lg-block ms-lg-auto" id="breadcrumb_elements">
+                {{-- <div class="collapse d-lg-block ms-lg-auto" id="breadcrumb_elements">
                     <div class="d-lg-flex mb-2 mb-lg-0">
                         <a href="#" class="d-flex align-items-center text-body py-2">
                             <i class="ph-lifebuoy me-2"></i>
@@ -59,7 +59,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> --}}
             </div>
         </div>
         <!-- /page header -->
@@ -222,6 +222,33 @@
 
                     <!-- /row - 2 -->
                     <div class="row">
+                        <div class="col-lg-3 col-sm-4">
+                            <div class="card card-body">
+                                <div class="d-flex align-items-center mb-3">
+                                    <div class="flex-fill">
+                                        <a href="{{route('dashboard.salesreport')}}">
+                                            <h6 class="mb-0 text-primary"><strong>Sales Report</strong></h6>
+                                        </a>
+                                        <span class="text-muted">Until {{Carbon\Carbon::now()->format('d-m-Y')}}</span>
+                                    </div>
+                                    <a href="{{route('dashboard.salesreport')}}">
+                                        <button type="button" class="btn btn-primary rounded-circle"
+                                            style="width: 30px; height: 30px">
+                                            <i class="ph-arrow-right"></i>
+                                        </button>
+                                    </a>
+                                </div>
+                                <div>
+                                    <span class="float-end">0 <span></span></span>
+                                    Today's Sale
+                                </div>
+                                <div>
+                                    <span class="float-end">0 <span></span></span>
+                                    This Month's Sale
+                                </div>
+                            </div>
+                        </div>
+
                         <div class="col-lg-3 col-sm-12">
                             <div class="card card-body">
                                 <div class="d-flex align-items-center mb-3">

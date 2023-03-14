@@ -29,6 +29,7 @@
     <!-- slick slider -->
     <link rel="stylesheet" href="{{ asset('frontend/css/slick.css')}}">
     <link rel="stylesheet" href="{{ asset('frontend/css/slick-theme.css')}}">
+    <link rel="stylesheet" href="{{ asset('frontend/css/font-awesome-6.css')}}">
 
     <!-- Plugin link -->
     <link rel="stylesheet" href="{{ asset('frontend/lib/bootstrap/css/bootstrap.css')}}">

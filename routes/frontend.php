@@ -21,11 +21,22 @@ Route::get('/', [HomeController::class, 'index'])->name('homepage');
 //Learn More
 Route::get('/learn/more', [HomeController::class, 'LearnMore'])->name('learn.more');
 
+//What We Do
+Route::get('/Whatwe/do', [HomeController::class, 'whatWeDo'])->name('whatwedo');
+
 //Software All route
 Route::get('/software/common', [HomeController::class, 'SoftwareCommon'])->name('software.common');
 
+//Software Info
+Route::get('/software/info', [HomeController::class, 'softwareInfo'])->name('software.info');
+
+
+
 //Hardware All route
 Route::get('/hardware/common', [HomeController::class, 'HardwareCommon'])->name('hardware.common');
+
+//hardware Info
+Route::get('/hardware/info', [HomeController::class, 'hardwareInfo'])->name('hardware.info');
 
 //Contact & Support
 Route::post('/contact_us', [ContactController::class, 'store'])->name('contactus.store');

@@ -119,6 +119,25 @@ class HomeController extends Controller
         return view('frontend.pages.learnmore.view',$data);
     }
 
+    //What We Do
+
+    public function whatWeDo()
+    {
+        return view('frontend.pages.whatwedo.whatwedo');
+    }
+
+    public function softwareInfo()
+    {
+        $data['categories'] = Category::orderBy('id' ,'DESC')->limit(8)->get();
+        //dd($data['categories']);
+        return view('frontend.pages.software.software_info',$data);
+    }
+
+    public function hardwareInfo()
+    {
+        return view('frontend.pages.hardware.hardware_info');
+    }
+
     //Feature Details
     public function FeatureDetails($id){
         $data['feature'] = Feature::where('id',$id)->first();

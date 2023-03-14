@@ -44,25 +44,25 @@
                                     <div class="form-group">
                                         <label for="sales_price">Sales Price <strong class="text-danger">*</strong>
                                         </label>
-                                        <input type="number" name="sales_price" id="sales_price"
-                                            value="{{ $sourcing->sub_total_sales }}" class="form-control form-control-sm">
+                                        <input type="text" name="sales_price" id="sales_price"
+                                            value="{{ $sourcing->sub_total_sales }}" class="form-control allow_decimal form-control-sm">
                                     </div>
                                 </td>
                                 <td>
                                     <div class="form-group">
                                         <label for="cost_price">Cost Price<strong class="text-danger">*</strong>
                                         </label>
-                                        <input type="number" name="cost_price" id="cost_price" value="{{ $sourcing->sub_total_cost }}"
-                                            class="form-control form-control-sm">
+                                        <input type="text" name="cost_price" id="cost_price" value="{{ $sourcing->sub_total_cost }}"
+                                            class="form-control allow_decimal form-control-sm">
                                     </div>
                                 </td>
                                 <td>
                                     <div class="form-group">
                                         <label for="grossMarkupPersentage"> Gross Markup Persentage <strong
                                                 class="text-danger">*</strong> </label>
-                                        <input type="number" name="gross_makup_percentage"
+                                        <input type="text" name="gross_makup_percentage"
                                             id="grossMarkupPersentage" value="{{ $sourcing->gross_profit_subtotal }}"
-                                            class="form-control form-control-sm">
+                                            class="form-control allow_decimal form-control-sm">
                                     </div>
                                 </td>
 
@@ -70,27 +70,27 @@
                                     <div class="form-group">
                                         <label for="grossMarkupAmount"> Gross Markup Amount <strong
                                                 class="text-danger">*</strong> </label>
-                                        <input type="number" name="gross_makup_ammount" id="grossMarkupAmount"
-                                        value="{{ $sourcing->gross_profit_amount }}" class="form-control form-control-sm">
+                                        <input type="text" name="gross_makup_ammount" id="grossMarkupAmount"
+                                        value="{{ $sourcing->gross_profit_amount }}" class="form-control allow_decimal form-control-sm">
                                     </div>
                                 </td>
                             </tr>
                             <tr>
                                 <td>
                                     <div class="form-group">
-                                        <label for="netProfitPersentage"> Net profit Persentage <strong
+                                        <label for="netProfitPersentage"> Net profit Percentage <strong
                                                 class="text-danger">*</strong> </label>
-                                        <input type="number" name="net_profit_percentage"
+                                        <input type="text" name="net_profit_percentage"
                                             id="netProfitPersentage" value="{{ $sourcing->net_profit_percentage }}"
-                                            class="form-control form-control-sm">
+                                            class="form-control allow_decimal form-control-sm">
                                     </div>
                                 </td>
                                 <td>
                                     <div class="form-group">
                                         <label for="NetprofitAmount"> Net profit Amount <strong
                                                 class="text-danger">*</strong> </label>
-                                        <input type="number" name="net_profit_ammount" id="NetprofitAmount"
-                                        value="{{ $sourcing->net_profit_amount }}" class="form-control form-control-sm">
+                                        <input type="text" name="net_profit_ammount" id="NetprofitAmount"
+                                        value="{{ $sourcing->net_profit_amount }}" class="form-control allow_decimal form-control-sm">
                                     </div>
                                 </td>
 
@@ -98,16 +98,16 @@
                                     <div class="form-group">
                                         <label for="profit"> Profit <strong class="text-danger">*</strong>
                                         </label>
-                                        <input type="number" name="profit" id="profit" value="{{ $sourcing->net_profit_amount }}"
-                                            class="form-control form-control-sm">
+                                        <input type="text" name="profit" id="profit" value="{{ $sourcing->net_profit_amount }}"
+                                            class="form-control allow_decimal form-control-sm">
                                     </div>
                                 </td>
                                 <td>
                                     <div class="form-group">
                                         <label for="loss"> Loss <strong class="text-danger">*</strong>
                                         </label>
-                                        <input type="number" name="loss" id="loss" placeholder="00"
-                                            class="form-control form-control-sm">
+                                        <input type="text" name="loss" id="loss" placeholder="00"
+                                            class="form-control allow_decimal form-control-sm">
                                     </div>
                                 </td>
                             </tr>
@@ -531,7 +531,146 @@
     </form>
 @endif
 
-{{-- @if ($commercial_documents)
+@if ($commercial_document)
+<div id="modal_commercial_documents" class="modal fade" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Commercial Documents </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <table class="table-salecocument-customice">
+                        <thead>
+                            <tr>
 
-@endif --}}
+                                <th colspan="8" class="text-center bg-black text-white bg-opacity-75">Client
+                                </th>
+                                <th colspan="5" class="text-center bg-black text-white bg-opacity-75">
+                                    Principal
+                                </th>
+                            </tr>
+                            <tr class="text-center">
+
+                                <th width="7%">PQ</th>
+                                <th width="7%">PO</th>
+                                <th width="7%">Invoice</th>
+                                <th width="7%">Challan</th>
+                                <th width="7%">Payment</th>
+                                <th width="7%">Mushok</th>
+                                <th width="7%">Govt. Chalan</th>
+                                <th width="7%">SAS</th>
+                                <th width="7%">PQ</th>
+                                <th width="7%">PO</th>
+                                <th width="7%">Invoice</th>
+                                <th width="7%">Challan</th>
+                                <th width="7%">Payment</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    @if (!empty($commercial_document->client_pq))
+                                        <span class="badge bg-success">Yes</span>
+                                    @else
+                                        <span class="badge bg-danger">No</span>
+                                    @endif
+                                </td>
+                                <td>
+                                    @if (!empty($commercial_document->client_po))
+                                        <span class="badge bg-success">Yes</span>
+                                    @else
+                                        <span class="badge bg-danger">No</span>
+                                    @endif
+                                </td>
+                                <td>
+                                    @if (!empty($commercial_document->client_invoice))
+                                        <span class="badge bg-success">Yes</span>
+                                    @else
+                                        <span class="badge bg-danger">No</span>
+                                    @endif
+                                </td>
+                                <td>
+                                    @if (!empty($commercial_document->client_challan))
+                                        <span class="badge bg-success">Yes</span>
+                                    @else
+                                        <span class="badge bg-danger">No</span>
+                                    @endif
+                                </td>
+                                <td>
+                                    @if (!empty($commercial_document->client_payment))
+                                        <span class="badge bg-success">Yes</span>
+                                    @else
+                                        <span class="badge bg-danger">No</span>
+                                    @endif
+                                </td>
+                                <td>
+                                    @if (!empty($commercial_document->client_mushok))
+                                        <span class="badge bg-success">Yes</span>
+                                    @else
+                                        <span class="badge bg-danger">No</span>
+                                    @endif
+                                </td>
+                                <td>
+                                    @if (!empty($commercial_document->client_govt_challan))
+                                        <span class="badge bg-success">Yes</span>
+                                    @else
+                                        <span class="badge bg-danger">No</span>
+                                    @endif
+                                </td>
+                                <td>
+                                    @if ($sourcing)
+                                        <span class="badge bg-success">Yes</span>
+                                    @else
+                                        <span class="badge bg-danger">No</span>
+                                    @endif
+                                </td>
+                                <td>
+                                    @if (!empty($commercial_document->principal_pq))
+                                        <span class="badge bg-success">Yes</span>
+                                    @else
+                                        <span class="badge bg-danger">No</span>
+                                    @endif
+                                </td>
+                                <td>
+                                    @if (!empty($commercial_document->principal_po))
+                                        <span class="badge bg-success">Yes</span>
+                                    @else
+                                        <span class="badge bg-danger">No</span>
+                                    @endif
+                                </td>
+                                <td>
+                                    @if (!empty($commercial_document->principal_invoice))
+                                        <span class="badge bg-success">Yes</span>
+                                    @else
+                                        <span class="badge bg-danger">No</span>
+                                    @endif
+                                </td>
+                                <td>
+                                    @if (!empty($commercial_document->principal_challan))
+                                        <span class="badge bg-success">Yes</span>
+                                    @else
+                                        <span class="badge bg-danger">No</span>
+                                    @endif
+                                </td>
+                                <td>
+                                    @if (!empty($commercial_document->principal_payment))
+                                        <span class="badge bg-success">Yes</span>
+                                    @else
+                                        <span class="badge bg-danger">No</span>
+                                    @endif
+                                </td>
+
+                            </tr>
+                        </tbody>
+
+                    </table>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+@endif
 

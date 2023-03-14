@@ -4,7 +4,7 @@
 
     <!--========Header Title==========-->
     <section class="common_product_header"
-        style="background-image:url('{{ asset('frontend/images/buy-category-hero.jpg') }}'); margin-top:100px">
+        style="background-image:url('{{ asset('frontend/images/buy-category-hero.jpg') }}');">
         <div class="container">
             <h1>Ready to shop?</h1>
             <h3>Explore our product categories to see options for hardware, software and accessories. Use our configurators

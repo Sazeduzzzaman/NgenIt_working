@@ -3,7 +3,7 @@
 @section('content')
 
     <!--======// Header Title //======-->
-    <section class="brand_header_wrapper" style="background-image: url('{{ asset('frontend/images/buy-brand-hero.jpg') }}'); margin-top:100px; height:15rem">
+    <section class="brand_header_wrapper" style="background-image: url('{{ asset('frontend/images/buy-brand-hero.jpg') }}');height:15rem">
         <div class="container">
             <h1>Shop By Brand</h1>
             <p class="text-center text-white px-4 mx-4">Through our deep relationships with leading technology partners, we provide hardware,

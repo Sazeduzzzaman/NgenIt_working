@@ -1,7 +1,7 @@
 @extends('frontend.master')
 @section('content')
 <!--======// Header Title //======-->
-<section class="common_product_header" style="background-image: url('{{asset('storage/requestImg/'.$brandpage->banner_image)}}');margin-top:100px;">
+<section class="common_product_header" style="background-image: url('{{asset('storage/requestImg/'.$brandpage->banner_image)}}');">
     <div class="container">
         @if (!empty($brandpage->brand_logo))
             <div class="d-flex justify-content-center m-0">

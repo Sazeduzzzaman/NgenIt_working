@@ -1,6 +1,6 @@
 @extends('frontend.master')
 @section('content')
- 
+
     <style>
         .btn-design {
             color: #fff;
@@ -25,7 +25,7 @@
 
 
 
-    <div class="cart_page px-3" style="margin-top: 100px;">
+    <div class="cart_page px-3">
         <!-- cart page content -->
         <div class="cart_page_content">
             <!-- cart header -->

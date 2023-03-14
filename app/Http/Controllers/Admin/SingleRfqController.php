@@ -7,6 +7,7 @@ use App\Models\Admin\Rfq;
 use Illuminate\Http\Request;
 use App\Models\Admin\DealSas;
 use App\Http\Controllers\Controller;
+use App\Models\Admin\CommercialDocument;
 
 class SingleRfqController extends Controller
 {
@@ -53,6 +54,7 @@ class SingleRfqController extends Controller
         $data['users'] = User::where('role', 'sales')->select('users.id', 'users.name')->orderBy('id', 'DESC')->get();
         $data['rfq_details'] = Rfq::where('rfq_code',$id)->first();
         $data['deal_products'] = DealSas::where('rfq_code', $data['rfq_details']->rfq_code)->get();
+        $data['commercial_document'] = CommercialDocument::where('rfq_id', $data['rfq_details']->id)->first();
         //dd($data['rfq_details']->rfq_code);
         $data['sourcing'] = DealSas::where('rfq_code', $data['rfq_details']->rfq_code)->first();
         return view('admin.pages.singleRfq.all',$data);

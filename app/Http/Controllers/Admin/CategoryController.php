@@ -83,7 +83,7 @@ class CategoryController extends Controller
                     'status' => $request->status,
                 ]);
             } else {
-                $globalFunImg =  Helper::singleImageUpload($mainFile, $imgPath, 240, 144);
+                $globalFunImg =  Helper::singleImageUpload($mainFile, $imgPath, 120, 72);
                 if ($globalFunImg['status'] == 1) {
                     Category::create([
                         'title' => $request->title,
@@ -139,7 +139,7 @@ class CategoryController extends Controller
             $uploadPath = storage_path('app/public/');
 
             if (isset($mainFile)) {
-                $globalFunImg = Helper::singleImageUpload($mainFile, $uploadPath, 230, 227);
+                $globalFunImg = Helper::singleImageUpload($mainFile, $uploadPath, 120, 72);
             } else {
                 $globalFunImg['status'] = 0;
             }
@@ -224,7 +224,7 @@ class CategoryController extends Controller
                     'status' => $request->status,
                 ]);
             } else {
-                $globalFunImg =  Helper::singleImageUpload($mainFile, $imgPath, 240, 144);
+                $globalFunImg =  Helper::singleImageUpload($mainFile, $imgPath, 120, 72);
                 if ($globalFunImg['status'] == 1) {
                     SubCategory::create([
                         'cat_id' => $request->cat_id,
@@ -284,7 +284,7 @@ class CategoryController extends Controller
                     'status' => $request->status,
                 ]);
             } else {
-                $globalFunImg =  Helper::singleImageUpload($mainFile, $imgPath, 240, 144);
+                $globalFunImg =  Helper::singleImageUpload($mainFile, $imgPath, 120, 72);
                 if ($globalFunImg['status'] == 1) {
                     SubSubCategory::create([
                         'cat_id' => $request->cat_id,
@@ -354,7 +354,7 @@ class CategoryController extends Controller
                     'status' => $request->status,
                 ]);
             } else {
-                $globalFunImg =  Helper::singleImageUpload($mainFile, $imgPath, 240, 144);
+                $globalFunImg =  Helper::singleImageUpload($mainFile, $imgPath, 120, 72);
                 if ($globalFunImg['status'] == 1) {
                     SubSubSubCategory::create([
                         'cat_id' => $request->cat_id,
@@ -411,7 +411,7 @@ class CategoryController extends Controller
             $uploadPath = storage_path('app/public/');
 
             if (isset($mainFile)) {
-                $globalFunImg = Helper::singleImageUpload($mainFile, $uploadPath, 240, 144);
+                $globalFunImg = Helper::singleImageUpload($mainFile, $uploadPath, 120, 72);
             } else {
                 $globalFunImg['status'] = 0;
             }

@@ -1,7 +1,7 @@
 @extends('frontend.master')
 @section('content')
     <!--======// Guidance and support {1} //======-->
-    <section class="section_wp2" style="margin-top: 100px;">
+    <section class="section_wp2">
         <div class="container">
             <div class="row">
                 <div class="col-lg-6 col-sm-12 pr-4 service_common_content">

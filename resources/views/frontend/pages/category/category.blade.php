@@ -4,7 +4,7 @@
     <!-- banner single page start -->
     <section class="banner_single_page"
         style="background-image:url('{{ asset('storage/'.$category->image) }}');
-        margin-top: 100px;
+        
         background-position: left;
         background-repeat: no-repeat;
         background-size: contain;

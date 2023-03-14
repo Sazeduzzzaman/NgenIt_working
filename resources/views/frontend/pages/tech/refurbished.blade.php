@@ -2,7 +2,7 @@
 @section('content')
 
 <!--=======// Header Title //=======-->
-<section class="tech_deals_header" style="margin-top:100px">
+<section class="tech_deals_header">
     <div class="container">
         <h1>Refurbished Products</h1>
         <h3>Browse and Explore exclusive Refurbished products from Ngen It. We offer quality assurance for products, software and services.</h3>

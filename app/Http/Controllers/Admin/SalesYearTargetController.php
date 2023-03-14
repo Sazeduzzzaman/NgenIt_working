@@ -5,8 +5,10 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Models\Admin\Country;
 use App\Http\Controllers\Controller;
+use App\Models\Admin\SalesProfitLoss;
 use Brian2694\Toastr\Facades\Toastr;
 use App\Models\Admin\SalesYearTarget;
+use App\Models\User;
 use Illuminate\Support\Facades\Validator;
 
 class SalesYearTargetController extends Controller
@@ -166,5 +168,28 @@ class SalesYearTargetController extends Controller
     public function destroy($id)
     {
         SalesYearTarget::find($id)->delete();
+    }
+
+    public function salesReportDashboard()
+    {
+        $data['salesYearTarget'] = SalesYearTarget::whereYear('created_at', date('Y'))->first();
+        $data['sales_year'] = SalesProfitLoss::whereYear('created_at', date('Y'))->sum('sales_price');
+
+        $data['sales_january'] = SalesProfitLoss::whereMonth('created_at', 1)->sum('sales_price');
+        $data['sales_february'] = SalesProfitLoss::whereMonth('created_at', 2)->sum('sales_price');
+        $data['sales_march'] = SalesProfitLoss::whereMonth('created_at', 3)->sum('sales_price');
+        $data['sales_april'] = SalesProfitLoss::whereMonth('created_at', 4)->sum('sales_price');
+        $data['sales_may'] = SalesProfitLoss::whereMonth('created_at', 5)->sum('sales_price');
+        $data['sales_june'] = SalesProfitLoss::whereMonth('created_at', 6)->sum('sales_price');
+        $data['sales_july'] = SalesProfitLoss::whereMonth('created_at', 7)->sum('sales_price');
+        $data['sales_august'] = SalesProfitLoss::whereMonth('created_at', 8)->sum('sales_price');
+        $data['sales_september'] = SalesProfitLoss::whereMonth('created_at', 9)->sum('sales_price');
+        $data['sales_october'] = SalesProfitLoss::whereMonth('created_at', 10)->sum('sales_price');
+        $data['sales_november'] = SalesProfitLoss::whereMonth('created_at', 11)->sum('sales_price');
+        $data['sales_december'] = SalesProfitLoss::whereMonth('created_at', 12)->sum('sales_price');
+
+        $data['salesman'] = User::where('role', 'sales')->count();
+
+        return view('admin.pages.SalesReport.dashboard',$data);
     }
 }

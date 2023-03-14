@@ -3,7 +3,7 @@
 
 <!--======// Header Title //======-->
 
-    <section class="header_title_product_filter" style="margin-top: 100px;">
+    <section class="header_title_product_filter">
         <h1>Explore Products in Our Shop</h1>
     </section><br><br>
 <!-------- End--------->

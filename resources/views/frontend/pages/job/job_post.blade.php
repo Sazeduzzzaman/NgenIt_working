@@ -2,10 +2,10 @@
 @section('content')
 @php
     $setting=App\Models\Admin\Setting::first();
-    
+
 @endphp
     <!--========// Header Title //========-->
-    <section class="apply_job_form_title" style="background-image: url('{{asset('frontend/images/buy-category-hero.jpg')}}');margin-top:100px;">
+    <section class="apply_job_form_title" style="background-image: url('{{asset('frontend/images/buy-category-hero.jpg')}}');">
         <div class="container">
             <!--------Find job------->
             <h1>Find Work</h1>

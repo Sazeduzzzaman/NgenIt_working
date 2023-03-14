@@ -4,7 +4,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 	<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 <!--======// Header Title //======-->
-<section class="common_product_header" style="background-image: url('{{ asset('storage/'.$learnmore->image_banner) }}'); padding: 40px 0 80px 0; margin-top:100px">
+<section class="common_product_header" style="background-image: url('{{ asset('storage/'.$learnmore->image_banner) }}'); padding: 40px 0 80px 0;">
     <div class="container">
         <div class="solution_common_header">
             <div class="outcome_assetType mb-4">

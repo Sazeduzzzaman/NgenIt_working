@@ -2,7 +2,7 @@
 @section('content')
 
 <!--=======// Header Title //=======-->
-<section class="tech_deals_header" style="margin-top:100px">
+<section class="tech_deals_header">
     <div class="container">
         <h1>Technology deals</h1>
         <h3>Browse and Explore exclusive tech deals from Ngen It. We offer deep discounts on electronics, devices and softwares.</h3>

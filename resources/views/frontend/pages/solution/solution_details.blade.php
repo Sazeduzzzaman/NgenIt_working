@@ -1,7 +1,7 @@
 @extends('frontend.master')
 @section('content')
     <!--======// Header Title //======-->
-    <section class="common_product_header" style="background-image: url('{{asset('storage/requestImg/'.$solution->banner_image)}}');margin-top: 100px;">
+    <section class="common_product_header" style="background-image: url('{{asset('storage/requestImg/'.$solution->banner_image)}}');">
         <div class="container">
             <div class="">
                 <h1>{{$solution->name}}</h1>

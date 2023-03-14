@@ -4,7 +4,7 @@
 
     <!--======// Header Title //======-->
     <section class="header_title_product_filter"
-        style="background-image: url('{{ asset('storage/' . $cat->image) }}');margin-top: 100px; background-size:contain;background-color:#b1b1b1">
+        style="background-image: url('{{ asset('storage/' . $cat->image) }}'); background-size:contain;background-color:#b1b1b1">
         <h1 class="text-left ml-4 pl-4">
             {{ $cat->title }}
         </h1>

@@ -9,7 +9,7 @@
     }
 </style>
 <!--=======// Header Title //=======-->
-<section class="header_title_terms_policy" style="margin-top: 100px;">
+<section class="header_title_terms_policy">
     <h2 class="container">
         @if (!empty($details))
             {{$details->name}}

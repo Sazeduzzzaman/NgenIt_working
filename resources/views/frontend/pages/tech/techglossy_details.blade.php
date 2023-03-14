@@ -2,7 +2,7 @@
 @section('content')
 
 <!--=======// Header Title //=======-->
-<section class="tech_glossary_header" style="background-image: url('{{ asset('storage/requestImg/' . $techglossy->image) }}'); margin-top:100px; height:27rem;">
+<section class="tech_glossary_header" style="background-image: url('{{ asset('storage/requestImg/' . $techglossy->image) }}'); height:27rem;">
     <div class="container">
         <h3>Tech Glossary</h3>
         <h1 style="font-size: 1.5rem;color:#000">{{$techglossy->badge}}</h1>

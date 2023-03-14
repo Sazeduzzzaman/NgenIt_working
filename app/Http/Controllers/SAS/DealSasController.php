@@ -276,7 +276,7 @@ class DealSasController extends Controller
     }
     Toastr::success('SAS Updated Successfully.');
     // return redirect()->route('deal-sas.index');
-    return redirect()->route('rfq-manage.index');
+    return redirect()->route('single-rfq.show',$rfq->rfq_code);
     }
 
     /**
@@ -400,10 +400,10 @@ class DealSasController extends Controller
     }
     $user = User::all();
     Notification::send($user, new SasApprove($name = Auth::user()->name , $rfq_id = $rfq->rfq_code));
-    
+
     Toastr::success('SAS Approved Successfully.');
     // return redirect()->route('deal.index');
-    return redirect()->route('rfq-manage.index');
+    return redirect()->route('single-rfq.show',$rfq->rfq_code);
     }
 
 

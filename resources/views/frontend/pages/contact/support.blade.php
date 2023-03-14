@@ -2,7 +2,7 @@
 @section('content')
     <!--========Header Title==========-->
     <section class="support_assistance_header"
-        style="background-image:url('{{ asset('frontend/images/buy-category-hero.jpg') }}'); margin-top:100px">
+        style="background-image:url('{{ asset('frontend/images/buy-category-hero.jpg') }}');">
         <div class="container">
             <div class="d-flex justify-content-center">
                 <span>Web support assistance</span>

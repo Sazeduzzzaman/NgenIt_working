@@ -2,7 +2,7 @@
 @section('content')
 
 <!--========// Single blog content //=======-->
-<section class="container" style="margin-top: 115px;">
+<section class="container">
     <div class="row mt-4">
 
         <div class="col-lg-2"></div>

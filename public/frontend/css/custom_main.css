@@ -67,7 +67,7 @@
 
 
   #fed-bg{
-    width: 100% !important;
+    width: 18rem !important;
 }
 #fed-bg:hover {
     background-color:#ae0a46;
@@ -81,7 +81,7 @@
     background-color:#403b3d;
 }
  #fed-bg:hover h3 {
-    font-weight:600;
+    font-weight:500;
 }
 
 .magazine_section{
@@ -360,15 +360,15 @@ a {
     margin-bottom: 15px;
   }
   .iconbox-icon {
-    background-color: #ae0a46;
-    box-shadow: 0 2px 5px 0 rgb(0 0 0 / 16%), 0 2px 10px 0 rgb(0 0 0 / 12%);
+    background: transparent;
+    /* box-shadow: 0 0px 0px 0 rgb(0 0 0 / 16%), 0 2px 10px 0 rgb(0 0 0 / 12%); */
     border-radius: 50%;
     -webkit-border-radius: 50%;
     -moz-border-radius: 50%;
     margin: 0 auto;
-    width: 65px;
-    height: 65px;
-    margin-top: -51px;
+    width: 89px;
+    height: 89px;
+    margin-top: -65px;
   }
   .iconbox:hover{
     box-shadow: none;
@@ -479,17 +479,17 @@ a {
   /*btn_background*/
   .effect01 {
     color: #FFF;
-    border: 2px solid #ae0a46;
-    box-shadow:0px 0px 0px 1px #ae0a46 inset;
+    border: 1px solid #ae0a46;
+    /* box-shadow:0px 0px 0px 1px #ae0a46 inset; */
     background-color: #ae0a46;
     overflow: hidden;
     position: relative;
     transition: all 0.8s ease-in-out;
   }
   .effect01:hover {
-    border: 2px solid #666;
+    border: 1px solid #444444;
     background-color: #FFF;
-    box-shadow:0px 0px 0px 4px #EEE inset;
+    /* box-shadow:0px 0px 0px 4px #EEE inset; */
     color: #ae0a46;
     transition: all 0.8s ease-in-out;
   }

@@ -75,11 +75,11 @@
                     <div class="col-lg-2 col-sm-5 m-2 mx-auto">
                         <!-- image -->
                         <div class="business_item_icon">
-                            <img src="{{ asset('storage/requestImg/' . $feature1->logo) }}" alt="">
+                            <img src="{{ asset('storage/requestImg/' . $feature1->logo) }}" alt="" height="80px" width="85px">
                         </div>
                         <!-- content -->
                         <div class="business_item_content">
-                            <p class="business_item_title">{{ $feature1->badge }}</p>
+                            <p class="business_item_title">{{ Str::limit($feature1->badge, 16) }}</p>
                             <p class="business_item_text">{{ Str::limit($feature1->header, 70) }}</p>
                             <a href="{{ route('feature.details', $feature1->id) }}" class="business_item_button">
                                 <span>Learn More</span>
@@ -93,11 +93,11 @@
                     <div class="col-lg-2 col-sm-5 m-2 mx-auto">
                         <!-- image -->
                         <div class="business_item_icon">
-                            <img src="{{ asset('storage/requestImg/' . $feature2->logo) }}" alt="">
+                            <img src="{{ asset('storage/requestImg/' . $feature2->logo) }}" alt="" height="80px" width="85px">
                         </div>
                         <!-- content -->
                         <div class="business_item_content">
-                            <p class="business_item_title">{{ Str::limit($feature2->badge, 10) }}</p>
+                            <p class="business_item_title">{{ Str::limit($feature2->badge, 16) }}</p>
                             <p class="business_item_text">{{ Str::limit($feature2->header, 70) }}</p>
                             <a href="{{ route('feature.details', $feature2->id) }}" class="business_item_button">
                                 <span>Learn More</span>
@@ -107,33 +107,15 @@
                             </a>
                         </div>
                     </div>
-                    <!-- item -->
+
                     <div class="col-lg-2 col-sm-5 m-2 mx-auto">
                         <!-- image -->
                         <div class="business_item_icon">
-                            <img src="{{ asset('storage/requestImg/' . $feature5->logo) }}" alt="">
+                            <img src="{{ asset('storage/requestImg/' . $feature3->logo) }}" alt="" height="80px" width="85px">
                         </div>
                         <!-- content -->
                         <div class="business_item_content">
-                            <p class="business_item_title">{{ $feature5->badge }}</p>
-                            <p class="business_item_text">{{ Str::limit($feature5->header, 70) }}</p>
-                            <a href="{{ route('feature.details', $feature5->id) }}" class="business_item_button">
-                                <span>Learn More</span>
-                                <span class="business_item_button_icon">
-                                    <i class="fa-solid fa-arrow-right-long"></i>
-                                </span>
-                            </a>
-                        </div>
-                    </div>
-                    <!-- item -->
-                    <div class="col-lg-2 col-sm-5 m-2 mx-auto">
-                        <!-- image -->
-                        <div class="business_item_icon">
-                            <img src="{{ asset('storage/requestImg/' . $feature3->logo) }}" alt="">
-                        </div>
-                        <!-- content -->
-                        <div class="business_item_content">
-                            <p class="business_item_title">{{ $feature3->badge }}</p>
+                            <p class="business_item_title">{{ Str::limit($feature3->badge, 16) }}</p>
                             <p class="business_item_text">{{ Str::limit($feature3->header, 70) }}</p>
                             <a href="{{ route('feature.details', $feature3->id) }}" class="business_item_button">
                                 <span>Learn More</span>
@@ -147,11 +129,11 @@
                     <div class="col-lg-2 col-sm-5 m-2 mx-auto">
                         <!-- image -->
                         <div class="business_item_icon">
-                            <img src="{{ asset('storage/requestImg/' . $feature4->logo) }}" alt="">
+                            <img src="{{ asset('storage/requestImg/' . $feature4->logo) }}" alt="" height="80px" width="85px">
                         </div>
                         <!-- content -->
                         <div class="business_item_content">
-                            <p class="business_item_title">{{ $feature4->badge }}</p>
+                            <p class="business_item_title">{{ Str::limit($feature4->badge, 16) }}</p>
                             <p class="business_item_text">{{ Str::limit($feature4->header, 70) }}</p>
                             <a href="{{ route('feature.details', $feature4->id) }}" class="business_item_button">
                                 <span>Learn More</span>
@@ -161,12 +143,31 @@
                             </a>
                         </div>
                     </div>
+                    <!-- item -->
+                    <div class="col-lg-2 col-sm-5 m-2 mx-auto">
+                        <!-- image -->
+                        <div class="business_item_icon">
+                            <img src="{{ asset('storage/requestImg/' . $feature5->logo) }}" alt="" height="80px" width="85px">
+                        </div>
+                        <!-- content -->
+                        <div class="business_item_content">
+                            <p class="business_item_title">{{ Str::limit($feature5->badge, 16) }}</p>
+                            <p class="business_item_text">{{ Str::limit($feature5->header, 70) }}</p>
+                            <a href="{{ route('feature.details', $feature5->id) }}" class="business_item_button">
+                                <span>Learn More</span>
+                                <span class="business_item_button_icon">
+                                    <i class="fa-solid fa-arrow-right-long"></i>
+                                </span>
+                            </a>
+                        </div>
+                    </div>
+                    <!-- item -->
                 </div>
             @endif
         </div>
         <!-- button -->
         <div class="business_seftion_button pb-3">
-            <a class="effect01" href="solution_common.html">Explore all of what we do</a>
+            <a class="effect01" href="{{route('whatwedo')}}">Explore all of what we do</a>
         </div>
     </section>
     <!---------End -------->
@@ -177,7 +178,7 @@
                 <!-- content -->
                 <div class="col-lg-8 col-sm-12 pb-3">
                     <div class="home_shop_product_wrapper">
-                        <h5> Shop products and hardware</h5>
+                        <h5> Shop Products and Hardware</h5>
                         <p class="text-justify">Among More than {{ App\Models\Admin\Product::count() }} products and
                             {{ App\Models\Admin\Brand::count() }} brand at your service, we can provide you with the tools
                             you need to succeed. Additionally, you may easily control anything from your NgenIt account.</p>
@@ -238,7 +239,7 @@
             <div class="popular_product_section_content">
                 <!-- section title -->
                 <div class="software_feature_title">
-                    <h1 class="text-center pb-3">Popular products</h1>
+                    <h1 class="text-center pb-3">Popular Products</h1>
                 </div>
                 <!-- wrapper -->
                 <div class="populer_product_slider">
@@ -681,7 +682,7 @@
         <div class="our_success_wrapper">
             <!-- title -->
             <div class="section_title">
-                <h3 class="title_top_heading">Our success starts with our culture.</h3>
+                <h3 class="title_top_heading">Our Success Starts With Our Culture.</h3>
             </div>
             <!-- wrapper -->
             @if ($home)

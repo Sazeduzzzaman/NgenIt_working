@@ -27,7 +27,7 @@
                             <th class="bg-black text-center text-white"> Total Number </th>
                         </tr>
                         <tr>
-                            <td class="text-center"> {{App\Models\Admin\Purchase::sum('total')}}</td>
+                            <td class="text-center"> {{App\Models\Admin\Purchase::sum('total')}} $</td>
                             <td class="text-center"> {{App\Models\Admin\Purchase::count()}}</td>
                         </tr>
                     </table>

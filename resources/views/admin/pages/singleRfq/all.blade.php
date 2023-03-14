@@ -763,12 +763,22 @@
                                             </th>
                                         </tr>
                                         <tr style="border: none;">
-                                            <th style="border: none;">Receivable</th>
+                                            <th style="border: none;">Commercial Documents</th>
                                             <th style="border: none;">
                                                 <button type="button" class="bg-success float-end text-white" data-bs-toggle="modal"
-                                                        data-bs-target="#modal_account_receivable">
+                                                        data-bs-target="#modal_commercial_documents">
                                                         <i class="ph-plus-circle ph-1x"></i>
                                                 </button>
+
+
+                                            </th>
+                                        </tr>
+                                        <tr style="border: none;">
+                                            <th style="border: none;">Sales Achievements</th>
+                                            <th style="border: none;">
+                                                <a href="{{route('sales-achievement.show',$rfq_details->rfq_code)}}" class="bg-success float-end text-white px-1">
+                                                        <i class="ph-plus-circle ph-1x"></i>
+                                                </a>
 
 
                                             </th>

@@ -1,7 +1,7 @@
 @extends('frontend.master')
 @section('content')
 <!--======// Header Title //======-->
-<section class="common_product_header" style="background-image: url('asset('frontend/images/softwer-banner.jpg')'); margin-top:100px">
+<section class="common_product_header" style="background-image: url('asset('frontend/images/softwer-banner.jpg')');">
     <div class="container">
         <div class="">
             <h1>{{$industry->title}}</h1>

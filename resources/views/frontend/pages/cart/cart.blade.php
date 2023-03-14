@@ -2,7 +2,7 @@
 
 @section('content')
 
-<section class="cart_page_content p-4 px-5 py-5" style="margin-top:90px;">
+<section class="cart_page_content p-4 px-5 py-5">
     <!--====// Cart header //====-->
     <div class="cart_header">
         <div class="cart_header_content text-center">

@@ -1,7 +1,7 @@
 @extends('frontend.master')
 @section('content')
     <!--=======// Featured client stories //=======-->
-    <div class="header_title_clinet_stories" style="margin-top: 100px;">
+    <div class="header_title_clinet_stories">
         <h2 class="text-center text-white">All Tech Glossies</h2>
     </div>
 

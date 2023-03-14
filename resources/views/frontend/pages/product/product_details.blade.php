@@ -3,7 +3,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 <!--========// Image And Content wrapper //======-->
-<section class="container" style="margin-top: 10rem">
+<section class="container">
     <div class="row">
         <!-- images -->
         <div class="col-lg-4 col-sm-12 single_product_images">

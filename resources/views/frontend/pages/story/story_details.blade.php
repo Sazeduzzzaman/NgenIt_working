@@ -1,7 +1,7 @@
 @extends('frontend.master')
 @section('content')
 <!--=======// Single blog image //=======-->
-<section class="container" style="margin-top:140px;">
+<section class="container">
     <div class="assetType">
         <a href="javascript:void(0);">{{$blog->badge}}</a>
     </div>

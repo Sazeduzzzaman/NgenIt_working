@@ -37,7 +37,7 @@
 
 
 
-    <div class="page-header breadcrumb-wrap" style="margin-top: 110px">
+    <div class="page-header breadcrumb-wrap">
         <div class="container">
             <div class="cart_header" style="background: whitesmoke;border:none">
                 <div class="cart_header_content text-center">

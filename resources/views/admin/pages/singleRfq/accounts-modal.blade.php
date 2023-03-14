@@ -47,25 +47,25 @@
                                         <div class="form-group">
                                             <label for="sales_price">Sales Price <strong class="text-danger">*</strong>
                                             </label>
-                                            <input type="number" name="sales_price" id="sales_price"
-                                                value="{{ $sourcing->sub_total_sales }}" class="form-control form-control-sm">
+                                            <input type="text" name="sales_price" id="sales_price"
+                                                value="{{ $sourcing->sub_total_sales }}" class="form-control allow_decimal form-control-sm">
                                         </div>
                                     </td>
                                     <td>
                                         <div class="form-group">
                                             <label for="cost_price">Cost Price<strong class="text-danger">*</strong>
                                             </label>
-                                            <input type="number" name="cost_price" id="cost_price" value="{{ $sourcing->sub_total_cost }}"
-                                                class="form-control form-control-sm">
+                                            <input type="text" name="cost_price" id="cost_price" value="{{ $sourcing->sub_total_cost }}"
+                                                class="form-control allow_decimal form-control-sm">
                                         </div>
                                     </td>
                                     <td>
                                         <div class="form-group">
                                             <label for="grossMarkupPersentage"> Gross Markup Persentage <strong
                                                     class="text-danger">*</strong> </label>
-                                            <input type="number" name="gross_makup_percentage"
+                                            <input type="text" name="gross_makup_percentage"
                                                 id="grossMarkupPersentage" value="{{ $sourcing->gross_profit_subtotal }}"
-                                                class="form-control form-control-sm">
+                                                class="form-control allow_decimal form-control-sm">
                                         </div>
                                     </td>
 
@@ -73,27 +73,27 @@
                                         <div class="form-group">
                                             <label for="grossMarkupAmount"> Gross Markup Amount <strong
                                                     class="text-danger">*</strong> </label>
-                                            <input type="number" name="gross_makup_ammount" id="grossMarkupAmount"
-                                            value="{{ $sourcing->gross_profit_amount }}" class="form-control form-control-sm">
+                                            <input type="text" name="gross_makup_ammount" id="grossMarkupAmount"
+                                            value="{{ $sourcing->gross_profit_amount }}" class="form-control allow_decimal form-control-sm">
                                         </div>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>
                                         <div class="form-group">
-                                            <label for="netProfitPersentage"> Net profit Persentage <strong
+                                            <label for="netProfitPersentage"> Net profit Percentage <strong
                                                     class="text-danger">*</strong> </label>
-                                            <input type="number" name="net_profit_percentage"
+                                            <input type="text" name="net_profit_percentage"
                                                 id="netProfitPersentage" value="{{ $sourcing->net_profit_percentage }}"
-                                                class="form-control form-control-sm">
+                                                class="form-control allow_decimal form-control-sm">
                                         </div>
                                     </td>
                                     <td>
                                         <div class="form-group">
                                             <label for="NetprofitAmount"> Net profit Amount <strong
                                                     class="text-danger">*</strong> </label>
-                                            <input type="number" name="net_profit_ammount" id="NetprofitAmount"
-                                            value="{{ $sourcing->net_profit_amount }}" class="form-control form-control-sm">
+                                            <input type="text" name="net_profit_ammount" id="NetprofitAmount"
+                                            value="{{ $sourcing->net_profit_amount }}" class="form-control allow_decimal form-control-sm">
                                         </div>
                                     </td>
 
@@ -101,16 +101,16 @@
                                         <div class="form-group">
                                             <label for="profit"> Profit <strong class="text-danger">*</strong>
                                             </label>
-                                            <input type="number" name="profit" id="profit" value="{{ $sourcing->net_profit_amount }}"
-                                                class="form-control form-control-sm">
+                                            <input type="text" name="profit" id="profit" value="{{ $sourcing->net_profit_amount }}"
+                                                class="form-control allow_decimal form-control-sm">
                                         </div>
                                     </td>
                                     <td>
                                         <div class="form-group">
                                             <label for="loss"> Loss <strong class="text-danger">*</strong>
                                             </label>
-                                            <input type="number" name="loss" id="loss" placeholder="00"
-                                                class="form-control form-control-sm">
+                                            <input type="text" name="loss" id="loss" placeholder="00"
+                                                class="form-control allow_decimal form-control-sm">
                                         </div>
                                     </td>
                                 </tr>
