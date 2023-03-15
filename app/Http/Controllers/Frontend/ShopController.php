@@ -27,6 +27,9 @@ class ShopController extends Controller
                 $cat =Category::where('slug', $slug)->first();
                 $categories = SubCategory::where('cat_id',$cat->id)->orderBy('title','ASC')->get();
                 $subcategories = SubSubCategory::where('cat_id',$cat->id)->orderBy('title','ASC')->get();
+                $related_products = Product::where('cat_id',$cat->id)->orderBy('id','DESC')->limit(10)
+                ->select('products.id','products.rfq','products.slug','products.name','products.thumbnail','products.price','products.discount')
+                ->get();
 
                 $brands   = DB::table('brands')
                             ->join('products', 'brands.id', '=', 'products.brand_id')
@@ -42,6 +45,9 @@ class ShopController extends Controller
                 $cat =SubCategory::where('slug', $slug)->first();
                 $categories = SubCategory::where('cat_id',$cat->id)->orderBy('title','ASC')->get();
                 $subcategories = SubSubCategory::where('cat_id',$cat->id)->orderBy('title','ASC')->get();
+                $related_products = Product::where('sub_cat_id',$cat->id)->orderBy('id','DESC')->limit(10)
+                ->select('products.id','products.rfq','products.slug','products.name','products.thumbnail','products.price','products.discount')
+                ->get();
 
                 $brands   = DB::table('brands')
                             ->join('products', 'brands.id', '=', 'products.brand_id')
@@ -55,6 +61,9 @@ class ShopController extends Controller
                 $cat =SubSubCategory::where('slug', $slug)->first();
                 $categories = SubCategory::where('cat_id',$cat->id)->orderBy('title','ASC')->get();
                 $subcategories = SubSubCategory::where('cat_id',$cat->id)->orderBy('title','ASC')->get();
+                $related_products = Product::where('sub_sub_cat_id',$cat->id)->orderBy('id','DESC')->limit(10)
+                ->select('products.id','products.rfq','products.slug','products.name','products.thumbnail','products.price','products.discount')
+                ->get();
 
                 $brands   = DB::table('brands')
                             ->join('products', 'brands.id', '=', 'products.brand_id')
@@ -68,6 +77,9 @@ class ShopController extends Controller
                 $cat =SubSubSubCategory::where('slug', $slug)->first();
                 $categories = SubCategory::where('cat_id',$cat->id)->orderBy('title','ASC')->get();
                 $subcategories = SubSubCategory::where('cat_id',$cat->id)->orderBy('title','ASC')->get();
+                $related_products = Product::where('sub_sub_sub_cat_id',$cat->id)->orderBy('id','DESC')->limit(10)
+                ->select('products.id','products.rfq','products.slug','products.name','products.thumbnail','products.price','products.discount')
+                ->get();
 
                 $brands   = DB::table('brands')
                             ->join('products', 'brands.id', '=', 'products.brand_id')
@@ -82,6 +94,10 @@ class ShopController extends Controller
         if (!empty($_GET['customBrand'])) {{
             $slug = $_GET['customBrand'];
                 $cat =Brand::where('slug', $slug)->first();
+                $related_products = Product::where('brand_id',$cat->id)->orderBy('id','DESC')->limit(10)
+                ->select('products.id','products.rfq','products.slug','products.name','products.thumbnail','products.price','products.discount')
+                ->get();
+
                 $categories = DB::table('categories')
                             ->join('products', 'categories.id', '=', 'products.cat_id')
                             ->join('brands','products.brand_id', '=','brands.id' )
@@ -147,7 +163,8 @@ class ShopController extends Controller
                             ->join('brands', 'products.brand_id', '=', 'brands.id')
 
                             ->where('brands.slug', '=', $slug)
-                            ->select('products.id','products.slug','products.name','products.thumbnail','products.price','products.discount','products.stock','products.mf_code','products.sku_code','products.short_desc')
+                            ->select('products.id','products.slug','products.name','products.thumbnail','products.price','products.discount','products.stock',
+                            'products.mf_code','products.rfq','products.product_code','products.sku_code','products.short_desc')
                             ;
                             //dd($products);
                 $brands = Brand::inRandomOrder()->paginate(10);
@@ -221,7 +238,7 @@ class ShopController extends Controller
 
 
 
-        return view('frontend.pages.product.allproduct',compact('products','categories','subcategories','newProduct','brands','cat'));
+        return view('frontend.pages.product.allproduct',compact('products','categories','subcategories','newProduct','brands','cat','related_products'));
 
     }
 

@@ -28,9 +28,9 @@
         <!-- content -->
         <div class="col-lg-8 col-sm-12 pl-4">
             <h3>{{ $sproduct->name }}</h3>
-            <h6 class="text-dark">{{ $sproduct->sku_code }} | {{ $sproduct->mf_code }} | {{ $sproduct->product_code }}
+            <h6 class="text-dark product_code">SKU #{{ $sproduct->sku_code }} | MF #{{ $sproduct->mf_code }} | NG #{{ $sproduct->product_code }}
             </h6>
-            <div class="product__details__rating">
+            {{-- <div class="product__details__rating">
                 <img src="{{asset('frontend')}}/images/star-outline.svg" />
                 <img src="{{asset('frontend')}}/images/star-outline.svg" />
                 <img src="{{asset('frontend')}}/images/star-outline.svg" />
@@ -38,17 +38,21 @@
                 <img src="{{asset('frontend')}}/images/star-outline.svg" />
 
                 <span>No reviews yet.</span>
-            </div>
-            <p class="list_price">List Price</p>
-            <div class="row">
+            </div> --}}
+
+            <div class="row pt-3">
 
                 <div class="col-lg-8">
                     @if ($sproduct->rfq != 1)
-                        <div class="product__details__price">
+
+                    <p class="list_price mb-0">List Price</p>
+                        <div class="product__details__price ">
                             @if (!empty($sproduct->discount))
-                            <h4>USD</h4><span style="text-decoration: line-through; color:red">$
-                            {{ $sproduct->price}}</span>
-                            <span style="color: black">$ {{ $sproduct->discount }}</span>
+                            <p class="mb-0">
+                                US
+                                <span style="text-decoration: line-through; color:red">$ {{ $sproduct->price}}</span>
+                                <span style="color: black">$ {{ $sproduct->discount }}</span>
+                            </p>
                             @php
                             $amount = $sproduct->price - $sproduct->discount;
                             $discount = ($amount / $sproduct->price) * 100;
@@ -56,7 +60,7 @@
                             <span class="badge rounded-pill bg-success" style="font-size: 14px;">
                             {{ round($discount)}}%</span>
                             @else
-                            <h4>USD</h4> $ {{ $sproduct->price }}
+                            <p class="mb-0">US $ {{ $sproduct->price }}</p>
                             @endif
                         </div>
                     @else
@@ -125,8 +129,9 @@
                                     <div class="counter">
 
                                         <span class="down" onClick='decreaseCount(event, this)'>-</span>
-                                        <input type="text" name="qty" value="1">
+                                        <input type="text" name="qty" value="1" class="count_field">
                                         <span class="up" onClick='increaseCount(event, this)'>+</span>
+
                                     </div>
                                 </div>
                             </div>
@@ -567,6 +572,7 @@
         document.getElementById("defaultOpen").click();
 
 </script>
+
 
 <script>
 

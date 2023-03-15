@@ -4,9 +4,9 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     @include('frontend.partials.head')
 </head>
-<body onload="myFunction()">
+<body onload="myFunctions()">
 
-    <div id="loading" style="margin-top: 0rem !important"></div>
+    {{-- <div id="loading" style="margin-top: 0rem !important"></div> --}}
 
     <!--======// Nav Menu //========-->
     @include('frontend.partials.header')

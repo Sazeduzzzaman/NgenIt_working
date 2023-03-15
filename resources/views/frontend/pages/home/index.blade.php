@@ -7,25 +7,30 @@
         <div class="banner_slider">
             <!-- slider -->
             <div class="slider_inage">
-                <img src="{{ asset('storage/requestImg/' . $home->branner1) }}" alt="">
+                <img src="http://165.22.48.109/ngenit/storage/kjX8qXJiNTFU4iQj1678868147.jpg" alt="">
             </div>
             <!-- slider -->
-            <div class="slider_inage">
-                <img src="{{ asset('storage/requestImg/' . $home->branner1) }}" alt="">
-            </div>
             <!-- slider -->
-            <div class="slider_inage">
+            {{-- <div class="slider_inage">
                 <img src="{{ asset('storage/requestImg/' . $home->branner1) }}" alt="">
-            </div>
+            </div> --}}
             <!-- slider -->
-            <div class="slider_inage">
+            {{-- <div class="slider_inage">
                 <img src="{{ asset('storage/requestImg/' . $home->branner1) }}" alt="">
-            </div>
+            </div> --}}
+            <!-- slider -->
+            {{-- <div class="slider_inage">
+                <img src="{{ asset('storage/requestImg/' . $home->branner1) }}" alt="">
+            </div> --}}
+            <!-- slider -->
+            {{-- <div class="slider_inage">
+                <img src="{{ asset('storage/requestImg/' . $home->branner1) }}" alt="">
+            </div> --}}
         </div>
     </section>
     <!-- banner start end-->
     <!--======// Home Cart Section //======-->
-    <section class="home_card_wrapper">
+    <section class="home_card_wrapper" style="margin-top: 2.6rem;">
         <div class="container">
             <!-- wrapper -->
             @if ($home)
@@ -58,115 +63,99 @@
     <!--======// Business section //======-->
     <section class="container padding_bottom pt-56 pb-3">
         <!-- home title -->
-        <div class="home_title p-3">
-            <h5 class="home_title_heading">
-                <Span>T</Span>op businesses across industries have trusted <br> Ngen It to achieve their ambitious business
-                goals.
-            </h5>
-            <p class="home_title_text">Our technical expertise, broad solutions portfolio and supply chain capabilities <br>
-                give us the right resources and scale to achieve more for you. </p>
-        </div>
-        <!-- business content -->
-        <div class="business_content_wrapper">
-            <!-- business item wrapper -->
+        <div class="row my-3">
             @if ($home)
-                <div class="row solution_business_item p-3">
-                    <!-- item -->
-                    <div class="col-lg-2 col-sm-5 m-2 mx-auto">
-                        <!-- image -->
-                        <div class="business_item_icon">
-                            <img src="{{ asset('storage/requestImg/' . $feature1->logo) }}" alt="" height="80px" width="85px">
-                        </div>
-                        <!-- content -->
-                        <div class="business_item_content">
-                            <p class="business_item_title">{{ Str::limit($feature1->badge, 16) }}</p>
-                            <p class="business_item_text">{{ Str::limit($feature1->header, 70) }}</p>
-                            <a href="{{ route('feature.details', $feature1->id) }}" class="business_item_button">
-                                <span>Learn More</span>
-                                <span class="business_item_button_icon">
-                                    <i class="fa-solid fa-arrow-right-long"></i>
-                                </span>
-                            </a>
-                        </div>
-                    </div>
-                    <!-- item -->
-                    <div class="col-lg-2 col-sm-5 m-2 mx-auto">
-                        <!-- image -->
-                        <div class="business_item_icon">
-                            <img src="{{ asset('storage/requestImg/' . $feature2->logo) }}" alt="" height="80px" width="85px">
-                        </div>
-                        <!-- content -->
-                        <div class="business_item_content">
-                            <p class="business_item_title">{{ Str::limit($feature2->badge, 16) }}</p>
-                            <p class="business_item_text">{{ Str::limit($feature2->header, 70) }}</p>
-                            <a href="{{ route('feature.details', $feature2->id) }}" class="business_item_button">
-                                <span>Learn More</span>
-                                <span class="business_item_button_icon">
-                                    <i class="fa-solid fa-arrow-right-long"></i>
-                                </span>
-                            </a>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-2 col-sm-5 m-2 mx-auto">
-                        <!-- image -->
-                        <div class="business_item_icon">
-                            <img src="{{ asset('storage/requestImg/' . $feature3->logo) }}" alt="" height="80px" width="85px">
-                        </div>
-                        <!-- content -->
-                        <div class="business_item_content">
-                            <p class="business_item_title">{{ Str::limit($feature3->badge, 16) }}</p>
-                            <p class="business_item_text">{{ Str::limit($feature3->header, 70) }}</p>
-                            <a href="{{ route('feature.details', $feature3->id) }}" class="business_item_button">
-                                <span>Learn More</span>
-                                <span class="business_item_button_icon">
-                                    <i class="fa-solid fa-arrow-right-long"></i>
-                                </span>
-                            </a>
-                        </div>
-                    </div>
-                    <!-- item -->
-                    <div class="col-lg-2 col-sm-5 m-2 mx-auto">
-                        <!-- image -->
-                        <div class="business_item_icon">
-                            <img src="{{ asset('storage/requestImg/' . $feature4->logo) }}" alt="" height="80px" width="85px">
-                        </div>
-                        <!-- content -->
-                        <div class="business_item_content">
-                            <p class="business_item_title">{{ Str::limit($feature4->badge, 16) }}</p>
-                            <p class="business_item_text">{{ Str::limit($feature4->header, 70) }}</p>
-                            <a href="{{ route('feature.details', $feature4->id) }}" class="business_item_button">
-                                <span>Learn More</span>
-                                <span class="business_item_button_icon">
-                                    <i class="fa-solid fa-arrow-right-long"></i>
-                                </span>
-                            </a>
-                        </div>
-                    </div>
-                    <!-- item -->
-                    <div class="col-lg-2 col-sm-5 m-2 mx-auto">
-                        <!-- image -->
-                        <div class="business_item_icon">
-                            <img src="{{ asset('storage/requestImg/' . $feature5->logo) }}" alt="" height="80px" width="85px">
-                        </div>
-                        <!-- content -->
-                        <div class="business_item_content">
-                            <p class="business_item_title">{{ Str::limit($feature5->badge, 16) }}</p>
-                            <p class="business_item_text">{{ Str::limit($feature5->header, 70) }}</p>
-                            <a href="{{ route('feature.details', $feature5->id) }}" class="business_item_button">
-                                <span>Learn More</span>
-                                <span class="business_item_button_icon">
-                                    <i class="fa-solid fa-arrow-right-long"></i>
-                                </span>
-                            </a>
-                        </div>
-                    </div>
-                    <!-- item -->
+                <div class="home_title">
+                    <h5 class="home_title_heading"> {{$home->header1}}</h5>
+                    <p class="home_title_text">{{$home->header2}}</p>
                 </div>
             @endif
         </div>
+        <!-- business content -->
+        <div class="row d-flex justify-content-center">
+            <div class="col-lg-2 col-md-6 mr-5">
+                <div class="text-center">
+                    <img src="{{ asset('storage/requestImg/' . $feature1->logo) }}" alt="" height="80px" width="85px">
+                    <h5>{{ Str::limit($feature1->badge, 16) }}</h5>
+                </div>
+                <div class="feature_description">
+                    <p>{{ Str::limit($feature1->header, 55) }}</p>
+                </div>
+                <a href="{{ route('feature.details', $feature1->id) }}" class="business_item_button">
+                    <span>Learn More</span>
+                    <span class="business_item_button_icon">
+                        <i class="fa-solid fa-arrow-right-long"></i>
+                    </span>
+                </a>
+            </div>
+
+            <div class="col-lg-2 col-md-6 mr-5">
+                <div class="text-center">
+                    <img src="{{ asset('storage/requestImg/' . $feature2->logo) }}" alt="" height="80px" width="85px">
+                    <h5>{{ Str::limit($feature2->badge, 16) }}</h5>
+                </div>
+                <div class="feature_description">
+                    <p>{{ Str::limit($feature2->header, 55) }}</p>
+                </div>
+                <a href="{{ route('feature.details', $feature1->id) }}" class="business_item_button">
+                    <span>Learn More</span>
+                    <span class="business_item_button_icon">
+                        <i class="fa-solid fa-arrow-right-long"></i>
+                    </span>
+                </a>
+            </div>
+
+            <div class="col-lg-2 col-md-6 mr-5">
+                <div class="text-center">
+                    <img src="{{ asset('storage/requestImg/' . $feature3->logo) }}" alt="" height="80px" width="85px">
+                    <h5>{{ Str::limit($feature3->badge, 16) }}</h5>
+                </div>
+                <div class="feature_description">
+                    <p>{{ Str::limit($feature3->header, 55) }}</p>
+                </div>
+                <a href="{{ route('feature.details', $feature1->id) }}" class="business_item_button">
+                    <span>Learn More</span>
+                    <span class="business_item_button_icon">
+                        <i class="fa-solid fa-arrow-right-long"></i>
+                    </span>
+                </a>
+            </div>
+
+            <div class="col-lg-2 col-md-6">
+                <div class="text-center">
+                    <img src="{{ asset('storage/requestImg/' . $feature4->logo) }}" alt="" height="80px" width="85px">
+                    <h5>{{ Str::limit($feature4->badge, 16) }}</h5>
+                </div>
+                <div class="feature_description">
+                    <p>{{ Str::limit($feature4->header, 55) }}</p>
+                </div>
+                <a href="{{ route('feature.details', $feature1->id) }}" class="business_item_button">
+                    <span>Learn More</span>
+                    <span class="business_item_button_icon">
+                        <i class="fa-solid fa-arrow-right-long"></i>
+                    </span>
+                </a>
+            </div>
+
+            <div class="col-lg-2 col-md-6 ">
+                <div class="text-center">
+                    <img src="{{ asset('storage/requestImg/' . $feature5->logo) }}" alt="" height="80px" width="85px">
+                                                <h5>{{ Str::limit($feature5->badge, 16) }}</h5>
+                </div>
+                <div class="feature_description">
+                    <p>{{ Str::limit($feature5->header, 55) }}</p>
+                </div>
+                <a href="{{ route('feature.details', $feature1->id) }}" class="business_item_button">
+                    <span>Learn More</span>
+                    <span class="business_item_button_icon">
+                        <i class="fa-solid fa-arrow-right-long"></i>
+                    </span>
+                </a>
+            </div>
+          </div>
+
         <!-- button -->
-        <div class="business_seftion_button pb-3">
+        <div class="business_seftion_button py-3">
             <a class="effect01" href="{{route('whatwedo')}}">Explore all of what we do</a>
         </div>
     </section>

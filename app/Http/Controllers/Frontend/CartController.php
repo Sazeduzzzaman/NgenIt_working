@@ -28,13 +28,14 @@ class CartController extends Controller
     public function AddToCart(Request $request){
 
         $data = $request->all();
+        //dd($data);
 
 
         $id = $request->product_id;
         $product = Product::findOrFail($id);
 
         if ($product->discount == NULL) {
-
+            //dd($data);
             Cart::add([
 
                 'id' => $id,

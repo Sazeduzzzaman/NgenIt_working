@@ -77,7 +77,7 @@
                                                     @if ($product->discount == Null)
                                                         $ {{$product->price}}
                                                     @else
-                                                    $ {{$product->discount}}
+                                                        $ {{$product->discount}}
                                                     @endif
                                                 @endif
                                             </td>

@@ -114,7 +114,34 @@
 
 {{-- Month Tab --}}
 
+{{-- 
+<script>
 
+
+function addToCart(event) {
+    event.preventDefault(); // stop default form submission behavior
+
+    // Get the form data
+    var formData = new FormData(document.querySelector('.addToCartForm'));
+
+    // Send an AJAX request to the route
+    axios.post('{{ route('cart.add') }}', formData)
+         .then(function (response) {
+            // Handle the response here
+            console.log(response);
+         })
+         .catch(function (error) {
+            // Handle errors here
+            console.log(error);
+         });
+}
+
+
+
+
+
+
+</script> --}}
 
 
 

@@ -186,6 +186,7 @@ Route::post('cart_store', [App\Http\Controllers\Frontend\CartController::class,'
 
     Route::get('/cart-decrement/{rowId}' , 'CartDecrement')->name('cart.decrement');
     Route::get('/cart-increment/{rowId}' , 'CartIncrement')->name('cart.increment');
+    Route::get('/add/cart' , 'CartAdd')->name('cart.add');
 
 
 });

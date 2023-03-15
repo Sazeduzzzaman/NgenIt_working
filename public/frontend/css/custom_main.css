@@ -332,6 +332,16 @@ a {
   }
   /*-----End-----*/
 
+/*------Products----*/
+.price_currency_value{
+    font-size: 16px;
+    font-weight: 600;
+}
+
+
+
+
+
   .featureinfo h4 {
     font-family: "Klinic Slab";
     font-size: 18px;
@@ -2078,7 +2088,7 @@ button:focus {
     cursor: pointer;
     border-radius: 50%;
     position: absolute;
-    right: 0px;
+    /* right: 0px; */
     color: #fff ;
     background-color:transparent;
     pointer-events: painted;
@@ -2102,6 +2112,36 @@ button:focus {
 
 
 @media only screen and (max-width: 480px){
+    .home_card_wrapper{
+        margin-top: 9rem !important;
+    }
+    .home_card_item_title {
+        font-family: "Klinic Slab";
+        font-size: 28px;
+        font-weight: 300;
+        color: var(--heading);
+        text-align: center;
+        line-height: 30px;
+        margin-bottom: 24px;
+    }
+    .home_card_item {
+        max-width: 490px;
+        width: 100%;
+        box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%);
+        background-color: #f7f6f5;
+        padding: 20px 16px 28px;
+        margin-bottom: 20px;
+    }
+    .home_card_button a {
+        display: inline-block;
+        padding: 13px 30px;
+        color: var(--mainColor);
+        border: 1px solid var(--subColor);
+        font-size: 14px;
+        font-weight: 500;
+        background: var(--primaryColor);
+        transition: all 0.3s linear;
+    }
     .pagination{
         font-size: 0;
         display: inline-block;

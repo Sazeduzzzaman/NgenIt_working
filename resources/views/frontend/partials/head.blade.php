@@ -16,6 +16,7 @@
         <link rel="stylesheet" href="{{ asset('frontend/css/custom_style_main.css')}}">
         <link rel="stylesheet" href="{{ asset('frontend/css/sidebar_tab.css')}}">
         <link rel="stylesheet" href="{{ asset('frontend/css/sidebar_tab.css')}}">
+        <link rel="stylesheet" href="{{ asset('frontend/css/modification_style.css')}}">
         {{-- Custom Style 12-03-2023 End--}}
 
 
@@ -33,6 +34,7 @@
 
     <!-- Plugin link -->
     <link rel="stylesheet" href="{{ asset('frontend/lib/bootstrap/css/bootstrap.css')}}">
+    <link href="{{ asset('frontend/assets/css/bootstrap5.min.css')}}" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('frontend/lib/font-awesome/css/font-awesome.css')}}">
 
     <!-- Css link -->
@@ -41,13 +43,19 @@
     <link rel="stylesheet" href="{{ asset('frontend/css/sidebar_tab.css')}}">
     <link rel="stylesheet" href="http://cdn.bootcss.com/toastr.js/latest/css/toastr.min.css">
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css">
+    <link href="{{ asset('frontend/assets/css/jquery-ui.min.css')}}" rel="stylesheet">
+
     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" />
 
 
 
     @yield('styles')
  <style>
+    .ui-autocomplete {
+        left: 35% !important;
+        width: 100% !important;
+        margin-top: 16px !important;
+    }
     .ui-menu{
         margin-top: 1.5rem !important;
         top: 5rem !important;
