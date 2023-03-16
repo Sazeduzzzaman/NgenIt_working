@@ -26,7 +26,10 @@
     font-display: swap;
   }
   /* font face for Klinic Slab End*/
-
+*{
+    padding: 0;
+    margin: 0;
+}
   #loading {
     position: fixed;
     width: 100%;
@@ -320,7 +323,7 @@ a {
   }
   .section_wp {
     background: #f7f6f5;
-    padding: 60px 0px;
+    padding: 20px 0px;
     color: #3e332d;
     border-top: 0.7px solid silver;
     border-bottom: 0.7px solid silver;
@@ -335,13 +338,7 @@ a {
 /*------Products----*/
 .price_currency_value{
     font-size: 16px;
-    font-weight: 600;
 }
-
-
-
-
-
   .featureinfo h4 {
     font-family: "Klinic Slab";
     font-size: 18px;
@@ -375,11 +372,14 @@ a {
     border-radius: 50%;
     -webkit-border-radius: 50%;
     -moz-border-radius: 50%;
-    margin: 0 auto;
-    width: 89px;
-    height: 89px;
+    margin: 13px auto;
+    display: flex;
+    width: 70px;
+    height: 70px;
+    justify-content: center;
     margin-top: -65px;
-  }
+    align-items: center;
+}
   .iconbox:hover{
     box-shadow: none;
     transition: 0.5s ease-in-out;
@@ -414,10 +414,11 @@ a {
     background-position: 0 -15px
   }
   .iconbox-icon img {
-    width: 45px;
-    height: 45px;
+    width: 115px;
+    height: 115px;
     margin: 10px;
-  }
+    border-radius: 50%;
+}
 
   .iconbox-icon_about span {
     color: #fff;
@@ -466,7 +467,6 @@ a {
     justify-content: center;
     text-align: center;
     background-color: #FFF;
-    padding:  10px 0px;
     width: 240px;
   }
 
@@ -1983,72 +1983,6 @@ a {
   .optionbox:hover:before{
       background: #ae0a46;
     }
-  /* Blog Pagination Start */
-  .pagination-outer{ text-align: center; }
-.pagination{
-    background: linear-gradient(#ae0a46, #ae0a46);
-    font-family: 'Libre Franklin', sans-serif;
-    padding: 5px;
-    display: inline-flex;
-    position: relative;
-}
-.pagination li a.page-link{
-    color: #fff;
-    background: transparent;
-    font-size: 18px;
-    font-weight: 500;
-    line-height: 35px;
-    height: 35px;
-    width: 30px;
-    padding: 0;
-    margin: 0 5px;
-    border: none;
-    overflow: hidden;
-    position: relative;
-    z-index: 1;
-    transition: all 0.5s ease 0s;
-}
-.pagination li a.page-link:hover{ color: #000; }
-.pagination li a.page-link:focus,
-.pagination li.active a.page-link:hover,
-.pagination li.active a.page-link{
-  background: black !important;
-  border-radius: 5px;
-  border: none !important;
-    color: white;
-    background: transparent;
-    font-weight: 700;
-    border: none;
-}
-.pagination li:first-child a.page-link,
-.pagination li:last-child a.page-link{
-    font-size: 15px;
-    line-height: 37px;
-    width: auto;
-    padding: 0 8px;
-    border-radius: 0;
-}
-.pagination li a.page-link:before{
-    content: '';
-    background: #fff;
-    width: 100%;
-    height: 100%;
-    border: 1px solid #38339D;
-    border-radius: 5px;
-    transform: scale(0);
-    position: absolute;
-    left: 0;
-    top: 0;
-    z-index: -1;
-    transition: all 0.3s ease 0s;
-}
-.pagination li a.page-link:hover:before{ transform: scale(1); }
-.pagination li a.page-link:focus:before,
-.pagination li.active a.page-link:hover:before,
-.pagination li.active a.page-link:before{
-    transform: scale(0);
-}
-
 button:focus {
     outline: none !important;
     outline: none !important;
@@ -2141,15 +2075,6 @@ button:focus {
         font-weight: 500;
         background: var(--primaryColor);
         transition: all 0.3s linear;
-    }
-    .pagination{
-        font-size: 0;
-        display: inline-block;
-    }
-    .pagination li{
-        display: inline-block;
-        vertical-align: top;
-        margin: 0 0 10px;
     }
 }
   /* Blog end */

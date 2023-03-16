@@ -163,7 +163,6 @@
     text-decoration: underline;
   }
   form .btn {
-    height: 50px;
     width: 100%;
     border-radius: 5px;
     position: relative;
@@ -3656,6 +3655,7 @@
     text-align: center;
   }
 
+
   .product_item_content_name {
     margin-bottom: 10px;
     color: #ae0a46;
@@ -4031,7 +4031,7 @@
               =====================*/
   /*===================================================*/
   .header_title_product_filter {
-    background-image: url("../images/desktop-shop-hero.jpg");
+    background-image: url("https://img.freepik.com/free-vector/gradient-liquid-abstract-background_52683-60469.jpg");
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;

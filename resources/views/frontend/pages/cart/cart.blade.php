@@ -1,203 +1,479 @@
 @extends('frontend.master')
 
 @section('content')
+<style>
 
-<section class="cart_page_content p-4 px-5 py-5">
-    <!--====// Cart header //====-->
-    <div class="cart_header">
-        <div class="cart_header_content text-center">
-            <!-- wrapper -->
-            <div class="justify-content-between" style="display: inline-flex;">
-                <!-- title -->
-                <div class="cart_header_title text-center"><h2 class="text-center" style="color: #ae0a46">My Cart</h2></div>
-                <div class="cart_header_right_inner text-right">
-                    {{-- <ul>
-                        <li><a href="" onclick="print()"><span><i class="fa-solid fa-print"></i> </span><span>Print</span></a></li>
-                    </ul> --}}
+.card{
+    margin: auto;
+    max-width: 1000px;
+    width: 100%;
+    box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border-radius: 1rem;
+    border: transparent;
+}
+@media(max-width:767px){
+    .card{
+        margin: 3vh auto;
+    }
+}
+.cart{
+    background-color: #fff;
+    border-bottom-left-radius: 1rem;
+    border-top-left-radius: 1rem;
+    padding: 0px ;
+}
+@media(max-width:767px){
+    .cart{
+        padding: 4vh;
+        border-bottom-left-radius: unset;
+        border-top-right-radius: 1rem;
+    }
+}
+.summary{
+    background-color: #f5f5f5;
+    border-top-right-radius: 1rem;
+    border-bottom-right-radius: 1rem;
+    padding: 2vh;
+    color: rgb(65, 65, 65);
+}
+@media(max-width:767px){
+    .summary{
+    border-top-right-radius: unset;
+    border-bottom-left-radius: 1rem;
+    }
+}
+.summary .col-2{
+    padding: 0;
+}
+.summary .col-10
+{
+    padding: 0;
+}.row{
+    margin: 0;
+}
+.title {
+    padding: 10px;
+    border-top-left-radius: 0.85rem;
+
+}
+.title b{
+    font-size: 1.5rem;
+    color: #fff !important;
+}
+.main{
+    margin: 0;
+    padding: 2vh 0;
+    width: 100%;
+}
+.col-2, .col{
+    padding: 0 1vh;
+}
+a{
+    padding: 0 1vh;
+}
+.close{
+    margin-left: auto;
+    font-size: 0.7rem;
+}
+img{
+    width: 3.5rem;
+}
+.back-to-shop{
+    margin-right: 1rem;
+    margin-top: 1rem;
+}
+
+hr{
+    margin-top: 1.25rem;
+}
+form{
+    padding: 2vh 0;
+}
+select{
+    border: 1px solid rgba(0, 0, 0, 0.137);
+    padding: 1.5vh 1vh;
+    margin-bottom: 4vh;
+    outline: none;
+    width: 100%;
+    background-color: rgb(247, 247, 247);
+}
+input{
+    border: 1px solid rgba(0, 0, 0, 0.137);
+    padding: 1vh;
+    margin-bottom: 4vh;
+    outline: none;
+    width: 100%;
+    background-color: rgb(247, 247, 247);
+}
+input:focus::-webkit-input-placeholder
+{
+      color:transparent;
+}
+.btn:focus{
+    box-shadow: none;
+    outline: none;
+    box-shadow: none;
+    color: white;
+    -webkit-box-shadow: none;
+    -webkit-user-select: none;
+    transition: none;
+}
+.btn:hover{
+    color: white;
+}
+a{
+    color: black;
+}
+a:hover{
+    color: black;
+    text-decoration: none;
+}
+ #code{
+    background-image: linear-gradient(to left, rgba(255, 255, 255, 0.253) , rgba(255, 255, 255, 0.185)), url("https://img.icons8.com/small/16/000000/long-arrow-right.png");
+    background-repeat: no-repeat;
+    background-position-x: 95%;
+    background-position-y: center;
+}
+</style>
+
+    <!--======// Header Title //======-->
+    <section class="common_product_header p-0" style="background-image: linear-gradient(
+        rgba(0,0,0,0.8),
+        rgba(0,0,0,0.8)
+        ),url('https://tapcom-live.ams3.cdn.digitaloceanspaces.com/media/cache/bb/74/bb749b579a0f712fb8ab4065645e8918.jpg');">
+        <div class="container ">
+          <h1>My Cart</h1>
+            <div class="row ">
+              <!--BUTTON START-->
+              <div class="d-flex justify-content-center align-items-center">
+                <div class="m-4">
+                    <button class="common_button2" href="product_filters.html">Talk to a specialist</button>
+                  </div>
+                  <div class="m-4">
+                    <button class="common_button3" href="#">Shop all Surface devices</button>
+                  </div>
+              </div>
+          </div>
+        </div>
+      </section>
+      <!----------End--------->
+      {{-- Cart Section Start --}}
+      <div class="card mt-4 mb-4">
+        <div class="row">
+            <div class="col-md-8 cart">
+                <div class="title">
+                    <div class="row">
+                        <div class="col"><h4><b>Shopping Cart</b></h4></div>
+                        <div class="col align-self-center text-right text-white fw-bold">3 Items</div>
+                    </div>
+                </div>
+                {{--Header Title --}}
+                <div class="row border-top border-bottom px-3">
+                    <div class="row main align-items-center">
+                        <div class="col-2">
+
+                        </div>
+                        <div class="col">
+                            <div class="row text-muted">Item Name</div>
+                        </div>
+                        <div class="col">Unit Price</div>
+                        <div class="col">QTY</div>
+                        <div class="col">Unit Total</div>
+                        <div class="col-2">
+                            <a href="">
+                                Empty Cart
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                {{--Header Title End--}}
+                <div class="row border-top border-bottom px-3">
+                    <div class="row main align-items-center">
+                        <div class="col-2"><img class="img-fluid" src="https://m.media-amazon.com/images/I/61UGE9cZVlL._AC_SL1500_.jpg"></div>
+                        <div class="col">
+                            <div class="row text-muted">Shirt</div>
+                            <div class="row">Cotton T-shirt</div>
+                        </div>
+                        <div class="col">
+                            <a href="#">-</a><a href="#" class="border">1</a><a href="#">+</a>
+                        </div>
+                        <div class="col">&euro; 44.00 <span class="close">&#10005;</span></div>
+                    </div>
+                </div>
+                <div class="row  px-3">
+                    <div class="row main align-items-center">
+                        <div class="col-2"><img class="img-fluid" src="https://m.media-amazon.com/images/I/61UGE9cZVlL._AC_SL1500_.jpg"></div>
+                        <div class="col">
+                            <div class="row text-muted">Shirt</div>
+                            <div class="row">Cotton T-shirt</div>
+                        </div>
+                        <div class="col">
+                            <a href="#">-</a><a href="#" class="border">1</a><a href="#">+</a>
+                        </div>
+                        <div class="col">&euro; 44.00 <span class="close">&#10005;</span></div>
+                    </div>
+                </div>
+                <div class="row border-top border-bottom px-3">
+                    <div class="row main align-items-center">
+                        <div class="col-2"><img class="img-fluid" src="https://m.media-amazon.com/images/I/61UGE9cZVlL._AC_SL1500_.jpg"></div>
+                        <div class="col">
+                            <div class="row text-muted">Shirt</div>
+                            <div class="row">Cotton T-shirt</div>
+                        </div>
+                        <div class="col">
+                            <a href="#">-</a><a href="#" class="border">1</a><a href="#">+</a>
+                        </div>
+                        <div class="col">&euro; 44.00 <span class="close">&#10005;</span></div>
+                    </div>
+                </div>
+                <div class="d-flex justify-content-end  mb-2">
+                    <div class="back-to-shop">
+                    <a href="#">&leftarrow; <span class="text-danger fw-bold" style="font-size: 16px">Back to shop</span></a>
+                </div>
+                </div>
+            </div>
+            <div class="col-md-4 summary">
+                <div><h5 class="text-center"><b>Summary</b></h5></div>
+                <hr>
+                <div class="row">
+                    <div class="col" style="padding-left:0;">Sub Total</div>
+                    <div class="col text-right">&euro; 132.00</div>
+                </div>
+                <div class="row">
+                    <div class="col" style="padding-left:0;">Tax Estimate</div>
+                    <div class="col text-right">&euro; 132.00</div>
+                </div>
+                <div class="row">
+                    <div class="col" style="padding-left:0;">Shipping Cost</div>
+                    <div class="col text-right">&euro; 132.00</div>
+                </div>
+                <hr>
+                <div class="row" style=" padding: 1vh 0;">
+                    <div class="col">TOTAL PRICE</div>
+                    <div class="col text-right">&euro; 137.00</div>
+                </div>
+                <div class="d-flex justify-content-center pt-5">
+                    <button class="btn product_btn">CHECKOUT</button>
                 </div>
             </div>
         </div>
+
     </div>
-
-    <!--======// Card body //=======-->
-    <div class="cart_body_wrapper">
-        <!--====// Left //====-->
-        <div class="cart_body_left">
-
-            <!----// Cart Details //---->
-            <div class="your_cart">
-                <!-- header -->
-                <div class="your_cart_header pl-1">
-                    <div class="your_cart_title">Your cart</div>
-                    <div class="your_cart_title text-center" style="width: 16rem">Name</div>
-                    <div class="your_cart_title">Unit Price</div>
-                    <div class="your_cart_title">Quantity</div>
-                    <div class="your_cart_title">Total</div>
-                    <div class="your_cart_empty">
-                        <form method="get" action="{{route('cart.destroy')}}">
-
-                        <a href="javascript:void(0);" class="rmvBtn">Empty cart</a></div>
-                    </form>
+            <!--=======// Popular products //======-->
+    <section class="popular_product_section section_padding">
+        <!-- container -->
+        <div class="container">
+            <div class="popular_product_section_content">
+                <!-- section title -->
+                <div class="Hardware_feature_title mb-3">
+                    <h1 class="text-center p-3 ">Popular Product</h1>
                 </div>
+                <!-- wrapper colum -->
+                <div class="populer_product_slider">
 
-                <!-- your cart item-->
-                @foreach ($cart_details as $item)
-                    @php
-                        $slug = App\Models\Admin\Product::where('id', $item->id)->value('slug');
-                    @endphp
+                    <!-- product_item -->
 
-                    <div class="your_cart_item">
-                        <!-- wrapper -->
-                        <div class="your_cart_item_wrapper">
-                            <!-- image -->
-                            <div class="cart_item_image">
-                                <img src="{{$item->options->has('image') ? $item->options->image : ''}}" alt="{{ $item->name }}" width="75px" height="75px">
+                    <div class="product_item">
+                        <!-- image -->
+                        <div class="product_item_thumbnail">
+                            <img src="images/single_product/product4.jpg" alt="">
+                        </div>
+
+                        <!-- product content -->
+                        <div class="product_item_content">
+                            <a href="" class="product_item_content_name">Microsoft Wireless Desktop 2000 - keyboard
+                                and mouse set - QWERTY - US - black</a>
+
+                            <!-- price -->
+                            <div class="product_item_price">
+                                <span class="price_currency">usd</span>
+                                <span class="price_currency_value">$856</span>
                             </div>
 
-                            <!-- content -->
-                            <div class="cart_item_content">
-                                <!-- utitlity -->
-                                <div class="cart_item_content_utitlity">
-                                    <div class="cart_content_details">
-                                        <!-- name -->
-                                        <a href="{{ route('product.details', $slug) }}" class="cart_produt_name" style="width: 15rem">{{ $item->name }}</a>
-                                    </div>
+                            <!-- button -->
+                            <a href="" class="product_button">Add to Basket</a>
+                        </div>
 
-                                    <!-- cart product price -->
-                                    <div class="cart_product_price"> <small>USD</small>
-                                        <span class="unitCart_price">$ {{ number_format($item->price, 2) }}</span>
-                                        </div>
+                    </div>
+                    <div class="product_item">
+                        <!-- image -->
+                        <div class="product_item_thumbnail">
+                            <img src="images/single_product/product2.jpg" alt="">
+                        </div>
 
-                                    <!-- cart counter-->
-                                    <div class="card_product_counter">
-                                        <form class="myForm">
+                        <!-- product content -->
+                        <div class="product_item_content">
+                            <a href="" class="product_item_content_name">Microsoft Wireless Desktop 2000 - keyboard
+                                and mouse set - QWERTY - US - black</a>
+
+                            <!-- price -->
+                            <div class="product_item_price">
+                                <!-- <span class="price_currency">usd</span> -->
+                                <span class="price_currency_value">
+                                    <p type="button" class="text-primary" data-toggle="modal"
+                                        data-target="#exampleModal">
+                                        Ask For Price
+                                    </p>
+                                </span>
+                            </div>
+
+                            <!-- button -->
+                            <a href="" class="product_button">Add to Basket</a>
+                        </div>
+
+                    </div>
+                    <div class="product_item">
+                        <!-- image -->
+                        <div class="product_item_thumbnail">
+                            <img src="images/single_product/product3.jpg" alt="">
+                        </div>
+
+                        <!-- product content -->
+                        <div class="product_item_content">
+                            <a href="" class="product_item_content_name">Microsoft Wireless Desktop 2000 - keyboard
+                                and mouse set - QWERTY - US - black</a>
+
+                            <!-- price -->
+                            <div class="product_item_price">
+                                <span class="price_currency">usd</span>
+                                <span class="price_currency_value">$856</span>
+                            </div>
+
+                            <!-- button -->
+                            <a href="" class="product_button">Add to Basket</a>
+                        </div>
+
+                    </div>
+                    <div class="product_item">
+                        <!-- image -->
+                        <div class="product_item_thumbnail">
+                            <img src="images/single_product/product4.jpg" alt="">
+                        </div>
+
+                        <!-- product content -->
+                        <div class="product_item_content">
+                            <a href="" class="product_item_content_name">Microsoft Wireless Desktop 2000 - keyboard
+                                and mouse set - QWERTY - US - black</a>
+
+                            <!-- price -->
+                            <div class="product_item_price">
+                                <span class="price_currency">usd</span>
+                                <span class="price_currency_value">$856</span>
+                            </div>
+
+                            <!-- button -->
+                            <a href="" class="product_button">Add to Basket</a>
+                        </div>
+
+                    </div>
+                    <div class="product_item">
+                        <!-- image -->
+                        <div class="product_item_thumbnail">
+                            <img src="images/single_product/product2.jpg" alt="">
+                        </div>
+
+                        <!-- product content -->
+                        <div class="product_item_content">
+                            <a href="" class="product_item_content_name">Microsoft Wireless Desktop 2000 - keyboard
+                                and mouse set - QWERTY - US - black</a>
+
+                            <!-- price -->
+                            <div class="product_item_price">
+                                <p type="button" class="text-primary" data-toggle="modal" data-target="#exampleModal">
+                                    Ask For Price
+                                </p>
+                            </div>
+
+                            <!-- button -->
+                            <a href="" class="product_button">Add to Basket</a>
+                        </div>
+
+                    </div>
+                    <!-- product item -->
 
 
-                                            <input type="hidden" id="price" name="price" value="{{ $item->price }}">
-                                                <div class="pro-qty mb-2" style="width: 5.5rem">
-                                                    <div class="counter" style="width: 2rem">
-                                                        <input name="rowID" type="hidden" id="rowID" value="{{ $item->rowId }}">
-                                                        <span class="down" id="{{ $item->rowId }}" onClick='decreaseCount(event, this, this.id)'>-</span>
-                                                        <input type="text" name="qty" value="{{ $item->qty }}" style="width: 1.5rem;" readonly>
-                                                        <span class="up" id="{{ $item->rowId }}" onClick='increaseCount(event, this, this.id)'>+</span>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section>
+        <!-- Product Modal Start-->
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header text-white" style="background-color: #a80b6e; border: none;">
+                        <h5 class="modal-title text-white" id="exampleModalLabel">Product Details</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <!-- style="background-color: #3e3e3e;" -->
+                        <div class="">
+                            <!-- form Sidebar -->
+                            <div class="background">
+                                <div class="containers">
+                                    <div class="screen">
+                                        <div class="screen-body">
+                                            <div class="screen-body-item screen-body-item-right modal_form">
+                                                <form action="">
+                                                    <div class="app-form">
+                                                        <div class="app-form-group">
+                                                            <input type="text" class="app-form-control2"
+                                                                placeholder="NAME">
+                                                        </div>
+                                                        <div class="app-form-group">
+                                                            <input type="email" class="app-form-control2"
+                                                                placeholder="EMAIL">
+                                                        </div>
+                                                        <div class="app-form-group">
+                                                            <input type="number" class="app-form-control2"
+                                                                placeholder="CONTACT NO">
+                                                        </div>
+                                                        <div class="app-form-group">
+                                                            <input type="text" class="app-form-control2"
+                                                                placeholder="Company">
+                                                        </div>
+                                                        <div class="app-form-group">
+                                                            <input type="number" class="app-form-control2"
+                                                                placeholder="Quantity">
+                                                        </div>
+                                                        <div class="app-form-group">
+                                                            <input class="app-form-control2 rounded-0 form-control-sm"
+                                                                id="formFileSm" type="file">
+                                                        </div>
+                                                        <div class="app-form-group message">
+                                                            <input class="app-form-control2" placeholder="MESSAGE">
+                                                        </div>
+                                                        <div class="form-check">
+                                                            <input class="form-check-input" type="checkbox"
+                                                                value="" id="flexCheckChecked">
+                                                            <label class="form-check-label" for="flexCheckChecked">
+                                                                Please Call Me
+                                                            </label>
+                                                        </div>
+                                                        <div class="app-form-group buttons">
+                                                            <button class="app-form-button">CANCEL</button>
+                                                            <button type="submit" class="app-form-button">SEND</button>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                                {{-- <a href="javascript:void(0);" class="common_button2 p-1 mt-1" id="update">Update</a> --}}
-                                        </form>
+                                                </form>
+
+                                            </div>
+                                        </div>
                                     </div>
-
-                                    <div class="cart_product_price" id="tp"> <small>USD</small> $ {{ $item->price * $item->qty}}  </div>
-
-                                </div>
-                                <!-- delete -->
-                                <div class="cart_item_delete">
-                                    <a class="text-danger removeCart mx-2" href="{{route('cart.remove',$item->rowId)}}"><span ><i class="fa-solid fa-trash-can"></i></span></a>
                                 </div>
                             </div>
                         </div>
                     </div>
-                @endforeach
-
-
-            </div>
-            <!-------End-------->
-
-            <!----// Popular Product Begin //---->
-            <section class="popular_product_section section_padding">
-                <!-- container -->
-                <div class="container">
-                    <div class="popular_product_section_content">
-                        <!-- section title -->
-                        <div class="section_title">
-                            <h3 class="title_top_heading">Popular Product</h3>
-                        </div>
-                        <!-- wrapper -->
-                        <div class="populer_product_slider">
-
-                            <!-- product_item -->
-
-                            @foreach ($products as $item)
-                                <div class="product_item">
-                                    <!-- image -->
-                                    <div class="product_item_thumbnail">
-                                        <img src="{{ asset($item->thumbnail)}}" alt="{{$item->name}}" width="150px" height="113px">
-                                    </div>
-
-                                    <!-- product content -->
-                                    <div class="product_item_content">
-                                        <a href="{{ route('product.details', $item->slug) }}" class="product_item_content_name" style="height: 4rem;">{{$item->name}}</a>
-
-                                       @if ($item->rfq != 1)
-                                         <!-- price -->
-                                         <div class="product_item_price">
-                                             <span class="price_currency">USD</span>
-                                             @if (!empty($item->discount))
-                                             <span class="price_currency_value" style="text-decoration: line-through; color:red">$ {{ $item->price }}</span>
-                                             <span class="price_currency_value" style="color: black">$ {{ $item->discount }}</span>
-                                             @else
-                                             <span class="price_currency_value">$ {{ $item->price }}</span>
-                                             @endif
-                                         </div>
-
-                                         <!-- button -->
-                                         @php
-                                         $cart = Cart::content();
-                                         $exist = $cart->where('id' , $item->id );
-                                         //dd($cart->where('image' , $item->thumbnail )->count());
-                                         @endphp
-                                         @if ($cart->where('id' , $item->id )->count())
-                                         <a href="javascript:void(0);" class="common_button2 p-0 py-2 px-1 pb-2" style="height: 2.5rem"> Already in Cart</a>
-                                         @else
-                                         <form action="{{route('add.cart')}}" method="post">
-                                             @csrf
-                                             <input type="hidden" name="product_id" id="product_id" value="{{ $item->id }}">
-                                             <input type="hidden" name="name" id="name" value="{{ $item->name }}">
-                                             <input type="hidden" name="qty" id="qty" value="1">
-                                             <button type="submit" class="product_button" >Add to Basket</button>
-                                         </form>
-                                         @endif
-                                       @else
-                                       <a class="product_button mt-3" href="{{ route('product.details', $item->slug) }}">Details</a>
-                                       @endif
-                                    </div>
-
-                                </div>
-                            @endforeach
-                            <!-- product item -->
-
-
-                        </div>
-                    </div>
                 </div>
-            </section>
-            <!-------End-------->
-
-        </div>
-        <!--====// Right //====-->
-        <div class="cart_sidebar_sumury">
-            <div class="cart_summury_title">Summary</div>
-
-            <div class="summury_count">
-                <ul>
-                    <li class=""><span>Subtotal</span> <span id="totalPrice1"><small>USD</small>{{Cart::subtotal()}} $</span></li>
-                    {{-- <li class=""><span>*Estimated Shipping</span> <span><small>USD</small>100$</span></li> --}}
-                    <li class=""><span>Tax estimate</span> <span><small>USD</small>0$</span></li>
-                </ul>
-
-                <p class="summury_count_total"> <span>Total</span> <span id="totalPrice2"><small>USD</small> {{ Cart::total() }} $</span></p>
-
-                <!-- button -->
-                <input id='checkout' type="hidden" value="{{ Cart::total() }}">
-                <div class="d-flex justify-content-center">
-                    <a href="{{route('checkout')}}" id="work" class="common_button2">Checkout</a>
-                </div>
-
             </div>
         </div>
-    </div>
-</section>
-
-
+        <!---------Product Modal End -------->
+    </section>
+    <!---------End -------->
+      {{-- Cart Section end --}}
 
 
 

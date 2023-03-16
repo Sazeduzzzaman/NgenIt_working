@@ -5,9 +5,475 @@
 
     <section class="header_title_product_filter">
         <h1>Explore Products in Our Shop</h1>
-    </section><br><br>
+    </section>
 <!-------- End--------->
+{{-- New Filter Section Start --}}
+<div class="container">
+    <div class="row mt-3 mb-5">
+      <aside class="col-md-3">
+        <div class="card">
+          <article class="filter-group">
+            <header class="product-header">
+              <a
+                href="#"
+                data-toggle="collapse"
+                data-target="#collapse_1"
+                aria-expanded="true"
+                class=""
+              >
+                <i class="icon-control fa fa-chevron-down"></i>
+                <h6 class="area_title">System / Types</h6>
+              </a>
+            </header>
+            <div class="filter-content collapse show" id="collapse_1">
+              <div class="card-body">
+                <div class="d-flex flex-column product_menu">
+                  <a href="#">
+                    People
+                    <i class="icon-control fa fa-chevron-right"></i>
+                  </a>
+                  <a href="#">
+                    Watches
+                    <i class="icon-control fa fa-chevron-right"></i>
+                  </a>
+                  <a href="#">
+                    Cinema
+                    <i class="icon-control fa fa-chevron-right"></i>
+                  </a>
+                  <a href="#">
+                    Clothes
+                    <i class="icon-control fa fa-chevron-right"></i>
+                  </a>
+                  <a href="#">
+                    Home items
+                    <i class="icon-control fa fa-chevron-right"></i>
+                  </a>
+                  <a href="#">
+                    Animals
+                    <i class="icon-control fa fa-chevron-right"></i>
+                  </a>
+                  <a href="#">
+                    People
+                    <i class="icon-control fa fa-chevron-right"></i>
+                  </a>
+                </div>
+              </div>
+              <!-- card-body.// -->
+            </div>
+          </article>
+          <!-- filter-group  .// -->
+          <article class="filter-group">
+            <header class="product-header">
+              <a
+                href="#"
+                data-toggle="collapse"
+                data-target="#key"
+                aria-expanded="true"
+                class=""
+              >
+                <i class="icon-control fa fa-chevron-down"></i>
+                <h6 class="area_title">Key Word Search</h6>
+              </a>
+            </header>
+            <div class="filter-content collapse show" id="key">
+              <div class="card-body">
+                <form class="">
+                  <div class="input-group">
+                    <input
+                      type="text"
+                      class="form-control"
+                      placeholder="Search"
+                    />
+                    <div class="input-group-append">
+                      <button class="btn product_btn" type="button">
+                        <i class="fa fa-search"></i>
+                      </button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+              <!-- card-body.// -->
+            </div>
+          </article>
+          <!-- filter-group  .// -->
+          <article class="filter-group">
+            <header class="card-header product-header">
+              <a
+                href="#"
+                data-toggle="collapse"
+                data-target="#collapse_2"
+                aria-expanded="true"
+                class=""
+              >
+                <i class="icon-control fa fa-chevron-down"></i>
+                <h6 class="area_title">Manufacturers</h6>
+              </a>
+            </header>
+            <div class="filter-content collapse show" id="collapse_2"
+            >
+              <form action="">
+                <div class="px-4 py-2 d-flex flex-column">
+                  <label class="custom-control custom-checkbox d-flex">
+                    <input
+                      type="checkbox"
+                      checked=""
+                      class="custom-control-input"
+                      style="margin-right: 10px;"
+                    />
+                    <div class="custom-control-label">
+                      Mercedes
+                      <b class="badge bg-black ml-2 badge-pill badge-light float-right"
+                        >120</b
+                      >
+                    </div>
+                  </label>
+                  <label class="custom-control custom-checkbox d-flex">
+                    <input
+                      type="checkbox"
+                      checked=""
+                      class="custom-control-input"
+                      style="margin-right: 10px;"
+                    />
+                    <div class="custom-control-label">
+                      Toyota
+                      <b class="badge bg-black ml-2 badge-pill badge-light float-right">15</b>
+                    </div>
+                  </label>
+                  <label class="custom-control custom-checkbox d-flex">
+                    <input
+                      type="checkbox"
+                      checked=""
+                      class="custom-control-input"
+                      style="margin-right: 10px;"
+                    />
+                    <div class="custom-control-label">
+                      Mitsubishi
+                      <b class="badge bg-black ml-2 badge-pill badge-light float-right">35</b>
+                    </div>
+                  </label>
+                  <label class="custom-control custom-checkbox d-flex">
+                    <input
+                      type="checkbox"
+                      checked=""
+                      class="custom-control-input"
+                      style="margin-right: 10px;"
+                    />
+                    <div class="custom-control-label">
+                      Nissan
+                      <b class="badge bg-black ml-2 badge-pill badge-light float-right">89</b>
+                    </div>
+                  </label>
+                  <label class="custom-control custom-checkbox d-flex">
+                    <input
+                    type="checkbox"
+                    class="custom-control-input"
+                    style="margin-right: 10px;"
+                    />
+                    <div class="custom-control-label">
+                      Honda
+                      <b class="badge bg-black ml-2 badge-pill badge-light float-right">30</b>
+                    </div>
+                  </label>
+                </div>
+              </form>
+              <!-- card-body.// -->
+            </div>
+          </article>
 
+          <!-- filter-group .// -->
+          <article class="filter-group">
+            <header class="card-header product-header">
+              <a
+                href="#"
+                data-toggle="collapse"
+                data-target="#collapse_3"
+                aria-expanded="true"
+                class=""
+              >
+                <i class="icon-control fa fa-chevron-down"></i>
+                <h6 class="area_title">Price range</h6>
+              </a>
+            </header>
+            <div
+              class="filter-content collapse show"
+              id="collapse_3"
+            >
+            <div class="product_list_price ">
+                <div id="slider-range" class="price-filter-range w-75 mt-2 mx-auto text-success ui-slider ui-corner-all ui-slider-horizontal ui-widget ui-widget-content" data-min="0" data-max="20000" style="margin-bottom:0.7rem; ">
+                    <div class="ui-slider-range ui-corner-all ui-widget-header" style="left: 0%; width: 100%;background-color: #929497 !important;">
+                    </div><span tabindex="0" class="ui-slider-handle ui-corner-all ui-state-default" style="left: 0%;border-radius: 30px !important;"></span>
+                    <span tabindex="0" class="ui-slider-handle ui-corner-all ui-state-default" style="left: 100%;border-radius: 30px !important;"></span></div>
+                <div class="w-75 mt-2 mx-auto">
+                    <input type="hidden" id="price_range" name="price_range" value="">
+                                    <input class="form-control mb-2" type="text" id="amount" value="USD $0 - $20000" readonly="">
+                </div>
+                                </div>
+              {{-- <div class="card-body">
+                <input
+                  type="range"
+                  class="custom-range"
+                  min="0"
+                  max="100"
+                  name=""
+                />
+                <div class="d-flex">
+                    <div class="form-group col-md-6">
+                      <label>Min</label>
+                      <input
+                        class="form-control"
+                        placeholder="$0"
+                        type="number"
+                      />
+                    </div>
+                    <div class="form-group text-right col-md-6 pr-2" style="margin-left: 5px;">
+                      <label>Max</label>
+                      <input
+                        class="form-control"
+                        placeholder="$1,0000"
+                        type="number"
+                      />
+                    </div>
+                </div>
+                <!-- form-row.// -->
+                <div class=" pt-2">
+                  <button type="button" class="btn btn-block product_price_btn">Block level button</button>
+                </div>
+              </div> --}}
+              <!-- card-body.// -->
+            </div>
+          </article>
+
+          <!-- filter-group .// -->
+          <article class="filter-group">
+            {{-- <header class="card-header product-header">
+              <a
+                href="#"
+                data-toggle="collapse"
+                data-target="#collapse_4"
+                aria-expanded="true"
+                class=""
+              >
+                <i class="icon-control fa fa-chevron-down"></i>
+                <h6 class="area_title">Sizes</h6>
+              </a>
+            </header> --}}
+            {{-- <div
+              class="filter-content collapse show"
+              id="collapse_4"
+            > --}}
+              {{-- <div class="card-body d-flex flex-column">
+                <label class="checkbox-btn">
+                  <input type="checkbox" />
+                  <span class="btn btn-light"> XS </span>
+                </label>
+
+                <label class="checkbox-btn pt-2">
+                  <input type="checkbox" />
+                  <span class="btn btn-light"> SM </span>
+                </label>
+
+                <label class="checkbox-btn pt-2">
+                  <input type="checkbox" />
+                  <span class="btn btn-light"> LG </span>
+                </label>
+
+                <label class="checkbox-btn pt-2">
+                  <input type="checkbox" />
+                  <span class="btn btn-light"> XXL </span>
+                </label>
+              </div> --}}
+              <!-- card-body.// -->
+            {{-- </div>
+          </article> --}}
+          <!-- filter-group .// -->
+          <article class="filter-group">
+            <header class="card-header product-header">
+              <a
+                href="#"
+                data-toggle="collapse"
+                data-target="#collapse_5"
+                aria-expanded="false"
+                class=""
+              >
+                <i class="icon-control fa fa-chevron-down"></i>
+                <h6 class="area_title">More filter</h6>
+              </a>
+            </header>
+            <div class="filter-content collapse in" id="collapse_5">
+              <div class="card-body" style="padding: 15px 26px 10px !important;">
+                <label class="custom-control custom-radio">
+                  <input
+                    type="radio"
+                    name="myfilter_radio"
+                    checked=""
+                    class="custom-control-input"
+                  />
+                  <div class="custom-control-label">Any condition</div>
+                </label>
+
+                <label class="custom-control custom-radio">
+                  <input
+                    type="radio"
+                    name="myfilter_radio"
+                    class="custom-control-input"
+                  />
+                  <div class="custom-control-label">Brand new</div>
+                </label>
+
+                <label class="custom-control custom-radio">
+                  <input
+                    type="radio"
+                    name="myfilter_radio"
+                    class="custom-control-input"
+                  />
+                  <div class="custom-control-label">Used items</div>
+                </label>
+
+                <label class="custom-control custom-radio">
+                  <input
+                    type="radio"
+                    name="myfilter_radio"
+                    class="custom-control-input"
+                  />
+                  <div class="custom-control-label">Very old</div>
+                </label>
+              </div>
+              <!-- card-body.// -->
+            </div>
+          </article>
+          <!-- filter-group .// -->
+        </div>
+        <!-- card.// -->
+      </aside>
+      <main class="col-md-9">
+        <header class="product_showing shadow-lg px-2 py-2 mb-4">
+          <div
+            class="form-inline d-flex justify-content-between align-items-center"
+          >
+            <span class="mr-md-auto">32 Items found </span>
+            <div class="d-flex align-items-center">
+              <div class="ml-5">
+                <div class="dropdown" style="margin-right: 5px">
+                  <button
+                    class="btn product_btn_dropdown dropdown-toggle"
+                    type="button"
+                    id="dropdownMenuButton"
+                    data-toggle="dropdown"
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                  >
+                  Results per page
+                  </button>
+                  <div
+                    class="dropdown-menu"
+                    aria-labelledby="dropdownMenuButton"
+                  >
+                    <a class="dropdown-item" href="#">5</a>
+                    <a class="dropdown-item" href="#">10</a>
+                    <a class="dropdown-item" href="#">40</a>
+                  </div>
+                </div>
+              </div>
+
+              <div>
+                <div class="">
+                    <div class="dropdown" style="margin-right: 5px">
+                      <button
+                        class="btn product_btn_dropdown dropdown-toggle"
+                        type="button"
+                        id="dropdownMenuButton"
+                        data-toggle="dropdown"
+                        aria-haspopup="true"
+                        aria-expanded="false"
+                      >
+                      Sort By
+                      </button>
+                      <div
+                        class="dropdown-menu"
+                        aria-labelledby="dropdownMenuButton"
+                      >
+                        <a class="dropdown-item" href="#">Ascending By Name</a>
+                        <a class="dropdown-item" href="#">Ascending By Price</a>
+                        <a class="dropdown-item" href="#">Descending By Name</a>
+                      </div>
+                    </div>
+                  </div>
+              </div>
+            </div>
+          </div>
+        </header>
+        <!-- sect-heading -->
+
+        <div class="row">
+
+          <div class="container mt-1 mb-5">
+            <div class="d-flex justify-content-center row">
+                <div class="col-md-12">
+                    <!-- First Product Start -->
+                    <div class="row m-0 p-2 shadow-lg bg-white border rounded d-flex align-items-center">
+                      <div class="col-md-3 mt-1"><img class="img-fluid img-responsive rounded product-image" src="https://m.media-amazon.com/images/I/61UGE9cZVlL._AC_SL1500_.jpg"></div>
+                      <div class="col-md-6 mt-1">
+                          <h5>Quant olap shirts</h5>
+                          <div class="d-flex flex-row">
+                              <div class="ratings mr-2"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></div><span>310</span>
+                          </div>
+                          <div class="mt-3 mb-1 spec-1"><span>100% cotton</span><span class="dot"></span><span>Light weight</span><span class="dot"></span><span>Best finish<br></span></div>
+                          <div class="mt-1 mb-1 spec-1"><span>Unique design</span><span class="dot"></span><span>For men</span><span class="dot"></span><span>Casual<br></span></div>
+                          <p class="text-justify text-truncate para mb-0">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable.<br><br></p>
+                      </div>
+                      <div class="align-items-center align-content-center col-md-3 border-left mt-1">
+                          <div class="d-flex flex-row align-items-center">
+                              <h4 class="mr-1">$13.99</h4><span class="strike-text">$20.99</span>
+                          </div>
+                          <h6 class="text-success">Free shipping</h6>
+                          <div class="d-flex flex-column mt-4"><button class="btn product_btn btn-sm" type="button">Details</button><button class="btn product_btn btn-sm mt-2" type="button">Add to wishlist</button></div>
+                      </div>
+                  </div>
+                    <!-- First Product End -->
+                    <!-- Second Product Start -->
+                    <div class="row m-0 mt-3 shadow-lg p-2 bg-white border rounded d-flex align-items-center">
+                      <div class="col-md-3 mt-1"><img class="img-fluid img-responsive rounded product-image" src="https://m.media-amazon.com/images/I/61UGE9cZVlL._AC_SL1500_.jpg"></div>
+                      <div class="col-md-6 mt-1">
+                          <h5>Quant olap shirts</h5>
+                          <div class="d-flex flex-row">
+                              <div class="ratings mr-2"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></div><span>310</span>
+                          </div>
+                          <div class="mt-3 mb-1 spec-1"><span>100% cotton</span><span class="dot"></span><span>Light weight</span><span class="dot"></span><span>Best finish<br></span></div>
+                          <div class="mt-1 mb-1 spec-1"><span>Unique design</span><span class="dot"></span><span>For men</span><span class="dot"></span><span>Casual<br></span></div>
+                          <p class="text-justify text-truncate para mb-0">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable.<br><br></p>
+                      </div>
+                      <div class="align-items-center align-content-center col-md-3 border-left mt-1">
+                          <div class="d-flex flex-row align-items-center">
+                              <h4 class="mr-1">$13.99</h4><span class="strike-text">$20.99</span>
+                          </div>
+                          <h6 class="text-success">Free shipping</h6>
+                          <div class="d-flex flex-column mt-4"><button class="btn product_btn btn-sm" type="button">Details</button><button class="btn product_btn btn-sm mt-2" type="button">Add to wishlist</button></div>
+                      </div>
+                  </div>
+                    <!-- Second Product End -->
+
+                </div>
+            </div>
+        </div>
+
+
+        <nav class="mt-4" aria-label="Page navigation sample ">
+          <ul class="pagination d-flex justify-content-center align-items-center">
+            <li class="page-item disabled">
+              <a class="page-link" href="#">Previous</a>
+            </li>
+            <li class="page-item active">
+              <a class="page-link" href="#">1</a>
+            </li>
+            <li class="page-item"><a class="page-link" href="#">2</a></li>
+            <li class="page-item"><a class="page-link" href="#">3</a></li>
+            <li class="page-item"><a class="page-link" href="#">Next</a></li>
+          </ul>
+        </nav>
+      </main>
+    </div>
+  </div>
+{{-- New Filter Section End --}}
 <!--=======// Content & Filter //=======-->
 <section class="container">
     <form action="{{ route('shop.filter') }}" method="POST">
@@ -340,9 +806,29 @@
 @section('scripts')
 <script>
     $(document).ready(function() {
-
-
 });
+</script>
+<script>
+   var header = document.getElementById("myDIV");
+    var btns = header.getElementsByClassName("btn");
+    for (var i = 0; i < btns.length; i++) {
+    btns[i].addEventListener("click", function() {
+    var current = document.getElementsByClassName("active");
+    current[0].className = current[0].className.replace(" active", "");
+    this.className += " active";
+    });
+    }
+
+    $('input[type="range"]').change(function () {
+    var val = ($(this).val() - $(this).attr('min')) / ($(this).attr('max') - $(this).attr('min'));
+
+    $(this).css('background-image',
+                '-webkit-gradient(linear, left top, right top, '
+                + 'color-stop(' + val + ', #860736fd), '
+                + 'color-stop(' + val + ', #000)'
+                + ')'
+                );
+    });
 </script>
 
 @endsection

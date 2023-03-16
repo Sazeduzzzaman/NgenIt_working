@@ -5,7 +5,7 @@ nav > .nav.nav-tabs{
       color:#fff;
       background:#272e38;
       border-radius:0;
-  
+
   }
 
   .nav-tabs .nav-link.active, .nav-tabs .nav-item.show .nav-link{
@@ -15,17 +15,17 @@ nav > .nav.nav-tabs{
   nav > div a.nav-item.nav-link.active
   {
     border: none;
-      padding: 14px 25px;
-      color:#fff;
+      padding: 14px 25px !important;
+      color:#fff !important;
       background:#ae0a46;
       border-radius:0;
   }
-  
+
   nav > div a.nav-item.nav-link.active:after
    {
     content: "";
     position: relative;
-    bottom: -50px;
+    bottom: -49px;
     left: -10%;
     border: 15px solid transparent;
     border-top-color: #000 ;
@@ -35,7 +35,7 @@ nav > .nav.nav-tabs{
       line-height: 25px;
       padding:20px 25px;
   }
-  
+
   nav > div a.nav-item.nav-link:hover,
   nav > div a.nav-item.nav-link:focus
   {

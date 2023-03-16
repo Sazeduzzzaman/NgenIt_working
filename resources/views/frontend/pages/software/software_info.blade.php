@@ -1,59 +1,174 @@
 @extends('frontend.master')
 @section('content')
     <!--======// Header Title //======-->
-    <section class="common_product_header" style="background-image: url(asset('frontend/images/softwer-banner.jpg'));">
-        <div class="container mt-5 pt-5">
+    <section class="common_product_header" style="background-image: linear-gradient(
+        rgba(0,0,0,0.8),
+        rgba(0,0,0,0.8)
+        ),url('https://i.pcmag.com/imagery/roundups/02HDufdqeRUDu3tl0NnY2qZ-2..v1649351854.jpg');">
+        <div class="container ">
           <h1>Software</h1>
           <p class="text-center text-white">Through our deep partnerships with trusted brands, <br> Insight offers a comprehensive catalog of software for business. </p>
-          <div class="d-flex justify-content-center">
-            <div class="row">
+            <div class="row ">
               <!--BUTTON START-->
-              <div class=" m-4">
-                <button class="common_button2" href="product_filters.html">Talk to a specialist</button>
+              <div class="d-flex justify-content-center align-items-center">
+                <div class="m-4">
+                    <button class="common_button2" href="product_filters.html">Talk to a specialist</button>
+                  </div>
+                  <div class="m-4">
+                    <button class="common_button3" href="#">Shop all Surface devices</button>
+                  </div>
               </div>
-              <div class="m-4">
-                <button class="common_button3" href="#">Shop all Surface devices</button>
-              </div>
-            </div>
           </div>
         </div>
       </section>
       <!----------End--------->
-      <!--======// Feature tab //======-->
-      <section>
-        <div class="container">
-          <div class="row">
+    <!--======// Feature tab //======-->
+    <section>
+        <div class="container mt-5 mb-5">
 
-            <!-- first Card -->
-            @if ($categories)
-                @foreach ($categories as $item)
-                    <div class="col-lg-3 col-md-3 col-sm-12">
-                      <div class="iconbox">
-                        <div class="iconbox-icon">
-                          <img src="{{asset('storage/requestImg/'.$item->image)}}" alt="">
+            <div class="row">
+                <!-- first Card -->
+                <div class="col-lg-3 col-md-3 col-sm-12">
+                    <div class="iconbox">
+                        <div class="iconbox-icon pb-3">
+                            <img src="https://w7.pngwing.com/pngs/786/126/png-transparent-logo-contracting-photography-logo-symbol.png" alt="">
                         </div>
                         <div class="featureinfo">
-                          <h4 class="text-center"> </h4>
-                          {{-- <p class="home_title_text text-center">See how we’ve helped</p> --}}
-                          <div class="">
-                            <div class="buttons_style">
-                              <div class="container_btn">
-                                <a href="index.html" class="btns effect01" target="_blank">
-                                  <strong style="font-size: 13px; letter-spacing: 0;text-transform: capitalize;">{{Str::limit($item->title,20)}}..</strong>
-                                </a>
-                              </div>
+                            <div class="text-center">
+                                <div class="buttons_style pt-3">
+                                    <div class="container_btn">
+                                        <a href="index.html" class="btns effect01" target="_blank"><span>Go</span></a>
+                                    </div>
+                                </div>
                             </div>
-                          </div>
                         </div>
-                      </div>
                     </div>
-                @endforeach
-            @endif
-
-          </div>
+                </div>
+                <!-- second Card -->
+                <div class="col-lg-3 col-md-3 col-sm-12">
+                    <div class="iconbox">
+                        <div class="iconbox-icon">
+                            <img src="https://w7.pngwing.com/pngs/786/126/png-transparent-logo-contracting-photography-logo-symbol.png" alt="">
+                        </div>
+                        <div class="featureinfo">
+                            <div class="text-center">
+                                <div class="buttons_style pt-3">
+                                    <div class="container_btn">
+                                        <a href="index.html" class="btns effect01" target="_blank"><span>Go</span></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Third Card -->
+                <div class="col-lg-3 col-md-3 col-sm-12">
+                    <div class="iconbox">
+                        <div class="iconbox-icon">
+                            <img src="https://w7.pngwing.com/pngs/786/126/png-transparent-logo-contracting-photography-logo-symbol.png" alt="">
+                        </div>
+                        <div class="featureinfo">
+                            <div class="text-center">
+                                <div class="buttons_style pt-3">
+                                    <div class="container_btn">
+                                        <a href="index.html" class="btns effect01" target="_blank"><span>Go</span></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Fouth Card -->
+                <div class="col-lg-3 col-md-3 col-sm-12">
+                    <div class="iconbox">
+                        <div class="iconbox-icon">
+                            <img src="https://w7.pngwing.com/pngs/786/126/png-transparent-logo-contracting-photography-logo-symbol.png" alt="">
+                        </div>
+                        <div class="featureinfo">
+                            <div class="text-center">
+                                <div class="buttons_style pt-3">
+                                    <div class="container_btn">
+                                        <a href="index.html" class="btns effect01" target="_blank"><span>Go</span></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row mb-5">
+                <!-- first Card -->
+                <div class="col-lg-3 col-md-3 col-sm-12">
+                    <div class="iconbox">
+                        <div class="iconbox-icon">
+                            <img src="https://w7.pngwing.com/pngs/786/126/png-transparent-logo-contracting-photography-logo-symbol.png" alt="">
+                        </div>
+                        <div class="featureinfo">
+                            <div class="text-center">
+                                <div class="buttons_style pt-3">
+                                    <div class="container_btn">
+                                        <a href="index.html" class="btns effect01" target="_blank"><span>Go</span></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- second Card -->
+                <div class="col-lg-3 col-md-3 col-sm-12">
+                    <div class="iconbox">
+                        <div class="iconbox-icon">
+                            <img src="https://w7.pngwing.com/pngs/786/126/png-transparent-logo-contracting-photography-logo-symbol.png" alt="">
+                        </div>
+                        <div class="featureinfo">
+                            <div class="text-center">
+                                <div class="buttons_style pt-3">
+                                    <div class="container_btn">
+                                        <a href="index.html" class="btns effect01" target="_blank"><span>Go</span></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Third Card -->
+                <div class="col-lg-3 col-md-3 col-sm-12">
+                    <div class="iconbox">
+                        <div class="iconbox-icon">
+                            <img src="https://w7.pngwing.com/pngs/786/126/png-transparent-logo-contracting-photography-logo-symbol.png" alt="">
+                        </div>
+                        <div class="featureinfo">
+                            <div class="text-center">
+                                <div class="buttons_style pt-3">
+                                    <div class="container_btn">
+                                        <a href="index.html" class="btns effect01" target="_blank"><span>Go</span></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Fouth Card -->
+                <div class="col-lg-3 col-md-3 col-sm-12">
+                    <div class="iconbox">
+                        <div class="iconbox-icon pb-5">
+                            <img src="https://w7.pngwing.com/pngs/786/126/png-transparent-logo-contracting-photography-logo-symbol.png" alt="">
+                        </div>
+                        <div class="featureinfo">
+                            <div class="text-center">
+                                <div class="buttons_style pt-3">
+                                    <div class="container_btn">
+                                        <a href="index.html" class="btns effect01" target="_blank"><span>Go</span></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-      </section>
-      <!----------End--------->
+    </section>
+    <!----------End--------->
       <!--======// Nasted tab //======-->
       <div class="section_wp">
         <!--Tab Section-->
@@ -67,126 +182,146 @@
               <br> maximize the value of their IT solutions, leverage emerging technologies and create fresh experiences.
             </p>
           </div>
-          <!-- Tab Area Start -->
-          <div class="row">
-            <div class="row tabbar_wrapper w-75 mx-auto">
-              <div class="col-lg-3 m-0 p-0" style="margin-left: 10px">
-                <div class="tabbar_header_title">All</div>
-                <div class="data_tabs_button" data-tabs>
-                  <button class="active">Software</button>
-                  <button>Hardware</button>
-                  <button>Sidebar3</button>
-                  <button>Sidebar4</button>
-                  <button>Sidebar5</button>
-                  <button>Sidebar5</button>
-                  <!-- <button class="border-0">Sidebar7</button> -->
-                </div>
-              </div>
-              <div class="col-9 data_tabs_content" data-panes>
-                <!--==//Software Tab Item //==-->
-                <div class="active">
-                  <!--Sub Button-->
-                  <div class="sub_tabs_button" data-tabs>
-                    <button class="active">Software</button>
-                    <button>Freshservice</button>
-                    <button>JIRA</button>
-                  </div>
-                  <div class="sub_tabs_content" data-panes>
-                    <!--Sub Item-->
-                    <div class="active">Best for outsourcing test covereage to speed up software releases </div>
-                    <!--Sub Item-->
-                    <div>ITSM tool with release management features</div>
-                    <!--Sub Item-->
-                    <div>Plan and manage software releases</div>
-                  </div>
-                </div>
-                <!--==//Hardware Tab Item //==-->
-                <div>
-                  <!--Sub Button-->
-                  <div class="sub_tabs_button" data-tabs>
-                    <button class="active">Hardware</button>
-                    <button>Cable</button>
-                  </div>
-                  <div class="sub_tabs_content" data-panes>
-                    <!--Sub Item-->
-                    <div class="active">APC Replacement Battery Cartridge #2 - UPS battery - lead acid</div>
-                    <!--Sub Item-->
-                    <div class="active">The power cable mainly consists of three main components, namely, conductor, dielectric, and sheath. The conductor in the cable provides the conducting path for the current. The insulation or dielectric withstands the service voltage and isolates the conductor with other objects.</div>
-                  </div>
-                </div>
-                <!--==//Sidebar3 Tab Item //==-->
-                <div>
-                  <!--Sub Button-->
-                  <div class="sub_tabs_button" data-tabs>
-                    <button class="active">Sidebar3</button>
-                    <button>Cable</button>
-                  </div>
-                  <div class="sub_tabs_content" data-panes>
-                    <!--Sub Item-->
-                    <div class="active">APC Replacement Battery Cartridge #2 - UPS battery - lead acid</div>
-                    <!--Sub Item-->
-                    <div class="active">The power cable mainly consists of three main components, namely, conductor, dielectric, and sheath. The conductor in the cable provides the conducting path for the current. The insulation or dielectric withstands the service voltage and isolates the conductor with other objects.</div>
-                  </div>
-                </div>
-                <!--==//Sidebar4 Tab Item //==-->
-                <div>
-                  <!--Sub Button-->
-                  <div class="sub_tabs_button" data-tabs>
-                    <button class="active">Sidebar4</button>
-                    <button>Cable</button>
-                  </div>
-                  <div class="sub_tabs_content" data-panes>
-                    <!--Sub Item-->
-                    <div class="active">APC Replacement Battery Cartridge #2 - UPS battery - lead acid</div>
-                    <!--Sub Item-->
-                    <div class="active">The power cable mainly consists of three main components, namely, conductor, dielectric, and sheath. The conductor in the cable provides the conducting path for the current. The insulation or dielectric withstands the service voltage and isolates the conductor with other objects.</div>
-                  </div>
-                </div>
-                <!--==//Sidebar5 Tab Item //==-->
-                <div>
-                  <!--Sub Button-->
-                  <div class="sub_tabs_button" data-tabs>
-                    <button class="active">Sidebar5</button>
-                    <button>Cable</button>
-                  </div>
-                  <div class="sub_tabs_content" data-panes>
-                    <!--Sub Item-->
-                    <div class="active">APC Replacement Battery Cartridge #2 - UPS battery - lead acid</div>
-                    <!--Sub Item-->
-                    <div class="active">The power cable mainly consists of three main components, namely, conductor, dielectric, and sheath. The conductor in the cable provides the conducting path for the current. The insulation or dielectric withstands the service voltage and isolates the conductor with other objects.</div>
-                  </div>
-                </div>
-                <!--==//Sidebar6 Tab Item //==-->
-                <div>
-                  <!--Sub Button-->
-                  <div class="sub_tabs_button" data-tabs>
-                    <button class="active">Sidebar6</button>
-                    <button>Cable</button>
-                  </div>
-                  <div class="sub_tabs_content" data-panes>
-                    <!--Sub Item-->
-                    <div class="active">APC Replacement Battery Cartridge #2 - UPS battery - lead acid</div>
-                    <!--Sub Item-->
-                    <div class="active">The power cable mainly consists of three main components, namely, conductor, dielectric, and sheath. The conductor in the cable provides the conducting path for the current. The insulation or dielectric withstands the service voltage and isolates the conductor with other objects.</div>
-                  </div>
-                </div>
-                <!--==//Sidebar7 Tab Item //==-->
-                <div>
-                  <!--Sub Button-->
-                  <div class="sub_tabs_button" data-tabs>
-                    <button class="active">Sidebar7</button>
-                    <button>Cable</button>
-                  </div>
-                  <div class="sub_tabs_content" data-panes>
-                    <!--Sub Item-->
-                    <div class="active">APC Replacement Battery Cartridge #2 - UPS battery - lead acid</div>
-                    <!--Sub Item-->
-                    <div class="active">The power cable mainly consists of three main components, namely, conductor, dielectric, and sheath. The conductor in the cable provides the conducting path for the current. The insulation or dielectric withstands the service voltage and isolates the conductor with other objects.</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+                      <!-- Tab Area Start -->
+                      <div class="row">
+                        <div class="row tabbar_wrapper w-75 mx-auto m-0 p-0">
+                            <div class="col-lg-3 m-0 p-0" style="margin-left: 10px">
+                                <div class="tabbar_header_title">All</div>
+                                <div class="data_tabs_button" data-tabs>
+                                    <button class="active">Hardware</button>
+                                    <button>Hardware</button>
+                                    <button>Sidebar3</button>
+                                    <button>Sidebar4</button>
+                                    <button>Sidebar5</button>
+                                    <button>Sidebar5</button>
+                                    <!-- <button class="border-0">Sidebar7</button> -->
+                                </div>
+                            </div>
+                            <div class="col-9 data_tabs_content p-0" data-panes>
+                                <!--==//Hardware Tab Item //==-->
+                                <div class="active">
+                                    <!--Sub Button-->
+                                    <div class="sub_tabs_button" data-tabs>
+                                        <button class="active">Hardware</button>
+                                        <button>Freshservice</button>
+                                        <button>JIRA</button>
+                                    </div>
+                                    <div class="sub_tabs_content" data-panes>
+                                        <!--Sub Item-->
+                                        <div class="active">Best for outsourcing test covereage to speed up Hardware releases
+                                        </div>
+                                        <!--Sub Item-->
+                                        <div>ITSM tool with release management features</div>
+                                        <!--Sub Item-->
+                                        <div>Plan and manage Hardware releases</div>
+                                    </div>
+                                </div>
+                                <!--==//Hardware Tab Item //==-->
+                                <div>
+                                    <!--Sub Button-->
+                                    <div class="sub_tabs_button" data-tabs>
+                                        <button class="active">Hardware</button>
+                                        <button>Cable</button>
+                                    </div>
+                                    <div class="sub_tabs_content" data-panes>
+                                        <!--Sub Item-->
+                                        <div class="active">APC Replacement Battery Cartridge #2 - UPS battery - lead acid</div>
+                                        <!--Sub Item-->
+                                        <div class="active">The power cable mainly consists of three main components, namely,
+                                            conductor, dielectric, and sheath. The conductor in the cable provides the
+                                            conducting path for the current. The insulation or dielectric withstands the service
+                                            voltage and isolates the conductor with other objects.</div>
+                                    </div>
+                                </div>
+                                <!--==//Sidebar3 Tab Item //==-->
+                                <div>
+                                    <!--Sub Button-->
+                                    <div class="sub_tabs_button" data-tabs>
+                                        <button class="active">Sidebar3</button>
+                                        <button>Cable</button>
+                                    </div>
+                                    <div class="sub_tabs_content" data-panes>
+                                        <!--Sub Item-->
+                                        <div class="active">APC Replacement Battery Cartridge #2 - UPS battery - lead acid</div>
+                                        <!--Sub Item-->
+                                        <div class="active">The power cable mainly consists of three main components, namely,
+                                            conductor, dielectric, and sheath. The conductor in the cable provides the
+                                            conducting path for the current. The insulation or dielectric withstands the service
+                                            voltage and isolates the conductor with other objects.</div>
+                                    </div>
+                                </div>
+                                <!--==//Sidebar4 Tab Item //==-->
+                                <div>
+                                    <!--Sub Button-->
+                                    <div class="sub_tabs_button" data-tabs>
+                                        <button class="active">Sidebar4</button>
+                                        <button>Cable</button>
+                                    </div>
+                                    <div class="sub_tabs_content" data-panes>
+                                        <!--Sub Item-->
+                                        <div class="active">APC Replacement Battery Cartridge #2 - UPS battery - lead acid</div>
+                                        <!--Sub Item-->
+                                        <div class="active">The power cable mainly consists of three main components, namely,
+                                            conductor, dielectric, and sheath. The conductor in the cable provides the
+                                            conducting path for the current. The insulation or dielectric withstands the service
+                                            voltage and isolates the conductor with other objects.</div>
+                                    </div>
+                                </div>
+                                <!--==//Sidebar5 Tab Item //==-->
+                                <div>
+                                    <!--Sub Button-->
+                                    <div class="sub_tabs_button" data-tabs>
+                                        <button class="active">Sidebar5</button>
+                                        <button>Cable</button>
+                                    </div>
+                                    <div class="sub_tabs_content" data-panes>
+                                        <!--Sub Item-->
+                                        <div class="active">APC Replacement Battery Cartridge #2 - UPS battery - lead acid</div>
+                                        <!--Sub Item-->
+                                        <div class="active">The power cable mainly consists of three main components, namely,
+                                            conductor, dielectric, and sheath. The conductor in the cable provides the
+                                            conducting path for the current. The insulation or dielectric withstands the service
+                                            voltage and isolates the conductor with other objects.</div>
+                                    </div>
+                                </div>
+                                <!--==//Sidebar6 Tab Item //==-->
+                                <div>
+                                    <!--Sub Button-->
+                                    <div class="sub_tabs_button" data-tabs>
+                                        <button class="active">Sidebar6</button>
+                                        <button>Cable</button>
+                                    </div>
+                                    <div class="sub_tabs_content" data-panes>
+                                        <!--Sub Item-->
+                                        <div class="active">APC Replacement Battery Cartridge #2 - UPS battery - lead acid</div>
+                                        <!--Sub Item-->
+                                        <div class="active">The power cable mainly consists of three main components, namely,
+                                            conductor, dielectric, and sheath. The conductor in the cable provides the
+                                            conducting path for the current. The insulation or dielectric withstands the service
+                                            voltage and isolates the conductor with other objects.</div>
+                                    </div>
+                                </div>
+                                <!--==//Sidebar7 Tab Item //==-->
+                                <div>
+                                    <!--Sub Button-->
+                                    <div class="sub_tabs_button" data-tabs>
+                                        <button class="active">Sidebar7</button>
+                                        <button>Cable</button>
+                                    </div>
+                                    <div class="sub_tabs_content" data-panes>
+                                        <!--Sub Item-->
+                                        <div class="active">APC Replacement Battery Cartridge #2 - UPS battery - lead acid</div>
+                                        <!--Sub Item-->
+                                        <div class="active">The power cable mainly consists of three main components, namely,
+                                            conductor, dielectric, and sheath. The conductor in the cable provides the
+                                            conducting path for the current. The insulation or dielectric withstands the service
+                                            voltage and isolates the conductor with other objects.</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
         </div>
       </div>
       <!--=======// Popular products //======-->
@@ -234,7 +369,7 @@
                     </span>
                   </div>
                   <!-- button -->
-                  <a href="" class="product_button">Add to Basket</a>
+                  <button type="button" class="product_button" disabled>Add to Basket</button>
                 </div>
               </div>
               <div class="product_item">
@@ -284,7 +419,7 @@
                     <p type="button" class="text-primary" data-toggle="modal" data-target="#exampleModal"> Ask For Price </p>
                   </div>
                   <!-- button -->
-                  <a href="" class="product_button">Add to Basket</a>
+                  <button type="button" class="product_button" disabled>Add to Basket</button>
                 </div>
               </div>
               <!-- product item -->
@@ -407,7 +542,7 @@
                   <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-healthcare">
                     <div class="row">
                       <div class="col-lg-4 col-md-4 col-sm-12">
-                        <div class="tab_side_image">
+                        <div class="tab_side_image p-5">
                           <img src="https://images.unsplash.com/photo-1547082299-de196ea013d6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80" alt="">
                         </div>
                       </div>
@@ -417,9 +552,45 @@
                       </div>
                     </div>
                   </div>
-                  <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab"> Et et consectetur ipsum labore excepteur est proident excepteur ad velit occaecat qui minim occaecat veniam. Fugiat veniam incididunt anim aliqua enim pariatur veniam sunt est aute sit dolor anim. Velit non irure adipisicing aliqua ullamco irure incididunt irure non esse consectetur nostrud minim non minim occaecat. Amet duis do nisi duis veniam non est eiusmod tempor incididunt tempor dolor ipsum in qui sit. Exercitation mollit sit culpa nisi culpa non adipisicing reprehenderit do dolore. Duis reprehenderit occaecat anim ullamco ad duis occaecat ex. </div>
-                  <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab"> Et et consectetur ipsum labore excepteur est proident excepteur ad velit occaecat qui minim occaecat veniam. Fugiat veniam incididunt anim aliqua enim pariatur veniam sunt est aute sit dolor anim. Velit non irure adipisicing aliqua ullamco irure incididunt irure non esse consectetur nostrud minim non minim occaecat. Amet duis do nisi duis veniam non est eiusmod tempor incididunt tempor dolor ipsum in qui sit. Exercitation mollit sit culpa nisi culpa non adipisicing reprehenderit do dolore. Duis reprehenderit occaecat anim ullamco ad duis occaecat ex. </div>
-                  <div class="tab-pane fade" id="nav-about" role="tabpanel" aria-labelledby="nav-about-tab"> Et et consectetur ipsum labore excepteur est proident excepteur ad velit occaecat qui minim occaecat veniam. Fugiat veniam incididunt anim aliqua enim pariatur veniam sunt est aute sit dolor anim. Velit non irure adipisicing aliqua ullamco irure incididunt irure non esse consectetur nostrud minim non minim occaecat. Amet duis do nisi duis veniam non est eiusmod tempor incididunt tempor dolor ipsum in qui sit. Exercitation mollit sit culpa nisi culpa non adipisicing reprehenderit do dolore. Duis reprehenderit occaecat anim ullamco ad duis occaecat ex. </div>
+                  <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+                    <div class="row">
+                        <div class="col-lg-4 col-md-4 col-sm-12">
+                          <div class="tab_side_image p-5">
+                            <img src="https://images.unsplash.com/photo-1547082299-de196ea013d6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80" alt="">
+                          </div>
+                        </div>
+                        <div class="col-lg-8 col-md-6 col-sm-12">
+                          <h5 class="home_title_heading" style="text-align: left;">Healthcare </h5>
+                          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil voluptatem error omnis facere beatae exercitationem, itaque repudiandae placeat modi velit sit accusantium unde iure at! Ipsam fugit soluta similique quasi.itaque repudiandae placeat modi velit sit accusantium unde iure at! Ipsam fugit soluta similique quasi.itaque repudiandae placeat modi velit sit accusantium unde iure at! Ipsam fugit soluta similique quasi.itaque repudiandae placeat modi velit sit accusantium unde iure at! Ipsam fugit soluta similique quasi.itaque repudiandae placeat modi velit sit accusantium unde iure at! Ipsam fugit soluta similique quasi.</p>
+                        </div>
+                      </div>
+                  </div>
+                  <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
+                    <div class="row">
+                        <div class="col-lg-4 col-md-4 col-sm-12">
+                          <div class="tab_side_image p-5">
+                            <img src="https://images.unsplash.com/photo-1547082299-de196ea013d6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80" alt="">
+                          </div>
+                        </div>
+                        <div class="col-lg-8 col-md-6 col-sm-12">
+                          <h5 class="home_title_heading" style="text-align: left;">Healthcare </h5>
+                          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil voluptatem error omnis facere beatae exercitationem, itaque repudiandae placeat modi velit sit accusantium unde iure at! Ipsam fugit soluta similique quasi.itaque repudiandae placeat modi velit sit accusantium unde iure at! Ipsam fugit soluta similique quasi.itaque repudiandae placeat modi velit sit accusantium unde iure at! Ipsam fugit soluta similique quasi.itaque repudiandae placeat modi velit sit accusantium unde iure at! Ipsam fugit soluta similique quasi.itaque repudiandae placeat modi velit sit accusantium unde iure at! Ipsam fugit soluta similique quasi.</p>
+                        </div>
+                      </div>
+                  </div>
+                  <div class="tab-pane fade" id="nav-about" role="tabpanel" aria-labelledby="nav-about-tab">
+                    <div class="row">
+                        <div class="col-lg-4 col-md-4 col-sm-12">
+                          <div class="tab_side_image p-5">
+                            <img src="https://images.unsplash.com/photo-1547082299-de196ea013d6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80" alt="">
+                          </div>
+                        </div>
+                        <div class="col-lg-8 col-md-6 col-sm-12">
+                          <h5 class="home_title_heading" style="text-align: left;">Healthcare </h5>
+                          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil voluptatem error omnis facere beatae exercitationem, itaque repudiandae placeat modi velit sit accusantium unde iure at! Ipsam fugit soluta similique quasi.itaque repudiandae placeat modi velit sit accusantium unde iure at! Ipsam fugit soluta similique quasi.itaque repudiandae placeat modi velit sit accusantium unde iure at! Ipsam fugit soluta similique quasi.itaque repudiandae placeat modi velit sit accusantium unde iure at! Ipsam fugit soluta similique quasi.itaque repudiandae placeat modi velit sit accusantium unde iure at! Ipsam fugit soluta similique quasi.</p>
+                        </div>
+                      </div>
+                     </div>
                 </div>
               </div>
             </div>
@@ -589,7 +760,7 @@
                 </a>
               </div>
               <!-- item -->
-              <div class="col-lg-3 col-sm-6">
+              <div class="col-lg-3 col-sm-6 mt-4">
                 <a href="" class="we_serve_item">
                   <div class="we_serve_item_image">
                     <img src="images/serveicon/retail-industry-icon.png" alt="">
@@ -598,7 +769,7 @@
                 </a>
               </div>
               <!-- item -->
-              <div class="col-lg-3 col-sm-6">
+              <div class="col-lg-3 col-sm-6 mt-4">
                 <a href="" class="we_serve_item">
                   <div class="we_serve_item_image">
                     <img src="images/serveicon/service-provider-industry-icon.png" alt="">
@@ -607,7 +778,7 @@
                 </a>
               </div>
               <!-- item -->
-              <div class="col-lg-3 col-sm-6">
+              <div class="col-lg-3 col-sm-6 mt-4">
                 <a href="" class="we_serve_item">
                   <div class="we_serve_item_image">
                     <img src="images/serveicon/small-medium-industry-icon.png" alt="">
@@ -616,7 +787,7 @@
                 </a>
               </div>
               <!-- item -->
-              <div class="col-lg-3 col-sm-6">
+              <div class="col-lg-3 col-sm-6 mt-4">
                 <a href="" class="we_serve_item">
                   <div class="we_serve_item_image">
                     <img src="images/serveicon/travel-industry-icon.png" alt="">
@@ -628,23 +799,47 @@
           </div>
           <!-- sidebar -->
           <div class="col-lg-3 col-sm-12">
-            <div class="we_serve_title ml-4">
+            <div class="we_serve_title">
               <p>Private sector</p>
             </div>
             <!-- sidebar list -->
-            <div class="">
-              <ul>
-                <li class="list_order"> Product categories </li>
-                <li class="list_order"> Brands </li>
-                <li class="list_order"> Tech deals </li>
-                <li class="list_order"> Tech deals </li>
-              </ul>
-              <a href="" class="business_item_button" style="justify-content: left;padding-left:15px;">
-                <span>Explore Insight Public Sector</span>
-                <span class="business_item_button_icon">
-                  <i class="fa-solid fa-arrow-right-long"></i>
-                </span>
-              </a>
+            <div>
+                <div class="">
+                    <a href="http://127.0.0.1:8000/category/all">
+                        <div id="fed-bg">
+                            <div class="p-2">
+                                <h3 class="text-white brand_side_text">Product Categories ›</h3>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class=" pt-2">
+                    <a href="http://127.0.0.1:8000/brands/all">
+                        <div id="fed-bg">
+                            <div class="p-2">
+                                <h3 class="text-white brand_side_text">Brands ›</h3>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class=" pt-2">
+                    <a href="http://127.0.0.1:8000/techdeal.html">
+                        <div id="fed-bg">
+                            <div class="p-2">
+                                <h3 class="text-white brand_side_text">Tech Deals ›</h3>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class=" pt-2">
+                    <a href="http://127.0.0.1:8000/refurbished.html">
+                        <div id="fed-bg">
+                            <div class="p-2">
+                                <h3 class="text-white brand_side_text">Refurbished ›</h3>
+                            </div>
+                        </div>
+                    </a>
+                </div>
             </div>
           </div>
         </div>
@@ -693,7 +888,7 @@
                           <span>CONTACT</span>
                           <span>US</span>
                         </div>
-                        <div class="app-contact main_color display-5">CONTACT INFO : +88 01714243446</div>
+                        <div class="app-contact main_color ">CONTACT INFO : +88 01714243446</div>
                       </div>
                       <div class="screen-body-item screen-body-item-right">
                         <div class="app-form">

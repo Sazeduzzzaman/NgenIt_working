@@ -1,45 +1,42 @@
 @extends('frontend.master')
 @section('content')
-    <section class="common_product_header" style="background-image: url(images/softwer-banner.jpg);">
-        <div class="container mt-5 pt-5">
-            <h1>Hardware</h1>
-            <p class="text-center text-white">Through our deep partnerships with trusted brands,<br> Insight offers a
-                comprehensive catalog of Hardware
-                for business.</p>
-
-            <div class="d-flex justify-content-center">
-                <div class="row">
-                    <!--BUTTON START-->
-                    <div class=" m-4">
-                        <button class="common_button2" href="product_filters.html">Talk to a specialist</button>
-                    </div>
-                    <div class=" m-4">
-                        <button class="common_button3 " href="#">Shop all Surface devices</button>
-                    </div>
-                </div>
-
-            </div>
+    <!--======// Header Title //======-->
+    <section class="common_product_header" style="background-image: linear-gradient(
+        rgba(0,0,0,0.8),
+        rgba(0,0,0,0.8)
+        ),url('https://builtin.com/sites/www.builtin.com/files/styles/ckeditor_optimize/public/inline-images/Hardware%20Section%201.jpeg');">
+        <div class="container ">
+          <h1>Hardware</h1>
+          <p class="text-center text-white">Through our deep partnerships with trusted brands, <br> Insight offers a comprehensive catalog of software for business. </p>
+            <div class="row ">
+              <!--BUTTON START-->
+              <div class="d-flex justify-content-center align-items-center">
+                <div class="m-4">
+                    <button class="common_button2" href="product_filters.html">Talk to a specialist</button>
+                  </div>
+                  <div class="m-4">
+                    <button class="common_button3" href="#">Shop all Surface devices</button>
+                  </div>
+              </div>
+          </div>
         </div>
-
-    </section>
-    <!----------End--------->
+      </section>
+      <!----------End--------->
 
     <!--======// Feature tab //======-->
     <section>
-        <div class="container">
+        <div class="container mt-5 mb-5">
 
             <div class="row">
                 <!-- first Card -->
                 <div class="col-lg-3 col-md-3 col-sm-12">
                     <div class="iconbox">
-                        <div class="iconbox-icon">
-                            <img src="images/business icon/business-apps-icon-gradient.png" alt="">
+                        <div class="iconbox-icon pb-3">
+                            <img src="https://w7.pngwing.com/pngs/786/126/png-transparent-logo-contracting-photography-logo-symbol.png" alt="">
                         </div>
                         <div class="featureinfo">
-                            <h4 class="text-center">Business <br> applications</h4>
-                            <p class="home_title_text text-center">See how we’ve helped</p>
                             <div class="text-center">
-                                <div class="buttons_style">
+                                <div class="buttons_style pt-3">
                                     <div class="container_btn">
                                         <a href="index.html" class="btns effect01" target="_blank"><span>Go</span></a>
                                     </div>
@@ -52,13 +49,11 @@
                 <div class="col-lg-3 col-md-3 col-sm-12">
                     <div class="iconbox">
                         <div class="iconbox-icon">
-                            <img src="images/business icon/business-apps-icon-gradient.png" alt="">
+                            <img src="https://w7.pngwing.com/pngs/786/126/png-transparent-logo-contracting-photography-logo-symbol.png" alt="">
                         </div>
                         <div class="featureinfo">
-                            <h4 class="text-center">Cloud<br> field services</h4>
-                            <p class="home_title_text text-center">See how we’ve helped</p>
                             <div class="text-center">
-                                <div class="buttons_style">
+                                <div class="buttons_style pt-3">
                                     <div class="container_btn">
                                         <a href="index.html" class="btns effect01" target="_blank"><span>Go</span></a>
                                     </div>
@@ -71,13 +66,11 @@
                 <div class="col-lg-3 col-md-3 col-sm-12">
                     <div class="iconbox">
                         <div class="iconbox-icon">
-                            <img src="images/business icon/business-apps-icon-gradient.png" alt="">
+                            <img src="https://w7.pngwing.com/pngs/786/126/png-transparent-logo-contracting-photography-logo-symbol.png" alt="">
                         </div>
                         <div class="featureinfo">
-                            <h4 class="text-center">Communication <br> Hardware</h4>
-                            <p class="home_title_text text-center">See how we’ve helped</p>
                             <div class="text-center">
-                                <div class="buttons_style">
+                                <div class="buttons_style pt-3">
                                     <div class="container_btn">
                                         <a href="index.html" class="btns effect01" target="_blank"><span>Go</span></a>
                                     </div>
@@ -90,13 +83,11 @@
                 <div class="col-lg-3 col-md-3 col-sm-12">
                     <div class="iconbox">
                         <div class="iconbox-icon">
-                            <img src="images/business icon/business-apps-icon-gradient.png" alt="">
+                            <img src="https://w7.pngwing.com/pngs/786/126/png-transparent-logo-contracting-photography-logo-symbol.png" alt="">
                         </div>
                         <div class="featureinfo">
-                            <h4 class="text-center">Graphics <br> & design</h4>
-                            <p class="home_title_text text-center">See how we’ve helped</p>
                             <div class="text-center">
-                                <div class="buttons_style">
+                                <div class="buttons_style pt-3">
                                     <div class="container_btn">
                                         <a href="index.html" class="btns effect01" target="_blank"><span>Go</span></a>
                                     </div>
@@ -111,13 +102,11 @@
                 <div class="col-lg-3 col-md-3 col-sm-12">
                     <div class="iconbox">
                         <div class="iconbox-icon">
-                            <img src="images/business icon/business-apps-icon-gradient.png" alt="">
+                            <img src="https://w7.pngwing.com/pngs/786/126/png-transparent-logo-contracting-photography-logo-symbol.png" alt="">
                         </div>
                         <div class="featureinfo">
-                            <h4 class="text-center">Learning <br> material</h4>
-                            <p class="home_title_text text-center">See how we’ve helped</p>
                             <div class="text-center">
-                                <div class="buttons_style">
+                                <div class="buttons_style pt-3">
                                     <div class="container_btn">
                                         <a href="index.html" class="btns effect01" target="_blank"><span>Go</span></a>
                                     </div>
@@ -130,13 +119,11 @@
                 <div class="col-lg-3 col-md-3 col-sm-12">
                     <div class="iconbox">
                         <div class="iconbox-icon">
-                            <img src="images/business icon/business-apps-icon-gradient.png" alt="">
+                            <img src="https://w7.pngwing.com/pngs/786/126/png-transparent-logo-contracting-photography-logo-symbol.png" alt="">
                         </div>
                         <div class="featureinfo">
-                            <h4 class="text-center">Networking <br> & servers</h4>
-                            <p class="home_title_text text-center">See how we’ve helped</p>
                             <div class="text-center">
-                                <div class="buttons_style">
+                                <div class="buttons_style pt-3">
                                     <div class="container_btn">
                                         <a href="index.html" class="btns effect01" target="_blank"><span>Go</span></a>
                                     </div>
@@ -149,13 +136,11 @@
                 <div class="col-lg-3 col-md-3 col-sm-12">
                     <div class="iconbox">
                         <div class="iconbox-icon">
-                            <img src="images/business icon/business-apps-icon-gradient.png" alt="">
+                            <img src="https://w7.pngwing.com/pngs/786/126/png-transparent-logo-contracting-photography-logo-symbol.png" alt="">
                         </div>
                         <div class="featureinfo">
-                            <h4 class="text-center">Operating <br> systems</h4>
-                            <p class="home_title_text text-center">See how we’ve helped</p>
                             <div class="text-center">
-                                <div class="buttons_style">
+                                <div class="buttons_style pt-3">
                                     <div class="container_btn">
                                         <a href="index.html" class="btns effect01" target="_blank"><span>Go</span></a>
                                     </div>
@@ -167,14 +152,12 @@
                 <!-- Fouth Card -->
                 <div class="col-lg-3 col-md-3 col-sm-12">
                     <div class="iconbox">
-                        <div class="iconbox-icon">
-                            <img src="images/business icon/business-apps-icon-gradient.png" alt="">
+                        <div class="iconbox-icon pb-5">
+                            <img src="https://w7.pngwing.com/pngs/786/126/png-transparent-logo-contracting-photography-logo-symbol.png" alt="">
                         </div>
                         <div class="featureinfo">
-                            <h4 class="text-center">Programming <br> & web development</h4>
-                            <p class="home_title_text text-center">See how we’ve helped</p>
                             <div class="text-center">
-                                <div class="buttons_style">
+                                <div class="buttons_style pt-3">
                                     <div class="container_btn">
                                         <a href="index.html" class="btns effect01" target="_blank"><span>Go</span></a>
                                     </div>
@@ -206,7 +189,7 @@
 
             <!-- Tab Area Start -->
             <div class="row">
-                <div class="row tabbar_wrapper w-75 mx-auto">
+                <div class="row tabbar_wrapper w-75 mx-auto m-0 p-0">
                     <div class="col-lg-3 m-0 p-0" style="margin-left: 10px">
                         <div class="tabbar_header_title">All</div>
                         <div class="data_tabs_button" data-tabs>
@@ -219,7 +202,7 @@
                             <!-- <button class="border-0">Sidebar7</button> -->
                         </div>
                     </div>
-                    <div class="col-9 data_tabs_content" data-panes>
+                    <div class="col-9 data_tabs_content p-0" data-panes>
                         <!--==//Hardware Tab Item //==-->
                         <div class="active">
                             <!--Sub Button-->
@@ -1006,7 +989,7 @@
                                             <span>CONTACT</span>
                                             <span>US</span>
                                         </div>
-                                        <div class="app-contact main_color display-5">CONTACT INFO : +88 01714243446</div>
+                                        <div class="app-contact main_color">CONTACT INFO : +88 01714243446</div>
                                     </div>
                                     <div class="screen-body-item screen-body-item-right">
                                         <div class="app-form">

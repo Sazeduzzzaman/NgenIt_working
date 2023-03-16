@@ -5,27 +5,21 @@
     <section class="banner_section">
         <!-- slider -->
         <div class="banner_slider">
+
             <!-- slider -->
             <div class="slider_inage">
-                <img src="http://165.22.48.109/ngenit/storage/kjX8qXJiNTFU4iQj1678868147.jpg" alt="">
+                <img src="{{ asset('storage/requestImg/' . $home->branner1) }}" alt="">
             </div>
             <!-- slider -->
+            <div class="slider_inage">
+                <img src="{{ asset('storage/requestImg/' . $home->branner2) }}" alt="">
+            </div>
             <!-- slider -->
-            {{-- <div class="slider_inage">
-                <img src="{{ asset('storage/requestImg/' . $home->branner1) }}" alt="">
-            </div> --}}
+            <div class="slider_inage">
+                <img src="{{ asset('storage/requestImg/' . $home->branner3) }}" alt="">
+            </div>
             <!-- slider -->
-            {{-- <div class="slider_inage">
-                <img src="{{ asset('storage/requestImg/' . $home->branner1) }}" alt="">
-            </div> --}}
-            <!-- slider -->
-            {{-- <div class="slider_inage">
-                <img src="{{ asset('storage/requestImg/' . $home->branner1) }}" alt="">
-            </div> --}}
-            <!-- slider -->
-            {{-- <div class="slider_inage">
-                <img src="{{ asset('storage/requestImg/' . $home->branner1) }}" alt="">
-            </div> --}}
+            
         </div>
     </section>
     <!-- banner start end-->

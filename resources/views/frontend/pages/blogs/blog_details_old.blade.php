@@ -3,6 +3,84 @@
 
 
 
+<!--======// Banner Section //======-->
+<section class="banner_section">
+    <!-- slider -->
+    <div class="banner_slider">
+        <!-- slider -->
+        <div class="slider_inage">
+            <img src="http://165.22.48.109/ngenit/storage/kjX8qXJiNTFU4iQj1678868147.jpg" alt="">
+        </div>
+        <!-- slider -->
+        <!-- slider -->
+        {{-- <div class="slider_inage">
+            <img src="{{ asset('storage/requestImg/' . $home->branner1) }}" alt="">
+        </div> --}}
+        <!-- slider -->
+        {{-- <div class="slider_inage">
+            <img src="{{ asset('storage/requestImg/' . $home->branner1) }}" alt="">
+        </div> --}}
+        <!-- slider -->
+        {{-- <div class="slider_inage">
+            <img src="{{ asset('storage/requestImg/' . $home->branner1) }}" alt="">
+        </div> --}}
+        <!-- slider -->
+        {{-- <div class="slider_inage">
+            <img src="{{ asset('storage/requestImg/' . $home->branner1) }}" alt="">
+        </div> --}}
+    </div>
+</section>
+<!-- banner start end-->
+<!--======// Home Cart Section //======-->
+<section class="home_card_wrapper" style="margin-top: 2.6rem;">
+    <div class="container">
+        <!-- wrapper -->
+
+            <div class="row m-0">
+                <!-- home card item -->
+                <div class="col-lg-6 col-sm-12">
+                    <div class="home_card_item">
+                        <h5 class="home_card_item_title"></h5>
+                        <div class="home_card_button">
+                            <a class="effect01" href="{{ route('learn.more') }}"></a>
+                        </div>
+                        <!-- button -->
+                    </div>
+                </div>
+                <!-- home card item -->
+                <div class="col-lg-6 col-sm-12">
+                    <div class="home_card_item">
+                        <h5 class="home_card_item_title"></h5>
+                        <div class="home_card_button">
+                            <a class="effect01" href=""></a>
+                        </div>
+                        <!-- button -->
+                    </div>
+                </div>
+            </div>
+
+    </div>
+</section>
+<!-- home card end -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 <!--=======// Single blog image //=======-->
 <section class="container">
@@ -29,12 +107,7 @@
         </div>
         <div class="bySocial col-3">
             <ul class="social-icon-links pull-right" style="font-size: 1.5rem;">
-                {{-- {!! $shareComponent !!} --}}
-                {!! Share::page(url('/story/'. $blog->id . '/details'))->facebook()->twitter()->whatsapp() !!}
-                {{-- <li><a href="#"><i class="fa-brands fa-linkedin"></i></a></li>
-                <li><a href="#"><i class="fa-brands fa-twitter"></i></a></li>
-                <li><a href="#"><i class="fa-brands fa-facebook-f"></i></a></li>
-                <li><a href="#"><i class="fa-solid fa-envelope"></i></a></li> --}}
+                {!! Share::page(url('/blog/'. $blog->id . '/details'))->facebook()->twitter()->whatsapp() !!}
             </ul>
         </div>
     </div>
@@ -49,12 +122,10 @@
 <!--=======// Single blog content //=======-->
 <section class="container">
     <div class="row content_wrapper">
-        <div class="col-10 blog_text_area" style="display: inline-block;
-        word-break: break-word;">
+        <div class="col-10 blog_text_area">
 
-            <blockquote style="overflow-wrap: break-word; margin-top:0.8rem; margin-bottom:1rem; padding: 20px 30px 20px 25px; border-left: 5px solid #af0e2e; background-color: #f7f6f5;">
-                <p style="display: inline-block;
-                word-break: break-word;">{!!$blog->short_des!!}</p>
+            <blockquote style="margin-top:0.8rem; margin-bottom:1rem; padding: 20px 30px 20px 25px; border-left: 5px solid #af0e2e; background-color: #f7f6f5;">
+                <p>{!!$blog->short_des!!}</p>
             </blockquote>
 
             {{-- <div class="infographic">
@@ -62,7 +133,7 @@
                 <p><strong>Infographic: </strong>Adapting your modern technology to build a digital-first culture.<a href="#">Empower your workforce to build meaningful experiences with the versatile power of the VMware® environment.</a></p>
             </div> --}}
 
-            <p style="overflow-wrap: break-word;">{!!$blog->long_des!!}</p>
+            <p>{!!$blog->long_des!!}</p>
 
         </div>
         <div class="col-lg-12 mb-3">
@@ -91,8 +162,8 @@
             @foreach ($storys as $item)
                 <div class="col-lg-3 col-md-6 col-sm-12">
                     <div class="related-item">
-                        <a href="{{route('story.details',$item->id)}}">
-                            <img class="img-fluid" src="{{ asset('storage/' . $item->image) }}" alt="" style="height:150px;width:100%">
+                        <a href="{{route('blog.details',$item->id)}}">
+                            <img class="img-fluid" src="{{ asset('storage/' . $item->image) }}" alt=""  style="height:150px;width:100%">
                             <h4>{{$item->badge}}</h6>
                             <h3><strong>{{Str::limit($item->title,55)}}</strong></h3>
                         </a>

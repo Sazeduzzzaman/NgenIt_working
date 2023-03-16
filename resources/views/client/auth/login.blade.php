@@ -8,7 +8,7 @@
                     <div class="section pb-5 pt-5 pt-sm-2 text-center">
                         <h2 class="mb-0 pb-3" style="color: #ae0a46;"><span>Log In </span> / <span>Sign Up</span></h2>
                         <input class="checkbox" type="checkbox" id="reg-log" name="reg-log" />
-                        <label for="reg-log"><i class="fa-solid fa-chevron-right"></i></label>
+                        <label for="reg-log"></label>
                         <div class="card-3d-wrap mx-auto">
                             <div class="card-3d-wrapper">
                                 <div class="card-front">
@@ -28,7 +28,14 @@
                                                         required>
                                                     <i class="input-icon uil uil-lock-alt"></i>
                                                 </div>
-                                                <input type="submit" class="btn text-white shadow-lg mt-4"  value="Login">
+                                                <div class="">
+                                                    <button type="submit" class="btn shadow-lg mt-4" style="
+                                                        width: 85px !important;
+                                                        background: white !important;
+                                                        color: #ae0a46 !important;
+                                                        padding: 10px 0px 10px !important;
+                                                ">Login</button>
+                                                </div>
                                                 <p class="mb-0 mt-4 text-center"><a href="" class="link text-white">Forgot
                                                         your password?</a></p>
 
@@ -72,7 +79,12 @@
                                                         required>
                                                     <i class="input-icon uil uil-lock-alt"></i>
                                                 </div>
-                                                <input type="submit" class="btn text-white shadow-lg mt-4" value="Signup">
+                                                <button type="submit" class="btn shadow-lg mt-4" style="
+                                                        width: 85px !important;
+                                                        background: white !important;
+                                                        color: #ae0a46 !important;
+                                                        padding: 10px 0px 10px !important;
+                                                ">Sign Up</button>
                                                 <div class="pb-3 pt-2">
                                                     <span class="text-center text-black">You've read our <a href="#"
                                                             class="text-white">Terms &amp; Conditions</a> and <a href="#"

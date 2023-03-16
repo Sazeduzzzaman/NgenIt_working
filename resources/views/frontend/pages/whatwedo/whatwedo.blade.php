@@ -4,7 +4,7 @@
         <div class="container mt-5">
         <div class="row align-items-center">
             <div class="col-lg-7 py-5">
-            <h1 class="mb-4">Achieve your ambitious IT goals with NGen It.</h1>
+            <h1 class="mb-4 w-75">Achieve your ambitious IT goals with NGen It.</h1>
             <p class="text-white w-75" style="text-align: justify;">Guidance and support from true industry experts for the road ahead on your IT transformation journey experts for the road ahead on your IT. Support from true industry experts so hurry</p>
             <button class="common_button3 " href="#">Talk To Us</button>
             </div>
@@ -13,20 +13,21 @@
                 <div class="d-flex">
                 <a href="{{route('hardware.info')}}" class="w-50 pr-3 pb-4">
                     <div class="card border-0 border-bottom-red shadow-lg shadow-hover">
-                    <div class="card-body text-center">
+                    <div class="card-body text-center p-4">
                         <div class="text-center">
-                        <!-- <i class="fa-lightbulb-o "></i> -->
+                        <i class="fa-lightbulb-o "></i>
                         <!-- <i class="fa-duotone fa-lightbulb-on "></i> -->
-                        <i class="fa-thin fa-lightbulb-on fa-4x my-2"></i>
+                        {{-- <i class="fa-solid fa-lightbulb-on"></i> --}}
+                        <i class="fa-solid fa-microchip fa-4x my-2"></i>
                         </div> Hardware
                     </div>
                     </div>
                 </a>
                 <a href="{{route('software.info')}}" class="w-50 pl-3 pb-4">
                     <div class="card border-0 border-bottom-blue shadow-lg shadow-hover">
-                    <div class="card-body text-center">
+                    <div class="card-body text-center  p-4">
                         <div class="text-center">
-                        <i class="fa-thin fa-layer-group fa-4x my-2"></i>
+                            <i class="fa-solid fa-regular fa-laptop-code fa-4x my-2"></i>
                         </div> Software
                     </div>
                     </div>
@@ -35,18 +36,18 @@
                 <div class="d-flex">
                 <a href="#" class="w-50 pr-3">
                     <div class="card border-0 border-bottom-yellow shadow-lg shadow-hover">
-                    <div class="card-body text-center">
+                    <div class="card-body text-center  p-4">
                         <div class="text-center">
-                        <i class="fa-thin fa-pen-nib fa-code fa-4x my-2"></i>
+                            <i class="fa-solid fa-industry-windows fa-4x my-2"></i>
                         </div> Industry
                     </div>
                     </div>
                 </a>
                 <a href="#" class="w-50 pl-3">
                     <div class="card border-0 border-bottom-green shadow-lg shadow-hover">
-                    <div class="card-body text-center">
+                    <div class="card-body text-center  p-4">
                         <div class="text-center">
-                        <i class="fa-thin fa-cart-plus fa-4x my-2"></i>
+                            <i class="fa-solid fa-brands fa-servicestack fa-4x my-2"></i>
                         </div> Solutions
                     </div>
                     </div>
@@ -143,28 +144,29 @@
                 </a>
               </div>
             </div>
-            <div class="row pb-3 pt-1">
-              <div class="col-lg-4 col-md-4 col-sm-12">
-                <a href="">
-                  <p class="text-center shadow p-4 service_card">
-                    <i class="fa-thin fa-computer"></i> IT
-                  </p>
+            <div class="row">
+                <div class="col-lg-4 col-md-4 col-sm-12">
+                  <a href="">
+                    <p class="text-center shadow p-4 service_card">
+                      <i class="fa-thin fa-database"></i> IT
+                    </p>
+                  </a>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-12">
+                  <a href="">
+                    <p class="text-center shadow p-4 service_card">
+                      <i class="fa-thin fa-cloud-arrow-up"></i> Automation
+                    </p>
+                  </a>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-12">
+                  <a href="">
+                    <p class="text-center shadow p-4 service_card">
+                      <i class="fa-thin fa-database"></i> Others
+                    </p>
+                  </a>
+                </div>
               </div>
-              <div class="col-lg-4 col-md-4 col-sm-12">
-                <a href="">
-                  <p class="text-center shadow p-4 service_card">
-                    <i class="fa-thin fa-wand-sparkles"></i> Automation
-                  </p>
-                </a>
-              </div>
-              <div class="col-lg-4 col-md-4 col-sm-12">
-                <a href="">
-                  <p class="text-center shadow p-4 service_card">
-                    <i class="fa-thin fa-cloud-arrow-up"></i> Others
-                  </p>
-                </a>
-              </div>
-            </div>
             <button class="common_button2" href="product_filters.html">Talk to a specialist</button>
           </div>
         </div>
@@ -175,7 +177,7 @@
           <div class="what-we-do_side_text">
             <h1 class="pb-4" style="line-height: 10px !important;">Managed services</h1>
             <p>Navigate the complexities of your IT ecosystem with confidence. Our technical experts and technology specialists are equipped with partner certifications, industry knowledge and deep expertise to guide you along the way.</p>
-            <div class="ml-4">
+            <div class="">
               <ul class="" style="list-style-type: circle !important;">
                 <li class="">As a service</li>
                 <li class="">Managed storage, backup and recovery</li>
@@ -205,7 +207,7 @@
           <div class="what-we-do_side_text">
             <h1 class="pb-4 pt-0" style="line-height: 40px !important;">Hardware, software and lifecycle services</h1>
             <p>Navigate the complexities of your IT ecosystem with confidence. Our technical experts and technology specialists are equipped with partner certifications, industry knowledge and deep expertise to guide you along the way.</p>
-            <div class="ml-4">
+            <div class="">
               <ul class="" style="list-style-type: circle !important;">
                 <li class="">As a service</li>
                 <li class="">Managed storage, backup and recovery</li>
@@ -401,7 +403,7 @@
                       <span>CONTACT</span>
                       <span>US</span>
                     </div>
-                    <div class="app-contact main_color display-5">CONTACT INFO : +88 01714243446</div>
+                    <div class="app-contact main_color ">CONTACT INFO : +88 01714243446</div>
                   </div>
                   <div class="screen-body-item screen-body-item-right">
                     <div class="app-form">

@@ -36,7 +36,7 @@
         <div class="container">
             <div class="row p-0">
                 <div class="d-flex text-white justify-content-between align-items-center p-0">
-                    <div>2023 NGen It</div>
+                    <div style="font-family: 'Poppins', sans-serif !important;"><strong>{{date('Y')}} NGen It</strong></div>
                     <div>{{$setting->email2}}</div>
                     <div class="d-flex justify-content-end">
                         <!-- Login Top Btn -->
@@ -102,7 +102,9 @@
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
+                <span class="navbar-toggler-icon">
+                    <i class="fa-solid fa-bars"></i>
+                </span>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mx-auto">
@@ -252,7 +254,7 @@
                                             </div>
                                         </div>
                                         <div class="col-md-4">
-                                            <a class="c-button  c-button--primary c-button--small u-margin-bot-small  c-header-nav__link"
+                                            <a class="c-button c-button--primary c-button--small u-margin-bot-small  c-header-nav__link"
                                                 href="/en_US/content-and-resources/hub.html">
                                                 <span class="c-header-nav__text">View all content</span>
                                             </a>
