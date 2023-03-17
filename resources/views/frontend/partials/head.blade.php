@@ -70,6 +70,15 @@
     .select2-container .select2-selection--single{
         height: 39px !important;
     }
+    .content_date{
+        font-family: 'Poppins', sans-serif !important;
+
+    }
+    .c-header-nav__text{
+        color: #ae0a46 !important;
+        font-weight: 600 !important;
+
+    }
  </style>
 
  <style>

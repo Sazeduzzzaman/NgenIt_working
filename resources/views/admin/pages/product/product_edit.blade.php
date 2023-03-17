@@ -287,6 +287,10 @@
                                                     Hardware</option>
                                                 <option class="form-control" value="software" {{ ( $products->product_type == 'software' ) ? 'selected' : '' }}>
                                                     Software</option>
+                                                <option class="form-control" value="training" {{ ( $products->product_type == 'training' ) ? 'selected' : '' }}>
+                                                    Training</option>
+                                                <option class="form-control" value="book" {{ ( $products->product_type == 'book' ) ? 'selected' : '' }}>
+                                                    Book</option>
 
                                             </select>
                                         </div>

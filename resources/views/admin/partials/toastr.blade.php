@@ -15,7 +15,7 @@
 @endphp
 
 
-@if (in_array(1, $resulNotify))
+{{-- @if (in_array(1, $resulNotify))
     <div class="alert alert-danger alert-icon-start alert-dismissible text-truncate rounded-pill fade show mt-3 mx-3">
 
         <span class="alert-icon bg-danger text-white rounded-pill">
@@ -25,4 +25,4 @@
             class="alert-link fw-bolder fs-lg text-info">Click Here</a> to check and update the Products.
         <button type="button" class="btn-close rounded-pill" data-bs-dismiss="alert"></button>
     </div>
-@endif
+@endif --}}

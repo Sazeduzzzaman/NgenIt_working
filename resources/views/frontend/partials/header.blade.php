@@ -3,8 +3,9 @@
     $industrys = App\Models\Admin\IndustryPage::orderBy('id', 'Desc')
         ->limit(10)
         ->get();
-    $features = App\Models\Admin\Feature::orderBy('id', 'Desc')
-        ->limit(10)
+    $features = App\Models\Admin\Feature::inRandomOrder()
+        ->select('features.id' , 'features.title' , 'features.image', 'features.created_at', 'features.badge')
+        ->limit(2)
         ->get();
     $solutions = App\Models\Admin\SolutionDetail::orderBy('id', 'Desc')
         ->limit(10)
@@ -15,13 +16,16 @@
     $categorys = App\Models\Admin\Category::orderBy('id', 'DESC')
         ->limit(10)
         ->get();
-    $blogs = App\Models\Admin\Blog::inRandomOrder()
+    $blogs = App\Models\Admin\Blog::where('featured' , 1)->inRandomOrder()
+        ->select('blogs.id', 'blogs.badge', 'blogs.title', 'blogs.created_at','blogs.created_by')
         ->limit(2)
         ->get();
-    $clientstorys = App\Models\Admin\ClientStory::inRandomOrder()
+    $clientstorys = App\Models\Admin\ClientStory::where('featured' , 1)->inRandomOrder()
+        ->select('client_stories.id', 'client_stories.badge', 'client_stories.title', 'client_stories.created_at','client_stories.created_by')
         ->limit(2)
         ->get();
-    $techglossys = App\Models\Admin\TechGlossy::inRandomOrder()
+    $techglossys = App\Models\Admin\TechGlossy::where('featured' , 1)->inRandomOrder()
+        ->select('tech_glossies.id', 'tech_glossies.badge', 'tech_glossies.title', 'tech_glossies.created_at','tech_glossies.created_by')
         ->limit(2)
         ->get();
     $jobs = App\Models\Admin\Job::all();
@@ -115,15 +119,15 @@
                             <div class="container">
                                 <div class="row">
                                     <div class="col-md-3">
-                                        <span class="text-uppercase menu_title ">Outcomes</span>
+                                        {{-- <span class="text-uppercase menu_title ">Outcomes</span> --}}
                                         <ul class="nav flex-column pt-2">
                                             <li class="nav-item p-0">
-                                                <a class="nav-link active" href="#">Product <i
+                                                <a class="nav-link active" href="{{route('software.info')}}">Software <i
                                                         class="fa-solid fa-chevron-right"></i>
                                                 </a>
                                             </li>
                                             <li class="nav-item p-0">
-                                                <a class="nav-link" href="#">Solution <i
+                                                <a class="nav-link" href="{{route('hardware.info')}}">Hardware <i
                                                         class="fa-solid fa-chevron-right"></i>
                                                 </a>
                                             </li>
@@ -231,31 +235,25 @@
                                         <div>
                                             <h4>Feature Content</h4>
                                         </div>
-                                        <div class="col-md-4 p-3">
-                                            <div class="d-flex align-items-center">
-                                                <img src="https://www.insight.com/content/dam/insight-web/en_US/article-images/menu/the-path-to-digital-transformation--where-leaders-stand-in-2023.jpg"
-                                                    alt="" style="width: 130px;">
-                                                <div style="margin-left: 20px;" class="feature_text">
-                                                    <p class="m-0 font-weight-bold">Lorem ipsum dolor, sit amet
-                                                        consectetur sit amet</p>
-                                                    <p class="m-0 font-weight-lighter">Artistic 23/05/01</p>
+                                        @if ($features)
+                                            @foreach ($features as $item)
+                                                <div class="col-md-5 p-3">
+                                                    <a class="text-black" href="{{ route('feature.details', $item->id) }}">
+                                                        <div class="d-flex align-items-center">
+                                                            <img src="{{asset('storage/'.$item->image)}}" alt="" style="width: 130px;">
+                                                            <div style="margin-left: 20px;" class="feature_text">
+                                                                <p class="m-0 font-weight-bold">{{ Str::limit($item->title, 100) }}...</p>
+                                                                <p class="m-0 font-weight-lighter content_date">{{$item->badge}} / {{($item->created_at)->format('d-m-Y')}}</p>
+                                                            </div>
+                                                        </div>
+                                                    </a>
                                                 </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4 p-3">
-                                            <div class="d-flex align-items-center">
-                                                <img src="https://www.insight.com/content/dam/insight-web/en_US/article-images/menu/the-path-to-digital-transformation--where-leaders-stand-in-2023.jpg"
-                                                    alt="" style="width: 130px;">
-                                                <div style="margin-left: 20px;" class="feature_text">
-                                                    <p class="m-0 font-weight-bold">Lorem ipsum dolor, sit amet
-                                                        consectetur sit amet</p>
-                                                    <p class="m-0 font-weight-lighter">Artistic 23/05/01</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4">
+                                            @endforeach
+                                        @endif
+
+                                        <div class="col-md-2">
                                             <a class="c-button c-button--primary c-button--small u-margin-bot-small  c-header-nav__link"
-                                                href="/en_US/content-and-resources/hub.html">
+                                                href="">
                                                 <span class="c-header-nav__text">View all content</span>
                                             </a>
                                         </div>
@@ -264,79 +262,59 @@
                             </div>
                             <div class="container-fluid mt-2 bg-white">
                                 <div class="container">
+
                                     <div class="row">
                                         <div class="col-lg-4">
-                                            <div class="d-flex align-items-center">
-                                                <img src="https://www.insight.com/content/dam/insight-web/en_US/article-images/menu/the-path-to-digital-transformation--where-leaders-stand-in-2023.jpg"
-                                                    alt="" style="width: 130px;">
-                                                <div style="margin-left: 20px;" class="feature_text">
-                                                    <p class="m-0 font-weight-bold">Lorem ipsum dolor, sit amet
-                                                        consectetur sit amet</p>
-                                                    <p class="m-0 font-weight-lighter">Artistic 23/05/01</p>
+                                           @if ($blogs)
+                                             @foreach ($blogs as $item)
+                                                <div class="mb-3">
+                                                    <div class="d-flex align-items-center">
+                                                        <img src="https://www.insight.com/content/dam/insight-web/en_US/article-images/menu/the-path-to-digital-transformation--where-leaders-stand-in-2023.jpg"
+                                                            alt="" style="width: 130px;">
+                                                        <div style="margin-left: 20px;" class="feature_text">
+                                                            <p class="m-0 font-weight-bold">Lorem ipsum dolor, sit amet
+                                                                consectetur sit amet</p>
+                                                            <p class="m-0 font-weight-lighter">Artistic 23/05/01</p>
+                                                        </div>
+                                                    </div>
                                                 </div>
-                                            </div>
+                                             @endforeach
+                                           @endif
+
                                         </div>
                                         <div class="col-lg-4">
-                                            <div class="d-flex align-items-center">
-                                                <img src="https://www.insight.com/content/dam/insight-web/en_US/article-images/menu/the-path-to-digital-transformation--where-leaders-stand-in-2023.jpg"
-                                                    alt="" style="width: 130px;">
-                                                <div style="margin-left: 20px;" class="feature_text">
-                                                    <p class="m-0 font-weight-bold">Lorem ipsum dolor, sit amet
-                                                        consectetur sit amet</p>
-                                                    <p class="m-0 font-weight-lighter">Artistic 23/05/01</p>
+                                            <div class="mb-3">
+                                                <div class="d-flex align-items-center">
+                                                    <img src="https://www.insight.com/content/dam/insight-web/en_US/article-images/menu/the-path-to-digital-transformation--where-leaders-stand-in-2023.jpg"
+                                                        alt="" style="width: 130px;">
+                                                    <div style="margin-left: 20px;" class="feature_text">
+                                                        <p class="m-0 font-weight-bold">Lorem ipsum dolor, sit amet
+                                                            consectetur sit amet</p>
+                                                        <p class="m-0 font-weight-lighter">Artistic 23/05/01</p>
+                                                    </div>
                                                 </div>
                                             </div>
+
                                         </div>
                                         <div class="col-lg-4">
-                                            <div class="d-flex align-items-center">
-                                                <img src="https://www.insight.com/content/dam/insight-web/en_US/article-images/menu/the-path-to-digital-transformation--where-leaders-stand-in-2023.jpg"
-                                                    alt="" style="width: 130px;">
-                                                <div style="margin-left: 20px;" class="feature_text">
-                                                    <p class="m-0 font-weight-bold">Lorem ipsum dolor, sit amet
-                                                        consectetur sit amet</p>
-                                                    <p class="m-0 font-weight-lighter">Artistic 23/05/01</p>
+                                            <div class="mb-3">
+                                                <div class="d-flex align-items-center">
+                                                    <img src="https://www.insight.com/content/dam/insight-web/en_US/article-images/menu/the-path-to-digital-transformation--where-leaders-stand-in-2023.jpg"
+                                                        alt="" style="width: 130px;">
+                                                    <div style="margin-left: 20px;" class="feature_text">
+                                                        <p class="m-0 font-weight-bold">Lorem ipsum dolor, sit amet
+                                                            consectetur sit amet</p>
+                                                        <p class="m-0 font-weight-lighter">Artistic 23/05/01</p>
+                                                    </div>
                                                 </div>
                                             </div>
+
                                         </div>
+
                                     </div>
                                 </div>
                             </div>
-                            <div class="container-fluid bg-white">
-                                <div class="container">
-                                    <div class="row">
-                                        <div class="col-lg-4">
-                                            <div class="d-flex align-items-center">
-                                                <img src="https://www.insight.com/content/dam/insight-web/en_US/article-images/menu/the-path-to-digital-transformation--where-leaders-stand-in-2023.jpg"
-                                                    alt="" style="width: 130px;">
-                                                <div style="margin-left: 20px;" class="feature_text">
-                                                    <p class="m-0 ">Lorem ipsum dolor, sit amet consectetur</p>
-                                                    <p class="m-0">artistic 23/05/01</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-4">
-                                            <div class="d-flex align-items-center">
-                                                <img src="https://www.insight.com/content/dam/insight-web/en_US/article-images/menu/the-path-to-digital-transformation--where-leaders-stand-in-2023.jpg"
-                                                    alt="" style="width: 130px;">
-                                                <div style="margin-left: 20px;" class="feature_text">
-                                                    <p class="m-0 ">Lorem ipsum dolor, sit amet consectetur</p>
-                                                    <p class="m-0">artistic 23/05/01</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-4">
-                                            <div class="d-flex align-items-center">
-                                                <img src="https://www.insight.com/content/dam/insight-web/en_US/article-images/menu/the-path-to-digital-transformation--where-leaders-stand-in-2023.jpg"
-                                                    alt="" style="width: 130px;">
-                                                <div style="margin-left: 20px;" class="feature_text">
-                                                    <p class="m-0 ">Lorem ipsum dolor, sit amet consectetur</p>
-                                                    <p class="m-0">artistic 23/05/01</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+
                             <div class="container-fluid" style="background-color: #f7f6f5 !important;">
                                 <div class="container">
                                     <div class="row m-0 d-flex align-items-center">
@@ -376,12 +354,12 @@
                                             <span class="text-uppercase menu_title ">Shop</span>
                                             <ul class="nav flex-column pt-2">
                                                 <li class="nav-item p-0">
-                                                    <a class="nav-link active" href="#">Product <i
+                                                    <a class="nav-link active" href="{{route('software.common')}}">Software <i
                                                             class="fa-solid fa-chevron-right"></i>
                                                     </a>
                                                 </li>
                                                 <li class="nav-item p-0">
-                                                    <a class="nav-link" href="#">Solution <i
+                                                    <a class="nav-link" href="{{route('hardware.common')}}">Hardware <i
                                                             class="fa-solid fa-chevron-right"></i>
                                                     </a>
                                                 </li>

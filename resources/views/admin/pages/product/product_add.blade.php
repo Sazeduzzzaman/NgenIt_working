@@ -53,7 +53,7 @@
                 <div class="card-header">
 
                     <h5 class="mb-0 float-start">Add New Product</h5>
-                    <a href="{{route('all.product')}}" type="button" class="btn btn-sm btn-success btn-labeled btn-labeled-start float-end">
+                    <a href="{{route('product-sourcing.index')}}" type="button" class="btn btn-sm btn-success btn-labeled btn-labeled-start float-end">
                         <span class="btn-labeled-icon bg-black bg-opacity-20">
                             <i class="icon-eye"></i>
                         </span>
@@ -190,7 +190,7 @@
                                                     <label for="inputPrice" class="form-label">Product Notification (days) <span class="text-danger">*</span> :</label>
                                                     <input class="form-control allow_decimal" placeholder="Days" type="text" name="notification_days">
                                                 </div>
-                                            
+
                                         </div>
 
 
@@ -329,6 +329,10 @@
                                                         Hardware</option>
                                                     <option class="form-control" value="software">
                                                         Software</option>
+                                                    <option class="form-control" value="training">
+                                                        Training</option>
+                                                    <option class="form-control" value="book">
+                                                        Book</option>
                                                 </select>
                                             </div>
 

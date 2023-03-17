@@ -144,12 +144,12 @@
                                                 <input type="text" name="product_code" class="form-control"
                                                     id="inputCostPerPrice" placeholder="WX-548">
                                             </div>
-                                            <div class="form-group col-md-3 m-4">
+                                            {{-- <div class="form-group col-md-3 m-4">
 
                                                 <input class="form-check-input" name="rfq" type="checkbox" id="rfqId" value="1">
                                                 <label for="rfqId" class="form-label">RFQ </label>
 
-                                            </div>
+                                            </div> --}}
                                         </div>
 
 
@@ -288,6 +288,10 @@
                                                         Hardware</option>
                                                     <option class="form-control" value="software">
                                                         Software</option>
+                                                    <option class="form-control" value="training">
+                                                        Training</option>
+                                                    <option class="form-control" value="book">
+                                                        Book</option>
                                                 </select>
                                             </div>
 

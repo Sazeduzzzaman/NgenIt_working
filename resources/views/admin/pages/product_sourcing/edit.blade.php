@@ -146,12 +146,12 @@
                                                     <input type="text" name="product_code" class="form-control"
                                                         id="inputCostPerPrice" value="{{ $products->product_code }}">
                                                 </div>
-                                                <div class="form-group col-md-3 m-4">
+                                                {{-- <div class="form-group col-md-3 m-4">
 
                                                     <input class="form-check-input" name="rfq" type="checkbox" id="rfqId" value="1" {{ $products->rfq == '1' ? 'checked' : '' }}>
                                                     <label for="rfqId" class="form-label">RFQ </label>
 
-                                                </div>
+                                                </div> --}}
                                             </div>
                                             {{-- <div class="row" id="rfqExpand">
                                                 <div class="form-group col-md-6">
@@ -303,6 +303,10 @@
                                                             Hardware</option>
                                                         <option class="form-control" value="software" {{ ( $products->product_type == 'software' ) ? 'selected' : '' }}>
                                                             Software</option>
+                                                        <option class="form-control" value="training" {{ ( $products->product_type == 'training' ) ? 'selected' : '' }}>
+                                                            Training</option>
+                                                        <option class="form-control" value="book" {{ ( $products->product_type == 'book' ) ? 'selected' : '' }}>
+                                                            Book</option>
 
                                                     </select>
                                                 </div>
@@ -358,15 +362,15 @@
                                                 </thead>
                                                 <tbody>
                                                     <tr>
-                                                        <td><input class="form-control" type="text" name="source_one_name"  value="{{ $products->source_one_name }}" required></td>
-                                                        <td><input class="form-control" type="text" name="source_one_link"  value="{{ $products->source_one_link }}" required></td>
-                                                        <td><input class="form-control allow_decimal" type="text" name="source_one_price" value="{{ $products->source_one_price }}" required></td>
+                                                        <td><input class="form-control" type="text" name="source_one_name"  value="{{ $products->source_one_name }}"></td>
+                                                        <td><input class="form-control" type="text" name="source_one_link"  value="{{ $products->source_one_link }}"></td>
+                                                        <td><input class="form-control allow_decimal" type="text" name="source_one_price" value="{{ $products->source_one_price }}"></td>
                                                         <td><input class="form-check-input" type="radio" name="source_approval" value="1" {{ $products->source_one_approval == '1' ? 'checked' : '' }}></td>
                                                     </tr>
                                                     <tr>
-                                                        <td><input class="form-control" type="text" name="source_two_name"  value="{{ $products->source_two_name }}" required></td>
-                                                        <td><input class="form-control" type="text" name="source_two_link"  value="{{ $products->source_two_link }}" required></td>
-                                                        <td><input class="form-control allow_decimal" type="text" name="source_two_price" value="{{ $products->source_two_price }}" required></td>
+                                                        <td><input class="form-control" type="text" name="source_two_name"  value="{{ $products->source_two_name }}"></td>
+                                                        <td><input class="form-control" type="text" name="source_two_link"  value="{{ $products->source_two_link }}"></td>
+                                                        <td><input class="form-control allow_decimal" type="text" name="source_two_price" value="{{ $products->source_two_price }}"></td>
                                                         <td><input class="form-check-input" type="radio" name="source_approval" value="1" {{ $products->source_two_approval == '1' ? 'checked' : '' }}></td>
                                                     </tr>
                                                     <tr>

@@ -30,6 +30,23 @@
                         </span>
                     </a>
                 </li>
+                <li class="nav-item nav-item-submenu">
+                    <a href="#" class="nav-link">
+                        <i class="fas fa-boxes"></i>
+                        <span>Category, Brand</span>
+                    </a>
+                    <ul class="nav-group-sub collapse">
+                        <li class="nav-item"><a href="{{ route('category.index') }}" class="nav-link"><i
+                                    class="ph-layout"></i>
+                                <span>Category</span></a></li>
+                        <li class="nav-item"><a href="{{ route('brand.index') }}" class="nav-link"><i
+                                    class="ph-layout"></i>
+                                <span>Brand</span></a></li>
+                        {{-- <li class="nav-item"><a href="{{ route('all.product') }}" class="nav-link"><i
+                                    class="ph-layout"></i>
+                                <span>Product</span></a></li> --}}
+                    </ul>
+                </li>
                 {{-- @if (Auth::user()->can('sourcing-management.menu')) --}}
                     <li class="nav-item nav-item-submenu">
                         <a href="#" class="nav-link">
@@ -60,23 +77,6 @@
                         </ul>
                     </li>
                 {{-- @endif --}}
-                <li class="nav-item nav-item-submenu">
-                    <a href="#" class="nav-link">
-                        <i class="fas fa-boxes"></i>
-                        <span>Product, Category, Brand</span>
-                    </a>
-                    <ul class="nav-group-sub collapse">
-                        <li class="nav-item"><a href="{{ route('category.index') }}" class="nav-link"><i
-                                    class="ph-layout"></i>
-                                <span>Category</span></a></li>
-                        <li class="nav-item"><a href="{{ route('brand.index') }}" class="nav-link"><i
-                                    class="ph-layout"></i>
-                                <span>Brand</span></a></li>
-                        <li class="nav-item"><a href="{{ route('all.product') }}" class="nav-link"><i
-                                    class="ph-layout"></i>
-                                <span>Product</span></a></li>
-                    </ul>
-                </li>
                 <li class="nav-item nav-item-submenu">
                     <a href="#" class="nav-link">
                         <i class="fas fa-industry"></i>

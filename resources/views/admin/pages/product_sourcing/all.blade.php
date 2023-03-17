@@ -54,12 +54,32 @@
                         </div>
 
                         <div class="col-lg-3">
-                            <a href="{{route('product-sourcing.create')}}" type="button" class="btn btn-sm btn-success btn-labeled btn-labeled-start float-end">
+                            <div class="dropdown ms-lg-3">
+                                <a href="#" class="btn btn-sm btn-success btn-labeled btn-labeled-start float-end" data-bs-toggle="dropdown">
+                                    <span class="btn-labeled-icon bg-black bg-opacity-20">
+                                        <i class="icon-plus2"></i>
+                                    </span>
+                                    <span class="flex-1">Add</span>
+                                </a>
+
+                                <div class="dropdown-menu dropdown-menu-end w-100 w-lg-auto">
+                                    <a href="{{route('product-sourcing.create')}}" class="dropdown-item">
+                                        <i class="ph-shield-warning me-2"></i>
+                                        Source Products
+                                    </a>
+                                    <a href="{{route('add.product')}}" class="dropdown-item">
+                                        <i class="ph-chart-bar me-2"></i>
+                                        RFQ Products
+                                    </a>
+
+                                </div>
+                            </div>
+                            {{-- <a href="{{route('product-sourcing.create')}}" type="button" class="btn btn-sm btn-success btn-labeled btn-labeled-start float-end">
                                 <span class="btn-labeled-icon bg-black bg-opacity-20">
                                     <i class="icon-plus2"></i>
                                 </span>
                                 Source New Product
-                            </a>
+                            </a> --}}
                         </div>
                     </div>
 

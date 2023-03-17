@@ -2,7 +2,7 @@
 @section('content')
 
   <!--======// Header Title //======-->
-  <section class="common_product_header" style="background-image: url('{{asset('frontend/images/softwer-banner.jpg')}}');>
+  <section class="common_product_header" style="background-image: url('{{asset('frontend/images/softwer-banner.jpg')}}');">
     <div class="container">
         <h1>Shop for Software</h1>
         {{-- <h3>Through our deep partnerships with trusted brands, Insight offers a comprehensive catalog of software
