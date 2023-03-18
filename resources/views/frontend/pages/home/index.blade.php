@@ -8,18 +8,18 @@
 
             <!-- slider -->
             <div class="slider_inage">
-                <img src="{{ asset('storage/requestImg/' . $home->branner1) }}" alt="">
+                <img src="{{ asset('storage/' . $home->branner1) }}" alt="">
             </div>
             <!-- slider -->
             <div class="slider_inage">
-                <img src="{{ asset('storage/requestImg/' . $home->branner2) }}" alt="">
+                <img src="{{ asset('storage/' . $home->branner2) }}" alt="">
             </div>
             <!-- slider -->
             <div class="slider_inage">
-                <img src="{{ asset('storage/requestImg/' . $home->branner3) }}" alt="">
+                <img src="{{ asset('storage/' . $home->branner3) }}" alt="">
             </div>
             <!-- slider -->
-            
+
         </div>
     </section>
     <!-- banner start end-->
@@ -162,8 +162,8 @@
                 <div class="col-lg-8 col-sm-12 pb-3">
                     <div class="home_shop_product_wrapper">
                         <h5> Shop Products and Hardware</h5>
-                        <p class="text-justify">Among More than {{ App\Models\Admin\Product::count() }} products and
-                            {{ App\Models\Admin\Brand::count() }} brand at your service, we can provide you with the tools
+                        <p class="text-justify">Among More than <strong style="font-family: 'Poppins', sans-serif;                            ">{{ App\Models\Admin\Product::count() }}</strong> products and
+                            <strong style="font-family: 'Poppins', sans-serif;">{{ App\Models\Admin\Brand::count() }}</strong> brand at your service, we can provide you with the tools
                             you need to succeed. Additionally, you may easily control anything from your NgenIt account.</p>
                         <div class="d-flex justify-content-start">
                             <a href="{{ route('shop.html') }}" class="common_button effect01">Shop Now</a>
@@ -274,8 +274,7 @@
                                 @else
                                     <div class="product_item_price">
                                         <span class="price_currency_value">
-                                            <a data-toggle="modal" data-target="#get_quote_modal-{{ $item->id }}">Ask
-                                                For Price</a>
+                                            <a href="javascript:void(0);" data-toggle="modal" data-target="#get_quote_modal_{{ $item->id }}">Ask For Price</a>
                                         </span>
                                     </div>
                                     <a href="{{ route('product.details', $item->slug) }}"
@@ -284,7 +283,7 @@
                             </div>
                         </div>
                         <!-- left modal -->
-                        <div class="modal modal_outer fade" id="get_quote_modal-{{ $item->id }}" tabindex="-1"
+                        <div class="modal modal_outer fade" id="get_quote_modal_{{ $item->id }}" tabindex="-1"
                             role="dialog" aria-labelledby="myModalLabel2">
                             <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
 

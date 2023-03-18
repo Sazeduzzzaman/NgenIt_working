@@ -1,6 +1,501 @@
 @extends('frontend.master')
 
 @section('content')
+    <style>
+        .iconbox-icon {
+            background: transparent;
+            /* box-shadow: 0 0px 0px 0 rgb(0 0 0 / 16%), 0 2px 10px 0 rgb(0 0 0 / 12%); */
+            border-radius: 50%;
+            -webkit-border-radius: 50%;
+            -moz-border-radius: 50%;
+            margin: 13px auto;
+            display: flex;
+            width: 100px;
+            height: 100px;
+            justify-content: center;
+            margin-top: -65px;
+            align-items: center;
+        }
+
+        /* tab */
+        h3 {
+            font-size: 25px !important;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            line-height: 1.4em !important;
+        }
+
+        p {
+            font-size: 14px;
+            margin: 0 0 10px !important;
+            font-weight: 300;
+        }
+
+        small {
+            font-size: 75%;
+            color: #777;
+            font-weight: 400;
+        }
+
+        .container .title {
+            color: #3c4858;
+            text-decoration: none;
+            margin-top: 30px;
+            margin-bottom: 25px;
+            min-height: 32px;
+        }
+
+        .container .title h3 {
+            font-size: 25px;
+            font-weight: 300;
+        }
+
+        div.card {
+            border: 0;
+            margin-bottom: 30px;
+            margin-top: 30px;
+            border-radius: 6px;
+            color: rgba(0, 0, 0, .87);
+            background: #fff;
+            width: 100%;
+            box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .14), 0 3px 1px -2px rgba(0, 0, 0, .2), 0 1px 5px 0 rgba(0, 0, 0, .12);
+        }
+
+        div.card.card-plain {
+            background: transparent;
+            box-shadow: none;
+        }
+
+        div.card .card-header {
+            border-radius: 3px;
+            padding: 5px 15px;
+            margin-left: 15px;
+            margin-right: 15px;
+            margin-top: -30px;
+            border: 0;
+            background: linear-gradient(60deg, #eee, #bdbdbd);
+        }
+
+        .card-plain .card-header:not(.card-avatar) {
+            margin-left: 0;
+            margin-right: 0;
+        }
+
+        .div.card .card-body {
+            padding: 15px 30px;
+        }
+
+        div.card .card-header-primary {
+            background: linear-gradient(60deg, #ab47bc, #7b1fa2);
+            box-shadow: 0 5px 20px 0 rgba(0, 0, 0, .2), 0 13px 24px -11px rgba(156, 39, 176, .6);
+        }
+
+        div.card .card-header-danger {
+            background: linear-gradient(60deg, #ef5350, #d32f2f);
+            box-shadow: 0 5px 20px 0 rgba(0, 0, 0, .2), 0 13px 24px -11px rgba(244, 67, 54, .6);
+        }
+
+
+        .card-nav-tabs .card-header {
+            margin-top: -30px !important;
+        }
+
+        .card .card-header .nav-tabs {
+            padding: 0;
+        }
+
+        .nav-tabs {
+            border: 0;
+            border-radius: 3px;
+            padding: 0 15px;
+        }
+
+        .nav {
+            display: flex;
+            flex-wrap: wrap;
+            padding-left: 0;
+            margin-bottom: 0;
+            list-style: none;
+        }
+
+        .nav-tabs .nav-item {
+            margin-bottom: -1px;
+        }
+
+        .nav-tabs .nav-item .nav-link.active {
+            background-color: hsla(0, 0%, 100%, .2);
+            transition: background-color .3s .2s;
+        }
+
+        .nav-tabs .nav-item .nav-link {
+            border: 0 !important;
+            color: #fff !important;
+            font-weight: 500;
+        }
+
+        .nav-tabs .nav-item .nav-link {
+            color: #fff;
+            border: 0;
+            margin: 0;
+            border-radius: 3px;
+            line-height: 24px;
+            text-transform: uppercase;
+            font-size: 12px;
+            padding: 10px 15px;
+            background-color: transparent;
+            transition: background-color .3s 0s;
+        }
+
+        .nav-link {
+            display: block;
+        }
+
+        .nav-tabs .nav-item .material-icons {
+            margin: -1px 5px 0 0;
+            vertical-align: middle;
+        }
+
+        .nav .nav-item {
+            position: relative;
+        }
+
+        .nav-tabs .nav-item .nav-link {
+            color: #fff;
+            border: 0;
+            margin: 0;
+            border-radius: 3px;
+            line-height: 23px;
+            text-transform: uppercase;
+            font-size: 12px;
+            padding: 3px 7px 3px !important;
+            padding: 10px 15px;
+            background-color: transparent;
+            transition: background-color .3s 0s;
+        }
+        .multi_tab_content ul li a{
+            color: #bdbdbd;
+        }
+        .main_color h2{
+            color: #ae0a46;
+        }
+    </style>
+    <!--======// Header Title //======-->
+    <section class="common_product_header pb-5"
+        style="background-image:linear-gradient(
+            rgba(0,0,0,0.5),
+            rgba(0,0,0,0.5)
+            ), url('https://static.vecteezy.com/system/resources/previews/001/349/487/original/purple-low-poly-abstract-banner-free-vector.jpg');">
+        <div class="container ">
+            <h1>Shop By Brands</h1>
+            <p class="text-center text-white">Through our deep partnerships with trusted brands, <br> Insight offers a
+                comprehensive catalog of software for business. </p>
+            <div class="row mb-5">
+                <!--BUTTON START-->
+                <div class="d-flex justify-content-center align-items-center">
+                    <div class="">
+                        <div class="">
+                            <button class="common_button3" href="#">All Blog Are Here</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!----------End--------->
+
+    <!--======// Top Brand //=====-->
+    <section>
+        <div class="container">
+            <div>
+                <h4 class="text-center py-4">Top Brand</h4>
+            </div>
+            <div class="row">
+                {{-- first brand --}}
+                @foreach ($top_brands as $item)
+                    <div class="col-lg-2 col-md-3 col-sm-12">
+                        <div class="iconbox">
+                            <div class="iconbox-icon">
+                                <img src="{{ asset('storage/requestImg/' . App\Models\Admin\Brand::where('id', $item->brand_id)->value('image')) }}"
+                                    alt="">
+                            </div>
+                            <div class="featureinfo">
+                                <h4 class="text-center">Acronis</h4>
+                                <div class="d-flex justify-content-between">
+
+                                    <div>
+                                        <a
+                                            href="{{ route('brandpage.html', App\Models\Admin\Brand::where('id', $item->brand_id)->value('slug')) }}"><button
+                                                class="btn btn-light p-1 " style="font-size: 12px;">Details</button></a>
+
+                                    </div>
+                                    <div>
+                                        <a
+                                            href="{{ route('brandpage.html', App\Models\Admin\Brand::where('id', $item->brand_id)->value('slug')) }}"><button
+                                                class="btn btn-light p-1 " style="font-size: 12px;">Shop</button></a>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+        </div>
+    </section>
+    <!--------- End -------->
+
+
+    <!--======// Feature Brand //=====-->
+    <section>
+        <div class="container">
+            <div class="pt-5">
+                <h4 class="text-center">Feature</h4>
+            </div>
+            <div class="row">
+                {{-- first brand --}}
+                @foreach ($featured_brands as $item)
+                    <div class="col-lg-2 col-md-3 col-sm-12">
+                        <div class="iconbox">
+                            <div class="iconbox-icon">
+                                <img src="{{ asset('storage/requestImg/' . $item->image) }}" alt="">
+                            </div>
+                            <div class="featureinfo">
+                                <h4 class="text-center">{{ Str::limit($item->title, 6) }}</h4>
+                                <div class="d-flex justify-content-center">
+
+                                    <div>
+                                        <a href="{{ route('custom.product', $item->slug) }}"><button
+                                                class="btn btn-light p-1 " style="font-size: 12px;">Details</button></a>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+        </div>
+    </section>
+    <!--------- End -------->
+
+    <!--======// Explore all the brands Ngen It has to offer. //====-->
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="text-center main_color py-3">
+                    <h2>Explore all the brands Ngen It has to offer.</h2>
+                </div>
+                <div class="col-xs-12 ">
+                    <nav>
+                        <div class="nav nav-tabs nav-fill p-0" id="nav-tab" role="tablist">
+                            <a class="nav-item nav-link active" id="nav-healthcare" data-toggle="tab" href="#a" role="tab" aria-controls="nav-home" aria-selected="true">A</a>
+
+                            <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#b" role="tab" aria-controls="nav-profile" aria-selected="false">B</a>
+
+                            <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#c" role="tab" aria-controls="nav-contact" aria-selected="false">C</a>
+
+                            <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#d" role="tab" aria-dontrols="nav-contact" aria-selected="false">D</a>
+
+                            <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#e" role="tab" aria-controls="nav-contact" aria-selected="false">E</a>
+
+                            <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#f" role="tab" aria-controls="nav-contact" aria-selected="false">F</a>
+
+                            <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#g" role="tab" aria-controls="nav-contact" aria-selected="false">G</a>
+
+                            <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#h" role="tab" aria-controls="nav-contact" aria-selected="false">H</a>
+
+                            <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#i" role="tab" aria-controls="nav-contact" aria-selected="false">I</a>
+
+                            <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#j" role="tab" aria-controls="nav-contact" aria-selected="false">J</a>
+
+                            <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#k" role="tab" aria-controls="nav-contact" aria-selected="false">K</a>
+
+                            <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#l" role="tab" aria-controls="nav-contact" aria-selected="false">L</a>
+
+                            <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#m" role="tab" aria-controls="nav-contact" aria-selected="false">M</a>
+
+                            <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#n" role="tab" aria-controls="nav-contact" aria-selected="false">N</a>
+
+                            <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#o" role="tab" aria-controls="nav-contact" aria-selected="false">O</a>
+
+                            <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#p" role="tab" aria-controls="nav-contact" aria-selected="false">P</a>
+                        </div>
+                    </nav>
+                    <div class="tab-content py-3 px-3 px-sm-0" id="nav-tabContent">
+                        <div class="tab-pane fade show active" id="a" role="tabpanel" aria-labelledby="nav-healthcare">
+                            <div class="d-flex multi_tab_content ">
+                                <ul>
+                                    <li>
+                                        <a href="">AMD</a>
+                                    </li>
+                                    <li>
+                                        <a href="">Axioma</a>
+                                    </li>
+                                    <li>
+                                        <a href="">ADLINK Technology</a>
+                                    </li>
+                                    <li>
+                                        <a href="">Axis Communications</a>
+                                    </li>
+                                </ul>
+                                <ul>
+                                <li>
+                                    <a href="">AMD</a>
+                                </li>
+                                <li>
+                                    <a href="">Axioma</a>
+                                </li>
+                                <li>
+                                    <a href="">ADLINK Technology</a>
+                                </li>
+                                <li>
+                                    <a href="">Axis Communications</a>
+                                </li>
+                            </ul>
+                            <ul>
+                                <li>
+                                    <a href="">AMD</a>
+                                </li>
+                                <li>
+                                    <a href="">Axioma</a>
+                                </li>
+                                <li>
+                                    <a href="">ADLINK Technology</a>
+                                </li>
+                                <li>
+                                    <a href="">Axis Communications</a>
+                                </li>
+                            </ul>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="b" role="tabpanel" aria-labelledby="nav-profile-tab">
+                             <div class="d-flex multi_tab_content ">
+                                <ul>
+                                    <li>
+                                        <a href="">AMD</a>
+                                    </li>
+                                    <li>
+                                        <a href="">Axioma</a>
+                                    </li>
+                                    <li>
+                                        <a href="">ADLINK Technology</a>
+                                    </li>
+                                    <li>
+                                        <a href="">Axis Communications</a>
+                                    </li>
+                                </ul>
+                                <ul>
+                                <li>
+                                    <a href="">AMD</a>
+                                </li>
+                                <li>
+                                    <a href="">Axioma</a>
+                                </li>
+                                <li>
+                                    <a href="">ADLINK Technology</a>
+                                </li>
+                                <li>
+                                    <a href="">Axis Communications</a>
+                                </li>
+                            </ul>
+                            <ul>
+                                <li>
+                                    <a href="">AMD</a>
+                                </li>
+                                <li>
+                                    <a href="">Axioma</a>
+                                </li>
+                                <li>
+                                    <a href="">ADLINK Technology</a>
+                                </li>
+                                <li>
+                                    <a href="">Axis Communications</a>
+                                </li>
+                            </ul>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="c" role="tabpanel" aria-labelledby="nav-contact-tab">
+                             <div class="d-flex multi_tab_content ">
+                                <ul>
+                                    <li>
+                                        <a href="">AMD</a>
+                                    </li>
+                                    <li>
+                                        <a href="">Axioma</a>
+                                    </li>
+                                    <li>
+                                        <a href="">ADLINK Technology</a>
+                                    </li>
+                                    <li>
+                                        <a href="">Axis Communications</a>
+                                    </li>
+                                </ul>
+                                <ul>
+                                <li>
+                                    <a href="">AMD</a>
+                                </li>
+                                <li>
+                                    <a href="">Axioma</a>
+                                </li>
+                                <li>
+                                    <a href="">ADLINK Technology</a>
+                                </li>
+                                <li>
+                                    <a href="">Axis Communications</a>
+                                </li>
+                            </ul>
+                            <ul>
+                                <li>
+                                    <a href="">AMD</a>
+                                </li>
+                                <li>
+                                    <a href="">Axioma</a>
+                                </li>
+                                <li>
+                                    <a href="">ADLINK Technology</a>
+                                </li>
+                                <li>
+                                    <a href="">Axis Communications</a>
+                                </li>
+                            </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+@endsection
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@extends('frontend.master')
+
+@section('content')
 
     <!--======// Header Title //======-->
     <section class="brand_header_wrapper" style="background-image: url('{{ asset('frontend/images/buy-brand-hero.jpg') }}');height:15rem">

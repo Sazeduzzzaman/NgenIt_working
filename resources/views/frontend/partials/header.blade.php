@@ -1,31 +1,39 @@
 @php
     $setting = App\Models\Admin\Setting::first();
     $industrys = App\Models\Admin\IndustryPage::orderBy('id', 'Desc')
-        ->limit(10)
+        ->select('industry_pages.id', 'industry_pages.industry_id')
+        ->limit(6)
         ->get();
     $features = App\Models\Admin\Feature::inRandomOrder()
         ->select('features.id' , 'features.title' , 'features.image', 'features.created_at', 'features.badge')
         ->limit(2)
         ->get();
+    $feature_events = App\Models\Admin\Feature::inRandomOrder()
+    ->select('features.id' , 'features.title' , 'features.image', 'features.created_at', 'features.badge')
+    ->limit(2)
+    ->get();
     $solutions = App\Models\Admin\SolutionDetail::orderBy('id', 'Desc')
-        ->limit(10)
+        ->select('solution_details.id', 'solution_details.name')
+        ->limit(6)
         ->get();
     $brands = App\Models\Admin\BrandPage::orderBy('id', 'Desc')
+        ->select('brand_pages.id', 'brand_pages.brand_id')
         ->limit(10)
         ->get();
     $categorys = App\Models\Admin\Category::orderBy('id', 'DESC')
+        ->select('categories.id', 'categories.slug', 'categories.title')
         ->limit(10)
         ->get();
-    $blogs = App\Models\Admin\Blog::where('featured' , 1)->inRandomOrder()
-        ->select('blogs.id', 'blogs.badge', 'blogs.title', 'blogs.created_at','blogs.created_by')
+    $blogs = App\Models\Admin\Blog::where('featured' , '1')->inRandomOrder()
+        ->select('blogs.id', 'blogs.badge', 'blogs.title','blogs.image', 'blogs.created_at','blogs.created_by')
         ->limit(2)
         ->get();
-    $clientstorys = App\Models\Admin\ClientStory::where('featured' , 1)->inRandomOrder()
-        ->select('client_stories.id', 'client_stories.badge', 'client_stories.title', 'client_stories.created_at','client_stories.created_by')
+    $clientstorys = App\Models\Admin\ClientStory::where('featured' , '1')->inRandomOrder()
+        ->select('client_stories.id', 'client_stories.badge','client_stories.image', 'client_stories.title', 'client_stories.created_at','client_stories.created_by')
         ->limit(2)
         ->get();
-    $techglossys = App\Models\Admin\TechGlossy::where('featured' , 1)->inRandomOrder()
-        ->select('tech_glossies.id', 'tech_glossies.badge', 'tech_glossies.title', 'tech_glossies.created_at','tech_glossies.created_by')
+    $techglossys = App\Models\Admin\TechGlossy::where('featured' , '1')->inRandomOrder()
+        ->select('tech_glossies.id', 'tech_glossies.badge', 'tech_glossies.title','tech_glossies.image', 'tech_glossies.created_at','tech_glossies.created_by')
         ->limit(2)
         ->get();
     $jobs = App\Models\Admin\Job::all();
@@ -114,11 +122,11 @@
                 <ul class="navbar-nav mx-auto">
                     <li class="nav-item dropdown">
                         <a class="dropdown-toggle nav-link-text" href="#" id="navbarDropdown" role="button"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Our Solution </a>
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Our Solutions </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <div class="container">
                                 <div class="row">
-                                    <div class="col-md-3">
+                                    <div class="col-md-4">
                                         {{-- <span class="text-uppercase menu_title ">Outcomes</span> --}}
                                         <ul class="nav flex-column pt-2">
                                             <li class="nav-item p-0">
@@ -143,7 +151,7 @@
                                             </li>
                                         </ul>
                                     </div>
-                                    <!-- /.col-md-4  -->
+                                    {{-- <!-- /.col-md-4  -->
                                     <div class="col-md-3">
                                         <span class="text-uppercase menu_title ">Our expertise</span>
                                         <ul class="nav flex-column pt-2 pt-2">
@@ -169,54 +177,38 @@
                                             </li>
                                         </ul>
                                     </div>
-                                    <!-- /.col-md-4  -->
-                                    <div class="col-md-3">
-                                        <span class="text-uppercase menu_title">Our services</span>
+                                    <!-- /.col-md-4  --> --}}
+                                    <div class="col-md-4">
+                                        <span class="text-uppercase menu_title">Industries</span>
                                         <ul class="nav flex-column pt-2">
-                                            <li class="nav-item">
-                                                <a class="nav-link active" href="#">Product <i
-                                                        class="fa-solid fa-chevron-right"></i>
-                                                </a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a class="nav-link" href="#">Training <i
-                                                        class="fa-solid fa-chevron-right"></i>
-                                                </a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a class="nav-link" href="#">Books <i
-                                                        class="fa-solid fa-chevron-right"></i>
-                                                </a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a class="nav-link" href="#">Solution <i
-                                                        class="fa-solid fa-chevron-right"></i>
-                                                </a>
-                                            </li>
+                                            @if ($industrys)
+                                                @foreach ($industrys as $item)
+                                                    <li class="nav-item">
+                                                        <a class="nav-link active" href="{{ route('industry.details', $item->id) }}">
+                                                            {{ App\Models\Admin\Industry::where('id', $item->industry_id)->value('title') }}
+                                                            <i class="fa-solid fa-chevron-right"></i>
+                                                        </a>
+                                                    </li>
+                                                @endforeach
+                                            @endif
                                         </ul>
                                     </div>
                                     <!-- /.col-md-4  -->
-                                    <div class="col-md-3">
-                                        <span class="text-uppercase menu_title">Industries</span>
+                                    <div class="col-md-4">
+                                        <span class="text-uppercase menu_title">Solutions</span>
                                         <ul class="nav flex-column pt-2">
-                                            <li class="nav-item">
-                                                <a class="nav-link active" href="#">Product <i
-                                                        class="fa-solid fa-chevron-right"></i>
-                                                </a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a class="nav-link" href="#">Training <i
-                                                        class="fa-solid fa-chevron-right"></i>
-                                                </a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a class="nav-link" href="#">Books <i
-                                                        class="fa-solid fa-chevron-right"></i>
-                                                </a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a class="nav-link" href="#"></a>
-                                            </li>
+
+                                            @if ($solutions)
+                                                @foreach ($solutions as $item)
+                                                    <li class="nav-item">
+                                                        <a class="nav-link active" href="{{ route('solution.details', $item->id) }}">
+                                                            {{ $item->name }}
+                                                            <i class="fa-solid fa-chevron-right"></i>
+                                                        </a>
+                                                    </li>
+                                                @endforeach
+                                            @endif
+
                                         </ul>
                                     </div>
                                     <!-- /.col-md-4  -->
@@ -233,7 +225,7 @@
                                 <div class="container">
                                     <div class="row d-flex align-items-center justify-content-center p-0">
                                         <div>
-                                            <h4>Feature Content</h4>
+                                            <h4>Featured Content</h4>
                                         </div>
                                         @if ($features)
                                             @foreach ($features as $item)
@@ -251,12 +243,12 @@
                                             @endforeach
                                         @endif
 
-                                        <div class="col-md-2">
+                                        {{-- <div class="col-md-2">
                                             <a class="c-button c-button--primary c-button--small u-margin-bot-small  c-header-nav__link"
                                                 href="">
                                                 <span class="c-header-nav__text">View all content</span>
                                             </a>
-                                        </div>
+                                        </div> --}}
                                     </div>
                                 </div>
                             </div>
@@ -269,12 +261,11 @@
                                              @foreach ($blogs as $item)
                                                 <div class="mb-3">
                                                     <div class="d-flex align-items-center">
-                                                        <img src="https://www.insight.com/content/dam/insight-web/en_US/article-images/menu/the-path-to-digital-transformation--where-leaders-stand-in-2023.jpg"
-                                                            alt="" style="width: 130px;">
+                                                        <img src="{{asset('storage/'.$item->image)}}"
+                                                            alt="" width="130px" height="70px">
                                                         <div style="margin-left: 20px;" class="feature_text">
-                                                            <p class="m-0 font-weight-bold">Lorem ipsum dolor, sit amet
-                                                                consectetur sit amet</p>
-                                                            <p class="m-0 font-weight-lighter">Artistic 23/05/01</p>
+                                                            <p class="m-0 font-weight-bold">{{ Str::limit($item->title, 55) }}...</p>
+                                                            <p class="m-0 font-weight-lighter">{{$item->badge}} / {{($item->created_at)->format('d-m-Y')}}</p>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -283,32 +274,36 @@
 
                                         </div>
                                         <div class="col-lg-4">
-                                            <div class="mb-3">
-                                                <div class="d-flex align-items-center">
-                                                    <img src="https://www.insight.com/content/dam/insight-web/en_US/article-images/menu/the-path-to-digital-transformation--where-leaders-stand-in-2023.jpg"
-                                                        alt="" style="width: 130px;">
-                                                    <div style="margin-left: 20px;" class="feature_text">
-                                                        <p class="m-0 font-weight-bold">Lorem ipsum dolor, sit amet
-                                                            consectetur sit amet</p>
-                                                        <p class="m-0 font-weight-lighter">Artistic 23/05/01</p>
+                                            @if ($clientstorys)
+                                                @foreach ($clientstorys as $item)
+                                                    <div class="mb-3">
+                                                        <div class="d-flex align-items-center">
+                                                            <img src="{{asset('storage/'.$item->image)}}"
+                                                                alt="" width="130px" height="70px">
+                                                            <div style="margin-left: 20px;" class="feature_text">
+                                                                <p class="m-0 font-weight-bold">{{ Str::limit($item->title, 55) }}...</p>
+                                                                <p class="m-0 font-weight-lighter">{{$item->badge}} / {{($item->created_at)->format('d-m-Y')}}</p>
+                                                            </div>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                            </div>
-
+                                                @endforeach
+                                            @endif
                                         </div>
                                         <div class="col-lg-4">
-                                            <div class="mb-3">
-                                                <div class="d-flex align-items-center">
-                                                    <img src="https://www.insight.com/content/dam/insight-web/en_US/article-images/menu/the-path-to-digital-transformation--where-leaders-stand-in-2023.jpg"
-                                                        alt="" style="width: 130px;">
-                                                    <div style="margin-left: 20px;" class="feature_text">
-                                                        <p class="m-0 font-weight-bold">Lorem ipsum dolor, sit amet
-                                                            consectetur sit amet</p>
-                                                        <p class="m-0 font-weight-lighter">Artistic 23/05/01</p>
+                                            @if ($techglossys)
+                                                @foreach ($techglossys as $item)
+                                                    <div class="mb-3">
+                                                        <div class="d-flex align-items-center">
+                                                            <img src="{{asset('storage/'.$item->image)}}"
+                                                                alt="" width="130px" height="70px">
+                                                            <div style="margin-left: 20px;" class="feature_text">
+                                                                <p class="m-0 font-weight-bold">{{ Str::limit($item->title, 55) }}...</p>
+                                                                <p class="m-0 font-weight-lighter">{{$item->badge}} / {{($item->created_at)->format('d-m-Y')}}</p>
+                                                            </div>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                            </div>
-
+                                                @endforeach
+                                            @endif
                                         </div>
 
                                     </div>
@@ -320,21 +315,21 @@
                                     <div class="row m-0 d-flex align-items-center">
                                         <div class="col-lg-4 m-0 p-2">
                                             <div>
-                                                <a href="">
+                                                <a href="{{route('all.blog')}}">
                                                     <p class="font-weight-bold text-black m-0 view_all">View All</p>
                                                 </a>
                                             </div>
                                         </div>
                                         <div class="col-lg-4 m-0 p-2">
                                             <div>
-                                                <a href="">
+                                                <a href="{{route('all.story')}}">
                                                     <p class="font-weight-bold text-black m-0 view_all">View All</p>
                                                 </a>
                                             </div>
                                         </div>
                                         <div class="col-lg-4 m-0 p-2">
                                             <div>
-                                                <a href="">
+                                                <a href="{{route('all.techglossy')}}">
                                                     <p class="font-weight-bold text-black m-0 view_all">View All</p>
                                                 </a>
                                             </div>
@@ -349,9 +344,9 @@
                         <div class="dropdown-menu p-0" aria-labelledby="navbarDropdown">
                             <div class="container-fluid">
                                 <div class="row">
-                                    <div class="col-md-3  ">
+                                    <div class="col-md-2">
                                         <div class="mx-auto" style="width: 8rem">
-                                            <span class="text-uppercase menu_title ">Shop</span>
+                                            <span class="text-uppercase menu_title ">Shop By</span>
                                             <ul class="nav flex-column pt-2">
                                                 <li class="nav-item p-0">
                                                     <a class="nav-link active" href="{{route('software.common')}}">Software <i
@@ -377,78 +372,38 @@
                                         </div>
                                     </div>
                                     <!-- /.col-md-4  -->
-                                    <div class="col-md-3">
+                                    <div class="col-md-4">
                                         <span class="text-uppercase menu_title ">Shop By Category</span>
                                         <ul class="nav flex-column pt-2">
-                                            <li class="nav-item d-flex">
-                                                <a class="nav-link active" href="#">Category 1 <i
-                                                        class="fa-solid fa-chevron-right"></i>
-                                                </a>
-                                                <a class="nav-link active ml-2" href="#">Category 2 <i
-                                                        class="fa-solid fa-chevron-right"></i>
-                                                </a>
+                                            <li class="nav-item d-flex row">
+                                                @if ($categorys)
+                                                    @foreach ($categorys as $item)
+                                                        <a class="nav-link col-6 py-1" href="{{ route('category.html', $item->slug) }}"
+                                                            >
+                                                            {{ $item->title }}
+                                                            <i class="fa-solid fa-chevron-right"></i>
+                                                        </a>
+                                                    @endforeach
+                                                @endif
                                             </li>
-                                            <li class="nav-item d-flex">
-                                                <a class="nav-link active" href="#">Category 3 <i
-                                                        class="fa-solid fa-chevron-right"></i>
-                                                </a>
-                                                <a class="nav-link active ml-2" href="#">Category 2 <i
-                                                        class="fa-solid fa-chevron-right"></i>
-                                                </a>
-                                            </li>
-                                            <li class="nav-item d-flex">
-                                                <a class="nav-link active" href="#">Category 5 <i
-                                                        class="fa-solid fa-chevron-right"></i>
-                                                </a>
-                                                <a class="nav-link active ml-2" href="#">Category 6 <i
-                                                        class="fa-solid fa-chevron-right"></i>
-                                                </a>
-                                            </li>
-                                            <li class="nav-item d-flex">
-                                                <a class="nav-link active" href="#">Category 7 <i
-                                                        class="fa-solid fa-chevron-right"></i>
-                                                </a>
-                                                <a class="nav-link active ml-2" href="#">Category 8 <i
-                                                        class="fa-solid fa-chevron-right"></i>
-                                                </a>
-                                            </li>
+
                                         </ul>
+
                                     </div>
                                     <!-- /.col-md-4  -->
                                     <div class="col-md-3">
                                         <span class="text-uppercase menu_title">Shop By Brand</span>
                                         <ul class="nav flex-column pt-2">
-                                            <li class="nav-item d-flex">
-                                                <a class="nav-link active" href="#">Brand 1 <i
-                                                        class="fa-solid fa-chevron-right"></i>
-                                                </a>
-                                                <a class="nav-link active ml-2" href="#">Brand 2 <i
-                                                        class="fa-solid fa-chevron-right"></i>
-                                                </a>
-                                            </li>
-                                            <li class="nav-item d-flex">
-                                                <a class="nav-link active" href="#">Brand 3 <i
-                                                        class="fa-solid fa-chevron-right"></i>
-                                                </a>
-                                                <a class="nav-link active ml-2" href="#">Brand 2 <i
-                                                        class="fa-solid fa-chevron-right"></i>
-                                                </a>
-                                            </li>
-                                            <li class="nav-item d-flex">
-                                                <a class="nav-link active" href="#">Brand 5 <i
-                                                        class="fa-solid fa-chevron-right"></i>
-                                                </a>
-                                                <a class="nav-link active ml-2" href="#">Brand 6 <i
-                                                        class="fa-solid fa-chevron-right"></i>
-                                                </a>
-                                            </li>
-                                            <li class="nav-item d-flex">
-                                                <a class="nav-link active" href="#">Brand 7 <i
-                                                        class="fa-solid fa-chevron-right"></i>
-                                                </a>
-                                                <a class="nav-link active ml-2" href="#">Brand 8 <i
-                                                        class="fa-solid fa-chevron-right"></i>
-                                                </a>
+                                            <li class="nav-item d-flex row">
+                                                @if ($brands)
+                                                    @foreach ($brands as $item)
+                                                        <a class="nav-link col-6"
+                                                        href="{{ route('brandpage.html', App\Models\Admin\Brand::where('id', $item->brand_id)->value('slug')) }}">
+                                                            {{ ucfirst(App\Models\Admin\Brand::where('id', $item->brand_id)->value('title')) }}
+                                                            <i class="fa-solid fa-chevron-right"></i>
+                                                        </a>
+                                                    @endforeach
+                                                @endif
                                             </li>
                                         </ul>
                                     </div>
@@ -457,23 +412,16 @@
                                         <span class="text-uppercase menu_title">Explore Our Deals</span>
                                         <ul class="nav flex-column pt-2">
                                             <li class="nav-item">
-                                                <a class="nav-link active" href="#">Product <i
+                                                <a class="nav-link active" href="{{ route('tech.deals') }}">Technology deals  <i
                                                         class="fa-solid fa-chevron-right"></i>
                                                 </a>
                                             </li>
                                             <li class="nav-item">
-                                                <a class="nav-link" href="#">Training <i
+                                                <a class="nav-link" href="{{ route('refurbished') }}">Certified refurbished  <i
                                                         class="fa-solid fa-chevron-right"></i>
                                                 </a>
                                             </li>
-                                            <li class="nav-item">
-                                                <a class="nav-link" href="#">Books <i
-                                                        class="fa-solid fa-chevron-right"></i>
-                                                </a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a class="nav-link" href="#"></a>
-                                            </li>
+
                                         </ul>
                                     </div>
                                     <!-- /.col-md-4  -->
@@ -488,89 +436,115 @@
                             <div class="container">
                                 <div class="row">
                                     <div class="col-md-5">
-                                        <span class="text-uppercase menu_title text-black ">Feature Event</span>
-                                        <div class="d-flex align-items-center pt-2">
-                                            <img src="https://www.insight.com/content/dam/insight-web/en_US/article-images/menu/the-path-to-digital-transformation--where-leaders-stand-in-2023.jpg"
-                                                alt="" style="width: 130px;">
-                                            <div style="margin-left: 20px;" class="feature_text">
-                                                <p class="m-0 font-weight-bold">Lorem ipsum dolor, sit amet consectetur
-                                                    sit amet ipsum dolor ipsum dolor</p>
-                                                <p class="m-0 font-weight-lighter">Artistic 23/05/01</p>
-                                            </div>
-                                        </div>
-                                        <div class="d-flex align-items-center pt-3">
-                                            <img src="https://www.insight.com/content/dam/insight-web/en_US/article-images/menu/the-path-to-digital-transformation--where-leaders-stand-in-2023.jpg"
-                                                alt="" style="width: 130px;">
-                                            <div style="margin-left: 20px;" class="feature_text">
-                                                <p class="m-0 font-weight-bold">Lorem ipsum dolor, sit amet consectetur
-                                                    sit amet ipsum dolor ipsum dolor</p>
-                                                <p class="m-0 font-weight-lighter">Artistic 23/05/01</p>
-                                            </div>
-                                        </div>
+                                        <span class="text-uppercase menu_title text-black ">Featured Events</span>
+                                        @if ($feature_events)
+                                            @foreach ($feature_events as $item)
+                                                <div class="d-flex align-items-center mb-3">
+                                                    <img src="{{asset('storage/'.$item->image)}}" alt="" style="width: 130px;">
+                                                    <div style="margin-left: 20px;" class="feature_text">
+                                                        <p class="m-0 font-weight-bold">{{ Str::limit($item->title, 100) }}...</p>
+                                                        <p class="m-0 font-weight-lighter content_date">{{$item->badge}} / {{($item->created_at)->format('d-m-Y')}}</p>
+                                                    </div>
+                                                </div>
+                                            @endforeach
+                                        @endif
+
                                         <div class="mt-3">
-                                            <a class="c-button  c-button--primary c-button--small u-margin-bot-small  c-header-nav__link"
+                                            {{-- <a class="c-button  c-button--primary c-button--small u-margin-bot-small  c-header-nav__link"
                                                 href="/en_US/content-and-resources/hub.html">
                                                 <span class="c-header-nav__text">View all content</span>
-                                            </a>
+                                            </a> --}}
                                         </div>
                                     </div>
-                                    <!-- /.col-md-4  -->
-                                    <div class="col-md-2">
-                                        <a href="">
-                                            <span class="text-uppercase menu_title text-black">Contact us</span>
-                                        </a>
-                                        <ul class="nav flex-column pt-2">
-                                            <li class="nav-item d-flex">
-                                                <a class="nav-link active" href="#">Talk To a Specialist <i
-                                                        class="fa-solid fa-chevron-right"></i>
+                                    <div class="col-md-7">
+                                        <div class="row">
+                                            <!-- /.col-md-4  -->
+                                            <div class="col-md-4">
+                                                <a href="javascript:void(0);">
+                                                    <span class="text-uppercase menu_title text-black">Contact us</span>
                                                 </a>
-                                            </li>
-                                            <li class="nav-item d-flex">
-                                                <a class="nav-link active" href="#">NGen It <i
-                                                        class="fa-solid fa-chevron-right"></i>
-                                                </a>
-                                            </li>
-                                            <li class="nav-item d-flex">
-                                                <a class="nav-link active" href="#">Chat With Us <i
-                                                        class="fa-solid fa-chevron-right"></i>
-                                                </a>
-                                            </li>
-                                            <li class="nav-item d-flex">
-                                                <a class="nav-link active" href="#">Location <i
-                                                        class="fa-solid fa-chevron-right"></i>
-                                                </a>
-                                            </li>
-                                        </ul>
+                                                <ul class="nav flex-column pt-2">
+                                                    <li class="nav-item d-flex">
+                                                        <a class="nav-link active" href="{{route('contact')}}">Talk To a Specialist <i
+                                                                class="fa-solid fa-chevron-right"></i>
+                                                        </a>
+                                                    </li>
+                                                    <li class="nav-item d-flex">
+                                                        <a class="nav-link active" href="#">NGen It <i
+                                                                class="fa-solid fa-chevron-right"></i>
+                                                        </a>
+                                                    </li>
+                                                    <li class="nav-item d-flex">
+                                                        <a class="nav-link active" href="{{route('support')}}">Support <i
+                                                                class="fa-solid fa-chevron-right"></i>
+                                                        </a>
+                                                    </li>
+                                                    <li class="nav-item d-flex">
+                                                        <a class="nav-link active" href="#">Location <i
+                                                                class="fa-solid fa-chevron-right"></i>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <!-- /.col-md-4  -->
+                                            <div class="col-md-4">
+                                                <span class="text-uppercase menu_title">Career With Us</span>
+                                                <ul class="nav flex-column pt-2">
+                                                    <li class="nav-item d-flex">
+                                                        <a class="nav-link active" href="{{route('job.openings')}}">Join Our Team <i
+                                                                class="fa-solid fa-chevron-right"></i>
+                                                        </a>
+                                                    </li>
+                                                    <li class="nav-item d-flex">
+                                                        <a class="nav-link active" href="{{route('job.registration')}}">Job Registration<i
+                                                                class="fa-solid fa-chevron-right"></i>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <!-- /.col-md-4  -->
+                                            <div class="col-md-4">
+                                                <span class="text-uppercase menu_title">Partner With Us</span>
+                                                <ul class="nav flex-column pt-2">
+                                                    <li class="nav-item d-flex">
+                                                        <a class="nav-link active" href="#">Investor <i
+                                                                class="fa-solid fa-chevron-right"></i>
+                                                        </a>
+                                                    </li>
+                                                    <li class="nav-item d-flex">
+                                                        <a class="nav-link active" href="#">News Room <i
+                                                                class="fa-solid fa-chevron-right"></i>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <!-- /.col-md-4  -->
+                                        </div>
+
+                                    <div class="px-3">
+                                        <div class="d-flex justify-content-between align-items-start mt-2">
+                                            <p class="mt-2 mr-2"><strong><span style="border-top: 2px solid #ff0000 !important;">St</span>ay
+                                                    Connected</strong></p>
+                                            <ul class="sub_menu_footer_icon">
+                                                <li><a class="text-black" href="{{ $setting->facebook }}"><i
+                                                            class="h4 fa-brands fa-square-facebook"></i></a></li>
+                                                <li><a class="text-black" href="{{ $setting->linked_in }}"></a><i
+                                                        class="h4 fa-brands fa-linkedin"></i></a></li>
+                                                <li><a class="text-black" href="{{ $setting->twitter }}"></a><i
+                                                        class="h4 fa-brands fa-square-twitter"></i></a></li>
+                                                <li><a class="text-black" href="{{ $setting->youtube }}"><i
+                                                            class="h4 fa-brands fa-youtube"></i></a></li>
+                                                <li><a class="text-black" href="{{ $setting->instagram }}"></a><i
+                                                        class="h4 fa-brands fa-square-instagram"></i></a></li>
+                                            </ul>
+                                        </div>
                                     </div>
-                                    <!-- /.col-md-4  -->
-                                    <div class="col-md-2">
-                                        <span class="text-uppercase menu_title">Career With Us</span>
-                                        <ul class="nav flex-column pt-2">
-                                            <li class="nav-item d-flex">
-                                                <a class="nav-link active" href="#">Join Our Team <i
-                                                        class="fa-solid fa-chevron-right"></i>
-                                                </a>
-                                            </li>
-                                        </ul>
                                     </div>
-                                    <!-- /.col-md-4  -->
-                                    <div class="col-md-2">
-                                        <span class="text-uppercase menu_title">Partner With Us</span>
-                                        <ul class="nav flex-column pt-2">
-                                            <li class="nav-item d-flex">
-                                                <a class="nav-link active" href="#">Investor <i
-                                                        class="fa-solid fa-chevron-right"></i>
-                                                </a>
-                                            </li>
-                                            <li class="nav-item d-flex">
-                                                <a class="nav-link active" href="#">News Room <i
-                                                        class="fa-solid fa-chevron-right"></i>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <!-- /.col-md-4  -->
+
+
                                 </div>
+
+
                             </div>
                             <!--  /.container  -->
                         </div>
@@ -627,6 +601,15 @@
         z-index: 999;
         border-radius: 8px;
         margin-top: 5px;
+    }
+    .menu_title{
+        font-size: .875rem;
+        line-height: 1.71429;
+        display: inline-block;
+        font-weight: 400;
+        margin-bottom: 0;
+        border-top: 1px solid rgb(181 180 180);
+        margin-top: 10px;
     }
 </style>
 

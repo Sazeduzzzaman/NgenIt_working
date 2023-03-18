@@ -1,6 +1,663 @@
 @extends('frontend.master')
 @section('content')
 
+    <style>
+        .box {
+            position: relative;
+            width: 100%;
+        }
+
+        .our-services {
+            margin-top: 75px;
+            padding-bottom: 30px;
+            padding: 0 15px;
+            min-height: auto;
+            text-align: center;
+            border-radius: 10px;
+            background-color: #fff;
+            transition: all .4s ease-in-out;
+            box-shadow: 0 0 25px 0 rgba(20, 27, 202, .17)
+        }
+
+        .our-services .icon {
+            margin-bottom: -21px;
+            transform: translateY(-50%);
+            text-align: center
+        }
+
+        .our-services:hover h4,
+        .our-services:hover p {
+            color: #fff
+        }
+
+        .settings {
+            transition: all 0.5s;
+        }
+
+        .settings:hover {
+            transition: all 0.5s;
+            box-shadow: 0 0 25px 0 rgba(20, 27, 201, .05);
+            cursor: pointer;
+            background-image: linear-gradient(-45deg, #ae0a46 0%, #ae0a46 100%)
+        }
+
+        .icon img {
+            background: white;
+            border-radius: 50%;
+        }
+
+        ul {
+            list-style-type: circle;
+        }
+
+        .common_button2 {
+            padding: 15px 20px;
+            cursor: pointer;
+            font-family: "Allumi Std Extended";
+            font-size: 13px;
+            font-weight: 500;
+            text-align: center;
+            display: inline-block;
+            background-color: var(--crimson);
+            transition: 0.3s;
+            outline: none;
+            border: none;
+            color: white;
+        }
+    </style>
+
+    <!--======// Header Title //======-->
+    <section class="common_product_header"
+        style="background-image: linear-gradient(
+        rgba(0,0,0,0.5),
+        rgba(0,0,0,0.5)
+        ),url('https://www.jluxent.com/assets/images/banner.jpg');">
+        <div class="container ">
+            <h1>Industries We serve</h1>
+            <p class="text-center text-white">We combine deep industry experience and technology <br> expertise to solve your
+                IT challenges. </p>
+            <div class="row ">
+                <!--BUTTON START-->
+                <div class="d-flex justify-content-center align-items-center">
+                    <div class="m-4">
+                        <button class="common_button2" href="product_filters.html">Talk to a specialist</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!----------End--------->
+
+        <!--=====// We serve //=====-->
+        <div class="container pb-5">
+            <!-- section title -->
+            <div class="clint_help_section_heading_wrapper">
+                <!-- title -->
+                <h5 class="home_title_heading" style="text-align: left;">
+                    <h5 class="home_title_heading" style="text-align: left;">
+                        <div class="software_feature_title">
+                            <h1 class="text-center pt-4 pb-4">
+                                <span>Ind</span>ustries we serve
+                            </h1>
+                        </div>
+                    </h5>
+                    <p class="home_title_text">
+                        <span class="font-weight-bold">We offer breadth and depth </span> combining deep industry expertise and
+                        technical skills <br> to connect you to the right IT solutions. With one strategic partner, you’ll get
+                        guidance at any stage of your IT transformation journey.
+                    </p>
+            </div>
+            <!-- section content wrapper -->
+            <div class="row mb-4">
+                <!-- content -->
+                <div class="col-lg-9 col-sm-12">
+                    <!-- we_serveItem_wrapper -->
+                    <div class="row">
+                        <!-- item -->
+                        <div class="col-lg-3 col-sm-6">
+                            <a href="" class="we_serve_item">
+                                <div class="we_serve_item_image">
+                                    <img src="images/serveicon/construction-industry-icon.png" alt="">
+                                </div>
+                                <div class="we_serve_item_text">Construction technology</div>
+                            </a>
+                        </div>
+                        <!-- item -->
+                        <div class="col-lg-3 col-sm-6">
+                            <a href="" class="we_serve_item">
+                                <div class="we_serve_item_image">
+                                    <img src="images/serveicon/financial-industry-icon.png" alt="">
+                                </div>
+                                <div class="we_serve_item_text">Construction technology</div>
+                            </a>
+                        </div>
+                        <!-- item -->
+                        <div class="col-lg-3 col-sm-6">
+                            <a href="" class="we_serve_item">
+                                <div class="we_serve_item_image">
+                                    <img src="images/serveicon/healthcare-industry-icon.png" alt="">
+                                </div>
+                                <div class="we_serve_item_text">Construction technology</div>
+                            </a>
+                        </div>
+                        <!-- item -->
+                        <div class="col-lg-3 col-sm-6">
+                            <a href="" class="we_serve_item">
+                                <div class="we_serve_item_image">
+                                    <img src="images/serveicon/manufacturing-industry-icon.png" alt="">
+                                </div>
+                                <div class="we_serve_item_text">Construction technology</div>
+                            </a>
+                        </div>
+                        <!-- item -->
+                        <div class="col-lg-3 col-sm-6 mt-4">
+                            <a href="" class="we_serve_item">
+                                <div class="we_serve_item_image">
+                                    <img src="images/serveicon/retail-industry-icon.png" alt="">
+                                </div>
+                                <div class="we_serve_item_text">Construction technology</div>
+                            </a>
+                        </div>
+                        <!-- item -->
+                        <div class="col-lg-3 col-sm-6 mt-4">
+                            <a href="" class="we_serve_item">
+                                <div class="we_serve_item_image">
+                                    <img src="images/serveicon/service-provider-industry-icon.png" alt="">
+                                </div>
+                                <div class="we_serve_item_text">Construction technology</div>
+                            </a>
+                        </div>
+                        <!-- item -->
+                        <div class="col-lg-3 col-sm-6 mt-4">
+                            <a href="" class="we_serve_item">
+                                <div class="we_serve_item_image">
+                                    <img src="images/serveicon/small-medium-industry-icon.png" alt="">
+                                </div>
+                                <div class="we_serve_item_text">Construction technology</div>
+                            </a>
+                        </div>
+                        <!-- item -->
+                        <div class="col-lg-3 col-sm-6 mt-4">
+                            <a href="" class="we_serve_item">
+                                <div class="we_serve_item_image">
+                                    <img src="images/serveicon/travel-industry-icon.png" alt="">
+                                </div>
+                                <div class="we_serve_item_text">Construction technology</div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <!-- sidebar -->
+                <div class="col-lg-3 col-sm-12">
+                    <div class="we_serve_title">
+                        <p>Private sector</p>
+                    </div>
+                    <!-- sidebar list -->
+                    <div>
+                        <div class="">
+                            <a href="http://127.0.0.1:8000/category/all">
+                                <div id="fed-bg">
+                                    <div class="p-2">
+                                        <h3 class="text-white brand_side_text">Product Categories ›</h3>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class=" pt-2">
+                            <a href="http://127.0.0.1:8000/brands/all">
+                                <div id="fed-bg">
+                                    <div class="p-2">
+                                        <h3 class="text-white brand_side_text">Brands ›</h3>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class=" pt-2">
+                            <a href="http://127.0.0.1:8000/techdeal.html">
+                                <div id="fed-bg">
+                                    <div class="p-2">
+                                        <h3 class="text-white brand_side_text">Tech Deals ›</h3>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class=" pt-2">
+                            <a href="http://127.0.0.1:8000/refurbished.html">
+                                <div id="fed-bg">
+                                    <div class="p-2">
+                                        <h3 class="text-white brand_side_text">Refurbished ›</h3>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!---------End -------->
+
+    <!--======// Industry solution //======-->
+    <div class="container mb-5">
+        <div class="text-center mt-5">
+            <h1>Our Industry Solution</h1>
+        </div>
+        <div class="row">
+                <div class="col-md-3">
+                    <div class="box">
+                        <div class="our-services settings">
+                            <div class="icon d-flex justify-content-start"> <img
+                                    src="http://127.0.0.1:8000/storage/requestImg/uw4RfXgPS7tbv9xZ1674019792.png" alt=""> </div>
+                            <h4>Settings</h4>
+                            <p class="pb-3">Find the hardware, software and IT services you need to be ready</p>
+                            <div class="m-1">
+                                <button class="common_button2" href="product_filters.html">Explore Our Solutions →</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="box">
+                        <div class="our-services settings">
+                            <div class="icon d-flex justify-content-start"> <img
+                                    src="http://127.0.0.1:8000/storage/requestImg/uw4RfXgPS7tbv9xZ1674019792.png" alt=""> </div>
+                            <h4>Settings</h4>
+                            <p class="pb-3">Find the hardware, software and IT services you need to be ready</p>
+                            <div class="m-1">
+                                <button class="common_button2" href="product_filters.html">Explore Our Solutions →</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="box">
+                        <div class="our-services settings">
+                            <div class="icon d-flex justify-content-start"> <img
+                                    src="http://127.0.0.1:8000/storage/requestImg/uw4RfXgPS7tbv9xZ1674019792.png" alt=""> </div>
+                            <h4>Settings</h4>
+                            <p class="pb-3">Find the hardware, software and IT services you need to be ready</p>
+                            <div class="m-1">
+                                <button class="common_button2" href="product_filters.html">Explore Our Solutions →</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="box">
+                        <div class="our-services settings">
+                            <div class="icon d-flex justify-content-start"> <img
+                                    src="http://127.0.0.1:8000/storage/requestImg/uw4RfXgPS7tbv9xZ1674019792.png" alt=""> </div>
+                            <h4>Settings</h4>
+                            <p class="pb-3">Find the hardware, software and IT services you need to be ready</p>
+                            <div class="m-1">
+                                <button class="common_button2" href="product_filters.html">Explore Our Solutions →</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </div>
+    </div>
+
+    <!--======// our clint tab //======-->
+    <section class="clint_tab_section">
+        <div class="container">
+            <div class="clint_tab_content pb-3">
+                <!-- home title -->
+                <div class="home_title mt-3">
+                    <div class="software_feature_title">
+                        <h1 class="text-center ">Client Success Stories</h1>
+                    </div>
+                    <p class="home_title_text">See how Ngen It has helped organizations of all sizes across every industry
+                        maximize the <br> value of their IT solutions, leverage emerging technologies and create fresh
+                        experiences.
+                    </p>
+                </div>
+                <!-- Client Tab Start -->
+                <div class="row">
+                    <div class="col-xs-12 ">
+                        <nav>
+                            <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
+                                <a class="nav-item nav-link active" id="nav-healthcare" data-toggle="tab" href="#nav-home"
+                                    role="tab" aria-controls="nav-home" aria-selected="true">Healthcare</a>
+                                <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile"
+                                    role="tab" aria-controls="nav-profile" aria-selected="false">HIGHER EDUCATION</a>
+                                <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact"
+                                    role="tab" aria-controls="nav-contact" aria-selected="false">MINING</a>
+                                <a class="nav-item nav-link" id="nav-about-tab" data-toggle="tab" href="#nav-about"
+                                    role="tab" aria-controls="nav-about" aria-selected="false">ENERGY</a>
+                            </div>
+                        </nav>
+                        <div class="tab-content py-3 px-3 px-sm-0" id="nav-tabContent">
+                            <div class="tab-pane fade show active" id="nav-home" role="tabpanel"
+                                aria-labelledby="nav-healthcare">
+                                <div class="row">
+                                    <div class="col-lg-4 col-md-4 col-sm-12">
+                                        <div class="tab_side_image p-5">
+                                            <img src="https://images.unsplash.com/photo-1547082299-de196ea013d6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80"
+                                                alt="">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-8 col-md-6 col-sm-12">
+                                        <h5 class="home_title_heading" style="text-align: left;">Healthcare </h5>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil voluptatem error
+                                            omnis facere beatae exercitationem, itaque repudiandae placeat modi velit sit
+                                            accusantium unde iure at! Ipsam fugit soluta similique quasi.itaque repudiandae
+                                            placeat modi velit sit accusantium unde iure at! Ipsam fugit soluta similique
+                                            quasi.itaque repudiandae placeat modi velit sit accusantium unde iure at! Ipsam
+                                            fugit soluta similique quasi.itaque repudiandae placeat modi velit sit
+                                            accusantium unde iure at! Ipsam fugit soluta similique quasi.itaque repudiandae
+                                            placeat modi velit sit accusantium unde iure at! Ipsam fugit soluta similique
+                                            quasi.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+                                <div class="row">
+                                    <div class="col-lg-4 col-md-4 col-sm-12">
+                                        <div class="tab_side_image p-5">
+                                            <img src="https://images.unsplash.com/photo-1547082299-de196ea013d6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80"
+                                                alt="">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-8 col-md-6 col-sm-12">
+                                        <h5 class="home_title_heading" style="text-align: left;">Healthcare </h5>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil voluptatem error
+                                            omnis facere beatae exercitationem, itaque repudiandae placeat modi velit sit
+                                            accusantium unde iure at! Ipsam fugit soluta similique quasi.itaque repudiandae
+                                            placeat modi velit sit accusantium unde iure at! Ipsam fugit soluta similique
+                                            quasi.itaque repudiandae placeat modi velit sit accusantium unde iure at! Ipsam
+                                            fugit soluta similique quasi.itaque repudiandae placeat modi velit sit
+                                            accusantium unde iure at! Ipsam fugit soluta similique quasi.itaque repudiandae
+                                            placeat modi velit sit accusantium unde iure at! Ipsam fugit soluta similique
+                                            quasi.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
+                                <div class="row">
+                                    <div class="col-lg-4 col-md-4 col-sm-12">
+                                        <div class="tab_side_image p-5">
+                                            <img src="https://images.unsplash.com/photo-1547082299-de196ea013d6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80"
+                                                alt="">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-8 col-md-6 col-sm-12">
+                                        <h5 class="home_title_heading" style="text-align: left;">Healthcare </h5>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil voluptatem error
+                                            omnis facere beatae exercitationem, itaque repudiandae placeat modi velit sit
+                                            accusantium unde iure at! Ipsam fugit soluta similique quasi.itaque repudiandae
+                                            placeat modi velit sit accusantium unde iure at! Ipsam fugit soluta similique
+                                            quasi.itaque repudiandae placeat modi velit sit accusantium unde iure at! Ipsam
+                                            fugit soluta similique quasi.itaque repudiandae placeat modi velit sit
+                                            accusantium unde iure at! Ipsam fugit soluta similique quasi.itaque repudiandae
+                                            placeat modi velit sit accusantium unde iure at! Ipsam fugit soluta similique
+                                            quasi.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="nav-about" role="tabpanel" aria-labelledby="nav-about-tab">
+                                <div class="row">
+                                    <div class="col-lg-4 col-md-4 col-sm-12">
+                                        <div class="tab_side_image p-5">
+                                            <img src="https://images.unsplash.com/photo-1547082299-de196ea013d6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80"
+                                                alt="">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-8 col-md-6 col-sm-12">
+                                        <h5 class="home_title_heading" style="text-align: left;">Healthcare </h5>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil voluptatem error
+                                            omnis facere beatae exercitationem, itaque repudiandae placeat modi velit sit
+                                            accusantium unde iure at! Ipsam fugit soluta similique quasi.itaque repudiandae
+                                            placeat modi velit sit accusantium unde iure at! Ipsam fugit soluta similique
+                                            quasi.itaque repudiandae placeat modi velit sit accusantium unde iure at! Ipsam
+                                            fugit soluta similique quasi.itaque repudiandae placeat modi velit sit
+                                            accusantium unde iure at! Ipsam fugit soluta similique quasi.itaque repudiandae
+                                            placeat modi velit sit accusantium unde iure at! Ipsam fugit soluta similique
+                                            quasi.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Client Tab End -->
+            </div>
+        </div>
+    </section>
+    <!---------End -------->
+
+    <!--======// Our expert //======-->
+    <section class="account_benefits_section_wp">
+        <div class="container">
+            @if ($techglossy)
+                <div class="row d-flex align-items-center">
+                    <div class="col-lg-6 col-sm-12">
+                        <img class="img-fluid" src="{{ asset('storage/' . $techglossy->image) }}"
+                            alt="{{ $techglossy->badge }}" style="height: 350px;">
+                    </div>
+                    <div class="col-lg-6 col-sm-12 account_benefits_section">
+
+                        <h5>{{ $techglossy->badge }}</h5>
+                        <p>{{ $techglossy->title }}</p>
+                        <p>{!! Str::limit($techglossy->short_des, 200) !!}......</p>
+
+                        <ul>
+                            @php
+                                $tag = $techglossy->tags;
+                                $tags = explode(',', $tag);
+                            @endphp
+                            @foreach ($tags as $item)
+                                <li>{{ ucwords($item) }}</li>
+                            @endforeach
+                        </ul>
+                        <button class="common_button2">Read Details</button>
+                    </div>
+                </div>
+            @endif
+        </div>
+    </section>
+    <!---------End -------->
+
+    <!--=====// Global call section //=====-->
+    <section class="global_call_section section_padding">
+        <div class="container">
+            <!-- content -->
+            <div class="global_call_section_content">
+                <div class="home_title" style="width: 100%; margin: 0px;">
+                    <h5 class="home_title_heading" style="text-align: left; color: #fff;"> <span>O</span>ur areas of
+                        expertise</h5>
+
+                    <p class="home_title_text" style="text-align: left;color: #fff;line-height: 24px;font-size: 18px;">
+                        Turn ideas into powerful business outcomes quickly and smoothly. Our solution architects and
+                        technical experts are ready to help you achieve more with our Insight Intelligent Technology™
+                        portfolio.</p>
+
+                    <div class="business_seftion_button" style="text-align: left;">
+                        <a href="{{ route('learn.more') }}">Explore business outcomes</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!---------End -------->
+
+    <!--=====// Tech solution //=====-->
+    <div class="section_wp2">
+        <div class="container">
+            <div class="solution_number_wrapper">
+                <!-- title -->
+                <h5 class="home_title_heading" style="text-align: left;">
+                    <div class="software_feature_title">
+                        <h1 class="text-center pb-3">
+                            <span>T</span>echnology Solutions
+                        </h1>
+                    </div>
+                </h5>
+            </div>
+            <!-- tech wrapper -->
+            <div class="row">
+                <!-- item -->
+                <div class="col-lg-3 col-sm-6">
+                    <div class="tech_solution_item">
+                        <p class="tech_solution_title">33k+</p>
+                        <p class="tech_solution_text">hardware, software & cloud partners</p>
+                        <p class="tech_solution_award">Awarded in 2021</p>
+                    </div>
+                </div>
+                <!-- item -->
+                <div class="col-lg-3 col-sm-6">
+                    <div class="tech_solution_item">
+                        <p class="tech_solution_title">44k+</p>
+                        <p class="tech_solution_text">Insight teammates worldwide</p>
+                        <p class="tech_solution_award">Awarded in 2021</p>
+                    </div>
+                </div>
+                <!-- item -->
+                <div class="col-lg-3 col-sm-6">
+                    <div class="tech_solution_item">
+                        <p class="tech_solution_title">7.5k+</p>
+                        <p class="tech_solution_text">sales & service delivery professionals</p>
+                        <p class="tech_solution_award">Awarded in 2021</p>
+                    </div>
+                </div>
+                <!-- item -->
+                <div class="col-lg-3 col-sm-6">
+                    <div class="tech_solution_item">
+                        <p class="tech_solution_title">19</p>
+                        <p class="tech_solution_text">countries with Insight operations</p>
+                        <p class="tech_solution_award">Awarded in 2021</p>
+                    </div>
+                </div>
+                <!-- item -->
+                <div class="col-lg-3 col-sm-6">
+                    <div class="tech_solution_item">
+                        <p class="tech_solution_title">Top 1%</p>
+                        <p class="tech_solution_text">Insight is in the top 1% of all Microsoft partners</p>
+                        <p class="tech_solution_award">Awarded in 2021</p>
+                    </div>
+                </div>
+                <!-- item -->
+                <div class="col-lg-3 col-sm-6">
+                    <div class="tech_solution_item">
+                        <p class="tech_solution_title">#1</p>
+                        <p class="tech_solution_text">on the Channel Futures MSP 501</p>
+                        <p class="tech_solution_award">Awarded in 2021</p>
+                    </div>
+                </div>
+                <!-- item -->
+                <div class="col-lg-3 col-sm-6">
+                    <div class="tech_solution_item">
+                        <p class="tech_solution_title">#7</p>
+                        <p class="tech_solution_text">on Fortune World’s Most Admired Companies for IT services</p>
+                        <p class="tech_solution_award">Awarded in 2021</p>
+                    </div>
+                </div>
+                <!-- item -->
+                <div class="col-lg-3 col-sm-6">
+                    <div class="tech_solution_item">
+                        <p class="tech_solution_title">#373</p>
+                        <p class="tech_solution_text">on the Fortune 500</p>
+                        <p class="tech_solution_award">Awarded in 2021</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!---------End -------->
+
+
+
+    <!--=====// Pageform section //=====-->
+    <section class=" solution_contact_wrapper">
+        <div class="container">
+            <div class="row d-flex justify-content-center align-items-center">
+                <div class="col-lg-5 col-sm-12">
+                    <div class="thing_together_wrapper">
+                        <h4>
+                            <span class="why_Choose_lineTop">L</span>et’s do big things together.
+                        </h4>
+                        <p>Get assistance with tracking an order, requesting a quote, contacting your account representative
+                            and more by phone or over chat.</p>
+                        <h5>NGentIt Global Headquarters</h5>
+                        <p>Haque Chamber <br>(11 floor - C&D) 89/2, Panthapath, Dhaka-1215 </p>
+                        <p>Billing & invoice: <span class="main_color">+88 01714243446</span>
+                            <br> Information and sales: <span class="main_color">sales@ngenitltd.com</span>
+                            <br> OneCall support: <span class="main_color">+88 01714243446</span>
+                            <br> Returns: <span class="main_color">(+88) 0258155838</span>
+                        </p>
+                        <!-- <h5><i class="fa-solid fa-phone"></i>NgenIT</h5> -->
+                    </div>
+                </div>
+                <!----------Sidebar Privacy Policy --------->
+                <div class="col-lg-7 col-sm-12">
+                    <!-- form Sidebar -->
+                    <div class="background">
+                        <div class="containers">
+                            <div class="screen">
+                                <div class="screen-header">
+                                    <div class="screen-header-left">
+                                        <div class="screen-header-button maximize"></div>
+                                        <div class="screen-header-button minimize"></div>
+                                    </div>
+                                    <div class="screen-header-right">
+                                        <div class="screen-header-ellipsis"></div>
+                                        <div class="screen-header-ellipsis"></div>
+                                        <div class="screen-header-ellipsis"></div>
+                                    </div>
+                                </div>
+                                <div class="screen-body">
+                                    <div class="screen-body-item left">
+                                        <div class="app-title">
+                                            <span>CONTACT</span>
+                                            <span>US</span>
+                                        </div>
+                                        <div class="app-contact main_color ">CONTACT INFO : +88 01714243446</div>
+                                    </div>
+                                    <div class="screen-body-item screen-body-item-right">
+                                        <div class="app-form">
+                                            <div class="app-form-group">
+                                                <input class="app-form-control" placeholder="NAME">
+                                            </div>
+                                            <div class="app-form-group">
+                                                <input class="app-form-control" placeholder="EMAIL">
+                                            </div>
+                                            <div class="app-form-group">
+                                                <input class="app-form-control" placeholder="CONTACT NO">
+                                            </div>
+                                            <div class="app-form-group message">
+                                                <input class="app-form-control" placeholder="MESSAGE">
+                                            </div>
+                                            <div class="app-form-group buttons">
+                                                <button class="app-form-button">CANCEL</button>
+                                                <button class="app-form-button">SEND</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!---------End -------->
+
+@endsection
+
+
+
+
+
+
+
+
+
+
+
+
+@extends('frontend.master')
+@section('content')
+
 <!--======// Header Title //======-->
 <section class="common_product_header" style="background-image: url('{{asset('frontend/images/softwer-banner.jpg')}}');">
     <div class="container">

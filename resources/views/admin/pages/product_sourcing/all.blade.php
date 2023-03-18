@@ -31,19 +31,25 @@
             <div class="card">
                 <div class="card-header">
                     <div class="row">
-                        <div class="col-lg-3">
+                        <div class="col-lg-4">
                             <ul class="nav nav-tabs">
-                                <li class="nav-item col-6">
+                                <li class="nav-item col-4">
                                     <a href="#js-tab1" class="py-1 nav-link active cat-tab1" data-bs-toggle="tab">
                                         <p style="font-size: 12px; font-weight:600;color:black;margin-bottom:0px;">
                                             Saved</p>
                                     </a>
                                 </li>
 
-                                <li class="nav-item col-6">
+                                <li class="nav-item col-4">
                                     <a href="#js-tab2" class="py-1 nav-link cat-tab2" data-bs-toggle="tab">
                                         <p style="font-size: 12px; font-weight:600;color:black;margin-bottom:0px;">
                                             Completed</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item col-4">
+                                    <a href="#js-tab3" class="py-1 nav-link cat-tab3" data-bs-toggle="tab">
+                                        <p style="font-size: 12px; font-weight:600;color:black;margin-bottom:0px;">
+                                            Approved Products</p>
                                     </a>
                                 </li>
                             </ul>
@@ -51,9 +57,10 @@
                         <div class="col-lg-6 text-center">
                             <h2 class="mb-0 saved_title">Saved Product List</h2>
                             <h2 class="mb-0 completed_title d-none">Completed Product List</h2>
+                            <h2 class="mb-0 approved_title d-none">Approved Product List</h2>
                         </div>
 
-                        <div class="col-lg-3">
+                        <div class="col-lg-2">
                             <div class="dropdown ms-lg-3">
                                 <a href="#" class="btn btn-sm btn-success btn-labeled btn-labeled-start float-end" data-bs-toggle="dropdown">
                                     <span class="btn-labeled-icon bg-black bg-opacity-20">
@@ -65,11 +72,11 @@
                                 <div class="dropdown-menu dropdown-menu-end w-100 w-lg-auto">
                                     <a href="{{route('product-sourcing.create')}}" class="dropdown-item">
                                         <i class="ph-shield-warning me-2"></i>
-                                        Source Products
+                                        With Price
                                     </a>
                                     <a href="{{route('add.product')}}" class="dropdown-item">
                                         <i class="ph-chart-bar me-2"></i>
-                                        RFQ Products
+                                       Without Price
                                     </a>
 
                                 </div>
@@ -198,6 +205,67 @@
                     </div>
                 </div>
 
+                <div class="tab-content">
+                    <div class="tab-pane fade show" id="js-tab3">
+                        <div id="table3" class="card-body">
+
+                            <div class="table-responsive">
+                                <table class="table table-bordered table-hover productDt">
+                                    <thead>
+                                        <tr>
+                                            <th width="7%">Sl</th>
+                                            <th width="7%">Image </th>
+                                            <th width="48%">Product Name </th>
+                                            <th width="8%">Price </th>
+                                            <th width="10%">Stock </th>
+                                            <th width="10%">Discount </th>
+                                            <th width="10%">Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach ($real_products as $key => $item)
+                                            <tr>
+                                                <td> {{ $key + 1 }} </td>
+                                                <td> <img src="{{ asset($item->thumbnail) }}" width="70px" height="40px">
+                                                </td>
+                                                <td>{{ $item->name }}</td>
+                                                <td>{{ $item->price }}</td>
+                                                <td>{{ ucfirst($item->stock) }}</td>
+
+                                                <td>
+                                                    @if ($item->discount == null)
+                                                        <span class="badge rounded-pill bg-info">No Discount</span>
+                                                    @else
+                                                        @php
+                                                            $amount = $item->price - $item->discount;
+                                                            $discount = ($amount / $item->price) * 100;
+                                                        @endphp
+                                                        <span class="badge rounded-pill bg-danger"> {{ round($discount) }}%</span>
+                                                    @endif
+                                                </td>
+
+                                                <td>
+
+                                                    <a href="{{ route('edit.product',$item->id) }}" class="text-primary">
+                                                        <i class="icon-pencil"></i>
+                                                    </a>
+                                                    <a href="{{ route('product.destroy', [$item->id]) }}"
+                                                        class="text-danger delete mx-2">
+                                                        <i class="delete icon-trash"></i>
+                                                    </a>
+
+                                                </td>
+                                            </tr>
+                                        @endforeach
+
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
         <!-- /content area -->
@@ -237,19 +305,42 @@
                 }, ],
             });
         </script>
+        <script type="text/javascript">
+            $('.productDt').DataTable({
+                dom: '<"datatable-header"fl><"datatable-scroll"t><"datatable-footer"ip>',
+                "iDisplayLength": 10,
+                "lengthMenu": [10, 26, 30, 50],
+                columnDefs: [{
+                    orderable: false,
+                    targets: [0,1,2,5,6],
+                }, ],
+            });
+        </script>
         <script>
             $(document).ready(function() {
                 $(".cat-tab1").click(function() {
                     $("#cat-tab2").addClass('d-none');
+                    $("#cat-tab3").addClass('d-none');
                     $("#cat-tab1").removeClass('d-none');
                     $(".saved_title").removeClass('d-none');
                     $(".completed_title").addClass('d-none');
+                    $(".approved_title").addClass('d-none');
                 });
                 $(".cat-tab2").click(function() {
                     $("#cat-tab1").addClass('d-none');
+                    $("#cat-tab3").addClass('d-none');
                     $("#cat-tab2").removeClass('d-none');
+                    $(".approved_title").addClass('d-none');
                     $(".saved_title").addClass('d-none');
                     $(".completed_title").removeClass('d-none');
+                });
+                $(".cat-tab3").click(function() {
+                    $("#cat-tab1").addClass('d-none');
+                    $("#cat-tab2").addClass('d-none');
+                    $("#cat-tab3").removeClass('d-none');
+                    $(".saved_title").addClass('d-none');
+                    $(".completed_title").addClass('d-none');
+                    $(".approved_title").removeClass('d-none');
                 });
 
             });

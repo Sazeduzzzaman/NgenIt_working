@@ -1,7 +1,7 @@
 @extends('frontend.master')
 @section('content')
 <!--======// Header Title //======-->
-<section class="common_product_header" style="background-image: url('{{asset('storage/requestImg/'.$brandpage->banner_image)}}');">
+<section class="common_product_header" style="background-image: url('{{asset('storage/'.$brandpage->banner_image)}}');">
     <div class="container">
         @if (!empty($brandpage->brand_logo))
             <div class="d-flex justify-content-center m-0">
@@ -46,7 +46,7 @@
                         @endif
                 </div>
                 <div class="col-lg-6 col-sm-12">
-                    <img class=" p-4" src="{{asset('storage/requestImg/'.$row_one->image)}}" alt="" width="580px" height="363px">
+                    <img class=" p-4" src="{{asset('storage/'.$row_one->image)}}" alt="" width="580px" height="363px">
                 </div>
             </div>
         </div>
@@ -102,7 +102,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-6 col-sm-12">
-                    <img class=" p-4" src="{{asset('storage/requestImg/'.$row_three->image)}}" alt="" width="580px" height="363px">
+                    <img class=" p-4" src="{{asset('storage/'.$row_three->image)}}" alt="" width="580px" height="363px">
                 </div>
                 <div class="col-lg-6 col-sm-12 pl-4 section_text_wrapper">
                     <h4>{{$row_three->title}}</h4>
@@ -121,7 +121,7 @@
 <!-------------End--------->
 
 <!--======// Call to action //======-->
-<div class="call_to_action" style="background-image: url('{{asset('storage/requestImg/'.$brandpage->row_six_image)}}');">
+<div class="call_to_action" style="background-image: url('{{asset('storage/'.$brandpage->row_six_image)}}');">
     <div class="container">
         <div class="call_to_action_text">
             <h4 class="">{{$brandpage->row_six_title}}</h4>
@@ -150,7 +150,7 @@
 
                 </div>
                 <div class="col-lg-6 col-sm-12">
-                    <img class=" p-4" src="{{asset('storage/requestImg/'.$row_four->image)}}" alt="" width="580px" height="363px">
+                    <img class=" p-4" src="{{asset('storage/'.$row_four->image)}}" alt="" width="580px" height="363px">
                 </div>
             </div>
         </div>
@@ -164,7 +164,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-6 col-sm-12">
-                    <img class=" p-4" src="{{asset('storage/requestImg/'.$row_five->image)}}" alt="" width="580px" height="363px">
+                    <img class=" p-4" src="{{asset('storage/'.$row_five->image)}}" alt="" width="580px" height="363px">
                 </div>
                 <div class="col-lg-6 col-sm-12 pl-4 section_text_wrapper">
                     <h4>{{$row_five->title}}</h4>

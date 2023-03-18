@@ -36,8 +36,15 @@ class SourcingController extends Controller
      */
     public function index()
     {
-        $data['saved_products'] = Product::where('product_status' , 'sourcing')->where('action_status' , 'save')->latest()->get();
-        $data['products'] = Product::where('product_status' , 'sourcing')->where('action_status' ,'!=' , 'save')->latest()->get();
+        $data['saved_products'] = Product::where('product_status' , 'sourcing')->where('action_status' , 'save')->latest()
+        ->select('products.id','products.slug','products.thumbnail','products.price','products.discount','products.name','products.stock','products.source_one_price','products.source_two_price','products.action_status')
+        ->get();
+        $data['products'] = Product::where('product_status' , 'sourcing')->where('action_status' ,'!=' , 'save')->latest()
+        ->select('products.id','products.slug','products.thumbnail','products.price','products.discount','products.name','products.stock','products.source_one_price','products.source_two_price','products.action_status')
+        ->get();
+        $data['real_products'] = Product::where('product_status' , 'product')->latest()
+        ->select('products.id','products.slug','products.thumbnail','products.price','products.discount','products.name','products.stock','products.source_one_price','products.source_two_price','products.action_status')
+        ->get();
         return view('admin.pages.product_sourcing.all',$data);
     }
 
@@ -563,7 +570,7 @@ class SourcingController extends Controller
             ]);
 
         Toastr::success('Product has been approved Successfully');
-        return redirect()->route('all.product');
+        return redirect()->route('product-sourcing.index');
     }
 
 
