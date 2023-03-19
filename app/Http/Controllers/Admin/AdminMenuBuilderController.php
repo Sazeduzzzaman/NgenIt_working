@@ -3,12 +3,12 @@
 namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
-use App\Models\Admin\EffortRating;
 use App\Http\Controllers\Controller;
 use Brian2694\Toastr\Facades\Toastr;
+use App\Models\Admin\AdminMenuBuilder;
 use Illuminate\Support\Facades\Validator;
 
-class EffortRatingController extends Controller
+class AdminMenuBuilderController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,8 +17,8 @@ class EffortRatingController extends Controller
      */
     public function index()
     {
-        $data['effortRatings'] = EffortRating::latest()->get();
-        return view('admin.pages.effortRating.all', $data);
+        $data['menus'] = AdminMenuBuilder::all();
+        return view('admin.pages.adminMenuBuilder.all',$data);
     }
 
     /**
@@ -28,8 +28,7 @@ class EffortRatingController extends Controller
      */
     public function create()
     {
-        return view('admin.pages.effortRating.add');
-
+        //
     }
 
     /**
@@ -43,22 +42,26 @@ class EffortRatingController extends Controller
         $validator = Validator::make(
             $request->all(),
             [
-                'effort' => 'required|unique:effort_ratings',
-                'rating' => 'nullable',
-                'value'  => 'nullable',
+                'effnameort' => 'required|unique:effort_ratings',
+
             ],
             [
-                'required' => 'This effort field is needed.',
-                'unique' => 'This rating is already taken.',
+                'required' => 'This menu name field is needed.',
+                'unique' => 'This menu is already taken.',
             ]
         );
 
         if ($validator->passes()) {
-            EffortRating::create([
-                'effort'       => $request->effort,
-                'rating'       => $request->rating,
-                'value'        => $request->value,
-                'perform_look' => $request->perform_look,
+            AdminMenuBuilder::create([
+                'module_id'       => $request->module_id,
+                'parent__id'      => $request->parent__id,
+                'name'            => $request->name,
+                'url'             => $request->url,
+                'icon'            => $request->icon,
+                'is_module'       => $request->is_module,
+                'is_parent'       => $request->is_parent,
+                'route_name'      => $request->route_name,
+                'permission_name' => $request->permission_name,
             ]);
             Toastr::success('Data Insert Successfully.');
         } else {
@@ -89,8 +92,7 @@ class EffortRatingController extends Controller
      */
     public function edit($id)
     {
-        $data['effortRating'] = EffortRating::find($id);
-        return view('admin.pages.effortRating.edit', $data);
+        //
     }
 
     /**
@@ -102,29 +104,20 @@ class EffortRatingController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $validator = Validator::make(
-            $request->all(),
-            [
-                'effort' => 'nullable',
-                'rating' => 'nullable',
-                'value'  => 'nullable',
-            ],
-        );
 
-        if ($validator->passes()) {
-            EffortRating::find($id)->update([
-                'effort'       => $request->effort,
-                'rating'       => $request->rating,
-                'value'        => $request->value,
-                'perform_look' => $request->perform_look,
+            AdminMenuBuilder::find($id)->update([
+                'module_id'       => $request->module_id,
+                'parent__id'      => $request->parent__id,
+                'name'            => $request->name,
+                'url'             => $request->url,
+                'icon'            => $request->icon,
+                'is_module'       => $request->is_module,
+                'is_parent'       => $request->is_parent,
+                'route_name'      => $request->route_name,
+                'permission_name' => $request->permission_name,
             ]);
             Toastr::success('Data Updated Successfully.');
-        } else {
-            $messages = $validator->messages();
-            foreach ($messages->all() as $message) {
-                Toastr::error($message, 'Failed', ['timeOut' => 30000]);
-            }
-        }
+
         return redirect()->back();
     }
 
@@ -136,12 +129,6 @@ class EffortRatingController extends Controller
      */
     public function destroy($id)
     {
-        EffortRating::find($id)->delete();
-    }
-
-    public function GetEffortRating($id)
-    {
-        $effort = EffortRating::where('effort', $id)->first();
-        return json_encode($effort);
+        AdminMenuBuilder::find($id)->delete();
     }
 }

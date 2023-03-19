@@ -97,6 +97,7 @@ use App\Http\Controllers\Admin\FeatureController;
 use App\Http\Controllers\Admin\PartnerController;
 use App\Http\Controllers\Admin\PartnerPermission;
 use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\Admin\SectionController;
 use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\SuccessController;
 use App\Http\Controllers\Frontend\HomeController;
@@ -141,6 +142,7 @@ use App\Http\Controllers\Sales\SalesAchievementController;
 use App\Http\Controllers\Admin\AccountProfitLossController;
 use App\Http\Controllers\Marketing\MarketingDmarController;
 use App\Http\Controllers\Admin\AccountsReceivableController;
+use App\Http\Controllers\Admin\AdminMenuBuilderController;
 use App\Http\Controllers\Admin\CommercialDocumentController;
 use App\Http\Controllers\Admin\PaymentMethodDetailsController;
 use App\Http\Controllers\Marketing\MarketingTeamTargetController;
@@ -491,6 +493,7 @@ Route::controller(RFQController::class)->group(function(){
 
   Route::resources([
     'income' => IncomeController::class,
+    'product-section' => SectionController::class,
     'expense' => ExpenseController::class,
     'bulkEmail' => BulkEmailController::class,
     'office-location' => OfficeLocationController::class,
@@ -523,6 +526,7 @@ Route::controller(RFQController::class)->group(function(){
     'knowledge' => KnowledgeController::class,
     'presentation' => PresentationController::class,
     'show-case-video' => ShowCaseVideoController::class,
+    'admin-menu-builder' => AdminMenuBuilderController::class,
 ]);
 
     //Assign Roles to Sales Manager

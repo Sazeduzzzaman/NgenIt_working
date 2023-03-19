@@ -173,7 +173,7 @@ a:hover{
                         <div class="col-2">
 
                         </div>
-                        <div class="col">
+                        <div class="col-2">
                             <div class="row text-muted">Item Name</div>
                         </div>
                         <div class="col">Unit Price</div>
@@ -187,45 +187,43 @@ a:hover{
                     </div>
                 </div>
                 {{--Header Title End--}}
+                @foreach ($cart_details as $item)
+                    @php
+                        $slug = App\Models\Admin\Product::where('id', $item->id)->value('slug');
+                    @endphp
                 <div class="row border-top border-bottom px-3">
                     <div class="row main align-items-center">
-                        <div class="col-2"><img class="img-fluid" src="https://m.media-amazon.com/images/I/61UGE9cZVlL._AC_SL1500_.jpg"></div>
-                        <div class="col">
-                            <div class="row text-muted">Shirt</div>
-                            <div class="row">Cotton T-shirt</div>
+                        <div class="col-2">
+                            <img class="img-fluid" src="{{$item->options->has('image') ? $item->options->image : ''}}" alt="{{ $item->name }}">
+                        </div>
+                        <div class="col-2">
+                            <div class="row text-muted">
+                                <a href="{{ route('product.details', $slug) }}" title="{{ $item->name }}">
+                                    {{ Str::limit($item->name, 16) }}</a></div>
+                            {{-- <div class="row">Cotton T-shirt</div> --}}
                         </div>
                         <div class="col">
-                            <a href="#">-</a><a href="#" class="border">1</a><a href="#">+</a>
+                            $ {{ number_format($item->price, 2) }}
                         </div>
-                        <div class="col">&euro; 44.00 <span class="close">&#10005;</span></div>
+                        <div class="col">
+                            <form class="myForm">
+                                <input type="hidden" id="price" name="price" value="{{ $item->price }}">
+                                    <div class="pro-qty mb-2" style="width: 5.5rem">
+                                        <div class="counter" style="width: 2rem">
+                                            <input name="rowID" type="hidden" id="rowID" value="{{ $item->rowId }}">
+                                            <span class="down" id="{{ $item->rowId }}" onClick='decreaseCount(event, this, this.id)'>-</span>
+                                            <input type="text" name="qty" value="{{ $item->qty }}" style="width: 1.5rem;" readonly>
+                                            <span class="up" id="{{ $item->rowId }}" onClick='increaseCount(event, this, this.id)'>+</span>
+                                        </div>
+                                    </div>
+                                    {{-- <a href="javascript:void(0);" class="common_button2 p-1 mt-1" id="update">Update</a> --}}
+                            </form>
+                        </div>
+                        <div class="col">$ {{ number_format($item->price * $item->qty , 2)}}  <span class="close">&#10005;</span></div>
                     </div>
                 </div>
-                <div class="row  px-3">
-                    <div class="row main align-items-center">
-                        <div class="col-2"><img class="img-fluid" src="https://m.media-amazon.com/images/I/61UGE9cZVlL._AC_SL1500_.jpg"></div>
-                        <div class="col">
-                            <div class="row text-muted">Shirt</div>
-                            <div class="row">Cotton T-shirt</div>
-                        </div>
-                        <div class="col">
-                            <a href="#">-</a><a href="#" class="border">1</a><a href="#">+</a>
-                        </div>
-                        <div class="col">&euro; 44.00 <span class="close">&#10005;</span></div>
-                    </div>
-                </div>
-                <div class="row border-top border-bottom px-3">
-                    <div class="row main align-items-center">
-                        <div class="col-2"><img class="img-fluid" src="https://m.media-amazon.com/images/I/61UGE9cZVlL._AC_SL1500_.jpg"></div>
-                        <div class="col">
-                            <div class="row text-muted">Shirt</div>
-                            <div class="row">Cotton T-shirt</div>
-                        </div>
-                        <div class="col">
-                            <a href="#">-</a><a href="#" class="border">1</a><a href="#">+</a>
-                        </div>
-                        <div class="col">&euro; 44.00 <span class="close">&#10005;</span></div>
-                    </div>
-                </div>
+                 @endforeach
+
                 <div class="d-flex justify-content-end  mb-2">
                     <div class="back-to-shop">
                     <a href="#">&leftarrow; <span class="text-danger fw-bold" style="font-size: 16px">Back to shop</span></a>
@@ -237,23 +235,23 @@ a:hover{
                 <hr>
                 <div class="row">
                     <div class="col" style="padding-left:0;">Sub Total</div>
-                    <div class="col text-right">&euro; 132.00</div>
+                    <div class="col text-right">$ {{number_format(Cart::subtotal(), 2)}}</div>
                 </div>
                 <div class="row">
                     <div class="col" style="padding-left:0;">Tax Estimate</div>
-                    <div class="col text-right">&euro; 132.00</div>
+                    <div class="col text-right">$ 0.00</div>
                 </div>
                 <div class="row">
                     <div class="col" style="padding-left:0;">Shipping Cost</div>
-                    <div class="col text-right">&euro; 132.00</div>
+                    <div class="col text-right">$ 0.00</div>
                 </div>
                 <hr>
                 <div class="row" style=" padding: 1vh 0;">
                     <div class="col">TOTAL PRICE</div>
-                    <div class="col text-right">&euro; 137.00</div>
+                    <div class="col text-right">$ {{ number_format(Cart::total(), 2) }}</div>
                 </div>
                 <div class="d-flex justify-content-center pt-5">
-                    <button class="btn product_btn">CHECKOUT</button>
+                    <button href="{{route('checkout')}}" class="btn product_btn">CHECKOUT</button>
                 </div>
             </div>
         </div>
@@ -271,124 +269,142 @@ a:hover{
                 <!-- wrapper colum -->
                 <div class="populer_product_slider">
 
-                    <!-- product_item -->
 
+                    @foreach ($products as $item)
                     <div class="product_item">
                         <!-- image -->
                         <div class="product_item_thumbnail">
-                            <img src="images/single_product/product4.jpg" alt="">
+                            <img src="{{ asset($item->thumbnail) }}" alt="{{ $item->name }}" width="150px"
+                                height="113px">
                         </div>
-
                         <!-- product content -->
                         <div class="product_item_content">
-                            <a href="" class="product_item_content_name">Microsoft Wireless Desktop 2000 - keyboard
-                                and mouse set - QWERTY - US - black</a>
+                            <a href="{{ route('product.details', $item->slug) }}" class="product_item_content_name"
+                                style="height: 3rem;">{{ Str::limit($item->name, 50) }}</a>
+                            @if ($item->rfq != 1)
+                                <!-- price -->
+                                <div class="product_item_price">
+                                    <span class="price_currency">USD</span>
+                                    @if (!empty($item->discount))
+                                        <span class="price_currency_value"
+                                            style="text-decoration: line-through; color:red">$
+                                            {{ $item->price }}</span>
+                                        <span class="price_currency_value" style="color: black">$
+                                            {{ $item->discount }}</span>
+                                    @else
+                                        <span class="price_currency_value">$ {{ $item->price }}</span>
+                                    @endif
+                                </div>
+                                <!-- button -->
+                                @php
+                                    $cart = Cart::content();
+                                    $exist = $cart->where('id', $item->id);
+                                @endphp
+                                @if ($cart->where('id', $item->id)->count())
 
-                            <!-- price -->
-                            <div class="product_item_price">
-                                <span class="price_currency">usd</span>
-                                <span class="price_currency_value">$856</span>
-                            </div>
+                                    <span class="common_button6">Already in Cart</span>
+                                @else
+                                    <form action="{{ route('add.cart') }}" method="post">
+                                        @csrf
+                                        <input type="hidden" name="product_id" id="product_id"
+                                            value="{{ $item->id }}">
+                                        <input type="hidden" name="name" id="name"
+                                            value="{{ $item->name }}">
+                                        <input type="hidden" name="qty" id="qty" value="1">
+                                        <button type="submit" class="common_button effect01">Add to Basket</button>
+                                    </form>
+                                @endif
+                            @else
+                                <div class="product_item_price">
+                                    <span class="price_currency_value">
+                                        <a class="fw-bolder text-primary" href="javascript:void(0);" data-toggle="modal" data-target="#get_quote_modal_{{ $item->id }}">Ask For Price</a>
+                                        <div class="modal fade" id="get_quote_modal_{{ $item->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                              <div class="modal-content">
+                                                    <div class="modal-header text-white" style="background-color: #a80b6e; border: none;">
+                                                        <h5 class="modal-title text-white" id="exampleModalLabel">Product Details</h5>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <!-- style="background-color: #3e3e3e;" -->
+                                                        <div class="">
+                                                            <!-- form Sidebar -->
+                                                            <div class="background">
+                                                                <div class="containers">
+                                                                    <div class="screen">
+                                                                        <div class="screen-body">
+                                                                            <div class="screen-body-item screen-body-item-right modal_form">
+                                                                                <form action="">
+                                                                                    <div class="app-form">
+                                                                                        <div class="app-form-group">
+                                                                                            <input type="text" class="app-form-control2"
+                                                                                                placeholder="NAME">
+                                                                                        </div>
+                                                                                        <div class="app-form-group">
+                                                                                            <input type="email" class="app-form-control2"
+                                                                                                placeholder="EMAIL">
+                                                                                        </div>
+                                                                                        <div class="app-form-group">
+                                                                                            <input type="number" class="app-form-control2"
+                                                                                                placeholder="CONTACT NO">
+                                                                                        </div>
+                                                                                        <div class="app-form-group">
+                                                                                            <input type="text" class="app-form-control2"
+                                                                                                placeholder="Company">
+                                                                                        </div>
+                                                                                        <div class="app-form-group">
+                                                                                            <input type="number" class="app-form-control2"
+                                                                                                placeholder="Quantity">
+                                                                                        </div>
+                                                                                        <div class="app-form-group">
+                                                                                            <input class="app-form-control2 rounded-0 form-control-sm"
+                                                                                                id="formFileSm" type="file">
+                                                                                        </div>
+                                                                                        <div class="app-form-group message">
+                                                                                            <input class="app-form-control2" placeholder="MESSAGE">
+                                                                                        </div>
+                                                                                        <div class="form-check">
+                                                                                            <input class="form-check-input" type="checkbox"
+                                                                                                value="" id="flexCheckChecked">
+                                                                                            <label class="form-check-label" for="flexCheckChecked">
+                                                                                                Please Call Me
+                                                                                            </label>
+                                                                                        </div>
+                                                                                        <div class="app-form-group buttons">
+                                                                                            <button class="app-form-button">CANCEL</button>
+                                                                                            <button type="submit" class="app-form-button">SEND</button>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </form>
 
-                            <!-- button -->
-                            <a href="" class="product_button">Add to Basket</a>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </span>
+                                </div>
+                                <button href="{{ route('product.details', $item->slug) }}" class="common_button effect01">Details</button>
+
+
+
+                            @endif
                         </div>
-
                     </div>
-                    <div class="product_item">
-                        <!-- image -->
-                        <div class="product_item_thumbnail">
-                            <img src="images/single_product/product2.jpg" alt="">
-                        </div>
 
-                        <!-- product content -->
-                        <div class="product_item_content">
-                            <a href="" class="product_item_content_name">Microsoft Wireless Desktop 2000 - keyboard
-                                and mouse set - QWERTY - US - black</a>
 
-                            <!-- price -->
-                            <div class="product_item_price">
-                                <!-- <span class="price_currency">usd</span> -->
-                                <span class="price_currency_value">
-                                    <p type="button" class="text-primary" data-toggle="modal"
-                                        data-target="#exampleModal">
-                                        Ask For Price
-                                    </p>
-                                </span>
-                            </div>
+                        <!-- Product Modal Start-->
 
-                            <!-- button -->
-                            <a href="" class="product_button">Add to Basket</a>
-                        </div>
+                        <!---------Product Modal End -------->
 
-                    </div>
-                    <div class="product_item">
-                        <!-- image -->
-                        <div class="product_item_thumbnail">
-                            <img src="images/single_product/product3.jpg" alt="">
-                        </div>
-
-                        <!-- product content -->
-                        <div class="product_item_content">
-                            <a href="" class="product_item_content_name">Microsoft Wireless Desktop 2000 - keyboard
-                                and mouse set - QWERTY - US - black</a>
-
-                            <!-- price -->
-                            <div class="product_item_price">
-                                <span class="price_currency">usd</span>
-                                <span class="price_currency_value">$856</span>
-                            </div>
-
-                            <!-- button -->
-                            <a href="" class="product_button">Add to Basket</a>
-                        </div>
-
-                    </div>
-                    <div class="product_item">
-                        <!-- image -->
-                        <div class="product_item_thumbnail">
-                            <img src="images/single_product/product4.jpg" alt="">
-                        </div>
-
-                        <!-- product content -->
-                        <div class="product_item_content">
-                            <a href="" class="product_item_content_name">Microsoft Wireless Desktop 2000 - keyboard
-                                and mouse set - QWERTY - US - black</a>
-
-                            <!-- price -->
-                            <div class="product_item_price">
-                                <span class="price_currency">usd</span>
-                                <span class="price_currency_value">$856</span>
-                            </div>
-
-                            <!-- button -->
-                            <a href="" class="product_button">Add to Basket</a>
-                        </div>
-
-                    </div>
-                    <div class="product_item">
-                        <!-- image -->
-                        <div class="product_item_thumbnail">
-                            <img src="images/single_product/product2.jpg" alt="">
-                        </div>
-
-                        <!-- product content -->
-                        <div class="product_item_content">
-                            <a href="" class="product_item_content_name">Microsoft Wireless Desktop 2000 - keyboard
-                                and mouse set - QWERTY - US - black</a>
-
-                            <!-- price -->
-                            <div class="product_item_price">
-                                <p type="button" class="text-primary" data-toggle="modal" data-target="#exampleModal">
-                                    Ask For Price
-                                </p>
-                            </div>
-
-                            <!-- button -->
-                            <a href="" class="product_button">Add to Basket</a>
-                        </div>
-
-                    </div>
+                    @endforeach
                     <!-- product item -->
 
 
@@ -396,82 +412,7 @@ a:hover{
             </div>
         </div>
     </section>
-    <section>
-        <!-- Product Modal Start-->
-        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-            aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header text-white" style="background-color: #a80b6e; border: none;">
-                        <h5 class="modal-title text-white" id="exampleModalLabel">Product Details</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <!-- style="background-color: #3e3e3e;" -->
-                        <div class="">
-                            <!-- form Sidebar -->
-                            <div class="background">
-                                <div class="containers">
-                                    <div class="screen">
-                                        <div class="screen-body">
-                                            <div class="screen-body-item screen-body-item-right modal_form">
-                                                <form action="">
-                                                    <div class="app-form">
-                                                        <div class="app-form-group">
-                                                            <input type="text" class="app-form-control2"
-                                                                placeholder="NAME">
-                                                        </div>
-                                                        <div class="app-form-group">
-                                                            <input type="email" class="app-form-control2"
-                                                                placeholder="EMAIL">
-                                                        </div>
-                                                        <div class="app-form-group">
-                                                            <input type="number" class="app-form-control2"
-                                                                placeholder="CONTACT NO">
-                                                        </div>
-                                                        <div class="app-form-group">
-                                                            <input type="text" class="app-form-control2"
-                                                                placeholder="Company">
-                                                        </div>
-                                                        <div class="app-form-group">
-                                                            <input type="number" class="app-form-control2"
-                                                                placeholder="Quantity">
-                                                        </div>
-                                                        <div class="app-form-group">
-                                                            <input class="app-form-control2 rounded-0 form-control-sm"
-                                                                id="formFileSm" type="file">
-                                                        </div>
-                                                        <div class="app-form-group message">
-                                                            <input class="app-form-control2" placeholder="MESSAGE">
-                                                        </div>
-                                                        <div class="form-check">
-                                                            <input class="form-check-input" type="checkbox"
-                                                                value="" id="flexCheckChecked">
-                                                            <label class="form-check-label" for="flexCheckChecked">
-                                                                Please Call Me
-                                                            </label>
-                                                        </div>
-                                                        <div class="app-form-group buttons">
-                                                            <button class="app-form-button">CANCEL</button>
-                                                            <button type="submit" class="app-form-button">SEND</button>
-                                                        </div>
-                                                    </div>
-                                                </form>
 
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!---------Product Modal End -------->
-    </section>
     <!---------End -------->
       {{-- Cart Section end --}}
 

@@ -2,21 +2,21 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
+use App\Models\Admin\Section;
 use Image;
 use Helper;
-use App\Models\Admin\Brand;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Models\Admin\Category;
 use Illuminate\Support\Facades\DB;
-use App\Http\Controllers\Controller;
 use Brian2694\Toastr\Facades\Toastr;
 use function GuzzleHttp\Promise\all;
 use Illuminate\Support\Facades\File;
 
 use Illuminate\Support\Facades\Validator;
 
-class BrandController extends Controller
+class SectionController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -25,29 +25,39 @@ class BrandController extends Controller
      */
     public function index()
     {
-        $data['brands'] = Brand::latest()->get();
-        return view('admin.pages.brand.all', $data);
-    } // End Method
+        $data['sections'] = Section::all();
+        return view('admin.pages.section.all',$data);
 
+    }
 
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function create()
     {
-        return view('admin.pages.brand.add');
-    } // End Method
+        //
+    }
 
-
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
     public function store(Request $request)
     {
         Helper::imageDirectory();
         $validator = Validator::make(
             $request->all(),
             [
-                'title' => 'required|unique:brands',
-                'image'   => 'required|image|mimes:png,jpg,jpeg|max:10000',
+                'title' => 'required|unique:sections',
+                'image'   => 'image|mimes:png,jpg,jpeg|max:10000',
             ],
             [
                 'mimes' => 'The :attribute must be a file of type: PNG - JPEG - JPG',
-                'unique' => 'This Brand has already been taken.',
+                'unique' => 'This Section has already been taken.',
             ],
 
         );
@@ -56,13 +66,13 @@ class BrandController extends Controller
             $mainFile = $request->file('image');
             $imgPath = storage_path('app/public/');
             $slug = Str::slug($request->title);
-            $count = Brand::where('slug', $slug)->count();
+            $count = Section::where('slug', $slug)->count();
             if ($count > 0) {
                 $slug = $slug . '-' . date('ymdis') . '-' . rand(0, 999);
             }
             $data['slug'] = $slug;
             if (empty($mainFile)) {
-                Brand::create([
+                Section::create([
                     'title'    => $request->title,
                     'slug' => $data['slug'],
                     'category' => $request->category,
@@ -70,7 +80,7 @@ class BrandController extends Controller
             } else {
                 $globalFunImg =  Helper::singleImageUpload($mainFile, $imgPath, 380, 210);
                 if ($globalFunImg['status'] == 1) {
-                    Brand::create([
+                    Section::create([
                         'title'    => $request->title,
                         'slug' => $data['slug'],
                         'image'    => $globalFunImg['file_name'],
@@ -89,20 +99,41 @@ class BrandController extends Controller
             }
         }
         return redirect()->back();
-    } // End Method
+    }
 
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        //
+    }
 
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
     public function edit($id)
     {
-        $data['brand'] = Brand::findOrFail($id);
-        return view('admin.pages.brand.edit', $data);
-    } // End Method
+        //
+    }
 
-
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
     public function update(Request $request, $id)
     {
-        $brand = Brand::find($id);
-        if (!empty($brand)) {
+        $section = Section::find($id);
+        if (!empty($section)) {
             $validator =
                 [
                     'title' => 'required',
@@ -126,22 +157,22 @@ class BrandController extends Controller
                 $globalFunImg['status'] = 0;
             }
 
-            if (!empty($brand)) {
+            if (!empty($section)) {
                 if ($globalFunImg['status'] == 1) {
-                    if (File::exists(public_path('storage/') . $brand->image)) {
-                        File::delete(public_path('storage/') . $brand->image);
+                    if (File::exists(public_path('storage/') . $section->image)) {
+                        File::delete(public_path('storage/') . $section->image);
                     }
-                    if (File::exists(public_path('storage/requestImg/') . $brand->image)) {
-                        File::delete(public_path('storage/requestImg/') . $brand->image);
+                    if (File::exists(public_path('storage/requestImg/') . $section->image)) {
+                        File::delete(public_path('storage/requestImg/') . $section->image);
                     }
-                    if (File::exists(public_path('storage/thumb/') . $brand->image)) {
-                        File::delete(public_path('storage/thumb/') . $brand->image);
+                    if (File::exists(public_path('storage/thumb/') . $section->image)) {
+                        File::delete(public_path('storage/thumb/') . $section->image);
                     }
                 }
 
-                $brand->update([
+                $section->update([
                     'title' => $request->title,
-                    'image' => $globalFunImg['status'] == 1 ? $globalFunImg['file_name'] : $brand->image,
+                    'image' => $globalFunImg['status'] == 1 ? $globalFunImg['file_name'] : $section->image,
                     'category' => $request->category,
                 ]);
             }
@@ -153,23 +184,28 @@ class BrandController extends Controller
                 Toastr::error($message, 'Failed', ['timeOut' => 30000]);
             }
         }
-        return redirect()->route('brand.index');
-    } // End Method
+        return redirect()->back();
+    }
 
-
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
     public function destroy($id)
     {
-        $brand = Brand::find($id);
+        $section = Section::find($id);
 
-        if (File::exists(public_path('storage/') . $brand->image)) {
-            File::delete(public_path('storage/') . $brand->image);
+        if (File::exists(public_path('storage/') . $section->image)) {
+            File::delete(public_path('storage/') . $section->image);
         }
-        if (File::exists(public_path('storage/requestImg/') . $brand->image)) {
-            File::delete(public_path('storage/requestImg/') . $brand->image);
+        if (File::exists(public_path('storage/requestImg/') . $section->image)) {
+            File::delete(public_path('storage/requestImg/') . $section->image);
         }
-        if (File::exists(public_path('storage/thumb/') . $brand->image)) {
-            File::delete(public_path('storage/thumb/') . $brand->image);
+        if (File::exists(public_path('storage/thumb/') . $section->image)) {
+            File::delete(public_path('storage/thumb/') . $section->image);
         }
-        $brand->delete();
-    } // End Method
+        $section->delete();
+    }
 }

@@ -1,5 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
 
+.navbar-toggler:focus{
+    box-shadow: none !important;
+}
 .feature_description{
     overflow-wrap: break-word;
     text-align: justify;

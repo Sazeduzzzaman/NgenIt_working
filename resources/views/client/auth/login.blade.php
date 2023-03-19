@@ -11,15 +11,18 @@
             box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
         }
 
+
         #chk {
             display: none;
         }
+
 
         .signup {
             position: relative;
             width: 100%;
             height: 110%;
         }
+
 
         .sign_back {
             color: #ae0a46;
@@ -32,7 +35,9 @@
             transition: .5s ease-in-out;
         }
 
+
         .sign_up_btn {
+
 
             color: #ae0a46;
             font-size: 2.3em;
@@ -45,18 +50,20 @@
             transition: .5s ease-in-out;
         }
 
+
         .login_btns {
             padding-top: 36px;
             color: #ae0a46;
             font-size: 2.3em;
             justify-content: center;
             display: flex;
-            margin: 20px;
+            margin: 10px;
             padding: 0px;
             font-weight: bold;
             cursor: pointer;
             transition: .5s ease-in-out;
         }
+
 
         .input_login {
             width: 60%;
@@ -70,6 +77,7 @@
             outline: none;
             border-radius: 5px;
         }
+
 
         .logn_btn {
             width: 60%;
@@ -89,13 +97,16 @@
             cursor: pointer;
         }
 
+
         .logn_btn:hover {
             background: #850635;
         }
 
+
         .main_color {
             color: #ae0a46;
         }
+
 
         .login {
             height: 460px;
@@ -105,34 +116,42 @@
             transition: .8s ease-in-out;
         }
 
+
         .login label {
             color: #ae0a46;
             transform: scale(.6);
         }
 
+
         #chk:checked~.login {
             transform: translateY(-500px);
         }
+
 
         #chk:checked~.login label {
             transform: scale(1);
         }
 
+
         #chk:checked~.signup label {
             transform: scale(.6);
         }
 
+
         /* Social */
         @import url("//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css");
+
 
         body {
             background-color: #eee;
         }
 
+
         .login_social_link {
             font-size: 14px;
             text-align: center;
         }
+
 
         .login_social_link a {
             width: 25px;
@@ -144,6 +163,7 @@
             display: inline-block;
             color: #ae0a46;
 
+
             -webkit-transition: all 0.27s cubic-bezier(0.300, 0.100, 0.580, 1.000);
             -moz-transition: all 0.27s cubic-bezier(0.300, 0.100, 0.580, 1.000);
             -o-transition: all 0.27s cubic-bezier(0.300, 0.100, 0.580, 1.000);
@@ -151,12 +171,14 @@
             transition: all 0.27s cubic-bezier(0.300, 0.100, 0.580, 1.000);
         }
 
+
         .login_social_link a i,
         .login_social_link a span {
             position: relative;
             top: 5px;
             left: 0px;
         }
+
 
         .login_social_link a:before {
             content: "";
@@ -168,9 +190,11 @@
             left: 0;
             border: 1px solid #ae0a46;
 
+
             -webkit-border-radius: 2px;
             -moz-border-radius: 2px;
             border-radius: 2px;
+
 
             -webkit-transform: rotate(45deg);
             -moz-transform: rotate(45deg);
@@ -178,26 +202,32 @@
             -ms-transform: rotate(45deg);
             transform: rotate(45deg);
 
+
             -webkit-transition: all 0.27s cubic-bezier(0.300, 0.100, 0.580, 1.000);
             -moz-transition: all 0.27s cubic-bezier(0.300, 0.100, 0.580, 1.000);
             -o-transition: all 0.27s cubic-bezier(0.300, 0.100, 0.580, 1.000);
             -ms-transition: all 0.27s cubic-bezier(0.300, 0.100, 0.580, 1.000);
             transition: all 0.27s cubic-bezier(0.300, 0.100, 0.580, 1.000);
 
+
         }
+
 
         .login_social_link a:hover {
             color: #fff;
         }
 
+
         .login_social_link a:hover:before {
             background: #ae0a46;
         }
+
 
         .social-icons i {
             margin: 5px;
         }
     </style>
+
 
     <section class="container">
         <div class="row mt-5 mb-5">
@@ -211,6 +241,7 @@
             <div class="col-lg-12 d-flex justify-content-center mb-3">
                 <div class="main">
                     <input type="checkbox" id="chk" aria-hidden="true">
+
 
                     <div class="signup" style="margin-bottom: 10px !important;">
                         <form action="{{ route('clientRegister.store') }}" method="POST">
@@ -229,8 +260,9 @@
                         </form>
                     </div>
 
+
                     <div class="login">
-                        <form id="myform" action="{{ route('client.loginstore') }}" method="POST">
+                        <form id="myform" action="{{ route('client.loginstore') }}" method="POST" style="margin-top: 3rem !important;">
                             @csrf
                             <label class="login_btns" for="chk" aria-hidden="true">Login</label>
                             <p class="text-center p-0 m-0"><span class="text-black ">Don't Have an Account ?</span></p>
@@ -265,6 +297,13 @@
     </section>
 @endsection
 <script></script>
+
+
+
+
+
+
+
 
 
 

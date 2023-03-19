@@ -1,59 +1,499 @@
 @extends('frontend.master')
 @section('content')
+<style>
+    @import url('https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.2.3/animate.min.css');
+    /* @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css'); */
 
-    <!--======// Banner Section //======-->
-    <section class="banner_section">
-        <!-- slider -->
-        <div class="banner_slider">
 
-            <!-- slider -->
-            <div class="slider_inage">
+    body {
+        margin: 0;
+        padding: 0;
+    }
+
+    .Advance-Slider {
+        float: left;
+        width: 100%;
+        overflow: hidden;
+    }
+    .story_title {
+    
+    padding-bottom: 3rem;
+    color: #3e332d;
+    margin-top: 7rem;
+    }
+
+
+    .Advance-Slider button.slick-arrow {
+        position: absolute;
+        z-index: 2;
+        top: 0;
+        bottom: 0;
+        height: 50px;
+        width: 50px;
+        background: #fff;
+        z-index: 99999;
+        border: none;
+        margin: auto;
+        font-size: 0;
+        text-align: center;
+        outline: none;
+        cursor: pointer;
+    }
+
+    .Advance-Slider .img-fill {
+        position: relative;
+        height: 100%;
+    }
+
+    .Advance-Slider .img-fill img {
+        height: 100%;
+        width: 100%;
+        /* object-fit: co; */
+        animation: myMove 10s linear infinite;
+    }
+
+    .Advance-Slider .item {
+        height: 80vh;
+        overflow: hidden;
+        outline: none;
+    }
+
+    .Advance-Slider button.slick-next.slick-arrow {
+        right: 0;
+        left: auto;
+    }
+
+    .Advance-Slider button.slick-arrow:before {
+        content: "\f104";
+        top: 0;
+        left: 0;
+        margin: auto;
+        font-family: fontawesome;
+        font-size: 18px;
+    }
+
+    .Advance-Slider button.slick-next.slick-arrow:before {
+        transform: scaleX(-1);
+        display: block;
+    }
+
+    .Advance-Slider .img-fill:after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+
+    .Advance-Slider ul.slick-dots {
+        position: absolute;
+        bottom: 20px;
+        left: 0;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        text-align: center;
+    }
+
+    .Advance-Slider ul.slick-dots li {
+        display: inline-block;
+        height: auto;
+        padding: 0 5px;
+        line-height: 0px;
+    }
+
+    .Advance-Slider ul.slick-dots li button {
+        height: 15px;
+        width: 15px;
+        border-radius: 100%;
+        background: #fff;
+        border: none;
+        font-size: 0px;
+        padding: 0px;
+        opacity: 0.5;
+        outline: none;
+        transition: all 0.3s ease;
+        cursor: pointer;
+    }
+
+    .Advance-Slider ul.slick-dots li.slick-active button {
+        opacity: 1;
+    }
+
+    .Advance-Slider button.slick-arrow {
+        display: none !important;
+        perspective: 360px;
+    }
+
+    .Advance-Slider button.slick-arrow .thumb {
+        display: none !important;
+        position: absolute;
+        height: 100px;
+        width: 150px;
+        left: 100%;
+        top: -28px;
+        transform-origin: 0% 0%;
+        transform: rotate3d(1, 0, 0, 90deg);
+    }
+
+    .Advance-Slider button.slick-arrow .thumb img {
+        height: 100%;
+        width: 100%;
+    }
+
+    .Advance-Slider button.slick-next {}
+
+    .Advance-Slider button.slick-next .thumb {
+        left: auto;
+        right: 100%;
+    }
+
+    .Advance-Slider button.slick-prev.hover-out .thumb,
+    .Advance-Slider button.slick-prev .thumb {
+        animation: out-left 300ms ease 0ms 1 forwards;
+    }
+
+    .Advance-Slider button.slick-prev.hover-in .thumb {
+        animation: in-left 300ms ease 0ms 1 forwards;
+    }
+
+    .Advance-Slider button.slick-next.hover-out .thumb,
+    .Advance-Slider button.slick-next .thumb {
+        animation: out-right 300ms ease 0ms 1 forwards;
+        transform-origin: 100% 50%;
+    }
+
+    .Advance-Slider button.slick-next.hover-in .thumb {
+        animation: in-right 300ms ease 0ms 1 forwards;
+    }
+
+    .Advance-Slider button.slick-prev:hover {
+        transform: translateX(-100%);
+    }
+
+    .Advance-Slider button.slick-prev {
+        transition: all 0.3s ease;
+    }
+
+    .Advance-Slider button.slick-next:hover {
+        transform: translateX(100%);
+    }
+
+    .Advance-Slider button.slick-next {
+        transition: all 0.3s ease;
+    }
+
+    .Advance-Slider ul.slick-dots li button img {
+        height: 0;
+        width: 20px;
+        top: 0;
+        object-fit: cover;
+        transition: height 0.2s ease 0.2s, width 0.2s ease 0s;
+        position: relative;
+        left: -50%;
+    }
+
+    .Advance-Slider ul.slick-dots li button a {
+        position: absolute;
+        height: 90px;
+        bottom: calc(100%);
+        width: 0;
+        display: flex;
+        align-items: flex-end;
+        justify-content: center;
+        transition: all 0.2s ease 0.2s;
+        padding-bottom: 10px;
+    }
+
+    .Advance-Slider ul.slick-dots li button {
+        position: relative;
+        display: flex;
+        justify-content: center;
+    }
+
+    .Advance-Slider ul.slick-dots li button:hover a img {}
+
+    .Advance-Slider ul.slick-dots li button:hover img {
+        height: 80px;
+        width: 140px;
+        transition: height 0.2s ease, width 0.2s ease 0.2s;
+    }
+
+    .Advance-Slider ul.slick-dots li button:hover a {
+        width: 140px;
+        transition: all 0.3s ease 0s;
+    }
+
+    .Advance-Slider ul.slick-dots li button:hover {
+        opacity: 1;
+    }
+
+    .Advance-Slider ul.slick-dots li button:before {
+        content: '';
+        bottom: calc(100% + -10px);
+        left: 7px;
+        border: solid transparent;
+        content: " ";
+        height: 0;
+        width: 0px;
+        position: absolute;
+        pointer-events: none;
+        border-color: rgba(255, 255, 255, 0);
+        border-top-color: #fff;
+        border-width: 10px;
+        margin-left: -10px;
+        opacity: 0;
+        transition: 0.3s ease 350ms;
+    }
+
+    .Advance-Slider ul.slick-dots li button:hover:before {
+        opacity: 1;
+        transition: 0.3s ease 0s;
+    }
+
+    .Advance-Slider .item.slick-active {
+        animation: Slick-FastSwipeIn 1s both;
+    }
+
+    .Advance-Slider .item .contain-wrapper {
+        position: absolute;
+        left: 0;
+        top: 0;
+        z-index: 1;
+        height: 100%;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+    }
+
+    .Advance-Slider .item .contain-wrapper .dots-contain {
+        display: none;
+    }
+
+    .Advance-Slider .item h3 {
+        margin: 0px;
+        color: #fff;
+        font-size: 84px;
+        font-weight: 300;
+        text-transform: capitalize;
+    }
+
+    .Advance-Slider .item {
+        color: #fff;
+        font-family: 'Roboto', sans-serif;
+    }
+
+    .Advance-Slider .item h5 {
+        font-size: 32px;
+        font-weight: 300;
+        padding: 10px 0 0;
+        margin: 0;
+        text-transform: capitalize;
+    }
+
+    .Advance-Slider .item .contain-wrapper .info {
+        max-width: 1200px;
+    }
+
+    .Advance-Slider .item h5 span {
+        color: #00BCD4;
+    }
+
+    .Advance-Slider .item h3 span {
+        color: #00BCD4;
+    }
+
+    .custom_shadow {
+        box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
+    }
+
+    /* .Advance-Slider .item h3 {
+            animation: fadeOutRight 1s both;
+        }
+
+        .Advance-Slider .item.slick-active h3 {
+            animation: fadeInDown 1s both 1s;
+        }
+
+        .Advance-Slider .item h5 {
+            animation: fadeOutLeft 1s both;
+        }
+
+        .Advance-Slider .item.slick-active h5 {
+            animation: fadeInLeft 1s both 1.5s;
+        } */
+    .slick-dotted.slick-slider {
+        margin-bottom: -100px !important;
+    }
+
+    .Advance-Slider button {
+        display: none;
+    }
+
+    /* @keyframes myMove {
+            from {
+                transform: scale(1.0, 1.0);
+                transform-origin: 50% 50%;
+            }
+
+            to {
+                transform: scale(1.8, 1.9);
+                transform-origin: 50% 0%;
+            }
+        } */
+
+    @keyframes Slick-FastSwipeIn {
+        0% {
+            transform: rotate3d(0, 1, 0, 150deg) scale(0) perspective(400px);
+        }
+
+        100% {
+            transform: rotate3d(0, 1, 0, 0deg) scale(1) perspective(400px);
+        }
+    }
+
+    @keyframes in-left {
+        from {
+            -webkit-transform: rotate3d(0, 1, 0, 90deg);
+            transform: rotate3d(0, 1, 0, 90deg);
+        }
+
+        to {
+            -webkit-transform: rotate3d(0, 0, 0, 0deg);
+            transform: rotate3d(0, 0, 0, 0deg);
+        }
+    }
+
+    @keyframes out-left {
+        from {
+            -webkit-transform: rotate3d(0, 0, 0, 0deg);
+            transform: rotate3d(0, 0, 0, 0deg);
+        }
+
+        to {
+            -webkit-transform: rotate3d(0, 1, 0, 86deg);
+            transform: rotate3d(0, 1, 0, 86deg);
+        }
+    }
+
+    @keyframes in-right {
+        from {
+            -webkit-transform: rotate3d(0, -1, 0, 90deg);
+            transform: rotate3d(0, -1, 0, 90deg);
+        }
+
+        to {
+            -webkit-transform: rotate3d(0, 0, 0, 0deg);
+            transform: rotate3d(0, 0, 0, 0deg);
+        }
+    }
+
+    @keyframes out-right {
+        from {
+            -webkit-transform: rotate3d(0, 0, 0, 0deg);
+            transform: rotate3d(0, 0, 0, 0deg);
+        }
+
+        to {
+            -webkit-transform: rotate3d(0, -1, 0, 86deg);
+            transform: rotate3d(0, -1, 0, 86deg);
+        }
+    }
+</style>
+
+<!--======// Banner Section //======-->
+<section>
+    <div class="Advance-Slider">
+        <!-- Item -->
+        <div class="item">
+            <div class="img-fill">
                 <img src="{{ asset('storage/' . $home->branner1) }}" alt="">
-            </div>
-            <!-- slider -->
-            <div class="slider_inage">
-                <img src="{{ asset('storage/' . $home->branner2) }}" alt="">
-            </div>
-            <!-- slider -->
-            <div class="slider_inage">
-                <img src="{{ asset('storage/' . $home->branner3) }}" alt="">
-            </div>
-            <!-- slider -->
-
-        </div>
-    </section>
-    <!-- banner start end-->
-    <!--======// Home Cart Section //======-->
-    <section class="home_card_wrapper" style="margin-top: 2.6rem;">
-        <div class="container">
-            <!-- wrapper -->
-            @if ($home)
-                <div class="row m-0">
-                    <!-- home card item -->
-                    <div class="col-lg-6 col-sm-12">
-                        <div class="home_card_item">
-                            <h5 class="home_card_item_title">{{ $home->btn1_title }}</h5>
-                            <div class="home_card_button">
-                                <a class="effect01" href="{{ route('learn.more') }}">{{ $home->btn1_name }}</a>
-                            </div>
-                            <!-- button -->
-                        </div>
+                <div class="contain-wrapper">
+                    <div class="dots-contain">
+                        <img class="dots-img" src="{{ asset('storage/' . $home->branner1) }}" alt="">
                     </div>
-                    <!-- home card item -->
-                    <div class="col-lg-6 col-sm-12">
-                        <div class="home_card_item">
-                            <h5 class="home_card_item_title">{{ $home->btn2_title }}</h5>
-                            <div class="home_card_button">
-                                <a class="effect01" href="{{ $home->btn2_link }}">{{ $home->btn2_name }}</a>
-                            </div>
-                            <!-- button -->
+                    {{-- <div class="info">
+                        <div>
+                            <h3>Awesome<strong> Slick Slider</strong></h3>
+                            <h5>You can easily add image, html formatted texts and video layers over each slide and each
+                                layer accepts unique animation.</h5>
                         </div>
+                    </div> --}}
+                </div>
+            </div>
+        </div>
+        <!-- // Item -->
+
+        <!-- Item -->
+        <div class="item">
+            <div class="img-fill">
+                <img src="{{ asset('storage/' . $home->branner2) }} " alt="">
+                <div class="contain-wrapper">
+                    <div class="dots-contain">
+                        <img class="dots-img" src="{{ asset('storage/' . $home->branner2) }}" alt="">
+                    </div>
+                    {{-- <div class="info">
+                        <div>
+                            <h3>easily add image<strong><span> video layers</span></strong></h3>
+                            <h5>You can easily add image, html formatted texts and video layers over each slide and each
+                                layer accepts unique animation.</h5>
+                        </div>
+                    </div> --}}
+                </div>
+            </div>
+        </div>
+        <!-- // Item -->
+
+        <!-- Item -->
+        <div class="item">
+            <div class="img-fill">
+                <img src="{{ asset('storage/' . $home->branner3) }} " alt="">
+                <div class="contain-wrapper">
+                    <div class="dots-contain">
+                        <img class="dots-img" src="{{ asset('storage/' . $home->branner3) }}" alt="">
+                    </div>
+                    {{-- <div class="info">
+                        <div>
+                            <h3>easily add image<span> formatted slide</span></h3>
+                            <h5>You can easily add image, html formatted texts and video layers over each slide and each
+                                layer accepts unique animation.</h5>
+                        </div>
+                    </div> --}}
+                </div>
+            </div>
+        </div>
+        <!-- // Item -->
+
+    </div>
+</section>
+{{-- Banner Bottom Card --}}
+<section>
+    <div class="container px-4">
+        <div class="row gx-5">
+            <div class="col">
+                <div class="p-5 border bg-light custom_shadow">
+                    <h2 class="text-center">{{ $home->btn1_title }}</h2>
+                    <div class="home_card_button">
+                        <a class="effect01" href="{{ route('learn.more') }}">{{ $home->btn1_name }}</a>
                     </div>
                 </div>
-            @endif
+            </div>
+            <div class="col">
+                <div class="p-5 border bg-light custom_shadow">
+                    <h2 class="text-center">{{ $home->btn2_title }}</h2>
+                    <div class="home_card_button">
+                        <a class="effect01" href="{{ $home->btn2_link }}">{{ $home->btn2_name }}</a>
+                    </div>
+                </div>
+            </div>
         </div>
-    </section>
-    <!-- home card end -->
+    </div>
+</section>
+
+
     <!--======// Business section //======-->
     <section class="container padding_bottom pt-56 pb-3">
         <!-- home title -->
@@ -564,7 +1004,7 @@
     <section class="account_benefits_section_wp">
         <div class="container">
             <!-- title -->
-            <div class="section_title">
+            <div class="section_title story_title">
                 <h3 class="title_top_heading">Learn more in our client stories.</h3>
             </div>
             @if ($home)
