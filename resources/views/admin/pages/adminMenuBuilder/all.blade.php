@@ -31,8 +31,8 @@
         <!-- Content area -->
         <div class="content">
             <div class="row">
-                <div class="col-lg-2"></div>
-                <div class="col-lg-8">
+                <div class="col-lg-1"></div>
+                <div class="col-lg-10">
                     <div class="card">
                         <div class="card-header">
                             <div class="row">
@@ -90,13 +90,13 @@
                                                         <a data-bs-toggle="modal" data-bs-target="#edit-menu-{{$menu->id}}" class="text-primary">
                                                             <i class="icon-pencil"></i>
                                                         </a>
-                                                        <a href="{{ route('product-menu.destroy', [$menu->id]) }}"
+                                                        <a href="{{ route('admin-menu-builder.destroy', [$menu->id]) }}"
                                                             class="text-danger delete mx-2">
                                                             <i class="delete icon-trash"></i>
                                                         </a>
 
                                                         <!---Edit modal--->
-                                                            <div id="edit-section-{{$menu->id}}" class="modal fade" tabindex="-1" style="display: none;" aria-hidden="true">
+                                                            <div id="edit-menu-{{$menu->id}}" class="modal fade" tabindex="-1" style="display: none;" aria-hidden="true">
                                                                 <div class="modal-dialog modal-dialog-scrollable">
                                                                     <div class="modal-content">
                                                                         <div class="modal-header">
@@ -110,37 +110,81 @@
 
                                                                                 <div class="card-body m-auto" style="width: 100%;">
 
-                                                                                    <form id="myform" method="post" action="{{ route('product-section.update',$section->id) }}" enctype="multipart/form-data">
+                                                                                    <form id="myform" method="post" action="{{ route('admin-menu-builder.update',$menu->id) }}" enctype="multipart/form-data">
                                                                                         @csrf
                                                                                         @method('PUT')
-                                                                                        <div class="row mb-3">
-                                                                                            <div class="col-sm-3">
-                                                                                                <h6 class="mb-0">Menu Name</h6>
+                                                                                        <div class="row">
+                                                                                            <div class="col-md-6 mb-3">
+                                                                                                <div class="col-sm-8">
+                                                                                                    <h6 class="mb-0"> Menu Name</h6>
+                                                                                                </div>
+                                                                                                <div class="form-group col-sm-9 text-secondary">
+                                                                                                    <input type="text" name="name" class="form-control maxlength" maxlength="100" value="{{$menu->name}}"/>
+                                                                                                </div>
                                                                                             </div>
-                                                                                            <div class="form-group col-sm-9 text-secondary">
-                                                                                                <input type="text" name="title" class="form-control maxlength" maxlength="100" value="{{$section->title}}"/>
-                                                                                            </div>
-                                                                                        </div>
 
-                                                                                        <div class="row mb-3">
-                                                                                            <div class="col-sm-3">
-                                                                                                <h6 class="mb-0">Admin Menu Image </h6>
+                                                                                            <div class="col-md-6 mb-3">
+                                                                                                <div class="col-sm-8">
+                                                                                                    <h6 class="mb-0"> Menu icon</h6>
+                                                                                                </div>
+                                                                                                <div class="form-group col-sm-9 text-secondary">
+                                                                                                    <input type="text" name="icon" class="form-control maxlength" maxlength="100" value="{{$menu->icon}}"/>
+                                                                                                </div>
                                                                                             </div>
-                                                                                            <div class="col-sm-9 text-secondary">
-                                                                                                <input type="file" name="image" class="form-control" id="image" value="{{$section->image}}"
-                                                                                                    accept="image/*" />
-                                                                                                <div class="form-text">Accepts only png, jpg, jpeg images</div>
+                                                                                            <div class="col-md-6 mb-3">
+                                                                                                <div class="col-sm-8">
+                                                                                                    <h6 class="mb-0"> Route Name</h6>
+                                                                                                </div>
+                                                                                                <div class="form-group col-sm-9 text-secondary">
+                                                                                                    <input type="text" name="route_name" class="form-control maxlength" maxlength="100" value="{{$menu->route_name}}"/>
+                                                                                                </div>
                                                                                             </div>
-                                                                                        </div>
+                                                                                            <div class="col-md-6 mb-3">
+                                                                                                <div class="col-sm-8">
+                                                                                                    <h6 class="mb-0"> Permission Name</h6>
+                                                                                                </div>
+                                                                                                <div class="form-group col-sm-9 text-secondary">
+                                                                                                    <input type="text" name="permission_name" class="form-control maxlength" maxlength="100" value="{{$menu->permission_name}}"/>
+                                                                                                </div>
+                                                                                            </div>
 
-                                                                                        <div class="row mb-3">
-                                                                                            <div class="col-sm-3">
-                                                                                                <h6 class="mb-0"> </h6>
+                                                                                            <div class="row mb-3">
+                                                                                                <div class="col-md-4">
+                                                                                                    <div class="form-check">
+                                                                                                        <input class="form-check-input dealId" type="checkbox" id="dealId" name="is_module" value="1" @checked($menu->is_module == '1' )>
+                                                                                                        <label class="form-check-label" for="dealId"> Is Module</label>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                                <div class="col-md-6 basic-form dealExpand">
+                                                                                                    <label for="module_name" class="form-label">Module Name</label>
+                                                                                                    <select name="module_id" class="form-control select"
+                                                                                                        id="module_name" data-placeholder="Select Module...">
+                                                                                                        <option></option>
+                                                                                                        @foreach ($menus as $item)
+                                                                                                        <option class="form-control" value="{{ $item->id }}" @selected($menu->module_id == $item->id)>
+                                                                                                            {{ $item->name }}</option>
+                                                                                                        @endforeach
+                                                                                                    </select>
+                                                                                                </div>
                                                                                             </div>
-                                                                                            <div class="col-sm-9 text-secondary">
-                                                                                                <img id="showImage" class="img-thumbnail"
-                                                                                                    src="{{ asset('storage/requestImg/' . $section->image) }}" alt="Section"
-                                                                                                    height="87px" width="157px">
+                                                                                            <div class="row mb-3">
+                                                                                                <div class="col-md-4">
+                                                                                                    <div class="form-check">
+                                                                                                        <input class="form-check-input dealId2" type="checkbox" id="dealId2" name="is_parent" value="1" @checked($menu->is_parent == '1' )>
+                                                                                                        <label class="form-check-label" for="dealId2">Is Parent</label>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                                <div class="col-md-6 basic-form dealExpand2">
+                                                                                                    <label for="inputCollection" class="form-label">Parent Name</label>
+                                                                                                    <select name="parent__id" class="form-control select"
+                                                                                                        id="inputCollection" data-placeholder="Select Parent...">
+                                                                                                        <option></option>
+                                                                                                        @foreach ($menus as $item)
+                                                                                                        <option class="form-control" value="{{ $item->id }}" @selected($menu->parent_id == $item->id)>
+                                                                                                            {{ $item->name }}</option>
+                                                                                                        @endforeach
+                                                                                                    </select>
+                                                                                                </div>
                                                                                             </div>
                                                                                         </div>
 
@@ -185,80 +229,120 @@
         <!-- /content area -->
 
         <!---Add modal--->
-        <div id="add-section" class="modal fade" tabindex="-1" style="display: none;" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-scrollable">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title">Add Admin Menus</h5>
-                        <button type="button" class="btn-close"
-                            data-bs-dismiss="modal"></button>
+            <div id="add-section" class="modal fade" tabindex="-1" style="display: none;" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-scrollable">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Add Admin Menus</h5>
+                            <button type="button" class="btn-close"
+                                data-bs-dismiss="modal"></button>
+                        </div>
+
+                        <div class="modal-body border br-7">
+
+
+                                <div class="card-body m-auto" style="width: 100%;">
+
+                                    <form id="myform" method="post" action="{{ route('admin-menu-builder.store') }}" enctype="multipart/form-data">
+                                        @csrf
+                                        <div class="row">
+                                            <div class="col-md-6 mb-3">
+                                                <div class="col-sm-8">
+                                                    <h6 class="mb-0"> Menu Name</h6>
+                                                </div>
+                                                <div class="form-group col-sm-9 text-secondary">
+                                                    <input type="text" name="name" class="form-control maxlength" maxlength="100" />
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-6 mb-3">
+                                                <div class="col-sm-8">
+                                                    <h6 class="mb-0"> Menu icon</h6>
+                                                </div>
+                                                <div class="form-group col-sm-9 text-secondary">
+                                                    <input type="text" name="icon" class="form-control maxlength" maxlength="100" />
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 mb-3">
+                                                <div class="col-sm-8">
+                                                    <h6 class="mb-0"> Route Name</h6>
+                                                </div>
+                                                <div class="form-group col-sm-9 text-secondary">
+                                                    <input type="text" name="route_name" class="form-control maxlength" maxlength="100" />
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 mb-3">
+                                                <div class="col-sm-8">
+                                                    <h6 class="mb-0"> Permission Name</h6>
+                                                </div>
+                                                <div class="form-group col-sm-9 text-secondary">
+                                                    <input type="text" name="permission_name" class="form-control maxlength" maxlength="100" />
+                                                </div>
+                                            </div>
+
+                                            <div class="row mb-3">
+                                                <div class="col-md-4">
+                                                    <div class="form-check">
+                                                        <input class="form-check-input dealId" type="checkbox" id="dealId" name="is_module" value="1">
+                                                        <label class="form-check-label" for="dealId"> Is Module</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 basic-form dealExpand">
+                                                    <label for="module_name" class="form-label">Module Name</label>
+                                                    <select name="module_id" class="form-control select"
+                                                        id="module_name" data-placeholder="Select Module...">
+                                                        <option></option>
+                                                        @foreach ($menus as $item)
+                                                        <option class="form-control" value="{{ $item->id }}">
+                                                            {{ $item->name }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="row mb-3">
+                                                <div class="col-md-4">
+                                                    <div class="form-check">
+                                                        <input class="form-check-input dealId2" type="checkbox" id="dealId2" name="is_parent" value="1">
+                                                        <label class="form-check-label" for="dealId2">Is Parent</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 basic-form dealExpand2">
+                                                    <label for="inputCollection" class="form-label">Parent Name</label>
+                                                    <select name="parent__id" class="form-control select"
+                                                        id="inputCollection" data-placeholder="Select Parent...">
+                                                        <option></option>
+                                                        @foreach ($menus as $item)
+                                                        <option class="form-control" value="{{ $item->id }}">
+                                                            {{ $item->name }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="row">
+                                            <div class="col-sm-3"></div>
+                                            <div class="col-sm-9 text-secondary">
+                                                {{-- <input type="submit" class="btn btn-primary px-4 mt-5" value="Submit" /> --}}
+
+                                                <button type="submit" class="btn btn-primary" id="submitbtn">Submit<i
+                                                        class="ph-paper-plane-tilt ms-2"></i></button>
+                                            </div>
+                                        </div>
+
+
+                                    </form>
+
+                                </div>
+
+
+                        </div>
+
+
                     </div>
-
-                    <div class="modal-body border br-7">
-
-
-                            <div class="card-body m-auto" style="width: 100%;">
-
-                                <form id="myform" method="post" action="{{ route('product-section.store') }}" enctype="multipart/form-data">
-                                    @csrf
-
-                                    <div class="row mb-3">
-                                        <div class="col-sm-3">
-                                            <h6 class="mb-0">Admin Menu Name</h6>
-                                        </div>
-                                        <div class="form-group col-sm-9 text-secondary">
-                                            <input type="text" name="title" class="form-control maxlength" maxlength="100" />
-                                        </div>
-                                    </div>
-
-                                    <div class="row mb-3">
-                                        <div class="col-sm-3">
-                                            <h6 class="mb-0">Admin Menu Image </h6>
-                                        </div>
-                                        <div class="col-sm-9 text-secondary">
-                                            <input type="file" name="image" class="form-control" id="image" accept="image/*" />
-                                            <div class="form-text">Accepts only png, jpg, jpeg images</div>
-                                            <img class="img-thumbnail" id="showImage" height="80px" width="80px"  src="https://cdn.pixabay.com/photo/2017/02/07/02/16/cloud-2044823_960_720.png" alt="">
-                                        </div>
-                                    </div>
-
-                                    {{-- <div class="row mb-3">
-                                        <div class="col-sm-3">
-                                            <h6 class="mb-0">Admin Menu Status</h6>
-                                        </div>
-                                        <div class="form-group text-secondary col-sm-3">
-                                            <select name="status" class="form-control select"
-                                                data-minimum-results-for-search="Infinity" data-placeholder="Chose Status" required>
-                                                <option></option>
-                                                <option value="active">Active</option>
-                                                <option value="inactive">Inactive</option>
-                                            </select>
-                                        </div>
-                                    </div> --}}
-
-
-                                    <div class="row">
-                                        <div class="col-sm-3"></div>
-                                        <div class="col-sm-9 text-secondary">
-                                            {{-- <input type="submit" class="btn btn-primary px-4 mt-5" value="Submit" /> --}}
-
-                                            <button type="submit" class="btn btn-primary" id="submitbtn">Submit<i
-                                                    class="ph-paper-plane-tilt ms-2"></i></button>
-                                        </div>
-                                    </div>
-
-
-                                </form>
-
-                            </div>
-
-
-                    </div>
-
-
                 </div>
             </div>
-        </div>
         <!---Add modal--->
 
 
@@ -277,9 +361,64 @@
                 "lengthMenu": [10, 26, 30, 50],
                 columnDefs: [{
                     orderable: false,
-                    targets: [0,1,2,3],
+                    targets: [0,1,4,5,6],
                 }, ],
             });
         </script>
+        <script>
+            //---------Sidebar list Show Hide----------
+
+            $(document).ready(function(){
+                // if ($("input[name='is_module']").is(':checked')) {
+                //     $(".dealExpand").addClass('d-none');
+                // } else {
+                //     $(".dealExpand").removeClass('d-none');
+                // }
+                // if ($("input[name='is_parent']").is(':checked')) {
+                //     $(".dealExpand2").addClass('d-none');
+                // } else {
+                //     $(".dealExpand2").removeClass('d-none');
+                // }
+
+                $("input[name='is_module']").on('click', function(){
+                    if ($("input[name='is_module']").is(':checked')) {
+                        $(".dealExpand").addClass('d-none');
+                        $('select[name="module_id"]').val('').change();
+                    } else {
+                        $(".dealExpand").removeClass('d-none');
+                    }
+                });
+
+                // $('.dealId2').on('click', function(){
+                //     if ($("input[name='is_parent']").is(':checked')) {
+                //         $(".dealExpand2").addClass('d-none');
+                //         $('select[name="parent__id"]').val('').change();
+
+                //     } else {
+                //         $(".dealExpand2").removeClass('d-none');
+                //     }
+                // });
+
+            });
+
+
+        </script>
+        {{-- <script>
+            //---------Sidebar list Show Hide----------
+
+            $(document).ready(function(){
+
+                $('#dealId2').on('click', function(){
+                    if ($("#dealId2").is(':checked')) {
+                        $("#dealExpand2").addClass('d-none');
+                    } else {
+                        $("#dealExpand2").removeClass('d-none');
+                    }
+                });
+
+            });
+
+
+        </script> --}}
     @endpush
 @endonce

@@ -125,9 +125,11 @@ use App\Http\Controllers\Admin\NotificationController;
 use App\Http\Controllers\Admin\PresentationController;
 use App\Http\Controllers\Admin\SalesForcastController;
 use App\Http\Controllers\Admin\SolutionCardController;
+use App\Http\Controllers\Admin\WhatWeDoPageController;
 use App\Http\Controllers\Sales\SalesAccountController;
 use App\Http\Controllers\Admin\ShowCaseVideoController;
 use App\Http\Controllers\Marketing\BulkEmailController;
+use App\Http\Controllers\Admin\ClientDatabaseController;
 use App\Http\Controllers\Admin\OfficeLocationController;
 use App\Http\Controllers\Admin\RfqOrderStatusController;
 use App\Http\Controllers\Admin\TechnologyDataController;
@@ -138,11 +140,11 @@ use App\Http\Controllers\Admin\SalesProfitLossController;
 use App\Http\Controllers\Admin\SalesTeamTargetController;
 use App\Http\Controllers\Admin\SalesYearTargetController;
 use App\Http\Controllers\Admin\SolutionDetailsController;
+use App\Http\Controllers\Admin\AdminMenuBuilderController;
 use App\Http\Controllers\Sales\SalesAchievementController;
 use App\Http\Controllers\Admin\AccountProfitLossController;
 use App\Http\Controllers\Marketing\MarketingDmarController;
 use App\Http\Controllers\Admin\AccountsReceivableController;
-use App\Http\Controllers\Admin\AdminMenuBuilderController;
 use App\Http\Controllers\Admin\CommercialDocumentController;
 use App\Http\Controllers\Admin\PaymentMethodDetailsController;
 use App\Http\Controllers\Marketing\MarketingTeamTargetController;
@@ -527,6 +529,10 @@ Route::controller(RFQController::class)->group(function(){
     'presentation' => PresentationController::class,
     'show-case-video' => ShowCaseVideoController::class,
     'admin-menu-builder' => AdminMenuBuilderController::class,
+    'client-database' => ClientDatabaseController::class,
+
+    'what-we-do-page' => WhatWeDoPageController::class,
+
 ]);
 
     //Assign Roles to Sales Manager

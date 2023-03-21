@@ -1,3 +1,7 @@
+@php
+    $menus = App\Models\Admin\AdminMenuBuilder::all();
+@endphp
+
 <div class="sidebar sidebar-dark sidebar-main sidebar-expand-lg sidebar-main-resized"
     style="background:#000000">
     <!-- Sidebar content -->
@@ -22,6 +26,34 @@
         <!-- Main navigation -->
         <div class="sidebar-section">
             <ul class="nav nav-sidebar" data-nav-type="accordion">
+                @if ($menus)
+                    @foreach ($menus as $menu)
+                    @if ($menu->is_module == '1')
+                        <li class="nav-item nav-item-submenu">
+                            <a href="#" class="nav-link {{Route::current()->getName() == $menu->route_name ? 'active' : ''}}">
+                                <i class="{{$menu->icon}}"></i>
+                                <span>{{$menu->name}}</span>
+                            </a>
+                            @if (App\Models\Admin\AdminMenuBuilder::getParentMenus($menu->id)->count() > 0)
+                                @php
+                                    $sub_menus = App\Models\Admin\AdminMenuBuilder::getParentMenus($menu->id);
+                                @endphp
+                                    <ul class="nav-group-sub collapse">
+                                        @foreach ($sub_menus as $item)
+                                        <li class="nav-item ">
+                                            <a href="{{ route($item->route_name) }}" class="nav-link {{Route::current()->getName() == $item->route_name ? 'active' : ''}}">
+                                                <i class="ph-layout"></i>
+                                                <span>{{$item->name}}</span>
+                                            </a>
+                                        </li>
+                                        @endforeach
+                                    </ul>
+                            @endif
+                        </li>
+                    @endif
+                    @endforeach
+                @endif
+
                 <li class="nav-item">
                     <a href="{{ route('admin.dashboard') }}" class="nav-link {{Route::current()->getName() == 'admin.dashboard' ? 'active' : ''}}">
                         <i class="ph-house"></i>
@@ -243,6 +275,11 @@
                                 <span>Show Case Video</span>
                             </a>
                         </li>
+                        <li class="nav-item"><a href="{{ route('client-database.index') }}" class="nav-link"><i
+                            class="ph-layout"></i>
+                        <span>Client Database</span>
+                    </a>
+                </li>
                     </ul>
                 </li>
                 <li class="nav-item nav-item-submenu">
@@ -474,6 +511,9 @@
                         <li class="nav-item {{Route::current()->getName() == '' ? 'active' : ''}}"><a href="{{ route('brandPage.index') }}" class="nav-link"><i
                                     class="mi-message"></i>
                                 <span>Brand Page</span></a></li>
+                        <li class="nav-item"><a href="{{ route('what-we-do-page.index') }}" class="nav-link"><i
+                                class="mi-message"></i>
+                            <span>What We Do Page</span></a></li>
                     </ul>
                 </li>
                 <li class="nav-item nav-item-submenu">

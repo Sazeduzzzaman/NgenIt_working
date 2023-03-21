@@ -14,4 +14,12 @@ class AdminMenuBuilder extends Model
      * @var array
      */
     protected $guarded = [];
+    public static function getParentMenus($id){
+        // dd($slug);
+        return AdminMenuBuilder::where('module_id',$id)->get();
+    }
+    public static function getSubMenus($id){
+        // dd($slug);
+        return AdminMenuBuilder::where('parent_id',$id)->get();
+    }
 }

@@ -29,6 +29,20 @@ return new class extends Migration
             $table->enum('status', ['active', 'inactive'])->default('inactive');
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+
+
+            $table->enum('client_type', ['online', 'corporate'])->nullable();
+            $table->string('sector')->nullable();
+            $table->unsignedBigInteger('sub_sector')->nullable();
+            $table->string('area')->nullable();
+            $table->string('contact_person')->nullable();
+            $table->string('designation')->nullable();
+            $table->string('department')->nullable();
+            $table->string('official_phone')->nullable();
+            $table->string('client_status')->nullable();
+            $table->string('tier')->nullable();
+            $table->string('comments')->nullable();
+            $table->foreign('sub_sector')->references('id')->on('industries')->onUpdate('cascade');
             $table->rememberToken();
             $table->timestamps();
         });

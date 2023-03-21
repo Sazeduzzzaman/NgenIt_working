@@ -42,7 +42,7 @@ class AdminMenuBuilderController extends Controller
         $validator = Validator::make(
             $request->all(),
             [
-                'effnameort' => 'required|unique:effort_ratings',
+                'name' => 'required|unique:admin_menu_builders',
 
             ],
             [
