@@ -96,25 +96,16 @@ class HomeController extends Controller
     {
         $data['learnmore'] = LearnMore::first();
         if ($data['learnmore']) {
-                //     $data['feature1'] = Client::where('id', $data['home']->story1_id)->first();
 
-
-                // $data['feature2'] = Client::where('id',$data['home']->story2_id)->first();
-                // $data['feature3'] = Client::where('id',$data['home']->story3_id)->first();
-                // $data['feature4'] = Client::where('id',$data['home']->story4_id)->first();
-                // $data['feature5'] = Client::where('id',$data['home']->story5_id)->first();
-                // $data['success1'] = Success::where('id',$data['home']->success1_id)->first();
-                // $data['success2'] = Success::where('id',$data['home']->success2_id)->first();
-                // $data['success3'] = Success::where('id',$data['home']->success3_id)->first();
                 $data['story1'] = ClientStory::where('id',$data['learnmore']->success_story_one_id)->first();
                 $data['story2'] = ClientStory::where('id',$data['learnmore']->success_story_two_id)->first();
                 $data['story3'] = ClientStory::where('id',$data['learnmore']->success_story_three_id)->first();
-                //$data['story4'] = ClientStory::where('id',$data['home']->solution4_id)->first();
-                //$data['techglossy'] = TechGlossy::where('id',$data['learnmore']->techglossy_id)->first();
+
                 } else {
 
                 }
-        $data['industrys'] = Industry::latest()->get();
+        $data['industrys'] = Industry::select('industries.id','industries.logo','industries.title')->limit(8)->get();
+        $data['random_industries'] = Industry::inRandomOrder()->select('industries.id','industries.title')->limit(4)->get();
         $data['setting'] = Setting::latest()->first();
         return view('frontend.pages.learnmore.view',$data);
     }
@@ -203,7 +194,7 @@ class HomeController extends Controller
 
         $data['tag_items'] = json_decode($data['tag'], true);;
         $data['featured_storys'] = ClientStory::inRandomOrder()->limit(4)->get();
-        $data['client_storys'] = ClientStory::latest()->paginate(10);
+        $data['client_storys'] = ClientStory::latest()->paginate(3);
 
         return view('frontend.pages.story.all_story',$data);
     }
@@ -239,7 +230,7 @@ class HomeController extends Controller
 
         $data['tag_items'] = json_decode($data['tag'], true);
         $data['featured_storys'] = Blog::inRandomOrder()->limit(4)->get();
-        $data['client_storys'] = Blog::latest()->paginate(10);
+        $data['client_storys'] = Blog::latest()->paginate(3);
 
         return view('frontend.pages.blogs.blogs_all',$data);
     }
@@ -264,7 +255,7 @@ class HomeController extends Controller
 
         $data['tag_items'] = json_decode($data['tag'], true);
         $data['featured_storys'] = TechGlossy::inRandomOrder()->limit(4)->get();
-        $data['client_storys'] = TechGlossy::latest()->paginate(10);
+        $data['client_storys'] = TechGlossy::latest()->paginate(3);
 
         return view('frontend.pages.tech.techglossy_all',$data);
     }
@@ -284,15 +275,17 @@ class HomeController extends Controller
 
     public function shop_html()
     {
-        $data['products'] = Product::latest()->where('product_status', 'product')
-                            ->select('products.id','products.rfq','products.slug','products.name','products.thumbnail','products.price','products.discount')->get();
+        $data['products'] = Product::inRandomOrder()->where('product_status', 'product')
+                            ->select('products.id','products.rfq','products.slug','products.name','products.thumbnail','products.price','products.discount')
+                            ->limit(16)
+                            ->get();
         $data['categories'] = Category::latest()
                             ->select('categories.id','categories.slug','categories.title','categories.image')
                             ->get();
         $data['brands'] = BrandPage::orderBy('id', 'Desc')
                         ->select('brand_pages.id','brand_pages.brand_id')
                           ->get();
-        $data['techglossy'] = TechGlossy::inRandomOrder()->first();
+        $data['techglossy'] = Blog::inRandomOrder()->first();
         return view('frontend.pages.product.shop_html', $data);
     }
 
@@ -488,10 +481,10 @@ class HomeController extends Controller
 
     public function AllBrand()
     {
-        $data['top_brands'] = BrandPage::orderBy('id', 'Desc')->get();
-        $data['featured_brands'] = Brand::where('category','Featured')->orderBy('id','DESC')->get();
-        $data['others'] = Brand::all();
-        $data['featured_techglossys'] = TechGlossy::inRandomOrder()->first();
+        $data['top_brands'] = BrandPage::orderBy('id', 'Desc')->paginate(18);
+        $data['featured_brands'] = Brand::where('category','Featured')->orderBy('id','DESC')->paginate(18);
+        $data['others'] = Brand::select('brands.id','brands.slug','brands.title')->get();
+        $data['featured_techglossys'] = Blog::inRandomOrder()->first();
         return view('frontend.pages.brand.brand',$data);
     }
 

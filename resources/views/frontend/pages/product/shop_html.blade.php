@@ -15,7 +15,7 @@
             font-family: 'Poppins', sans-serif;
             text-align: center;
             padding: 10px 15px 30px;
-            position: relative;
+            /* position: relative; */
             z-index: 1;
         }
 
@@ -47,7 +47,7 @@
             top: 45px;
             left: 15px;
             right: 0px;
-            bottom: 10px;
+            bottom: 4px;
             box-shadow: 0 5px 8px rgba(0, 0, 0, 0.3);
             z-index: -1;
         }
@@ -242,7 +242,7 @@
                 <!--BUTTON START-->
                 <div class="d-flex justify-content-center align-items-center">
                     <div class="m-4">
-                        <button class="common_button2" href="{{route('contact')}}">Talk to our specialist</button>
+                        <a class="common_button2" href="{{route('contact')}}">Talk to our specialist</a>
                     </div>
                 </div>
             </div>
@@ -323,13 +323,13 @@
     <!-- Related Product Section End -->
 
     <!--========Shop by category=======-->
-    <section class="clint_tab_section">
+    <section class="clint_tab_section my-3">
         <div class="container">
             <div class="clint_tab_content pb-3">
                 <!-- home title -->
-                <div class="home_title mt-3">
+                <div class="home_title mt-3 mb-3">
                     <div class="software_feature_title">
-                        <h1 class="text-center ">Brand Product</h1>
+                        <h1 class="text-center ">By Categories</h1>
                     </div>
                     <p class="home_title_text">See how we’ve helped organizations of all sizes <span
                             class="font-weight-bold">across every industry</span>
@@ -354,7 +354,7 @@
                             <div class="tab-pane fade show active" id="categories" role="tabpanel"
                                 aria-labelledby="nav-healthcare">
                                 <div class="row">
-                                    <div class="col-md-2 col-sm-6">
+                                    <div class="col-md-3 col-sm-6">
                                         <a href="">
                                             <div class="serviceBox">
                                                 <div class="service-icon">
@@ -367,7 +367,7 @@
                                         </a>
                                     </div>
                                     {{-- Card 2 --}}
-                                    <div class="col-md-2 col-sm-6">
+                                    <div class="col-md-3 col-sm-6">
                                         <a href="">
                                             <div class="serviceBox">
                                                 <div class="service-icon">
@@ -380,7 +380,7 @@
                                         </a>
                                     </div>
                                     {{-- Card 2 --}}
-                                    <div class="col-md-2 col-sm-6">
+                                    <div class="col-md-3 col-sm-6">
                                         <a href="">
                                             <div class="serviceBox">
                                                 <div class="service-icon">
@@ -393,33 +393,7 @@
                                         </a>
                                     </div>
                                     {{-- Card 2 --}}
-                                    <div class="col-md-2 col-sm-6">
-                                        <a href="">
-                                            <div class="serviceBox">
-                                                <div class="service-icon">
-                                                    <img class="img-fluid"
-                                                        src="https://img.freepik.com/premium-vector/lion-logo-design-template_260747-142.jpg"
-                                                        alt="" style="border-radius: 50%">
-                                                </div>
-                                                <p class="">HEAVY EQUIPMENTS</p>
-                                            </div>
-                                        </a>
-                                    </div>
-                                    {{-- Card 2 --}}
-                                    <div class="col-md-2 col-sm-6">
-                                        <a href="">
-                                            <div class="serviceBox">
-                                                <div class="service-icon">
-                                                    <img class="img-fluid"
-                                                        src="https://img.freepik.com/premium-vector/lion-logo-design-template_260747-142.jpg"
-                                                        alt="" style="border-radius: 50%">
-                                                </div>
-                                                <p class="">HEAVY EQUIPMENTS</p>
-                                            </div>
-                                        </a>
-                                    </div>
-                                    {{-- Card 2 --}}
-                                    <div class="col-md-2 col-sm-6">
+                                    <div class="col-md-3 col-sm-6">
                                         <a href="">
                                             <div class="serviceBox">
                                                 <div class="service-icon">
@@ -573,13 +547,13 @@
                 <div class="row d-flex align-items-center">
                     <div class="col-lg-6 col-sm-12">
                         <img class="img-fluid" src="{{ asset('storage/' . $techglossy->image) }}"
-                            alt="{{ $techglossy->badge }}" style="height: 350px;">
+                            alt="{{ $techglossy->badge }}" style="height: 300px; border-radius:15px;">
                     </div>
                     <div class="col-lg-6 col-sm-12 account_benefits_section">
 
-                        <h5>{{ $techglossy->badge }}</h5>
-                        <p>{{ $techglossy->title }}</p>
-                        <p>{!! Str::limit($techglossy->short_des, 200) !!}......</p>
+                        <h4 style="font-size:24px;font-weight:400;">{{ $techglossy->badge }}</h4>
+                        <h4 class="pb-2">{{ $techglossy->title }}</h4>
+                        <p>{{ $techglossy->header }}</p>
 
                         <ul>
                             @php
@@ -884,6 +858,11 @@
         </div>
     </div>
     <!--========Shop by category=======-->
+
+    <!--========Page Contact Form=======-->
+    @include('frontend.partials.footer_contact')
+    <!--========Page Contact Form=======-->
+
 @endsection
 
 
@@ -1137,4 +1116,4 @@
     <br>
 
 
-@endsection 
+@endsection

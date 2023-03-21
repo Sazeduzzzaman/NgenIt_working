@@ -172,11 +172,21 @@
             background-color: transparent;
             transition: background-color .3s 0s;
         }
-        .multi_tab_content ul li a{
-            color: #bdbdbd;
+
+        .multi_tab_content ul li a {
+            color: #000000;
+            font-weight: 400
         }
-        .main_color h2{
+
+        .main_color h2 {
             color: #ae0a46;
+        }
+
+        .iconbox-icon img {
+            width: 115px;
+            height: 80px;
+            margin: 10px;
+            border-radius: 0% !important;
         }
     </style>
     <!--======// Header Title //======-->
@@ -194,7 +204,7 @@
                 <div class="d-flex justify-content-center align-items-center">
                     <div class="">
                         <div class="">
-                            <button class="common_button3" href="#">All Blog Are Here</button>
+                            <a href="{{ route('shop.html') }}" class="common_button3" href="#">Go To Shop</a>
                         </div>
                     </div>
                 </div>
@@ -207,7 +217,7 @@
     <section>
         <div class="container">
             <div>
-                <h4 class="text-center py-4">Top Brand</h4>
+                <h2 class="text-center py-3">Top Brand</h2>
             </div>
             <div class="row">
                 {{-- first brand --}}
@@ -219,7 +229,7 @@
                                     alt="">
                             </div>
                             <div class="featureinfo">
-                                <h4 class="text-center">Acronis</h4>
+                                <h4 class="text-center">{{ Str::limit($item->title, 10) }}</h4>
                                 <div class="d-flex justify-content-between">
 
                                     <div>
@@ -230,7 +240,7 @@
                                     </div>
                                     <div>
                                         <a
-                                            href="{{ route('brandpage.html', App\Models\Admin\Brand::where('id', $item->brand_id)->value('slug')) }}"><button
+                                            href="{{ route('custom.product', App\Models\Admin\Brand::where('id', $item->brand_id)->value('slug')) }}"><button
                                                 class="btn btn-light p-1 " style="font-size: 12px;">Shop</button></a>
 
                                     </div>
@@ -249,7 +259,7 @@
     <section>
         <div class="container">
             <div class="pt-5">
-                <h4 class="text-center">Feature</h4>
+                <h2 class="text-center py-3">Featured Brands</h2>
             </div>
             <div class="row">
                 {{-- first brand --}}
@@ -260,7 +270,7 @@
                                 <img src="{{ asset('storage/requestImg/' . $item->image) }}" alt="">
                             </div>
                             <div class="featureinfo">
-                                <h4 class="text-center">{{ Str::limit($item->title, 6) }}</h4>
+                                <h4 class="text-center">{{ Str::limit($item->title, 10) }}</h4>
                                 <div class="d-flex justify-content-center">
 
                                     <div>
@@ -288,178 +298,514 @@
                 <div class="col-xs-12 ">
                     <nav>
                         <div class="nav nav-tabs nav-fill p-0" id="nav-tab" role="tablist">
-                            <a class="nav-item nav-link active" id="nav-healthcare" data-toggle="tab" href="#a" role="tab" aria-controls="nav-home" aria-selected="true">A</a>
+                            <a class="nav-item nav-link active" id="nav-healthcare" data-toggle="tab" href="#a"
+                                role="tab" aria-controls="nav-home" aria-selected="true">A</a>
 
-                            <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#b" role="tab" aria-controls="nav-profile" aria-selected="false">B</a>
+                            <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#b"
+                                role="tab" aria-controls="nav-profile" aria-selected="false">B</a>
 
-                            <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#c" role="tab" aria-controls="nav-contact" aria-selected="false">C</a>
+                            <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#c"
+                                role="tab" aria-controls="nav-contact" aria-selected="false">C</a>
 
-                            <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#d" role="tab" aria-dontrols="nav-contact" aria-selected="false">D</a>
+                            <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#d"
+                                role="tab" aria-dontrols="nav-contact" aria-selected="false">D</a>
 
-                            <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#e" role="tab" aria-controls="nav-contact" aria-selected="false">E</a>
+                            <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#e"
+                                role="tab" aria-controls="nav-contact" aria-selected="false">E</a>
 
-                            <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#f" role="tab" aria-controls="nav-contact" aria-selected="false">F</a>
+                            <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#f"
+                                role="tab" aria-controls="nav-contact" aria-selected="false">F</a>
 
-                            <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#g" role="tab" aria-controls="nav-contact" aria-selected="false">G</a>
+                            <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#g"
+                                role="tab" aria-controls="nav-contact" aria-selected="false">G</a>
 
-                            <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#h" role="tab" aria-controls="nav-contact" aria-selected="false">H</a>
+                            <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#h"
+                                role="tab" aria-controls="nav-contact" aria-selected="false">H</a>
 
-                            <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#i" role="tab" aria-controls="nav-contact" aria-selected="false">I</a>
+                            <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#i"
+                                role="tab" aria-controls="nav-contact" aria-selected="false">I</a>
 
-                            <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#j" role="tab" aria-controls="nav-contact" aria-selected="false">J</a>
+                            <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#j"
+                                role="tab" aria-controls="nav-contact" aria-selected="false">J</a>
 
-                            <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#k" role="tab" aria-controls="nav-contact" aria-selected="false">K</a>
+                            <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#k"
+                                role="tab" aria-controls="nav-contact" aria-selected="false">K</a>
 
-                            <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#l" role="tab" aria-controls="nav-contact" aria-selected="false">L</a>
+                            <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#l"
+                                role="tab" aria-controls="nav-contact" aria-selected="false">L</a>
 
-                            <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#m" role="tab" aria-controls="nav-contact" aria-selected="false">M</a>
+                            <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#m"
+                                role="tab" aria-controls="nav-contact" aria-selected="false">M</a>
 
-                            <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#n" role="tab" aria-controls="nav-contact" aria-selected="false">N</a>
+                            <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#n"
+                                role="tab" aria-controls="nav-contact" aria-selected="false">N</a>
 
-                            <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#o" role="tab" aria-controls="nav-contact" aria-selected="false">O</a>
+                            <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#o"
+                                role="tab" aria-controls="nav-contact" aria-selected="false">O</a>
 
-                            <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#p" role="tab" aria-controls="nav-contact" aria-selected="false">P</a>
+                            <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#p"
+                                role="tab" aria-controls="nav-contact" aria-selected="false">P</a>
                         </div>
                     </nav>
                     <div class="tab-content py-3 px-3 px-sm-0" id="nav-tabContent">
-                        <div class="tab-pane fade show active" id="a" role="tabpanel" aria-labelledby="nav-healthcare">
+                        <div class="tab-pane fade show active" id="a" role="tabpanel"
+                            aria-labelledby="nav-healthcare">
                             <div class="d-flex multi_tab_content ">
-                                <ul>
-                                    <li>
-                                        <a href="">AMD</a>
-                                    </li>
-                                    <li>
-                                        <a href="">Axioma</a>
-                                    </li>
-                                    <li>
-                                        <a href="">ADLINK Technology</a>
-                                    </li>
-                                    <li>
-                                        <a href="">Axis Communications</a>
-                                    </li>
-                                </ul>
-                                <ul>
-                                <li>
-                                    <a href="">AMD</a>
-                                </li>
-                                <li>
-                                    <a href="">Axioma</a>
-                                </li>
-                                <li>
-                                    <a href="">ADLINK Technology</a>
-                                </li>
-                                <li>
-                                    <a href="">Axis Communications</a>
-                                </li>
-                            </ul>
-                            <ul>
-                                <li>
-                                    <a href="">AMD</a>
-                                </li>
-                                <li>
-                                    <a href="">Axioma</a>
-                                </li>
-                                <li>
-                                    <a href="">ADLINK Technology</a>
-                                </li>
-                                <li>
-                                    <a href="">Axis Communications</a>
-                                </li>
-                            </ul>
+                                <div class="letter_content_item" id="brand_A">
+                                    <h2 class="letter_content_title">A</h2>
+
+                                    <div class="letter_content_type">
+                                        <ul class="row">
+                                            @foreach ($others as $item)
+                                                @if ($item->title[0] == 'A')
+                                                    <li class="col-lg-3 col-sm-6"><a
+                                                            href="{{ route('custom.product', $item->slug) }}">{{ $item->title }}</a>
+                                                    </li>
+                                                @endif
+                                            @endforeach
+                                        </ul>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <div class="tab-pane fade" id="b" role="tabpanel" aria-labelledby="nav-profile-tab">
-                             <div class="d-flex multi_tab_content ">
-                                <ul>
-                                    <li>
-                                        <a href="">AMD</a>
-                                    </li>
-                                    <li>
-                                        <a href="">Axioma</a>
-                                    </li>
-                                    <li>
-                                        <a href="">ADLINK Technology</a>
-                                    </li>
-                                    <li>
-                                        <a href="">Axis Communications</a>
-                                    </li>
-                                </ul>
-                                <ul>
-                                <li>
-                                    <a href="">AMD</a>
-                                </li>
-                                <li>
-                                    <a href="">Axioma</a>
-                                </li>
-                                <li>
-                                    <a href="">ADLINK Technology</a>
-                                </li>
-                                <li>
-                                    <a href="">Axis Communications</a>
-                                </li>
-                            </ul>
-                            <ul>
-                                <li>
-                                    <a href="">AMD</a>
-                                </li>
-                                <li>
-                                    <a href="">Axioma</a>
-                                </li>
-                                <li>
-                                    <a href="">ADLINK Technology</a>
-                                </li>
-                                <li>
-                                    <a href="">Axis Communications</a>
-                                </li>
-                            </ul>
+                            <div class="d-flex multi_tab_content ">
+                                <div class="letter_content_item" id="brand_B">
+                                    <h2 class="letter_content_title">B</h2>
+
+                                    <div class="letter_content_type">
+                                        <ul class="row">
+                                            @foreach ($others as $item)
+                                                @if ($item->title[0] == 'B')
+                                                    <li class="col-lg-3 col-sm-6"><a
+                                                            href="{{ route('custom.product', $item->slug) }}">{{ $item->title }}</a>
+                                                    </li>
+                                                @endif
+                                            @endforeach
+                                        </ul>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <div class="tab-pane fade" id="c" role="tabpanel" aria-labelledby="nav-contact-tab">
-                             <div class="d-flex multi_tab_content ">
-                                <ul>
-                                    <li>
-                                        <a href="">AMD</a>
-                                    </li>
-                                    <li>
-                                        <a href="">Axioma</a>
-                                    </li>
-                                    <li>
-                                        <a href="">ADLINK Technology</a>
-                                    </li>
-                                    <li>
-                                        <a href="">Axis Communications</a>
-                                    </li>
-                                </ul>
-                                <ul>
-                                <li>
-                                    <a href="">AMD</a>
-                                </li>
-                                <li>
-                                    <a href="">Axioma</a>
-                                </li>
-                                <li>
-                                    <a href="">ADLINK Technology</a>
-                                </li>
-                                <li>
-                                    <a href="">Axis Communications</a>
-                                </li>
-                            </ul>
-                            <ul>
-                                <li>
-                                    <a href="">AMD</a>
-                                </li>
-                                <li>
-                                    <a href="">Axioma</a>
-                                </li>
-                                <li>
-                                    <a href="">ADLINK Technology</a>
-                                </li>
-                                <li>
-                                    <a href="">Axis Communications</a>
-                                </li>
-                            </ul>
+                            <div class="d-flex multi_tab_content ">
+                                <div class="letter_content_item" id="brand_C">
+                                    <h2 class="letter_content_title">C</h2>
+
+                                    <div class="letter_content_type">
+                                        <ul class="row">
+                                            @foreach ($others as $item)
+                                                @if ($item->title[0] == 'C')
+                                                    <li class="col-lg-3 col-sm-6"><a
+                                                            href="{{ route('custom.product', $item->slug) }}">{{ $item->title }}</a>
+                                                    </li>
+                                                @endif
+                                            @endforeach
+                                        </ul>
+                                    </div>
+                                </div>
                             </div>
                         </div>
+                        <div class="tab-pane fade" id="d" role="tabpanel" aria-labelledby="nav-contact-tab">
+                            <div class="d-flex multi_tab_content ">
+                                <div class="letter_content_item" id="brand_D">
+                                    <h2 class="letter_content_title">D</h2>
+
+                                    <div class="letter_content_type">
+                                        <ul class="row">
+                                            @foreach ($others as $item)
+                                                @if ($item->title[0] == 'D')
+                                                    <li class="col-lg-3 col-sm-6"><a
+                                                            href="{{ route('custom.product', $item->slug) }}">{{ $item->title }}</a>
+                                                    </li>
+                                                @endif
+                                            @endforeach
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="e" role="tabpanel" aria-labelledby="nav-contact-tab">
+                            <div class="d-flex multi_tab_content ">
+                                <div class="letter_content_item" id="brand_E">
+                                    <h2 class="letter_content_title">E</h2>
+
+                                    <div class="letter_content_type">
+                                        <ul class="row">
+                                            @foreach ($others as $item)
+                                                @if ($item->title[0] == 'E')
+                                                    <li class="col-lg-3 col-sm-6"><a
+                                                            href="{{ route('custom.product', $item->slug) }}">{{ $item->title }}</a>
+                                                    </li>
+                                                @endif
+                                            @endforeach
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="f" role="tabpanel" aria-labelledby="nav-contact-tab">
+                            <div class="d-flex multi_tab_content ">
+                                <div class="letter_content_item" id="brand_F">
+                                    <h2 class="letter_content_title">F</h2>
+
+                                    <div class="letter_content_type">
+                                        <ul class="row">
+                                            @foreach ($others as $item)
+                                                @if ($item->title[0] == 'F')
+                                                    <li class="col-lg-3 col-sm-6"><a
+                                                            href="{{ route('custom.product', $item->slug) }}">{{ $item->title }}</a>
+                                                    </li>
+                                                @endif
+                                            @endforeach
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="g" role="tabpanel" aria-labelledby="nav-contact-tab">
+                            <div class="d-flex multi_tab_content ">
+                                <div class="letter_content_item" id="brand_G">
+                                    <h2 class="letter_content_title">G</h2>
+
+                                    <div class="letter_content_type">
+                                        <ul class="row">
+                                            @foreach ($others as $item)
+                                                @if ($item->title[0] == 'G')
+                                                    <li class="col-lg-3 col-sm-6"><a
+                                                            href="{{ route('custom.product', $item->slug) }}">{{ $item->title }}</a>
+                                                    </li>
+                                                @endif
+                                            @endforeach
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="h" role="tabpanel" aria-labelledby="nav-contact-tab">
+                            <div class="d-flex multi_tab_content ">
+                                <div class="letter_content_item" id="brand_H">
+                                    <h2 class="letter_content_title">H</h2>
+
+                                    <div class="letter_content_type">
+                                        <ul class="row">
+                                            @foreach ($others as $item)
+                                                @if ($item->title[0] == 'H')
+                                                    <li class="col-lg-3 col-sm-6"><a
+                                                            href="{{ route('custom.product', $item->slug) }}">{{ $item->title }}</a>
+                                                    </li>
+                                                @endif
+                                            @endforeach
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="i" role="tabpanel" aria-labelledby="nav-contact-tab">
+                            <div class="d-flex multi_tab_content ">
+                                <div class="letter_content_item" id="brand_I">
+                                    <h2 class="letter_content_title">I</h2>
+
+                                    <div class="letter_content_type">
+                                        <ul class="row">
+                                            @foreach ($others as $item)
+                                                @if ($item->title[0] == 'I')
+                                                    <li class="col-lg-3 col-sm-6"><a
+                                                            href="{{ route('custom.product', $item->slug) }}">{{ $item->title }}</a>
+                                                    </li>
+                                                @endif
+                                            @endforeach
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="j" role="tabpanel" aria-labelledby="nav-contact-tab">
+                            <div class="d-flex multi_tab_content ">
+                                <div class="letter_content_item" id="brand_J">
+                                    <h2 class="letter_content_title">J</h2>
+
+                                    <div class="letter_content_type">
+                                        <ul class="row">
+                                            @foreach ($others as $item)
+                                                @if ($item->title[0] == 'J')
+                                                    <li class="col-lg-3 col-sm-6"><a
+                                                            href="{{ route('custom.product', $item->slug) }}">{{ $item->title }}</a>
+                                                    </li>
+                                                @endif
+                                            @endforeach
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="k" role="tabpanel" aria-labelledby="nav-contact-tab">
+                            <div class="d-flex multi_tab_content ">
+                                <div class="letter_content_item" id="brand_K">
+                                    <h2 class="letter_content_title">K</h2>
+
+                                    <div class="letter_content_type">
+                                        <ul class="row">
+                                            @foreach ($others as $item)
+                                                @if ($item->title[0] == 'K')
+                                                    <li class="col-lg-3 col-sm-6"><a
+                                                            href="{{ route('custom.product', $item->slug) }}">{{ $item->title }}</a>
+                                                    </li>
+                                                @endif
+                                            @endforeach
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="l" role="tabpanel" aria-labelledby="nav-contact-tab">
+                            <div class="d-flex multi_tab_content ">
+                                <div class="letter_content_item" id="brand_L">
+                                    <h2 class="letter_content_title">L</h2>
+
+                                    <div class="letter_content_type">
+                                        <ul class="row">
+                                            @foreach ($others as $item)
+                                                @if ($item->title[0] == 'L')
+                                                    <li class="col-lg-3 col-sm-6"><a
+                                                            href="{{ route('custom.product', $item->slug) }}">{{ $item->title }}</a>
+                                                    </li>
+                                                @endif
+                                            @endforeach
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="m" role="tabpanel" aria-labelledby="nav-contact-tab">
+                            <div class="d-flex multi_tab_content ">
+                                <div class="letter_content_item" id="brand_M">
+                                    <h2 class="letter_content_title">M</h2>
+
+                                    <div class="letter_content_type">
+                                        <ul class="row">
+                                            @foreach ($others as $item)
+                                                @if ($item->title[0] == 'M')
+                                                    <li class="col-lg-3 col-sm-6"><a
+                                                            href="{{ route('custom.product', $item->slug) }}">{{ $item->title }}</a>
+                                                    </li>
+                                                @endif
+                                            @endforeach
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="n" role="tabpanel" aria-labelledby="nav-contact-tab">
+                            <div class="d-flex multi_tab_content ">
+                                <div class="letter_content_item" id="brand_N">
+                                    <h2 class="letter_content_title">N</h2>
+
+                                    <div class="letter_content_type">
+                                        <ul class="row">
+                                            @foreach ($others as $item)
+                                                @if ($item->title[0] == 'N')
+                                                    <li class="col-lg-3 col-sm-6"><a
+                                                            href="{{ route('custom.product', $item->slug) }}">{{ $item->title }}</a>
+                                                    </li>
+                                                @endif
+                                            @endforeach
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="o" role="tabpanel" aria-labelledby="nav-contact-tab">
+                            <div class="d-flex multi_tab_content ">
+                                <div class="letter_content_item" id="brand_O">
+                                    <h2 class="letter_content_title">O</h2>
+
+                                    <div class="letter_content_type">
+                                        <ul class="row">
+                                            @foreach ($others as $item)
+                                                @if ($item->title[0] == 'O')
+                                                    <li class="col-lg-3 col-sm-6"><a
+                                                            href="{{ route('custom.product', $item->slug) }}">{{ $item->title }}</a>
+                                                    </li>
+                                                @endif
+                                            @endforeach
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="p" role="tabpanel" aria-labelledby="nav-contact-tab">
+                            <div class="d-flex multi_tab_content ">
+                                <div class="letter_content_item" id="brand_P">
+                                    <h2 class="letter_content_title">P</h2>
+
+                                    <div class="letter_content_type">
+                                        <ul class="row">
+                                            @foreach ($others as $item)
+                                                @if ($item->title[0] == 'P')
+                                                    <li class="col-lg-3 col-sm-6"><a
+                                                            href="{{ route('custom.product', $item->slug) }}">{{ $item->title }}</a>
+                                                    </li>
+                                                @endif
+                                            @endforeach
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="q" role="tabpanel" aria-labelledby="nav-contact-tab">
+                            <div class="d-flex multi_tab_content ">
+                                <div class="letter_content_item" id="brand_Q">
+                                    <h2 class="letter_content_title">Q</h2>
+
+                                    <div class="letter_content_type">
+                                        <ul class="row">
+                                            @foreach ($others as $item)
+                                                @if ($item->title[0] == 'Q')
+                                                    <li class="col-lg-3 col-sm-6"><a
+                                                            href="{{ route('custom.product', $item->slug) }}">{{ $item->title }}</a>
+                                                    </li>
+                                                @endif
+                                            @endforeach
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="r" role="tabpanel" aria-labelledby="nav-contact-tab">
+                            <div class="d-flex multi_tab_content ">
+                                <div class="letter_content_item" id="brand_R">
+                                    <h2 class="letter_content_title">R</h2>
+
+                                    <div class="letter_content_type">
+                                        <ul class="row">
+                                            @foreach ($others as $item)
+                                                @if ($item->title[0] == 'R')
+                                                    <li class="col-lg-3 col-sm-6"><a
+                                                            href="{{ route('custom.product', $item->slug) }}">{{ $item->title }}</a>
+                                                    </li>
+                                                @endif
+                                            @endforeach
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="s" role="tabpanel" aria-labelledby="nav-contact-tab">
+                            <div class="d-flex multi_tab_content ">
+                                <div class="letter_content_item" id="brand_S">
+                                    <h2 class="letter_content_title">S</h2>
+
+                                    <div class="letter_content_type">
+                                        <ul class="row">
+                                            @foreach ($others as $item)
+                                                @if ($item->title[0] == 'S')
+                                                    <li class="col-lg-3 col-sm-6"><a
+                                                            href="{{ route('custom.product', $item->slug) }}">{{ $item->title }}</a>
+                                                    </li>
+                                                @endif
+                                            @endforeach
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="t" role="tabpanel" aria-labelledby="nav-contact-tab">
+                            <div class="d-flex multi_tab_content ">
+                                <div class="letter_content_item" id="brand_T">
+                                    <h2 class="letter_content_title">T</h2>
+
+                                    <div class="letter_content_type">
+                                        <ul class="row">
+                                            @foreach ($others as $item)
+                                                @if ($item->title[0] == 'T')
+                                                    <li class="col-lg-3 col-sm-6"><a
+                                                            href="{{ route('custom.product', $item->slug) }}">{{ $item->title }}</a>
+                                                    </li>
+                                                @endif
+                                            @endforeach
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="u" role="tabpanel" aria-labelledby="nav-contact-tab">
+                            <div class="d-flex multi_tab_content ">
+                                <div class="letter_content_item" id="brand_U">
+                                    <h2 class="letter_content_title">U</h2>
+
+                                    <div class="letter_content_type">
+                                        <ul class="row">
+                                            @foreach ($others as $item)
+                                                @if ($item->title[0] == 'U')
+                                                    <li class="col-lg-3 col-sm-6"><a
+                                                            href="{{ route('custom.product', $item->slug) }}">{{ $item->title }}</a>
+                                                    </li>
+                                                @endif
+                                            @endforeach
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="v" role="tabpanel" aria-labelledby="nav-contact-tab">
+                            <div class="d-flex multi_tab_content ">
+                                <div class="letter_content_item" id="brand_V">
+                                    <h2 class="letter_content_title">V</h2>
+
+                                    <div class="letter_content_type">
+                                        <ul class="row">
+                                            @foreach ($others as $item)
+                                                @if ($item->title[0] == 'V')
+                                                    <li class="col-lg-3 col-sm-6"><a
+                                                            href="{{ route('custom.product', $item->slug) }}">{{ $item->title }}</a>
+                                                    </li>
+                                                @endif
+                                            @endforeach
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="w" role="tabpanel" aria-labelledby="nav-contact-tab">
+                            <div class="d-flex multi_tab_content ">
+                                <div class="letter_content_item" id="brand_W">
+                                    <h2 class="letter_content_title">W</h2>
+
+                                    <div class="letter_content_type">
+                                        <ul class="row">
+                                            @foreach ($others as $item)
+                                                @if ($item->title[0] == 'W')
+                                                    <li class="col-lg-3 col-sm-6"><a
+                                                            href="{{ route('custom.product', $item->slug) }}">{{ $item->title }}</a>
+                                                    </li>
+                                                @endif
+                                            @endforeach
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="z" role="tabpanel" aria-labelledby="nav-contact-tab">
+                            <div class="d-flex multi_tab_content ">
+                                <div class="letter_content_item" id="brand_Z">
+                                    <h2 class="letter_content_title">Z</h2>
+
+                                    <div class="letter_content_type">
+                                        <ul class="row">
+                                            @foreach ($others as $item)
+                                                @if ($item->title[0] == 'Z')
+                                                    <li class="col-lg-3 col-sm-6"><a
+                                                            href="{{ route('custom.product', $item->slug) }}">{{ $item->title }}</a>
+                                                    </li>
+                                                @endif
+                                            @endforeach
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
             </div>
@@ -496,12 +842,13 @@
 @extends('frontend.master')
 
 @section('content')
-
     <!--======// Header Title //======-->
-    <section class="brand_header_wrapper" style="background-image: url('{{ asset('frontend/images/buy-brand-hero.jpg') }}');height:15rem">
+    <section class="brand_header_wrapper"
+        style="background-image: url('{{ asset('frontend/images/buy-brand-hero.jpg') }}');height:15rem">
         <div class="container">
             <h1>Shop By Brand</h1>
-            <p class="text-center text-white px-4 mx-4">Through our deep relationships with leading technology partners, we provide hardware,
+            <p class="text-center text-white px-4 mx-4">Through our deep relationships with leading technology partners, we
+                provide hardware,
                 software and custom solutions to manage today and prepare for the future.</p>
 
         </div>
@@ -521,13 +868,15 @@
             <!--Category item-->
             @foreach ($top_brands as $item)
                 <div class="col-lg-3 col-md-4 col-sm-4">
-                <div class="categoryitemshow">
-                    <a href="{{ route('brandpage.html', App\Models\Admin\Brand::where('id', $item->brand_id)->value('slug')) }}">
-                       <center> <img class="mb-4" src="{{ asset('storage/requestImg/' . App\Models\Admin\Brand::where('id', $item->brand_id)->value('image')) }}"
-                        alt="{{App\Models\Admin\Brand::where('id', $item->brand_id)->value('title')}}"
-                        width="150px" height="65px"></center>
-                    </a>
-                </div>
+                    <div class="categoryitemshow">
+                        <a
+                            href="{{ route('brandpage.html', App\Models\Admin\Brand::where('id', $item->brand_id)->value('slug')) }}">
+                            <center> <img class="mb-4"
+                                    src="{{ asset('storage/requestImg/' . App\Models\Admin\Brand::where('id', $item->brand_id)->value('image')) }}"
+                                    alt="{{ App\Models\Admin\Brand::where('id', $item->brand_id)->value('title') }}"
+                                    width="150px" height="65px"></center>
+                        </a>
+                    </div>
 
                 </div>
             @endforeach
@@ -547,19 +896,20 @@
         <div class="row">
             <!--Category item-->
             @foreach ($featured_brands as $item)
-            <div class="col-xl-2 col-lg-2 col-md-3 col-sm-6 p-2">
-            <div class="categoryitemshow">
-                <a href="{{ route('custom.product', $item->slug) }}" class="top_brand_image">
-                    <center><img class="mb-4" src="{{ asset('storage/requestImg/' . $item->image) }}"
-                    alt="{{$item->title}}" width="150px" height="60px"></center>
-                </a>
-            </div>
-            </div>
+                <div class="col-xl-2 col-lg-2 col-md-3 col-sm-6 p-2">
+                    <div class="categoryitemshow">
+                        <a href="{{ route('custom.product', $item->slug) }}" class="top_brand_image">
+                            <center><img class="mb-4" src="{{ asset('storage/requestImg/' . $item->image) }}"
+                                    alt="{{ $item->title }}" width="150px" height="60px"></center>
+                        </a>
+                    </div>
+                </div>
             @endforeach
             <!--Category item-->
 
         </div>
-    </section><hr>
+    </section>
+    <hr>
     <!--------- End -------->
 
     <!--======// Alphabetically //====-->
@@ -590,7 +940,7 @@
                     <a href="#brand_V">V</a>
                     <a href="#brand_W">W</a>
                     <a href="#brand_Z">Z</a>
-                  </div>
+                </div>
             </div>
             <!--Alphabetically Item-->
             <div class="letter_content_item" id="#">
@@ -611,7 +961,8 @@
                     <ul class="row">
                         @foreach ($others as $item)
                             @if ($item->title[0] == 'A')
-                            <li class="col-lg-3 col-sm-6"><a href="{{ route('custom.product',$item->slug) }}">{{ $item->title }}</a></li>
+                                <li class="col-lg-3 col-sm-6"><a
+                                        href="{{ route('custom.product', $item->slug) }}">{{ $item->title }}</a></li>
                             @endif
                         @endforeach
                     </ul>
@@ -626,7 +977,8 @@
                     <ul class="row">
                         @foreach ($others as $item)
                             @if ($item->title[0] == 'B')
-                            <li class="col-lg-3 col-sm-6"><a href="{{ route('custom.product',$item->slug) }}">{{ $item->title }}</a></li>
+                                <li class="col-lg-3 col-sm-6"><a
+                                        href="{{ route('custom.product', $item->slug) }}">{{ $item->title }}</a></li>
                             @endif
                         @endforeach
                     </ul>
@@ -640,7 +992,8 @@
                     <ul class="row">
                         @foreach ($others as $item)
                             @if ($item->title[0] == 'C')
-                            <li class="col-lg-3 col-sm-6"><a href="{{ route('custom.product',$item->slug) }}">{{ $item->title }}</a></li>
+                                <li class="col-lg-3 col-sm-6"><a
+                                        href="{{ route('custom.product', $item->slug) }}">{{ $item->title }}</a></li>
                             @endif
                         @endforeach
                     </ul>
@@ -654,7 +1007,8 @@
                     <ul class="row">
                         @foreach ($others as $item)
                             @if ($item->title[0] == 'D')
-                            <li class="col-lg-3 col-sm-6"><a href="{{ route('custom.product',$item->slug) }}">{{ $item->title }}</a></li>
+                                <li class="col-lg-3 col-sm-6"><a
+                                        href="{{ route('custom.product', $item->slug) }}">{{ $item->title }}</a></li>
                             @endif
                         @endforeach
                     </ul>
@@ -668,7 +1022,8 @@
                     <ul class="row">
                         @foreach ($others as $item)
                             @if ($item->title[0] == 'E')
-                            <li class="col-lg-3 col-sm-6"><a href="{{ route('custom.product',$item->slug) }}">{{ $item->title }}</a></li>
+                                <li class="col-lg-3 col-sm-6"><a
+                                        href="{{ route('custom.product', $item->slug) }}">{{ $item->title }}</a></li>
                             @endif
                         @endforeach
                     </ul>
@@ -682,7 +1037,8 @@
                     <ul class="row">
                         @foreach ($others as $item)
                             @if ($item->title[0] == 'F')
-                            <li class="col-lg-3 col-sm-6"><a href="{{ route('custom.product',$item->slug) }}">{{ $item->title }}</a></li>
+                                <li class="col-lg-3 col-sm-6"><a
+                                        href="{{ route('custom.product', $item->slug) }}">{{ $item->title }}</a></li>
                             @endif
                         @endforeach
                     </ul>
@@ -696,7 +1052,8 @@
                     <ul class="row">
                         @foreach ($others as $item)
                             @if ($item->title[0] == 'H')
-                            <li class="col-lg-3 col-sm-6"><a href="{{ route('custom.product',$item->slug) }}">{{ $item->title }}</a></li>
+                                <li class="col-lg-3 col-sm-6"><a
+                                        href="{{ route('custom.product', $item->slug) }}">{{ $item->title }}</a></li>
                             @endif
                         @endforeach
                     </ul>
@@ -710,7 +1067,8 @@
                     <ul class="row">
                         @foreach ($others as $item)
                             @if ($item->title[0] == 'I')
-                            <li class="col-lg-3 col-sm-6"><a href="{{ route('custom.product',$item->slug) }}">{{ $item->title }}</a></li>
+                                <li class="col-lg-3 col-sm-6"><a
+                                        href="{{ route('custom.product', $item->slug) }}">{{ $item->title }}</a></li>
                             @endif
                         @endforeach
                     </ul>
@@ -724,7 +1082,8 @@
                     <ul class="row">
                         @foreach ($others as $item)
                             @if ($item->title[0] == 'K')
-                            <li class="col-lg-3 col-sm-6"><a href="{{ route('custom.product',$item->slug) }}">{{ $item->title }}</a></li>
+                                <li class="col-lg-3 col-sm-6"><a
+                                        href="{{ route('custom.product', $item->slug) }}">{{ $item->title }}</a></li>
                             @endif
                         @endforeach
                     </ul>
@@ -738,7 +1097,8 @@
                     <ul class="row">
                         @foreach ($others as $item)
                             @if ($item->title[0] == 'L')
-                            <li class="col-lg-3 col-sm-6"><a href="{{ route('custom.product',$item->slug) }}">{{ $item->title }}</a></li>
+                                <li class="col-lg-3 col-sm-6"><a
+                                        href="{{ route('custom.product', $item->slug) }}">{{ $item->title }}</a></li>
                             @endif
                         @endforeach
                     </ul>
@@ -752,7 +1112,8 @@
                     <ul class="row">
                         @foreach ($others as $item)
                             @if ($item->title[0] == 'M')
-                            <li class="col-lg-3 col-sm-6"><a href="{{ route('custom.product',$item->slug) }}">{{ $item->title }}</a></li>
+                                <li class="col-lg-3 col-sm-6"><a
+                                        href="{{ route('custom.product', $item->slug) }}">{{ $item->title }}</a></li>
                             @endif
                         @endforeach
                     </ul>
@@ -766,7 +1127,8 @@
                     <ul class="row">
                         @foreach ($others as $item)
                             @if ($item->title[0] == 'N')
-                            <li class="col-lg-3 col-sm-6"><a href="{{ route('custom.product',$item->slug) }}">{{ $item->title }}</a></li>
+                                <li class="col-lg-3 col-sm-6"><a
+                                        href="{{ route('custom.product', $item->slug) }}">{{ $item->title }}</a></li>
                             @endif
                         @endforeach
                     </ul>
@@ -780,7 +1142,8 @@
                     <ul class="row">
                         @foreach ($others as $item)
                             @if ($item->title[0] == 'O')
-                            <li class="col-lg-3 col-sm-6"><a href="{{ route('custom.product',$item->slug) }}">{{ $item->title }}</a></li>
+                                <li class="col-lg-3 col-sm-6"><a
+                                        href="{{ route('custom.product', $item->slug) }}">{{ $item->title }}</a></li>
                             @endif
                         @endforeach
                     </ul>
@@ -794,7 +1157,8 @@
                     <ul class="row">
                         @foreach ($others as $item)
                             @if ($item->title[0] == 'P')
-                            <li class="col-lg-3 col-sm-6"><a href="{{ route('custom.product',$item->slug) }}">{{ $item->title }}</a></li>
+                                <li class="col-lg-3 col-sm-6"><a
+                                        href="{{ route('custom.product', $item->slug) }}">{{ $item->title }}</a></li>
                             @endif
                         @endforeach
                     </ul>
@@ -808,7 +1172,8 @@
                     <ul class="row">
                         @foreach ($others as $item)
                             @if ($item->title[0] == 'R')
-                            <li class="col-lg-3 col-sm-6"><a href="{{ route('custom.product',$item->slug) }}">{{ $item->title }}</a></li>
+                                <li class="col-lg-3 col-sm-6"><a
+                                        href="{{ route('custom.product', $item->slug) }}">{{ $item->title }}</a></li>
                             @endif
                         @endforeach
                     </ul>
@@ -822,7 +1187,8 @@
                     <ul class="row">
                         @foreach ($others as $item)
                             @if ($item->title[0] == 'S')
-                            <li class="col-lg-3 col-sm-6"><a href="{{ route('custom.product',$item->slug) }}">{{ $item->title }}</a></li>
+                                <li class="col-lg-3 col-sm-6"><a
+                                        href="{{ route('custom.product', $item->slug) }}">{{ $item->title }}</a></li>
                             @endif
                         @endforeach
                     </ul>
@@ -836,7 +1202,8 @@
                     <ul class="row">
                         @foreach ($others as $item)
                             @if ($item->title[0] == 'T')
-                            <li class="col-lg-3 col-sm-6"><a href="{{ route('custom.product',$item->slug) }}">{{ $item->title }}</a></li>
+                                <li class="col-lg-3 col-sm-6"><a
+                                        href="{{ route('custom.product', $item->slug) }}">{{ $item->title }}</a></li>
                             @endif
                         @endforeach
                     </ul>
@@ -850,7 +1217,8 @@
                     <ul class="row">
                         @foreach ($others as $item)
                             @if ($item->title[0] == 'U')
-                            <li class="col-lg-3 col-sm-6"><a href="{{ route('custom.product',$item->slug) }}">{{ $item->title }}</a></li>
+                                <li class="col-lg-3 col-sm-6"><a
+                                        href="{{ route('custom.product', $item->slug) }}">{{ $item->title }}</a></li>
                             @endif
                         @endforeach
                     </ul>
@@ -864,7 +1232,8 @@
                     <ul class="row">
                         @foreach ($others as $item)
                             @if ($item->title[0] == 'V')
-                            <li class="col-lg-3 col-sm-6"><a href="{{ route('custom.product',$item->slug) }}">{{ $item->title }}</a></li>
+                                <li class="col-lg-3 col-sm-6"><a
+                                        href="{{ route('custom.product', $item->slug) }}">{{ $item->title }}</a></li>
                             @endif
                         @endforeach
                     </ul>
@@ -878,7 +1247,8 @@
                     <ul class="row">
                         @foreach ($others as $item)
                             @if ($item->title[0] == 'W')
-                            <li class="col-lg-3 col-sm-6"><a href="{{ route('custom.product',$item->slug) }}">{{ $item->title }}</a></li>
+                                <li class="col-lg-3 col-sm-6"><a
+                                        href="{{ route('custom.product', $item->slug) }}">{{ $item->title }}</a></li>
                             @endif
                         @endforeach
                     </ul>
@@ -892,7 +1262,8 @@
                     <ul class="row">
                         @foreach ($others as $item)
                             @if ($item->title[0] == 'Z')
-                            <li class="col-lg-3 col-sm-6"><a href="{{ route('custom.product',$item->slug) }}">{{ $item->title }}</a></li>
+                                <li class="col-lg-3 col-sm-6"><a
+                                        href="{{ route('custom.product', $item->slug) }}">{{ $item->title }}</a></li>
                             @endif
                         @endforeach
                     </ul>
@@ -901,5 +1272,4 @@
 
         </div>
     </section>
-
 @endsection

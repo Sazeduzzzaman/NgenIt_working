@@ -635,7 +635,7 @@ a {
   }
   .we_serve_item:hover{
     transition: 0.5s ease-in-out;
-    background-color: #ae0a46;
+    background-color: #323031;
     color: white !important;
   }
 

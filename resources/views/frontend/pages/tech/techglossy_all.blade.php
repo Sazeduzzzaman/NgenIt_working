@@ -1,219 +1,462 @@
 @extends('frontend.master')
 @section('content')
-    <!--=======// Featured client stories //=======-->
-    <div class="header_title_clinet_stories">
-        <h2 class="text-center text-white">All Tech Glossies</h2>
-    </div>
+    <style>
+        .common_product_header h1 {
+            text-align: center;
+            color: black;
+            font-size: 50px;
+            font-weight: 600;
+        }
+        .badges_list li {
+            display: inline-block;
+            padding-left: 14px;
+            padding-bottom: 18px;
+        }
 
-    <section class="container padding_bottom">
-        <div class="featured_client_stories_wrapper">
-            <div class="featured_client_stories">
-                <div class="container">
-                    <div class="featured_client_stories_title">
-                        <h2 class="">Featured Tech Glossies</h2>
+        .badges_list li a {
+            width: 31px;
+            height: 31px;
+            color: #fff;
+            display: inline-block;
+            text-align: center;
+            line-height: 30px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .badges_list li a:before {
+            content: "";
+            position: absolute;
+            height: 30px;
+            width: 30px;
+            display: block;
+            background: #ae0a46;
+            border-radius: 7px;
+            transform: rotate(45deg);
+            z-index: -1;
+        }
+
+        .badges_list li a span {
+            position: absolute;
+            top: -14px;
+            left: 15px;
+            height: 20px;
+            width: 20px;
+            border-radius: 50%;
+            border: 3px solid #fff;
+            color: #fff;
+            font: 700 11px "Lato", sans-serif;
+            background: #ff6b6b;
+        }
+
+        .blog_right {
+            border-radius: 8px !important;
+        }
+
+        .blog_left {
+            border-radius: 8px !important;
+        }
+
+        .blog_middle {
+            border-radius: 8px !important;
+        }
+
+        .blog_bg {
+            background: #eff3f5;
+        }
+
+        .blog_writer {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+        }
+
+        ul {
+            padding-left: 0rem;
+        }
+
+        ul.interests_list {
+            list-style-type: circle;
+            color: #ae0a46 !important;
+            padding-left: 2rem;
+        }
+
+        ul.interests_list a {
+            color: #ae0a46 !important;
+        }
+
+        .client_stories_img {
+            widows: 200px;
+            height: 200px;
+        }
+
+        .pagination li a:hover {
+            background-color: #ae0a46;
+            color: #ffffff;
+            display: inline-block;
+            padding: 6px 11px;
+            text-decoration: none;
+            transition: all 1ms linear 1ms;
+            border-color: #ae0a46;
+        }
+
+        .popular_post a p {
+            color: #000;
+        }
+
+        .popular_post a img {
+            width: 60px;
+            height: 60px;
+        }
+
+        .popular_post a p:hover {
+            color: #ae0a46;
+        }
+    </style>
+    <!--======// Header Title //======-->
+    <section class="common_product_header pb-5"
+        style="background-image: url('https://openlisthtml.themever.net/images/banner.jpg');">
+        <div class="container mb-5">
+            <h1>All TechGlossys</h1>
+            <p class="text-center text-white">Through our deep partnerships with trusted brands, <br> Insight offers a
+                comprehensive catalog of software for business. </p>
+            {{-- <div class="row mb-5">
+                <!--BUTTON START-->
+                <div class="d-flex justify-content-center align-items-center">
+                    <div class="">
+                        <div class="">
+                            <button class="common_button3" href="#">All Blog Are Here</button>
+                        </div>
                     </div>
-
-                    <div class="row">
-
-                        <!--------item------->
-                        @foreach ($featured_storys as $item )
-                        <div class="col-lg-3 col-md-6 col-sm-12">
-                            <div class="client_stories_item">
-                                <a href="{{ route('techglossy.details',$item->id) }}">
-                                    <img src="{{asset('storage/'.$item->image)}}" alt="{{$item->badge}}"  style="width:100%; height:170px" >
-                                    <h6 class="mt-2">{{$item->badge}}</h6>
-                                    <h3><strong>{{Str::limit($item->title,55)}}</strong></h3>
-                                </a>
-
+                </div>
+            </div> --}}
+        </div>
+    </section>
+    <!----------End--------->
+    <div class="container-fluid blog_bg p-0 m-0">
+        <div class="container px-4 py-5">
+            <div class="row gx-3 ">
+                <div class="col-3 blog_left mt-3">
+                    <div class="p-3 shadow-lg rounded-lg">
+                        {{-- Search --}}
+                        <div>
+                            <div class="input-group">
+                                <input type="text" class="form-control" placeholder="Search">
+                                <div class="input-group-append">
+                                    <button class="btn job_search_btn" type="button">
+                                        <i class="fa fa-search"></i>
+                                    </button>
+                                </div>
                             </div>
                         </div>
+                        {{-- YOUR INTERESTS --}}
+                        <div>
+                            <h6 class="pt-2">Your Interest</h6>
+                            <ul class="interests_list">
+                                <li>
+                                    <a href="#">
+                                        <i class="ion-android-radio-button-off"></i>Solutions </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="ion-android-radio-button-off"></i>Software </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="ion-android-radio-button-off"></i>Cloud </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="ion-android-radio-button-off"></i>Artificial Intelligence </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="ion-android-radio-button-off"></i>Data analytics </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="ion-android-radio-button-off"></i>Digital transformation </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="ion-android-radio-button-off"></i>Real-time data </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="ion-android-radio-button-off"></i>Cybersecurity</a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="ion-android-radio-button-off"></i>Hardware</a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="ion-android-radio-button-off"></i>Workplace Services</a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="ion-android-radio-button-off"></i>Data Center</a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="ion-android-radio-button-off"></i>Data Management</a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="ion-android-radio-button-off"></i>Transformation services</a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="ion-android-radio-button-off"></i>Modern infrastructure</a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="ion-android-radio-button-off"></i>Cybersecurity</a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="ion-android-radio-button-off"></i>Networking</a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="ion-android-radio-button-off"></i>Products</a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="ion-android-radio-button-off"></i>Brand</a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="ion-android-radio-button-off"></i>Learn more</a>
+                                </li>
+                            </ul>
+                        </div>
+                        {{-- Profile Edit --}}
+                        <div>
+                            <div class="profile p-0">
+                                <h6 class="categories_tittle">Profile <span>Edit</span>
+                                </h6>
+                                <ul class=" d-flex justify-content-start">
+                                    <a href="" class="">
+                                        <img class="blog_writer" src="https://source.unsplash.com/random/470x380"
+                                            alt="" class="circle">
+                                    </a>
+                                    <a href="" class="">
+                                        <img class="blog_writer" src="https://source.unsplash.com/random/420x330"
+                                            alt="" class="circle">
+                                    </a>
+                                    <a href="" class="">
+                                        <img class="blog_writer" src="https://source.unsplash.com/random/440x350"
+                                            alt="" class="circle">
+                                    </a>
+                                    <a href="" class="">
+                                        <img class="blog_writer" src="https://source.unsplash.com/random/460x330"
+                                            alt="" class="circle">
+                                    </a>
+                                </ul>
+                                <ul class=" d-flex justify-content-start">
+                                    <a href="" class="">
+                                        <img class="blog_writer" src="https://source.unsplash.com/random/280x320"
+                                            alt="" class="circle">
+                                    </a>
+                                    <a href="" class="">
+                                        <img class="blog_writer" src="https://source.unsplash.com/random/380x320"
+                                            alt="" class="circle">
+                                    </a>
+                                    <a href="" class="">
+                                        <img class="blog_writer" src="https://source.unsplash.com/random/480x320"
+                                            alt="" class="circle">
+                                    </a>
+                                    <a href="" class="">
+                                        <img class="blog_writer" src="https://source.unsplash.com/random/580x320"
+                                            alt="" class="circle">
+                                    </a>
+                                </ul>
+                            </div>
+                        </div>
+                        {{-- Badges --}}
+                        <div>
+                            <div class="badges">
+                                <h6 class="categories_tittle">Badges</h6>
+                                <ul class="badges_list pt-3">
+                                    <li>
+                                        <a href="#">
+                                            <i class="fa fa-shopping-cart"></i>
+                                            <span>6</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <i class="fa fa-shopping-cart"></i>
+                                            <span>6</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <i class="fa fa-shopping-cart"></i>
+                                            <span>6</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <i class="fa fa-shopping-cart"></i>
+                                            <span>6</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                                <ul class="badges_list">
+                                    <li>
+                                        <a href="#">
+                                            <i class="fa fa-shopping-cart"></i>
+                                            <span>6</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <i class="fa fa-shopping-cart"></i>
+                                            <span>6</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <i class="fa fa-shopping-cart"></i>
+                                            <span>6</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <i class="fa fa-shopping-cart"></i>
+                                            <span>6</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        {{-- SOCIAL SHARING --}}
+
+                    </div>
+                </div>
+                <div class="col-6 blog_middle rounded-lg" style="margin-top: -7rem !important;">
+
+                    {{-- First Blog --}}
+                    @if ($client_storys)
+                        @foreach ($client_storys as $item)
+                            <div class="p-3 border shadow-lg mt-2"
+                                style="background-color: #fff;border-radius: 5px;">
+                                <div class="p-3">
+                                    {{-- Blog Image --}}
+                                    <img src="{{asset('storage/'.$item->image)}}" class="img-fluid" alt="">
+                                    <div class="row d-flex justify-content-between">
+                                        <div class="col mt-3">
+                                            {{-- Writer --}}
+                                            {{-- <div class="d-flex justify-content-between align-items-center">
+                                                <div class="d-flex justify-content-start">
+                                                    <img class="blog_writer"
+                                                        src="https://openlisthtml.themever.net/images/author-1.jpg"
+                                                        alt="">
+                                                    <div class="ml-3">
+                                                        <h6>Harry Ramos</h6>
+                                                        <p>5 Minute ago</p>
+                                                    </div>
+                                                </div>
+                                                <div class="d-flex justify-content-start">
+                                                    <div class="">
+                                                        <button class="btn btn-primary rounded-circle">
+                                                            <i class="fa fa-bars"></i>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div> --}}
+                                            {{-- Writer End --}}
+                                            {{-- Blog Descrition --}}
+                                            <div>
+                                                <h5 class="fw-semibold">{{$item->title}}</h5>
+                                                <p>{{$item->header}}</p>
+                                            </div>
+                                            {{-- Blog Descrition End --}}
+                                        </div>
+                                    </div>
+                                    {{-- Blog Button --}}
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div class="d-flex justify-content-center align-items-center">
+                                            <div class="bySocial col-12">
+                                                <ul class="social-icon-links pull-right" style="font-size: 1.5rem;">
+                                                    {!! Share::page(url('/blog/'. $item->id . '/details'))->facebook()->twitter()->whatsapp() !!}
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="d-flex justify-content-center align-items-center">
+                                            {{-- <button class="btn btn-primary rounded-circle">
+                                                <i class="fa fa-arrow-down"></i>
+                                            </button>
+                                            <button class="btn btn-primary rounded-circle ml-1">
+                                                <i class="fa fa-arrow-up"></i>
+                                            </button> --}}
+                                            <p class="ml-2 pt-3"><strong>Created at :  </strong>{{$item->created_at->format('Y-m-d')}}</p>
+                                        </div>
+                                        {{-- <div class="d-flex justify-content-center align-items-center">
+                                            <button class="btn btn-primary rounded-circle">
+                                                <i class="fa fa-comment"></i>
+                                            </button>
+                                            <p class="  ml-2 pt-3">15</p>
+                                        </div> --}}
+                                    </div>
+                                    {{-- Blog Button End --}}
+                                </div>
+                            </div>
                         @endforeach
-                        <!--------item------->
-
-                    </div>
-
+                    @endif
                 </div>
-            </div>
-        </div>
+                <div class="col-3 blog_right mt-3">
+                    <div class="px-3 py-3 shadow-lg rounded-lg">
 
-    </section>
-    <!-------End------->
-    <hr>
-    <!--=======// Content & Filter //=======-->
-    <section class="container section_padding">
-        <!----------Filter Top-nav Bar --------->
-        <div class="clinet_stories_filter_top_bar">
-            <label>Results per page </label>
-            <span class="client_story_filter_page">
-                <select>
-                    <option value="#" selected>10</option>
-                    <option value="20">20</option>
-                    <option value="30">30</option>
-                    <option value="40">40</option>
-                </select>
-            </span>
+                        <img class="img-fluid" src="https://source.unsplash.com/random/580x320">
+                        <div class="pt-3">
+                            <h6>POPULAR POSTS</h6>
+                            {{-- Popular Product 1--}}
+                            @if ($featured_storys)
+                                @foreach ($featured_storys as $item)
+                                    <div class="pt-3 pb-3 d-flex justify-content-between popular_post">
+                                        <a href="{{route('blog.details',$item->id)}}" class="d-flex justify-content-between">
+                                            <img class="rounded-circle img-fluid"
+                                                src="{{asset('storage/'.$item->image)}}" alt="" style="">
+                                            <p class="ml-2">{{ Str::limit($item->title, 30) }}</p>
+                                        </a>
+                                    </div>
+                                @endforeach
+                            @endif
 
-            <label class="ml-4">Filter By: </label>
-            <span class="client_story_filter_all_year">
-                <select>
-                    <option value="#" selected>All years</option>
-                    <option value="#">2022</option>
-                    <option value="#">2021</option>
-                    <option value="#">2020</option>
-                    <option value="#">2019</option>
-                    <option value="#">2018</option>
-                    <option value="#">2017</option>
-                    <option value="#">2016</option>
-                    <option value="#">2015</option>
-                    <option value="#">2014</option>
-                    <option value="#">2013</option>
-                    <option value="#">2012</option>
-                </select>
-            </span>
-        </div>
-
-
-
-
-        <div class="row">
-            <!----------Sidebar client stories --------->
-            <div class="col-lg-3 col-md-4 col-sm-12">
-                <div class="sidebar_client_stories">
-                    <label> <b>2</b> results matched your search</label>
-
-
-                    <!--------Your search--------->
-                    {{-- <div class="client_stories_your_search">
-                        <h6 class="mb-4">Your search</h6>
-                        <div class="alert alert-secondary alert-dismissible">
-                            <button type="button" class="close" data-dismiss="alert">&times;</button>Education (higher)
+                            <div>
+                                <div>
+                                    <img class=" img-fluid" src="https://source.unsplash.com/random/580x420">
+                                </div>
+                            </div>
                         </div>
-                        <div class="alert alert-secondary alert-dismissible">
-                            <button type="button" class="close" data-dismiss="alert">&times;</button>Application (low)
-                        </div>
-                    </div> --}}
+                        <div>
 
-                    <hr>
-                    <!-------Content Results---------->
-                    <div class="client_stories_narrow_content">
-                        <h6 class="mb-4">Narrow content results</h6>
-                        <input type="text" placeholder="BY KEYWORD...">
+                        </div>
                     </div>
-
-                    <hr>
-                    <!--------Topic--------->
-                    <div class="client_stories_filter_category">
-                        <h6 onclick="myFunction()" class="mb-4"><i class="fa-solid fa-caret-down"></i> Topic</h6>
-
-                        <div id="filter_category">
-                            @php
-
-		                    //$tags = explode(',', $tag_items);
-                        @endphp
-                        @foreach ($tag_items as $tag_item)
-                        @php
-
-                            $tags = explode(',', $tag_item);
-                         @endphp
-                         @if(!empty($_GET['category']))
-                         @php
-                         $filterCat = explode(',',$_GET['category']);
-                         @endphp
-                         @endif
-                         @foreach($tags as $item)
-
-                         <div class="form-check">
-                             <input name="tag" value="{{$item}}" class="form-check-input custom" type="checkbox" id="flexCheckDefault" onchange="this.form.submit()">
-                             <span class="ml-2">{{$item}}</span>
-                         </div>
-                         @endforeach
-                         @endforeach
-
-
-
-                        </div>
-
-                    </div>
-                    <hr>
-                    <!--------Industry--------->
-                    {{-- <div class="client_stories_filter_category">
-                        <h6 onclick="myFunction()" class="mb-4"><i class="fa-solid fa-caret-down"></i> Industry</h6>
-
-                        <div id="filter_category">
-                            <div class="form-check">
-                                <input class="form-check-input custom" type="checkbox" id="flexCheckDefault">
-                                <span class="ml-2">Agile</span>
-                            </div>
-                            <div class="form-check">
-                                <input class="form-check-input custom" type="checkbox" id="flexCheckDefault">
-                                <span class="ml-2">Application Development</span>
-                            </div>
-                            <div class="form-check">
-                                <input class="form-check-input custom" type="checkbox" id="flexCheckDefault">
-                                <span class="ml-2">Artificial Intelligence</span>
-                            </div>
-                            <div class="form-check">
-                                <input class="form-check-input custom" type="checkbox" id="flexCheckDefault">
-                                <span class="ml-2">As a service</span>
-                            </div>
-                        </div>
-
-                    </div>
-                    <hr> --}}
-                    <!--------End--------->
-
                 </div>
-            </div>
-            <!----------conternt client stories --------->
-            <div class="col-lg-9 col-md-8 col-sm-12">
                 <div class="row">
-                    <!--------item------->
-                    @foreach($client_storys as $item)
-                    <div class="col-lg-6 col-md-6 col-sm-12">
-                        <div class="client_stories_content_item">
-                            <a href="{{ route('techglossy.details',$item->id) }}">
-                                <img class="img-fluid" src="{{asset('storage/'.$item->image)}}" alt="{{$item->badge}}" style="height:200px;width:100%;" >
-                                <h3 class="mt-4">{{Str::limit($item->title,55)}}</h3>
+                    <div class="d-flex justify-content-center">
+                        <nav aria-label="Page navigation example">
+                            <ul class="pagination">
 
-                                <p>{!! Str::limit($item->header,250) !!}</p>
-                                <h6>{{$item->badge}} / {{$item->created_at->format('Y-m-d')}}</h6>
-                            </a>
-                        </div>
+                                {{$client_storys->links()}}
+
+
+                            </ul>
+                          </nav>
                     </div>
-                    @endforeach
-                    <!--------item------->
-
-
                 </div>
             </div>
+
+            <!-------End------->
         </div>
+        <!--=======// Featured client stories //=======-->
 
 
-        <!------------------Pagination------------------->
-        <div class="d-flex justify-content-center">
-            <nav aria-label="Page navigation example">
-                <ul class="pagination">
-                    {{ $client_storys->links() }}
-                  {{-- <li class="page-item mr-4">
-                    <a class="page-link" href="#" aria-label="Previous">
-                      <span aria-hidden="true">&laquo;</span>
-                      <span class="sr-only">Previous</span>
-                    </a>
-                  </li>
-                  <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                  <li class="page-item"><a class="page-link" href="#">2</a></li>
-                  <li class="page-item"><a class="page-link" href="#">3</a></li>
-                  <li class="page-item"><a class="page-link" href="#">4</a></li>
-                  <li class="page-item"><a class="page-link" href="#">5</a></li>
-                  <li class="page-item ml-4">
-                    <a class="page-link" href="#" aria-label="Next">
-                      <span aria-hidden="true">&raquo;</span>
-                      <span class="sr-only">Next</span>
-                    </a>
-                  </li> --}}
-                </ul>
-              </nav>
-        </div>
-    </section>
-    <!-------End------->
+        <!--=======// Featured client stories //=======-->
 @endsection
+
+

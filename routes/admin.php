@@ -141,6 +141,8 @@ use App\Http\Controllers\Admin\SalesTeamTargetController;
 use App\Http\Controllers\Admin\SalesYearTargetController;
 use App\Http\Controllers\Admin\SolutionDetailsController;
 use App\Http\Controllers\Admin\AdminMenuBuilderController;
+use App\Http\Controllers\Admin\HardwareInfoPageController;
+use App\Http\Controllers\Admin\SoftwareInfoPageController;
 use App\Http\Controllers\Sales\SalesAchievementController;
 use App\Http\Controllers\Admin\AccountProfitLossController;
 use App\Http\Controllers\Marketing\MarketingDmarController;
@@ -532,6 +534,8 @@ Route::controller(RFQController::class)->group(function(){
     'client-database' => ClientDatabaseController::class,
 
     'what-we-do-page' => WhatWeDoPageController::class,
+    'software-info-page' => SoftwareInfoPageController::class,
+    'hardware-info-page' => HardwareInfoPageController::class,
 
 ]);
 

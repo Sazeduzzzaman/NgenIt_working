@@ -19,11 +19,11 @@
               <!-- text -->
               <p class="footer_text pt-2 w-75">Sign up to receive the IT content that matters most to you. You can update your preferences or unsubscribe any time.</p>
               <!-- button -->
-              <form id="myform" action="{{route('newsletter.store')}}" method="post" enctype="multipart/form-data">
+              <form class="p-0 m-0" id="myform" action="{{route('newsletter.store')}}" method="post" enctype="multipart/form-data">
                 <div class="input-group w-75">
                   <input type="email" class="form-control" placeholder="Enter your email">
-                  <span class="input-group-btns">
-                    <button class="btns effect01" type="submit" style="line-height: 32px;border-top-right-radius: 5px;border-bottom-right-radius: 5px;">Subscribe Now</button>
+                  <span class="input-group-btns ml-1">
+                    <button class="btns effect01 px-1" type="submit" style="line-height: 36px;border-top-right-radius: 5px;border-bottom-right-radius: 5px;">Subscribe Now</button>
                   </span>
               </form>
             </div>

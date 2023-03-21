@@ -4,7 +4,12 @@
     @import url('https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.2.3/animate.min.css');
     /* @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css'); */
 
-
+    .tag_btn{
+        background-color: #f7f6f5;
+        color: black;
+        font-size: 13px;
+        padding: 5px;
+    }
     body {
         margin: 0;
         padding: 0;
@@ -16,7 +21,7 @@
         overflow: hidden;
     }
     .story_title {
-    
+
     padding-bottom: 3rem;
     color: #3e332d;
     margin-top: 7rem;
@@ -531,7 +536,7 @@
                 <div class="feature_description">
                     <p>{{ Str::limit($feature2->header, 55) }}</p>
                 </div>
-                <a href="{{ route('feature.details', $feature1->id) }}" class="business_item_button">
+                <a href="{{ route('feature.details', $feature2->id) }}" class="business_item_button">
                     <span>Learn More</span>
                     <span class="business_item_button_icon">
                         <i class="fa-solid fa-arrow-right-long"></i>
@@ -547,7 +552,7 @@
                 <div class="feature_description">
                     <p>{{ Str::limit($feature3->header, 55) }}</p>
                 </div>
-                <a href="{{ route('feature.details', $feature1->id) }}" class="business_item_button">
+                <a href="{{ route('feature.details', $feature3->id) }}" class="business_item_button">
                     <span>Learn More</span>
                     <span class="business_item_button_icon">
                         <i class="fa-solid fa-arrow-right-long"></i>
@@ -563,7 +568,7 @@
                 <div class="feature_description">
                     <p>{{ Str::limit($feature4->header, 55) }}</p>
                 </div>
-                <a href="{{ route('feature.details', $feature1->id) }}" class="business_item_button">
+                <a href="{{ route('feature.details', $feature4->id) }}" class="business_item_button">
                     <span>Learn More</span>
                     <span class="business_item_button_icon">
                         <i class="fa-solid fa-arrow-right-long"></i>
@@ -574,12 +579,12 @@
             <div class="col-lg-2 col-md-6 ">
                 <div class="text-center">
                     <img src="{{ asset('storage/requestImg/' . $feature5->logo) }}" alt="" height="80px" width="85px">
-                                                <h5>{{ Str::limit($feature5->badge, 16) }}</h5>
+                        <h5>{{ Str::limit($feature5->badge, 16) }}</h5>
                 </div>
                 <div class="feature_description">
                     <p>{{ Str::limit($feature5->header, 55) }}</p>
                 </div>
-                <a href="{{ route('feature.details', $feature1->id) }}" class="business_item_button">
+                <a href="{{ route('feature.details', $feature5->id) }}" class="business_item_button">
                     <span>Learn More</span>
                     <span class="business_item_button_icon">
                         <i class="fa-solid fa-arrow-right-long"></i>
@@ -602,7 +607,7 @@
                 <div class="col-lg-8 col-sm-12 pb-3">
                     <div class="home_shop_product_wrapper">
                         <h5> Shop Products and Hardware</h5>
-                        <p class="text-justify">Among More than <strong style="font-family: 'Poppins', sans-serif;                            ">{{ App\Models\Admin\Product::count() }}</strong> products and
+                        <p class="text-justify">Among More than <strong style="font-family: 'Poppins', sans-serif;">{{ App\Models\Admin\Product::count() }}</strong> products and
                             <strong style="font-family: 'Poppins', sans-serif;">{{ App\Models\Admin\Brand::count() }}</strong> brand at your service, we can provide you with the tools
                             you need to succeed. Additionally, you may easily control anything from your NgenIt account.</p>
                         <div class="d-flex justify-content-start">
@@ -1077,19 +1082,29 @@
                 <div class="row magazine_section">
                     <div class="col-lg-6 col-sm-12">
                         <img class="img-fluid" src="{{ asset('storage/' . $techglossy->image) }}"
-                            alt="{{ $techglossy->badge }}">
+                            alt="{{ $techglossy->badge }}" style="border-radius:15px;">
                     </div>
                     <div class="col-lg-6 col-sm-12 account_benefits_section">
-                        <h3 style="font-size:32px">Tech Journal</h3>
-                        <h5 style="font-size:18px;">{{ $techglossy->badge }}</h5>
-                        <p>{{ $techglossy->title }}</p>
-                        <ul> @php
-                            $tag = $techglossy->tags;
-                            $tags = explode(',', $tag);
-                        @endphp @foreach ($tags as $item)
-                                <li>{{ ucwords($item) }}</li>
-                            @endforeach
-                        </ul>
+                        <h3 style="font-size:35px">Tech Journal</h3>
+                        <h4 style="font-size:24px;font-weight:400;">{{ $techglossy->badge }}</h4>
+                        <h4 class="pb-2">{{ $techglossy->title }}</h4>
+                        <p>{{ $techglossy->header }}</p>
+
+                        <div class="my-3 col-lg-6">
+                            <div class="d-flex flex-column justify-content-center">
+                                @php
+                                    $tag = $techglossy->tags;
+                                    $tags = explode(',', $tag);
+                                @endphp
+                                <div class="btn-group pt-1">
+                                    @foreach ($tags as $item)
+                                        <button type="button" class="btn tag_btn ml-1 px-1">{{ ucwords($item) }}</button>
+                                    @endforeach
+
+                                  </div>
+                            </div>
+                        </div>
+
                         <button href="{{ route('techglossy.details', $techglossy->id) }}"
                             class="common_button2 effect01">Read the Journal</button>
                     </div>

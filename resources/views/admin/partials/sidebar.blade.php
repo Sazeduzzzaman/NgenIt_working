@@ -29,27 +29,33 @@
                 @if ($menus)
                     @foreach ($menus as $menu)
                     @if ($menu->is_module == '1')
-                        <li class="nav-item nav-item-submenu">
-                            <a href="#" class="nav-link {{Route::current()->getName() == $menu->route_name ? 'active' : ''}}">
-                                <i class="{{$menu->icon}}"></i>
-                                <span>{{$menu->name}}</span>
-                            </a>
-                            @if (App\Models\Admin\AdminMenuBuilder::getParentMenus($menu->id)->count() > 0)
-                                @php
-                                    $sub_menus = App\Models\Admin\AdminMenuBuilder::getParentMenus($menu->id);
-                                @endphp
-                                    <ul class="nav-group-sub collapse">
-                                        @foreach ($sub_menus as $item)
-                                        <li class="nav-item ">
-                                            <a href="{{ route($item->route_name) }}" class="nav-link {{Route::current()->getName() == $item->route_name ? 'active' : ''}}">
-                                                <i class="ph-layout"></i>
-                                                <span>{{$item->name}}</span>
-                                            </a>
-                                        </li>
-                                        @endforeach
-                                    </ul>
+                        @if (!empty($menu->permission_name))
+                            @if (Auth::user()->can($menu->permission_name))
+                        @endif
+                            <li class="nav-item {{App\Models\Admin\AdminMenuBuilder::getParentMenus($menu->id)->count() > 0 ? 'nav-item-submenu' : ''}}">
+                                <a href="#" class="nav-link {{Route::current()->getName() == $menu->route_name ? 'active' : ''}}">
+                                    <i class="{{$menu->icon}}"></i>
+                                    <span>{{$menu->name}}</span>
+                                </a>
+                                @if (App\Models\Admin\AdminMenuBuilder::getParentMenus($menu->id)->count() > 0)
+                                    @php
+                                        $sub_menus = App\Models\Admin\AdminMenuBuilder::getParentMenus($menu->id);
+                                    @endphp
+                                        <ul class="nav-group-sub collapse">
+                                            @foreach ($sub_menus as $item)
+                                            <li class="nav-item ">
+                                                <a href="{{ route($item->route_name) }}" class="nav-link {{Route::current()->getName() == $item->route_name ? 'active' : ''}}">
+                                                    <i class="ph-layout"></i>
+                                                    <span>{{$item->name}}</span>
+                                                </a>
+                                            </li>
+                                            @endforeach
+                                        </ul>
+                                @endif
+                            </li>
+                        @if (!empty($menu->permission_name))
                             @endif
-                        </li>
+                        @endif
                     @endif
                     @endforeach
                 @endif
