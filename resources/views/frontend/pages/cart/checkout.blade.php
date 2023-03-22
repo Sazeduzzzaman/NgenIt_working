@@ -1,5 +1,554 @@
 @extends('frontend.master')
 @section('content')
+    <style>
+        .btn-design {
+            color: #fff;
+            background-color: #ae0a46;
+            border-color: #ae0a46;
+        }
+
+        .check_form_inner a input {
+            color: #0d6efd !important;
+            text-decoration: underline !important;
+            cursor: pointer;
+            text-align: right;
+        }
+
+        .border-secondary {
+            border-color: #bfc7cf !important;
+        }
+
+        /*
+                        *
+                        * ==========================================
+                        * CUSTOM UTIL CLASSES
+                        * ==========================================
+                        *
+                        */
+        /* Horizontal line */
+        .collapsible-link::before {
+            content: '';
+            width: 14px;
+            height: 2px;
+            background: #333;
+            position: absolute;
+            top: calc(50% - 1px);
+            right: 1rem;
+            display: block;
+            transition: all 0.3s;
+        }
+
+        /* Vertical line */
+        .collapsible-link::after {
+            content: '';
+            width: 2px;
+            height: 14px;
+            background: #333;
+            position: absolute;
+            top: calc(50% - 7px);
+            right: calc(1rem + 6px);
+            display: block;
+            transition: all 0.3s;
+        }
+
+        .collapsible-link[aria-expanded='true']::after {
+            transform: rotate(90deg) translateX(-1px);
+        }
+
+        .collapsible-link[aria-expanded='true']::before {
+            transform: rotate(180deg);
+        }
+
+        .form-group {
+            widows: 100% !important;
+        }
+
+        input:focus {
+            outline: none;
+            box-shadow: none;
+        }
+
+        .form-select:focus {
+            border-color: none !important;
+            outline: 0;
+            box-shadow: none !important;
+        }
+
+        .primary_color {
+            color: #ae0a46;
+        }
+
+        .primary_shadow {
+            box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+        }
+
+        .card-header {
+            padding: 0.75rem 1.25rem;
+            margin-bottom: 0;
+            border-bottom: none !important;
+        }
+
+        label {
+            display: inline-block;
+            font-size: 13px;
+        }
+
+        .form-control {
+            height: 30px;
+        }
+
+        .form-group {
+            margin-bottom: 0rem;
+        }
+
+        .form-select {
+            font-size: 13px;
+        }
+
+        .common_button2 {
+            padding: 10px 30px;
+            cursor: pointer;
+            font-family: "Allumi Std Extended";
+            font-size: 15px;
+            font-weight: 500;
+            text-align: center;
+            display: inline-block;
+            background-color: var(--crimson);
+            transition: 0.3s;
+            outline: none;
+            border: none;
+            color: white;
+        }
+    </style>
+    <!-- header section -->
+    {{-- Check Out Page Start --}}
+    <section class="my-5">
+        <div class="container">
+            <div class="row">
+                <h1 class="text-center pb-3 primary_color">Checkout Page
+                </h1>
+            </div>
+            <form action="" class="p-4">
+                <div class="row">
+
+                    <div class="col-lg-6">
+                        <div class="">
+                            <h4 class="primary_color pt-3">Billing Summury</h4>
+                        </div>
+                        <!-- Accordion -->
+                        <div id="accordionExample" class="accordion shadow">
+
+                            <!-- Accordion item 1 -->
+                            <div class="card">
+                                <div id="headingOne" class="card-header shadow-sm">
+                                    <h6 class="mb-0 font-weight-bold ">
+                                        <a href="#" data-toggle="collapse" data-target="#collapseOne"
+                                            aria-expanded="true" aria-controls="collapseOne"
+                                            class="d-block position-relative text-black text-uppercase collapsible-link py-2 "
+                                            style="font-size: 12px;">Billing
+                                            information</a>
+                                    </h6>
+                                </div>
+                                <div id="collapseOne" aria-labelledby="headingOne" data-parent="#accordionExample"
+                                    class="collapse show">
+                                    <div class="card-body p-2">
+                                        <div class="d-flex justify-content-center">
+                                            <div class="form-group ml-2" style="width: 100% !important;">
+                                                <label for="exampleInputEmail1">Full Name</label>
+                                                <input name="name" type="text" class="form-control"
+                                                    aria-describedby="emailHelp" placeholder="Enter Full Name" required>
+                                            </div>
+                                            <div class="form-group ml-2 " style="width: 100% !important;">
+                                                <label for="exampleInputEmail1">Phone Number</label>
+                                                <input name="phone" type="number" class="form-control"
+                                                    aria-describedby="emailHelp" placeholder="Enter Phone" required>
+                                            </div>
+                                        </div>
+                                        <div class="d-flex justify-content-center">
+                                            <div class="form-group ml-2 "style="width: 100% !important;">
+                                                <label for="exampleInputEmail1">Email</label>
+                                                <input name="email" type="email" class="form-control"
+                                                    aria-describedby="emailHelp" placeholder="Enter Email" required>
+                                            </div>
+                                            <div class="form-group ml-2 " style="width: 100% !important;">
+                                                <label for="exampleInputEmail1">Address</label>
+                                                <input name="address" type="text" class="form-control"
+                                                    aria-describedby="emailHelp" placeholder="Enter Address" required>
+                                            </div>
+                                        </div>
+                                        <div class="d-flex justify-content-center">
+                                            <div class="form-group ml-2 " style="width: 100% !important;">
+                                                <label for="exampleInputEmail1">City</label>
+                                                <input name="city" type="text" class="form-control"
+                                                    aria-describedby="emailHelp" placeholder="Enter City" required>
+                                            </div>
+                                            <div class="form-group ml-2 " style="width: 100% !important;">
+                                                <label for="exampleInputEmail1">Company Name</label>
+                                                <input name="comany_name" type="text" class="form-control"
+                                                    aria-describedby="emailHelp" placeholder="Enter Company Name" required>
+                                            </div>
+                                        </div>
+                                        <div class="d-flex justify-content-center">
+                                            <div class="form-group ml-2 " style="width: 100% !important;">
+                                                <label for="exampleInputEmail1">Zip Code </label>
+                                                <input name="zip_code" type="number" class="form-control"
+                                                    aria-describedby="emailHelp" placeholder="Enter Zip Code" required>
+                                            </div>
+                                            <div class="form-group ml-2 " style="width: 100% !important;">
+                                                <label for="exampleInputEmail1">Country</label>
+                                                <select class="form-select" aria-label="Default select example" required>
+                                                    <option selected>Open this select menu</option>
+                                                    <option value="1">One</option>
+                                                    <option value="2">Two</option>
+                                                    <option value="3">Three</option>
+                                                </select>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Accordion item 2 -->
+                            <div class="card">
+                                <div id="headingTwo" class="card-header  shadow-sm ">
+                                    <h6 class="mb-0 font-weight-bold"><a href="#" data-toggle="collapse"
+                                            data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo"
+                                            class="d-block position-relative collapsed text-black text-uppercase collapsible-link py-2"
+                                            style="font-size: 12px;">Ship
+                                            to Another Address ?</a></h6>
+                                </div>
+                                <div id="collapseTwo" aria-labelledby="headingTwo" data-parent="#accordionExample"
+                                    class="collapse">
+                                    <div class="card-body p-2">
+                                        <div class="d-flex justify-content-center">
+                                            <div class="form-group ml-2" style="width: 100% !important;">
+                                                <label for="exampleInputEmail1">Full Name</label>
+                                                <input name="name" type="text" class="form-control"
+                                                    aria-describedby="emailHelp" placeholder="Enter Full Name" required>
+                                            </div>
+                                            <div class="form-group ml-2 " style="width: 100% !important;">
+                                                <label for="exampleInputEmail1">Phone Number</label>
+                                                <input name="phone" type="number" class="form-control"
+                                                    aria-describedby="emailHelp" placeholder="Enter Phone" required>
+                                            </div>
+                                        </div>
+                                        <div class="d-flex justify-content-center">
+                                            <div class="form-group ml-2 "style="width: 100% !important;">
+                                                <label for="exampleInputEmail1">Email</label>
+                                                <input name="email" type="email" class="form-control"
+                                                    aria-describedby="emailHelp" placeholder="Enter Email" required>
+                                            </div>
+                                            <div class="form-group ml-2 " style="width: 100% !important;">
+                                                <label for="exampleInputEmail1">Address</label>
+                                                <input name="address" type="text" class="form-control"
+                                                    aria-describedby="emailHelp" placeholder="Enter Address" required>
+                                            </div>
+                                        </div>
+                                        <div class="d-flex justify-content-center">
+                                            <div class="form-group ml-2 " style="width: 100% !important;">
+                                                <label for="exampleInputEmail1">City</label>
+                                                <input name="city" type="text" class="form-control"
+                                                    aria-describedby="emailHelp" placeholder="Enter City" required>
+                                            </div>
+                                            <div class="form-group ml-2 " style="width: 100% !important;">
+                                                <label for="exampleInputEmail1">Company Name</label>
+                                                <input name="comany_name" type="text" class="form-control"
+                                                    aria-describedby="emailHelp" placeholder="Enter Company Name"
+                                                    required>
+                                            </div>
+                                        </div>
+                                        <div class="d-flex justify-content-center">
+                                            <div class="form-group ml-2 " style="width: 100% !important;">
+                                                <label for="exampleInputEmail1">Zip Code </label>
+                                                <input name="zip_code" type="number" class="form-control"
+                                                    aria-describedby="emailHelp" placeholder="Enter Zip Code" required>
+                                            </div>
+                                            <div class="form-group ml-2 " style="width: 100% !important;">
+                                                <label for="exampleInputEmail1">Country</label>
+                                                <select class="form-select" aria-label="Default select example" required>
+                                                    <option selected>Open this select menu</option>
+                                                    <option value="1">One</option>
+                                                    <option value="2">Two</option>
+                                                    <option value="3">Three</option>
+                                                </select>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Accordion item 3 -->
+                            <div class="card">
+                                <div id="headingThree" class="card-header  shadow-sm border-0">
+                                    <h6 class="mb-0 font-weight-bold"><a href="#" data-toggle="collapse"
+                                            data-target="#collapseThree" aria-expanded="false"
+                                            aria-controls="collapseThree"
+                                            class="d-block position-relative collapsed text-black text-uppercase collapsible-link py-2"
+                                            style="font-size: 12px;">Additional
+                                            Notes ?</a></h6>
+                                </div>
+                                <div id="collapseThree" aria-labelledby="headingThree" data-parent="#accordionExample"
+                                    class="collapse">
+                                    <div class="card-body p-4">
+                                        <div class="form-outline">
+                                            <label class="form-label" for="textAreaExample">Additional Notes</label>
+                                            <textarea class="form-control" id="textAreaExample1" rows="4"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Accordion item 4 -->
+                            <div class="card">
+                                <div id="headingThree" class="card-header  shadow-sm border-0">
+                                    <h6 class="mb-0 font-weight-bold"><a href="#" data-toggle="collapse"
+                                            data-target="#collapseFour" aria-expanded="false"
+                                            aria-controls="collapseFour"
+                                            class="d-block position-relative collapsed text-black text-uppercase collapsible-link py-2"
+                                            style="font-size: 12px;">Order
+                                            Method</a></h6>
+                                </div>
+                                <div id="collapseFour" aria-labelledby="headingThree" data-parent="#accordionExample"
+                                    class="collapse">
+                                    <div class="card-body p-4">
+                                        <p>Payment Methods</p>
+                                        <input type="radio" id="html" name="fav_language" value="HTML">
+                                        <label for="html">
+                                            <img src="{{ asset('frontend/images/work_order.png') }}" width="60px"
+                                                height="40px" style="cursor: pointer; margin-right:2rem;" alt=""
+                                                id="bankPay">
+                                        </label>
+                                        <input type="radio" id="css" name="fav_language" value="CSS">
+                                        <label for="css">
+
+                                            <img src="{{ asset('frontend/images/online_pay.png') }}" width="60px"
+                                                style="cursor: pointer; background:transparent" alt="">
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="col-lg-6 ">
+                        <div class="">
+                            <h4 class="primary_color pt-3">Order Summury</h4>
+                        </div>
+                        <div class="row  rounded primary_shadow">
+
+                            @foreach ($carts as $item)
+                                <div class="col mb-2">
+                                    <div class="d-flex justify-content-between align-items-center ">
+
+                                        @php
+                                            $slug = App\Models\Admin\Product::where('id', $item->id)->value('slug');
+                                        @endphp
+                                        <p class="p-0 m-0" style="font-size: 14px;"><a
+                                                href="{{ route('product.details', $slug) }}"
+                                                class="">{{ $item->name }}</a></p>
+                                        </span>
+                                        <p class="text-muted">x {{ $item->qty }}</p>
+                                        <p class="text-brand ml-3">${{ $item->price }}</p>
+                                    </div>
+                                    <div class="d-flex justify-content-between align-items-center ">
+
+                                        @php
+                                            $slug = App\Models\Admin\Product::where('id', $item->id)->value('slug');
+                                        @endphp
+                                        <p class="p-0 m-0" style="font-size: 14px;"><a
+                                                href="{{ route('product.details', $slug) }}"
+                                                class="">{{ $item->name }}</a></p>
+                                        </span>
+                                        <p class="text-muted">x {{ $item->qty }}</p>
+                                        <p class="text-brand ml-3">${{ $item->price }}</p>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="summury_count">
+                                        <ul>
+                                            <li class=""><span>Subtotal</span>
+                                                <span><small>USD</small>$ 2,667.99</span>
+                                            </li>
+
+                                            <li class=""><span>*Tax estimate</span>
+                                                <span><small>USD</small>$0.00</span>
+                                            </li>
+                                        </ul>
+
+                                        <p class="summury_count_total">
+                                            <span>Total :</span>
+                                            <span><small>USD</small>
+                                                $ 2,667.00</span>
+                                        </p>
+                                        <!-- Button trigger modal -->
+                                        <div class="submit_button text-center">
+                                            <input class="common_button2" type="submit" value="Proceed">
+                                        </div>
+
+
+                                        <!-- Modal -->
+                                        <div class="modal fade" id="bankModal" tabindex="-1"
+                                            aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="exampleModalLabel">Payment Details
+                                                        </h5>
+                                                        <button type="button" class="close" data-dismiss="modal"
+                                                            aria-label="Close">
+                                                            <span aria-hidden="true">×</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <strong>Bank Name:</strong>
+                                                        <p> Dutch Bangla Bank</p><br>
+                                                        <strong>Account Title:</strong>
+                                                        <p> NGen IT</p><br>
+                                                        <strong>Account Number:</strong>
+                                                        <p> 234***********</p><br>
+                                                        <strong>Branch Title:</strong>
+                                                        <p>West Panthapath</p><br>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            @endforeach
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </section>
+    {{-- Check Out Page Start --}}
+
+    <!-- header section End -->
+@endsection
+
+@once
+    @section('scripts')
+        <script>
+            $(document).ready(function() {
+                $("input[name='payment_method']").on('change', function() {
+                    if ($(".bankPay").is(':checked')) {
+                        $("#bankPayment").removeClass('d-none');
+                    } else {
+                        $("#bankPayment").addClass('d-none');
+                    }
+
+
+                });
+
+
+            });
+            $(document).ready(function() {
+                $(".shipAddress").on('change', function() {
+                    if ($(".shipAddress").is(':checked')) {
+                        $("#shipExpand").removeClass('d-none');
+                    } else {
+                        $("#shipExpand").addClass('d-none');
+                    }
+
+
+                });
+
+
+            });
+            $(document).ready(function() {
+                $(".additionalNotes").on('click', function() {
+                    //$("#additionalExpand").toggle();
+                    if ($("#additionalExpand").hasClass('d-none')) {
+                        $("#additionalExpand").removeClass('d-none');
+                        $(".icon").removeClass('fa-plus');
+                        $(".icon").addClass('fa-minus');
+                    } else {
+                        $("#additionalExpand").addClass('d-none');
+                        $(".icon").removeClass('fa-minus');
+                        $(".icon").addClass('fa-plus');
+                    }
+
+
+                });
+
+
+            });
+            $(document).ready(function() {
+                $(".orderMethod").on('click', function() {
+                    //$("#additionalExpand").toggle();
+                    if ($("#orderExpand").hasClass('d-none')) {
+                        $("#orderExpand").removeClass('d-none');
+                        $(".iconOrder").removeClass('fa-plus');
+                        $(".iconOrder").addClass('fa-minus');
+                    } else {
+                        $("#orderExpand").addClass('d-none');
+                        $(".iconOrder").removeClass('fa-minus');
+                        $(".iconOrder").addClass('fa-plus');
+                    }
+
+
+                });
+
+
+            });
+        </script>
+        <script>
+            $(document).ready(function() {
+                $(".shipAddress").on('change', function() {
+                    if ($(".shipAddress").is(':checked')) {
+                        $("#shipExpand").removeClass('d-none');
+                    } else {
+                        $("#shipExpand").addClass('d-none');
+                    }
+                });
+            });
+        </script>
+        <script>
+            $(document).ready(function() {
+                $('#bkash').onchange(function() {
+                    $("#bkashExpand").toggle(this.checked);
+                });
+            });
+
+
+            $('#nagad').click(function() {
+                $("#nagadExpand").toggle(this.checked);
+            });
+            $('#rocket').click(function() {
+                $("#rocketExpand").toggle(this.checked);
+            });
+        </script>
+    @endsection
+@endonce
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@extends('frontend.master')
+@section('content')
 
     <style>
         .btn-design {

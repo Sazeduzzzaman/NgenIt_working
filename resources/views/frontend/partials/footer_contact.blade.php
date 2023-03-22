@@ -10,10 +10,10 @@
             <p>Get assistance with tracking an order, requesting a quote, contacting your account representative and more by phone or over chat.</p>
             <h5>NGentIt Global Headquarters</h5>
             <p>Haque Chamber <br>(11 floor - C&D) 89/2, Panthapath, Dhaka-1215 </p>
-            <p>Billing & invoice: <span class="main_color">+88 01714243446</span>
-              <br> Information and sales: <span class="main_color">sales@ngenitltd.com</span>
-              <br> OneCall support: <span class="main_color">+88 01714243446</span>
-              <br> Returns: <span class="main_color">(+88) 0258155838</span>
+            <p>Billing & invoice: <span class="">+88 01714243446</span>
+              <br> Information and sales: <span class="">sales@ngenitltd.com</span>
+              <br> OneCall support: <span class="">+88 01714243446</span>
+              <br> Returns: <span class="">(+88) 0258155838</span>
             </p>
             <!-- <h5><i class="fa-solid fa-phone"></i>NgenIT</h5> -->
           </div>
@@ -41,7 +41,7 @@
                       <span>CONTACT</span>
                       <span>US</span>
                     </div>
-                    <div class="app-contact main_color ">CONTACT INFO : +88 01714243446</div>
+
                   </div>
                   <div class="screen-body-item screen-body-item-right">
                     <div class="app-form">
@@ -58,7 +58,7 @@
                         <input class="app-form-control" placeholder="MESSAGE">
                       </div>
                       <div class="app-form-group buttons">
-                        <button class="app-form-button">CANCEL</button>
+                        {{-- <button class="app-form-button">CANCEL</button> --}}
                         <button class="app-form-button">SEND</button>
                       </div>
                     </div>

@@ -17,8 +17,21 @@ class CartController extends Controller
     public function MyCart(){
 
         $data['cart_details'] = Cart::content();
-        //dd($data['cart_details']);
-        $data['products'] = Product::inRandomOrder()->where('product_status', 'product')->limit(8)->get();
+        $cartItems = Cart::content();
+        //dd($cartItems);
+        $cartProductIds = $cartItems->pluck('id')->toArray();
+        $cartProductCategories = Product::whereIn('id', $cartProductIds)
+                                ->pluck('sub_cat_id')
+                                ->unique()
+                                ->toArray();
+
+        // Get related products based on the categories in the cart
+        $data['products'] = Product::whereIn('sub_cat_id', $cartProductCategories)
+                                ->where('id', '!=', $cartProductIds) // exclude the current product
+                                ->select('products.id','products.rfq','products.slug','products.name','products.thumbnail','products.price','products.discount')
+                                ->limit(16)
+                                ->get();
+
         return view('frontend.pages.cart.cart',$data);
 
     }// End Method

@@ -39,17 +39,94 @@
     $jobs = App\Models\Admin\Job::all();
 @endphp {{-- Custom Header Start --}}
 
+<style>
+        .navbar-toggler {
+        background-color: #ae0a46;
+    }
 
+    .search-bar {
+        padding: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: absolute;
+        transform: translate(-50%, -50%);
+        border: 1px #ae0a46 solid;
+        transition-duration: 0.2s;
+        border-radius: 20px;
+    }
+
+    .textbox {
+        width: 0px;
+        padding: 0;
+        margin: 0;
+        border: none;
+        line-height: 40px;
+        font-size: 16px;
+        height: 45px;
+        background-color: transparent;
+        outline: none;
+        height: 100%;
+        float: left;
+
+        transition-duration: 0.05s;
+    }
+
+    .search-btn {
+        background-color: #ae0a46;
+        color: white;
+        padding: 0px 0px 0px 0px;
+        margin: 0;
+        height: 35px;
+        width: 35px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        float: right;
+        text-decoration: none;
+        /* border-left: 5px black solid; */
+        height: 100%;
+        transition-duration: 0.2s;
+    }
+
+    .search-btn p {
+        margin: 10px;
+        color: #ae0a46;
+        font-size: 20px;
+        font-family: sans-serif;
+        font-weight: 800;
+    }
+
+    .search-bar:hover>.textbox {
+        padding: 0px 10px 0px 10px;
+        width: 100%;
+        transition-duration: 0.2s;
+    }
+
+    .search-bar:hover>.search-btn {
+        transition-duration: 0.2s;
+    }
+
+    .search-btn:hover {
+        background-color: black;
+        transition-duration: 0.2s;
+    }
+
+    .search-btn:hover>p {
+        color: white;
+        transition-duration: 0.2s;
+    }
+</style>
 
 {{-- New Header Start --}}
 <!-- Header Top Start -->
 <section>
     <div class="container-fluid navbar_top d-none d-md-block">
-        <div class="container">
+        <div class="container ">
             <div class="row p-0">
                 <div class="d-flex text-white justify-content-between align-items-center p-0">
                     <div style="font-family: 'Poppins', sans-serif !important;"><strong>{{date('Y')}} NGen It</strong></div>
-                    <div>{{$setting->email2}}</div>
+                    <div>{{$setting->email2}} | <span  style="font-family: 'Poppins', sans-serif !important;">(+88) 0258155838</span></div>
                     <div class="d-flex justify-content-end">
                         <!-- Login Top Btn -->
                         <div class="dropdown ml-2">
@@ -104,13 +181,13 @@
 <!-- Header Sticky Start -->
 <header class="navbar_menus sticky-top shadow-lg">
     <nav class=" navbar navbar-expand-lg navbar-dark">
-        <div class="container">
+        <div class="container p-0">
             {{-- <a  href="https://bootstrapcreative.com/">
                   <img src="images/logo.png" alt="" />
               </a> --}}
             <a class="navbar-brand" href="{{ route('homepage') }}">
                 <img src="{{ !file_exists($setting->logo) ? url('upload/logoimage/' . $setting->logo) : url('upload/no_image.jpg') }}"
-                    alt="Ngen It" height="47px">
+                    alt="Ngen It" width="100px" height="50px">
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -179,7 +256,7 @@
                                     </div>
                                     <!-- /.col-md-4  --> --}}
                                     <div class="col-md-4">
-                                        <span class="text-uppercase menu_title">Industries</span>
+                                        <span class="text-uppercase menu_title"><span>In</span> dustries</span>
                                         <ul class="nav flex-column pt-2">
                                             @if ($industrys)
                                                 @foreach ($industrys as $item)
@@ -343,89 +420,92 @@
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Shop </a>
                         <div class="dropdown-menu p-0" aria-labelledby="navbarDropdown">
                             <div class="container-fluid">
-                                <div class="row">
-                                    <div class="col-md-2">
-                                        <div class="mx-auto" style="width: 8rem">
-                                            <span class="text-uppercase menu_title ">Shop By</span>
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col-md-2">
+                                            <div class="mx-auto">
+                                                <span class="text-uppercase menu_title ">Shop By</span>
+                                                <ul class="nav flex-column pt-2">
+                                                    <li class="nav-item p-0">
+                                                        <a class="nav-link active" href="{{route('software.common')}}">Software <i
+                                                                class="fa-solid fa-chevron-right"></i>
+                                                        </a>
+                                                    </li>
+                                                    <li class="nav-item p-0">
+                                                        <a class="nav-link" href="{{route('hardware.common')}}">Hardware <i
+                                                                class="fa-solid fa-chevron-right"></i>
+                                                        </a>
+                                                    </li>
+                                                    <li class="nav-item p-0">
+                                                        <a class="nav-link" href="#">Training <i
+                                                                class="fa-solid fa-chevron-right"></i>
+                                                        </a>
+                                                    </li>
+                                                    <li class="nav-item p-0">
+                                                        <a class="nav-link" href="#">Books <i
+                                                                class="fa-solid fa-chevron-right"></i>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <!-- /.col-md-4  -->
+                                        <div class="col-md-4">
+                                            <span class="text-uppercase menu_title ">Shop By Category</span>
                                             <ul class="nav flex-column pt-2">
-                                                <li class="nav-item p-0">
-                                                    <a class="nav-link active" href="{{route('software.common')}}">Software <i
-                                                            class="fa-solid fa-chevron-right"></i>
-                                                    </a>
+                                                <li class="nav-item d-flex row">
+                                                    @if ($categorys)
+                                                        @foreach ($categorys as $item)
+                                                            <a class="nav-link col-6 py-1" href="{{ route('category.html', $item->slug) }}"
+                                                                >
+                                                                {{ $item->title }}
+                                                                <i class="fa-solid fa-chevron-right"></i>
+                                                            </a>
+                                                        @endforeach
+                                                    @endif
                                                 </li>
-                                                <li class="nav-item p-0">
-                                                    <a class="nav-link" href="{{route('hardware.common')}}">Hardware <i
-                                                            class="fa-solid fa-chevron-right"></i>
-                                                    </a>
-                                                </li>
-                                                <li class="nav-item p-0">
-                                                    <a class="nav-link" href="#">Training <i
-                                                            class="fa-solid fa-chevron-right"></i>
-                                                    </a>
-                                                </li>
-                                                <li class="nav-item p-0">
-                                                    <a class="nav-link" href="#">Books <i
-                                                            class="fa-solid fa-chevron-right"></i>
-                                                    </a>
+
+                                            </ul>
+
+                                        </div>
+                                        <!-- /.col-md-4  -->
+                                        <div class="col-md-3">
+                                            <span class="text-uppercase menu_title">Shop By Brand</span>
+                                            <ul class="nav flex-column pt-2">
+                                                <li class="nav-item d-flex row">
+                                                    @if ($brands)
+                                                        @foreach ($brands as $item)
+                                                            <a class="nav-link col-6"
+                                                            href="{{ route('brandpage.html', App\Models\Admin\Brand::where('id', $item->brand_id)->value('slug')) }}">
+                                                                {{ ucfirst(App\Models\Admin\Brand::where('id', $item->brand_id)->value('title')) }}
+                                                                <i class="fa-solid fa-chevron-right"></i>
+                                                            </a>
+                                                        @endforeach
+                                                    @endif
                                                 </li>
                                             </ul>
                                         </div>
-                                    </div>
-                                    <!-- /.col-md-4  -->
-                                    <div class="col-md-4">
-                                        <span class="text-uppercase menu_title ">Shop By Category</span>
-                                        <ul class="nav flex-column pt-2">
-                                            <li class="nav-item d-flex row">
-                                                @if ($categorys)
-                                                    @foreach ($categorys as $item)
-                                                        <a class="nav-link col-6 py-1" href="{{ route('category.html', $item->slug) }}"
-                                                            >
-                                                            {{ $item->title }}
-                                                            <i class="fa-solid fa-chevron-right"></i>
-                                                        </a>
-                                                    @endforeach
-                                                @endif
-                                            </li>
+                                        <!-- /.col-md-4  -->
+                                        <div class="col-md-3 mb-0" style="background-color: #f7f6f5 !important;">
+                                            <span class="text-uppercase menu_title">Explore Our Deals</span>
+                                            <ul class="nav flex-column pt-2">
+                                                <li class="nav-item">
+                                                    <a class="nav-link active" href="{{ route('tech.deals') }}">Technology deals  <i
+                                                            class="fa-solid fa-chevron-right"></i>
+                                                    </a>
+                                                </li>
+                                                <li class="nav-item">
+                                                    <a class="nav-link" href="{{ route('refurbished') }}">Certified refurbished  <i
+                                                            class="fa-solid fa-chevron-right"></i>
+                                                    </a>
+                                                </li>
 
-                                        </ul>
-
+                                            </ul>
+                                        </div>
+                                        <!-- /.col-md-4  -->
                                     </div>
-                                    <!-- /.col-md-4  -->
-                                    <div class="col-md-3">
-                                        <span class="text-uppercase menu_title">Shop By Brand</span>
-                                        <ul class="nav flex-column pt-2">
-                                            <li class="nav-item d-flex row">
-                                                @if ($brands)
-                                                    @foreach ($brands as $item)
-                                                        <a class="nav-link col-6"
-                                                        href="{{ route('brandpage.html', App\Models\Admin\Brand::where('id', $item->brand_id)->value('slug')) }}">
-                                                            {{ ucfirst(App\Models\Admin\Brand::where('id', $item->brand_id)->value('title')) }}
-                                                            <i class="fa-solid fa-chevron-right"></i>
-                                                        </a>
-                                                    @endforeach
-                                                @endif
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <!-- /.col-md-4  -->
-                                    <div class="col-md-3 mb-0" style="background-color: #f7f6f5 !important;">
-                                        <span class="text-uppercase menu_title">Explore Our Deals</span>
-                                        <ul class="nav flex-column pt-2">
-                                            <li class="nav-item">
-                                                <a class="nav-link active" href="{{ route('tech.deals') }}">Technology deals  <i
-                                                        class="fa-solid fa-chevron-right"></i>
-                                                </a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a class="nav-link" href="{{ route('refurbished') }}">Certified refurbished  <i
-                                                        class="fa-solid fa-chevron-right"></i>
-                                                </a>
-                                            </li>
-
-                                        </ul>
-                                    </div>
-                                    <!-- /.col-md-4  -->
                                 </div>
+
                             </div>
                         </div>
                     </li>
@@ -549,6 +629,9 @@
                             <!--  /.container  -->
                         </div>
                     </li>
+                    <li>
+
+                    </li>
                 </ul>
                  <!--Search-->
             {{-- <div class="search_menu display_none" id="Search_menu">
@@ -567,10 +650,12 @@
             <form method="post" action="{{ route('product.search') }}">
                 @csrf
                 <div class="search-bar">
-                  <input type="search" class="search_textbox" placeholder="Type to Search..." name="search"  id="search_text"/>
-                  <button class="search-btn" type="submit">
-                    <p><i class="fas fa-search"></i></p>
-                  </button>
+                    <input type="text" id="search_text" name="search" class="textbox"
+                        placeholder="type here..." />
+                    <a class="search-btn" href="#" type="submit">
+                        <p><i class="fas fa-search text-white" style="font-size: 15px; margin: 0px 0px 7px;"></i>
+                        </p>
+                    </a>
                 </div>
             </form>
 

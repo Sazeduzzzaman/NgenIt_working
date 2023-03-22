@@ -1078,7 +1078,7 @@
     <!--======// Magazine Section //======-->
     <section class="account_benefits_section_wp">
         <div class="container">
-            @if ($home)
+            @if ($techglossy)
                 <div class="row magazine_section">
                     <div class="col-lg-6 col-sm-12">
                         <img class="img-fluid" src="{{ asset('storage/' . $techglossy->image) }}"

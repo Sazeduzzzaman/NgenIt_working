@@ -1,14 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
 
-.navbar-toggler:focus{
-    box-shadow: none !important;
-}
-.feature_description{
-    overflow-wrap: break-word;
-    text-align: justify;
-}
 .product_item_content_name {
-    height: 3rem !important;
+    height: 5rem !important;
     font-size: 13px !important;
 }
 .ui-slider-horizontal .ui-slider-range {
@@ -209,8 +202,8 @@ input[type='range']::-webkit-slider-thumb {
 
 #myform {
     text-align: center;
-    padding: 5px;
-    margin: 2%;
+    padding: 0px;
+    margin: 0%;
 }
 .qty {
     width: 40px;
@@ -234,15 +227,12 @@ input.qtyminus { width:25px; height:25px;}
 
 .feature_description{
     text-align: center;
-    height: 20vh;
+    /* height: 20vh; */
 }
 .business_item_text{
     text-align: none !important;
 }
 
-#navbarDropdown{
-    margin-right: 10px !important;
-  }
   .view_all{
     font-size: 14px !important;
   }
@@ -265,7 +255,7 @@ input.qtyminus { width:25px; height:25px;}
     }
     .dropdown-item:hover{
         color: #ae0a46 !important;
-    background-color: none !important;
+        background-color: none !important;
 }
   .fa-solid {
     font-weight: 900;
@@ -294,8 +284,7 @@ input.qtyminus { width:25px; height:25px;}
   }
   .dropdown-menu{
       background-color: white !important;
-      border-top: 2px solid #ae0a46!important;
-      margin-top: 15px;
+      /* border-top: 2px solid #ae0a46 !important; */
   }
   .nav-link {
     font-family: "Allumi Std Extended";
@@ -337,6 +326,7 @@ input.qtyminus { width:25px; height:25px;}
    .navbar {
      padding-top:0px;
      padding-bottom:0px;
+     border-bottom: 1px solid #ae0a46;
    }
 
    /* remove the padding from the nav-item and add some margin to give some breathing room on hovers */
@@ -353,8 +343,7 @@ input.qtyminus { width:25px; height:25px;}
      left:0;
      right:0;
    /*  height of nav-item  */
-     top:42px;
-
+     top:50px;
      display:block;
      visibility: hidden;
      opacity: 0;

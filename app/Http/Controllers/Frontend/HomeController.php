@@ -94,7 +94,7 @@ class HomeController extends Controller
 
     public function LearnMore()
     {
-        $data['learnmore'] = LearnMore::first();
+        $data['learnmore'] = LearnMore::orderBy('id','DESC')->first();
         if ($data['learnmore']) {
 
                 $data['story1'] = ClientStory::where('id',$data['learnmore']->success_story_one_id)->first();
@@ -279,12 +279,35 @@ class HomeController extends Controller
                             ->select('products.id','products.rfq','products.slug','products.name','products.thumbnail','products.price','products.discount')
                             ->limit(16)
                             ->get();
+        $data['all_categories'] = Category::orderBy('id','DESC')->limit(8)->get();
+        $data['software_categories'] = DB::table('sub_categories')
+                                ->join('products', 'sub_categories.id', '=', 'products.sub_cat_id')
+                                ->where('products.product_type', '=', 'software')
+                                ->select('sub_categories.id','sub_categories.slug','sub_categories.title','sub_categories.image')
+                                ->distinct()->get();
+        $data['hardware_categories'] = DB::table('sub_categories')
+                                ->join('products', 'sub_categories.id', '=', 'products.sub_cat_id')
+                                ->where('products.product_type', '=', 'hardware')
+                                ->select('sub_categories.id','sub_categories.slug','sub_categories.title','sub_categories.image')
+                                ->distinct()->get();
+                                // dd($data['hardware_categories']);
+        $data['training_categories'] = DB::table('categories')
+                                ->join('products', 'categories.id', '=', 'products.cat_id')
+                                ->where('products.product_type', '=', 'training')
+                                ->select('categories.id','categories.slug','categories.title','categories.image')
+                                ->distinct()->get();
+        $data['book_categories'] = DB::table('categories')
+                                ->join('products', 'categories.id', '=', 'products.cat_id')
+                                ->where('products.product_type', '=', 'book')
+                                ->select('categories.id','categories.slug','categories.title','categories.image')
+                                ->distinct()->get();
         $data['categories'] = Category::latest()
                             ->select('categories.id','categories.slug','categories.title','categories.image')
                             ->get();
         $data['brands'] = BrandPage::orderBy('id', 'Desc')
                         ->select('brand_pages.id','brand_pages.brand_id')
-                          ->get();
+                        ->limit(18)
+                        ->get();
         $data['techglossy'] = Blog::inRandomOrder()->first();
         return view('frontend.pages.product.shop_html', $data);
     }
@@ -341,11 +364,15 @@ class HomeController extends Controller
 
 
         if (!empty($data['sproduct']->cat_id)) {
-            $data['products'] = Product::where('cat_id', $data['sproduct']->cat_id)->where('product_status', 'product')->get();
+            $data['products'] = Product::where('cat_id', $data['sproduct']->cat_id)
+                                ->where('product_status', 'product')
+                                ->select('products.id','products.rfq','products.slug','products.name','products.thumbnail','products.price','products.discount')
+                                ->limit(12)
+                                ->distinct()
+                                ->get();
         } else {
             $data['products'] = Product::inRandomOrder()->where('product_status', 'product')->limit(8)->get();
         }
-
 
         return view('frontend.pages.product.product_details', $data);
     }
@@ -404,24 +431,24 @@ class HomeController extends Controller
                             ->get();
         }
 
-
-
-
         return view('frontend.pages.category.category', $data);
     }
 
 
     public function AllCategory()
     {
-        $data['categorys'] = Category::latest()->get();
-        $data['sub_cats'] = SubCategory::latest()->get();
+        $data['categorys'] = Category::latest()->limit(8)->get();
+        $data['others'] = Category::latest()->select('categories.id','categories.slug','categories.title')->get();
+        $data['sub_cats'] = SubCategory::latest()->limit(12)->get();
         $data['sub_sub_cats'] = SubSubCategory::latest()->get();
         $data['sub_sub_sub_cats'] = SubSubSubCategory::latest()->get();
         $data['top_brands'] = Brand::where('category','Top')->latest()->get();
         if ($data['top_brands']) {
             $data['products'] = DB::table('products')
                         ->join('brands', 'products.brand_id', '=', 'brands.id')
+                        ->select('products.id','products.rfq','products.slug','products.name','products.thumbnail','products.price','products.discount')
                         ->where('brands.category', '=', 'Top')
+                        ->limit(16)
                         ->get();
         }else{
             $data['products'] = Product::inRandomOrder()->where('product_status', 'product')->get();
@@ -463,7 +490,15 @@ class HomeController extends Controller
         $data['brand'] = Brand::where('slug' , $id)->first();
         $data['brandpage'] = BrandPage::where('brand_id' , $data['brand']->id)->first();
         $data['storys'] = ClientStory::inRandomOrder()->limit(4)->get();
-            $data['setting'] = Setting::latest()->first();
+        $data['setting'] = Setting::latest()->first();
+
+        $data['products'] = Product::where('brand_id', $data['brand']->id)
+                        ->where('product_status', '=', 'product')
+                        ->distinct()
+                        ->select('products.id','products.rfq','products.slug','products.name','products.thumbnail','products.price','products.discount')
+                        ->limit(12)->get();
+
+
         if ($data['brandpage']) {
             $data['row_one'] = Row::where('id', $data['brandpage']->row_four_id)->first();
             $data['row_three'] = Row::where('id',$data['brandpage']->row_five_id)->first();
@@ -481,10 +516,11 @@ class HomeController extends Controller
 
     public function AllBrand()
     {
-        $data['top_brands'] = BrandPage::orderBy('id', 'Desc')->paginate(18);
+        $data['top_brands'] = BrandPage::orderBy('id', 'Desc')->select('brand_pages.brand_id','brand_pages.id')->paginate(18);
         $data['featured_brands'] = Brand::where('category','Featured')->orderBy('id','DESC')->paginate(18);
-        $data['others'] = Brand::select('brands.id','brands.slug','brands.title')->get();
         $data['featured_techglossys'] = Blog::inRandomOrder()->first();
+        $data['others'] = Brand::select('brands.id','brands.title','brands.slug')->orderBy('title','ASC')->get();
+        $data['setting'] = Setting::latest()->first();
         return view('frontend.pages.brand.brand',$data);
     }
 
@@ -496,14 +532,18 @@ class HomeController extends Controller
 
     public function AllIndustry()
     {
-        $data['industrys'] = Industry::latest()->get();
-        $data['features'] = Feature::limit(6)->get();
-        $data['story1'] = ClientStory::latest()->first();
-        $data['story2'] = Techglossy::latest()->first();
-        $data['story3'] = Blog::latest()->first();
-        $data['techglossy'] = TechGlossy::inRandomOrder()->first();
+        // $data['learnmore'] = LearnMore::orderBy('id','DESC')->select('learn_mores.industry_header')->first();
+        $data['learnmore'] = LearnMore::orderBy('id','DESC')->select('learn_mores.industry_header','learn_mores.consult_title','learn_mores.consult_short_des')->first();
         $data['setting'] = Setting::latest()->first();
-        $data['featured_techglossy'] = TechGlossy::inRandomOrder()->first();
+        $data['industrys'] = Industry::latest()->select('industries.id','industries.logo','industries.title')->get();
+        $data['random_industries'] = Industry::inRandomOrder()->select('industries.id','industries.title')->limit(4)->get();
+        // $data['features'] = Feature::limit(6)->get();
+        $data['story3'] = ClientStory::inRandomOrder()->first();
+        $data['story4'] = ClientStory::inRandomOrder()->where('id', '!=', $data['story3']->id)->first();
+        $data['story1'] = Blog::inRandomOrder()->first();
+        $data['story2'] = Blog::inRandomOrder()->where('id', '!=', $data['story1']->id)->first();
+        $data['techglossy'] = TechGlossy::inRandomOrder()->first();
+        // $data['featured_techglossy'] = TechGlossy::inRandomOrder()->first();
         return view('frontend.pages.industry.all_industry',$data);
     }
 
@@ -520,47 +560,57 @@ class HomeController extends Controller
 
     //Software All Page
 
-    public function AllSoftare()
-    {
-        $data['top_brands'] = Brand::where('category','Top')->latest()->get();
-        $data['featured_brands'] = Brand::where('category','Featured')->orderBy('id','DESC')->get();
-        $data['others'] = Brand::all();
-        $data['featured_techglossys'] = TechGlossy::inRandomOrder()->first();
-        $data['setting'] = Setting::latest()->first();
+    // public function AllSoftare()
+    // {
+    //     $data['top_brands'] = Brand::where('category','Top')->latest()->get();
+    //     $data['featured_brands'] = Brand::where('category','Featured')->orderBy('id','DESC')->get();
+    //     $data['others'] = Brand::select('brands.id','brands.title','brands.slug')->orderBy('title','ASC')->get();
+    //     $data['featured_techglossys'] = TechGlossy::inRandomOrder()->first();
+    //     $data['setting'] = Setting::latest()->first();
 
-        return view('frontend.pages.brand.brand',$data);
-    }
+    //     return view('frontend.pages.brand.brand',$data);
+    // }
 
     public function SoftwareCommon()
     {
-        $data['products'] = Product::where('product_type','software')->where('product_status', 'product')->latest()->paginate(10);
-        $data['hardware'] = Product::where('product_type','hardware')->where('product_status', 'product')->latest()->paginate(10);
-        $data['categories'] = DB::table('categories')
-                            ->join('products', 'categories.id', '=', 'products.cat_id')
+        $data['learnmore'] = LearnMore::orderBy('id','DESC')->select('learn_mores.industry_header','learn_mores.consult_title','learn_mores.consult_short_des')->first();
+        $data['products'] = Product::where('product_type','software')->where('product_status', 'product')
+                            ->select('products.id','products.rfq','products.slug','products.name','products.thumbnail','products.price','products.discount')
+                            ->inRandomOrder()
+                            ->limit(16)
+                            ->get();
+        $data['hardware'] = Product::where('product_type','hardware')->where('product_status', 'product')
+                            ->select('products.id','products.rfq','products.slug','products.name','products.thumbnail','products.price','products.discount')
+                            ->inRandomOrder()
+                            ->paginate(8);
+        $data['categories'] = DB::table('sub_categories')
+                            ->join('products', 'sub_categories.id', '=', 'products.sub_cat_id')
                             ->where('products.product_type', '=', 'software')
-                            ->select('categories.id','categories.slug','categories.title','categories.image')
-                            ->distinct()->paginate(10);
+                            ->select('sub_categories.id','sub_categories.slug','sub_categories.title','sub_categories.image')
+                            ->distinct()->paginate(8);
 
         $data['brands']     = DB::table('brands')
                             ->join('products', 'brands.id', '=', 'products.brand_id')
                             ->where('products.product_type', '=', 'software')
                             ->select('brands.id','brands.slug','brands.title','brands.image')
-                            ->distinct()->paginate(10);
+                            ->distinct()->paginate(8);
         // $data['industries']  = DB::table('industries')
         //                     ->join('products', 'industires.id', '=', 'products.brand_id')
         //                     ->where('products.product_type', '=', 'software')
         //                     ->select('brands.id','brands.slug','brands.title','brands.image')
         //                     ->distinct()->get();
         $data['software_products'] = Product::where('product_type','software')->where('product_status', 'product')->paginate(10)->unique('brand_id');
-        $data['featured_brands'] = Brand::where('category','Featured')->orderBy('id','DESC')->get();
-        $data['others'] = Brand::all();
-        $data['story1'] = TechGlossy::inRandomOrder()->first();
-        $data['story2'] = Blog::inRandomOrder()->first();
-        $data['story3'] = ClientStory::inRandomOrder()->first();
-        $data['techglossy'] = TechGlossy::inRandomOrder()->first();
-        $data['features'] = Client::inRandomOrder()->limit(2)->get();
-        $data['setting'] = Setting::latest()->first();
-        $data['industrys'] = Industry::latest()->get();
+        // $data['featured_brands'] = Brand::where('category','Featured')->orderBy('id','DESC')->get();
+        // $data['others'] = Brand::all();
+        // $data['story1'] = TechGlossy::inRandomOrder()->first();
+        // $data['story2'] = Blog::inRandomOrder()->first();
+        // $data['story3'] = ClientStory::inRandomOrder()->first();
+        // $data['techglossy'] = TechGlossy::inRandomOrder()->first();
+        // $data['features'] = Client::inRandomOrder()->limit(2)->get();
+        // $data['learnmore'] = LearnMore::orderBy('id','DESC')->select('learn_mores.industry_header')->first();
+        // $data['setting'] = Setting::latest()->first();
+        $data['industrys'] = Industry::latest()->select('industries.id','industries.logo','industries.title')->get();
+        $data['random_industries'] = Industry::inRandomOrder()->select('industries.id','industries.title')->limit(4)->get();
         return view('frontend.pages.software.allsoftware',$data);
     }
 

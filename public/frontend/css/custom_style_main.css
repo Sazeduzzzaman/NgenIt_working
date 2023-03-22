@@ -273,15 +273,15 @@
     position: absolute;
     background: #ffffff;
     color: black !important;
-    top: -2px;
-    left: 23px;
-    width: 20px;
-    height: 21px;
-    font-size: 15px;
+    top: 1px;
+    left: 21px;
+    width: 17px;
+    height: 17px;
+    font-size: 10px;
     font-weight: 700;
     text-align: center;
     border-radius: 50%;
-  }
+}
   /*======================
      Header Dwon Menu
   ========================*/
@@ -6446,7 +6446,7 @@
     content: "";
     position: absolute;
     height: 2px;
-    background-color: #582873;
+    background-color: #ae0a46;
     width: 25px;
     top: -5px;
     left: 0px;
