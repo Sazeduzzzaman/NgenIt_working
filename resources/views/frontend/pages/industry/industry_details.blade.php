@@ -132,7 +132,7 @@
     <div class="container">
       <div class="call_to_action_text text-black">
         <h4 class="section_title text-black">Robust and integrated security</h4>
-        <p>Security is considered at every step when you choose Insight. The result is a solution aligned to strong cybersecurity and regulatory best practices and an understanding of who owns and can access internal data.</p>
+        <p class="text-black">Security is considered at every step when you choose Insight. The result is a solution aligned to strong cybersecurity and regulatory best practices and an understanding of who owns and can access internal data.</p>
       </div>
     </div>
   </section>

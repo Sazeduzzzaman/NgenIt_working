@@ -579,7 +579,7 @@
                             </div>
                             <div class="ag-offer_hidden-item">
                                 <div class="mx-auto">
-                                    <a href="" class="common_button3">
+                                    <a href="{{route('category.html',$item->slug)}}" class="common_button3">
                                         Details
                                     </a>
                                 </div>
@@ -638,8 +638,8 @@
                             </div>
                             <div class="ag-offer_hidden-item">
                                 <div class="mx-auto">
-                                    <a href="" class="common_button3">
-                                        Details
+                                    <a href="{{route('custom.product',$item->slug)}}" class="common_button3">
+                                        Shop
                                     </a>
                                 </div>
                             </div>
@@ -793,7 +793,7 @@
                     <div class="tab-content py-3 px-3 px-sm-0" id="nav-tabContent">
                         <div class="tab-pane fade show active" id="all" role="tabpanel"
                             aria-labelledby="nav-healthcare">
-                            <div class="d-flex multi_tab_content ">
+                            <div class="multi_tab_content ">
                                 <div class="letter_content_item" id="brand_A">
                                     {{-- <h2 class="letter_content_title">All</h2> --}}
 
@@ -810,7 +810,7 @@
                             </div>
                         </div>
                         <div class="tab-pane fade show" id="a" role="tabpanel" aria-labelledby="nav-healthcare">
-                            <div class="d-flex multi_tab_content ">
+                            <div class="multi_tab_content ">
                                 <div class="letter_content_item" id="brand_A">
                                     <h2 class="letter_content_title">A</h2>
 
@@ -829,7 +829,7 @@
                             </div>
                         </div>
                         <div class="tab-pane fade" id="b" role="tabpanel" aria-labelledby="nav-profile-tab">
-                            <div class="d-flex multi_tab_content ">
+                            <div class="multi_tab_content ">
                                 <div class="letter_content_item" id="brand_B">
                                     <h2 class="letter_content_title">B</h2>
 
@@ -848,7 +848,7 @@
                             </div>
                         </div>
                         <div class="tab-pane fade" id="c" role="tabpanel" aria-labelledby="nav-contact-tab">
-                            <div class="d-flex multi_tab_content ">
+                            <div class="multi_tab_content ">
                                 <div class="letter_content_item" id="brand_C">
                                     <h2 class="letter_content_title">C</h2>
 
@@ -867,7 +867,7 @@
                             </div>
                         </div>
                         <div class="tab-pane fade" id="d" role="tabpanel" aria-labelledby="nav-contact-tab">
-                            <div class="d-flex multi_tab_content ">
+                            <div class="multi_tab_content ">
                                 <div class="letter_content_item" id="brand_D">
                                     <h2 class="letter_content_title">D</h2>
 
@@ -886,7 +886,7 @@
                             </div>
                         </div>
                         <div class="tab-pane fade" id="e" role="tabpanel" aria-labelledby="nav-contact-tab">
-                            <div class="d-flex multi_tab_content ">
+                            <div class="multi_tab_content ">
                                 <div class="letter_content_item" id="brand_E">
                                     <h2 class="letter_content_title">E</h2>
 
@@ -905,7 +905,7 @@
                             </div>
                         </div>
                         <div class="tab-pane fade" id="f" role="tabpanel" aria-labelledby="nav-contact-tab">
-                            <div class="d-flex multi_tab_content ">
+                            <div class="multi_tab_content ">
                                 <div class="letter_content_item" id="brand_F">
                                     <h2 class="letter_content_title">F</h2>
 
@@ -924,7 +924,7 @@
                             </div>
                         </div>
                         <div class="tab-pane fade" id="g" role="tabpanel" aria-labelledby="nav-contact-tab">
-                            <div class="d-flex multi_tab_content ">
+                            <div class="multi_tab_content ">
                                 <div class="letter_content_item" id="brand_G">
                                     <h2 class="letter_content_title">G</h2>
 
@@ -943,7 +943,7 @@
                             </div>
                         </div>
                         <div class="tab-pane fade" id="h" role="tabpanel" aria-labelledby="nav-contact-tab">
-                            <div class="d-flex multi_tab_content ">
+                            <div class="multi_tab_content ">
                                 <div class="letter_content_item" id="brand_H">
                                     <h2 class="letter_content_title">H</h2>
 
@@ -962,7 +962,7 @@
                             </div>
                         </div>
                         <div class="tab-pane fade" id="i" role="tabpanel" aria-labelledby="nav-contact-tab">
-                            <div class="d-flex multi_tab_content ">
+                            <div class="multi_tab_content ">
                                 <div class="letter_content_item" id="brand_I">
                                     <h2 class="letter_content_title">I</h2>
 
@@ -981,7 +981,7 @@
                             </div>
                         </div>
                         <div class="tab-pane fade" id="j" role="tabpanel" aria-labelledby="nav-contact-tab">
-                            <div class="d-flex multi_tab_content ">
+                            <div class="multi_tab_content ">
                                 <div class="letter_content_item" id="brand_J">
                                     <h2 class="letter_content_title">J</h2>
 
@@ -1000,7 +1000,7 @@
                             </div>
                         </div>
                         <div class="tab-pane fade" id="k" role="tabpanel" aria-labelledby="nav-contact-tab">
-                            <div class="d-flex multi_tab_content ">
+                            <div class="multi_tab_content ">
                                 <div class="letter_content_item" id="brand_K">
                                     <h2 class="letter_content_title">K</h2>
 
@@ -1019,7 +1019,7 @@
                             </div>
                         </div>
                         <div class="tab-pane fade" id="l" role="tabpanel" aria-labelledby="nav-contact-tab">
-                            <div class="d-flex multi_tab_content ">
+                            <div class="multi_tab_content ">
                                 <div class="letter_content_item" id="brand_L">
                                     <h2 class="letter_content_title">L</h2>
 
@@ -1038,7 +1038,7 @@
                             </div>
                         </div>
                         <div class="tab-pane fade" id="m" role="tabpanel" aria-labelledby="nav-contact-tab">
-                            <div class="d-flex multi_tab_content ">
+                            <div class="multi_tab_content ">
                                 <div class="letter_content_item" id="brand_M">
                                     <h2 class="letter_content_title">M</h2>
 
@@ -1057,7 +1057,7 @@
                             </div>
                         </div>
                         <div class="tab-pane fade" id="n" role="tabpanel" aria-labelledby="nav-contact-tab">
-                            <div class="d-flex multi_tab_content ">
+                            <div class="multi_tab_content ">
                                 <div class="letter_content_item" id="brand_N">
                                     <h2 class="letter_content_title">N</h2>
 
@@ -1076,7 +1076,7 @@
                             </div>
                         </div>
                         <div class="tab-pane fade" id="o" role="tabpanel" aria-labelledby="nav-contact-tab">
-                            <div class="d-flex multi_tab_content ">
+                            <div class="multi_tab_content ">
                                 <div class="letter_content_item" id="brand_O">
                                     <h2 class="letter_content_title">O</h2>
 
@@ -1095,7 +1095,7 @@
                             </div>
                         </div>
                         <div class="tab-pane fade" id="p" role="tabpanel" aria-labelledby="nav-contact-tab">
-                            <div class="d-flex multi_tab_content ">
+                            <div class="multi_tab_content ">
                                 <div class="letter_content_item" id="brand_P">
                                     <h2 class="letter_content_title">P</h2>
 
@@ -1114,7 +1114,7 @@
                             </div>
                         </div>
                         <div class="tab-pane fade" id="q" role="tabpanel" aria-labelledby="nav-contact-tab">
-                            <div class="d-flex multi_tab_content ">
+                            <div class="multi_tab_content ">
                                 <div class="letter_content_item" id="brand_Q">
                                     <h2 class="letter_content_title">Q</h2>
 
@@ -1133,7 +1133,7 @@
                             </div>
                         </div>
                         <div class="tab-pane fade" id="r" role="tabpanel" aria-labelledby="nav-contact-tab">
-                            <div class="d-flex multi_tab_content ">
+                            <div class="multi_tab_content ">
                                 <div class="letter_content_item" id="brand_R">
                                     <h2 class="letter_content_title">R</h2>
 
@@ -1152,7 +1152,7 @@
                             </div>
                         </div>
                         <div class="tab-pane fade" id="s" role="tabpanel" aria-labelledby="nav-contact-tab">
-                            <div class="d-flex multi_tab_content ">
+                            <div class="multi_tab_content ">
                                 <div class="letter_content_item" id="brand_S">
                                     <h2 class="letter_content_title">S</h2>
 
@@ -1171,7 +1171,7 @@
                             </div>
                         </div>
                         <div class="tab-pane fade" id="t" role="tabpanel" aria-labelledby="nav-contact-tab">
-                            <div class="d-flex multi_tab_content ">
+                            <div class="multi_tab_content ">
                                 <div class="letter_content_item" id="brand_T">
                                     <h2 class="letter_content_title">T</h2>
 
@@ -1190,7 +1190,7 @@
                             </div>
                         </div>
                         <div class="tab-pane fade" id="u" role="tabpanel" aria-labelledby="nav-contact-tab">
-                            <div class="d-flex multi_tab_content ">
+                            <div class="multi_tab_content ">
                                 <div class="letter_content_item" id="brand_U">
                                     <h2 class="letter_content_title">U</h2>
 
@@ -1209,7 +1209,7 @@
                             </div>
                         </div>
                         <div class="tab-pane fade" id="v" role="tabpanel" aria-labelledby="nav-contact-tab">
-                            <div class="d-flex multi_tab_content ">
+                            <div class="multi_tab_content ">
                                 <div class="letter_content_item" id="brand_V">
                                     <h2 class="letter_content_title">V</h2>
 
@@ -1228,7 +1228,7 @@
                             </div>
                         </div>
                         <div class="tab-pane fade" id="w" role="tabpanel" aria-labelledby="nav-contact-tab">
-                            <div class="d-flex multi_tab_content ">
+                            <div class="multi_tab_content ">
                                 <div class="letter_content_item" id="brand_W">
                                     <h2 class="letter_content_title">W</h2>
 
@@ -1247,7 +1247,7 @@
                             </div>
                         </div>
                         <div class="tab-pane fade" id="z" role="tabpanel" aria-labelledby="nav-contact-tab">
-                            <div class="d-flex multi_tab_content ">
+                            <div class="multi_tab_content ">
                                 <div class="letter_content_item" id="brand_Z">
                                     <h2 class="letter_content_title">Z</h2>
 

@@ -439,9 +439,9 @@ class HomeController extends Controller
     {
         $data['categorys'] = Category::latest()->limit(8)->get();
         $data['others'] = Category::latest()->select('categories.id','categories.slug','categories.title')->get();
-        $data['sub_cats'] = SubCategory::latest()->limit(12)->get();
-        $data['sub_sub_cats'] = SubSubCategory::latest()->get();
-        $data['sub_sub_sub_cats'] = SubSubSubCategory::latest()->get();
+        $data['sub_cats'] = SubCategory::latest()->select('sub_categories.id','sub_categories.slug','sub_categories.title')->get();
+        $data['sub_sub_cats'] = SubSubCategory::latest()->select('sub_sub_categories.id','sub_sub_categories.slug','sub_sub_categories.title')->get();
+        $data['sub_sub_sub_cats'] = SubSubSubCategory::latest()->select('sub_sub_sub_categories.id','sub_sub_sub_categories.slug','sub_sub_sub_categories.title')->get();
         $data['top_brands'] = Brand::where('category','Top')->latest()->get();
         if ($data['top_brands']) {
             $data['products'] = DB::table('products')
