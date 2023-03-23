@@ -254,6 +254,14 @@
                         </div>
                     </div>
                 @endforeach
+                <div class="d-flex justify-content-center">
+                    <nav aria-label="Page navigation example">
+                        <ul class="pagination">
+                            {{ $top_brands->links() }}
+                        </ul>
+
+                    </nav>
+                </div>
             </div>
         </div>
     </section>
@@ -299,7 +307,7 @@
         <div class="container">
             <div class="row">
                 <div class="text-center py-3">
-                    <h2>Explore all the brands Ngen It has to offer.</h2>
+                    <h2>Explore all the <strong>Brands</strong> Ngen It has to offer.</h2>
                 </div>
                 <div class="col-xs-12 ">
                     <nav>

@@ -118,6 +118,7 @@ input[type='range']::-webkit-slider-thumb {
 .btn:focus {
   outline: 0;
   box-shadow: none !important;
+  border: 0 !important;
 }
 .job_search_btn:hover {
     background-color: #ffff  !important;
@@ -255,7 +256,7 @@ input.qtyminus { width:25px; height:25px;}
     }
     .dropdown-item:hover{
         color: #ae0a46 !important;
-        background-color: none !important;
+    background-color: none !important;
 }
   .fa-solid {
     font-weight: 900;
@@ -265,32 +266,35 @@ input.qtyminus { width:25px; height:25px;}
     /* color: white !important; */
     text-decoration: none !important;
   }
+
+
+/*
   .nav-item{
     padding: 0px !important;
     margin: 0px !important;
-  }
-  .navbar {
+  } */
+  /* .navbar {
     padding: 0rem 0rem !important;
-}
-  .nav-item {
+} */
+  /* .nav-item {
     font-family: "Allumi Std Extended";
     padding: 0rem 0rem !important;
     margin: 0 0rem !important;
-  }
+  } */
   .navbar-toggler {
     font-family: "Allumi Std Extended";
       color: rgb(197 24 24 / 50%) !important;
-      border-color: rgb(211 21 21 / 10%) !important;
+      /* border-color: rgb(211 21 21 / 10%) !important; */
   }
   .dropdown-menu{
       background-color: white !important;
-      /* border-top: 2px solid #ae0a46 !important; */
+      border-top: 2px solid #ae0a46 !important;
   }
   .nav-link {
     font-family: "Allumi Std Extended";
-    font-size: 14px !important;
+    font-size: 16px !important;
     color: #5f5753 !important;
-    padding: 0px !important;
+    /* padding: 0px !important; */
 }
 .nav-link-text{
     font-family: "Allumi Std Extended";
@@ -303,16 +307,18 @@ input.qtyminus { width:25px; height:25px;}
     font-family: "Allumi Std Extended";
       background-color:#ae0a46!important;
   }
-  .navbar .dropdown-menu div[class*="col"] {
+  /* .navbar .dropdown-menu div[class*="col"] {
       margin-bottom:1rem;
-   }
+   } */
 
-   .navbar .dropdown-menu {
+   /* .navbar .dropdown-menu {
     font-family: "Allumi Std Extended";
      border:none;
      background-color: white;
      color: black;
-   }
+   } */
+
+
 
    .add_cart a{
     font-size: 1.1em !important;
@@ -320,42 +326,42 @@ input.qtyminus { width:25px; height:25px;}
    }
 
    /* breakpoint and up - mega dropdown styles */
-   @media screen and (min-width: 992px) {
+   /* @media screen and (min-width: 992px) { */
 
      /* remove the padding from the navbar so the dropdown hover state is not broken */
-   .navbar {
+   /* .navbar {
      padding-top:0px;
      padding-bottom:0px;
-     border-bottom: 1px solid #ae0a46;
-   }
+   } */
 
    /* remove the padding from the nav-item and add some margin to give some breathing room on hovers */
-   .navbar .nav-item {
+   /* .navbar .nav-item {
      padding:.5rem .5rem;
      margin:0 .25rem;
-   }
+   } */
 
    /* makes the dropdown full width  */
-   .navbar .dropdown {position:static;}
+   /* .navbar .dropdown {position:static;}
 
    .navbar .dropdown-menu {
      width:100%;
      left:0;
      right:0;
-   /*  height of nav-item  */
-     top:50px;
+    height of nav-item
+     top:48px;
+
      display:block;
      visibility: hidden;
      opacity: 0;
      transition: visibility 0s, opacity 0.3s linear;
 
-   }
+   } */
 
      /* shows the dropdown menu on hover */
-   .navbar .dropdown:hover .dropdown-menu, .navbar .dropdown .dropdown-menu:hover {
+   /* .navbar .dropdown:hover .dropdown-menu, .navbar .dropdown .dropdown-menu:hover {
      display:block;
      visibility: visible;
-     opacity: 1;
+     opacity: 2;
      transition: visibility 0s, opacity 0.3s linear;
    }
 
@@ -364,7 +370,7 @@ input.qtyminus { width:25px; height:25px;}
        background-color: #fff;
      }
 
-   }
+   } */
 
 
 

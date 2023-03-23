@@ -566,11 +566,11 @@
             <h3 class="text-center py-3">All Categories</h3>
             <div class="ag-format-container row">
                 @foreach ($categorys as $item)
-                    <div class="ag-offer_list col-lg-3" style="border: 1px dashed rgb(179, 179, 179);">
-                        <div class="ag-offer_item">
+                    <div class="ag-offer_list col-lg-3" >
+                        <div class="ag-offer_item" style="border: 1px dashed rgb(179, 179, 179); margin: 0.15rem!important;">
                             <div class="ag-offer_visible-item">
                                 <div class="ag-offer_img-box">
-                                    <img src="{{ asset('storage/requestImg/' . $item->image) }}" class="ag-offer_img"
+                                    <img src="{{ asset('storage/' . $item->image) }}" class="ag-offer_img"
                                         alt="" width="100px" height="100px" />
                                 </div>
                                 <div class="ag-offer_title">
@@ -598,13 +598,13 @@
             <div class="ag-format-container row">
                 @foreach ($sub_cats as $item)
                     @php
-                        $slug = App\Models\Admin\Category::where('id', $item->id)->value('slug');
+                        $slug = App\Models\Admin\SubCategory::where('id', $item->id)->value('slug');
                     @endphp
-                    <div class="ag-offer_list col-lg-3" style="border: 1px dashed rgb(179, 179, 179);">
-                        <div class="ag-offer_item">
+                    <div class="ag-offer_list col-lg-3">
+                        <div class="ag-offer_item" style="border: 1px dashed rgb(179, 179, 179); margin: 0.15rem!important;">
                             <div class="ag-offer_visible-item">
                                 <div class="ag-offer_img-box">
-                                    <img src="{{ asset('storage/requestImg/' . $item->image) }}" class="ag-offer_img"
+                                    <img src="{{ asset('storage/' . $item->image) }}" class="ag-offer_img"
                                         alt="" width="100px" height="100px" />
                                 </div>
                                 <div class="ag-offer_title">
@@ -613,7 +613,7 @@
                             </div>
                             <div class="ag-offer_hidden-item">
                                 <div class="mx-auto">
-                                    <a href="{{ route('category.html', $item->slug) }}" class="common_button3">
+                                    <a href="{{ route('category.html', $slug) }}" class="common_button3">
                                         Details
                                     </a>
                                 </div>
@@ -623,10 +623,10 @@
                 @endforeach
                 @foreach ($sub_sub_cats as $item)
                     @php
-                        $slug = App\Models\Admin\Category::where('id', $item->id)->value('slug');
+                        $slug = App\Models\Admin\SubSubCategory::where('id', $item->id)->value('slug');
                     @endphp
-                    <div class="ag-offer_list col-lg-3" style="border: 1px dashed rgb(179, 179, 179);">
-                        <div class="ag-offer_item">
+                    <div class="ag-offer_list col-lg-3">
+                        <div class="ag-offer_item" style="border: 1px dashed rgb(179, 179, 179); margin: 0.15rem!important;">
                             <div class="ag-offer_visible-item">
                                 <div class="ag-offer_img-box">
                                     <img src="{{ asset('storage/requestImg/' . $item->image) }}" class="ag-offer_img"
@@ -638,7 +638,7 @@
                             </div>
                             <div class="ag-offer_hidden-item">
                                 <div class="mx-auto">
-                                    <a href="{{route('custom.product',$item->slug)}}" class="common_button3">
+                                    <a href="{{route('custom.product',$slug)}}" class="common_button3">
                                         Shop
                                     </a>
                                 </div>
@@ -733,7 +733,7 @@
         <div class="container">
             <div class="row">
                 <div class="text-center py-3">
-                    <h2>Explore all the brands Ngen It has to offer.</h2>
+                    <h2>Explore all the <strong>Categorys</strong> Ngen It has to offer.</h2>
                 </div>
                 <div class="col-xs-12 ">
                     <nav>
@@ -788,6 +788,22 @@
 
                             <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#p"
                                 role="tab" aria-controls="nav-contact" aria-selected="false">P</a>
+                            <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#q"
+                                role="tab" aria-controls="nav-contact" aria-selected="false">Q</a>
+                            {{-- <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#r"
+                                role="tab" aria-controls="nav-contact" aria-selected="false">R</a>
+                            <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#s"
+                                role="tab" aria-controls="nav-contact" aria-selected="false">S</a>
+                            <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#t"
+                                role="tab" aria-controls="nav-contact" aria-selected="false">T</a>
+                            <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#u"
+                                role="tab" aria-controls="nav-contact" aria-selected="false">U</a>
+                            <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#v"
+                                role="tab" aria-controls="nav-contact" aria-selected="false">V</a>
+                            <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#w"
+                                role="tab" aria-controls="nav-contact" aria-selected="false">W</a>
+                            <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#z"
+                                role="tab" aria-controls="nav-contact" aria-selected="false">Z</a> --}}
                         </div>
                     </nav>
                     <div class="tab-content py-3 px-3 px-sm-0" id="nav-tabContent">
@@ -800,6 +816,21 @@
                                     <div class="letter_content_type">
                                         <ul class="row">
                                             @foreach ($others as $item)
+                                                <li class="col-lg-3 col-sm-6"><a
+                                                        href="{{ route('custom.product', $item->slug) }}">{{ $item->title }}</a>
+                                                </li>
+                                            @endforeach
+                                            @foreach ($sub_cats as $item)
+                                                <li class="col-lg-3 col-sm-6"><a
+                                                        href="{{ route('custom.product', $item->slug) }}">{{ $item->title }}</a>
+                                                </li>
+                                            @endforeach
+                                            @foreach ($sub_sub_cats as $item)
+                                                <li class="col-lg-3 col-sm-6"><a
+                                                        href="{{ route('custom.product', $item->slug) }}">{{ $item->title }}</a>
+                                                </li>
+                                            @endforeach
+                                            @foreach ($sub_sub_sub_cats as $item)
                                                 <li class="col-lg-3 col-sm-6"><a
                                                         href="{{ route('custom.product', $item->slug) }}">{{ $item->title }}</a>
                                                 </li>
@@ -817,6 +848,27 @@
                                     <div class="letter_content_type">
                                         <ul class="row">
                                             @foreach ($others as $item)
+                                                @if ($item->title[0] == 'A')
+                                                    <li class="col-lg-3 col-sm-6"><a
+                                                            href="{{ route('custom.product', $item->slug) }}">{{ $item->title }}</a>
+                                                    </li>
+                                                @endif
+                                            @endforeach
+                                            @foreach ($sub_cats as $item)
+                                                @if ($item->title[0] == 'A')
+                                                    <li class="col-lg-3 col-sm-6"><a
+                                                            href="{{ route('custom.product', $item->slug) }}">{{ $item->title }}</a>
+                                                    </li>
+                                                @endif
+                                            @endforeach
+                                            @foreach ($sub_sub_cats as $item)
+                                                @if ($item->title[0] == 'A')
+                                                    <li class="col-lg-3 col-sm-6"><a
+                                                            href="{{ route('custom.product', $item->slug) }}">{{ $item->title }}</a>
+                                                    </li>
+                                                @endif
+                                            @endforeach
+                                            @foreach ($sub_sub_sub_cats as $item)
                                                 @if ($item->title[0] == 'A')
                                                     <li class="col-lg-3 col-sm-6"><a
                                                             href="{{ route('custom.product', $item->slug) }}">{{ $item->title }}</a>
@@ -842,6 +894,27 @@
                                                     </li>
                                                 @endif
                                             @endforeach
+                                            @foreach ($sub_cats as $item)
+                                                @if ($item->title[0] == 'B')
+                                                    <li class="col-lg-3 col-sm-6"><a
+                                                            href="{{ route('custom.product', $item->slug) }}">{{ $item->title }}</a>
+                                                    </li>
+                                                @endif
+                                            @endforeach
+                                            @foreach ($sub_sub_cats as $item)
+                                                @if ($item->title[0] == 'B')
+                                                    <li class="col-lg-3 col-sm-6"><a
+                                                            href="{{ route('custom.product', $item->slug) }}">{{ $item->title }}</a>
+                                                    </li>
+                                                @endif
+                                            @endforeach
+                                            @foreach ($sub_sub_sub_cats as $item)
+                                                @if ($item->title[0] == 'B')
+                                                    <li class="col-lg-3 col-sm-6"><a
+                                                            href="{{ route('custom.product', $item->slug) }}">{{ $item->title }}</a>
+                                                    </li>
+                                                @endif
+                                            @endforeach
                                         </ul>
                                     </div>
                                 </div>
@@ -855,6 +928,27 @@
                                     <div class="letter_content_type">
                                         <ul class="row">
                                             @foreach ($others as $item)
+                                                @if ($item->title[0] == 'C')
+                                                    <li class="col-lg-3 col-sm-6"><a
+                                                            href="{{ route('custom.product', $item->slug) }}">{{ $item->title }}</a>
+                                                    </li>
+                                                @endif
+                                            @endforeach
+                                            @foreach ($sub_cats as $item)
+                                                @if ($item->title[0] == 'C')
+                                                    <li class="col-lg-3 col-sm-6"><a
+                                                            href="{{ route('custom.product', $item->slug) }}">{{ $item->title }}</a>
+                                                    </li>
+                                                @endif
+                                            @endforeach
+                                            @foreach ($sub_sub_cats as $item)
+                                                @if ($item->title[0] == 'C')
+                                                    <li class="col-lg-3 col-sm-6"><a
+                                                            href="{{ route('custom.product', $item->slug) }}">{{ $item->title }}</a>
+                                                    </li>
+                                                @endif
+                                            @endforeach
+                                            @foreach ($sub_sub_sub_cats as $item)
                                                 @if ($item->title[0] == 'C')
                                                     <li class="col-lg-3 col-sm-6"><a
                                                             href="{{ route('custom.product', $item->slug) }}">{{ $item->title }}</a>
@@ -880,6 +974,27 @@
                                                     </li>
                                                 @endif
                                             @endforeach
+                                            @foreach ($sub_cats as $item)
+                                                @if ($item->title[0] == 'D')
+                                                    <li class="col-lg-3 col-sm-6"><a
+                                                            href="{{ route('custom.product', $item->slug) }}">{{ $item->title }}</a>
+                                                    </li>
+                                                @endif
+                                            @endforeach
+                                            @foreach ($sub_sub_cats as $item)
+                                                @if ($item->title[0] == 'D')
+                                                    <li class="col-lg-3 col-sm-6"><a
+                                                            href="{{ route('custom.product', $item->slug) }}">{{ $item->title }}</a>
+                                                    </li>
+                                                @endif
+                                            @endforeach
+                                            @foreach ($sub_sub_sub_cats as $item)
+                                                @if ($item->title[0] == 'D')
+                                                    <li class="col-lg-3 col-sm-6"><a
+                                                            href="{{ route('custom.product', $item->slug) }}">{{ $item->title }}</a>
+                                                    </li>
+                                                @endif
+                                            @endforeach
                                         </ul>
                                     </div>
                                 </div>
@@ -893,6 +1008,27 @@
                                     <div class="letter_content_type">
                                         <ul class="row">
                                             @foreach ($others as $item)
+                                                @if ($item->title[0] == 'E')
+                                                    <li class="col-lg-3 col-sm-6"><a
+                                                            href="{{ route('custom.product', $item->slug) }}">{{ $item->title }}</a>
+                                                    </li>
+                                                @endif
+                                            @endforeach
+                                            @foreach ($sub_cats as $item)
+                                                @if ($item->title[0] == 'E')
+                                                    <li class="col-lg-3 col-sm-6"><a
+                                                            href="{{ route('custom.product', $item->slug) }}">{{ $item->title }}</a>
+                                                    </li>
+                                                @endif
+                                            @endforeach
+                                            @foreach ($sub_sub_cats as $item)
+                                                @if ($item->title[0] == 'E')
+                                                    <li class="col-lg-3 col-sm-6"><a
+                                                            href="{{ route('custom.product', $item->slug) }}">{{ $item->title }}</a>
+                                                    </li>
+                                                @endif
+                                            @endforeach
+                                            @foreach ($sub_sub_sub_cats as $item)
                                                 @if ($item->title[0] == 'E')
                                                     <li class="col-lg-3 col-sm-6"><a
                                                             href="{{ route('custom.product', $item->slug) }}">{{ $item->title }}</a>
@@ -918,6 +1054,27 @@
                                                     </li>
                                                 @endif
                                             @endforeach
+                                            @foreach ($sub_cats as $item)
+                                                @if ($item->title[0] == 'F')
+                                                    <li class="col-lg-3 col-sm-6"><a
+                                                            href="{{ route('custom.product', $item->slug) }}">{{ $item->title }}</a>
+                                                    </li>
+                                                @endif
+                                            @endforeach
+                                            @foreach ($sub_sub_cats as $item)
+                                                @if ($item->title[0] == 'F')
+                                                    <li class="col-lg-3 col-sm-6"><a
+                                                            href="{{ route('custom.product', $item->slug) }}">{{ $item->title }}</a>
+                                                    </li>
+                                                @endif
+                                            @endforeach
+                                            @foreach ($sub_sub_sub_cats as $item)
+                                                @if ($item->title[0] == 'F')
+                                                    <li class="col-lg-3 col-sm-6"><a
+                                                            href="{{ route('custom.product', $item->slug) }}">{{ $item->title }}</a>
+                                                    </li>
+                                                @endif
+                                            @endforeach
                                         </ul>
                                     </div>
                                 </div>
@@ -931,6 +1088,27 @@
                                     <div class="letter_content_type">
                                         <ul class="row">
                                             @foreach ($others as $item)
+                                                @if ($item->title[0] == 'G')
+                                                    <li class="col-lg-3 col-sm-6"><a
+                                                            href="{{ route('custom.product', $item->slug) }}">{{ $item->title }}</a>
+                                                    </li>
+                                                @endif
+                                            @endforeach
+                                            @foreach ($sub_cats as $item)
+                                                @if ($item->title[0] == 'G')
+                                                    <li class="col-lg-3 col-sm-6"><a
+                                                            href="{{ route('custom.product', $item->slug) }}">{{ $item->title }}</a>
+                                                    </li>
+                                                @endif
+                                            @endforeach
+                                            @foreach ($sub_sub_cats as $item)
+                                                @if ($item->title[0] == 'G')
+                                                    <li class="col-lg-3 col-sm-6"><a
+                                                            href="{{ route('custom.product', $item->slug) }}">{{ $item->title }}</a>
+                                                    </li>
+                                                @endif
+                                            @endforeach
+                                            @foreach ($sub_sub_sub_cats as $item)
                                                 @if ($item->title[0] == 'G')
                                                     <li class="col-lg-3 col-sm-6"><a
                                                             href="{{ route('custom.product', $item->slug) }}">{{ $item->title }}</a>
@@ -956,6 +1134,27 @@
                                                     </li>
                                                 @endif
                                             @endforeach
+                                            @foreach ($sub_cats as $item)
+                                                @if ($item->title[0] == 'H')
+                                                    <li class="col-lg-3 col-sm-6"><a
+                                                            href="{{ route('custom.product', $item->slug) }}">{{ $item->title }}</a>
+                                                    </li>
+                                                @endif
+                                            @endforeach
+                                            @foreach ($sub_sub_cats as $item)
+                                                @if ($item->title[0] == 'H')
+                                                    <li class="col-lg-3 col-sm-6"><a
+                                                            href="{{ route('custom.product', $item->slug) }}">{{ $item->title }}</a>
+                                                    </li>
+                                                @endif
+                                            @endforeach
+                                            @foreach ($sub_sub_sub_cats as $item)
+                                                @if ($item->title[0] == 'H')
+                                                    <li class="col-lg-3 col-sm-6"><a
+                                                            href="{{ route('custom.product', $item->slug) }}">{{ $item->title }}</a>
+                                                    </li>
+                                                @endif
+                                            @endforeach
                                         </ul>
                                     </div>
                                 </div>
@@ -969,6 +1168,27 @@
                                     <div class="letter_content_type">
                                         <ul class="row">
                                             @foreach ($others as $item)
+                                                @if ($item->title[0] == 'I')
+                                                    <li class="col-lg-3 col-sm-6"><a
+                                                            href="{{ route('custom.product', $item->slug) }}">{{ $item->title }}</a>
+                                                    </li>
+                                                @endif
+                                            @endforeach
+                                            @foreach ($sub_cats as $item)
+                                                @if ($item->title[0] == 'I')
+                                                    <li class="col-lg-3 col-sm-6"><a
+                                                            href="{{ route('custom.product', $item->slug) }}">{{ $item->title }}</a>
+                                                    </li>
+                                                @endif
+                                            @endforeach
+                                            @foreach ($sub_sub_cats as $item)
+                                                @if ($item->title[0] == 'I')
+                                                    <li class="col-lg-3 col-sm-6"><a
+                                                            href="{{ route('custom.product', $item->slug) }}">{{ $item->title }}</a>
+                                                    </li>
+                                                @endif
+                                            @endforeach
+                                            @foreach ($sub_sub_sub_cats as $item)
                                                 @if ($item->title[0] == 'I')
                                                     <li class="col-lg-3 col-sm-6"><a
                                                             href="{{ route('custom.product', $item->slug) }}">{{ $item->title }}</a>
@@ -994,6 +1214,27 @@
                                                     </li>
                                                 @endif
                                             @endforeach
+                                            @foreach ($sub_cats as $item)
+                                                @if ($item->title[0] == 'J')
+                                                    <li class="col-lg-3 col-sm-6"><a
+                                                            href="{{ route('custom.product', $item->slug) }}">{{ $item->title }}</a>
+                                                    </li>
+                                                @endif
+                                            @endforeach
+                                            @foreach ($sub_sub_cats as $item)
+                                                @if ($item->title[0] == 'J')
+                                                    <li class="col-lg-3 col-sm-6"><a
+                                                            href="{{ route('custom.product', $item->slug) }}">{{ $item->title }}</a>
+                                                    </li>
+                                                @endif
+                                            @endforeach
+                                            @foreach ($sub_sub_sub_cats as $item)
+                                                @if ($item->title[0] == 'J')
+                                                    <li class="col-lg-3 col-sm-6"><a
+                                                            href="{{ route('custom.product', $item->slug) }}">{{ $item->title }}</a>
+                                                    </li>
+                                                @endif
+                                            @endforeach
                                         </ul>
                                     </div>
                                 </div>
@@ -1007,6 +1248,27 @@
                                     <div class="letter_content_type">
                                         <ul class="row">
                                             @foreach ($others as $item)
+                                                @if ($item->title[0] == 'K')
+                                                    <li class="col-lg-3 col-sm-6"><a
+                                                            href="{{ route('custom.product', $item->slug) }}">{{ $item->title }}</a>
+                                                    </li>
+                                                @endif
+                                            @endforeach
+                                            @foreach ($sub_cats as $item)
+                                                @if ($item->title[0] == 'K')
+                                                    <li class="col-lg-3 col-sm-6"><a
+                                                            href="{{ route('custom.product', $item->slug) }}">{{ $item->title }}</a>
+                                                    </li>
+                                                @endif
+                                            @endforeach
+                                            @foreach ($sub_sub_cats as $item)
+                                                @if ($item->title[0] == 'K')
+                                                    <li class="col-lg-3 col-sm-6"><a
+                                                            href="{{ route('custom.product', $item->slug) }}">{{ $item->title }}</a>
+                                                    </li>
+                                                @endif
+                                            @endforeach
+                                            @foreach ($sub_sub_sub_cats as $item)
                                                 @if ($item->title[0] == 'K')
                                                     <li class="col-lg-3 col-sm-6"><a
                                                             href="{{ route('custom.product', $item->slug) }}">{{ $item->title }}</a>
@@ -1032,6 +1294,27 @@
                                                     </li>
                                                 @endif
                                             @endforeach
+                                            @foreach ($sub_cats as $item)
+                                                @if ($item->title[0] == 'L')
+                                                    <li class="col-lg-3 col-sm-6"><a
+                                                            href="{{ route('custom.product', $item->slug) }}">{{ $item->title }}</a>
+                                                    </li>
+                                                @endif
+                                            @endforeach
+                                            @foreach ($sub_sub_cats as $item)
+                                                @if ($item->title[0] == 'L')
+                                                    <li class="col-lg-3 col-sm-6"><a
+                                                            href="{{ route('custom.product', $item->slug) }}">{{ $item->title }}</a>
+                                                    </li>
+                                                @endif
+                                            @endforeach
+                                            @foreach ($sub_sub_sub_cats as $item)
+                                                @if ($item->title[0] == 'L')
+                                                    <li class="col-lg-3 col-sm-6"><a
+                                                            href="{{ route('custom.product', $item->slug) }}">{{ $item->title }}</a>
+                                                    </li>
+                                                @endif
+                                            @endforeach
                                         </ul>
                                     </div>
                                 </div>
@@ -1045,6 +1328,27 @@
                                     <div class="letter_content_type">
                                         <ul class="row">
                                             @foreach ($others as $item)
+                                                @if ($item->title[0] == 'M')
+                                                    <li class="col-lg-3 col-sm-6"><a
+                                                            href="{{ route('custom.product', $item->slug) }}">{{ $item->title }}</a>
+                                                    </li>
+                                                @endif
+                                            @endforeach
+                                            @foreach ($sub_cats as $item)
+                                                @if ($item->title[0] == 'M')
+                                                    <li class="col-lg-3 col-sm-6"><a
+                                                            href="{{ route('custom.product', $item->slug) }}">{{ $item->title }}</a>
+                                                    </li>
+                                                @endif
+                                            @endforeach
+                                            @foreach ($sub_sub_cats as $item)
+                                                @if ($item->title[0] == 'M')
+                                                    <li class="col-lg-3 col-sm-6"><a
+                                                            href="{{ route('custom.product', $item->slug) }}">{{ $item->title }}</a>
+                                                    </li>
+                                                @endif
+                                            @endforeach
+                                            @foreach ($sub_sub_sub_cats as $item)
                                                 @if ($item->title[0] == 'M')
                                                     <li class="col-lg-3 col-sm-6"><a
                                                             href="{{ route('custom.product', $item->slug) }}">{{ $item->title }}</a>
@@ -1070,6 +1374,27 @@
                                                     </li>
                                                 @endif
                                             @endforeach
+                                            @foreach ($sub_cats as $item)
+                                                @if ($item->title[0] == 'N')
+                                                    <li class="col-lg-3 col-sm-6"><a
+                                                            href="{{ route('custom.product', $item->slug) }}">{{ $item->title }}</a>
+                                                    </li>
+                                                @endif
+                                            @endforeach
+                                            @foreach ($sub_sub_cats as $item)
+                                                @if ($item->title[0] == 'N')
+                                                    <li class="col-lg-3 col-sm-6"><a
+                                                            href="{{ route('custom.product', $item->slug) }}">{{ $item->title }}</a>
+                                                    </li>
+                                                @endif
+                                            @endforeach
+                                            @foreach ($sub_sub_sub_cats as $item)
+                                                @if ($item->title[0] == 'N')
+                                                    <li class="col-lg-3 col-sm-6"><a
+                                                            href="{{ route('custom.product', $item->slug) }}">{{ $item->title }}</a>
+                                                    </li>
+                                                @endif
+                                            @endforeach
                                         </ul>
                                     </div>
                                 </div>
@@ -1083,6 +1408,27 @@
                                     <div class="letter_content_type">
                                         <ul class="row">
                                             @foreach ($others as $item)
+                                                @if ($item->title[0] == 'O')
+                                                    <li class="col-lg-3 col-sm-6"><a
+                                                            href="{{ route('custom.product', $item->slug) }}">{{ $item->title }}</a>
+                                                    </li>
+                                                @endif
+                                            @endforeach
+                                            @foreach ($sub_cats as $item)
+                                                @if ($item->title[0] == 'O')
+                                                    <li class="col-lg-3 col-sm-6"><a
+                                                            href="{{ route('custom.product', $item->slug) }}">{{ $item->title }}</a>
+                                                    </li>
+                                                @endif
+                                            @endforeach
+                                            @foreach ($sub_sub_cats as $item)
+                                                @if ($item->title[0] == 'O')
+                                                    <li class="col-lg-3 col-sm-6"><a
+                                                            href="{{ route('custom.product', $item->slug) }}">{{ $item->title }}</a>
+                                                    </li>
+                                                @endif
+                                            @endforeach
+                                            @foreach ($sub_sub_sub_cats as $item)
                                                 @if ($item->title[0] == 'O')
                                                     <li class="col-lg-3 col-sm-6"><a
                                                             href="{{ route('custom.product', $item->slug) }}">{{ $item->title }}</a>
@@ -1108,6 +1454,27 @@
                                                     </li>
                                                 @endif
                                             @endforeach
+                                            @foreach ($sub_cats as $item)
+                                                @if ($item->title[0] == 'P')
+                                                    <li class="col-lg-3 col-sm-6"><a
+                                                            href="{{ route('custom.product', $item->slug) }}">{{ $item->title }}</a>
+                                                    </li>
+                                                @endif
+                                            @endforeach
+                                            @foreach ($sub_sub_cats as $item)
+                                                @if ($item->title[0] == 'P')
+                                                    <li class="col-lg-3 col-sm-6"><a
+                                                            href="{{ route('custom.product', $item->slug) }}">{{ $item->title }}</a>
+                                                    </li>
+                                                @endif
+                                            @endforeach
+                                            @foreach ($sub_sub_sub_cats as $item)
+                                                @if ($item->title[0] == 'P')
+                                                    <li class="col-lg-3 col-sm-6"><a
+                                                            href="{{ route('custom.product', $item->slug) }}">{{ $item->title }}</a>
+                                                    </li>
+                                                @endif
+                                            @endforeach
                                         </ul>
                                     </div>
                                 </div>
@@ -1121,6 +1488,27 @@
                                     <div class="letter_content_type">
                                         <ul class="row">
                                             @foreach ($others as $item)
+                                                @if ($item->title[0] == 'Q')
+                                                    <li class="col-lg-3 col-sm-6"><a
+                                                            href="{{ route('custom.product', $item->slug) }}">{{ $item->title }}</a>
+                                                    </li>
+                                                @endif
+                                            @endforeach
+                                            @foreach ($sub_cats as $item)
+                                                @if ($item->title[0] == 'Q')
+                                                    <li class="col-lg-3 col-sm-6"><a
+                                                            href="{{ route('custom.product', $item->slug) }}">{{ $item->title }}</a>
+                                                    </li>
+                                                @endif
+                                            @endforeach
+                                            @foreach ($sub_sub_cats as $item)
+                                                @if ($item->title[0] == 'Q')
+                                                    <li class="col-lg-3 col-sm-6"><a
+                                                            href="{{ route('custom.product', $item->slug) }}">{{ $item->title }}</a>
+                                                    </li>
+                                                @endif
+                                            @endforeach
+                                            @foreach ($sub_sub_sub_cats as $item)
                                                 @if ($item->title[0] == 'Q')
                                                     <li class="col-lg-3 col-sm-6"><a
                                                             href="{{ route('custom.product', $item->slug) }}">{{ $item->title }}</a>
@@ -1146,6 +1534,27 @@
                                                     </li>
                                                 @endif
                                             @endforeach
+                                            @foreach ($sub_cats as $item)
+                                                @if ($item->title[0] == 'R')
+                                                    <li class="col-lg-3 col-sm-6"><a
+                                                            href="{{ route('custom.product', $item->slug) }}">{{ $item->title }}</a>
+                                                    </li>
+                                                @endif
+                                            @endforeach
+                                            @foreach ($sub_sub_cats as $item)
+                                                @if ($item->title[0] == 'R')
+                                                    <li class="col-lg-3 col-sm-6"><a
+                                                            href="{{ route('custom.product', $item->slug) }}">{{ $item->title }}</a>
+                                                    </li>
+                                                @endif
+                                            @endforeach
+                                            @foreach ($sub_sub_sub_cats as $item)
+                                                @if ($item->title[0] == 'R')
+                                                    <li class="col-lg-3 col-sm-6"><a
+                                                            href="{{ route('custom.product', $item->slug) }}">{{ $item->title }}</a>
+                                                    </li>
+                                                @endif
+                                            @endforeach
                                         </ul>
                                     </div>
                                 </div>
@@ -1159,6 +1568,27 @@
                                     <div class="letter_content_type">
                                         <ul class="row">
                                             @foreach ($others as $item)
+                                                @if ($item->title[0] == 'S')
+                                                    <li class="col-lg-3 col-sm-6"><a
+                                                            href="{{ route('custom.product', $item->slug) }}">{{ $item->title }}</a>
+                                                    </li>
+                                                @endif
+                                            @endforeach
+                                            @foreach ($sub_cats as $item)
+                                                @if ($item->title[0] == 'S')
+                                                    <li class="col-lg-3 col-sm-6"><a
+                                                            href="{{ route('custom.product', $item->slug) }}">{{ $item->title }}</a>
+                                                    </li>
+                                                @endif
+                                            @endforeach
+                                            @foreach ($sub_sub_cats as $item)
+                                                @if ($item->title[0] == 'S')
+                                                    <li class="col-lg-3 col-sm-6"><a
+                                                            href="{{ route('custom.product', $item->slug) }}">{{ $item->title }}</a>
+                                                    </li>
+                                                @endif
+                                            @endforeach
+                                            @foreach ($sub_sub_sub_cats as $item)
                                                 @if ($item->title[0] == 'S')
                                                     <li class="col-lg-3 col-sm-6"><a
                                                             href="{{ route('custom.product', $item->slug) }}">{{ $item->title }}</a>
@@ -1184,6 +1614,27 @@
                                                     </li>
                                                 @endif
                                             @endforeach
+                                            @foreach ($sub_cats as $item)
+                                                @if ($item->title[0] == 'T')
+                                                    <li class="col-lg-3 col-sm-6"><a
+                                                            href="{{ route('custom.product', $item->slug) }}">{{ $item->title }}</a>
+                                                    </li>
+                                                @endif
+                                            @endforeach
+                                            @foreach ($sub_sub_cats as $item)
+                                                @if ($item->title[0] == 'T')
+                                                    <li class="col-lg-3 col-sm-6"><a
+                                                            href="{{ route('custom.product', $item->slug) }}">{{ $item->title }}</a>
+                                                    </li>
+                                                @endif
+                                            @endforeach
+                                            @foreach ($sub_sub_sub_cats as $item)
+                                                @if ($item->title[0] == 'T')
+                                                    <li class="col-lg-3 col-sm-6"><a
+                                                            href="{{ route('custom.product', $item->slug) }}">{{ $item->title }}</a>
+                                                    </li>
+                                                @endif
+                                            @endforeach
                                         </ul>
                                     </div>
                                 </div>
@@ -1197,6 +1648,27 @@
                                     <div class="letter_content_type">
                                         <ul class="row">
                                             @foreach ($others as $item)
+                                                @if ($item->title[0] == 'U')
+                                                    <li class="col-lg-3 col-sm-6"><a
+                                                            href="{{ route('custom.product', $item->slug) }}">{{ $item->title }}</a>
+                                                    </li>
+                                                @endif
+                                            @endforeach
+                                            @foreach ($sub_cats as $item)
+                                                @if ($item->title[0] == 'U')
+                                                    <li class="col-lg-3 col-sm-6"><a
+                                                            href="{{ route('custom.product', $item->slug) }}">{{ $item->title }}</a>
+                                                    </li>
+                                                @endif
+                                            @endforeach
+                                            @foreach ($sub_sub_cats as $item)
+                                                @if ($item->title[0] == 'U')
+                                                    <li class="col-lg-3 col-sm-6"><a
+                                                            href="{{ route('custom.product', $item->slug) }}">{{ $item->title }}</a>
+                                                    </li>
+                                                @endif
+                                            @endforeach
+                                            @foreach ($sub_sub_sub_cats as $item)
                                                 @if ($item->title[0] == 'U')
                                                     <li class="col-lg-3 col-sm-6"><a
                                                             href="{{ route('custom.product', $item->slug) }}">{{ $item->title }}</a>
@@ -1222,6 +1694,27 @@
                                                     </li>
                                                 @endif
                                             @endforeach
+                                            @foreach ($sub_cats as $item)
+                                                @if ($item->title[0] == 'V')
+                                                    <li class="col-lg-3 col-sm-6"><a
+                                                            href="{{ route('custom.product', $item->slug) }}">{{ $item->title }}</a>
+                                                    </li>
+                                                @endif
+                                            @endforeach
+                                            @foreach ($sub_sub_cats as $item)
+                                                @if ($item->title[0] == 'V')
+                                                    <li class="col-lg-3 col-sm-6"><a
+                                                            href="{{ route('custom.product', $item->slug) }}">{{ $item->title }}</a>
+                                                    </li>
+                                                @endif
+                                            @endforeach
+                                            @foreach ($sub_sub_sub_cats as $item)
+                                                @if ($item->title[0] == 'V')
+                                                    <li class="col-lg-3 col-sm-6"><a
+                                                            href="{{ route('custom.product', $item->slug) }}">{{ $item->title }}</a>
+                                                    </li>
+                                                @endif
+                                            @endforeach
                                         </ul>
                                     </div>
                                 </div>
@@ -1241,6 +1734,27 @@
                                                     </li>
                                                 @endif
                                             @endforeach
+                                            @foreach ($sub_cats as $item)
+                                                @if ($item->title[0] == 'W')
+                                                    <li class="col-lg-3 col-sm-6"><a
+                                                            href="{{ route('custom.product', $item->slug) }}">{{ $item->title }}</a>
+                                                    </li>
+                                                @endif
+                                            @endforeach
+                                            @foreach ($sub_sub_cats as $item)
+                                                @if ($item->title[0] == 'W')
+                                                    <li class="col-lg-3 col-sm-6"><a
+                                                            href="{{ route('custom.product', $item->slug) }}">{{ $item->title }}</a>
+                                                    </li>
+                                                @endif
+                                            @endforeach
+                                            @foreach ($sub_sub_sub_cats as $item)
+                                                @if ($item->title[0] == 'W')
+                                                    <li class="col-lg-3 col-sm-6"><a
+                                                            href="{{ route('custom.product', $item->slug) }}">{{ $item->title }}</a>
+                                                    </li>
+                                                @endif
+                                            @endforeach
                                         </ul>
                                     </div>
                                 </div>
@@ -1254,6 +1768,27 @@
                                     <div class="letter_content_type">
                                         <ul class="row">
                                             @foreach ($others as $item)
+                                                @if ($item->title[0] == 'Z')
+                                                    <li class="col-lg-3 col-sm-6"><a
+                                                            href="{{ route('custom.product', $item->slug) }}">{{ $item->title }}</a>
+                                                    </li>
+                                                @endif
+                                            @endforeach
+                                            @foreach ($sub_cats as $item)
+                                                @if ($item->title[0] == 'Z')
+                                                    <li class="col-lg-3 col-sm-6"><a
+                                                            href="{{ route('custom.product', $item->slug) }}">{{ $item->title }}</a>
+                                                    </li>
+                                                @endif
+                                            @endforeach
+                                            @foreach ($sub_sub_cats as $item)
+                                                @if ($item->title[0] == 'Z')
+                                                    <li class="col-lg-3 col-sm-6"><a
+                                                            href="{{ route('custom.product', $item->slug) }}">{{ $item->title }}</a>
+                                                    </li>
+                                                @endif
+                                            @endforeach
+                                            @foreach ($sub_sub_sub_cats as $item)
                                                 @if ($item->title[0] == 'Z')
                                                     <li class="col-lg-3 col-sm-6"><a
                                                             href="{{ route('custom.product', $item->slug) }}">{{ $item->title }}</a>

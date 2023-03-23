@@ -120,13 +120,24 @@ class HomeController extends Controller
     public function softwareInfo()
     {
         $data['categories'] = Category::orderBy('id' ,'DESC')->limit(8)->get();
+        $data['products'] = Product::where('product_type','software')->where('product_status', 'product')
+                            ->select('products.id','products.rfq','products.slug','products.name','products.thumbnail','products.price','products.discount')
+                            ->inRandomOrder()
+                            ->limit(16)
+                            ->get();
         //dd($data['categories']);
         return view('frontend.pages.software.software_info',$data);
     }
 
     public function hardwareInfo()
     {
-        return view('frontend.pages.hardware.hardware_info');
+        $data['categories'] = Category::orderBy('id' ,'DESC')->limit(8)->get();
+        $data['products'] = Product::where('product_type','software')->where('product_status', 'product')
+                            ->select('products.id','products.rfq','products.slug','products.name','products.thumbnail','products.price','products.discount')
+                            ->inRandomOrder()
+                            ->limit(16)
+                            ->get();
+        return view('frontend.pages.hardware.hardware_info',$data);
     }
 
     //Feature Details
@@ -191,10 +202,12 @@ class HomeController extends Controller
     public function AllStory()
     {
         $data['tag'] = DB::table('client_stories')->pluck('tags');
-
-        $data['tag_items'] = json_decode($data['tag'], true);;
-        $data['featured_storys'] = ClientStory::inRandomOrder()->limit(4)->get();
-        $data['client_storys'] = ClientStory::latest()->paginate(3);
+        $data['tag_items'] = json_decode($data['tag'], true);
+        $data['featured_storys'] = ClientStory::where('featured','=', '1')->inRandomOrder()->limit(4)->get();
+        $data['client_storys'] = ClientStory::orderBy('id','Desc')->paginate(3);
+        $data['industries'] = Industry::latest()->select('id','title')->limit(6)->get();
+        $data['categories'] = Category::latest()->select('id','title','slug')->limit(6)->get();
+        $data['brands'] = Brand::latest()->select('id','title','slug')->limit(6)->get();
 
         return view('frontend.pages.story.all_story',$data);
     }
@@ -227,10 +240,12 @@ class HomeController extends Controller
     public function AllBlog()
     {
         $data['tag'] = DB::table('blogs')->pluck('tags');
-
         $data['tag_items'] = json_decode($data['tag'], true);
-        $data['featured_storys'] = Blog::inRandomOrder()->limit(4)->get();
-        $data['client_storys'] = Blog::latest()->paginate(3);
+        $data['featured_storys'] = Blog::where('featured','=', '1')->inRandomOrder()->limit(4)->get();
+        $data['client_storys'] = Blog::orderBy('id','Desc')->paginate(3);
+        $data['industries'] = Industry::latest()->select('id','title')->limit(6)->get();
+        $data['categories'] = Category::latest()->select('id','title','slug')->limit(6)->get();
+        $data['brands'] = Brand::latest()->select('id','title','slug')->limit(6)->get();
 
         return view('frontend.pages.blogs.blogs_all',$data);
     }
@@ -252,10 +267,12 @@ class HomeController extends Controller
     public function AllTechGlossy()
     {
         $data['tag'] = DB::table('tech_glossies')->pluck('tags');
-
         $data['tag_items'] = json_decode($data['tag'], true);
-        $data['featured_storys'] = TechGlossy::inRandomOrder()->limit(4)->get();
-        $data['client_storys'] = TechGlossy::latest()->paginate(3);
+        $data['featured_storys'] = TechGlossy::where('featured','=', '1')->inRandomOrder()->limit(4)->get();
+        $data['client_storys'] = TechGlossy::orderBy('id','Desc')->paginate(3);
+        $data['industries'] = Industry::latest()->select('id','title')->limit(6)->get();
+        $data['categories'] = Category::latest()->select('id','title','slug')->limit(6)->get();
+        $data['brands'] = Brand::latest()->select('id','title','slug')->limit(6)->get();
 
         return view('frontend.pages.tech.techglossy_all',$data);
     }
@@ -391,7 +408,10 @@ class HomeController extends Controller
             $data['sub_sub_cats'] = SubSubCategory::where('cat_id',$data['category']->id)->get();
             //$data['sub_sub_sub_cats'] = SubSubSubCategory::where('cat_id',$data['category']->id)->get();
 
-            $data['products'] = Product::where('cat_id', $data['category']->id)->where('product_status', 'product')->paginate(10);
+            $data['products'] = Product::where('cat_id', $data['category']->id)->where('product_status', 'product')
+                                ->select('products.id','products.rfq','products.slug','products.name','products.thumbnail','products.price','products.discount')
+                                ->paginate(8);
+
             $data['brands'] = DB::table('brands')
                             ->join('products', 'brands.id', '=', 'products.brand_id')
                             ->join('categories','products.cat_id', '=','categories.id' )
@@ -402,10 +422,12 @@ class HomeController extends Controller
         } elseif((SubCategory::where('slug',$category)->count()) > 0) {
             $data['category'] = SubCategory::where('slug',$category)->first();
             $data['sub_cats'] = SubSubCategory::where('sub_cat_id',$data['category']->id)->get();
-            $data['sub_sub_cats'] = SubSubSubCategory::where('sub_cat_id',$data['category']->id)->get();
+            $data['sub_sub_cats'] = SubSubSubCategory::where('sub_sub_cat_id',$data['category']->id)->get();
             //$data['sub_sub_sub_cats'] = SubSubSubCategory::where('cat_id',$data['category']->id)->get();
 
-            $data['products'] = Product::where('sub_cat_id', $data['category']->id)->where('product_status', 'product')->paginate(10);
+            $data['products'] = Product::where('sub_cat_id', $data['category']->id)->where('product_status', 'product')
+                                ->select('products.id','products.rfq','products.slug','products.name','products.thumbnail','products.price','products.discount')
+                                ->paginate(8);
             $data['brands'] = DB::table('brands')
                             ->join('products', 'brands.id', '=', 'products.brand_id')
                             ->join('sub_categories','products.sub_cat_id', '=','sub_categories.id' )
@@ -437,22 +459,19 @@ class HomeController extends Controller
 
     public function AllCategory()
     {
-        $data['categorys'] = Category::latest()->limit(8)->get();
-        $data['others'] = Category::latest()->select('categories.id','categories.slug','categories.title')->get();
-        $data['sub_cats'] = SubCategory::latest()->select('sub_categories.id','sub_categories.slug','sub_categories.title')->get();
-        $data['sub_sub_cats'] = SubSubCategory::latest()->select('sub_sub_categories.id','sub_sub_categories.slug','sub_sub_categories.title')->get();
-        $data['sub_sub_sub_cats'] = SubSubSubCategory::latest()->select('sub_sub_sub_categories.id','sub_sub_sub_categories.slug','sub_sub_sub_categories.title')->get();
-        $data['top_brands'] = Brand::where('category','Top')->latest()->get();
-        if ($data['top_brands']) {
-            $data['products'] = DB::table('products')
-                        ->join('brands', 'products.brand_id', '=', 'brands.id')
-                        ->select('products.id','products.rfq','products.slug','products.name','products.thumbnail','products.price','products.discount')
-                        ->where('brands.category', '=', 'Top')
-                        ->limit(16)
-                        ->get();
-        }else{
-            $data['products'] = Product::inRandomOrder()->where('product_status', 'product')->get();
-        }
+        $data['categorys'] = Category::orderBy('title' , 'ASC')->limit(8)->get();
+        $data['others'] = Category::orderBy('title' , 'ASC')->select('categories.id','categories.slug','categories.title')->get();
+        $data['sub_cats'] = SubCategory::orderBy('title' , 'ASC')->select('sub_categories.id','sub_categories.slug','sub_categories.title','sub_categories.image')->get();
+        $data['sub_sub_cats'] = SubSubCategory::orderBy('title' , 'ASC')->select('sub_sub_categories.id','sub_sub_categories.slug','sub_sub_categories.title','sub_sub_categories.image')->get();
+        $data['sub_sub_sub_cats'] = SubSubSubCategory::orderBy('title' , 'ASC')->select('sub_sub_sub_categories.id','sub_sub_sub_categories.slug','sub_sub_sub_categories.title','sub_sub_sub_categories.image')->get();
+
+        $data['products'] = DB::table('products')
+                            ->join('brands', 'products.brand_id', '=', 'brands.id')
+                            ->select('products.id','products.rfq','products.slug','products.name','products.thumbnail','products.price','products.discount')
+                            ->where('brands.category', '=', 'Top')
+                            ->limit(16)
+                            ->get();
+
         return view('frontend.pages.category.category_all',$data);
     }
 

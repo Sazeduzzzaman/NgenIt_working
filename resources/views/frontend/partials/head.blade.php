@@ -35,6 +35,7 @@
     <!-- Plugin link -->
     <link rel="stylesheet" href="{{ asset('frontend/lib/bootstrap/css/bootstrap.css')}}">
     <link href="{{ asset('frontend/assets/css/bootstrap5.min.css')}}" rel="stylesheet">
+    <link href="{{ asset('frontend/assets/js/filter.js')}}" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('frontend/lib/font-awesome/css/font-awesome.css')}}">
 
     <!-- Css link -->

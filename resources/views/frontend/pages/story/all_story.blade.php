@@ -115,21 +115,22 @@
     </style>
     <!--======// Header Title //======-->
     <section class="common_product_header pb-5"
-        style="background-image: url('https://openlisthtml.themever.net/images/banner.jpg');">
+        style="background-image: url('{{asset('frontend/images/story.jpg')}}');">
         <div class="container mb-5">
-            <h1>Client Stories</h1>
+            <h1 class="text-white">Client Stories</h1>
             <p class="text-center text-white">Through our deep partnerships with trusted brands, <br> Insight offers a
                 comprehensive catalog of software for business. </p>
-            {{-- <div class="row mb-5">
+            <div class="row mb-5">
                 <!--BUTTON START-->
                 <div class="d-flex justify-content-center align-items-center">
-                    <div class="">
-                        <div class="">
-                            <button class="common_button3" href="#">All Blog Are Here</button>
-                        </div>
-                    </div>
-                </div>
-            </div> --}}
+                <div class="m-4">
+                    <a href="{{route('all.blog')}}" class="common_button2" href="product_filters.html">All Blogs</a>
+                  </div>
+                  <div class="m-4">
+                    <a href="{{route('all.techglossy')}}" class="common_button3" href="#">All Tech Glossys</a>
+                  </div>
+              </div>
+            </div>
         </div>
     </section>
     <!----------End--------->
@@ -151,187 +152,72 @@
                         </div>
                         {{-- YOUR INTERESTS --}}
                         <div>
-                            <h6 class="pt-2">Your Interest</h6>
+                            <h6 class="pt-2">By Industries</h6>
                             <ul class="interests_list">
-                                <li>
-                                    <a href="#">
-                                        <i class="ion-android-radio-button-off"></i>Solutions </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <i class="ion-android-radio-button-off"></i>Software </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <i class="ion-android-radio-button-off"></i>Cloud </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <i class="ion-android-radio-button-off"></i>Artificial Intelligence </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <i class="ion-android-radio-button-off"></i>Data analytics </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <i class="ion-android-radio-button-off"></i>Digital transformation </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <i class="ion-android-radio-button-off"></i>Real-time data </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <i class="ion-android-radio-button-off"></i>Cybersecurity</a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <i class="ion-android-radio-button-off"></i>Hardware</a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <i class="ion-android-radio-button-off"></i>Workplace Services</a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <i class="ion-android-radio-button-off"></i>Data Center</a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <i class="ion-android-radio-button-off"></i>Data Management</a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <i class="ion-android-radio-button-off"></i>Transformation services</a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <i class="ion-android-radio-button-off"></i>Modern infrastructure</a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <i class="ion-android-radio-button-off"></i>Cybersecurity</a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <i class="ion-android-radio-button-off"></i>Networking</a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <i class="ion-android-radio-button-off"></i>Products</a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <i class="ion-android-radio-button-off"></i>Brand</a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <i class="ion-android-radio-button-off"></i>Learn more</a>
-                                </li>
+                                @foreach ($industries as $item)
+                                    <li>
+                                        <a href="#">
+                                            <i class="ion-android-radio-button-off"></i>{{$item->title}}
+                                        </a>
+                                    </li>
+                                @endforeach
+
                             </ul>
                         </div>
-                        {{-- Profile Edit --}}
                         <div>
-                            <div class="profile p-0">
-                                <h6 class="categories_tittle">Profile <span>Edit</span>
-                                </h6>
-                                <ul class=" d-flex justify-content-start">
-                                    <a href="" class="">
-                                        <img class="blog_writer" src="https://source.unsplash.com/random/470x380"
-                                            alt="" class="circle">
-                                    </a>
-                                    <a href="" class="">
-                                        <img class="blog_writer" src="https://source.unsplash.com/random/420x330"
-                                            alt="" class="circle">
-                                    </a>
-                                    <a href="" class="">
-                                        <img class="blog_writer" src="https://source.unsplash.com/random/440x350"
-                                            alt="" class="circle">
-                                    </a>
-                                    <a href="" class="">
-                                        <img class="blog_writer" src="https://source.unsplash.com/random/460x330"
-                                            alt="" class="circle">
-                                    </a>
-                                </ul>
-                                <ul class=" d-flex justify-content-start">
-                                    <a href="" class="">
-                                        <img class="blog_writer" src="https://source.unsplash.com/random/280x320"
-                                            alt="" class="circle">
-                                    </a>
-                                    <a href="" class="">
-                                        <img class="blog_writer" src="https://source.unsplash.com/random/380x320"
-                                            alt="" class="circle">
-                                    </a>
-                                    <a href="" class="">
-                                        <img class="blog_writer" src="https://source.unsplash.com/random/480x320"
-                                            alt="" class="circle">
-                                    </a>
-                                    <a href="" class="">
-                                        <img class="blog_writer" src="https://source.unsplash.com/random/580x320"
-                                            alt="" class="circle">
-                                    </a>
-                                </ul>
-                            </div>
+                            <h6 class="pt-2">By Categories</h6>
+                            <ul class="interests_list">
+                                @foreach ($categories as $item)
+                                    <li>
+                                        <a href="#">
+                                            <i class="ion-android-radio-button-off"></i>{{$item->title}}
+                                        </a>
+                                    </li>
+                                @endforeach
+
+                            </ul>
                         </div>
-                        {{-- Badges --}}
                         <div>
+                            <h6 class="pt-2">By Brands</h6>
+                            <ul class="interests_list">
+                                @foreach ($brands as $item)
+                                    <li>
+                                        <a href="#">
+                                            <i class="ion-android-radio-button-off"></i>{{$item->title}}
+                                        </a>
+                                    </li>
+                                @endforeach
+
+                            </ul>
+                        </div>
+
+                        {{-- <div>
                             <div class="badges">
-                                <h6 class="categories_tittle">Badges</h6>
-                                <ul class="badges_list pt-3">
-                                    <li>
-                                        <a href="#">
-                                            <i class="fa fa-shopping-cart"></i>
-                                            <span>6</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            <i class="fa fa-shopping-cart"></i>
-                                            <span>6</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            <i class="fa fa-shopping-cart"></i>
-                                            <span>6</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            <i class="fa fa-shopping-cart"></i>
-                                            <span>6</span>
-                                        </a>
-                                    </li>
-                                </ul>
-                                <ul class="badges_list">
-                                    <li>
-                                        <a href="#">
-                                            <i class="fa fa-shopping-cart"></i>
-                                            <span>6</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            <i class="fa fa-shopping-cart"></i>
-                                            <span>6</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            <i class="fa fa-shopping-cart"></i>
-                                            <span>6</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            <i class="fa fa-shopping-cart"></i>
-                                            <span>6</span>
-                                        </a>
-                                    </li>
-                                </ul>
+                                <h6 class="categories_tittle">Tags</h6>
+                                <div class="d-flex flex-column justify-content-center">
+                                    <div class="d-flex blogins_tags">
+                                        @foreach ($tag_items as $tag_item)
+                                            @php
+                                                $tags = explode(',', $tag_item);
+                                            @endphp
+                                            @if(!empty($_GET['tags']))
+                                                @php
+                                                $filterCat = explode(',',$_GET['tags']);
+                                                @endphp
+                                            @endif
+                                                @foreach($tags as $item)
+
+                                                    <div class="form-check">
+                                                        <input name="tag" value="{{$item}}" class="form-check-input custom" name="tags[]" type="checkbox" id="flexCheckDefault" onchange="this.form.submit()">
+                                                        <a href="" class="mr-2 text-black">#{{$item}}</a>
+                                                    </div>
+                                                @endforeach
+                                            @endforeach
+                                    </div>
+
+                                </div>
                             </div>
-                        </div>
+                        </div> --}}
                         {{-- SOCIAL SHARING --}}
 
                     </div>
@@ -343,66 +229,68 @@
                         @foreach ($client_storys as $item)
                             <div class="p-3 border shadow-lg mt-2"
                                 style="background-color: #fff;border-radius: 5px;">
-                                <div class="p-3">
-                                    {{-- Blog Image --}}
-                                    <img src="{{asset('storage/'.$item->image)}}" class="img-fluid" alt="">
-                                    <div class="row d-flex justify-content-between">
-                                        <div class="col mt-3">
-                                            {{-- Writer --}}
-                                            {{-- <div class="d-flex justify-content-between align-items-center">
-                                                <div class="d-flex justify-content-start">
-                                                    <img class="blog_writer"
-                                                        src="https://openlisthtml.themever.net/images/author-1.jpg"
-                                                        alt="">
-                                                    <div class="ml-3">
-                                                        <h6>Harry Ramos</h6>
-                                                        <p>5 Minute ago</p>
+                                <a class="text-black" href="{{route('story.details',$item->id)}}">
+                                    <div class="p-3">
+                                        {{-- Blog Image --}}
+                                        <img src="{{asset('storage/'.$item->image)}}" class="img-fluid" alt="">
+                                        <div class="row d-flex justify-content-between">
+                                            <div class="col mt-3">
+                                                {{-- Writer --}}
+                                                {{-- <div class="d-flex justify-content-between align-items-center">
+                                                    <div class="d-flex justify-content-start">
+                                                        <img class="blog_writer"
+                                                            src="https://openlisthtml.themever.net/images/author-1.jpg"
+                                                            alt="">
+                                                        <div class="ml-3">
+                                                            <h6>Harry Ramos</h6>
+                                                            <p>5 Minute ago</p>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                                <div class="d-flex justify-content-start">
-                                                    <div class="">
-                                                        <button class="btn btn-primary rounded-circle">
-                                                            <i class="fa fa-bars"></i>
-                                                        </button>
+                                                    <div class="d-flex justify-content-start">
+                                                        <div class="">
+                                                            <button class="btn btn-primary rounded-circle">
+                                                                <i class="fa fa-bars"></i>
+                                                            </button>
+                                                        </div>
                                                     </div>
+                                                </div> --}}
+                                                {{-- Writer End --}}
+                                                {{-- Blog Descrition --}}
+                                                <div>
+                                                    <h5 class="fw-semibold">{{$item->title}}</h5>
+                                                    <p>{{$item->header}}</p>
                                                 </div>
+                                                {{-- Blog Descrition End --}}
+                                            </div>
+                                        </div>
+                                        {{-- Blog Button --}}
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <div class="d-flex justify-content-center align-items-center">
+                                                <div class="bySocial col-12">
+                                                    <ul class="social-icon-links pull-right" style="font-size: 1.5rem;">
+                                                        {!! Share::page(url('/blog/'. $item->id . '/details'))->facebook()->twitter()->whatsapp() !!}
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            <div class="d-flex justify-content-center align-items-center">
+                                                {{-- <button class="btn btn-primary rounded-circle">
+                                                    <i class="fa fa-arrow-down"></i>
+                                                </button>
+                                                <button class="btn btn-primary rounded-circle ml-1">
+                                                    <i class="fa fa-arrow-up"></i>
+                                                </button> --}}
+                                                <p class="ml-2 pt-3"><strong>Created at :  </strong>{{$item->created_at->format('Y-m-d')}}</p>
+                                            </div>
+                                            {{-- <div class="d-flex justify-content-center align-items-center">
+                                                <button class="btn btn-primary rounded-circle">
+                                                    <i class="fa fa-comment"></i>
+                                                </button>
+                                                <p class="  ml-2 pt-3">15</p>
                                             </div> --}}
-                                            {{-- Writer End --}}
-                                            {{-- Blog Descrition --}}
-                                            <div>
-                                                <h5 class="fw-semibold">{{$item->title}}</h5>
-                                                <p>{{$item->header}}</p>
-                                            </div>
-                                            {{-- Blog Descrition End --}}
                                         </div>
+                                        {{-- Blog Button End --}}
                                     </div>
-                                    {{-- Blog Button --}}
-                                    <div class="d-flex justify-content-between align-items-center">
-                                        <div class="d-flex justify-content-center align-items-center">
-                                            <div class="bySocial col-12">
-                                                <ul class="social-icon-links pull-right" style="font-size: 1.5rem;">
-                                                    {!! Share::page(url('/blog/'. $item->id . '/details'))->facebook()->twitter()->whatsapp() !!}
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <div class="d-flex justify-content-center align-items-center">
-                                            {{-- <button class="btn btn-primary rounded-circle">
-                                                <i class="fa fa-arrow-down"></i>
-                                            </button>
-                                            <button class="btn btn-primary rounded-circle ml-1">
-                                                <i class="fa fa-arrow-up"></i>
-                                            </button> --}}
-                                            <p class="ml-2 pt-3"><strong>Created at :  </strong>{{$item->created_at->format('Y-m-d')}}</p>
-                                        </div>
-                                        {{-- <div class="d-flex justify-content-center align-items-center">
-                                            <button class="btn btn-primary rounded-circle">
-                                                <i class="fa fa-comment"></i>
-                                            </button>
-                                            <p class="  ml-2 pt-3">15</p>
-                                        </div> --}}
-                                    </div>
-                                    {{-- Blog Button End --}}
-                                </div>
+                                </a>
                             </div>
                         @endforeach
                     @endif
@@ -417,7 +305,7 @@
                             @if ($featured_storys)
                                 @foreach ($featured_storys as $item)
                                     <div class="pt-3 pb-3 d-flex justify-content-between popular_post">
-                                        <a href="{{route('blog.details',$item->id)}}" class="d-flex justify-content-between">
+                                        <a href="{{route('story.details',$item->id)}}" class="d-flex justify-content-between">
                                             <img class="rounded-circle img-fluid"
                                                 src="{{asset('storage/'.$item->image)}}" alt="" style="">
                                             <p class="ml-2">{{ Str::limit($item->title, 30) }}</p>

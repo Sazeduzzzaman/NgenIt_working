@@ -4,6 +4,13 @@
     @import url('https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.2.3/animate.min.css');
     /* @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css'); */
 
+    .custom_col-2{
+        flex: 0 0 auto;
+        width: 20%;
+    }
+    .feature_descrip{
+            height: 6rem;
+        }
     .tag_btn{
         background-color: #f7f6f5;
         color: black;
@@ -499,26 +506,28 @@
 </section>
 
 
+
     <!--======// Business section //======-->
     <section class="container padding_bottom pt-56 pb-3">
         <!-- home title -->
         <div class="row my-3">
             @if ($home)
                 <div class="home_title">
-                    <h5 class="home_title_heading"> {{$home->header1}}</h5>
-                    <p class="home_title_text">{{$home->header2}}</p>
+                    <h5 class="home_title_heading"> {{ $home->header1 }}</h5>
+                    <p class="home_title_text">{{ $home->header2 }}</p>
                 </div>
             @endif
         </div>
         <!-- business content -->
         <div class="row d-flex justify-content-center">
-            <div class="col-lg-2 col-md-6 mr-5">
+            <div class="custom_col-2 col-md-6 ">
                 <div class="text-center">
-                    <img src="{{ asset('storage/requestImg/' . $feature1->logo) }}" alt="" height="80px" width="85px">
+                    <img src="{{ asset('storage/requestImg/' . $feature1->logo) }}" alt="" height="80px"
+                        width="85px">
                     <h5>{{ Str::limit($feature1->badge, 16) }}</h5>
                 </div>
                 <div class="feature_description">
-                    <p>{{ Str::limit($feature1->header, 55) }}</p>
+                    <p class="feature_descrip" >{{ Str::limit($feature1->header, 55) }}</p>
                 </div>
                 <a href="{{ route('feature.details', $feature1->id) }}" class="business_item_button">
                     <span>Learn More</span>
@@ -528,15 +537,17 @@
                 </a>
             </div>
 
-            <div class="col-lg-2 col-md-6 mr-5">
+
+            <div class="custom_col-2 col-md-6">
                 <div class="text-center">
-                    <img src="{{ asset('storage/requestImg/' . $feature2->logo) }}" alt="" height="80px" width="85px">
+                    <img src="{{ asset('storage/requestImg/' . $feature2->logo) }}" alt="" height="80px"
+                        width="85px">
                     <h5>{{ Str::limit($feature2->badge, 16) }}</h5>
                 </div>
                 <div class="feature_description">
-                    <p>{{ Str::limit($feature2->header, 55) }}</p>
+                    <p  class="feature_descrip">{{ Str::limit($feature2->header, 55) }}</p>
                 </div>
-                <a href="{{ route('feature.details', $feature2->id) }}" class="business_item_button">
+                <a href="{{ route('feature.details', $feature1->id) }}" class="business_item_button">
                     <span>Learn More</span>
                     <span class="business_item_button_icon">
                         <i class="fa-solid fa-arrow-right-long"></i>
@@ -544,15 +555,17 @@
                 </a>
             </div>
 
-            <div class="col-lg-2 col-md-6 mr-5">
+
+            <div class="custom_col-2 col-md-6">
                 <div class="text-center">
-                    <img src="{{ asset('storage/requestImg/' . $feature3->logo) }}" alt="" height="80px" width="85px">
+                    <img src="{{ asset('storage/requestImg/' . $feature3->logo) }}" alt="" height="80px"
+                        width="85px">
                     <h5>{{ Str::limit($feature3->badge, 16) }}</h5>
                 </div>
                 <div class="feature_description">
-                    <p>{{ Str::limit($feature3->header, 55) }}</p>
+                    <p  class="feature_descrip">{{ Str::limit($feature3->header, 55) }}</p>
                 </div>
-                <a href="{{ route('feature.details', $feature3->id) }}" class="business_item_button">
+                <a href="{{ route('feature.details', $feature1->id) }}" class="business_item_button">
                     <span>Learn More</span>
                     <span class="business_item_button_icon">
                         <i class="fa-solid fa-arrow-right-long"></i>
@@ -560,15 +573,17 @@
                 </a>
             </div>
 
-            <div class="col-lg-2 col-md-6">
+
+            <div class="custom_col-2 col-md-6">
                 <div class="text-center">
-                    <img src="{{ asset('storage/requestImg/' . $feature4->logo) }}" alt="" height="80px" width="85px">
+                    <img src="{{ asset('storage/requestImg/' . $feature4->logo) }}" alt="" height="80px"
+                        width="85px">
                     <h5>{{ Str::limit($feature4->badge, 16) }}</h5>
                 </div>
                 <div class="feature_description">
-                    <p>{{ Str::limit($feature4->header, 55) }}</p>
+                    <p  class="feature_descrip">{{ Str::limit($feature4->header, 55) }}</p>
                 </div>
-                <a href="{{ route('feature.details', $feature4->id) }}" class="business_item_button">
+                <a href="{{ route('feature.details', $feature1->id) }}" class="business_item_button">
                     <span>Learn More</span>
                     <span class="business_item_button_icon">
                         <i class="fa-solid fa-arrow-right-long"></i>
@@ -576,28 +591,34 @@
                 </a>
             </div>
 
-            <div class="col-lg-2 col-md-6 ">
+
+            <div class="custom_col-2 col-md-6 ">
                 <div class="text-center">
-                    <img src="{{ asset('storage/requestImg/' . $feature5->logo) }}" alt="" height="80px" width="85px">
-                        <h5>{{ Str::limit($feature5->badge, 16) }}</h5>
+                    <img src="{{ asset('storage/requestImg/' . $feature5->logo) }}" alt="" height="80px"
+                        width="85px">
+                    <h5>{{ Str::limit($feature5->badge, 16) }}</h5>
                 </div>
                 <div class="feature_description">
-                    <p>{{ Str::limit($feature5->header, 55) }}</p>
+                    <p  class="feature_descrip">{{ Str::limit($feature5->header, 55) }}</p>
                 </div>
-                <a href="{{ route('feature.details', $feature5->id) }}" class="business_item_button">
+                <a href="{{ route('feature.details', $feature1->id) }}" class="business_item_button">
                     <span>Learn More</span>
                     <span class="business_item_button_icon">
                         <i class="fa-solid fa-arrow-right-long"></i>
                     </span>
                 </a>
             </div>
-          </div>
+        </div>
+
 
         <!-- button -->
         <div class="business_seftion_button py-3">
-            <a class="effect01" href="{{route('whatwedo')}}">Explore all of what we do</a>
+            <a class="effect01" href="{{ route('whatwedo') }}">Explore all of what we do</a>
         </div>
     </section>
+    <!---------End -------->
+
+
     <!---------End -------->
     <!--=======// Shop product //======-->
     <section class="padding_top learn_more">

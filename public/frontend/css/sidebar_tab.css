@@ -11,7 +11,9 @@ nav > .nav.nav-tabs{
   .nav-tabs .nav-link.active, .nav-tabs .nav-item.show .nav-link{
     background-color: black !important;
   }
-  nav > div a.nav-item.nav-link,
+
+
+  /* nav > div a.nav-item.nav-link,
   nav > div a.nav-item.nav-link.active
   {
     border: none;
@@ -29,7 +31,32 @@ nav > .nav.nav-tabs{
     left: -10%;
     border: 15px solid transparent;
     border-top-color: #000 ;
+  } */
+  nav > div a.nav-item.nav-link, nav > div a.nav-item.nav-link.active {
+    border: none;
+    padding: 14px 28px 10px !important;
+    color: #fff !important;
+    background: #ae0a46;
+    border-radius: 0;
+    text-align: start;
+    width: 50px;
+}
+
+
+  nav > div a.nav-item.nav-link.active:after
+   {
+    content: "";
+    position: relative;
+    bottom: -47px;
+    left: -20px;
+    border: 15px solid transparent;
+    border-top-color: #000 ;
   }
+
+
+
+
+
   .tab-content{
     background: transparent;
       line-height: 25px;

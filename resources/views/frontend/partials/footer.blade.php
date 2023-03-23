@@ -36,10 +36,10 @@
             <div class="footer_nav_list">
               <ul class="footer_link_text">
                 <li>
-                  <a href="{{route('contact')}}">Company</a>
+                  <a href="javascript:void(0);">Company</a>
                 </li>
                 <li>
-                  <a href="{{ route('all.brand') }}">Client</a>
+                  <a href="javascript:void(0);">Client</a>
                 </li>
                 <li>
                   <a href="{{route('contact')}}">Contact us</a>
@@ -61,13 +61,13 @@
                   <a href="{{ route('shop.html') }}">Products</a>
                 </li>
                 <li>
-                  <a href="">Solutions</a>
+                  <a href="{{ route('all.industry') }}">Solutions</a>
                 </li>
                 <li>
-                  <a href="#">Training</a>
+                  <a href="{{ route('all.industry') }}">Training</a>
                 </li>
                 <li>
-                  <a href="{{ route('all.industry') }}">Books</a>
+                  <a href="{{ route('shop.html') }}">Books</a>
                 </li>
               </ul>
             </div>

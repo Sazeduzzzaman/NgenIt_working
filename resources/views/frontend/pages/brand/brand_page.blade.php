@@ -186,10 +186,7 @@
 
     <!--======// Call to action //======-->
     <div class="call_to_action my-5"
-        style="background-image: linear-gradient(
-            rgba(0,0,0,0.8),
-            rgba(0,0,0,0.8)
-            ), url('{{ asset('storage/' . $brandpage->row_six_image) }}');">
+        style="background-image: url('{{ asset('storage/' . $brandpage->row_six_image) }}');">
         <div class="container">
             <div class="call_to_action_text w-75 mx-auto">
                 <h4 class="">{{ $brandpage->row_six_title }}</h4>

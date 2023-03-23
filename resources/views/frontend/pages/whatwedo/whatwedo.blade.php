@@ -1,5 +1,13 @@
 @extends('frontend.master')
 @section('content')
+<style>
+    .fa-4x {
+        font-size: 4em !important;
+    }
+    .img-fluid{
+        border-radius: 15px;
+    }
+</style>
     <div class="masthead">
         <div class="container mt-5">
         <div class="row align-items-center">
@@ -114,7 +122,7 @@
       <div class="row pt-5 pb-5">
         <div class="col-lg-6 col-md-6" col-sm-12>
           <div>
-            <img class="img-fluid" src="images/what_we_do/consulting_services.jpg" alt="">
+            <img class="img-fluid" src="{{asset('frontend/images/what_we_do/consulting_services.jpg')}}" alt="" >
           </div>
         </div>
         <div class="col-lg-6 col-md-6" col-sm-12>
@@ -191,7 +199,7 @@
         </div>
         <div class="col-lg-6 col-md-6" col-sm-12>
           <div>
-            <img class="img-fluid" src="images/what_we_do/managed.jpg" alt="">
+            <img class="img-fluid" src="{{asset('frontend/images/what_we_do/managed.jpg')}}" alt="">
           </div>
         </div>
       </div>
@@ -200,7 +208,7 @@
       <div class="row pt-5 pb-5">
         <div class="col-lg-6 col-md-6" col-sm-12>
           <div>
-            <img class="img-fluid" src="images/what_we_do/Hardware.jpg" alt="">
+            <img class="img-fluid" src="{{asset('frontend/images/what_we_do/Hardware.jpg')}}" alt="">
           </div>
         </div>
         <div class="col-lg-6 col-md-6" col-sm-12>

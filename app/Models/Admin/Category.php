@@ -15,7 +15,7 @@ class Category extends Model
     }
 
 
-    
+
     // public function sub_products(){
     //     return $this->hasMany('App\Models\Product','child_cat_id','id')->where('status','active');
     // }
@@ -26,5 +26,14 @@ class Category extends Model
     }
 
 
-    
+
+    public static function getSubcatByCat($slug){
+
+
+        return SubCategory::where('cat_id',$slug)->get();
+
+    }
+
+
+
 }
