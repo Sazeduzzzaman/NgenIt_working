@@ -518,8 +518,14 @@
                                     class="mi-message"></i>
                                 <span>Brand Page</span></a></li>
                         <li class="nav-item"><a href="{{ route('what-we-do-page.index') }}" class="nav-link"><i
+                            class="mi-message"></i>
+                        <span>What We Do Page</span></a></li>
+                        <li class="nav-item"><a href="{{ route('software-info-page.index') }}" class="nav-link"><i
                                 class="mi-message"></i>
-                            <span>What We Do Page</span></a></li>
+                            <span>Software Info Page</span></a></li>
+                        <li class="nav-item"><a href="{{ route('hardware-info-page.index') }}" class="nav-link"><i
+                                class="mi-message"></i>
+                            <span>Hardware Info Page</span></a></li>
                     </ul>
                 </li>
                 <li class="nav-item nav-item-submenu">

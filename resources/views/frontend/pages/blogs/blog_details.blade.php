@@ -237,15 +237,11 @@
                     {{-- Releted Solution --}}
                     <div class="border my-3 ">
                         <h4 class="text-center py-1 tag_title">TAGS</h4>
-                        <div class="d-flex flex-column justify-content-center">
-                            <div class="d-flex blogins_tags">
+                            <div class="text-start p-2">
                                 @foreach ($tags as $item)
-                                <a href="" class="mr-2 text-black">#{{$item}}</a>
+                                <a href="" class=" text-black">#{{$item}}</a>
                                 @endforeach
-
                             </div>
-
-                        </div>
                     </div>
                 </div>
             </div>

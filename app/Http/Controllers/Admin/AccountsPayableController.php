@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Support\Facades\File;
 use App\Models\Admin\AccountsPayable;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 
 class AccountsPayableController extends Controller
@@ -199,28 +200,17 @@ class AccountsPayableController extends Controller
      */
     public function destroy($id)
     {
-        $accountsPayable = AccountsPayable::find($id);
-        //invoice
-        if (File::exists(public_path('storage/files/') . $accountsPayable->invoice)) {
-            File::delete(public_path('storage/files/') . $accountsPayable->invoice);
-        }
-        if (File::exists(public_path('storage/files/') . $accountsPayable->invoice)) {
-            File::delete(public_path('storage/files/') . $accountsPayable->invoice);
-        }
-        if (File::exists(public_path('storage/files/') . $accountsPayable->invoice)) {
-            File::delete(public_path('storage/files/') . $accountsPayable->invoice);
+
+        $accountsPayable = AccountsPayable::findOrFail($id);
+        $filesToDelete = [$accountsPayable->invoice, $accountsPayable->principal_po];
+
+        foreach ($filesToDelete as $file) {
+            $path = 'storage/files/' . $file;
+            if (Storage::exists($path)) {
+                Storage::delete($path);
+            }
         }
 
-        //principal_po
-        if (File::exists(public_path('storage/files/') . $accountsPayable->principal_po)) {
-            File::delete(public_path('storage/files/') . $accountsPayable->principal_po);
-        }
-        if (File::exists(public_path('storage/files/') . $accountsPayable->principal_po)) {
-            File::delete(public_path('storage/files/') . $accountsPayable->principal_po);
-        }
-        if (File::exists(public_path('storage/files/') . $accountsPayable->principal_po)) {
-            File::delete(public_path('storage/files/') . $accountsPayable->principal_po);
-        }
         $accountsPayable->delete();
     }
 }

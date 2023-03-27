@@ -559,70 +559,57 @@ Route::controller(RFQController::class)->group(function(){
 
 
 
-
-
-
-
-
-
-
-
-
     ///Artisan Command
 
-Route::get('/link', function () {
-    Artisan::call('storage:link');
-    Toastr::success('Link Created Successfully');
-    return redirect()->back();
-});
-//Clear Cache facade value:
-Route::get('/clear-cache', function() {
-    $exitCode = Artisan::call('cache:clear');
-    Toastr::success('Cache facade value cleared');
-    return redirect()->back();
 
-});
 
-//Reoptimized class loader:
-Route::get('/optimize', function() {
-    $exitCode = Artisan::call('optimize:clear');
-    Toastr::success('Optimize cleared');
-    return redirect()->back();
-});
+  // A function to run Artisan commands
+  function runCommand($command, $successMessage)
+  {
+    // dd
+    Artisan::call($command); //dd($command)
+    Toastr::success($successMessage); //dd($successMessage)
+    return back();
+  }
 
-//Route cache:
-Route::get('/route-cache', function() {
-    $exitCode = Artisan::call('route:cache');
-    Toastr::success('Route Cached');
-    return redirect()->back();
-});
+  // Route for creating a symbolic link
+  Route::get('link', function () {
+    return runCommand('storage:link', 'Storage linked successfully');
+  });
 
-//Clear Route cache:
-Route::get('/clear-route', function() {
-    $exitCode = Artisan::call('route:clear');
-    Toastr::success('Route value cleared');
-    return redirect()->back();
-});
+  // Route for clearing cache
+  Route::get('clear-cache', function () {
+    return runCommand('cache:clear', 'Cache cleared');
+  });
 
-//Clear View cache:
-Route::get('/clear-view', function() {
-    $exitCode = Artisan::call('view:clear');
-    Toastr::success('View cleared');
-    return redirect()->back();
-});
+  // Route for optimizing class loader
+  Route::get('optimize', function () {
+    return runCommand('optimize:clear', 'Optimize cleared');
+  });
 
-//Clear Config cache:
-Route::get('/clear-config', function() {
-    $exitCode = Artisan::call('config:cache');
-    Toastr::success('Config cached');
-    return redirect()->back();
-});
+  // Route for caching routes
+  Route::get('route-cache', function () {
+    return runCommand('route:cache', 'Route cached');
+  });
 
-//Clear Config cache:
-Route::get('/migrate', function() {
-    $migrate = Artisan::call('migrate');
-    Toastr::success('Migration Completed');
-    return redirect()->back();
-});
+  // Route for clearing cached routes
+  Route::get('clear-route', function () {
+    return runCommand('route:clear', 'Route value cleared');
+  });
+
+  // Route for clearing view cache
+  Route::get('clear-view', function () {
+    return runCommand('view:clear', 'View cleared');
+  });
+
+  // Route for clearing config cache
+  Route::get('clear-config', function () {
+    return runCommand('config:cache', 'Config cached');
+  });
+
+  // Route for running database migrations
+  Route::get('migrate', function () {
+    return runCommand('migrate', 'Migration completed');
+  });
 
 });

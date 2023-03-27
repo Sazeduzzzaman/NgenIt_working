@@ -1,6 +1,22 @@
 @extends('frontend.master')
 @section('content')
     <style>
+        .global_call_section::after
+        {
+            background: url('{{asset('storage/'.$learnmore->background_image)}}');
+            content: "";
+            position: absolute;
+            height: 250px;
+            background-position: top center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-attachment: fixed;
+            width: 100%;
+            background-color: #cbc4c3;
+            top: 16%;
+            left: 0px;
+            z-index: -1;
+        }
         .container .title {
             color: #3c4858;
             text-decoration: none;
@@ -1303,7 +1319,7 @@
                 <!-- home title -->
                 <div class="home_title mt-3">
                     <div class="software_feature_title">
-                        <h1 class="text-center ">Brand Product</h1>
+                        <h1 class="text-center ">Contents</h1>
                     </div>
                     <p class="home_title_text">See how we’ve helped organizations of all sizes <span
                             class="font-weight-bold">across every industry</span>
@@ -1318,107 +1334,88 @@
                             <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
                                 <a class="nav-item nav-link active" id="nav-healthcare" data-toggle="tab"
                                     href="#nav-home" role="tab" aria-controls="nav-home"
-                                    aria-selected="true">Healthcare</a>
+                                    aria-selected="true">{{$story1->badge}}</a>
                                 <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile"
-                                    role="tab" aria-controls="nav-profile" aria-selected="false">HIGHER EDUCATION</a>
+                                    role="tab" aria-controls="nav-profile" aria-selected="false">{{$story2->badge}}</a>
                                 <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact"
-                                    role="tab" aria-controls="nav-contact" aria-selected="false">MINING</a>
+                                    role="tab" aria-controls="nav-contact" aria-selected="false">{{$story3->badge}}</a>
                                 <a class="nav-item nav-link" id="nav-about-tab" data-toggle="tab" href="#nav-about"
-                                    role="tab" aria-controls="nav-about" aria-selected="false">ENERGY</a>
+                                    role="tab" aria-controls="nav-about" aria-selected="false">{{$story4->badge}}</a>
                             </div>
                         </nav>
+                        @php
+                        $tags_1=explode(',',$story1->tags);
+                        $tags_2=explode(',',$story2->tags);
+                        $tags_3=explode(',',$story3->tags);
+                        $tags_4=explode(',',$story4->tags);
+
+                        @endphp
                         <div class="tab-content py-3 px-3 px-sm-0" id="nav-tabContent">
-                            <div class="tab-pane fade show active" id="nav-home" role="tabpanel"
-                                aria-labelledby="nav-healthcare">
+                            <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-healthcare">
+                                <div class="row">
+                                <div class="col-lg-4 col-md-4 col-sm-12">
+                                    <div class="tab_side_image">
+                                    <img src="{{ asset('storage/' . $story1->image) }}" alt="">
+                                    </div>
+                                </div>
+                                <div class="col-lg-8 col-md-6 col-sm-12">
+                                    <h5 class="home_title_heading" style="text-align: left;">{{$story1->title}} </h5>
+                                    <p>{{$story1->header}}</p>
+                                    <div class="home_card_button p-2">
+                                        <a class="effect01" href="{{route('blog.details',$story1->id)}}">Read more</a>
+                                    </div>
+                                </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
                                 <div class="row">
                                     <div class="col-lg-4 col-md-4 col-sm-12">
-                                        <div class="tab_side_image p-5">
-                                            <img src="https://images.unsplash.com/photo-1547082299-de196ea013d6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80"
-                                                alt="">
-                                        </div>
+                                    <div class="tab_side_image">
+                                        <img src="{{ asset('storage/' . $story2->image) }}" alt="">
+                                    </div>
                                     </div>
                                     <div class="col-lg-8 col-md-6 col-sm-12">
-                                        <h5 class="home_title_heading" style="text-align: left;">Healthcare </h5>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil voluptatem error
-                                            omnis facere beatae exercitationem, itaque repudiandae placeat modi velit sit
-                                            accusantium unde iure at! Ipsam fugit soluta similique quasi.itaque repudiandae
-                                            placeat modi velit sit accusantium unde iure at! Ipsam fugit soluta similique
-                                            quasi.itaque repudiandae placeat modi velit sit accusantium unde iure at! Ipsam
-                                            fugit soluta similique quasi.itaque repudiandae placeat modi velit sit
-                                            accusantium unde iure at! Ipsam fugit soluta similique quasi.itaque repudiandae
-                                            placeat modi velit sit accusantium unde iure at! Ipsam fugit soluta similique
-                                            quasi.</p>
+                                    <h5 class="home_title_heading" style="text-align: left;">{{$story2->title}} </h5>
+                                    <p>{{$story2->header}}</p>
+                                    <div class="home_card_button p-2">
+                                        <a class="effect01" href="{{route('blog.details',$story2->id)}}">Read more</a>
+                                    </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="tab-pane fade" id="nav-profile" role="tabpanel"
-                                aria-labelledby="nav-profile-tab">
+                            <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
                                 <div class="row">
                                     <div class="col-lg-4 col-md-4 col-sm-12">
-                                        <div class="tab_side_image p-5">
-                                            <img src="https://images.unsplash.com/photo-1547082299-de196ea013d6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80"
-                                                alt="">
-                                        </div>
+                                    <div class="tab_side_image">
+                                        <img src="{{ asset('storage/' . $story3->image) }}" alt="">
+                                    </div>
                                     </div>
                                     <div class="col-lg-8 col-md-6 col-sm-12">
-                                        <h5 class="home_title_heading" style="text-align: left;">Healthcare </h5>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil voluptatem error
-                                            omnis facere beatae exercitationem, itaque repudiandae placeat modi velit sit
-                                            accusantium unde iure at! Ipsam fugit soluta similique quasi.itaque repudiandae
-                                            placeat modi velit sit accusantium unde iure at! Ipsam fugit soluta similique
-                                            quasi.itaque repudiandae placeat modi velit sit accusantium unde iure at! Ipsam
-                                            fugit soluta similique quasi.itaque repudiandae placeat modi velit sit
-                                            accusantium unde iure at! Ipsam fugit soluta similique quasi.itaque repudiandae
-                                            placeat modi velit sit accusantium unde iure at! Ipsam fugit soluta similique
-                                            quasi.</p>
+                                    <h5 class="home_title_heading" style="text-align: left;">{{$story3->title}} </h5>
+                                    <p>{{$story3->header}}</p>
+                                    <div class="home_card_button p-2">
+                                        <a class="effect01" href="{{route('story.details',$story3->id)}}">Read more</a>
+                                    </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="tab-pane fade" id="nav-contact" role="tabpanel"
-                                aria-labelledby="nav-contact-tab">
+                            <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
                                 <div class="row">
                                     <div class="col-lg-4 col-md-4 col-sm-12">
-                                        <div class="tab_side_image p-5">
-                                            <img src="https://images.unsplash.com/photo-1547082299-de196ea013d6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80"
-                                                alt="">
-                                        </div>
+                                    <div class="tab_side_image">
+                                        <img src="{{ asset('storage/' . $story4->image) }}" alt="">
+                                    </div>
                                     </div>
                                     <div class="col-lg-8 col-md-6 col-sm-12">
-                                        <h5 class="home_title_heading" style="text-align: left;">Healthcare </h5>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil voluptatem error
-                                            omnis facere beatae exercitationem, itaque repudiandae placeat modi velit sit
-                                            accusantium unde iure at! Ipsam fugit soluta similique quasi.itaque repudiandae
-                                            placeat modi velit sit accusantium unde iure at! Ipsam fugit soluta similique
-                                            quasi.itaque repudiandae placeat modi velit sit accusantium unde iure at! Ipsam
-                                            fugit soluta similique quasi.itaque repudiandae placeat modi velit sit
-                                            accusantium unde iure at! Ipsam fugit soluta similique quasi.itaque repudiandae
-                                            placeat modi velit sit accusantium unde iure at! Ipsam fugit soluta similique
-                                            quasi.</p>
+                                    <h5 class="home_title_heading" style="text-align: left;">{{$story4->title}} </h5>
+                                    <p>{{$story4->header}}</p>
+                                    <div class="home_card_button p-2">
+                                        <a class="effect01" href="{{route('story.details',$story4->id)}}">Read more</a>
+                                    </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="tab-pane fade" id="nav-about" role="tabpanel" aria-labelledby="nav-about-tab">
-                                <div class="row">
-                                    <div class="col-lg-4 col-md-4 col-sm-12">
-                                        <div class="tab_side_image p-5">
-                                            <img src="https://images.unsplash.com/photo-1547082299-de196ea013d6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80"
-                                                alt="">
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-8 col-md-6 col-sm-12">
-                                        <h5 class="home_title_heading" style="text-align: left;">Healthcare </h5>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil voluptatem error
-                                            omnis facere beatae exercitationem, itaque repudiandae placeat modi velit sit
-                                            accusantium unde iure at! Ipsam fugit soluta similique quasi.itaque repudiandae
-                                            placeat modi velit sit accusantium unde iure at! Ipsam fugit soluta similique
-                                            quasi.itaque repudiandae placeat modi velit sit accusantium unde iure at! Ipsam
-                                            fugit soluta similique quasi.itaque repudiandae placeat modi velit sit
-                                            accusantium unde iure at! Ipsam fugit soluta similique quasi.itaque repudiandae
-                                            placeat modi velit sit accusantium unde iure at! Ipsam fugit soluta similique
-                                            quasi.</p>
-                                    </div>
-                                </div>
-                            </div>
+
                         </div>
                     </div>
                 </div>
@@ -1430,22 +1427,22 @@
     <!--=====// Global call section //=====-->
     <section class="global_call_section section_padding">
         <div class="container">
-            <!-- content -->
-            @php
+          <!-- content -->
+          @php
             $sentence = $learnmore->consult_title;
-            @endphp
-            <div class="global_call_section_content">
+          @endphp
+          <div class="global_call_section_content">
             <div class="home_title" style="width: 100%; margin: 0px;">
-                <h5 class="home_title_heading" style="text-align: left; color: #fff;">
+              <h5 class="home_title_heading" style="text-align: left; color: #fff;">
                 <span>{{\Illuminate\Support\Str::substr($sentence, 0, 1)}}</span>{{ \Illuminate\Support\Str::substr($sentence, 1) }}
 
-                </h5>
-                <p class="home_title_text text-white" style="text-align: left;">{{$learnmore->consult_short_des}}</p>
-                <div class="business_seftion_button" style="text-align: left;">
+              </h5>
+              <p class="home_title_text text-white" style="text-align: left;">{{$learnmore->consult_short_des}}</p>
+              <div class="business_seftion_button" style="text-align: left;">
                 <a href="#Contact">Explore business outcomes</a>
-                </div>
+              </div>
             </div>
-            </div>
+          </div>
         </div>
     </section>
     <!---------End -------->

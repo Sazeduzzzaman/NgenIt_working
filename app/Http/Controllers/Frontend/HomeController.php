@@ -418,7 +418,7 @@ class HomeController extends Controller
                             ->where('categories.id', '=', $data['category']->id)
                             ->select('brands.id','brands.title','brands.image')
                             ->distinct()
-                            ->get();
+                            ->paginate(18);
         } elseif((SubCategory::where('slug',$category)->count()) > 0) {
             $data['category'] = SubCategory::where('slug',$category)->first();
             $data['sub_cats'] = SubSubCategory::where('sub_cat_id',$data['category']->id)->get();
@@ -434,7 +434,8 @@ class HomeController extends Controller
                             ->where('sub_categories.id', '=', $data['category']->id)
                             ->select('brands.id','brands.title','brands.image')
                             ->distinct()
-                            ->get();
+                            ->paginate(18);
+
         }
 
         elseif((SubSubCategory::where('slug',$category)->count()) > 0) {
@@ -443,14 +444,17 @@ class HomeController extends Controller
             $data['sub_sub_cats'] = '';
             //$data['sub_sub_sub_cats'] = SubSubSubCategory::where('cat_id',$data['category']->id)->get();
 
-            $data['products'] = Product::where('sub_sub_cat_id', $data['category']->id)->where('product_status', 'product')->paginate(10);
+            $data['products'] = Product::where('sub_sub_cat_id', $data['category']->id)->where('product_status', 'product')
+                                ->select('products.id','products.rfq','products.slug','products.name','products.thumbnail','products.price','products.discount')
+                                ->paginate(8);
             $data['brands'] = DB::table('brands')
                             ->join('products', 'brands.id', '=', 'products.brand_id')
                             ->join('sub_sub_categories','products.sub_sub_cat_id', '=','sub_sub_categories.id' )
                             ->where('sub_sub_categories.id', '=', $data['category']->id)
                             ->select('brands.id','brands.title','brands.image')
                             ->distinct()
-                            ->get();
+                            ->paginate(18);
+
         }
 
         return view('frontend.pages.category.category', $data);
@@ -592,7 +596,7 @@ class HomeController extends Controller
 
     public function SoftwareCommon()
     {
-        $data['learnmore'] = LearnMore::orderBy('id','DESC')->select('learn_mores.industry_header','learn_mores.consult_title','learn_mores.consult_short_des')->first();
+        $data['learnmore'] = LearnMore::orderBy('id','DESC')->select('learn_mores.industry_header','learn_mores.consult_title','learn_mores.consult_short_des','learn_mores.background_image')->first();
         $data['products'] = Product::where('product_type','software')->where('product_status', 'product')
                             ->select('products.id','products.rfq','products.slug','products.name','products.thumbnail','products.price','products.discount')
                             ->inRandomOrder()
@@ -613,21 +617,12 @@ class HomeController extends Controller
                             ->where('products.product_type', '=', 'software')
                             ->select('brands.id','brands.slug','brands.title','brands.image')
                             ->distinct()->paginate(8);
-        // $data['industries']  = DB::table('industries')
-        //                     ->join('products', 'industires.id', '=', 'products.brand_id')
-        //                     ->where('products.product_type', '=', 'software')
-        //                     ->select('brands.id','brands.slug','brands.title','brands.image')
-        //                     ->distinct()->get();
+
         $data['software_products'] = Product::where('product_type','software')->where('product_status', 'product')->paginate(10)->unique('brand_id');
-        // $data['featured_brands'] = Brand::where('category','Featured')->orderBy('id','DESC')->get();
-        // $data['others'] = Brand::all();
-        // $data['story1'] = TechGlossy::inRandomOrder()->first();
-        // $data['story2'] = Blog::inRandomOrder()->first();
-        // $data['story3'] = ClientStory::inRandomOrder()->first();
-        // $data['techglossy'] = TechGlossy::inRandomOrder()->first();
-        // $data['features'] = Client::inRandomOrder()->limit(2)->get();
-        // $data['learnmore'] = LearnMore::orderBy('id','DESC')->select('learn_mores.industry_header')->first();
-        // $data['setting'] = Setting::latest()->first();
+        $data['story1'] = Blog::inRandomOrder()->first();
+        $data['story2'] = Blog::inRandomOrder()->where('id','!=',$data['story1']->id)->first();
+        $data['story3'] = ClientStory::inRandomOrder()->first();
+        $data['story4'] = ClientStory::inRandomOrder()->where('id','!=',$data['story3']->id)->first();
         $data['industrys'] = Industry::latest()->select('industries.id','industries.logo','industries.title')->get();
         $data['random_industries'] = Industry::inRandomOrder()->select('industries.id','industries.title')->limit(4)->get();
         return view('frontend.pages.software.allsoftware',$data);

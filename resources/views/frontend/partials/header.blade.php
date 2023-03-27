@@ -237,9 +237,9 @@
                                                         class="fa-solid fa-chevron-right"></i></a>
                                                 <a class="dropdown-item" href="{{ route('hardware.info') }}">Hardware <i
                                                         class="fa-solid fa-chevron-right"></i></a>
-                                                <a class="dropdown-item" href="{{ route('software.info') }}">Training <i
+                                                <a class="dropdown-item" href="#">Training <i
                                                         class="fa-solid fa-chevron-right"></i></a>
-                                                <a class="dropdown-item" href="{{ route('software.info') }}">Books <i
+                                                <a class="dropdown-item" href="#">Books <i
                                                         class="fa-solid fa-chevron-right"></i></a>
                                             </div>
                                             <div class="col-lg-4">
@@ -385,9 +385,9 @@
                                                     <i class="fa-solid fa-chevron-right"></i></a>
                                                 <a class="dropdown-item" href="{{ route('hardware.info') }}">Hardware
                                                     <i class="fa-solid fa-chevron-right"></i></a>
-                                                <a class="dropdown-item" href="{{ route('software.info') }}">Training
+                                                <a class="dropdown-item" href="#">Training
                                                     <i class="fa-solid fa-chevron-right"></i></a>
-                                                <a class="dropdown-item" href="{{ route('software.info') }}">Books <i
+                                                <a class="dropdown-item" href="#">Books <i
                                                         class="fa-solid fa-chevron-right"></i></a>
                                             </div>
                                             <div class="col-lg-4">

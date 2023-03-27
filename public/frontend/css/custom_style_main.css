@@ -3147,7 +3147,7 @@
   .common_product_header h3 {
     text-align: center;
     font-size: 18px;
-    line-height: 44px;
+    line-height: 30px;
     color: rgb(255, 252, 252);
     padding: 0% 10%;
     font-family: "klinic-slab", "Helvetica Neue", "Helvetica", Helvetica, Arial,
@@ -5995,7 +5995,7 @@
 
   /*- Background Color--*/
   .integrated_security {
-    padding: 60px 0px;
+    padding: 20px 0px;
     background: linear-gradient(to right, #ae0a46 0%, #ae0a46
     #ae0a46 51%, #582873 100%);
   }
@@ -6143,7 +6143,7 @@
     font-size: 40px;
     margin-bottom: 25px;
     font-weight: 400;
-    color: black !important;
+    color: white !important;
     text-align: center;
   }
 
@@ -6153,7 +6153,7 @@
     margin-bottom: 30px;
     font-weight: 300;
     text-align: center;
-    color: black !important;
+    color: white !important;
   }
 
   /*================================*/
@@ -6452,6 +6452,7 @@
   }
 
   .we_serve_itemWrapper {
+
     margin-top: 20px;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -6461,10 +6462,11 @@
   .we_serve_item {
     padding: 10px 35px 10px;
     display: block;
+    height: 150px;
   }
 
   .we_serve_item_image {
-    height: 60px;
+    height: 60px;.call_to_action_text h4
     width: 60px;
     margin: 0px auto 6px;
   }

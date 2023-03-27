@@ -857,12 +857,12 @@ a {
     background: none;
     border: none;
     border-bottom: 1px solid #666;
-    color: #ddd;
+    color: #252525;
     font-size: 14px;
     text-transform: uppercase;
     outline: none;
     transition: border-color .2s;
-  }
+}
 
   .app-form-control::placeholder {
     color: #666;

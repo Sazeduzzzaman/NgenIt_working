@@ -1,5 +1,10 @@
 @extends('frontend.master')
 @section('content')
+<style>
+    .gradient_bg{
+        background-image: linear-gradient(to right top, #ae0a46, #a70a43, #9f0940, #98083d, #91083a, #91083a, #91083a, #91083a, #98083d, #9f0940, #a70a43, #ae0a46);
+    }
+</style>
     <!--======// Header Title //======-->
     <section class="common_product_header"
         style="background-image: url('{{ asset('storage/requestImg/' . $solution->banner_image) }}');">
@@ -163,9 +168,9 @@
     <!----------End--------->
 
     <!--======// Gradian Background //======-->
-    <section class="my-3">
+    <section class=" gradient_bg" style="">
         <div class="container">
-            <div class="call_to_action_text">
+            <div class="call_to_action_text py-4">
                 <h4 class="section_title">{{ $solution->row_three_title }}</h4>
                 <p>{{ $solution->row_three_header }}</p>
             </div>

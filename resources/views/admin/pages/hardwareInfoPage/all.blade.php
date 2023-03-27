@@ -10,7 +10,7 @@
                     <div class="breadcrumb py-2">
                         <a href="index.html" class="breadcrumb-item"><i class="ph-house"></i></a>
                         <a href="{{ route('admin.dashboard') }}" class="breadcrumb-item">Home</a>
-                        <span class="breadcrumb-item active">What We Do Pages Management</span>
+                        <span class="breadcrumb-item active">Hardware Info Pages Management</span>
                     </div>
 
                     <a href="#breadcrumb_elements"
@@ -30,10 +30,10 @@
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-lg-9">
-                                    <h4 class="text-center">All What We Do Pages</h4>
+                                    <h4 class="text-center">All Hardware Info Pages</h4>
                                 </div>
                                 <div class="col-lg-4">
-                                    <a href="{{ route('what-we-do-page.create') }}" type="button"
+                                    <a href="{{ route('hardware-info-page.create') }}" type="button"
                                         class="btn btn-sm btn-success btn-labeled btn-labeled-start float-end">
                                         <span class="btn-labeled-icon bg-black bg-opacity-20">
                                             <i class="icon-plus2"></i>
@@ -50,7 +50,8 @@
                         <div class="content">
                             <div class="card">
                                 <div class="card-body">
-                                    <table class="datatable table table-bordered text-center table-hover whatWeDoPagesDT">
+                                    <table
+                                        class="datatable table table-bordered text-center table-hover hardwareInfoPageDT">
                                         <thead>
                                             <tr>
                                                 <th width="20%">Sl No:</th>
@@ -59,23 +60,22 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-
                                             @php
                                                 $words = ['one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine'];
                                             @endphp
 
-                                            @if ($whatWeDoPages)
-                                                @foreach ($whatWeDoPages as $key => $whatWeDoPage)
+                                            @if ($hardwareInfoPages)
+                                                @foreach ($hardwareInfoPages as $key => $hardwareInfoPage)
                                                     <tr>
                                                         <td>{{ $loop->iteration }} </td>
                                                         <td>{{ isset($words[$key]) ? Str::ucfirst($words[$key]) . ' ' . 'Tamplate' : 'Number out of range' }}
                                                         </td>
                                                         <td class="text-center">
-                                                            <a href="{{ route('what-we-do-page.edit', [$whatWeDoPage->id]) }}"
+                                                            <a href="{{ route('hardware-info-page.edit', [$hardwareInfoPage->id]) }}"
                                                                 class="text-primary mx-2">
                                                                 <i class="icon-pencil"></i>
                                                             </a>
-                                                            <a href="{{ route('what-we-do-page.destroy', [$whatWeDoPage->id]) }}"
+                                                            <a href="{{ route('hardware-info-page.destroy', [$hardwareInfoPage->id]) }}"
                                                                 class="text-danger delete mx-2">
                                                                 <i class="delete icon-trash"></i>
                                                             </a>
@@ -102,16 +102,18 @@
 
 @endsection
 
-@push('scripts')
-    <script type="text/javascript">
-        $('.whatWeDoPagesDT').DataTable({
-            dom: '<"datatable-header"fl><"datatable-scroll"t><"datatable-footer"ip>',
-            "iDisplayLength": 10,
-            "lengthMenu": [10, 26, 30, 50],
-            columnDefs: [{
-                orderable: false,
-                targets: [2],
-            }, ],
-        });
-    </script>
-@endpush
+@once
+    @push('scripts')
+        <script type="text/javascript">
+            $('.hardwareInfoPageDT').DataTable({
+                dom: '<"datatable-header"fl><"datatable-scroll"t><"datatable-footer"ip>',
+                "iDisplayLength": 10,
+                "lengthMenu": [10, 26, 30, 50],
+                columnDefs: [{
+                    orderable: false,
+                    targets: [2],
+                }, ],
+            });
+        </script>
+    @endpush
+@endonce

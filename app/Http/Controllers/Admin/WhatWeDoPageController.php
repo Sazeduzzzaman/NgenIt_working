@@ -31,7 +31,7 @@ class WhatWeDoPageController extends Controller
      */
     public function create()
     {
-        $data['rows'] = Row::get();
+        $data['rows'] = Row::select('rows.id', 'rows.title')->get();
         return view('admin.pages.whatWeDoPage.add', $data);
     }
 
@@ -47,7 +47,7 @@ class WhatWeDoPageController extends Controller
         $validator = Validator::make(
             $request->all(),
             [
-                'row_one_header' => 'required|unique:brands',
+                'row_one_header' => 'required',
                 'row_one_image'   => 'nullable|image|mimes:png,jpg,jpeg|max:10000',
             ],
             [
@@ -141,8 +141,8 @@ class WhatWeDoPageController extends Controller
     public function edit($id)
     {
         $data['rows'] = Row::get();
-        $data['whatWeDoPages'] = WhatWeDoPage::find($id);
-        return view('admin.pages.whatWeDoPage.add', $data);
+        $data['whatWeDoPage'] = WhatWeDoPage::find($id);
+        return view('admin.pages.whatWeDoPage.edit', $data);
     }
 
     /**
@@ -157,7 +157,7 @@ class WhatWeDoPageController extends Controller
         $validator = Validator::make(
             $request->all(),
             [
-                'row_one_header' => 'required|unique:brands',
+                'row_one_header' => 'required',
                 'row_one_image'   => 'nullable|image|mimes:png,jpg,jpeg|max:10000',
             ],
             [

@@ -2,7 +2,7 @@
 @section('content')
 <style>
     ul li {
-      list-style-type: none;
+      list-style-type: circle;
     }
   </style>
   <!--======// Header Title //======-->
@@ -128,7 +128,7 @@
   </section>
   <!----------End--------->
   <!--======// Gradian Background //======-->
-  <section class="integrated_security">
+  <section class="integrated_security ">
     <div class="container">
       <div class="call_to_action_text text-black">
         <h4 class="section_title text-black">Robust and integrated security</h4>
@@ -145,15 +145,12 @@
           <h3>Building resilient IT infrastructure</h3>
           <p>Your customers expect their data to be protected from breaches and natural disasters. Any IT system your organization uses also needs to meet current and future technology demands. We’ll help you achieve business agility while maintaining the highest levels of security.</p>
           <ul class="p-0">
-              <li class="d-flex">
-                <div class="mr-2">
-                  <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="20px" height="20px" viewBox="0 0 20 20" enable-background="new 0 0 20 20" xml:space="preserve"> <path fill="#AE1D48" d="M10.673,19.721c-0.372,0.372-0.975,0.372-1.347,0l-9.048-9.048c-0.372-0.372-0.372-0.975,0-1.346 l9.048-9.048c0.372-0.372,0.975-0.372,1.347,0l9.048,9.048c0.372,0.372,0.372,0.974,0,1.346L10.673,19.721z"/> </svg>
-                </div>
-                <div>Preserve data and restore it fast with a disaster recovery strategy.</div>
+              <li class="ms-4" style="list-style-type: circle;">
+                Preserve data and restore it fast with a disaster recovery strategy.
               </li>
               <li class="d-flex">
                 <div class="mr-2">
-                  <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="20px" height="20px" viewBox="0 0 20 20" enable-background="new 0 0 20 20" xml:space="preserve"> <path fill="#AE1D48" d="M10.673,19.721c-0.372,0.372-0.975,0.372-1.347,0l-9.048-9.048c-0.372-0.372-0.372-0.975,0-1.346 l9.048-9.048c0.372-0.372,0.975-0.372,1.347,0l9.048,9.048c0.372,0.372,0.372,0.974,0,1.346L10.673,19.721z"/> </svg>
+                  {{-- <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="20px" height="20px" viewBox="0 0 20 20" enable-background="new 0 0 20 20" xml:space="preserve"> <path fill="#AE1D48" d="M10.673,19.721c-0.372,0.372-0.975,0.372-1.347,0l-9.048-9.048c-0.372-0.372-0.372-0.975,0-1.346 l9.048-9.048c0.372-0.372,0.975-0.372,1.347,0l9.048,9.048c0.372,0.372,0.372,0.974,0,1.346L10.673,19.721z"/> </svg> --}}
                 </div>
                 <div>
                     Align workloads to best-fit platforms.
@@ -161,7 +158,7 @@
             </li>
             <li class="d-flex">
                 <div class="mr-2">
-                  <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="20px" height="20px" viewBox="0 0 20 20" enable-background="new 0 0 20 20" xml:space="preserve"> <path fill="#AE1D48" d="M10.673,19.721c-0.372,0.372-0.975,0.372-1.347,0l-9.048-9.048c-0.372-0.372-0.372-0.975,0-1.346 l9.048-9.048c0.372-0.372,0.975-0.372,1.347,0l9.048,9.048c0.372,0.372,0.372,0.974,0,1.346L10.673,19.721z"/> </svg>
+                  {{-- <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="20px" height="20px" viewBox="0 0 20 20" enable-background="new 0 0 20 20" xml:space="preserve"> <path fill="#AE1D48" d="M10.673,19.721c-0.372,0.372-0.975,0.372-1.347,0l-9.048-9.048c-0.372-0.372-0.372-0.975,0-1.346 l9.048-9.048c0.372-0.372,0.975-0.372,1.347,0l9.048,9.048c0.372,0.372,0.372,0.974,0,1.346L10.673,19.721z"/> </svg> --}}
                 </div>
                 <div>
                 Ensure a successful migration.
@@ -169,7 +166,7 @@
             </li>
             <li class="d-flex">
                 <div class="mr-2">
-                  <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="20px" height="20px" viewBox="0 0 20 20" enable-background="new 0 0 20 20" xml:space="preserve"> <path fill="#AE1D48" d="M10.673,19.721c-0.372,0.372-0.975,0.372-1.347,0l-9.048-9.048c-0.372-0.372-0.372-0.975,0-1.346 l9.048-9.048c0.372-0.372,0.975-0.372,1.347,0l9.048,9.048c0.372,0.372,0.372,0.974,0,1.346L10.673,19.721z"/> </svg>
+                  {{-- <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="20px" height="20px" viewBox="0 0 20 20" enable-background="new 0 0 20 20" xml:space="preserve"> <path fill="#AE1D48" d="M10.673,19.721c-0.372,0.372-0.975,0.372-1.347,0l-9.048-9.048c-0.372-0.372-0.372-0.975,0-1.346 l9.048-9.048c0.372-0.372,0.975-0.372,1.347,0l9.048,9.048c0.372,0.372,0.372,0.974,0,1.346L10.673,19.721z"/> </svg> --}}
                 </div>
                 <div>
                     Relieve IT teams, so they can focus on innovation.
@@ -179,7 +176,8 @@
           <button href="" class="common_button mt-4 mb-4">Learn more</button>
         </div>
         <div class="col-lg-6 col-sm-12">
-          <img class="img-fluid" src="{{asset('frontend')}}/images/account_benifit/account_benifits_flow (4).jpg" alt="">
+          {{-- <img class="img-fluid" src="{{asset('frontend')}}/images/account_benifit/account_benifits_flow (4).jpg" alt=""> --}}
+          <img class="img-fluid" src="https://media.istockphoto.com/id/619514634/photo/imge-of-mint.jpg?s=612x612&w=0&k=20&c=dKNNNLsczOVteIaszKEbJT4RDrxZIrUJzPuleXEYWaA=" alt="">
         </div>
       </div>
     </div>
@@ -240,7 +238,7 @@
     <div class="container">
       <div class="row">
         <div class="col-lg-6 col-sm-12">
-          <img class="img-fluid" src="{{ asset('storage/' . $techglossy->image) }}" alt="{{$techglossy->badge}}" style="height: 350px;">
+          <img class="img-fluid rounded" src="{{ asset('storage/' . $techglossy->image) }}" alt="{{$techglossy->badge}}" style="height: 350px;">
         </div>
         <div class="col-lg-6 col-sm-12 account_benefits_section">
           <h5>{{$techglossy->badge}}</h5>

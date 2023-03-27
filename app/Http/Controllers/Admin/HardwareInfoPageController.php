@@ -83,8 +83,6 @@ class HardwareInfoPageController extends Controller
                 'banner_btn_link'             => $request->banner_btn_link,
                 'row_two_title'               => $request->row_two_title,
                 'row_two_short_description'   => $request->row_two_short_description,
-                'row_two_title'               => $request->row_two_title,
-                'row_two_short_description'   => $request->row_two_short_description,
                 'row_four_title'              => $request->row_four_title,
                 'row_four_sub_title'          => $request->row_four_sub_title,
                 'row_four_short_description'  => $request->row_four_short_description,
@@ -148,8 +146,8 @@ class HardwareInfoPageController extends Controller
         $validator = Validator::make(
             $request->all(),
             [
-                'banner_image'   => 'sometimes|image|mimes:png,jpg,jpeg|max:10000',
-                'row_six_image'   => 'sometimes|image|mimes:png,jpg,jpeg|max:10000',
+                'banner_image'   => 'sometimes|nullable|image|mimes:png,jpg,jpeg|max:10000',
+                'row_six_image'   => 'sometimes|nullable|image|mimes:png,jpg,jpeg|max:10000',
             ],
             [
                 'mimes' => 'The :attribute must be a file of type: png - jpeg - jpg'
@@ -195,8 +193,6 @@ class HardwareInfoPageController extends Controller
                 'banner_short_description'    => $request->banner_short_description,
                 'banner_btn_name'             => $request->banner_btn_name,
                 'banner_btn_link'             => $request->banner_btn_link,
-                'row_two_title'               => $request->row_two_title,
-                'row_two_short_description'   => $request->row_two_short_description,
                 'row_two_title'               => $request->row_two_title,
                 'row_two_short_description'   => $request->row_two_short_description,
                 'row_four_title'              => $request->row_four_title,

@@ -1,511 +1,523 @@
 @extends('frontend.master')
 @section('content')
-<style>
-    @import url('https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.2.3/animate.min.css');
-    /* @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css'); */
+    <style>
+        @import url('https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.2.3/animate.min.css');
+        /* @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css'); */
 
-    .custom_col-2{
-        flex: 0 0 auto;
-        width: 20%;
-    }
-    .feature_descrip{
+        .title_top_heading {
+            font-family: "Klinic Slab";
+            font-size: 36px;
+            line-height: 0px;
+            color: var(--heading);
+            margin-bottom: 14px;
+            font-weight: 400;
+        }
+
+        .custom_col-2 {
+            flex: 0 0 auto;
+            width: 20%;
+        }
+
+        .feature_descrip {
             height: 6rem;
         }
-    .tag_btn{
-        background-color: #f7f6f5;
-        color: black;
-        font-size: 13px;
-        padding: 5px;
-    }
-    body {
-        margin: 0;
-        padding: 0;
-    }
 
-    .Advance-Slider {
-        float: left;
-        width: 100%;
-        overflow: hidden;
-    }
-    .story_title {
-
-    padding-bottom: 3rem;
-    color: #3e332d;
-    margin-top: 7rem;
-    }
-
-
-    .Advance-Slider button.slick-arrow {
-        position: absolute;
-        z-index: 2;
-        top: 0;
-        bottom: 0;
-        height: 50px;
-        width: 50px;
-        background: #fff;
-        z-index: 99999;
-        border: none;
-        margin: auto;
-        font-size: 0;
-        text-align: center;
-        outline: none;
-        cursor: pointer;
-    }
-
-    .Advance-Slider .img-fill {
-        position: relative;
-        height: 100%;
-    }
-
-    .Advance-Slider .img-fill img {
-        height: 100%;
-        width: 100%;
-        /* object-fit: co; */
-        animation: myMove 10s linear infinite;
-    }
-
-    .Advance-Slider .item {
-        height: 80vh;
-        overflow: hidden;
-        outline: none;
-    }
-
-    .Advance-Slider button.slick-next.slick-arrow {
-        right: 0;
-        left: auto;
-    }
-
-    .Advance-Slider button.slick-arrow:before {
-        content: "\f104";
-        top: 0;
-        left: 0;
-        margin: auto;
-        font-family: fontawesome;
-        font-size: 18px;
-    }
-
-    .Advance-Slider button.slick-next.slick-arrow:before {
-        transform: scaleX(-1);
-        display: block;
-    }
-
-    .Advance-Slider .img-fill:after {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-    }
-
-    .Advance-Slider ul.slick-dots {
-        position: absolute;
-        bottom: 20px;
-        left: 0;
-        width: 100%;
-        margin: 0;
-        padding: 0;
-        text-align: center;
-    }
-
-    .Advance-Slider ul.slick-dots li {
-        display: inline-block;
-        height: auto;
-        padding: 0 5px;
-        line-height: 0px;
-    }
-
-    .Advance-Slider ul.slick-dots li button {
-        height: 15px;
-        width: 15px;
-        border-radius: 100%;
-        background: #fff;
-        border: none;
-        font-size: 0px;
-        padding: 0px;
-        opacity: 0.5;
-        outline: none;
-        transition: all 0.3s ease;
-        cursor: pointer;
-    }
-
-    .Advance-Slider ul.slick-dots li.slick-active button {
-        opacity: 1;
-    }
-
-    .Advance-Slider button.slick-arrow {
-        display: none !important;
-        perspective: 360px;
-    }
-
-    .Advance-Slider button.slick-arrow .thumb {
-        display: none !important;
-        position: absolute;
-        height: 100px;
-        width: 150px;
-        left: 100%;
-        top: -28px;
-        transform-origin: 0% 0%;
-        transform: rotate3d(1, 0, 0, 90deg);
-    }
-
-    .Advance-Slider button.slick-arrow .thumb img {
-        height: 100%;
-        width: 100%;
-    }
-
-    .Advance-Slider button.slick-next {}
-
-    .Advance-Slider button.slick-next .thumb {
-        left: auto;
-        right: 100%;
-    }
-
-    .Advance-Slider button.slick-prev.hover-out .thumb,
-    .Advance-Slider button.slick-prev .thumb {
-        animation: out-left 300ms ease 0ms 1 forwards;
-    }
-
-    .Advance-Slider button.slick-prev.hover-in .thumb {
-        animation: in-left 300ms ease 0ms 1 forwards;
-    }
-
-    .Advance-Slider button.slick-next.hover-out .thumb,
-    .Advance-Slider button.slick-next .thumb {
-        animation: out-right 300ms ease 0ms 1 forwards;
-        transform-origin: 100% 50%;
-    }
-
-    .Advance-Slider button.slick-next.hover-in .thumb {
-        animation: in-right 300ms ease 0ms 1 forwards;
-    }
-
-    .Advance-Slider button.slick-prev:hover {
-        transform: translateX(-100%);
-    }
-
-    .Advance-Slider button.slick-prev {
-        transition: all 0.3s ease;
-    }
-
-    .Advance-Slider button.slick-next:hover {
-        transform: translateX(100%);
-    }
-
-    .Advance-Slider button.slick-next {
-        transition: all 0.3s ease;
-    }
-
-    .Advance-Slider ul.slick-dots li button img {
-        height: 0;
-        width: 20px;
-        top: 0;
-        object-fit: cover;
-        transition: height 0.2s ease 0.2s, width 0.2s ease 0s;
-        position: relative;
-        left: -50%;
-    }
-
-    .Advance-Slider ul.slick-dots li button a {
-        position: absolute;
-        height: 90px;
-        bottom: calc(100%);
-        width: 0;
-        display: flex;
-        align-items: flex-end;
-        justify-content: center;
-        transition: all 0.2s ease 0.2s;
-        padding-bottom: 10px;
-    }
-
-    .Advance-Slider ul.slick-dots li button {
-        position: relative;
-        display: flex;
-        justify-content: center;
-    }
-
-    .Advance-Slider ul.slick-dots li button:hover a img {}
-
-    .Advance-Slider ul.slick-dots li button:hover img {
-        height: 80px;
-        width: 140px;
-        transition: height 0.2s ease, width 0.2s ease 0.2s;
-    }
-
-    .Advance-Slider ul.slick-dots li button:hover a {
-        width: 140px;
-        transition: all 0.3s ease 0s;
-    }
-
-    .Advance-Slider ul.slick-dots li button:hover {
-        opacity: 1;
-    }
-
-    .Advance-Slider ul.slick-dots li button:before {
-        content: '';
-        bottom: calc(100% + -10px);
-        left: 7px;
-        border: solid transparent;
-        content: " ";
-        height: 0;
-        width: 0px;
-        position: absolute;
-        pointer-events: none;
-        border-color: rgba(255, 255, 255, 0);
-        border-top-color: #fff;
-        border-width: 10px;
-        margin-left: -10px;
-        opacity: 0;
-        transition: 0.3s ease 350ms;
-    }
-
-    .Advance-Slider ul.slick-dots li button:hover:before {
-        opacity: 1;
-        transition: 0.3s ease 0s;
-    }
-
-    .Advance-Slider .item.slick-active {
-        animation: Slick-FastSwipeIn 1s both;
-    }
-
-    .Advance-Slider .item .contain-wrapper {
-        position: absolute;
-        left: 0;
-        top: 0;
-        z-index: 1;
-        height: 100%;
-        width: 100%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        text-align: center;
-    }
-
-    .Advance-Slider .item .contain-wrapper .dots-contain {
-        display: none;
-    }
-
-    .Advance-Slider .item h3 {
-        margin: 0px;
-        color: #fff;
-        font-size: 84px;
-        font-weight: 300;
-        text-transform: capitalize;
-    }
-
-    .Advance-Slider .item {
-        color: #fff;
-        font-family: 'Roboto', sans-serif;
-    }
-
-    .Advance-Slider .item h5 {
-        font-size: 32px;
-        font-weight: 300;
-        padding: 10px 0 0;
-        margin: 0;
-        text-transform: capitalize;
-    }
-
-    .Advance-Slider .item .contain-wrapper .info {
-        max-width: 1200px;
-    }
-
-    .Advance-Slider .item h5 span {
-        color: #00BCD4;
-    }
-
-    .Advance-Slider .item h3 span {
-        color: #00BCD4;
-    }
-
-    .custom_shadow {
-        box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
-    }
-
-    /* .Advance-Slider .item h3 {
-            animation: fadeOutRight 1s both;
+        .tag_btn {
+            background-color: #f7f6f5;
+            color: black;
+            font-size: 13px;
+            padding: 5px;
         }
 
-        .Advance-Slider .item.slick-active h3 {
-            animation: fadeInDown 1s both 1s;
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        .Advance-Slider {
+            float: left;
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .story_title {
+
+            padding-bottom: 3rem;
+            color: #3e332d;
+            margin-top: 7rem;
+        }
+
+
+        .Advance-Slider button.slick-arrow {
+            position: absolute;
+            z-index: 2;
+            top: 0;
+            bottom: 0;
+            height: 50px;
+            width: 50px;
+            background: #fff;
+            z-index: 99999;
+            border: none;
+            margin: auto;
+            font-size: 0;
+            text-align: center;
+            outline: none;
+            cursor: pointer;
+        }
+
+        .Advance-Slider .img-fill {
+            position: relative;
+            height: 100%;
+        }
+
+        .Advance-Slider .img-fill img {
+            height: 100%;
+            width: 100%;
+            /* object-fit: co; */
+            animation: myMove 10s linear infinite;
+        }
+
+        .Advance-Slider .item {
+            height: 80vh;
+            overflow: hidden;
+            outline: none;
+        }
+
+        .Advance-Slider button.slick-next.slick-arrow {
+            right: 0;
+            left: auto;
+        }
+
+        .Advance-Slider button.slick-arrow:before {
+            content: "\f104";
+            top: 0;
+            left: 0;
+            margin: auto;
+            font-family: fontawesome;
+            font-size: 18px;
+        }
+
+        .Advance-Slider button.slick-next.slick-arrow:before {
+            transform: scaleX(-1);
+            display: block;
+        }
+
+        .Advance-Slider .img-fill:after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .Advance-Slider ul.slick-dots {
+            position: absolute;
+            bottom: 20px;
+            left: 0;
+            width: 100%;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+
+        .Advance-Slider ul.slick-dots li {
+            display: inline-block;
+            height: auto;
+            padding: 0 5px;
+            line-height: 0px;
+        }
+
+        .Advance-Slider ul.slick-dots li button {
+            height: 15px;
+            width: 15px;
+            border-radius: 100%;
+            background: #fff;
+            border: none;
+            font-size: 0px;
+            padding: 0px;
+            opacity: 0.5;
+            outline: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .Advance-Slider ul.slick-dots li.slick-active button {
+            opacity: 1;
+        }
+
+        .Advance-Slider button.slick-arrow {
+            display: none !important;
+            perspective: 360px;
+        }
+
+        .Advance-Slider button.slick-arrow .thumb {
+            display: none !important;
+            position: absolute;
+            height: 100px;
+            width: 150px;
+            left: 100%;
+            top: -28px;
+            transform-origin: 0% 0%;
+            transform: rotate3d(1, 0, 0, 90deg);
+        }
+
+        .Advance-Slider button.slick-arrow .thumb img {
+            height: 100%;
+            width: 100%;
+        }
+
+        .Advance-Slider button.slick-next {}
+
+        .Advance-Slider button.slick-next .thumb {
+            left: auto;
+            right: 100%;
+        }
+
+        .Advance-Slider button.slick-prev.hover-out .thumb,
+        .Advance-Slider button.slick-prev .thumb {
+            animation: out-left 300ms ease 0ms 1 forwards;
+        }
+
+        .Advance-Slider button.slick-prev.hover-in .thumb {
+            animation: in-left 300ms ease 0ms 1 forwards;
+        }
+
+        .Advance-Slider button.slick-next.hover-out .thumb,
+        .Advance-Slider button.slick-next .thumb {
+            animation: out-right 300ms ease 0ms 1 forwards;
+            transform-origin: 100% 50%;
+        }
+
+        .Advance-Slider button.slick-next.hover-in .thumb {
+            animation: in-right 300ms ease 0ms 1 forwards;
+        }
+
+        .Advance-Slider button.slick-prev:hover {
+            transform: translateX(-100%);
+        }
+
+        .Advance-Slider button.slick-prev {
+            transition: all 0.3s ease;
+        }
+
+        .Advance-Slider button.slick-next:hover {
+            transform: translateX(100%);
+        }
+
+        .Advance-Slider button.slick-next {
+            transition: all 0.3s ease;
+        }
+
+        .Advance-Slider ul.slick-dots li button img {
+            height: 0;
+            width: 20px;
+            top: 0;
+            object-fit: cover;
+            transition: height 0.2s ease 0.2s, width 0.2s ease 0s;
+            position: relative;
+            left: -50%;
+        }
+
+        .Advance-Slider ul.slick-dots li button a {
+            position: absolute;
+            height: 90px;
+            bottom: calc(100%);
+            width: 0;
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            transition: all 0.2s ease 0.2s;
+            padding-bottom: 10px;
+        }
+
+        .Advance-Slider ul.slick-dots li button {
+            position: relative;
+            display: flex;
+            justify-content: center;
+        }
+
+        .Advance-Slider ul.slick-dots li button:hover a img {}
+
+        .Advance-Slider ul.slick-dots li button:hover img {
+            height: 80px;
+            width: 140px;
+            transition: height 0.2s ease, width 0.2s ease 0.2s;
+        }
+
+        .Advance-Slider ul.slick-dots li button:hover a {
+            width: 140px;
+            transition: all 0.3s ease 0s;
+        }
+
+        .Advance-Slider ul.slick-dots li button:hover {
+            opacity: 1;
+        }
+
+        .Advance-Slider ul.slick-dots li button:before {
+            content: '';
+            bottom: calc(100% + -10px);
+            left: 7px;
+            border: solid transparent;
+            content: " ";
+            height: 0;
+            width: 0px;
+            position: absolute;
+            pointer-events: none;
+            border-color: rgba(255, 255, 255, 0);
+            border-top-color: #fff;
+            border-width: 10px;
+            margin-left: -10px;
+            opacity: 0;
+            transition: 0.3s ease 350ms;
+        }
+
+        .Advance-Slider ul.slick-dots li button:hover:before {
+            opacity: 1;
+            transition: 0.3s ease 0s;
+        }
+
+        .Advance-Slider .item.slick-active {
+            animation: Slick-FastSwipeIn 1s both;
+        }
+
+        .Advance-Slider .item .contain-wrapper {
+            position: absolute;
+            left: 0;
+            top: 0;
+            z-index: 1;
+            height: 100%;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .Advance-Slider .item .contain-wrapper .dots-contain {
+            display: none;
+        }
+
+        .Advance-Slider .item h3 {
+            margin: 0px;
+            color: #fff;
+            font-size: 84px;
+            font-weight: 300;
+            text-transform: capitalize;
+        }
+
+        .Advance-Slider .item {
+            color: #fff;
+            font-family: 'Roboto', sans-serif;
         }
 
         .Advance-Slider .item h5 {
-            animation: fadeOutLeft 1s both;
+            font-size: 32px;
+            font-weight: 300;
+            padding: 10px 0 0;
+            margin: 0;
+            text-transform: capitalize;
         }
 
-        .Advance-Slider .item.slick-active h5 {
-            animation: fadeInLeft 1s both 1.5s;
-        } */
-    .slick-dotted.slick-slider {
-        margin-bottom: -100px !important;
-    }
+        .Advance-Slider .item .contain-wrapper .info {
+            max-width: 1200px;
+        }
 
-    .Advance-Slider button {
-        display: none;
-    }
+        .Advance-Slider .item h5 span {
+            color: #00BCD4;
+        }
 
-    /* @keyframes myMove {
+        .Advance-Slider .item h3 span {
+            color: #00BCD4;
+        }
+
+        .custom_shadow {
+            box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
+        }
+
+        /* .Advance-Slider .item h3 {
+                    animation: fadeOutRight 1s both;
+                }
+
+                .Advance-Slider .item.slick-active h3 {
+                    animation: fadeInDown 1s both 1s;
+                }
+
+                .Advance-Slider .item h5 {
+                    animation: fadeOutLeft 1s both;
+                }
+
+                .Advance-Slider .item.slick-active h5 {
+                    animation: fadeInLeft 1s both 1.5s;
+                } */
+        .slick-dotted.slick-slider {
+            margin-bottom: -100px !important;
+        }
+
+        .Advance-Slider button {
+            display: none;
+        }
+
+        /* @keyframes myMove {
+                    from {
+                        transform: scale(1.0, 1.0);
+                        transform-origin: 50% 50%;
+                    }
+
+                    to {
+                        transform: scale(1.8, 1.9);
+                        transform-origin: 50% 0%;
+                    }
+                } */
+
+        @keyframes Slick-FastSwipeIn {
+            0% {
+                transform: rotate3d(0, 1, 0, 150deg) scale(0) perspective(400px);
+            }
+
+            100% {
+                transform: rotate3d(0, 1, 0, 0deg) scale(1) perspective(400px);
+            }
+        }
+
+        @keyframes in-left {
             from {
-                transform: scale(1.0, 1.0);
-                transform-origin: 50% 50%;
+                -webkit-transform: rotate3d(0, 1, 0, 90deg);
+                transform: rotate3d(0, 1, 0, 90deg);
             }
 
             to {
-                transform: scale(1.8, 1.9);
-                transform-origin: 50% 0%;
+                -webkit-transform: rotate3d(0, 0, 0, 0deg);
+                transform: rotate3d(0, 0, 0, 0deg);
             }
-        } */
-
-    @keyframes Slick-FastSwipeIn {
-        0% {
-            transform: rotate3d(0, 1, 0, 150deg) scale(0) perspective(400px);
         }
 
-        100% {
-            transform: rotate3d(0, 1, 0, 0deg) scale(1) perspective(400px);
-        }
-    }
+        @keyframes out-left {
+            from {
+                -webkit-transform: rotate3d(0, 0, 0, 0deg);
+                transform: rotate3d(0, 0, 0, 0deg);
+            }
 
-    @keyframes in-left {
-        from {
-            -webkit-transform: rotate3d(0, 1, 0, 90deg);
-            transform: rotate3d(0, 1, 0, 90deg);
-        }
-
-        to {
-            -webkit-transform: rotate3d(0, 0, 0, 0deg);
-            transform: rotate3d(0, 0, 0, 0deg);
-        }
-    }
-
-    @keyframes out-left {
-        from {
-            -webkit-transform: rotate3d(0, 0, 0, 0deg);
-            transform: rotate3d(0, 0, 0, 0deg);
+            to {
+                -webkit-transform: rotate3d(0, 1, 0, 86deg);
+                transform: rotate3d(0, 1, 0, 86deg);
+            }
         }
 
-        to {
-            -webkit-transform: rotate3d(0, 1, 0, 86deg);
-            transform: rotate3d(0, 1, 0, 86deg);
-        }
-    }
+        @keyframes in-right {
+            from {
+                -webkit-transform: rotate3d(0, -1, 0, 90deg);
+                transform: rotate3d(0, -1, 0, 90deg);
+            }
 
-    @keyframes in-right {
-        from {
-            -webkit-transform: rotate3d(0, -1, 0, 90deg);
-            transform: rotate3d(0, -1, 0, 90deg);
-        }
-
-        to {
-            -webkit-transform: rotate3d(0, 0, 0, 0deg);
-            transform: rotate3d(0, 0, 0, 0deg);
-        }
-    }
-
-    @keyframes out-right {
-        from {
-            -webkit-transform: rotate3d(0, 0, 0, 0deg);
-            transform: rotate3d(0, 0, 0, 0deg);
+            to {
+                -webkit-transform: rotate3d(0, 0, 0, 0deg);
+                transform: rotate3d(0, 0, 0, 0deg);
+            }
         }
 
-        to {
-            -webkit-transform: rotate3d(0, -1, 0, 86deg);
-            transform: rotate3d(0, -1, 0, 86deg);
-        }
-    }
-</style>
+        @keyframes out-right {
+            from {
+                -webkit-transform: rotate3d(0, 0, 0, 0deg);
+                transform: rotate3d(0, 0, 0, 0deg);
+            }
 
-<!--======// Banner Section //======-->
-<section>
-    <div class="Advance-Slider">
-        <!-- Item -->
-        <div class="item">
-            <div class="img-fill">
-                <img src="{{ asset('storage/' . $home->branner1) }}" alt="">
-                <div class="contain-wrapper">
-                    <div class="dots-contain">
-                        <img class="dots-img" src="{{ asset('storage/' . $home->branner1) }}" alt="">
-                    </div>
-                    {{-- <div class="info">
+            to {
+                -webkit-transform: rotate3d(0, -1, 0, 86deg);
+                transform: rotate3d(0, -1, 0, 86deg);
+            }
+        }
+    </style>
+
+    <!--======// Banner Section //======-->
+    <section>
+        <div class="Advance-Slider">
+            <!-- Item -->
+            <div class="item">
+                <div class="img-fill">
+                    <img src="{{ asset('storage/' . $home->branner1) }}" alt="">
+                    <div class="contain-wrapper">
+                        <div class="dots-contain">
+                            <img class="dots-img" src="{{ asset('storage/' . $home->branner1) }}" alt="">
+                        </div>
+                        {{-- <div class="info">
                         <div>
                             <h3>Awesome<strong> Slick Slider</strong></h3>
                             <h5>You can easily add image, html formatted texts and video layers over each slide and each
                                 layer accepts unique animation.</h5>
                         </div>
                     </div> --}}
+                    </div>
                 </div>
             </div>
-        </div>
-        <!-- // Item -->
+            <!-- // Item -->
 
-        <!-- Item -->
-        <div class="item">
-            <div class="img-fill">
-                <img src="{{ asset('storage/' . $home->branner2) }} " alt="">
-                <div class="contain-wrapper">
-                    <div class="dots-contain">
-                        <img class="dots-img" src="{{ asset('storage/' . $home->branner2) }}" alt="">
-                    </div>
-                    {{-- <div class="info">
+            <!-- Item -->
+            <div class="item">
+                <div class="img-fill">
+                    <img src="{{ asset('storage/' . $home->branner2) }} " alt="">
+                    <div class="contain-wrapper">
+                        <div class="dots-contain">
+                            <img class="dots-img" src="{{ asset('storage/' . $home->branner2) }}" alt="">
+                        </div>
+                        {{-- <div class="info">
                         <div>
                             <h3>easily add image<strong><span> video layers</span></strong></h3>
                             <h5>You can easily add image, html formatted texts and video layers over each slide and each
                                 layer accepts unique animation.</h5>
                         </div>
                     </div> --}}
+                    </div>
                 </div>
             </div>
-        </div>
-        <!-- // Item -->
+            <!-- // Item -->
 
-        <!-- Item -->
-        <div class="item">
-            <div class="img-fill">
-                <img src="{{ asset('storage/' . $home->branner3) }} " alt="">
-                <div class="contain-wrapper">
-                    <div class="dots-contain">
-                        <img class="dots-img" src="{{ asset('storage/' . $home->branner3) }}" alt="">
-                    </div>
-                    {{-- <div class="info">
+            <!-- Item -->
+            <div class="item">
+                <div class="img-fill">
+                    <img src="{{ asset('storage/' . $home->branner3) }} " alt="">
+                    <div class="contain-wrapper">
+                        <div class="dots-contain">
+                            <img class="dots-img" src="{{ asset('storage/' . $home->branner3) }}" alt="">
+                        </div>
+                        {{-- <div class="info">
                         <div>
                             <h3>easily add image<span> formatted slide</span></h3>
                             <h5>You can easily add image, html formatted texts and video layers over each slide and each
                                 layer accepts unique animation.</h5>
                         </div>
                     </div> --}}
-                </div>
-            </div>
-        </div>
-        <!-- // Item -->
-
-    </div>
-</section>
-{{-- Banner Bottom Card --}}
-<section>
-    <div class="container px-4">
-        <div class="row gx-5">
-            <div class="col">
-                <div class="p-5 border bg-light custom_shadow">
-                    <h2 class="text-center">{{ $home->btn1_title }}</h2>
-                    <div class="home_card_button">
-                        <a class="effect01" href="{{ route('learn.more') }}">{{ $home->btn1_name }}</a>
                     </div>
                 </div>
             </div>
-            <div class="col">
-                <div class="p-5 border bg-light custom_shadow">
-                    <h2 class="text-center">{{ $home->btn2_title }}</h2>
-                    <div class="home_card_button">
-                        <a class="effect01" href="{{ $home->btn2_link }}">{{ $home->btn2_name }}</a>
+            <!-- // Item -->
+
+        </div>
+    </section>
+    {{-- Banner Bottom Card --}}
+    <section>
+        <div class="container px-4">
+            <div class="row gx-5">
+                <div class="col">
+                    <div class="p-5 border bg-light custom_shadow">
+                        <h2 class="text-center">{{ $home->btn1_title }}</h2>
+                        <div class="home_card_button">
+                            <a class="effect01" href="{{ route('learn.more') }}">{{ $home->btn1_name }}</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="p-5 border bg-light custom_shadow">
+                        <h2 class="text-center">{{ $home->btn2_title }}</h2>
+                        <div class="home_card_button">
+                            <a class="effect01" href="{{ $home->btn2_link }}">{{ $home->btn2_name }}</a>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-</section>
-
-
+    </section>
+    <!---------End -------->
 
     <!--======// Business section //======-->
     <section class="container padding_bottom pt-56 pb-3">
@@ -520,14 +532,14 @@
         </div>
         <!-- business content -->
         <div class="row d-flex justify-content-center">
-            <div class="custom_col-2 col-md-6 ">
+            <div class="custom_col-2 col-md-6 col-sm-12">
                 <div class="text-center">
                     <img src="{{ asset('storage/requestImg/' . $feature1->logo) }}" alt="" height="80px"
                         width="85px">
                     <h5>{{ Str::limit($feature1->badge, 16) }}</h5>
                 </div>
                 <div class="feature_description">
-                    <p class="feature_descrip" >{{ Str::limit($feature1->header, 55) }}</p>
+                    <p class="feature_descrip">{{ Str::limit($feature1->header, 55) }}</p>
                 </div>
                 <a href="{{ route('feature.details', $feature1->id) }}" class="business_item_button">
                     <span>Learn More</span>
@@ -538,14 +550,14 @@
             </div>
 
 
-            <div class="custom_col-2 col-md-6">
+            <div class="custom_col-2 col-md-6 col-sm-12">
                 <div class="text-center">
                     <img src="{{ asset('storage/requestImg/' . $feature2->logo) }}" alt="" height="80px"
                         width="85px">
                     <h5>{{ Str::limit($feature2->badge, 16) }}</h5>
                 </div>
                 <div class="feature_description">
-                    <p  class="feature_descrip">{{ Str::limit($feature2->header, 55) }}</p>
+                    <p class="feature_descrip">{{ Str::limit($feature2->header, 55) }}</p>
                 </div>
                 <a href="{{ route('feature.details', $feature1->id) }}" class="business_item_button">
                     <span>Learn More</span>
@@ -556,14 +568,14 @@
             </div>
 
 
-            <div class="custom_col-2 col-md-6">
+            <div class="custom_col-2 col-md-6 col-sm-12">
                 <div class="text-center">
                     <img src="{{ asset('storage/requestImg/' . $feature3->logo) }}" alt="" height="80px"
                         width="85px">
                     <h5>{{ Str::limit($feature3->badge, 16) }}</h5>
                 </div>
                 <div class="feature_description">
-                    <p  class="feature_descrip">{{ Str::limit($feature3->header, 55) }}</p>
+                    <p class="feature_descrip">{{ Str::limit($feature3->header, 55) }}</p>
                 </div>
                 <a href="{{ route('feature.details', $feature1->id) }}" class="business_item_button">
                     <span>Learn More</span>
@@ -574,14 +586,14 @@
             </div>
 
 
-            <div class="custom_col-2 col-md-6">
+            <div class="custom_col-2 col-md-6 col-sm-12">
                 <div class="text-center">
                     <img src="{{ asset('storage/requestImg/' . $feature4->logo) }}" alt="" height="80px"
                         width="85px">
                     <h5>{{ Str::limit($feature4->badge, 16) }}</h5>
                 </div>
                 <div class="feature_description">
-                    <p  class="feature_descrip">{{ Str::limit($feature4->header, 55) }}</p>
+                    <p class="feature_descrip">{{ Str::limit($feature4->header, 55) }}</p>
                 </div>
                 <a href="{{ route('feature.details', $feature1->id) }}" class="business_item_button">
                     <span>Learn More</span>
@@ -592,14 +604,14 @@
             </div>
 
 
-            <div class="custom_col-2 col-md-6 ">
+            <div class="custom_col-2 col-md-6 col-sm-12">
                 <div class="text-center">
                     <img src="{{ asset('storage/requestImg/' . $feature5->logo) }}" alt="" height="80px"
                         width="85px">
                     <h5>{{ Str::limit($feature5->badge, 16) }}</h5>
                 </div>
                 <div class="feature_description">
-                    <p  class="feature_descrip">{{ Str::limit($feature5->header, 55) }}</p>
+                    <p class="feature_descrip">{{ Str::limit($feature5->header, 55) }}</p>
                 </div>
                 <a href="{{ route('feature.details', $feature1->id) }}" class="business_item_button">
                     <span>Learn More</span>
@@ -618,8 +630,6 @@
     </section>
     <!---------End -------->
 
-
-    <!---------End -------->
     <!--=======// Shop product //======-->
     <section class="padding_top learn_more">
         <div class="container">
@@ -628,16 +638,21 @@
                 <div class="col-lg-8 col-sm-12 pb-3">
                     <div class="home_shop_product_wrapper">
                         <h5> Shop Products and Hardware</h5>
-                        <p class="text-justify">Among More than <strong style="font-family: 'Poppins', sans-serif;">{{ App\Models\Admin\Product::count() }}</strong> products and
-                            <strong style="font-family: 'Poppins', sans-serif;">{{ App\Models\Admin\Brand::count() }}</strong> brand at your service, we can provide you with the tools
-                            you need to succeed. Additionally, you may easily control anything from your NgenIt account.</p>
+                        <p class="text-justify w-75 w-sm-100">Among More than <strong
+                                style="font-family: 'Poppins', sans-serif;">{{ App\Models\Admin\Product::count() }}</strong>
+                            products and
+                            <strong
+                                style="font-family: 'Poppins', sans-serif;">{{ App\Models\Admin\Brand::count() }}</strong>
+                            brand at your service, we can provide you with the tools
+                            you need to succeed. Additionally, you may easily control anything from your NgenIt account.
+                        </p>
                         <div class="d-flex justify-content-start">
                             <a href="{{ route('shop.html') }}" class="common_button effect01">Shop Now</a>
                         </div>
                     </div>
                 </div>
                 <!-- product brand -->
-                <div class="col-lg-4 col-sm-12 d-flex justify-content-end">
+                <div class="col-lg-4 col-sm-12 d-flex justify-content-start">
                     <div>
                         <div class="">
                             <a href="{{ route('all.category') }}">
@@ -681,6 +696,8 @@
             </div>
         </div>
     </section>
+    <!---------End -------->
+
     <!--=======// Popular products //======-->
     <section class="popular_product_section section_padding">
         <!-- container -->
@@ -740,7 +757,8 @@
                                 @else
                                     <div class="product_item_price">
                                         <span class="price_currency_value">
-                                            <a href="javascript:void(0);" data-toggle="modal" data-target="#get_quote_modal_{{ $item->id }}">Ask For Price</a>
+                                            <a href="javascript:void(0);" data-toggle="modal"
+                                                data-target="#get_quote_modal_{{ $item->id }}">Ask For Price</a>
                                         </span>
                                     </div>
                                     <a href="{{ route('product.details', $item->slug) }}"
@@ -1026,6 +1044,7 @@
         </div>
     </section>
     <!---------End -------->
+
     <!--======// Learn clint history //======-->
     <section class="account_benefits_section_wp">
         <div class="container">
@@ -1096,6 +1115,7 @@
         </div>
     </section>
     <!---------End -------->
+
     <!--======// Magazine Section //======-->
     <section class="account_benefits_section_wp">
         <div class="container">
@@ -1119,10 +1139,16 @@
                                 @endphp
                                 <div class="btn-group pt-1">
                                     @foreach ($tags as $item)
-                                        <button type="button" class="btn tag_btn ml-1 px-1">{{ ucwords($item) }}</button>
+                                        {{-- <button type="button"
+                                            class="btn tag_btn ml-1 px-1"></button> --}}
+                                        {{-- <ul class="p-0 m-0">
+                                                <li class="d-flex">
+                                                  {{ ucwords($item) }}
+                                                </li>
+                                            </ul> --}}
                                     @endforeach
 
-                                  </div>
+                                </div>
                             </div>
                         </div>
 
@@ -1133,14 +1159,14 @@
             @endif
         </div>
     </section>
-    <br>
     <!----------End--------->
+
     <!--======// our success section //======-->
     <section class="container">
         <div class="our_success_wrapper">
             <!-- title -->
             <div class="section_title">
-                <h3 class="title_top_heading">Our Success Starts With Our Culture.</h3>
+                <h3 class="title_top_heading py-5">Our Success Starts With Our Culture.</h3>
             </div>
             <!-- wrapper -->
             @if ($home)
@@ -1182,4 +1208,5 @@
             @endif
         </div>
     </section>
+    <!---------End -------->
 @endsection

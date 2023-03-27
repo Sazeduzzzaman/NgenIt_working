@@ -598,7 +598,7 @@
                 <!--BUTTON START-->
                 <div class="d-flex justify-content-center align-items-center">
                     <div class="m-4">
-                        <button class="common_button2" href="#Contact">Hear from our team</button>
+                        <a class="common_button2" href="{{route('contact')}}">Hear from our team</a>
                     </div>
                 </div>
             </div>
@@ -697,7 +697,7 @@
                           <div class="col-lg-8 col-md-6 col-sm-12">
                             <h5 class="home_title_heading" style="text-align: left;">{{$story1->title}} </h5>
                             <p>{{$story1->header}}</p>
-                            <div class="home_card_button p-2">
+                            <div class="home_card_button text-start p-2">
                                 <a class="effect01" href="{{route('story.details',$story1->id)}}">Read more</a>
                             </div>
                           </div>
@@ -713,7 +713,7 @@
                             <div class="col-lg-8 col-md-6 col-sm-12">
                               <h5 class="home_title_heading" style="text-align: left;">{{$story2->title}} </h5>
                               <p>{{$story2->header}}</p>
-                              <div class="home_card_button p-2">
+                              <div class="home_card_button   text-start p-2">
                                 <a class="effect01" href="{{route('story.details',$story2->id)}}">Read more</a>
                             </div>
                             </div>
@@ -729,7 +729,7 @@
                             <div class="col-lg-8 col-md-6 col-sm-12">
                               <h5 class="home_title_heading" style="text-align: left;">{{$story3->title}} </h5>
                               <p>{{$story3->header}}</p>
-                              <div class="home_card_button p-2">
+                              <div class="home_card_button  text-start p-2">
                                 <a class="effect01" href="{{route('story.details',$story3->id)}}">Read more</a>
                             </div>
                             </div>

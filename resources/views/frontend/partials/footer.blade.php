@@ -5,7 +5,7 @@
 <footer class="container-fluid p-0" style="background: #222222;">
     <!-- footyer gradient -->
     <div class="footer_top">
-      <p class="">We deliver Insight Intelligent Technology Solutions™ expertise.</p>
+      <p class="">We deliver NGen It Intelligent Technology Solutions™ expertise.</p>
     </div>
     <!-- main footer -->
     <div class="footer_middle">
@@ -23,7 +23,7 @@
                 <div class="input-group w-75">
                   <input type="email" class="form-control" placeholder="Enter your email">
                   <span class="input-group-btns ml-1">
-                    <button class="btns effect01 px-1" type="submit" style="line-height: 36px;border-top-right-radius: 5px;border-bottom-right-radius: 5px;">Subscribe Now</button>
+                    <button class="btns effect01 px-1" type="submit" style="line-height: 36px;border-top-right-radius: 5px;border-bottom-right-radius: 5px;">Subscribe</button>
                   </span>
               </form>
             </div>
