@@ -66,7 +66,7 @@ class HomeController extends Controller
         }else{
             $data['products'] = DB::table('products')->inRandomOrder()->where('product_status', 'product')
             ->select('products.id','products.rfq','products.slug','products.name','products.thumbnail','products.price','products.discount')
-            ->limit(12)->get()->unique('brand_id');
+            ->limit(12)->get()->unique('products.brand_id');
         }
 
         if ($data['home']) {
@@ -119,33 +119,40 @@ class HomeController extends Controller
 
     public function softwareInfo()
     {
+        $data['learnmore'] = LearnMore::orderBy('id','DESC')->select('learn_mores.industry_header','learn_mores.consult_title','learn_mores.consult_short_des','learn_mores.background_image')->first();
         $data['categories'] = Category::orderBy('id' ,'DESC')->limit(8)->get();
         $data['products'] = Product::where('product_type','software')->where('product_status', 'product')
                             ->select('products.id','products.rfq','products.slug','products.name','products.thumbnail','products.price','products.discount')
                             ->inRandomOrder()
                             ->limit(16)
                             ->get();
+        $data['industrys'] = Industry::select('industries.id','industries.logo','industries.title')->limit(8)->get();
+        $data['random_industries'] = Industry::inRandomOrder()->select('industries.id','industries.title')->limit(4)->get();
         //dd($data['categories']);
         return view('frontend.pages.software.software_info',$data);
     }
 
     public function hardwareInfo()
     {
+        $data['learnmore'] = LearnMore::orderBy('id','DESC')->select('learn_mores.industry_header','learn_mores.consult_title','learn_mores.consult_short_des','learn_mores.background_image')->first();
         $data['categories'] = Category::orderBy('id' ,'DESC')->limit(8)->get();
         $data['products'] = Product::where('product_type','software')->where('product_status', 'product')
                             ->select('products.id','products.rfq','products.slug','products.name','products.thumbnail','products.price','products.discount')
                             ->inRandomOrder()
                             ->limit(16)
                             ->get();
+        $data['industrys'] = Industry::select('industries.id','industries.logo','industries.title')->limit(8)->get();
+        $data['random_industries'] = Industry::inRandomOrder()->select('industries.id','industries.title')->limit(4)->get();
         return view('frontend.pages.hardware.hardware_info',$data);
     }
 
     //Feature Details
     public function FeatureDetails($id){
+        $data['learnmore'] = LearnMore::orderBy('id','DESC')->select('learn_mores.industry_header','learn_mores.consult_title','learn_mores.consult_short_des','learn_mores.background_image')->first();
         $data['feature'] = Feature::where('id',$id)->first();
         $data['row_one'] = Row::where('id',$data['feature']->row_one_id)->first();
         $data['row_two'] = Row::where('id',$data['feature']->row_two_id)->first();
-        $data['features'] = Feature::where('id' , '!=' , $id )->get();
+        $data['features'] = Feature::where('id' , '!=' , $id )->select('logo','id','badge','header')->get();
         return view('frontend.pages.feature.feature_details',$data);
     }
 
@@ -632,6 +639,7 @@ class HomeController extends Controller
 
     public function HardwareCommon()
     {
+        $data['learnmore'] = LearnMore::orderBy('id','DESC')->select('learn_mores.industry_header','learn_mores.consult_title','learn_mores.consult_short_des','learn_mores.background_image')->first();
         $data['products'] = Product::where('product_type','hardware')->where('product_status', 'product')->latest()->paginate(10);
         $data['hardware'] = Product::where('product_type','hardware')->where('product_status', 'product')->latest()->paginate(10);
         $data['categories'] = DB::table('categories')
@@ -659,7 +667,8 @@ class HomeController extends Controller
         $data['techglossy'] = TechGlossy::inRandomOrder()->first();
         $data['features'] = Client::inRandomOrder()->limit(2)->get();
         $data['setting'] = Setting::latest()->first();
-        $data['industrys'] = Industry::latest()->get();
+        $data['industrys'] = Industry::latest()->select('industries.id','industries.logo','industries.title')->get();
+        $data['random_industries'] = Industry::inRandomOrder()->select('industries.id','industries.title')->limit(4)->get();
         return view('frontend.pages.hardware.allhardware',$data);
     }
 

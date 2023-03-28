@@ -188,7 +188,7 @@
                         <h3>{{ $row_four->title }}</h3>
                         <p class="text-justify">{!! $row_four->description !!} </p>
 
-                        <button href="{{ $row_four->link }}" class="common_button mt-4">Learn more</button>
+                        <a href="{{ $row_four->link }}" class="common_button mt-4">Learn more</a>
                     </div>
                     <div class="col-lg-6 col-sm-12">
                         <img class="img-fluid rounded"

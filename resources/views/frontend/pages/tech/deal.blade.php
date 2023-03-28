@@ -1,6 +1,16 @@
 @extends('frontend.master')
 @section('content')
 
+<style>
+    .tech_deals_header {
+        background-image: url('{{asset('frontend/images/tech_deals.jpg')}}');
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        padding: 50px 0px;
+    }
+</style>
+
 <!--=======// Header Title //=======-->
 <section class="tech_deals_header">
     <div class="container">

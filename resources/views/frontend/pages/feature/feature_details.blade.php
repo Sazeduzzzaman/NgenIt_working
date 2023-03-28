@@ -1,12 +1,47 @@
 @extends('frontend.master')
 @section('content')
     <style>
+        .outcome_smail_bussiness_title h2{
+                    font-family: "klinic-slab", "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif ;
+                }
+        .global_call_section::after
+        {
+            background: url('{{asset('storage/'.$learnmore->background_image)}}');
+            content: "";
+            position: absolute;
+            height: 230px;
+            background-position: top center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-attachment: fixed;
+            width: 100%;
+            background-color: #cbc4c3;
+            top: 25%;
+            left: 0px;
+            z-index: -1;
+        }
+        .global_call_section_content {
+            max-width: 575px;
+            background-color: var(--heading);
+            padding: 50px;
+            margin-left: -15px;
+            margin-top: 1.9rem;
+        }
         .app-contact {
             margin-top: auto;
             font-size: 8px;
             color: #888;
             position: absolute;
             bottom: 40px;
+        }
+        .service_common_content h3 {
+            font-size: 29px;
+            opacity: 0.9;
+            font-family: "Klinic Slab";
+            font-weight: 500;
+            font-style: normal;
+            color: #222;
+            margin: 30px 0px;
         }
 
     </style>
@@ -15,13 +50,14 @@
     <section class="section_wp2">
         <div class="container">
             <div class="row">
-                <div class="col-lg-6 col-sm-12 pr-4 service_common_content">
+                <div class="col-lg-6 col-sm-12 service_common_content">
                     <span class="radius_text_button">{{ $feature->badge }}</span>
                     <h3>{{ $feature->title }}</h3>
-                    <a href="#hear_from_team" class="common_button2">Hear from our team</a>
+                    <p>{!! $feature->header !!}</p>
+                    <a href="#Contact" class="common_button2">Hear from our team</a>
                 </div>
-                <div class="col-lg-6 col-sm-12">
-                    <img class="img-fluid p-4" src="{{ asset('storage/requestImg/' . $feature->image) }}"
+                <div class="col-lg-6 col-sm-12 p-4">
+                    <img class="img-fluid" src="{{ asset('storage/' . $feature->image) }}"
                         alt="{{ $feature->badge }}">
                 </div>
             </div>
@@ -31,7 +67,7 @@
 
     <!--======// Modern finance //======-->
     @if ($row_one)
-        <section class="container section_padding" style="border-bottom:1px solid #ddd;">
+        <section class="container section_padding">
             <div class="row">
                 <div class="col-lg-7 col-sm-12">
                     <div class="section_text_wrapper">
@@ -75,19 +111,46 @@
 
     <!----------End--------->
 
+    <!--=====// Global call section //=====-->
+    <section class="global_call_section section_padding my-5">
+        <div class="container">
+          <!-- content -->
+          @php
+            $sentence = $feature->row_four_title;
+          @endphp
+          <div class="global_call_section_content">
+            <div class="home_title" style="width: 100%; margin: 0px;">
+              <h5 class="home_title_heading" style="text-align: left; color: #fff;">
+                <span>{{\Illuminate\Support\Str::substr($sentence, 0, 1)}}</span>{{ \Illuminate\Support\Str::substr($sentence, 1) }}
+
+              </h5>
+              <p class="home_title_text text-white" style="text-align: left;">{{$feature->row_four_header}}</p>
+              <div class="business_seftion_button" style="text-align: left;">
+                <a href="#Contact">Explore Our Business</a>
+              </div>
+            </div>
+          </div>
+        </div>
+    </section>
+      <!---------End -------->
+
     <!--======// Consulting services {2} //======-->
     @if ($row_two)
-        <section class="">
+        <section class="my-5">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-6 col-sm-12">
-                        <img class="img-fluid p-4" src="{{ asset('storage/requestImg/' . $row_two->image) }}" alt=""
-                            style="height:370px; width:492px;">
+                        <img class="img-fluid" src="{{ asset('storage/' . $row_two->image) }}" alt=""
+                            style="height:300px; width:530px; border-radius:15px;">
                     </div>
                     <div class="col-lg-6 col-sm-12 pr-4 service_common_content">
                         <h4>{{ $row_two->badge }}</h4>
                         <h5>{{ $row_two->title }}</h5>
                         <p>{!! $row_two->description !!}</p>
+
+                        @if (!empty($row_two->btn_name))
+                            <a href="{{ $row_two->link }}" class="common_button mt-4">{{ $row_two->btn_name }}</a>
+                        @endif
 
                     </div>
                 </div>
@@ -97,17 +160,14 @@
 
     <!-------------End--------->
     <!--======// Call to action //======-->
-    <div class="call_to_action"
-        style="background-image: linear-gradient(
-            rgba(0,0,0,0.8),
-            rgba(0,0,0,0.8)
-            ), url('https://miro.com/blog/wp-content/uploads/2019/09/feature-affinity-map.svg');">
+    <div class="call_to_action my-5"
+        style="background-image: linear-gradient(to right top, #ae0a46, #a40942, #9a083e, #91083a, #870736, #870736, #870736, #870736, #91083a, #9a083e, #a40942, #ae0a46);">
         <div class="container">
-            <div class="call_to_action_text w-75 mx-auto">
+            <div class="call_to_action_text mx-auto">
                 <h4 class="">{{ $feature->row_three_title }}</h4>
                 <p>{{ $feature->row_three_header }}</p>
                 <div class="d-flex justify-content-center">
-                    <a href="#Contact" class="common_button3 text-center">Contact us to buy</a>
+                    <a href="{{route('contact')}}" class="common_button3 text-center">Contact us to buy</a>
                 </div>
             </div>
 
@@ -120,7 +180,7 @@
         <div class="container">
             <!-- home title -->
             <div class="home_title">
-                <h5 class="home_title_heading mb-4 pb-4"> {!! $feature->footer !!}</h5>
+                <h5 class="home_title_heading mb-4 pb-4 callout" style="font-size: 27px;"> {!! $feature->footer !!}</h5>
                 <h4 class="section_title py-3"><span class="topLine">K</span>ey business outcomes</h4>
             </div>
 
@@ -134,17 +194,19 @@
                             <div class="col-lg-3 col-sm-6">
                                 <!-- image -->
                                 <div class="business_item_icon">
-                                    <img src="{{ asset('storage/requestImg/' . $item->logo) }}" alt="">
+                                    <img src="{{ asset('storage/' . $item->logo) }}" alt="">
                                 </div>
 
                                 <!-- content -->
                                 <div class="business_item_content">
                                     <p class="business_item_title">{{ $item->badge }}</p>
-                                    <p class="business_item_text">{{ $item->short_desc }}</p>
-                                    <a href="{{ route('feature.details', $item->id) }}"
-                                        class="business_item_button"><span>Learn More</span> <span
-                                            class="business_item_button_icon"><i
-                                                class="fa-solid fa-arrow-right-long"></i></span></a>
+                                    <p class="business_item_text text-center">{{ Str::limit($item->header, 55) }}</p>
+                                    <a href="{{ route('feature.details', $item->id) }}" class="business_item_button">
+                                        <span>Learn More</span>
+                                        <span class="business_item_button_icon">
+                                            <i class="fa-solid fa-arrow-right-long"></i>
+                                        </span>
+                                    </a>
                                 </div>
                             </div>
                         @endforeach
@@ -156,85 +218,10 @@
         </div>
     </section>
     <!---------End -------->
-    @php
-        $setting = App\Models\Admin\Setting::first();
-    @endphp
+
 
     <!--=====// Pageform section //=====-->
-    <section class=" solution_contact_wrapper">
-    <div class="container">
-        <div class="row d-flex justify-content-center align-items-center">
-        <div class="col-lg-5 col-sm-12">
-            <div class="thing_together_wrapper">
-            <h4>
-                <span class="why_Choose_lineTop">L</span>et’s do big things together.
-            </h4>
-            <p>Get assistance with tracking an order, requesting a quote, contacting your account representative and more by phone or over chat.</p>
-            <h5>NGentIt Global Headquarters</h5>
-            <p>Haque Chamber <br>(11 floor - C&D) 89/2, Panthapath, Dhaka-1215 </p>
-            <p>Billing & invoice: <span class="main_color">+88 01714243446</span>
-                <br> Information and sales: <span class="main_color">sales@ngenitltd.com</span>
-                <br> OneCall support: <span class="main_color">+88 01714243446</span>
-                <br> Returns: <span class="main_color">(+88) 0258155838</span>
-            </p>
-            <!-- <h5><i class="fa-solid fa-phone"></i>NgenIT</h5> -->
-            </div>
-        </div>
-        <!----------Sidebar Privacy Policy --------->
-        <div class="col-lg-7 col-sm-12">
-            <!-- form Sidebar -->
-            <div class="background">
-            <div class="containers">
-                <div class="screen">
-                <div class="screen-header">
-                    <div class="screen-header-left">
-                    <div class="screen-header-button maximize"></div>
-                    <div class="screen-header-button minimize"></div>
-                    </div>
-                    <div class="screen-header-right">
-                    <div class="screen-header-ellipsis"></div>
-                    <div class="screen-header-ellipsis"></div>
-                    <div class="screen-header-ellipsis"></div>
-                    </div>
-                </div>
-                <div class="screen-body">
-                    <div class="screen-body-item left">
-                    <div class="app-title">
-                        <span>CONTACT</span>
-                        <span>US</span>
-                    </div>
-                    <div class="app-contact main_color ">CONTACT INFO : +88 01714243446</div>
-                    </div>
-                    <form class="w-50 feature_form" action="{{ route('contact.store') }}" method="post" enctype="multipart/form-data">
-                    <div class="screen-body-item screen-body-item-right">
-                    <div class="app-form">
-                        <div class="app-form-group">
-                        <input class="app-form-control" placeholder="NAME">
-                        </div>
-                        <div class="app-form-group">
-                        <input class="app-form-control" placeholder="EMAIL">
-                        </div>
-                        <div class="app-form-group">
-                        <input class="app-form-control" placeholder="CONTACT NO">
-                        </div>
-                        <div class="app-form-group message">
-                        <input class="app-form-control" placeholder="MESSAGE">
-                        </div>
-                        <div class="app-form-group buttons">
-                        <button class="app-form-button">CANCEL</button>
-                        <button class="app-form-button">SEND</button>
-                        </div>
-                    </div>
-                    </div>
-                </form>
-                </div>
-                </div>
-            </div>
-            </div>
-        </div>
-        </div>
-    </div>
-    </section>
+    @include('frontend.partials.footer_contact')
     <!---------End -------->
 @endsection
 

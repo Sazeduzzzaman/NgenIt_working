@@ -732,11 +732,19 @@
                                         <div class="row">
                                             <div class="col-md-3">
                                                 <!-- Tabs nav -->
+                                                @php
+                                                    $cat_products =[];
+                                                    foreach($categories as $item) {
+                                                        foreach($item->subitems as $subitem) {
+                                                        $subitems[$subitem->id] = $subitem;
+                                                        }
+                                                    }
+                                                @endphp
                                                 <div class="nav flex-column nav-pills nav-pills-custom" id="v-pills-tab"
                                                     role="tablist" aria-orientation="vertical">
                                                     @foreach ($categories as $item)
                                                         <a class="nav-link mb-1 p-1 shadow " id="v-pills-home-tab"
-                                                            data-toggle="pill" href="#category-1" role="tab"
+                                                            data-toggle="pill" href="#category-{{$item->id}}" role="tab"
                                                             aria-controls="v-pills-home" aria-selected="true">
 
                                                             <span class="font-weight-bold small text-uppercase">{{$item->title}}
@@ -751,9 +759,14 @@
                                             <div class="col-md-9 p-0">
                                                 <!-- Tabs content -->
                                                 <div class="tab-content p-0" id="v-pills-tabContent">
+                                                    @foreach ($categories as $item)
+                                                        @php
+                                                        $products = App\Models\Admin\Product::where('sub_cat_id',$item->id)->select('products.name','products.slug','products.price')->get();
+                                                        @endphp
+                                                    @endforeach
                                                     <div class="tab-pane fade shadow rounded bg-white show active p-2 mr-2"
-                                                        id="category-1" role="tabpanel"
-                                                        aria-labelledby="v-pills-home-tab">
+                                                        id="category-{{$item->id}}" role="tabpanel" aria-labelledby="v-pills-home-tab">
+
                                                         <div class="panel">
                                                             <div class="panel-heading">
                                                                 <div
@@ -771,11 +784,8 @@
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                            @if ($categories)
-                                                            @foreach ($categories as $key=>$item)
-                                                                @php
-                                                                    $products = App\Models\Admin\Product::where('sub_cat_id',$item->id)->select('products.name','products.slug','products.price')->get();
-                                                                @endphp
+
+
                                                                 <div class="panel-body table-responsive">
                                                                     <table class="table">
                                                                         <thead>
@@ -787,157 +797,25 @@
                                                                         </thead>
                                                                         <tbody>
 
-                                                                                    @foreach ($products as $key=>$item)
-                                                                                        <tr>
-                                                                                            <td>{{++$key}}</td>
-                                                                                            <td>{{$item->name}}</td>
-                                                                                            <td>{{$item->price}}</td>
-                                                                                        </tr>
-                                                                                    @endforeach
+                                                                            @foreach ($products as $key=>$item)
+                                                                                <tr>
+                                                                                    <td>{{++$key}}</td>
+                                                                                    <td>{{$item->name}}</td>
+                                                                                    <td>{{$item->price}}</td>
+                                                                                </tr>
+                                                                            @endforeach
 
                                                                         </tbody>
                                                                     </table>
                                                                 </div>
-                                                            @endforeach
-                                                            @endif
                                                         </div>
                                                     </div>
 
-                                                    <div class="tab-pane fade shadow rounded bg-white p-5 mr-2"
-                                                        id="category-2" role="tabpanel"
-                                                        aria-labelledby="v-pills-profile-tab">
-                                                        <div class="panel">
-                                                            <div class="panel-heading">
-                                                                <div
-                                                                    class="row p-0 d-flex justify-content-center align-items-center">
-                                                                    <div class="col-lg-9">
-                                                                        <h4 class="">Product List For Softwares</h4>
-                                                                    </div>
-                                                                    <div class="col-lg-3 text-right">
-                                                                        <form action=" ">
-                                                                            <div class="btn_group">
-                                                                                <input type="text" class="form-control"
-                                                                                    placeholder="Search">
-                                                                            </div>
-                                                                        </form>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            @if ($brands)
-                                                            @foreach ($brands as $key=>$item)
-                                                                @php
-                                                                    $products = App\Models\Admin\Product::where('brand_id',$item->id)->select('products.name','products.slug','products.price')->get();
-                                                                @endphp
-                                                                <div class="panel-body table-responsive">
-                                                                    <table class="table">
-                                                                        <thead>
-                                                                            <tr>
-                                                                                <th>Sl</th>
-                                                                                <th>Product Name</th>
-                                                                                <th>Price</th>
-                                                                            </tr>
-                                                                        </thead>
-                                                                        <tbody>
 
-                                                                                    @foreach ($products as $key=>$item)
-                                                                                        <tr>
-                                                                                            <td>{{++$key}}</td>
-                                                                                            <td>{{$item->name}}</td>
-                                                                                            <td>{{$item->price}}</td>
-                                                                                        </tr>
-                                                                                    @endforeach
 
-                                                                        </tbody>
-                                                                    </table>
-                                                                </div>
-                                                            @endforeach
-                                                            @endif
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="tab-pane fade shadow rounded bg-white p-5 mr-2"
-                                                        id="category-3" role="tabpanel"
-                                                        aria-labelledby="v-pills-messages-tab">
-                                                        <div class="panel">
-                                                            <div class="panel-heading">
-                                                                <div
-                                                                    class="row p-0 d-flex justify-content-center align-items-center">
-                                                                    <div class="col-lg-9">
-                                                                        <h4 class="">Product List For Softwares</h4>
-                                                                    </div>
-                                                                    <div class="col-lg-3 text-right">
-                                                                        <form action=" ">
-                                                                            <div class="btn_group">
-                                                                                <input type="text" class="form-control"
-                                                                                    placeholder="Search">
-                                                                            </div>
-                                                                        </form>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="panel-body table-responsive">
-                                                                <table class="table">
-                                                                    <thead>
-                                                                        <tr>
-                                                                            <th>Sl</th>
-                                                                            <th>Product Name</th>
-                                                                            <th>Price</th>
-                                                                        </tr>
-                                                                    </thead>
-                                                                    <tbody>
-                                                                        <tr>
-                                                                            <td>1</td>
-                                                                            <td>Veritas Essential Support </td>
-                                                                            <td>$ 9.99</td>
-                                                                        </tr>
-                                                                    </tbody>
-                                                                </table>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="tab-pane fade shadow rounded bg-white p-5 mr-2"
-                                                        id="category-4" role="tabpanel"
-                                                        aria-labelledby="v-pills-settings-tab">
-                                                        <div class="panel">
-                                                            <div class="panel-heading">
-                                                                <div
-                                                                    class="row p-0 d-flex justify-content-center align-items-center">
-                                                                    <div class="col-lg-9">
-                                                                        <h4 class="">Product List For Softwares</h4>
-                                                                    </div>
-                                                                    <div class="col-lg-3 text-right">
-                                                                        <form action=" ">
-                                                                            <div class="btn_group">
-                                                                                <input type="text" class="form-control"
-                                                                                    placeholder="Search">
-                                                                            </div>
-                                                                        </form>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="panel-body table-responsive">
-                                                                <table class="table">
-                                                                    <thead>
-                                                                        <tr>
-                                                                            <th>Sl</th>
-                                                                            <th>Product Name</th>
-                                                                            <th>Price</th>
-                                                                        </tr>
-                                                                    </thead>
-                                                                    <tbody>
-                                                                        <tr>
-                                                                            <td>1</td>
-                                                                            <td>Veritas Essential Support </td>
-                                                                            <td>$ 9.99</td>
-                                                                        </tr>
-                                                                    </tbody>
-                                                                </table>
-                                                            </div>
-                                                        </div>
-                                                    </div>
                                                 </div>
                                             </div>
+
                                         </div>
                                     </div>
                                 </section>

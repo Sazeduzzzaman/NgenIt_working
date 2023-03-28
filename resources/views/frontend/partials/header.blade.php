@@ -228,7 +228,7 @@
                                     Our Solution
                                 </a>
                                 <div class="dropdown-menu w-100" aria-labelledby="navbarScrollingDropdown" style="margin: 0px !important;">
-                                    <div class="container-fluid">
+                                    <div class="container-fluid px-5">
 
                                         <div class="row">
                                             <div class="col-lg-4">
@@ -381,9 +381,9 @@
                                         <div class="row">
                                             <div class="col-lg-2">
                                                 <p class="mt-2 mr-2"><strong><span style="border-top: 2px solid #ae0a46 !important;">Sho</span>p By</strong></p>
-                                                <a class="dropdown-item" href="{{ route('software.info') }}">Software
+                                                <a class="dropdown-item" href="{{ route('software.common') }}">Software
                                                     <i class="fa-solid fa-chevron-right"></i></a>
-                                                <a class="dropdown-item" href="{{ route('hardware.info') }}">Hardware
+                                                <a class="dropdown-item" href="{{ route('hardware.common') }}">Hardware
                                                     <i class="fa-solid fa-chevron-right"></i></a>
                                                 <a class="dropdown-item" href="#">Training
                                                     <i class="fa-solid fa-chevron-right"></i></a>
@@ -465,12 +465,12 @@
                                                 <div class="row">
                                                     <div class="col-lg-4">
                                                         <p class="mt-2 mr-2"><strong><span style="border-top: 2px solid #ae0a46 !important;">Con</span>tact us</strong></p>
-                                                        <a class="dropdown-item" href="{{ route('contact') }}">Talk To a
-                                                            Specialist <i class="fa-solid fa-chevron-right"></i>
+                                                        <a class="dropdown-item" href="{{ route('contact') }}">Contact US
+                                                            <i class="fa-solid fa-chevron-right"></i>
                                                         </a>
-                                                        <a class="dropdown-item" href="#">NGen It <i
+                                                        {{-- <a class="dropdown-item" href="#">NGen It <i
                                                                 class="fa-solid fa-chevron-right"></i>
-                                                        </a>
+                                                        </a> --}}
                                                         <a class="dropdown-item" href="{{ route('support') }}">Support <i
                                                                 class="fa-solid fa-chevron-right"></i>
                                                         </a>

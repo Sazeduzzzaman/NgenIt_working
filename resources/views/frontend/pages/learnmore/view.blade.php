@@ -21,7 +21,7 @@
         }
         .outcome_smail_bussiness_title h2{
             font-family: "klinic-slab", "Helvetica Neue", "Helvetica", Helvetica, Arial,
-      sans-serif ;
+                            sans-serif ;
         }
         .global_call_section_content {
             max-width: 575px;
@@ -549,10 +549,7 @@
         }
     </style>
 
-{{-- linear-gradient(
-        rgba(0,0,0,0.5),
-        rgba(0,0,0,0.5)
-        ), --}}
+
     <!--======// Header Title //======-->
     <section class="common_product_header"
         style="background-image: url('{{ asset('storage/' . $learnmore->image_banner) }}');">
@@ -852,6 +849,13 @@
 @once
     @section('styles')
         <style>
+
+            .word {
+                position: absolute;
+                opacity: 0;
+                font-size: 38px;
+            }
+
             .active,
             .collapsible:focus {
                 border-top: none !important;

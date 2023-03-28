@@ -44,7 +44,7 @@
                         </h4>
                         <p>Get assistance with tracking an order, requesting a quote, contacting your account representative
                             and more by phone or over chat.</p>
-                        <h5 class="text-black">NGentIt Global Headquarters</h5>
+                        <h5 class="text-black">NGen It Global Headquarters</h5>
                         <p>Haque Chamber <br>(11 floor - C&D) 89/2, Panthapath, Dhaka-1215 </p>
                         <p>Billing & invoice: <span class="main_color">+88 01714243446</span>
                             <br> Information and sales: <span class="main_color">sales@ngenitltd.com</span>

@@ -1,6 +1,6 @@
 <!--=====// Pageform section //=====-->
 <section class=" solution_contact_wrapper">
-    <div class="container">
+    <div class="container" id="Contact">
       <div class="row d-flex justify-content-center align-items-center">
         <div class="col-lg-5 col-sm-12">
           <div class="thing_together_wrapper">
