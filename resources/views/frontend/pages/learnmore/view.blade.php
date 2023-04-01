@@ -794,13 +794,15 @@
 
               @if ($industrys)
                 @foreach ($industrys as $item)
-                    <div class="col-lg-3 col-sm-6">
-                      <a href="{{route('industry.details',$item->id)}}" class="we_serve_item">
-                        <div class="we_serve_item_image">
-                          <img src="{{asset('storage/'.$item->logo)}}" alt="">
+                    <div class="col-lg-3 col-sm-6 p-1">
+                        <div class="we_serve_item">
+                            <a href="{{route('industry.details',$item->id)}}">
+                                <div class="we_serve_item_image">
+                                <img src="{{asset('storage/'.$item->logo)}}" alt="">
+                                </div>
+                                <div class="we_serve_item_text">{{$item->title}}</div>
+                            </a>
                         </div>
-                        <div class="we_serve_item_text">{{$item->title}}</div>
-                      </a>
                     </div>
                 @endforeach
               @endif

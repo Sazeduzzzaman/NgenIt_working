@@ -1,65 +1,60 @@
 @extends('frontend.master')
 @section('content')
+<style>
+    .accordion-button:focus {
+        z-index: 3;
+        border-color: none;
+        outline: 0;
+        box-shadow: none;
+    }
 
+    .accordion-button {
+        padding: 10px !important;
+    }
 
-    <!--======// Header Title //======-->
-    <section class="header_title_product_filter"
-        style="background-image: url('{{ asset('storage/' . $cat->image) }}'); background-size:contain;background-color:#b1b1b1">
-        <h1 class="text-left ml-4 pl-4">
-            {{ $cat->title }}
-        </h1>
-    </section><br><br>
+    .accordion-button:not(.collapsed) {
+        color: black !important;
+        background-color: none !important;
+    }
+
+    .accordion-button:not(.collapsed) {
+        color: black !important;
+        background-color: transparent !important;
+        box-shadow: inset 0 calc(-1 * var(--bs-accordion-border-width)) 0 var(--bs-accordion-border-color);
+    }
+
+    .small_dropdown {
+        padding-left: 10px !important;
+    }
+</style>
+
+    <section class="banner_single_page mb-4" style="background-color: black;">
+
+        <div class="container">
+            <div class="single_banner_content">
+                <!-- image -->
+                <div class="single_banner_image text-center">
+                    <img class="my-3" src="{{ asset('storage/' . $cat->image) }}" alt="" height="100px" width="100px">
+                </div>
+                <!-- heading -->
+                <h1 class="single_banner_heading text-center text-white pb-3">{{ $cat->title }}</h1>
+
+            </div>
+        </div>
+    </section>
+
     <!-------- End--------->
 
     <!--=======// Content & Filter //=======-->
-    <section class="container">
+    <section class="container mb-5">
         <form action="{{ route('custom.product', $cat->slug) }}" method="POST">
             @csrf
-            <!----------Filter Top-nav Bar --------->
-            <div class="clinet_stories_filter_top_bar">
-                <label>Results per page </label>
-                <span class="client_story_filter_page">
-                    <select class="show" name="show" onchange="this.form.submit();">
-                        <option value="">Default</option>
-                        <option value="5" @if (!empty($_GET['show']) && $_GET['show'] == '5') selected @endif>5</option>
-                        <option value="10" @if (!empty($_GET['show']) && $_GET['show'] == '10') selected @endif>10</option>
-                        <option value="20" @if (!empty($_GET['show']) && $_GET['show'] == '20') selected @endif>20</option>
-                        <option value="40" @if (!empty($_GET['show']) && $_GET['show'] == '40') selected @endif>40</option>
-                    </select>
 
-                </span>
-
-                <label class="ml-4">Sort By: </label>
-                <span class="client_story_filter_all_year">
-                    <select class='sortBy' name='sortBy' onchange="this.form.submit();">
-                        <option value="">Default</option>
-                        <option value="titleASC" @if (!empty($_GET['sortBy']) && $_GET['sortBy'] == 'titleASC') selected @endif>Ascending By Name
-                        </option>
-                        <option value="priceASC" @if (!empty($_GET['sortBy']) && $_GET['sortBy'] == 'priceASC') selected @endif> Ascending By Price
-                        </option>
-                        <option value="titleDESC" @if (!empty($_GET['sortBy']) && $_GET['sortBy'] == 'titleDESC') selected @endif>Descending By Name
-                        </option>
-                        <option value="priceDESC" @if (!empty($_GET['sortBy']) && $_GET['sortBy'] == 'priceDESC') selected @endif>Descending By Price
-                        </option>
-
-                    </select>
-                </span>
-                {{-- <span class="product_go_to_next_pge"><a href="#" class="float-right">Go to next page...<i
-                    class="fa-solid fa-chevron-right"></i></a></span> --}}
-            </div>
-            <hr class="m-1">
             <div class="row">
                 <!----------Sidebar client stories --------->
                 <div class="col-lg-3 col-sm-12">
                     <div class="sidebar_client_stories">
-                        <label><b>
-                                @if ($products)
-                                    {{ $products->count() }}
-                                @else
-                                    No
-                                @endif
-                            </b> results matched your search</label>
-                        <hr class="m-0">
+
                         <!--------Your search--------->
                         <div class="client_stories_your_search">
                             <h6 class="mb-1">Your search</h6>
@@ -98,24 +93,24 @@
                             @endif
 
 
-                            @if (!empty($_GET['show']) && $_GET['show'] == '5')
+                            @if (!empty($_GET['show']) && $_GET['show'] == '7')
                                 <div class="alert alert-secondary alert-dismissible p-0 py-1 px-1 m-1">
-                                    Showing 5 Products
+                                    Showing 7 Products
                                 </div>
                             @endif
                             @if (!empty($_GET['show']) && $_GET['show'] == '10')
                                 <div class="alert alert-secondary alert-dismissible p-0 py-1 px-1 m-1">
-                                    Showing 5 Products
+                                    Showing 10 Products
                                 </div>
                             @endif
                             @if (!empty($_GET['show']) && $_GET['show'] == '20')
                                 <div class="alert alert-secondary alert-dismissible p-0 py-1 px-1 m-1">
-                                    Showing 5 Products
+                                    Showing 20 Products
                                 </div>
                             @endif
                             @if (!empty($_GET['show']) && $_GET['show'] == '40')
                                 <div class="alert alert-secondary alert-dismissible p-0 py-1 px-1 m-1">
-                                    Showing 5 Products
+                                    Showing 40 Products
                                 </div>
                             @endif
 
@@ -331,132 +326,184 @@
 
                 <!----------conternt client stories --------->
 
-                <div class="col-lg-9 col-sm-12">
-
-                        @if ($products)
-
-                            @foreach ($products as $product)
-
-                            <div class="product_content_item row m-0 mb-2 border p-2">
-                                <div class="col-lg-3 col-md-4 col-sm-12">
-                                    <img src="{{ asset($product->thumbnail) }}" alt="{{ $product->name }}" width="150px" height="113px">
+                <main class="col-md-9">
+                    <header class="product_showing shadow-lg px-2 py-2 mb-4">
+                        <div class="form-inline d-flex justify-content-between align-items-center">
+                            <span class="mr-md-auto">@if ($products)
+                                {{ $products->count() }} Items
+                            @else
+                                No Item
+                            @endif
+                             found </span>
+                            <div class="d-flex align-items-center">
+                                <div class="me-2 ml-2">
+                                    <select class="show btn product_btn_dropdown" name="show" onchange="this.form.submit();" data-placeholder="Results Per Page">
+                                        <option>Default</option>
+                                        <option value="7" @if (!empty($_GET['show']) && $_GET['show'] == '7') selected @endif>Per Page: 7</option>
+                                        <option value="10" @if (!empty($_GET['show']) && $_GET['show'] == '10') selected @endif>Per Page: 10</option>
+                                        <option value="20" @if (!empty($_GET['show']) && $_GET['show'] == '20') selected @endif>Per Page: 20</option>
+                                        <option value="40" @if (!empty($_GET['show']) && $_GET['show'] == '40') selected @endif>Per Page: 40</option>
+                                    </select>
                                 </div>
+                                <div>
+                                    <div class="">
+                                        <select class='sortBy btn product_btn_dropdown px-1' name='sortBy' onchange="this.form.submit();" style="margin-right:5px;">
+                                            <option>Sort By</option>
+                                            <option value="titleASC" @if (!empty($_GET['sortBy']) && $_GET['sortBy'] == 'titleASC') selected @endif>Ascending By Name
+                                            </option>
+                                            <option value="priceASC" @if (!empty($_GET['sortBy']) && $_GET['sortBy'] == 'priceASC') selected @endif> Ascending By Price
+                                            </option>
+                                            <option value="titleDESC" @if (!empty($_GET['sortBy']) && $_GET['sortBy'] == 'titleDESC') selected @endif>Descending By Name
+                                            </option>
+                                            <option value="priceDESC" @if (!empty($_GET['sortBy']) && $_GET['sortBy'] == 'priceDESC') selected @endif>Descending By Price
+                                            </option>
 
-                                <div class="col-lg-9 col-md-8 col-sm-12 product_content_item">
-                                    <a href="{{ route('product.details',['id'=> $product->slug]) }}">
-                                        <h3>{{$product->name}}
-                                        </h3>
-                                    </a>
-                                    <!--Add To Basket-->
-                                    <div class="row">
-                                        <div class="col-lg-5 col-md-6 col-sm-6">
-                                            <p>SKU #: {{$product->sku_code}}</p>
-                                            <p>MF #: {{$product->mf_code}}</p>
-                                            <p>NG #: {{$product->product_code}}</p>
-
-                                            <div class="row text-center px-3">
-                                                {{-- <div class="col-lg-7 col-md-12">
-                                                    <a href="#" class="">Add to My Compare List</a>
-                                                </div>
-                                                <div class="col-lg-5 col-md-12">
-                                                    <a href="#" class="">Compare Similar</a>
-                                                </div> --}}
-
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-3 col-md-6 col-sm-6">
-
-                                            @if ($product->rfq != 1)
-                                                <h4>List Price</h4>
-                                                <h3>
-                                                   USD $ @if (!empty($product->discount))
-                                                    <span class="price_currency_value"
-                                                        style="text-decoration: line-through; color:red">
-                                                        {{ $product->price }}
-                                                    <span class="price_currency_value" style="color: black">
-                                                        {{ $product->discount }}</span>
-                                                    @else
-                                                        <span class="price_currency_value"> {{ $product->price }}</span>
-                                                    @endif
-                                                </h3>
-                                            @endif
-                                        </div>
-
-                                        <div class="col-lg-4 col-sm-12">
-
-                                            <div class="product_add_bascket_btn d-flex justify-content-end mt-3">
-                                                    <!-- button -->
-                                                @if ($product->rfq != 1)
-
-                                                    @php
-                                                        $cart = Cart::content();
-                                                        $exist = $cart->where('id', $product->id);
-
-                                                    @endphp
-                                                    @if ($cart->where('id', $product->id)->count())
-                                                        {{-- <a href="javascript:void(0);" class="common_button6"> </a> --}}
-                                                        <span class="common_button6">Already in Cart</span>
-                                                    @else
-                                                        <form action="{{ route('add.cart') }}" method="post">
-                                                            @csrf
-                                                            <input type="hidden" name="product_id" id="product_id"
-                                                                value="{{ $product->id }}">
-                                                            <input type="hidden" name="name" id="name"
-                                                                value="{{ $product->name }}">
-                                                            <input type="hidden" name="qty" id="qty" value="1">
-                                                            <button type="submit" class="common_button effect01" style="padding:10px 20px;">Add to Basket</button>
-                                                        </form>
-                                                    @endif
-                                                @else
-                                                    {{-- <div class="product_item_price">
-                                                        <span class="price_currency_value">
-                                                            <a data-toggle="modal" data-target="#get_quote_modal-{{ $product->id }}">Ask
-                                                                For Price</a>
-                                                        </span>
-                                                    </div> --}}
-                                                    <a href="{{ route('product.details', $product->slug) }}"
-                                                        class="common_button effect01">Details</a>
-                                                @endif
-                                            </div>
-
-
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-12">
-                                                <p>{!! Str::limit($product->short_desc, 180, $end='...') !!}</p>
-                                        </div>
+                                        </select>
                                     </div>
                                 </div>
                             </div>
-                            @endforeach
-                        @endif
+                        </div>
+                    </header>
+                    <!-- sect-heading -->
+                    {{-- @php
+                        dd($products->appends(request()->query()));
+                    @endphp --}}
+                    <div class="row">
 
-                </div>
-                <!--------item------->
+                        <div class="container mt-1 mb-5">
+                            <div class="d-flex justify-content-center row">
+                                <div class="col-md-12">
+                                    <!-- First Product Start -->
+                                    @foreach ($products as $product)
+                                        <div class="row m-0 p-2 shadow-lg bg-white border rounded d-flex align-items-center">
+                                            <div class="col-md-3 mt-1">
+                                                <img class="img-fluid img-responsive rounded product-image"
+                                                    src="{{ asset($product->thumbnail) }}" alt="{{ $product->name }}">
+                                            </div>
+                                            <div class="col-md-9">
+                                                <a href="{{ route('product.details',['id'=> $product->slug]) }}">
+                                                    <h4 class="my-3" style="color: #ae0a46;">{{$product->name}}</h4>
+                                                </a>
+                                                <div class="row">
+                                                    <div class="col-md-8 mt-1">
+
+                                                        <div class="d-flex flex-row">
+                                                            <div class="ratings mr-2"></div>
+                                                            <span style="font-size: 14px;">
+                                                                SKU #: {{$product->sku_code}} |
+                                                                MF #:  {{$product->mf_code}} |
+                                                               <br> NG #:  {{$product->product_code}}
+                                                            </span>
+                                                        </div>
+                                                        {{-- <div class="mt-3 mb-1 spec-1"><span>100% cotton</span><span
+                                                                class="dot"></span><span>Light weight</span><span
+                                                                class="dot"></span><span>Best finish<br></span></div>
+                                                        <div class="mt-1 mb-1 spec-1"><span>Unique design</span><span
+                                                                class="dot"></span><span>For men</span><span
+                                                                class="dot"></span><span>Casual<br></span></div> --}}
+                                                        <p class="text-justify text-truncate para mb-0 mt-2">
+                                                            {!! Str::limit($product->short_desc, 180) !!}
+
+                                                        </p>
+                                                    </div>
+                                                    <div class="align-items-center align-content-center text-center col-md-4 border-left mt-1">
+                                                        <div class="d-flex flex-row align-items-center">
+                                                            @if ($product->rfq != 1)
+                                                                <small style="font-size: 0.6em;">USD</small>
+                                                                @if (!empty($product->discount))
+                                                                <h3 class="mr-1 font-number text-center">$ {{$product->discount}}</h3><span class="strike-text">$ {{ $product->price }}</span>
+                                                                @else
+                                                                <h3 class="mr-1 font-number text-center">$ {{ $product->price }}</h3>
+                                                                @endif
+                                                            @endif
+
+                                                        </div>
+                                                        @if (($product->qty) > 0)
+                                                        <h6 class="text-success font-number text-center" style="font-size:20px; text-transform:capitalize;">{{ $product->qty }} in stock</h6>
+
+                                                            @else
+                                                            <h6 class="text-center" style="font-size:20px; text-transform:capitalize;">{{ ucfirst($product->stock) }}</h6>
+                                                        @endif
+
+
+                                                        @if ($product->rfq != 1)
+
+                                                            @php
+                                                                $cart = Cart::content();
+                                                                $exist = $cart->where('id', $product->id);
+
+                                                            @endphp
+                                                            @if ($cart->where('id', $product->id)->count())
+                                                                {{-- <a href="javascript:void(0);" class="common_button6"> </a> --}}
+                                                                <span class="common_button6">Already in Cart</span>
+                                                            @else
+                                                                <form action="{{ route('add.cart') }}" method="post">
+                                                                    @csrf
+                                                                    <input type="hidden" name="product_id" id="product_id"
+                                                                        value="{{ $product->id }}">
+                                                                    <input type="hidden" name="name" id="name"
+                                                                        value="{{ $product->name }}">
+                                                                    <input type="hidden" name="qty" id="qty" value="1">
+                                                                    <button type="submit" class="common_button effect01" style="padding:10px 20px;">Add to Basket</button>
+                                                                </form>
+                                                            @endif
+                                                        @else
+                                                            {{-- <div class="product_item_price">
+                                                                <span class="price_currency_value">
+                                                                    <a data-toggle="modal" data-target="#get_quote_modal-{{ $product->id }}">Ask
+                                                                        For Price</a>
+                                                                </span>
+                                                            </div> --}}
+                                                            <a href="{{ route('product.details', $product->slug) }}"
+                                                                class="common_button effect01">Details</a>
+                                                        @endif
+
+                                                        {{-- <div class="d-flex flex-column mt-4">
+                                                            <button class="btn product_btn btn-sm"
+                                                                type="button">Details
+                                                            </button>
+                                                            <button class="btn product_btn btn-sm mt-2"
+                                                                type="button">Add to Basket
+                                                            </button>
+                                                        </div> --}}
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    @endforeach
+                                    <!-- First Product End -->
+
+
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="d-flex justify-content-center">
+                            <nav aria-label="Page navigation example">
+                                <ul class="pagination">
+
+                                    {{ $products->appends(request()->query())->links() }}
+                                </ul>
+
+                            </nav>
+                        </div>
+                </main>
+
+
 
 
 
 
 
             </div>
-            </div>
 
-
-            <!------------------Pagination------------------->
-            <div class="d-flex justify-content-center">
-                <nav aria-label="Page navigation example">
-                    <ul class="pagination">
-                        {{ $products->links() }}
-                    </ul>
-
-                </nav>
-            </div>
     </section>
 
 
 
-    <br>
+
     <!-------- End--------->
 
     <!--=======// Related products //======-->

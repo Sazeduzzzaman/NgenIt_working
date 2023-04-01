@@ -567,14 +567,14 @@
             <div class="ag-format-container row">
                 @foreach ($categorys as $item)
                     <div class="ag-offer_list col-lg-3" >
-                        <div class="ag-offer_item" style="border: 1px dashed rgb(179, 179, 179); margin: 0.15rem!important;">
+                        <div class="ag-offer_item" style="border: 1px dotted rgb(179, 179, 179); margin: 0.15rem!important;">
                             <div class="ag-offer_visible-item">
                                 <div class="ag-offer_img-box">
                                     <img src="{{ asset('storage/' . $item->image) }}" class="ag-offer_img"
                                         alt="" width="100px" height="100px" />
                                 </div>
                                 <div class="ag-offer_title">
-                                    <p>{{ Str::limit($item->title, 15) }}</p>
+                                    <p>{{ Str::limit($item->title, 30) }}</p>
                                 </div>
                             </div>
                             <div class="ag-offer_hidden-item">
@@ -601,14 +601,14 @@
                         $slug = App\Models\Admin\SubCategory::where('id', $item->id)->value('slug');
                     @endphp
                     <div class="ag-offer_list col-lg-3">
-                        <div class="ag-offer_item" style="border: 1px dashed rgb(179, 179, 179); margin: 0.15rem!important;">
+                        <div class="ag-offer_item" style="border: 1px dotted rgb(179, 179, 179); margin: 0.15rem!important;">
                             <div class="ag-offer_visible-item">
                                 <div class="ag-offer_img-box">
                                     <img src="{{ asset('storage/' . $item->image) }}" class="ag-offer_img"
                                         alt="" width="100px" height="100px" />
                                 </div>
                                 <div class="ag-offer_title">
-                                    <p>{{ Str::limit($item->title, 15) }}</p>
+                                    <p>{{ Str::limit($item->title, 45) }}</p>
                                 </div>
                             </div>
                             <div class="ag-offer_hidden-item">
@@ -626,20 +626,20 @@
                         $slug = App\Models\Admin\SubSubCategory::where('id', $item->id)->value('slug');
                     @endphp
                     <div class="ag-offer_list col-lg-3">
-                        <div class="ag-offer_item" style="border: 1px dashed rgb(179, 179, 179); margin: 0.15rem!important;">
+                        <div class="ag-offer_item" style="border: 1px dotted rgb(179, 179, 179); margin: 0.15rem!important;">
                             <div class="ag-offer_visible-item">
                                 <div class="ag-offer_img-box">
                                     <img src="{{ asset('storage/requestImg/' . $item->image) }}" class="ag-offer_img"
                                         alt="{{ $item->title }}" width="100px" height="100px" />
                                 </div>
                                 <div class="ag-offer_title">
-                                    <p>{{ Str::limit($item->title, 15) }}</p>
+                                    <p>{{ Str::limit($item->title, 45) }}</p>
                                 </div>
                             </div>
                             <div class="ag-offer_hidden-item">
                                 <div class="mx-auto">
                                     <a href="{{route('custom.product',$slug)}}" class="common_button3">
-                                        Shop
+                                        Details
                                     </a>
                                 </div>
                             </div>

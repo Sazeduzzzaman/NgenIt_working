@@ -202,13 +202,13 @@
 <!-- Header Top End -->
 <section>
     <header class="navbar_menus sticky-top shadow-lg">
-        <nav class="navbar navbar-expand-lg navbar-dark pb-0">
+        <nav class="navbar navbar-expand-lg navbar-dark py-0">
             <div class="container-fluid">
                 <div class="container p-0">
                     <div class="row d-flex align-items-center">
                         <a class="navbar-brand d-lg-none" href="{{ route('homepage') }}">
                             <img src="{{ !file_exists($setting->logo) ? url('upload/logoimage/' . $setting->logo) : url('upload/no_image.jpg') }}"
-                                alt="Ngen It" width="100px" height="50px">
+                                alt="Ngen It" width="100px" height="45px">
                         </a>
                         <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                             data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false"
@@ -223,12 +223,12 @@
                         </a>
                         <ul class="navbar-nav mx-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
                             <li class="nav-item dropdown position-static">
-                                <a class="nav-link dropdown-toggle" href="#" id="navbarScrollingDropdown"
+                                <a class="nav-link dropdown-toggle px-3" href="#" id="navbarScrollingDropdown"
                                     role="button" data-bs-toggle="dropdown" aria-expanded="false" style="font-size: 18px !important;">
                                     Our Solution
                                 </a>
                                 <div class="dropdown-menu w-100" aria-labelledby="navbarScrollingDropdown" style="margin: 0px !important;">
-                                    <div class="container-fluid px-5">
+                                    <div class="container">
 
                                         <div class="row">
                                             <div class="col-lg-4">
@@ -272,56 +272,40 @@
                                 </div>
                             </li>
                             <li class="nav-item dropdown position-static">
-                                <a class="nav-link dropdown-toggle" href="#" id="navbarScrollingDropdown"
+                                <a class="nav-link dropdown-toggle px-3" href="#" id="navbarScrollingDropdown"
                                     role="button" data-bs-toggle="dropdown" aria-expanded="false" style="font-size: 18px !important;">
                                     Tech Content
                                 </a>
                                 <div class="dropdown-menu w-100" aria-labelledby="navbarScrollingDropdown" style="margin: 0px !important; padding:0px !important">
-                                    <div class="container-fluid px-4">
-
-                                            <div class="row ">
-                                                <p class="mt-2 mr-2"><strong><span style="border-top: 2px solid #ae0a46 !important;">Fea</span>tured Content</strong></p>
-                                                @if ($features)
-                                                    @foreach ($features as $item)
-                                                        <div class="col-md-5 p-3">
-                                                            <a class="text-black"
-                                                                href="{{ route('feature.details', $item->id) }}">
-                                                                <div class="d-flex align-items-center">
-                                                                    <img src="{{ asset('storage/' . $item->image) }}"
-                                                                        alt=""  style="width:150px; height:80px;">
-                                                                    <div style="margin-left: 20px;" class="feature_text">
-                                                                        <p class="m-0 font-weight-bold">
-                                                                            {{ Str::limit($item->title, 100) }}...</p>
-                                                                        <p class="m-0 font-weight-lighter content_date">
-                                                                            {{ $item->badge }} /
-                                                                            {{ $item->created_at->format('d-m-Y') }}</p>
-                                                                    </div>
-                                                                </div>
-                                                            </a>
-                                                        </div>
-                                                    @endforeach
-                                                @endif
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-lg-4">
-
-                                                    @foreach ($blogs as $item)
-                                                        <a class="text-black" href="{{route('blog.details',$item->id)}}">
-                                                            <div class="d-flex align-items-center mb-3">
-                                                                <img src="{{ asset('storage/requestImg/' . $item->image) }}"
+                                    <div class="container">
+                                        <div class="row">
+                                            <p class="mt-2 mr-2"><strong><span style="border-top: 2px solid #ae0a46 !important;">Fea</span>tured Content</strong></p>
+                                            @if ($features)
+                                                @foreach ($features as $item)
+                                                    <div class="col-md-5 p-3">
+                                                        <a class="text-black"
+                                                            href="{{ route('feature.details', $item->id) }}">
+                                                            <div class="d-flex align-items-center">
+                                                                <img src="{{ asset('storage/' . $item->image) }}"
                                                                     alt=""  style="width:150px; height:80px;">
                                                                 <div style="margin-left: 20px;" class="feature_text">
-                                                                    <p class="m-0 font-weight-bold">{{ Str::limit($item->title, 55) }}...</p>
+                                                                    <p class="m-0 font-weight-bold">
+                                                                        {{ Str::limit($item->title, 100) }}...</p>
                                                                     <p class="m-0 font-weight-lighter content_date">
-                                                                        {{$item->badge}} / {{$item->created_at->format('d-m-Y')}}</p>
+                                                                        {{ $item->badge }} /
+                                                                        {{ $item->created_at->format('d-m-Y') }}</p>
                                                                 </div>
                                                             </div>
                                                         </a>
-                                                    @endforeach
-                                                </div>
-                                                <div class="col-lg-4">
-                                                    @foreach ($clientstorys as $item)
-                                                    <a class="text-black" href="{{route('story.details',$item->id)}}">
+                                                    </div>
+                                                @endforeach
+                                            @endif
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-lg-4">
+
+                                                @foreach ($blogs as $item)
+                                                    <a class="text-black" href="{{route('blog.details',$item->id)}}">
                                                         <div class="d-flex align-items-center mb-3">
                                                             <img src="{{ asset('storage/requestImg/' . $item->image) }}"
                                                                 alt=""  style="width:150px; height:80px;">
@@ -333,30 +317,43 @@
                                                         </div>
                                                     </a>
                                                 @endforeach
-                                                </div>
-                                                <div class="col-lg-4">
-                                                    @foreach ($techglossys as $item)
-                                                    <a class="text-black" href="{{route('techglossy.details',$item->id)}}">
-                                                        <div class="d-flex align-items-center mb-3">
-                                                            <img src="{{ asset('storage/requestImg/' . $item->image) }}"
-                                                                alt=""  style="width:150px; height:80px;">
-                                                            <div style="margin-left: 20px;" class="feature_text">
-                                                                <p class="m-0 font-weight-bold">{{ Str::limit($item->title, 55) }}...</p>
-                                                                <p class="m-0 font-weight-lighter content_date">
-                                                                    {{$item->badge}} / {{$item->created_at->format('d-m-Y')}}</p>
-                                                            </div>
-                                                        </div>
-                                                    </a>
-                                                @endforeach
-                                                </div>
                                             </div>
-
-
+                                            <div class="col-lg-4">
+                                                @foreach ($clientstorys as $item)
+                                                <a class="text-black" href="{{route('story.details',$item->id)}}">
+                                                    <div class="d-flex align-items-center mb-3">
+                                                        <img src="{{ asset('storage/requestImg/' . $item->image) }}"
+                                                            alt=""  style="width:150px; height:80px;">
+                                                        <div style="margin-left: 20px;" class="feature_text">
+                                                            <p class="m-0 font-weight-bold">{{ Str::limit($item->title, 55) }}...</p>
+                                                            <p class="m-0 font-weight-lighter content_date">
+                                                                {{$item->badge}} / {{$item->created_at->format('d-m-Y')}}</p>
+                                                        </div>
+                                                    </div>
+                                                </a>
+                                            @endforeach
+                                            </div>
+                                            <div class="col-lg-4">
+                                                @foreach ($techglossys as $item)
+                                                <a class="text-black" href="{{route('techglossy.details',$item->id)}}">
+                                                    <div class="d-flex align-items-center mb-3">
+                                                        <img src="{{ asset('storage/requestImg/' . $item->image) }}"
+                                                            alt=""  style="width:150px; height:80px;">
+                                                        <div style="margin-left: 20px;" class="feature_text">
+                                                            <p class="m-0 font-weight-bold">{{ Str::limit($item->title, 55) }}...</p>
+                                                            <p class="m-0 font-weight-lighter content_date">
+                                                                {{$item->badge}} / {{$item->created_at->format('d-m-Y')}}</p>
+                                                        </div>
+                                                    </div>
+                                                </a>
+                                            @endforeach
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div class="container-fluid px-4" style="background-color: #f7f6f5">
+                                    <div class="container" style="background-color: #f7f6f5">
 
                                         <div class="row p-2">
-                                            <div class="col-lg-4 col-md-12">.
+                                            <div class="col-lg-4 col-md-12">
                                                 <a class="text-black fw-bold" href="{{route('all.blog')}}">View all Blogs</a>
                                             </div>
                                             <div class="col-lg-4 col-md-12">
@@ -371,13 +368,13 @@
                                 </div>
                             </li>
                             <li class="nav-item dropdown position-static">
-                                <a class="nav-link dropdown-toggle" href="#" id="navbarScrollingDropdown"
+                                <a class="nav-link dropdown-toggle px-3" href="#" id="navbarScrollingDropdown"
                                     role="button" data-bs-toggle="dropdown" aria-expanded="false" style="font-size: 18px !important;">
                                     Shop
                                 </a>
                                 <div></div>
                                 <div class="dropdown-menu w-100" aria-labelledby="navbarScrollingDropdown" style="margin: 0px !important;">
-                                    <div class="container-fluid px-4">
+                                    <div class="container">
                                         <div class="row">
                                             <div class="col-lg-2">
                                                 <p class="mt-2 mr-2"><strong><span style="border-top: 2px solid #ae0a46 !important;">Sho</span>p By</strong></p>
@@ -431,15 +428,15 @@
                                 </div>
                             </li>
                             <li class="nav-item dropdown position-static">
-                                <a class="nav-link dropdown-toggle" href="#" id="navbarScrollingDropdown"
+                                <a class="nav-link dropdown-toggle px-3" href="#" id="navbarScrollingDropdown"
                                     role="button" data-bs-toggle="dropdown" aria-expanded="false" style="font-size: 18px !important;">
                                     Connect Us
                                 </a>
                                 <div class="dropdown-menu w-100" aria-labelledby="navbarScrollingDropdown" style="margin: 0px !important;">
-                                    <div class="container-fluid px-4">
+                                    <div class="container">
 
                                         <div class="row">
-                                            <div class="col-lg-6">
+                                            <div class="col-lg-6 px-2 pr-2">
                                                 <span class="text-uppercase menu_title "></span>
                                                 <p class="mt-2 mr-2"><strong><span style="border-top: 2px solid #ae0a46 !important;">Fea</span>tured Events</strong></p>
                                                 @foreach ($feature_events as $item)
@@ -475,6 +472,9 @@
                                                                 class="fa-solid fa-chevron-right"></i>
                                                         </a>
                                                         <a class="dropdown-item" href="#">Location <i
+                                                                class="fa-solid fa-chevron-right"></i>
+                                                        </a>
+                                                        <a class="dropdown-item" href="{{route('portfolio')}}">Our Portfolio <i
                                                                 class="fa-solid fa-chevron-right"></i>
                                                         </a>
 
@@ -528,6 +528,7 @@
 
                                 </div>
                             </li>
+
                         </ul>
                         <form method="post" action="{{ route('product.search') }}">
                             @csrf

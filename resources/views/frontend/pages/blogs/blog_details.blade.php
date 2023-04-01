@@ -87,15 +87,19 @@
                     <div class="col-lg-12 col-sm-12 shadow-lg px-5 py-3 text-center  bg-white" style="margin-top: -4.5rem; ">
                         <h1> {{$blog->title}}</h1>
                         <div class="d-flex justify-content-between">
-                            <p>By
-                                <span class="special_character">{{$blog->created_by}}</span>
-                                <span class="date_blog">/ {{$blog->created_at->format('Y-m-d')}} /
-                                </span> Topics :
-                                @foreach ($without_last_tags as $item)
-                                    <span class="special_character">{{$item}} , </span>
-                                @endforeach
-                                <span class="special_character">{{$last_word}} </span>
-                            </p>
+
+                                <p>By
+                                    <span class="special_character">{{$blog->created_by}}</span>
+                                    <span class="date_blog">/ {{$blog->created_at->format('Y-m-d')}} /
+                                    </span>
+                                    @if (!empty($blog->tags))
+                                        Topics :
+                                        @foreach ($without_last_tags as $item)
+                                            <span class="special_character">{{$item}} , </span>
+                                        @endforeach
+                                        <span class="special_character">{{$last_word}} </span>
+                                    @endif
+                                </p>
                             <div class="bySocial col-3">
                                 <ul class="social-icon-links pull-right" style="font-size: 1.5rem;">
                                     {!! Share::page(url('/blog/'. $blog->id . '/details'))->facebook()->twitter()->whatsapp() !!}
@@ -223,7 +227,7 @@
                                     @php
                                         $item = str_replace('"', '', $item);
                                     @endphp
-                                        <a href="" class="btn tag_btn">{{App\Models\Admin\SolutionDetails::where('id',$item)->value('name')}}</a>
+                                        <a href="{{route('solution.details',$item)}}" class="btn tag_btn">{{App\Models\Admin\SolutionDetail::where('id',$item)->value('name')}}</a>
                                     @endforeach
                                 @endif
                             </div>
@@ -235,14 +239,16 @@
                         <img class="img-fluid" src="https://source.unsplash.com/random/680x360" alt="">
                     </div>
                     {{-- Releted Solution --}}
-                    <div class="border my-3 ">
-                        <h4 class="text-center py-1 tag_title">TAGS</h4>
-                            <div class="text-start p-2">
-                                @foreach ($tags as $item)
-                                <a href="" class=" text-black">#{{$item}}</a>
-                                @endforeach
-                            </div>
-                    </div>
+                    @if (!empty($blog->tags))
+                        <div class="border my-3 ">
+                            <h4 class="text-center py-1 tag_title">TAGS</h4>
+                                <div class="text-start p-2">
+                                    @foreach ($tags as $item)
+                                    <a href="" class=" text-black">#{{$item}}</a>
+                                    @endforeach
+                                </div>
+                        </div>
+                    @endif
                 </div>
             </div>
         </div>

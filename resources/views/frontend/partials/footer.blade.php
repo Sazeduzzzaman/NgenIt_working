@@ -5,7 +5,7 @@
 <footer class="container-fluid p-0" style="background: #222222;">
     <!-- footyer gradient -->
     <div class="footer_top">
-      <p class="">We deliver NGen It Intelligent Technology Solutions™ expertise.</p>
+      <p class="">We determined to pace with Next Generation Information Technology.</p>
     </div>
     <!-- main footer -->
     <div class="footer_middle">
@@ -17,13 +17,16 @@
               <!-- title -->
               <h6>Newsletter</h6>
               <!-- text -->
-              <p class="footer_text pt-2 w-75">Sign up to receive the IT content that matters most to you. You can update your preferences or unsubscribe any time.</p>
+              <p class="footer_text pt-2 w-75">
+                Sign up to receive the IT content that matters most to you.
+                You can update your preferences or unsubscribe any time.
+              </p>
               <!-- button -->
               <form class="p-0 m-0" id="myform" action="{{route('newsletter.store')}}" method="post" enctype="multipart/form-data">
                 <div class="input-group w-75">
                   <input type="email" class="form-control" placeholder="Enter your email">
                   <span class="input-group-btns ml-1">
-                    <button class="btns effect01 px-1" type="submit" style="line-height: 36px;border-top-right-radius: 5px;border-bottom-right-radius: 5px;">Subscribe</button>
+                    <button class="btns effect01 px-4" type="submit" style="line-height: 36px;border-top-right-radius: 5px;border-bottom-right-radius: 5px;">Subscribe</button>
                   </span>
               </form>
             </div>
@@ -137,20 +140,20 @@
         <div class="footer_bottom_list">
           <ul class="footer_bottom_text">
             <li>
-              <a href="{{route('terms.policy')}}">Privacy policy</a>
+              <a href="{{route('terms.policy')}}">Privacy Policy &nbsp;|</a>
             </li>
             <li>
-              <a href="{{route('terms.policy')}}">All Terms & Policies</a>
+              <a href="{{route('terms.policy')}}">All Terms & Policies &nbsp;|</a>
             </li>
             {{-- <li>
-                              <a href="ngenit/web_accessibility.html">Web Accessibility</a>
-                          </li> --}}
+                    <a href="ngenit/web_accessibility.html">Web Accessibility</a>
+                </li> --}}
             <li>
-              <a href="{{route('all.blog')}}">User</a>
+              <a href="{{route('all.blog')}}">Cookies</a>
             </li>
             {{-- <li>
-                              <label for="show_cookies">Cookies settings</label>
-                          </li> --}}
+                <label for="show_cookies">Cookies settings</label>
+            </li> --}}
           </ul>
         </div>
       </div>
@@ -610,5 +613,4 @@
         -webkit-box-shadow: none !important;
 	    box-shadow: none !important;
 }
-</st
 </style>

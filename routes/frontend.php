@@ -153,6 +153,11 @@ Route::post('add/support', [SupportController::class, 'addSupport'])->name('add.
 Route::get('terms_policy', [HomeController::class, 'TermsPolicy'])->name('terms.policy');
 Route::get('terms_policy/{id}/details', [HomeController::class, 'TermsPolicyDetails'])->name('terms.details');
 
+//Portfolio
+Route::get('portfolio', [HomeController::class, 'Portfolio'])->name('portfolio');
+// Route::get('portfolio/{id}/details', [HomeController::class, 'portfolioDetails'])->name('portfolio.details');
+Route::get('portfolio/details', [HomeController::class, 'portfolioDetails'])->name('portfolio.details');
+
 //Work Order Upload
 Route::put('upload/work-order/{id}', [RFQController::class,'workOrderUpload'])->name('work-order.upload');
 

@@ -122,7 +122,8 @@ class ShopController extends Controller
             if (Category::getProductByCat($slug)) {
                 $products =  DB::table('products')
                             ->join('categories', 'products.cat_id', '=', 'categories.id')
-                            ->select( '*')
+                            ->select('products.id','products.slug','products.name','products.thumbnail','products.price','products.discount','products.stock',
+                            'products.mf_code','products.rfq','products.product_code','products.sku_code','products.short_desc','qty','stock')
                             ->where('categories.slug', '=', $slug);
 
 
@@ -131,7 +132,8 @@ class ShopController extends Controller
             elseif (SubCategory::getProductBySubCat($slug)) {
                 $products =  DB::table('products')
                             ->join('sub_categories', 'products.sub_cat_id', '=', 'sub_categories.id')
-                            ->select( '*')
+                            ->select('products.id','products.slug','products.name','products.thumbnail','products.price','products.discount','products.stock',
+                            'products.mf_code','products.rfq','products.product_code','products.sku_code','products.short_desc','qty','stock')
                             ->where('sub_categories.slug', '=', $slug);
 
 
@@ -140,7 +142,8 @@ class ShopController extends Controller
             elseif (SubSubCategory::getProductBySubSubCat($slug)) {
                 $products =  DB::table('products')
                             ->join('sub_sub_categories', 'products.sub_sub_cat_id', '=', 'sub_sub_categories.id')
-                            ->select( '*')
+                            ->select('products.id','products.slug','products.name','products.thumbnail','products.price','products.discount','products.stock',
+                            'products.mf_code','products.rfq','products.product_code','products.sku_code','products.short_desc','qty','stock')
                             ->where('sub_sub_categories.slug', '=', $slug);
 
 
@@ -148,7 +151,8 @@ class ShopController extends Controller
             elseif (SubSubSubCategory::getProductBySubSubSubCat($slug)) {
                 $products =  DB::table('products')
                             ->join('sub_sub_sub_categories', 'products.sub_sub_sub_cat_id', '=', 'sub_sub_sub_categories.id')
-                            ->select( '*')
+                            ->select('products.id','products.slug','products.name','products.thumbnail','products.price','products.discount','products.stock',
+                            'products.mf_code','products.rfq','products.product_code','products.sku_code','products.short_desc','qty','stock')
                             ->where('sub_sub_sub_categories.slug', '=', $slug);
 
 
@@ -164,10 +168,10 @@ class ShopController extends Controller
 
                             ->where('brands.slug', '=', $slug)
                             ->select('products.id','products.slug','products.name','products.thumbnail','products.price','products.discount','products.stock',
-                            'products.mf_code','products.rfq','products.product_code','products.sku_code','products.short_desc')
+                            'products.mf_code','products.rfq','products.product_code','products.sku_code','products.short_desc','qty','stock')
                             ;
                             //dd($products);
-                $brands = Brand::inRandomOrder()->paginate(10);
+                $brands = Brand::inRandomOrder()->paginate(7);
             }
 
         }
@@ -227,7 +231,7 @@ class ShopController extends Controller
             $products=$products->paginate($_GET['show']);
         }
         else{
-            $products=$products->paginate(10);
+            $products=$products->paginate(7);
         }
 
 

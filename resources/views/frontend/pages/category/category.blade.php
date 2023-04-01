@@ -203,8 +203,8 @@
         }
 
         .ag-offer_img {
-            height: 150px;
-            width: 150px;
+            height: 100px;
+            width: 120px;
             margin: 0 0px 0 0;
         }
 
@@ -565,6 +565,69 @@
             </div>
         </div>
     </section>
+
+
+    <!-- Sub Category section-->
+    @if (!empty($sub_cats))
+        <section>
+            <div class="ag-offer-block container">
+                <div class="common_product_item_title">
+                    <h3>Display Sub Categories for {{ $category->title }}</h3>
+                </div>
+                <div class="ag-format-container row">
+                    @foreach ($sub_cats as $key => $item)
+                        <div class="ag-offer_list col-lg-3">
+                            <div class="ag-offer_item p-2 py-3" style="border: 1px dotted rgb(179, 179, 179); margin: 0.15rem!important;">
+                                <div class="ag-offer_visible-item">
+                                    <div class="ag-offer_img-box px-2">
+                                        <img src="{{ asset('storage/requestImg/' . $item->image) }}" class="ag-offer_img"
+                                            alt="{{ $item->title }}" style="width:75px !important;height:75px !important;"/>
+                                    </div>
+                                    <div class="ag-offer_title">
+                                        <p>{{ Str::limit($item->title, 45) }}</p>
+                                    </div>
+                                </div>
+                                <div class="ag-offer_hidden-item">
+                                    <div class="mx-auto">
+                                        <a href="{{route('custom.product',$item->slug)}}" class="common_button3">
+                                            Details
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+                    @if (!empty($sub_sub_cats))
+                        @foreach ($sub_sub_cats as $key => $item)
+                            <div class="ag-offer_list col-lg-3">
+                                <div class="ag-offer_item p-2 py-3" style="border: 1px dotted rgb(179, 179, 179); margin: 0.15rem!important;">
+                                    <div class="ag-offer_visible-item">
+                                        <div class="ag-offer_img-box px-2">
+                                            <img src="{{ asset('storage/requestImg/' . $item->image) }}" class="ag-offer_img"
+                                                alt="{{ $item->title }}" style="width:75px !important;height:75px !important;"/>
+                                        </div>
+                                        <div class="ag-offer_title">
+                                            <p>{{ Str::limit($item->title, 45) }}</p>
+                                        </div>
+                                    </div>
+                                    <div class="ag-offer_hidden-item">
+                                        <div class="mx-auto">
+                                            <a href="{{route('custom.product',$item->slug)}}" class="common_button3">
+                                                Details
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        @endforeach
+                    @endif
+                </div>
+            </div>
+        </section>
+    @endif
+    <!-- Sub Category section-->
+
+
 
     <!---Products Section-->
 
@@ -941,97 +1004,41 @@
     <!---Products Section-->
 
 
-    <!-- network cable -->
 
 
-    @if (!empty($sub_cats))
-    <section>
-        <div class="ag-offer-block container">
-            <div class="common_product_item_title">
-                <h3>Display Sub Categories for {{ $category->title }}</h3>
-            </div>
-            <div class="ag-format-container row">
-                @foreach ($sub_cats as $key => $item)
-                <div class="ag-offer_list col-lg-2 col-md-2 col-sm-12">
-                    <div class="ag-offer_item" style="border: 1px dashed rgb(179, 179, 179); margin: 0.15rem!important;">
-                        <div class="ag-offer_visible-item">
-                            <div class="ag-offer_img-box">
-                                <img src="{{ asset('storage/' . $item->image) }}" class="ag-offer_img"
-                                    alt="" width="100px" height="100px" />
-                            </div>
-                            <div class="ag-offer_title">
-                                <p>{{ Str::limit($item->title, 15) }}</p>
-                            </div>
-                        </div>
-                        <div class="ag-offer_hidden-item">
-                            <div class="mx-auto">
-                                <a href="{{ route('category.html', $item->slug) }}" class="common_button3">
-                                    Shop
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                @endforeach
-                @if (!empty($sub_sub_cats))
-                    @foreach ($sub_sub_cats as $key => $item)
-                        <div class="ag-offer_list col-lg-2 col-md-2 col-sm-12">
-                            <div class="ag-offer_item" style="border: 1px dashed rgb(179, 179, 179); margin: 0.15rem!important;">
-                                <div class="ag-offer_visible-item">
-                                    <div class="ag-offer_img-box">
-                                        <img src="{{ asset('storage/' . $item->image) }}" class="ag-offer_img"
-                                            alt="" style="height:80px !important;width:80px !important;" />
-                                    </div>
-                                    <div class="ag-offer_title">
-                                        <p>{{ Str::limit($item->title, 15) }}</p>
-                                    </div>
-                                </div>
-                                <div class="ag-offer_hidden-item">
-                                    <div class="mx-auto">
-                                        <a href="{{ route('category.html', $item->slug) }}" class="common_button3">
-                                            Shop
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    @endforeach
-                @endif
-            </div>
-        </div>
-    </section>
-    @endif
+
+
 
     <!--======// Top Brand //=====-->
     @if (!empty($brands))
-    <section>
-        <div class="ag-offer-block container">
-            <div class="common_product_item_title">
-                <h3>Related Brands for {{ $category->title }}</h3>
-            </div>
-            <div class="ag-format-container row">
-                @foreach ($brands as $key => $item)
-                <div class="ag-offer_list col-lg-2 col-md-2 col-sm-4">
-                    <div class="ag-offer_item" style="border: 1px dashed rgb(179, 179, 179); margin: 0.15rem!important;">
-                        <div class="ag-offer_visible-item">
-                            <div class="ag-offer_img-box d-felx justify-content-center mx-auto">
-                                <img src="{{ asset('storage/' . $item->image) }}" class="ag-offer_img"  alt="{{ $item->title }}" width="150px"
-                                    height="150px" />
+        <section>
+            <div class="ag-offer-block container">
+                <div class="common_product_item_title">
+                    <h3>Related Brands for {{ $category->title }}</h3>
+                </div>
+                <div class="ag-format-container row">
+                    @foreach ($brands as $key => $item)
+                    <div class="ag-offer_list col-lg-2 col-md-2 col-sm-4">
+                        <div class="ag-offer_item" style="border: 1px dotted rgb(179, 179, 179); margin: 0.15rem!important;">
+                            <div class="ag-offer_visible-item">
+                                <div class="ag-offer_img-box d-felx justify-content-center mx-auto">
+                                    <img src="{{ asset('storage/' . $item->image) }}" class="ag-offer_img"  alt="{{ $item->title }}" width="150px"
+                                        height="150px" />
+                                </div>
                             </div>
-                        </div>
-                        <div class="ag-offer_hidden-item">
-                            <div class="mx-auto">
-                                <a href="{{ !empty($item->slug) ? route('custom.product', $item->slug) : route('all.brand') }}" class="common_button3">
-                                    Shop
-                                </a>
+                            <div class="ag-offer_hidden-item">
+                                <div class="mx-auto">
+                                    <a href="{{ !empty($item->slug) ? route('custom.product', $item->slug) : route('all.brand') }}" class="common_button3">
+                                        Shop
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     </div>
+                    @endforeach
                 </div>
-                @endforeach
             </div>
-        </div>
-    </section>
+        </section>
     @endif
     <!----------End--------->
 

@@ -526,7 +526,8 @@ class HomeController extends Controller
                         ->where('product_status', '=', 'product')
                         ->distinct()
                         ->select('products.id','products.rfq','products.slug','products.name','products.thumbnail','products.price','products.discount')
-                        ->limit(12)->get();
+                        ->limit(12)
+                        ->get();
 
 
         if ($data['brandpage']) {
@@ -768,6 +769,16 @@ class HomeController extends Controller
 
 
         return view('frontend.pages.policy.terms_policy',$data);
+    }
+
+    public function Portfolio()
+    {
+        return view('frontend.pages.portfolio.portfolio');
+    }
+
+    public function portfolioDetails()
+    {
+        return view('frontend.pages.portfolio.portfolio_details');
     }
 
 

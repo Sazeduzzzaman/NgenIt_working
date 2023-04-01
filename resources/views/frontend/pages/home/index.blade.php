@@ -638,13 +638,14 @@
                 <div class="col-lg-8 col-sm-12 pb-3">
                     <div class="home_shop_product_wrapper">
                         <h5> Shop Products and Hardware</h5>
-                        <p class="text-justify w-75 w-sm-100">Among More than <strong
+                        <p class="text-justify w-75 w-sm-100">
+                            Among More than <strong
                                 style="font-family: 'Poppins', sans-serif;">{{ App\Models\Admin\Product::count() }}</strong>
                             products and
                             <strong
                                 style="font-family: 'Poppins', sans-serif;">{{ App\Models\Admin\Brand::count() }}</strong>
-                            brand at your service, we can provide you with the tools
-                            you need to succeed. Additionally, you may easily control anything from your NgenIt account.
+                            brands at your service, we can provide you with the tools
+                            you need to succeed. Additionally, you may easily ask your exact requirements or contact us at anytime.
                         </p>
                         <div class="d-flex justify-content-start">
                             <a href="{{ route('shop.html') }}" class="common_button effect01">Shop Now</a>
@@ -1050,7 +1051,7 @@
         <div class="container">
             <!-- title -->
             <div class="section_title story_title">
-                <h3 class="title_top_heading">Learn more in our client stories.</h3>
+                <h3 class="title_top_heading">Our few services at Clients.</h3>
             </div>
             @if ($home)
                 <div class="row">

@@ -1,6 +1,5 @@
 @extends('frontend.master')
 @section('content')
-
     <style>
         .accordion-button:focus {
             z-index: 3;
@@ -23,7 +22,8 @@
             background-color: transparent !important;
             box-shadow: inset 0 calc(-1 * var(--bs-accordion-border-width)) 0 var(--bs-accordion-border-color);
         }
-        .small_dropdown{
+
+        .small_dropdown {
             padding-left: 10px !important;
         }
     </style>
@@ -74,15 +74,15 @@
 
                         <div class="accordion accordion-flush" id="accordionFlushExample">
                             <div class="accordion-item">
-                                @foreach ($categories as $key=>$item)
+                                @foreach ($categories as $key => $item)
                                     <h2 class="accordion-header" id="flush-headingOne">
                                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                            data-bs-target="#flush-collapse{{$item->id}}" aria-expanded="false"
+                                            data-bs-target="#flush-collapse{{ $item->id }}" aria-expanded="false"
                                             aria-controls="flush-collapseOne">
-                                            {{$item->title}}
+                                            {{ $item->title }}
                                         </button>
                                     </h2>
-                                    <div id="flush-collapse{{$item->id}}" class="accordion-collapse collapse"
+                                    <div id="flush-collapse{{ $item->id }}" class="accordion-collapse collapse"
                                         aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
                                         <div class="accordion-body p-1 ps-3 pl-3">
                                             {{-- Body --}}
@@ -98,9 +98,11 @@
                                                         @endphp --}}
                                                         <h2 class="accordion-header" id="flush-headingOne_test">
                                                             <button class="accordion-button collapsed" type="button"
-                                                                data-bs-toggle="collapse" data-bs-target="#flush-collapseOne_test"
-                                                                aria-expanded="false" aria-controls="flush-collapseOne_test">
-                                                                {{$item->title}}
+                                                                data-bs-toggle="collapse"
+                                                                data-bs-target="#flush-collapseOne_test"
+                                                                aria-expanded="false"
+                                                                aria-controls="flush-collapseOne_test">
+                                                                {{ $item->title }}
                                                             </button>
                                                         </h2>
                                                         <div id="flush-collapseOne_test" class="accordion-collapse collapse"
@@ -111,31 +113,43 @@
 
                                                                 <div class="accordion accordion-flush" id="inner_sub-2">
                                                                     <div class="accordion-item">
-                                                                        <h2 class="accordion-header" id="flush-headingOne_test-2">
-                                                                            <button class="accordion-button collapsed" type="button"
-                                                                                data-bs-toggle="collapse" data-bs-target="#flush-sub-2"
-                                                                                aria-expanded="false" aria-controls="flush-sub-2">
+                                                                        <h2 class="accordion-header"
+                                                                            id="flush-headingOne_test-2">
+                                                                            <button class="accordion-button collapsed"
+                                                                                type="button" data-bs-toggle="collapse"
+                                                                                data-bs-target="#flush-sub-2"
+                                                                                aria-expanded="false"
+                                                                                aria-controls="flush-sub-2">
                                                                                 Sub Sub Categories
                                                                             </button>
                                                                         </h2>
-                                                                        <div id="flush-sub-2" class="accordion-collapse collapse"
+                                                                        <div id="flush-sub-2"
+                                                                            class="accordion-collapse collapse"
                                                                             aria-labelledby="flush-headingOne_test-2"
                                                                             data-bs-parent="#inner_sub-2">
                                                                             <div class="accordion-body p-1 ps-4 pl-4">
                                                                                 {{-- Body --}}
-                                                                                <div class="accordion accordion-flush" id="inner_sub-3">
+                                                                                <div class="accordion accordion-flush"
+                                                                                    id="inner_sub-3">
                                                                                     <div class="accordion-item">
-                                                                                        <h2 class="accordion-header" id="flush-headingOne_test-3">
-                                                                                            <button class="accordion-button collapsed" type="button"
-                                                                                                data-bs-toggle="collapse" data-bs-target="#flush-sub-3"
-                                                                                                aria-expanded="false" aria-controls="flush-sub-3">
+                                                                                        <h2 class="accordion-header"
+                                                                                            id="flush-headingOne_test-3">
+                                                                                            <button
+                                                                                                class="accordion-button collapsed"
+                                                                                                type="button"
+                                                                                                data-bs-toggle="collapse"
+                                                                                                data-bs-target="#flush-sub-3"
+                                                                                                aria-expanded="false"
+                                                                                                aria-controls="flush-sub-3">
                                                                                                 Sub Sub Sub Categories
                                                                                             </button>
                                                                                         </h2>
-                                                                                        <div id="flush-sub-3" class="accordion-collapse collapse"
+                                                                                        <div id="flush-sub-3"
+                                                                                            class="accordion-collapse collapse"
                                                                                             aria-labelledby="flush-headingOne_test-3"
                                                                                             data-bs-parent="#inner_sub-3">
-                                                                                            <div class="accordion-body p-1 ps-5 pl-5">
+                                                                                            <div
+                                                                                                class="accordion-body p-1 ps-5 pl-5">
                                                                                                 {{-- Body --}}
 
 
@@ -392,9 +406,12 @@
                                             Short By Name
                                         </button>
                                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                            <li><a class="dropdown-item small_dropdown" href="#">Ascending By Name</a></li>
-                                            <li><a class="dropdown-item small_dropdown" href="#">Ascending By Price</a></li>
-                                            <li><a class="dropdown-item small_dropdown" href="#">Descending By Name</a></li>
+                                            <li><a class="dropdown-item small_dropdown" href="#">Ascending By
+                                                    Name</a></li>
+                                            <li><a class="dropdown-item small_dropdown" href="#">Ascending By
+                                                    Price</a></li>
+                                            <li><a class="dropdown-item small_dropdown" href="#">Descending By
+                                                    Name</a></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -502,9 +519,6 @@
 
 
     <!-------- End--------->
-
-
-
 @endsection
 @section('scripts')
     <script>

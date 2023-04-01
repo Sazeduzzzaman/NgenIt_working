@@ -226,7 +226,7 @@
             ),url('https://i.pcmag.com/imagery/roundups/02HDufdqeRUDu3tl0NnY2qZ-2..v1649351854.jpg');">
         <div class="container ">
             <h1>Software</h1>
-            <p class="text-center text-white">Through our deep partnerships with trusted brands, <br> Insight offers a
+            <p class="text-center text-white">Through our deep partnerships with trusted brands, <br> Ngen It offers a
                 comprehensive catalog of software for business. </p>
             <div class="row ">
                 <!--BUTTON START-->
@@ -1351,7 +1351,7 @@
                 <div class="col-lg-3 col-sm-6">
                     <div class="tech_solution_item">
                         <p class="tech_solution_title">44k+</p>
-                        <p class="tech_solution_text">Insight teammates worldwide</p>
+                        <p class="tech_solution_text">Ngen It teammates worldwide</p>
                         <p class="tech_solution_award">Awarded in 2021</p>
                     </div>
                 </div>
@@ -1367,7 +1367,7 @@
                 <div class="col-lg-3 col-sm-6">
                     <div class="tech_solution_item">
                         <p class="tech_solution_title">19</p>
-                        <p class="tech_solution_text">countries with Insight operations</p>
+                        <p class="tech_solution_text">countries with Ngen It operations</p>
                         <p class="tech_solution_award">Awarded in 2021</p>
                     </div>
                 </div>
@@ -1375,7 +1375,7 @@
                 <div class="col-lg-3 col-sm-6">
                     <div class="tech_solution_item">
                         <p class="tech_solution_title">Top 1%</p>
-                        <p class="tech_solution_text">Insight is in the top 1% of all Microsoft partners</p>
+                        <p class="tech_solution_text">Ngen It is in the top 1% of all Microsoft partners</p>
                         <p class="tech_solution_award">Awarded in 2021</p>
                     </div>
                 </div>

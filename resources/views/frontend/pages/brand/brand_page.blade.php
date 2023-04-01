@@ -92,7 +92,7 @@
 
 
     <!--======// Solution feature 1//======-->
-    @if ($row_one)
+    @if (!empty($row_one))
         <section class="my-5 pb-4">
             <div class="container">
                 <div class="row d-flex justify-content-center my-3">
@@ -107,7 +107,7 @@
 
                     </div>
                     <div class="col-lg-6 col-sm-12">
-                        <img class="img-fluid" src="{{ asset('storage/' . $row_one->image) }}" alt=""
+                        <img class="img-fluid mt-5" src="{{ asset('storage/' . $row_one->image) }}" alt=""
                             style="height: 300px;width: 580px;border-radius: 15px;">
                     </div>
                 </div>
@@ -118,12 +118,12 @@
     <!-------------End--------->
 
     <!--======// Solution feature 2//======-->
-    @if ($row_three)
+    @if (!empty($row_three))
         <section class="my-5">
             <div class="container">
                 <div class="row d-flex justify-content-center my-3">
                     <div class="col-lg-6 col-sm-12">
-                        <img class="img-fluid" src="{{ asset('storage/' . $row_three->image) }}" alt=""
+                        <img class="img-fluid mt-5" src="{{ asset('storage/' . $row_three->image) }}" alt=""
                             style="height: 300px;width: 580px;border-radius: 15px;">
                     </div>
                     <div class="col-lg-6 col-sm-12 ">
@@ -201,7 +201,7 @@
     <!-------------End--------->
 
     <!--======// Solution feature 3//======-->
-    @if ($row_four)
+    @if (!empty($row_four))
         <section class="py-4 my-5">
             <div class="container">
                 <div class="row">
@@ -215,7 +215,7 @@
 
                     </div>
                     <div class="col-lg-6 col-sm-12">
-                        <img class="img-fluid" src="{{ asset('storage/' . $row_four->image) }}" alt=""
+                        <img class="img-fluid mt-5" src="{{ asset('storage/' . $row_four->image) }}" alt=""
                             style="height: 300px;width: 580px;border-radius: 15px;">
                     </div>
                 </div>
@@ -225,12 +225,12 @@
     <!-------------End--------->
 
     <!--======// Solution feature 4//======-->
-    @if ($row_five)
+    @if (!empty($row_five))
         <section class="my-5">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-6 col-sm-12">
-                        <img class="img-fluid" src="{{ asset('storage/' . $row_five->image) }}"
+                        <img class="img-fluid mt-5" src="{{ asset('storage/' . $row_five->image) }}"
                             style="height: 300px;width: 580px;border-radius: 15px;">
                     </div>
                     <div class="col-lg-6 col-sm-12 pl-4 section_text_wrapper">
@@ -248,7 +248,7 @@
     <!-------------End--------->
 
     <!--=======// Popular products //======-->
-    @if ($products)
+    @if (count($products) > 0)
         <section class="popular_product_section section_padding my-5">
             <!-- container -->
             <div class="container">
