@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers\Marketing;
 
+use App\Models\User;
+use App\Mail\CustomMail;
+use App\Jobs\SendBulkEmails;
 use Illuminate\Http\Request;
-use App\Models\Admin\Product;
-use App\Models\Client\Client;
-use App\Models\Partner\Partner;
 use App\Http\Controllers\Controller;
+use Brian2694\Toastr\Facades\Toastr;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Validator;
 
 class BulkEmailController extends Controller
 {
@@ -17,10 +20,8 @@ class BulkEmailController extends Controller
      */
     public function index()
     {
-        $data['clients'] = Client::latest()->get();
-        $data['partners'] = Partner::latest()->get();
-        $data['products'] = Product::latest()->get();
-        return view('admin.pages.bulkemail.all',$data);
+        $data['users'] = User::where('role', 'sales')->select('users.id', 'users.email')->get();
+        return view('admin.pages.bulkemail.all', $data);
     }
 
     /**
@@ -41,7 +42,34 @@ class BulkEmailController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validator = Validator::make(
+            $request->all(),
+            [
+                'recipients.*' => 'required|email',
+                'subject'      => 'required|string',
+                'message'      => 'required|string',
+            ]
+
+        );
+
+        if ($validator->passes()) {
+            // Get the selected recipients and other form data
+            $recipients = $request->recipients;
+            $subject = $request->subject;
+            $message = $request->message;
+
+            // Loop through each recipient and send them an email
+            foreach ($recipients as $email) {
+                Mail::to($email)->send(new CustomMail($subject, $message));
+            }
+            Toastr::success('Mail Send Successfully');
+        } else {
+            $messages = $validator->messages();
+            foreach ($messages->all() as $message) {
+                Toastr::error($message, 'Failed', ['timeOut' => 30000]);
+            }
+        }
+        return redirect()->back();
     }
 
     /**

@@ -123,7 +123,7 @@ class ShopController extends Controller
                 $products =  DB::table('products')
                             ->join('categories', 'products.cat_id', '=', 'categories.id')
                             ->select('products.id','products.slug','products.name','products.thumbnail','products.price','products.discount','products.stock',
-                            'products.mf_code','products.rfq','products.product_code','products.sku_code','products.short_desc','qty','stock')
+                            'products.mf_code','products.rfq','products.product_code','products.sku_code','products.short_desc','qty','stock','brand_id','cat_id','sub_cat_id','sub_sub_cat_id')
                             ->where('categories.slug', '=', $slug);
 
 
@@ -133,7 +133,7 @@ class ShopController extends Controller
                 $products =  DB::table('products')
                             ->join('sub_categories', 'products.sub_cat_id', '=', 'sub_categories.id')
                             ->select('products.id','products.slug','products.name','products.thumbnail','products.price','products.discount','products.stock',
-                            'products.mf_code','products.rfq','products.product_code','products.sku_code','products.short_desc','qty','stock')
+                            'products.mf_code','products.rfq','products.product_code','products.sku_code','products.short_desc','qty','stock','brand_id','cat_id','sub_cat_id','sub_sub_cat_id')
                             ->where('sub_categories.slug', '=', $slug);
 
 
@@ -143,7 +143,7 @@ class ShopController extends Controller
                 $products =  DB::table('products')
                             ->join('sub_sub_categories', 'products.sub_sub_cat_id', '=', 'sub_sub_categories.id')
                             ->select('products.id','products.slug','products.name','products.thumbnail','products.price','products.discount','products.stock',
-                            'products.mf_code','products.rfq','products.product_code','products.sku_code','products.short_desc','qty','stock')
+                            'products.mf_code','products.rfq','products.product_code','products.sku_code','products.short_desc','qty','stock','brand_id','cat_id','sub_cat_id','sub_sub_cat_id')
                             ->where('sub_sub_categories.slug', '=', $slug);
 
 
@@ -152,7 +152,7 @@ class ShopController extends Controller
                 $products =  DB::table('products')
                             ->join('sub_sub_sub_categories', 'products.sub_sub_sub_cat_id', '=', 'sub_sub_sub_categories.id')
                             ->select('products.id','products.slug','products.name','products.thumbnail','products.price','products.discount','products.stock',
-                            'products.mf_code','products.rfq','products.product_code','products.sku_code','products.short_desc','qty','stock')
+                            'products.mf_code','products.rfq','products.product_code','products.sku_code','products.short_desc','qty','stock','brand_id','cat_id','sub_cat_id','sub_sub_cat_id')
                             ->where('sub_sub_sub_categories.slug', '=', $slug);
 
 
@@ -168,7 +168,7 @@ class ShopController extends Controller
 
                             ->where('brands.slug', '=', $slug)
                             ->select('products.id','products.slug','products.name','products.thumbnail','products.price','products.discount','products.stock',
-                            'products.mf_code','products.rfq','products.product_code','products.sku_code','products.short_desc','qty','stock')
+                            'products.mf_code','products.rfq','products.product_code','products.sku_code','products.short_desc','qty','stock','brand_id','cat_id','sub_cat_id','sub_sub_cat_id')
                             ;
                             //dd($products);
                 $brands = Brand::inRandomOrder()->paginate(7);
@@ -180,24 +180,24 @@ class ShopController extends Controller
             // $slugs = explode(',',$_GET['brand']);
             $keyword = $_GET['keyword'];
             //$brandIds = Brand::select('id')->whereIn('slug',$slugs)->pluck('id')->toArray();
-            $products = Product::where('name','LIKE','%'.$keyword.'%')->where('product_status', 'product');
+            $products = $products->where('name','LIKE','%'.$keyword.'%')->where('product_status', 'product');
         }
 
         if (!empty($_GET['category'])) {
             $slugs = explode(',',$_GET['category']);
             $catIds = SubCategory::select('id')->whereIn('slug',$slugs)->pluck('id')->toArray();
-           $products = $products->whereIn('sub_cat_id',$catIds);
+           $products = $products->whereIn('sub_cat_id',$catIds)->where('product_status', 'product');
         }
         if (!empty($_GET['subcategory'])) {
             $slugs = explode(',',$_GET['subcategory']);
             $catIds = SubCategory::select('id')->whereIn('slug',$slugs)->pluck('id')->toArray();
-           $products = $products->whereIn('sub_cat_id',$catIds);
+           $products = $products->whereIn('sub_cat_id',$catIds)->where('product_status', 'product');
         }
         if (!empty($_GET['brand'])) {
             $slugs = explode(',',$_GET['brand']);
             $brandIds = Brand::select('id')->whereIn('slug',$slugs)->pluck('id')->toArray();
             //dd($brandIds);
-            $products = $products->whereIn('brand_id',$brandIds);
+            $products = $products->whereIn('brand_id',$brandIds)->where('product_status', 'product');
            //dd($products);
         }
 

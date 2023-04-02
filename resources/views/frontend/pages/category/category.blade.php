@@ -539,26 +539,19 @@
         }
     </style>
     <!-- banner single page start -->
-    <section class="banner_single_page"
-        style="background-image:url('{{ asset('storage/' . $category->image) }}');
-
-        background-position: left;
-        background-repeat: no-repeat;
-        background-size: contain;
-        background-color: black;
-        height: 200px;">
+    <section class="banner_single_page py-3" style="background-color: black;">
 
         <div class="container">
             <div class="single_banner_content">
                 <!-- image -->
-                <div class="single_banner_image">
-                    <img src="" alt="">
+                <div class="single_banner_image text-center">
+                    <img class="my-3" src="{{ asset('storage/' . $category->image) }}" alt="" height="100px" width="100px">
                 </div>
                 <!-- heading -->
                 <h1 class="single_banner_heading text-center text-white">{{ $category->title }}</h1>
                 {{-- <p class="single_banner_text">{{ $data->h2 }}</p> --}}
                 <div class="single_buttton_wrapper text-center mb-2">
-                    <a href="{{ route('custom.product', $category->slug) }}" class="common_button2">Browse all
+                    <a href="{{ route('custom.product', $category->slug) }}" class="common_button2">Shop all
                         {{ $category->title }}</a>
 
                 </div>
