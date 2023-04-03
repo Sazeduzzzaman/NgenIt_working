@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('title');
             $table->string('slug')->unique();
             $table->string('image')->nullable();
+            $table->string('banner_image')->nullable();
             $table->enum('status', ['active', 'inactive'])->nullable()->default('active');
             $table->foreign('cat_id')->references('id')->on('categories')->onDelete('cascade');
             $table->foreign('sub_cat_id')->references('id')->on('sub_categories')->onDelete('cascade')->onUpdate('cascade');

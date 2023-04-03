@@ -571,7 +571,7 @@
                             <div class="ag-offer_visible-item">
                                 <div class="ag-offer_img-box">
                                     <img src="{{ asset('storage/' . $item->image) }}" class="ag-offer_img"
-                                        alt="" width="100px" height="100px" />
+                                        alt="" width="100px" height="100px"/>
                                 </div>
                                 <div class="ag-offer_title">
                                     <p>{{ Str::limit($item->title, 30) }}</p>

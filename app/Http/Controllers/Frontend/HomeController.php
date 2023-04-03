@@ -423,7 +423,7 @@ class HomeController extends Controller
                             ->join('products', 'brands.id', '=', 'products.brand_id')
                             ->join('categories','products.cat_id', '=','categories.id' )
                             ->where('categories.id', '=', $data['category']->id)
-                            ->select('brands.id','brands.title','brands.image')
+                            ->select('brands.id','brands.title','brands.image','brands.slug')
                             ->distinct()
                             ->paginate(18);
         } elseif((SubCategory::where('slug',$category)->count()) > 0) {
@@ -439,7 +439,7 @@ class HomeController extends Controller
                             ->join('products', 'brands.id', '=', 'products.brand_id')
                             ->join('sub_categories','products.sub_cat_id', '=','sub_categories.id' )
                             ->where('sub_categories.id', '=', $data['category']->id)
-                            ->select('brands.id','brands.title','brands.image')
+                            ->select('brands.id','brands.title','brands.image','brands.slug')
                             ->distinct()
                             ->paginate(18);
 
@@ -458,7 +458,7 @@ class HomeController extends Controller
                             ->join('products', 'brands.id', '=', 'products.brand_id')
                             ->join('sub_sub_categories','products.sub_sub_cat_id', '=','sub_sub_categories.id' )
                             ->where('sub_sub_categories.id', '=', $data['category']->id)
-                            ->select('brands.id','brands.title','brands.image')
+                            ->select('brands.id','brands.title','brands.image','brands.slug')
                             ->distinct()
                             ->paginate(18);
 

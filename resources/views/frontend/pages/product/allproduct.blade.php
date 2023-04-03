@@ -112,13 +112,17 @@
         }
 </style>
 
-    <section class="banner_single_page mb-4" style="background-color: black;">
+    <section class="banner_single_page mb-4" style="background-image:url('{{ asset('frontend/images/custom_shop.jpg') }}');
+        background-color: black;
+        background-repeat: no-repeat;
+        background-size: cover;
+        height:300px;">
 
         <div class="container">
             <div class="single_banner_content">
                 <!-- image -->
                 <div class="single_banner_image text-center">
-                    <img class="my-3" src="{{ asset('storage/' . $cat->image) }}" alt="" height="100px" width="100px">
+                    <img class="mb-3" src="{{ asset('storage/' . $cat->image) }}" alt="" height="100px" width="100px" style="margin-top:4rem;">
                 </div>
                 <!-- heading -->
                 <h1 class="single_banner_heading text-center text-white pb-3">{{ $cat->title }}</h1>
@@ -435,7 +439,7 @@
                                             @endif
                                             @foreach ($brands as $brand)
                                             @php
-                                                $products_brand = $products->whereIn('brand_id', $brand->id)->count();
+                                                $products_brand = $count_brands->whereIn('brand_id', $brand->id)->count();
                                                 //dd($products_brand);
                                             @endphp
 
@@ -608,33 +612,32 @@
                                                             src="{{ asset($product->thumbnail) }}" alt="{{ $product->name }}">
                                                     </div>
                                                     <div class="col-md-9 mb-2">
-                                                        <a href="{{ route('product.details',['id'=> $product->slug]) }}">
-                                                            <h4 class="my-3" style="color: #ae0a46;">{{$product->name}}</h4>
-                                                        </a>
                                                         <div class="row">
-                                                            <div class="col-md-8 mt-1">
+                                                            <a href="{{ route('product.details',['id'=> $product->slug]) }}">
+                                                                <h4 class="my-3" style="color: #ae0a46;">{{$product->name}}</h4>
+                                                            </a>
+                                                        </div>
 
-                                                                <div class="d-flex flex-row">
-                                                                    <div class="ratings mr-2"></div>
+                                                        <div class="row">
+                                                            <div class="col-lg-8 mt-1">
+
+                                                                <div class="row">
+
                                                                     <span style="font-size: 14px;">
                                                                         SKU #: {{$product->sku_code}} |
                                                                         MF #:  {{$product->mf_code}} |
                                                                     <br> NG #:  {{$product->product_code}}
                                                                     </span>
+                                                                    <br>
+                                                                    <p>
+                                                                        {!! Str::limit($product->short_desc, 180) !!}
+                                                                    </p>
                                                                 </div>
-                                                                {{-- <div class="mt-3 mb-1 spec-1"><span>100% cotton</span><span
-                                                                        class="dot"></span><span>Light weight</span><span
-                                                                        class="dot"></span><span>Best finish<br></span></div>
-                                                                <div class="mt-1 mb-1 spec-1"><span>Unique design</span><span
-                                                                        class="dot"></span><span>For men</span><span
-                                                                        class="dot"></span><span>Casual<br></span></div> --}}
-                                                                <p class="text-justify text-truncate para mb-0 mt-2">
-                                                                    {!! Str::limit($product->short_desc, 180) !!}
 
-                                                                </p>
+
                                                             </div>
-                                                            <div class="align-items-center align-content-center text-center col-md-4 border-left mt-1">
-                                                                <div class="d-flex flex-row align-items-center">
+                                                            <div class="col-lg-4 text-center border-left mt-1">
+                                                                <div class="text-center">
                                                                     @if ($product->rfq != 1)
                                                                         <small style="font-size: 0.6em;">USD</small>
                                                                         @if (!empty($product->discount))

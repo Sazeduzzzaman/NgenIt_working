@@ -70,33 +70,36 @@ class CategoryController extends Controller
         if ($validator->passes()) {
             $mainFile = $request->file('image');
             $imgPath = storage_path('app/public/');
+            $mainbannerFile = $request->file('banner_image');
+            $bannerimgPath = storage_path('app/public/');
+
             $slug = Str::slug($request->title);
             $count = Category::where('slug', $slug)->count();
             if ($count > 0) {
                 $slug = $slug . '-' . date('ymdis') . '-' . rand(0, 999);
             }
             $data['slug'] = $slug;
-            if (empty($mainFile)) {
-                Category::create([
-                    'title' => $request->title,
-                    'slug' => $data['slug'],
-                    'status' => $request->status,
-                ]);
+
+
+            if (isset($mainFile)) {
+                $globalFunImg = Helper::singleImageUpload($mainFile, $imgPath);
             } else {
-                $globalFunImg =  Helper::singleImageUpload($mainFile, $imgPath, 120, 72);
-                if ($globalFunImg['status'] == 1) {
-                    Category::create([
-                        'title' => $request->title,
-                        'slug' => $data['slug'],
-                        'image' => $globalFunImg['file_name'],
-                        'status' => $request->status,
-                    ]);
-                } else {
-                    $output['messege'] = $globalFunImg['errors'];
-                    Toastr::warning($output['messege']);
-                    return redirect()->back();
-                }
+                $globalFunImg['status'] = 0;
             }
+            if (isset($mainbannerFile)) {
+                $globalbannerFunImg =  Helper::singleImageUpload($mainbannerFile, $bannerimgPath);
+            } else {
+                $globalbannerFunImg['status'] = 0;
+            }
+
+            Category::create([
+                'title' => $request->title,
+                'slug' => $data['slug'],
+                'image' => $globalFunImg['status'] == 1 ? $globalFunImg['file_name'] : '',
+                'banner_image' => $globalbannerFunImg['status'] == 1 ? $globalbannerFunImg['file_name'] : '',
+                'status' => $request->status,
+            ]);
+
             Toastr::success('Data Inserted Successfully');
         } else {
             $messages = $validator->messages();
@@ -137,11 +140,19 @@ class CategoryController extends Controller
         if ($validator->passes()) {
             $mainFile = $request->image;
             $uploadPath = storage_path('app/public/');
+            $mainbannerFile = $request->banner_image;
+            $bannerimgPath = storage_path('app/public/');
+
 
             if (isset($mainFile)) {
-                $globalFunImg = Helper::singleImageUpload($mainFile, $uploadPath, 120, 72);
+                $globalFunImg = Helper::singleImageUpload($mainFile, $uploadPath);
             } else {
                 $globalFunImg['status'] = 0;
+            }
+            if (isset($mainbannerFile)) {
+                $globalbannerFunImg =  Helper::singleImageUpload($mainbannerFile, $bannerimgPath);
+            } else {
+                $globalbannerFunImg['status'] = 0;
             }
 
             if (!empty($category)) {
@@ -150,11 +161,17 @@ class CategoryController extends Controller
                     File::delete(public_path($uploadPath . '/thumb/') . $category->image);
                     File::delete(public_path($uploadPath . '/requestImg/') . $category->image);
                 }
+                if ($globalbannerFunImg['status'] == 1) {
+                    File::delete(public_path($uploadPath . '/') . $category->banner_image);
+                    File::delete(public_path($uploadPath . '/thumb/') . $category->banner_image);
+                    File::delete(public_path($uploadPath . '/requestImg/') . $category->banner_image);
+                }
 
                 $category->update([
                     'title' => $request->title,
                     'slug' =>  Str::slug($request->title),
                     'image' => $globalFunImg['status'] == 1 ? $globalFunImg['file_name'] : $category->image,
+                    'banner_image' => $globalbannerFunImg['status'] == 1 ? $globalbannerFunImg['file_name'] : $category->banner_image,
                     'status' => $request->status,
                 ]);
             }
@@ -206,39 +223,41 @@ class CategoryController extends Controller
                 'unique' => 'This Category has already been taken.',
             ]
         );
-
         if ($validator->passes()) {
             $mainFile = $request->file('image');
             $imgPath = storage_path('app/public/');
+            $mainbannerFile = $request->file('banner_image');
+            $bannerimgPath = storage_path('app/public/');
+
             $slug = Str::slug($request->title);
             $count = SubCategory::where('slug', $slug)->count();
             if ($count > 0) {
                 $slug = $slug . '-' . date('ymdis') . '-' . rand(0, 999);
             }
             $data['slug'] = $slug;
-            if (empty($mainFile)) {
-                SubCategory::create([
-                    'cat_id' => $request->cat_id,
-                    'title' => $request->title,
-                    'slug' => $data['slug'],
-                    'status' => $request->status,
-                ]);
+
+
+            if (isset($mainFile)) {
+                $globalFunImg = Helper::singleImageUpload($mainFile, $imgPath);
             } else {
-                $globalFunImg =  Helper::singleImageUpload($mainFile, $imgPath, 120, 72);
-                if ($globalFunImg['status'] == 1) {
-                    SubCategory::create([
-                        'cat_id' => $request->cat_id,
-                        'title' => $request->title,
-                        'slug' => $data['slug'],
-                        'image' => $globalFunImg['file_name'],
-                        'status' => $request->status,
-                    ]);
-                } else {
-                    $output['messege'] = $globalFunImg['errors'];
-                    Toastr::warning($output['messege']);
-                    return redirect()->back();
-                }
+                $globalFunImg['status'] = 0;
             }
+            if (isset($mainbannerFile)) {
+                $globalbannerFunImg =  Helper::singleImageUpload($mainbannerFile, $bannerimgPath);
+            } else {
+                $globalbannerFunImg['status'] = 0;
+            }
+
+            SubCategory::create([
+                'cat_id' => $request->cat_id,
+                'title' => $request->title,
+                'slug' => $data['slug'],
+                'image' => $globalFunImg['status'] == 1 ? $globalFunImg['file_name'] : '',
+                'banner_image' => $globalbannerFunImg['status'] == 1 ? $globalbannerFunImg['file_name'] : '',
+                'status' => $request->status,
+            ]);
+
+
             Toastr::success('Data Inserted Successfully');
         } else {
             $messages = $validator->messages();
@@ -246,6 +265,8 @@ class CategoryController extends Controller
                 Toastr::error($message, 'Failed', ['timeOut' => 30000]);
             }
         }
+
+
         return redirect()->back();
     }
 
@@ -269,37 +290,39 @@ class CategoryController extends Controller
         if ($validator->passes()) {
             $mainFile = $request->file('image');
             $imgPath = storage_path('app/public/');
+            $mainbannerFile = $request->file('banner_image');
+            $bannerimgPath = storage_path('app/public/');
+
             $slug = Str::slug($request->title);
             $count = SubSubCategory::where('slug', $slug)->count();
             if ($count > 0) {
                 $slug = $slug . '-' . date('ymdis') . '-' . rand(0, 999);
             }
             $data['slug'] = $slug;
-            if (empty($mainFile)) {
-                SubSubCategory::create([
-                    'cat_id' => $request->cat_id,
-                    'sub_cat_id' => $request->sub_cat_id,
-                    'title' => $request->title,
-                    'slug' => $data['slug'] = $slug,
-                    'status' => $request->status,
-                ]);
+
+
+            if (isset($mainFile)) {
+                $globalFunImg = Helper::singleImageUpload($mainFile, $imgPath);
             } else {
-                $globalFunImg =  Helper::singleImageUpload($mainFile, $imgPath, 120, 72);
-                if ($globalFunImg['status'] == 1) {
-                    SubSubCategory::create([
-                        'cat_id' => $request->cat_id,
-                        'sub_cat_id' => $request->sub_cat_id,
-                        'title' => $request->title,
-                        'slug' => $data['slug'] = $slug,
-                        'image' => $globalFunImg['file_name'],
-                        'status' => $request->status,
-                    ]);
-                } else {
-                    $output['messege'] = $globalFunImg['errors'];
-                    Toastr::warning($output['messege']);
-                    return redirect()->back();
-                }
+                $globalFunImg['status'] = 0;
             }
+            if (isset($mainbannerFile)) {
+                $globalbannerFunImg =  Helper::singleImageUpload($mainbannerFile, $bannerimgPath);
+            } else {
+                $globalbannerFunImg['status'] = 0;
+            }
+
+            SubSubCategory::create([
+                'cat_id' => $request->cat_id,
+                'sub_cat_id' => $request->sub_cat_id,
+                'title' => $request->title,
+                'slug' => $data['slug'],
+                'image' => $globalFunImg['status'] == 1 ? $globalFunImg['file_name'] : '',
+                'banner_image' => $globalbannerFunImg['status'] == 1 ? $globalbannerFunImg['file_name'] : '',
+                'status' => $request->status,
+            ]);
+
+
             Toastr::success('Data Inserted Successfully');
         } else {
             $messages = $validator->messages();
@@ -307,6 +330,8 @@ class CategoryController extends Controller
                 Toastr::error($message, 'Failed', ['timeOut' => 30000]);
             }
         }
+
+
         return redirect()->back();
     }
 
@@ -334,43 +359,43 @@ class CategoryController extends Controller
 
             ]
         );
-
         if ($validator->passes()) {
             $mainFile = $request->file('image');
             $imgPath = storage_path('app/public/');
+            $mainbannerFile = $request->file('banner_image');
+            $bannerimgPath = storage_path('app/public/');
+
             $slug = Str::slug($request->title);
             $count = SubSubSubCategory::where('slug', $slug)->count();
             if ($count > 0) {
                 $slug = $slug . '-' . date('ymdis') . '-' . rand(0, 999);
             }
             $data['slug'] = $slug;
-            if (empty($mainFile)) {
-                SubSubSubCategory::create([
-                    'cat_id' => $request->cat_id,
-                    'sub_cat_id' => $request->sub_cat_id,
-                    'sub_sub_cat_id' => $request->sub_sub_cat_id,
-                    'title' => $request->title,
-                    'slug' => $data['slug'] = $slug,
-                    'status' => $request->status,
-                ]);
+
+
+            if (isset($mainFile)) {
+                $globalFunImg = Helper::singleImageUpload($mainFile, $imgPath);
             } else {
-                $globalFunImg =  Helper::singleImageUpload($mainFile, $imgPath, 120, 72);
-                if ($globalFunImg['status'] == 1) {
-                    SubSubSubCategory::create([
-                        'cat_id' => $request->cat_id,
-                        'sub_cat_id' => $request->sub_cat_id,
-                        'sub_sub_cat_id' => $request->sub_sub_cat_id,
-                        'title' => $request->title,
-                        'slug' => $data['slug'] = $slug,
-                        'image' => $globalFunImg['file_name'],
-                        'status' => $request->status,
-                    ]);
-                } else {
-                    $output['messege'] = $globalFunImg['errors'];
-                    Toastr::warning($output['messege']);
-                    return redirect()->back();
-                }
+                $globalFunImg['status'] = 0;
             }
+            if (isset($mainbannerFile)) {
+                $globalbannerFunImg =  Helper::singleImageUpload($mainbannerFile, $bannerimgPath);
+            } else {
+                $globalbannerFunImg['status'] = 0;
+            }
+
+            SubSubSubCategory::create([
+                'cat_id' => $request->cat_id,
+                'sub_cat_id' => $request->sub_cat_id,
+                'sub_sub_cat_id' => $request->sub_sub_cat_id,
+                'title' => $request->title,
+                'slug' => $data['slug'],
+                'image' => $globalFunImg['status'] == 1 ? $globalFunImg['file_name'] : '',
+                'banner_image' => $globalbannerFunImg['status'] == 1 ? $globalbannerFunImg['file_name'] : '',
+                'status' => $request->status,
+            ]);
+
+
             Toastr::success('Data Inserted Successfully');
         } else {
             $messages = $validator->messages();
@@ -378,6 +403,8 @@ class CategoryController extends Controller
                 Toastr::error($message, 'Failed', ['timeOut' => 30000]);
             }
         }
+
+
         return redirect()->back();
     }
 
@@ -405,15 +432,21 @@ class CategoryController extends Controller
 
         //$validator = Validator::make($request->all(), $validator);
         if ($validator->passes()) {
-        //dd($request->all());
-
             $mainFile = $request->image;
             $uploadPath = storage_path('app/public/');
+            $mainbannerFile = $request->banner_image;
+            $bannerimgPath = storage_path('app/public/');
+
 
             if (isset($mainFile)) {
-                $globalFunImg = Helper::singleImageUpload($mainFile, $uploadPath, 120, 72);
+                $globalFunImg = Helper::singleImageUpload($mainFile, $uploadPath);
             } else {
                 $globalFunImg['status'] = 0;
+            }
+            if (isset($mainbannerFile)) {
+                $globalbannerFunImg =  Helper::singleImageUpload($mainbannerFile, $bannerimgPath);
+            } else {
+                $globalbannerFunImg['status'] = 0;
             }
 
             if (!empty($subcategory)) {
@@ -422,12 +455,19 @@ class CategoryController extends Controller
                     File::delete(public_path($uploadPath . '/thumb/') . $subcategory->image);
                     File::delete(public_path($uploadPath . '/requestImg/') . $subcategory->image);
                 }
+                if ($globalbannerFunImg['status'] == 1) {
+                    File::delete(public_path($uploadPath . '/') . $subcategory->banner_image);
+                    File::delete(public_path($uploadPath . '/thumb/') . $subcategory->banner_image);
+                    File::delete(public_path($uploadPath . '/requestImg/') . $subcategory->banner_image);
+                }
 
                 $subcategory->update([
                     'title' => $request->title,
                     'cat_id' => $request->cat_id,
                     'status' => $request->status,
                     'image' => $globalFunImg['status'] == 1 ? $globalFunImg['file_name'] : $subcategory->image,
+                    'banner_image' => $globalbannerFunImg['status'] == 1 ? $globalbannerFunImg['file_name'] : $subcategory->banner_image,
+                    'status' => $request->status,
                 ]);
             }
 
@@ -438,6 +478,7 @@ class CategoryController extends Controller
                 Toastr::error($message, 'Failed', ['timeOut' => 30000]);
             }
         }
+
         return redirect()->back();
     }
 
@@ -461,11 +502,19 @@ class CategoryController extends Controller
         if ($validator->passes()) {
             $mainFile = $request->image;
             $uploadPath = storage_path('app/public/');
+            $mainbannerFile = $request->banner_image;
+            $bannerimgPath = storage_path('app/public/');
+
 
             if (isset($mainFile)) {
-                $globalFunImg = Helper::singleImageUpload($mainFile, $uploadPath, 230, 227);
+                $globalFunImg = Helper::singleImageUpload($mainFile, $uploadPath);
             } else {
                 $globalFunImg['status'] = 0;
+            }
+            if (isset($mainbannerFile)) {
+                $globalbannerFunImg =  Helper::singleImageUpload($mainbannerFile, $bannerimgPath);
+            } else {
+                $globalbannerFunImg['status'] = 0;
             }
 
             if (!empty($subsubcategory)) {
@@ -474,6 +523,11 @@ class CategoryController extends Controller
                     File::delete(public_path($uploadPath . '/thumb/') . $subsubcategory->image);
                     File::delete(public_path($uploadPath . '/requestImg/') . $subsubcategory->image);
                 }
+                if ($globalbannerFunImg['status'] == 1) {
+                    File::delete(public_path($uploadPath . '/') . $subsubcategory->banner_image);
+                    File::delete(public_path($uploadPath . '/thumb/') . $subsubcategory->banner_image);
+                    File::delete(public_path($uploadPath . '/requestImg/') . $subsubcategory->banner_image);
+                }
 
                 $subsubcategory->update([
                     'title' => $request->title,
@@ -481,6 +535,8 @@ class CategoryController extends Controller
                     'sub_cat_id' => $request->sub_cat_id,
                     'status' => $request->status,
                     'image' => $globalFunImg['status'] == 1 ? $globalFunImg['file_name'] : $subsubcategory->image,
+                    'banner_image' => $globalbannerFunImg['status'] == 1 ? $globalbannerFunImg['file_name'] : $subsubcategory->banner_image,
+                    'status' => $request->status,
                 ]);
             }
 
@@ -491,6 +547,8 @@ class CategoryController extends Controller
                 Toastr::error($message, 'Failed', ['timeOut' => 30000]);
             }
         }
+
+
         return redirect()->back();
     }
 
@@ -518,11 +576,19 @@ class CategoryController extends Controller
         if ($validator->passes()) {
             $mainFile = $request->image;
             $uploadPath = storage_path('app/public/');
+            $mainbannerFile = $request->banner_image;
+            $bannerimgPath = storage_path('app/public/');
+
 
             if (isset($mainFile)) {
-                $globalFunImg = Helper::singleImageUpload($mainFile, $uploadPath, 230, 227);
+                $globalFunImg = Helper::singleImageUpload($mainFile, $uploadPath);
             } else {
                 $globalFunImg['status'] = 0;
+            }
+            if (isset($mainbannerFile)) {
+                $globalbannerFunImg =  Helper::singleImageUpload($mainbannerFile, $bannerimgPath);
+            } else {
+                $globalbannerFunImg['status'] = 0;
             }
 
             if (!empty($subsubsubcategory)) {
@@ -530,6 +596,11 @@ class CategoryController extends Controller
                     File::delete(public_path($uploadPath . '/') . $subsubsubcategory->image);
                     File::delete(public_path($uploadPath . '/thumb/') . $subsubsubcategory->image);
                     File::delete(public_path($uploadPath . '/requestImg/') . $subsubsubcategory->image);
+                }
+                if ($globalbannerFunImg['status'] == 1) {
+                    File::delete(public_path($uploadPath . '/') . $subsubsubcategory->banner_image);
+                    File::delete(public_path($uploadPath . '/thumb/') . $subsubsubcategory->banner_image);
+                    File::delete(public_path($uploadPath . '/requestImg/') . $subsubsubcategory->banner_image);
                 }
 
                 $subsubsubcategory->update([
@@ -539,6 +610,8 @@ class CategoryController extends Controller
                     'sub_sub_cat_id' => $request->sub_sub_cat_id,
                     'status' => $request->status,
                     'image' => $globalFunImg['status'] == 1 ? $globalFunImg['file_name'] : $subsubsubcategory->image,
+                    'banner_image' => $globalbannerFunImg['status'] == 1 ? $globalbannerFunImg['file_name'] : $subsubsubcategory->banner_image,
+                    'status' => $request->status,
                 ]);
             }
 
@@ -549,6 +622,8 @@ class CategoryController extends Controller
                 Toastr::error($message, 'Failed', ['timeOut' => 30000]);
             }
         }
+
+
         return redirect()->back();
     }
 
@@ -566,6 +641,15 @@ class CategoryController extends Controller
         if (File::exists(public_path('storage/thumb/') . $category->image)) {
             File::delete(public_path('storage/thumb/') . $category->image);
         }
+        if (File::exists(public_path('storage/') . $category->banner_image)) {
+            File::delete(public_path('storage/') . $category->banner_image);
+        }
+        if (File::exists(public_path('storage/requestImg/') . $category->banner_image)) {
+            File::delete(public_path('storage/requestImg/') . $category->banner_image);
+        }
+        if (File::exists(public_path('storage/thumb/') . $category->banner_image)) {
+            File::delete(public_path('storage/thumb/') . $category->banner_image);
+        }
         $category->delete();
     }
 
@@ -582,6 +666,15 @@ class CategoryController extends Controller
         if (File::exists(public_path('storage/thumb/') . $category->image)) {
             File::delete(public_path('storage/thumb/') . $category->image);
         }
+        if (File::exists(public_path('storage/') . $category->banner_image)) {
+            File::delete(public_path('storage/') . $category->banner_image);
+        }
+        if (File::exists(public_path('storage/requestImg/') . $category->banner_image)) {
+            File::delete(public_path('storage/requestImg/') . $category->banner_image);
+        }
+        if (File::exists(public_path('storage/thumb/') . $category->banner_image)) {
+            File::delete(public_path('storage/thumb/') . $category->banner_image);
+        }
         $category->delete();
     }
 
@@ -597,6 +690,15 @@ class CategoryController extends Controller
         }
         if (File::exists(public_path('storage/thumb/') . $category->image)) {
             File::delete(public_path('storage/thumb/') . $category->image);
+        }
+        if (File::exists(public_path('storage/') . $category->banner_image)) {
+            File::delete(public_path('storage/') . $category->banner_image);
+        }
+        if (File::exists(public_path('storage/requestImg/') . $category->banner_image)) {
+            File::delete(public_path('storage/requestImg/') . $category->banner_image);
+        }
+        if (File::exists(public_path('storage/thumb/') . $category->banner_image)) {
+            File::delete(public_path('storage/thumb/') . $category->banner_image);
         }
         $category->delete();
     }

@@ -2,12 +2,12 @@
 @section('content')
 <style>
     .gradient_bg{
-        background-image: linear-gradient(to right top, #ae0a46, #a70a43, #9f0940, #98083d, #91083a, #91083a, #91083a, #91083a, #98083d, #9f0940, #a70a43, #ae0a46);
+        background-image: linear-gradient(to right top, #cb3a6f, #dd2467, #9f0940, #98083d, #91083a, #c7024a, #9f023c, #970a3d, #98083d, #9f0940, #a70a43, #ae0a46);
     }
 </style>
     <!--======// Header Title //======-->
     <section class="common_product_header"
-        style="background-image: url('{{ asset('storage/requestImg/' . $solution->banner_image) }}');">
+        style="background-image: url('{{ asset('storage/' . $solution->banner_image) }}');">
         <div class="container">
             <div class="">
                 <h1>{{ $solution->name }}</h1>
@@ -15,7 +15,7 @@
             </div>
 
             <div class="d-flex justify-content-center">
-                <a class="common_button2" href="#hear_from_team">Hear from our team</a>
+                <a class="common_button2" href="#Contact">Hear from our team</a>
             </div>
         </div>
 
@@ -23,7 +23,7 @@
     <!----------End--------->
 
     <!--======// Header Title //======-->
-    @if ($row_one)
+    @if (!empty($row_one))
         <section class="container section_padding">
             <div class="row">
                 <div class="col-lg-7 col-sm-12">
@@ -101,9 +101,9 @@
             </div>
             <!--Content Wrapper-->
             <div class="row d-flex justify-content-center pt-3">
-                <div class="col-lg-2 col-md-6">
+                <div class="col-lg-4 col-md-6">
                     <div class="product_veiw_details_item_image">
-                        <img src="{{ asset('storage/requestImg/' . $card1->image) }}" alt="" width="150px"
+                        <img src="{{ asset('storage/' . $card1->image) }}" alt="" width="150px"
                             height="150px">
                     </div>
                     <!-- content -->
@@ -113,9 +113,9 @@
                         <p class="text-center" style="font-size: 15px;">{{ Str::limit($card1->short_des, 70) }}</p>
                     </div>
                 </div>
-                <div class="col-lg-2 col-md-6">
+                <div class="col-lg-4 col-md-6">
                     <div class="product_veiw_details_item_image">
-                        <img src="{{ asset('storage/requestImg/' . $card2->image) }}" alt="" width="150px"
+                        <img src="{{ asset('storage/' . $card2->image) }}" alt="" width="150px"
                             height="150px">
                     </div>
                     <!-- content -->
@@ -125,10 +125,10 @@
                         <p class="text-center" style="font-size: 15px;">{{ Str::limit($card2->short_des, 70) }}</p>
                     </div>
                 </div>
-                <div class="col-lg-2 col-md-6">
+                <div class="col-lg-4 col-md-6">
                     <!-- image -->
                     <div class="product_veiw_details_item_image">
-                        <img src="{{ asset('storage/requestImg/' . $card3->image) }}" alt="" width="150px"
+                        <img src="{{ asset('storage/' . $card3->image) }}" alt="" width="150px"
                             height="150px">
                     </div>
                     <!-- content -->
@@ -138,9 +138,11 @@
                         <p class="text-center" style="font-size: 15px;">{{ Str::limit($card3->short_des, 70) }}</p>
                     </div>
                 </div>
-                <div class="col-lg-2 col-md-6">
+            </div>
+            <div class="row d-flex justify-content-center pt-3">
+                <div class="col-lg-4 col-md-6">
                     <div class="product_veiw_details_item_image">
-                        <img src="{{ asset('storage/requestImg/' . $card4->image) }}" alt="" width="150px"
+                        <img src="{{ asset('storage/' . $card4->image) }}" alt="" width="150px"
                             height="150px">
                     </div>
                     <!-- content -->
@@ -150,9 +152,9 @@
                         <p class="text-center" style="font-size: 15px;">{{ Str::limit($card4->short_des, 70) }}</p>
                     </div>
                 </div>
-                <div class="col-lg-2 col-md-6">
+                <div class="col-lg-4 col-md-6">
                     <div class="product_veiw_details_item_image">
-                        <img src="{{ asset('storage/requestImg/' . $card5->image) }}" alt="" width="150px"
+                        <img src="{{ asset('storage/' . $card5->image) }}" alt="" width="150px"
                             height="150px">
                     </div>
                     <!-- content -->
@@ -168,7 +170,7 @@
     <!----------End--------->
 
     <!--======// Gradian Background //======-->
-    <section class=" gradient_bg" style="">
+    <section class="gradient_bg" style="">
         <div class="container">
             <div class="call_to_action_text py-4">
                 <h4 class="section_title">{{ $solution->row_three_title }}</h4>
@@ -180,7 +182,7 @@
     <!----------End--------->
 
     <!--=======// Building resilient IT //=====-->
-    @if ('row_four')
+    @if (!empty($row_four))
         <section class="section_padding">
             <div class="container">
                 <div class="row">
@@ -215,12 +217,12 @@
                 <div class="col-lg-4 col-sm-12 product_veiw_details_item">
                     <!-- image -->
                     <div class="product_veiw_details_item_image">
-                        <img src="{{ asset('storage/requestImg/' . $card6->image) }}" alt="">
+                        <img src="{{ asset('storage/' . $card6->image) }}" alt="">
                     </div>
                     <!-- content -->
                     <div class="product_veiw_details_item_content">
                         <p style="font-size: 20px; margin: 4px 0px;">{{ $card6->title }}</p>
-                        <p>{{ Str::limit($card6->short_des, 30) }}</p>
+                        <p>{!! $card6->short_des !!}</p>
                     </div>
                 </div>
 
@@ -228,12 +230,13 @@
                 <div class="col-lg-4 col-sm-12 product_veiw_details_item">
                     <!-- image -->
                     <div class="product_veiw_details_item_image">
-                        <img src="{{ asset('storage/requestImg/' . $card7->image) }}" alt="">
+                        <img src="{{ asset('storage/' . $card7->image) }}" alt="">
                     </div>
                     <!-- content -->
                     <div class="product_veiw_details_item_content">
                         <p style="font-size: 20px; margin: 4px 0px;">{{ $card7->title }}</p>
-                        <p>{{ Str::limit($card7->short_des, 30) }}</p>
+                        {{-- <p>{{ Str::limit($card7->short_des, 30) }}</p> --}}
+                        <p>{!! $card7->short_des !!}</p>
                     </div>
                 </div>
 
@@ -241,12 +244,13 @@
                 <div class="col-lg-4 col-sm-12 product_veiw_details_item">
                     <!-- image -->
                     <div class="product_veiw_details_item_image">
-                        <img src="{{ asset('storage/requestImg/' . $card8->image) }}" alt="">
+                        <img src="{{ asset('storage/' . $card8->image) }}" alt="">
                     </div>
                     <!-- content -->
                     <div class="product_veiw_details_item_content">
                         <p style="font-size: 20px; margin: 4px 0px;">{{ $card8->title }}</p>
-                        <p>{{ Str::limit($card8->short_des, 30) }}</p>
+                        {{-- <p>{{ Str::limit($card8->short_des, 30) }}</p> --}}
+                        <p>{!! $card8->short_des !!}</p>
                     </div>
                 </div>
             </div>
@@ -288,7 +292,7 @@
                         <div class="col-lg-3 col-md-6 col-sm-12">
                             <div class="related-item">
                                 <a href="{{ route('solution.details', $item->id) }}">
-                                    <img class="img-fluid" src="{{ asset('storage/requestImg/' . $item->banner_image) }}"
+                                    <img class="img-fluid" src="{{ asset('storage/' . $item->banner_image) }}"
                                         width="300px" alt="" style="height: 160px;">
                                     <h4>{{ App\Models\Admin\Industry::where('id', $item->industry_id)->value('title') }}
                                         </h6>
@@ -306,10 +310,6 @@
         </div>
     </section>
     <!-------------End--------->
-
-    @php
-        $setting = App\Models\Admin\Setting::first();
-    @endphp
 
     <!--=====// Pageform section //=====-->
         @include('frontend.partials.footer_contact')

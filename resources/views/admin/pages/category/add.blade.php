@@ -119,6 +119,15 @@
                                                 <div class="form-text">Accepts only png, jpg, jpeg images</div>
                                             </div>
                                         </div>
+                                        <div class="row mb-3">
+                                            <div class="col-sm-4">
+                                                <h6 class="mb-0">Category Banner Image </h6>
+                                            </div>
+                                            <div class="col-sm-8 text-secondary">
+                                                <input type="file" name="banner_image" class="form-control"  id="banner_image" accept="image/*" required/>
+                                                <div class="form-text">Accepts only png, jpg, jpeg images</div>
+                                            </div>
+                                        </div>
 
                                         <div class="row mb-3">
                                             <div class="col-sm-4">
@@ -209,6 +218,16 @@
                                                     <input type="file" name="image" class="form-control"  id="image1" accept="image/*" required/>
                                                     <div class="form-text">Accepts only png, jpg, jpeg images</div>
                                                     <img id="showImage1" height="100px" width="100px"  src="https://cdn.pixabay.com/photo/2017/02/07/02/16/cloud-2044823_960_720.png" alt="">
+                                                </div>
+                                            </div>
+
+                                            <div class="row mb-3">
+                                                <div class="col-sm-4">
+                                                    <h6 class="mb-0">Sub Category Banner Image </h6>
+                                                </div>
+                                                <div class="col-sm-8 text-secondary">
+                                                    <input type="file" name="banner_image" class="form-control"  id="banner_image" accept="image/*" required/>
+                                                    <div class="form-text">Accepts only png, jpg, jpeg images</div>
                                                 </div>
                                             </div>
 
@@ -307,7 +326,7 @@
 
                                         <div class="row mb-3">
                                             <div class="col-sm-4">
-                                                <h6 class="mb-0">Category Image </h6>
+                                                <h6 class="mb-0">Sub Sub Category Image </h6>
                                             </div>
                                             <div class="col-sm-8 text-secondary">
                                                 <input type="file" name="image" class="form-control"  id="image2" accept="image/*" required/>
@@ -318,7 +337,17 @@
 
                                         <div class="row mb-3">
                                             <div class="col-sm-4">
-                                                <h6 class="mb-0">Category Status</h6>
+                                                <h6 class="mb-0">Sub Sub Category Banner Image </h6>
+                                            </div>
+                                            <div class="col-sm-8 text-secondary">
+                                                <input type="file" name="banner_image" class="form-control"  id="banner_image" accept="image/*" required/>
+                                                <div class="form-text">Accepts only png, jpg, jpeg images</div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row mb-3">
+                                            <div class="col-sm-4">
+                                                <h6 class="mb-0">Sub Sub Category Status</h6>
                                             </div>
                                             <div class="form-group col-sm-8 text-secondary">
                                                 <div class="form-check">
@@ -438,6 +467,16 @@
                                                 <input type="file" name="image" class="form-control"  id="image3" accept="image/*" required/>
                                                 <div class="form-text">Accepts only png, jpg, jpeg images</div>
                                                 <img id="showImage3" height="100px" width="100px"  src="https://cdn.pixabay.com/photo/2017/02/07/02/16/cloud-2044823_960_720.png" alt="">
+                                            </div>
+                                        </div>
+
+                                        <div class="row mb-3">
+                                            <div class="col-sm-4">
+                                                <h6 class="mb-0">Sub Sub Sub Category Banner Image </h6>
+                                            </div>
+                                            <div class="col-sm-8 text-secondary">
+                                                <input type="file" name="banner_image" class="form-control"  id="banner_image" accept="image/*" required/>
+                                                <div class="form-text">Accepts only png, jpg, jpeg images</div>
                                             </div>
                                         </div>
 

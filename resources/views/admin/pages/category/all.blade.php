@@ -66,17 +66,7 @@
                                         </li>
                                     </ul>
                                 </div>
-                                {{-- <div class="col-lg-3">
-                                    <label class="text-center" for="category">Chose from the dropdown</label>
-                                    <select onchange="dropdownCategory(value)" id="dropdownCategory" name="category"
-                                        class="form-control select col-lg-2 category" data-width="250"
-                                        data-minimum-results-for-search="Infinity">
-                                        <option value="table1">Category</option>
-                                        <option value="table2">Sub Category</option>
-                                        <option value="table3">Sub Sub Category</option>
-                                        <option value="table4">Sub Sub Sub Category</option>
-                                    </select>
-                                </div> --}}
+
 
                                 <div class="col-lg-3">
                                     <a href="{{ route('category.create') }}" type="button"
@@ -104,8 +94,9 @@
                                         <tr>
                                             <th width="5%">Sl No:</th>
                                             <th width="10%">Category Image</th>
-                                            <th width="50%">Category Name</th>
-                                            <th width="15%">Status</th>
+                                            <th width="10%">Category Banner Image</th>
+                                            <th width="45%">Category Name</th>
+                                            <th width="10%">Status</th>
                                             <th width="20%" class="text-center">Actions</th>
                                         </tr>
                                     </thead>
@@ -115,7 +106,10 @@
                                                 <tr>
                                                     <td>{{ ++$key }}</td>
                                                     <td class="text-center"><img
-                                                            src="{{ asset('storage/requestImg/' . $category->image) }}"
+                                                            src="{{ asset('storage/' . $category->image) }}"
+                                                            height="40" alt=""></td>
+                                                    <td class="text-center"><img
+                                                            src="{{ asset('storage/' . $category->banner_image) }}"
                                                             height="40" alt=""></td>
                                                     <td>{{ $category->title }}</td>
                                                     <td>
@@ -174,9 +168,25 @@
                                                                                         id="image" accept="image/*" />
                                                                                     <div class="form-text">Accepts only
                                                                                         png, jpg, jpeg images</div>
-                                                                                    <img src="{{ asset('storage/requestImg/' . $category->image) }}"
+                                                                                    <img src="{{ asset('storage/' . $category->image) }}"
                                                                                         height="80" alt=""
                                                                                         id="showImage">
+                                                                                </div>
+                                                                            </div>
+
+                                                                            <div class="row mb-3">
+                                                                                <div class="col-sm-3">
+                                                                                    <h6 class="mb-0">Category Banner Image </h6>
+                                                                                </div>
+                                                                                <div class="col-sm-8 text-secondary">
+                                                                                    <input type="file" name="banner_image"
+                                                                                        class="form-control"
+                                                                                        id="banner_image" accept="image/*" />
+                                                                                    <div class="form-text">Accepts only
+                                                                                        png, jpg, jpeg images</div>
+                                                                                    <img src="{{ asset('storage/' . $category->banner_image) }}"
+                                                                                        height="80" alt=""
+                                                                                        id="showbannerImage">
                                                                                 </div>
                                                                             </div>
 
@@ -254,12 +264,13 @@
                                 <table class="subCategoryDT table table-bordered table-hover datatable-highlight">
                                     <thead>
                                         <tr>
-                                            <th>Sl No:</th>
-                                            <th>Sub Category Image</th>
-                                            <th>Sub Category Name</th>
-                                            <th>Category Name</th>
-                                            <th>Status</th>
-                                            <th class="text-center">Actions</th>
+                                            <th width="5%">Sl No:</th>
+                                            <th width="10%">Sub Category Image</th>
+                                            <th width="10%">Sub Category Banner Image</th>
+                                            <th width="25%">Sub Category Name</th>
+                                            <th width="20%">Category Name</th>
+                                            <th width="10%">Status</th>
+                                            <th width="20%" class="text-center">Actions</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -268,7 +279,11 @@
                                                 <tr>
                                                     <td>{{ ++$key }}</td>
                                                     <td class="text-center">
-                                                        <img src="{{ asset('storage/requestImg/' . $sub_cat->image) }}"
+                                                        <img src="{{ asset('storage/' . $sub_cat->image) }}"
+                                                            height="40" alt="">
+                                                    </td>
+                                                    <td class="text-center">
+                                                        <img src="{{ asset('storage/' . $sub_cat->banner_image) }}"
                                                             height="40" alt="">
                                                     </td>
                                                     <td>{{ $sub_cat->title }}</td>
@@ -354,8 +369,24 @@
                                                                                     <div class="form-text">Accepts only
                                                                                         png, jpg, jpeg images</div>
                                                                                     <img id="showImage1"
-                                                                                        src="{{ asset('storage/requestImg/' . $sub_cat->image) }}"
+                                                                                        src="{{ asset('storage/' . $sub_cat->image) }}"
                                                                                         height="80" alt="">
+                                                                                </div>
+                                                                            </div>
+
+                                                                            <div class="row mb-3">
+                                                                                <div class="col-sm-3">
+                                                                                    <h6 class="mb-0">Sub Category Banner Image </h6>
+                                                                                </div>
+                                                                                <div class="col-sm-8 text-secondary">
+                                                                                    <input type="file" name="banner_image"
+                                                                                        class="form-control"
+                                                                                        id="banner_image" accept="image/*" />
+                                                                                    <div class="form-text">Accepts only
+                                                                                        png, jpg, jpeg images</div>
+                                                                                    <img src="{{ asset('storage/' . $sub_cat->banner_image) }}"
+                                                                                        height="80" alt=""
+                                                                                        id="showbannerImage">
                                                                                 </div>
                                                                             </div>
 
@@ -435,9 +466,11 @@
                                         <tr>
                                             <th width="10%">Sl No:</th>
                                             <th width="20%">Sub Sub Category Name</th>
-                                            <th width="20%">Sub Category Name</th>
-                                            <th width="20%">Category Name</th>
-                                            <th width="20%">Status</th>
+                                            <th width="10%">Sub Sub Category Image</th>
+                                            <th width="10%">Sub Sub Category Banner Image</th>
+                                            <th width="15%">Sub Category Name</th>
+                                            <th width="15%">Category Name</th>
+                                            <th width="10%">Status</th>
                                             <th width="10%" class="text-center">Actions</th>
                                         </tr>
                                     </thead>
@@ -447,6 +480,14 @@
                                                 <tr>
                                                     <td>{{ ++$key }}</td>
                                                     <td>{{ $sub_sub_cat->title }}</td>
+                                                    <td class="text-center">
+                                                        <img src="{{ asset('storage/' . $sub_sub_cat->image) }}"
+                                                            height="40" alt="">
+                                                    </td>
+                                                    <td class="text-center">
+                                                        <img src="{{ asset('storage/' . $sub_sub_cat->banner_image) }}"
+                                                            height="40" alt="">
+                                                    </td>
                                                     <td> {{ App\Models\Admin\SubCategory::where('id', $sub_sub_cat->sub_cat_id)->value('title') }}
                                                     </td>
                                                     <td> {{ App\Models\Admin\Category::where('id', $sub_sub_cat->cat_id)->value('title') }}
@@ -549,8 +590,7 @@
 
                                                                             <div class="row mb-3">
                                                                                 <div class="col-sm-4">
-                                                                                    <h6 class="mb-0">Sub Sub Category
-                                                                                        Image </h6>
+                                                                                    <h6 class="mb-0">Sub Sub Category Image </h6>
                                                                                 </div>
                                                                                 <div class="col-sm-8 text-secondary">
                                                                                     <input type="file" name="image"
@@ -559,8 +599,24 @@
                                                                                     <div class="form-text">Accepts only
                                                                                         png, jpg, jpeg images</div>
                                                                                     <img id="showImage2"
-                                                                                        src="{{ asset('storage/requestImg/' . $sub_sub_cat->image) }}"
+                                                                                        src="{{ asset('storage/' . $sub_sub_cat->image) }}"
                                                                                         height="80" alt="">
+                                                                                </div>
+                                                                            </div>
+
+                                                                            <div class="row mb-3">
+                                                                                <div class="col-sm-3">
+                                                                                    <h6 class="mb-0">Sub Sub Category Banner Image </h6>
+                                                                                </div>
+                                                                                <div class="col-sm-8 text-secondary">
+                                                                                    <input type="file" name="banner_image"
+                                                                                        class="form-control"
+                                                                                        id="banner_image" accept="image/*" />
+                                                                                    <div class="form-text">Accepts only
+                                                                                        png, jpg, jpeg images</div>
+                                                                                    <img src="{{ asset('storage/' . $sub_sub_cat->banner_image) }}"
+                                                                                        height="80" alt=""
+                                                                                        id="showbannerImage">
                                                                                 </div>
                                                                             </div>
 
@@ -640,11 +696,12 @@
                                         <tr>
                                             <th width="5%">Sl No:</th>
                                             <th width="20%">Sub Sub Sub Category Name</th>
-                                            <th width="20%">Sub Sub Category Name</th>
-                                            <th width="20%">Sub Category Name</th>
-                                            <th width="20%">Category Name</th>
-                                            <th width="10%">Status</th>
-                                            <th width="5%" class="text-center">Actions</th>
+                                            <th width="10%">Sub Sub Sub Category Image</th>
+                                            <th width="10%">Sub Sub Sub Category Banner Image</th>
+                                            <th width="15%">Sub Sub Category Name</th>
+                                            <th width="15%">Sub Category Name</th>
+                                            <th width="15%">Category Name</th>
+                                            <th width="10%" class="text-center">Actions</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -653,6 +710,14 @@
                                                 <tr>
                                                     <td>{{ ++$key }}</td>
                                                     <td>{{ $sub_sub_sub_cat->title }}</td>
+                                                    <td class="text-center">
+                                                        <img src="{{ asset('storage/' . $sub_sub_sub_cat->image) }}"
+                                                            height="40" alt="">
+                                                    </td>
+                                                    <td class="text-center">
+                                                        <img src="{{ asset('storage/' . $sub_sub_sub_cat->banner_image) }}"
+                                                            height="40" alt="">
+                                                    </td>
                                                     <td> {{ App\Models\Admin\SubSubCategory::where('id', $sub_sub_sub_cat->sub_sub_cat_id)->value('title') }}
                                                     </td>
                                                     <td> {{ App\Models\Admin\SubCategory::where('id', $sub_sub_sub_cat->sub_cat_id)->value('title') }}
@@ -781,7 +846,7 @@
 
                                                                             <div class="row mb-3">
                                                                                 <div class="col-sm-4">
-                                                                                    <h6 class="mb-0">Sub Sub Category
+                                                                                    <h6 class="mb-0">Sub Sub Sub Category
                                                                                         Image </h6>
                                                                                 </div>
                                                                                 <div class="col-sm-8 text-secondary">
@@ -790,14 +855,30 @@
                                                                                         id="image3" accept="image/*" />
                                                                                     <div class="form-text">Accepts only
                                                                                         png, jpg, jpeg images</div>
-                                                                                    <img src="{{ asset('storage/requestImg/' . $sub_sub_sub_cat->image) }}"
+                                                                                    <img src="{{ asset('storage/' . $sub_sub_sub_cat->image) }}"
                                                                                         height="80" alt="">
                                                                                 </div>
                                                                             </div>
 
                                                                             <div class="row mb-3">
+                                                                                <div class="col-sm-3">
+                                                                                    <h6 class="mb-0">Sub Sub Sub Category Banner Image </h6>
+                                                                                </div>
+                                                                                <div class="col-sm-8 text-secondary">
+                                                                                    <input type="file" name="banner_image"
+                                                                                        class="form-control"
+                                                                                        id="banner_image" accept="image/*" />
+                                                                                    <div class="form-text">Accepts only
+                                                                                        png, jpg, jpeg images</div>
+                                                                                    <img src="{{ asset('storage/' . $sub_sub_sub_cat->banner_image) }}"
+                                                                                        height="80" alt=""
+                                                                                        id="showbannerImage">
+                                                                                </div>
+                                                                            </div>
+
+                                                                            <div class="row mb-3">
                                                                                 <div class="col-sm-4">
-                                                                                    <h6 class="mb-0">Sub Sub Category
+                                                                                    <h6 class="mb-0">Sub Sub Sub Category
                                                                                         Status</h6>
                                                                                 </div>
                                                                                 <div

@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('title');
             $table->string('slug')->unique();
             $table->string('image')->nullable();
+            $table->string('banner_image')->nullable();
             $table->enum('status', ['active', 'inactive'])->nullable()->default('active');
             $table->timestamps();
         });
