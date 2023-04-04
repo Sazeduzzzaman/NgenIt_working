@@ -626,12 +626,13 @@ class HomeController extends Controller
                             ->select('brands.id','brands.slug','brands.title','brands.image')
                             ->distinct()->paginate(8);
 
-        $data['software_products'] = Product::where('product_type','software')->where('product_status', 'product')->paginate(10)->unique('brand_id');
+        $data['solutions'] = SolutionDetail::orderBy('id', 'DESC')->select('id','name')->limit(10)->get();
+
         $data['story1'] = Blog::inRandomOrder()->first();
         $data['story2'] = Blog::inRandomOrder()->where('id','!=',$data['story1']->id)->first();
         $data['story3'] = ClientStory::inRandomOrder()->first();
         $data['story4'] = ClientStory::inRandomOrder()->where('id','!=',$data['story3']->id)->first();
-        $data['industrys'] = Industry::latest()->select('industries.id','industries.logo','industries.title')->get();
+        $data['industrys'] = Industry::latest()->select('industries.id','industries.logo','industries.title')->limit(8)->get();
         $data['random_industries'] = Industry::inRandomOrder()->select('industries.id','industries.title')->limit(4)->get();
         return view('frontend.pages.software.allsoftware',$data);
     }

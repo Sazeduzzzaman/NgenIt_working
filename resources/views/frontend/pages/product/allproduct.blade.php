@@ -112,20 +112,26 @@
         }
 </style>
 
-    <section class="banner_single_page mb-4" style="background-image:url('{{ asset('frontend/images/custom_shop.jpg') }}');
+    <section class="banner_single_page mb-4"
+    style="background-image:url('{{ asset('frontend/images/custom_shop.jpg') }}');
         background-color: black;
         background-repeat: no-repeat;
         background-size: cover;
-        height:300px;">
+        height:235px;">
 
         <div class="container">
             <div class="single_banner_content">
                 <!-- image -->
                 <div class="single_banner_image text-center">
-                    <img class="mb-3" src="{{ asset('storage/' . $cat->image) }}" alt="" height="100px" width="100px" style="margin-top:4rem;">
+
+                    @if (!empty($brand_logo))
+                    <img src="{{ asset('storage/' . $brand_logo->brand_logo) }}" alt="" height="80px" width="200px" style="margin-top:4rem;">
+                    @else
+                    <img src="{{ asset('storage/' . $cat->image) }}" alt="" height="130px" width="150px" style="margin-top:4rem;">
+                    @endif
                 </div>
                 <!-- heading -->
-                <h1 class="single_banner_heading text-center text-white pb-3">{{ $cat->title }}</h1>
+                <h1 class="single_banner_heading text-center text-white">{{ $cat->title }}</h1>
 
             </div>
         </div>
@@ -315,7 +321,7 @@
 
                                 <div class="accordion accordion-flush" id="accordionFlushExample">
                                     <div class="accordion-item">
-                                        @foreach ($categories as $key => $item)
+                                        @foreach ($filter_categories as $key => $item)
                                             <h2 class="accordion-header" id="flush-headingOne">
                                                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                                     data-bs-target="#flush-collapse{{ $item->id }}" aria-expanded="false"
@@ -439,8 +445,9 @@
                                             @endif
                                             @foreach ($brands as $brand)
                                             @php
+                                            //dd($count_brands);
                                                 $products_brand = $count_brands->whereIn('brand_id', $brand->id)->count();
-                                                //dd($products_brand);
+
                                             @endphp
 
                                             <label class="custom-control custom-checkbox d-flex">

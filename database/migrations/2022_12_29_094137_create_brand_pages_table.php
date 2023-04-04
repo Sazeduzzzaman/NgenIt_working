@@ -29,6 +29,7 @@ return new class extends Migration
             $table->text('row_one_header')->nullable();
             $table->string('row_six_image')->comment('1920*1080');
             $table->string('banner_image')->comment('1800*625');
+            $table->string('brand_logo')->nullable();
             $table->string('row_six_title')->nullable();
             $table->text('row_six_header')->nullable();
             $table->string('row_nine_title')->nullable();

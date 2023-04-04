@@ -30,6 +30,15 @@ class Category extends Model
         // return Product::where('cat_id',$id)->where('child_cat_id',null)->paginate(10);
     }
 
+    public function Softwareproducts()
+    {
+        return $this->hasMany(Product::class)->where('product_type', '=', 'software')->where('product_status', 'product')->paginate(10);
+    }
+
+    public function Hardwareproducts()
+    {
+        return $this->hasMany(Product::class)->where('product_type', '=', 'hardware')->where('product_status', 'product')->paginate(10);
+    }
 
 
     public static function getSubcatByCat($slug){

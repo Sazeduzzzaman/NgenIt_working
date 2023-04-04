@@ -1,9 +1,9 @@
 @extends('frontend.master')
 @section('content')
+
     <style>
-        .global_call_section::after
-        {
-            background: url('{{asset('storage/'.$learnmore->background_image)}}');
+        .global_call_section::after {
+            background: url('{{ asset('storage/' . $learnmore->background_image) }}');
             content: "";
             position: absolute;
             height: 250px;
@@ -17,6 +17,7 @@
             left: 0px;
             z-index: -1;
         }
+
         .container .title {
             color: #3c4858;
             text-decoration: none;
@@ -232,10 +233,10 @@
                 <!--BUTTON START-->
                 <div class="d-flex justify-content-center align-items-center">
                     <div class="m-4">
-                        <button class="common_button2" href="{{route('contact')}}">Talk with our specialist</button>
+                        <button class="common_button2" href="{{ route('contact') }}">Talk with our specialist</button>
                     </div>
                     <div class="m-4">
-                        <button class="common_button3" href="{{route('shop')}}">Shop all </button>
+                        <button class="common_button3" href="{{ route('shop') }}">Shop all </button>
                     </div>
                 </div>
             </div>
@@ -243,349 +244,350 @@
     </section>
     <!----------End--------->
     <!--=======// Popular products //======-->
-        <section class="popular_product_section section_padding">
-            <!-- container -->
-            <div class="container">
-                <div class="popular_product_section_content">
-                    <!-- section title -->
-                    <div class="software_feature_title">
-                        <h1 class="text-center pb-3">Popular Products</h1>
-                    </div>
-                    <!-- wrapper -->
-                    <div class="populer_product_slider">
-                        <!-- product_item -->
-                        @foreach ($products as $item)
-                            <div class="product_item">
-                                <!-- image -->
-                                <div class="product_item_thumbnail">
-                                    <img src="{{ asset($item->thumbnail) }}" alt="{{ $item->name }}" width="150px"
-                                        height="113px">
-                                </div>
-                                <!-- product content -->
-                                <div class="product_item_content">
-                                    <a href="{{ route('product.details', $item->slug) }}" class="product_item_content_name"
-                                        style="height: 3rem;">{{ Str::limit($item->name, 50) }}</a>
-                                    @if ($item->rfq != 1)
-                                        <!-- price -->
-                                        <div class="product_item_price">
-                                            <span class="price_currency">USD</span>
-                                            @if (!empty($item->discount))
-                                                <span class="price_currency_value"
-                                                    style="text-decoration: line-through; color:red">$
-                                                    {{ $item->price }}</span>
-                                                <span class="price_currency_value" style="color: black">$
-                                                    {{ $item->discount }}</span>
-                                            @else
-                                                <span class="price_currency_value">$ {{ $item->price }}</span>
-                                            @endif
-                                        </div>
-                                        <!-- button --> @php
-                                            $cart = Cart::content();
-                                            $exist = $cart->where('id', $item->id);
-                                            //dd($cart->where('image' , $item->thumbnail )->count());
-                                        @endphp
-                                        @if ($cart->where('id', $item->id)->count())
-                                            {{-- <a href="javascript:void(0);" class="common_button6"> </a> --}}
-                                            <span class="common_button6">Already in Cart</span>
-                                        @else
-                                            <form action="{{ route('add.cart') }}" method="post">
-                                                @csrf
-                                                <input type="hidden" name="product_id" id="product_id"
-                                                    value="{{ $item->id }}">
-                                                <input type="hidden" name="name" id="name"
-                                                    value="{{ $item->name }}">
-                                                <input type="hidden" name="qty" id="qty" value="1">
-                                                <button type="submit" class="common_button effect01">Add to Basket</button>
-                                            </form>
-                                        @endif
-                                    @else
-                                        <div class="product_item_price">
-                                            <span class="price_currency_value">
-                                                <a href="javascript:void(0);" data-toggle="modal" data-target="#get_quote_modal_{{ $item->id }}">Ask For Price</a>
-                                            </span>
-                                        </div>
-                                        <a href="{{ route('product.details', $item->slug) }}"
-                                            class="common_button effect01">Details</a>
-                                    @endif
-                                </div>
+    <section class="popular_product_section section_padding">
+        <!-- container -->
+        <div class="container">
+            <div class="popular_product_section_content">
+                <!-- section title -->
+                <div class="software_feature_title">
+                    <h1 class="text-center pb-3">Popular Products</h1>
+                </div>
+                <!-- wrapper -->
+                <div class="populer_product_slider">
+                    <!-- product_item -->
+                    @foreach ($products as $item)
+                        <div class="product_item">
+                            <!-- image -->
+                            <div class="product_item_thumbnail">
+                                <img src="{{ asset($item->thumbnail) }}" alt="{{ $item->name }}" width="150px"
+                                    height="113px">
                             </div>
-                            <!-- left modal -->
-                            <div class="modal modal_outer fade" id="get_quote_modal_{{ $item->id }}" tabindex="-1"
-                                role="dialog" aria-labelledby="myModalLabel2">
-                                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
+                            <!-- product content -->
+                            <div class="product_item_content">
+                                <a href="{{ route('product.details', $item->slug) }}" class="product_item_content_name"
+                                    style="height: 3rem;">{{ Str::limit($item->name, 50) }}</a>
+                                @if ($item->rfq != 1)
+                                    <!-- price -->
+                                    <div class="product_item_price">
+                                        <span class="price_currency">USD</span>
+                                        @if (!empty($item->discount))
+                                            <span class="price_currency_value"
+                                                style="text-decoration: line-through; color:red">$
+                                                {{ $item->price }}</span>
+                                            <span class="price_currency_value" style="color: black">$
+                                                {{ $item->discount }}</span>
+                                        @else
+                                            <span class="price_currency_value">$ {{ $item->price }}</span>
+                                        @endif
+                                    </div>
+                                    <!-- button --> @php
+                                        $cart = Cart::content();
+                                        $exist = $cart->where('id', $item->id);
+                                        //dd($cart->where('image' , $item->thumbnail )->count());
+                                    @endphp
+                                    @if ($cart->where('id', $item->id)->count())
+                                        {{-- <a href="javascript:void(0);" class="common_button6"> </a> --}}
+                                        <span class="common_button6">Already in Cart</span>
+                                    @else
+                                        <form action="{{ route('add.cart') }}" method="post">
+                                            @csrf
+                                            <input type="hidden" name="product_id" id="product_id"
+                                                value="{{ $item->id }}">
+                                            <input type="hidden" name="name" id="name"
+                                                value="{{ $item->name }}">
+                                            <input type="hidden" name="qty" id="qty" value="1">
+                                            <button type="submit" class="common_button effect01">Add to Basket</button>
+                                        </form>
+                                    @endif
+                                @else
+                                    <div class="product_item_price">
+                                        <span class="price_currency_value">
+                                            <a href="javascript:void(0);" data-toggle="modal"
+                                                data-target="#get_quote_modal_{{ $item->id }}">Ask For Price</a>
+                                        </span>
+                                    </div>
+                                    <a href="{{ route('product.details', $item->slug) }}"
+                                        class="common_button effect01">Details</a>
+                                @endif
+                            </div>
+                        </div>
+                        <!-- left modal -->
+                        <div class="modal modal_outer fade" id="get_quote_modal_{{ $item->id }}" tabindex="-1"
+                            role="dialog" aria-labelledby="myModalLabel2">
+                            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
 
 
-                                    <div class="modal-content">
+                                <div class="modal-content">
 
-                                        <div class="modal-header p-0 m-0 pl-5 pr-3 py-2"
-                                            style="background: #ae0a46;color: white;">
-                                            <h5 class="modal-title">Get a Quote</h5>
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                <span aria-hidden="true">&times;</span>
-                                            </button>
-                                        </div>
-                                        @if (Auth::guard('client')->user())
-                                            <form action="{{ route('rfq.add') }}" method="post" id="get_quote_frm"
-                                                enctype="multipart/form-data">
-                                                @csrf
-                                                <div class="card mx-4">
-                                                    <div class="card-body px-4 py-2">
-                                                        <div class="row border" style="font-size: 0.8rem;">
-                                                            <div class="col-lg-3 pl-2">
-                                                                {{ Auth::guard('client')->user()->name }}</div>
-                                                            <div class="col-lg-4" style="margin: 5px 0px">
-                                                                {{ Auth::guard('client')->user()->email }}</div>
-                                                            <div class="col-lg-4" style="margin: 5px 0px">
-                                                                {{ Auth::guard('client')->user()->phone }}
-                                                                <div class="form-group" id="Rfquser" style="display:none">
-                                                                    <input type="text" required="" class="form-control"
-                                                                        id="phone" name="phone"
-                                                                        value="{{ Auth::guard('client')->user()->phone }}"
-                                                                        placeholder="Phone Number" style="font-size: 0.8rem;">
-                                                                </div>
+                                    <div class="modal-header p-0 m-0 pl-5 pr-3 py-2"
+                                        style="background: #ae0a46;color: white;">
+                                        <h5 class="modal-title">Get a Quote</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    @if (Auth::guard('client')->user())
+                                        <form action="{{ route('rfq.add') }}" method="post" id="get_quote_frm"
+                                            enctype="multipart/form-data">
+                                            @csrf
+                                            <div class="card mx-4">
+                                                <div class="card-body px-4 py-2">
+                                                    <div class="row border" style="font-size: 0.8rem;">
+                                                        <div class="col-lg-3 pl-2">
+                                                            {{ Auth::guard('client')->user()->name }}</div>
+                                                        <div class="col-lg-4" style="margin: 5px 0px">
+                                                            {{ Auth::guard('client')->user()->email }}</div>
+                                                        <div class="col-lg-4" style="margin: 5px 0px">
+                                                            {{ Auth::guard('client')->user()->phone }}
+                                                            <div class="form-group" id="Rfquser" style="display:none">
+                                                                <input type="text" required="" class="form-control"
+                                                                    id="phone" name="phone"
+                                                                    value="{{ Auth::guard('client')->user()->phone }}"
+                                                                    placeholder="Phone Number" style="font-size: 0.8rem;">
                                                             </div>
-                                                            <div class="col-lg-1" style="margin: 5px 0px"><a
-                                                                    href="javascript:void(0);" id="editRfquser"><i
-                                                                        class="fa fa-pencil" aria-hidden="true"></i></a></div>
                                                         </div>
-                                                    </div>
-
-                                                </div>
-                                                <input type="hidden" name="product_id" value="{{ $item->id }}">
-                                                <input type="hidden" name="client_id"
-                                                    value="{{ Auth::guard('client')->user()->id }}">
-                                                <input type="hidden" name="client_type" value="client">
-                                                <input type="hidden" name="name"
-                                                    value="{{ Auth::guard('client')->user()->name }}">
-                                                <input type="hidden" name="email"
-                                                    value="{{ Auth::guard('client')->user()->email }}">
-                                                {{-- <input type="hidden" name="phone" value="{{Auth::guard('client')->user()->phone}}"> --}}
-                                                <div class="modal-body get_quote_view_modal_body">
-
-
-                                                    <div class="form-row">
-
-                                                        <div class="form-group col-sm-4 m-0">
-
-                                                            <input type="text" class="form-control mt-4" id="contact"
-                                                                name="company_name"
-                                                                value="{{ Auth::guard('client')->user()->company_name }}"
-                                                                placeholder="Company Name" style="font-size: 0.7rem;">
-                                                        </div>
-                                                        <div class="form-group col-sm-4 m-0">
-
-                                                            <input type="number" class="form-control mt-4" id="contact"
-                                                                name="qty" placeholder="Quantity"
-                                                                style="font-size: 0.7rem;">
-                                                        </div>
-                                                        <div class="form-group col-sm-4">
-                                                            <label class="m-0" for="image"
-                                                                style="font-size: 0.7rem;">Upload Image</label>
-                                                            <input type="file" name="image" class="form-control"
-                                                                id="image" accept="image/*" style="font-size: 0.7rem;" />
-                                                            <div class="form-text" style="font-size:11px;">Only png, jpg, jpeg
-                                                                images</div>
-
-                                                        </div>
-
-                                                        <div class="form-group col-sm-12 border text-white"
-                                                            style="background: #7e7d7c">
-                                                            <h6 class="text-center pt-1">Product Name : {{ $item->name }}
-                                                            </h6>
-                                                        </div>
-
-                                                        <div class="form-group col-sm-12">
-
-                                                            <textarea class="form-control" id="message" name="message" rows="1"
-                                                                placeholder="Additional Information..."></textarea>
-                                                        </div>
-
-                                                        <div class="form-group  col-sm-12 px-3 mx-3">
-                                                            <input class="mr-2" type="checkbox" name="call"
-                                                                id="call" value="1">
-                                                            <label for="call">Also Please Call Me</label>
-
-                                                        </div>
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <button type="submit" class="btn btn-primary col-lg-3"
-                                                            id="submit_btn">Submit &nbsp;<i
-                                                                class="fa fa-paper-plane"></i></button>
+                                                        <div class="col-lg-1" style="margin: 5px 0px"><a
+                                                                href="javascript:void(0);" id="editRfquser"><i
+                                                                    class="fa fa-pencil" aria-hidden="true"></i></a></div>
                                                     </div>
                                                 </div>
 
-                                            </form>
-                                        @elseif (Auth::guard('partner')->user())
-                                            <form action="{{ route('rfq.add') }}" method="post" id="get_quote_frm"
-                                                enctype="multipart/form-data">
-                                                @csrf
-                                                <div class="card mx-4">
-                                                    <div class="card-body p-4">
-                                                        <div class="row border">
-                                                            <div class="col-lg-3 pl-2">Name:
-                                                                {{ Auth::guard('partner')->user()->name }}</div>
-                                                            <div class="col-lg-4" style="margin: 5px 0px">
-                                                                {{ Auth::guard('partner')->user()->primary_email_address }}
-                                                            </div>
-                                                            <div class="col-lg-4" style="margin: 5px 0px">
-                                                                {{ Auth::guard('partner')->user()->company_number }}</div>
-                                                            <div class="col-lg-1" style="margin: 5px 0px"><a
-                                                                    href="javascript:void(0);" id="editRfqpartner"><i
-                                                                        class="fa fa-pencil" aria-hidden="true"></i></a></div>
-                                                        </div>
+                                            </div>
+                                            <input type="hidden" name="product_id" value="{{ $item->id }}">
+                                            <input type="hidden" name="client_id"
+                                                value="{{ Auth::guard('client')->user()->id }}">
+                                            <input type="hidden" name="client_type" value="client">
+                                            <input type="hidden" name="name"
+                                                value="{{ Auth::guard('client')->user()->name }}">
+                                            <input type="hidden" name="email"
+                                                value="{{ Auth::guard('client')->user()->email }}">
+                                            {{-- <input type="hidden" name="phone" value="{{Auth::guard('client')->user()->phone}}"> --}}
+                                            <div class="modal-body get_quote_view_modal_body">
+
+
+                                                <div class="form-row">
+
+                                                    <div class="form-group col-sm-4 m-0">
+
+                                                        <input type="text" class="form-control mt-4" id="contact"
+                                                            name="company_name"
+                                                            value="{{ Auth::guard('client')->user()->company_name }}"
+                                                            placeholder="Company Name" style="font-size: 0.7rem;">
                                                     </div>
-                                                </div>
-                                                <input type="hidden" name="product_id" value="{{ $item->id }}">
-                                                <input type="hidden" name="client_type" value="partner">
-                                                <input type="hidden" name="partner_id"
-                                                    value="{{ Auth::guard('partner')->user()->id }}">
-                                                <input type="hidden" name="name"
-                                                    value="{{ Auth::guard('partner')->user()->name }}">
-                                                <input type="hidden" name="email"
-                                                    value="{{ Auth::guard('partner')->user()->primary_email_address }}">
-                                                {{-- <input type="hidden" name="phone" value="{{Auth::guard('client')->user()->phone_number}}"> --}}
-                                                <div class="modal-body get_quote_view_modal_body">
+                                                    <div class="form-group col-sm-4 m-0">
+
+                                                        <input type="number" class="form-control mt-4" id="contact"
+                                                            name="qty" placeholder="Quantity"
+                                                            style="font-size: 0.7rem;">
+                                                    </div>
+                                                    <div class="form-group col-sm-4">
+                                                        <label class="m-0" for="image"
+                                                            style="font-size: 0.7rem;">Upload Image</label>
+                                                        <input type="file" name="image" class="form-control"
+                                                            id="image" accept="image/*" style="font-size: 0.7rem;" />
+                                                        <div class="form-text" style="font-size:11px;">Only png, jpg, jpeg
+                                                            images</div>
+
+                                                    </div>
 
                                                     <div class="form-group col-sm-12 border text-white"
                                                         style="background: #7e7d7c">
-                                                        <h6 class="text-center pt-1">Product Name : {{ $item->name }}</h6>
+                                                        <h6 class="text-center pt-1">Product Name : {{ $item->name }}
+                                                        </h6>
                                                     </div>
-                                                    <div class="row" id="Rfqpartner" style="display:none">
-                                                        <div class="form-group col-sm-6">
-                                                            <input type="text" required="" class="form-control"
-                                                                id="phone" name="phone"
-                                                                value="{{ Auth::guard('partner')->user()->company_number }}"
-                                                                placeholder="Company Phone Number">
-                                                        </div>
-                                                        <div class="form-group  col-sm-6">
-                                                            <label for="contact">Company Name </label>
-                                                            <input type="text" class="form-control" id="contact"
-                                                                name="company_name" required
-                                                                value="{{ Auth::guard('partner')->user()->company_name }}">
-                                                        </div>
+
+                                                    <div class="form-group col-sm-12">
+
+                                                        <textarea class="form-control" id="message" name="message" rows="1"
+                                                            placeholder="Additional Information..."></textarea>
                                                     </div>
-                                                    <div class="form-row">
-                                                        <div class="form-group  col-sm-6">
 
-                                                            <input type="number" class="form-control" id="contact"
-                                                                name="qty" placeholder="Quantity">
-                                                        </div>
-                                                        <div class="form-group  col-sm-6">
-                                                            <label for="contact">Upload Image </label>
-                                                            <input type="file" name="image" class="form-control"
-                                                                id="image" accept="image/*" />
-                                                            <div class="form-text" style="font-size:11px;">Accepts only png,
-                                                                jpg, jpeg images</div>
-                                                        </div>
+                                                    <div class="form-group  col-sm-12 px-3 mx-3">
+                                                        <input class="mr-2" type="checkbox" name="call"
+                                                            id="call" value="1">
+                                                        <label for="call">Also Please Call Me</label>
 
-                                                        <div class="form-group  col-sm-12">
-                                                            <textarea class="form-control" id="message" name="message" rows="1" placeholder="Additional Text.."></textarea>
-                                                        </div>
-
-                                                        <div class="form-group  col-sm-12 px-3 mx-3">
-                                                            <input class="mr-2" type="checkbox" name="call"
-                                                                id="call" value="1">
-                                                            <label for="call">Also Please Call Me</label>
-                                                        </div>
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <button type="reset" class="btn btn-light col-lg-3 mr-auto"
-                                                            data-dismiss="modal"><i class="fas fa-window-close mr-2"></i>
-                                                            Cancel</button>
-                                                        <button type="submit" class="btn btn-primary col-lg-3"
-                                                            id="submit_btn">Submit &nbsp;<i
-                                                                class="fa fa-paper-plane"></i></button>
                                                     </div>
                                                 </div>
+                                                <div class="modal-footer">
+                                                    <button type="submit" class="btn btn-primary col-lg-3"
+                                                        id="submit_btn">Submit &nbsp;<i
+                                                            class="fa fa-paper-plane"></i></button>
+                                                </div>
+                                            </div>
 
-                                            </form>
-                                        @else
-                                            <form action="{{ route('rfq.add') }}" method="post" id="get_quote_frm"
-                                                enctype="multipart/form-data">
-                                                @csrf
-                                                <input type="hidden" name="product_id" value="{{ $item->id }}">
-                                                {{-- <input type="hidden" name="client_type" value="random"> --}}
-                                                <div class="modal-body get_quote_view_modal_body">
-                                                    <div class="form-row">
-                                                        <div class="form-group col-sm-12 border text-white"
-                                                            style="background: #7e7d7c">
-                                                            <h6 class="text-center pt-1">Product Name : {{ $item->name }}
-                                                            </h6>
+                                        </form>
+                                    @elseif (Auth::guard('partner')->user())
+                                        <form action="{{ route('rfq.add') }}" method="post" id="get_quote_frm"
+                                            enctype="multipart/form-data">
+                                            @csrf
+                                            <div class="card mx-4">
+                                                <div class="card-body p-4">
+                                                    <div class="row border">
+                                                        <div class="col-lg-3 pl-2">Name:
+                                                            {{ Auth::guard('partner')->user()->name }}</div>
+                                                        <div class="col-lg-4" style="margin: 5px 0px">
+                                                            {{ Auth::guard('partner')->user()->primary_email_address }}
                                                         </div>
-
-                                                        <div class="form-group col-sm-6">
-                                                            <label for="name">Name <span
-                                                                    class="text-danger">*</span></label>
-                                                            <input type="text" class="form-control" required=""
-                                                                id="name" name="name">
-                                                        </div>
-                                                        <div class="form-group col-sm-6">
-                                                            <label for="email">Email <span
-                                                                    class="text-danger">*</span></label>
-                                                            <input type="email" required="" class="form-control"
-                                                                id="email" name="email">
-                                                        </div>
-                                                        <div class="form-group  col-sm-6">
-                                                            <label for="contact">Mobile Number <span
-                                                                    class="text-danger">*</span></label>
-                                                            <input type="text" required="" class="form-control"
-                                                                id="phone" name="phone">
-                                                        </div>
-
-                                                        <div class="form-group  col-sm-6">
-                                                            <label for="contact">Company Name </label>
-                                                            <input type="text" class="form-control" id="contact"
-                                                                name="company_name">
-                                                        </div>
-                                                        <div class="form-group  col-sm-6">
-                                                            <label for="contact">Quantity </label>
-                                                            <input type="number" class="form-control" id="contact"
-                                                                name="qty">
-                                                        </div>
-                                                        <div class="form-group  col-sm-6">
-                                                            <label for="contact">Custom Image </label>
-                                                            <input type="file" name="image" class="form-control"
-                                                                id="image" accept="image/*" />
-                                                            <div class="form-text" style="font-size:11px;">Accepts only png,
-                                                                jpg, jpeg images</div>
-                                                        </div>
-
-                                                        <div class="form-group  col-sm-12">
-                                                            <label for="message">Type Message</label>
-                                                            <textarea class="form-control" id="message" name="message" rows="4"></textarea>
-                                                        </div>
-
-                                                        <div class="form-group  col-sm-12 px-3 mx-3">
-                                                            <input class="mr-2" type="checkbox" name="call"
-                                                                id="call" value="1">
-                                                            <label for="call">Also Please Call Me</label>
-
-                                                        </div>
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <button type="reset" class="btn btn-light col-lg-3 mr-auto"
-                                                            data-dismiss="modal"><i class="fas fa-window-close mr-2"></i>
-                                                            Cancel</button>
-                                                        <button type="submit" class="btn btn-primary col-lg-3"
-                                                            id="submit_btn">Submit &nbsp;<i
-                                                                class="fa fa-paper-plane"></i></button>
+                                                        <div class="col-lg-4" style="margin: 5px 0px">
+                                                            {{ Auth::guard('partner')->user()->company_number }}</div>
+                                                        <div class="col-lg-1" style="margin: 5px 0px"><a
+                                                                href="javascript:void(0);" id="editRfqpartner"><i
+                                                                    class="fa fa-pencil" aria-hidden="true"></i></a></div>
                                                     </div>
                                                 </div>
+                                            </div>
+                                            <input type="hidden" name="product_id" value="{{ $item->id }}">
+                                            <input type="hidden" name="client_type" value="partner">
+                                            <input type="hidden" name="partner_id"
+                                                value="{{ Auth::guard('partner')->user()->id }}">
+                                            <input type="hidden" name="name"
+                                                value="{{ Auth::guard('partner')->user()->name }}">
+                                            <input type="hidden" name="email"
+                                                value="{{ Auth::guard('partner')->user()->primary_email_address }}">
+                                            {{-- <input type="hidden" name="phone" value="{{Auth::guard('client')->user()->phone_number}}"> --}}
+                                            <div class="modal-body get_quote_view_modal_body">
 
-                                            </form>
-                                        @endif
+                                                <div class="form-group col-sm-12 border text-white"
+                                                    style="background: #7e7d7c">
+                                                    <h6 class="text-center pt-1">Product Name : {{ $item->name }}</h6>
+                                                </div>
+                                                <div class="row" id="Rfqpartner" style="display:none">
+                                                    <div class="form-group col-sm-6">
+                                                        <input type="text" required="" class="form-control"
+                                                            id="phone" name="phone"
+                                                            value="{{ Auth::guard('partner')->user()->company_number }}"
+                                                            placeholder="Company Phone Number">
+                                                    </div>
+                                                    <div class="form-group  col-sm-6">
+                                                        <label for="contact">Company Name </label>
+                                                        <input type="text" class="form-control" id="contact"
+                                                            name="company_name" required
+                                                            value="{{ Auth::guard('partner')->user()->company_name }}">
+                                                    </div>
+                                                </div>
+                                                <div class="form-row">
+                                                    <div class="form-group  col-sm-6">
 
-                                    </div><!-- //modal-content -->
+                                                        <input type="number" class="form-control" id="contact"
+                                                            name="qty" placeholder="Quantity">
+                                                    </div>
+                                                    <div class="form-group  col-sm-6">
+                                                        <label for="contact">Upload Image </label>
+                                                        <input type="file" name="image" class="form-control"
+                                                            id="image" accept="image/*" />
+                                                        <div class="form-text" style="font-size:11px;">Accepts only png,
+                                                            jpg, jpeg images</div>
+                                                    </div>
 
-                                </div><!-- modal-dialog -->
-                            </div>
-                            <!-- modal -->
-                        @endforeach
-                        <!-- product item -->
-                    </div>
+                                                    <div class="form-group  col-sm-12">
+                                                        <textarea class="form-control" id="message" name="message" rows="1" placeholder="Additional Text.."></textarea>
+                                                    </div>
+
+                                                    <div class="form-group  col-sm-12 px-3 mx-3">
+                                                        <input class="mr-2" type="checkbox" name="call"
+                                                            id="call" value="1">
+                                                        <label for="call">Also Please Call Me</label>
+                                                    </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="reset" class="btn btn-light col-lg-3 mr-auto"
+                                                        data-dismiss="modal"><i class="fas fa-window-close mr-2"></i>
+                                                        Cancel</button>
+                                                    <button type="submit" class="btn btn-primary col-lg-3"
+                                                        id="submit_btn">Submit &nbsp;<i
+                                                            class="fa fa-paper-plane"></i></button>
+                                                </div>
+                                            </div>
+
+                                        </form>
+                                    @else
+                                        <form action="{{ route('rfq.add') }}" method="post" id="get_quote_frm"
+                                            enctype="multipart/form-data">
+                                            @csrf
+                                            <input type="hidden" name="product_id" value="{{ $item->id }}">
+                                            {{-- <input type="hidden" name="client_type" value="random"> --}}
+                                            <div class="modal-body get_quote_view_modal_body">
+                                                <div class="form-row">
+                                                    <div class="form-group col-sm-12 border text-white"
+                                                        style="background: #7e7d7c">
+                                                        <h6 class="text-center pt-1">Product Name : {{ $item->name }}
+                                                        </h6>
+                                                    </div>
+
+                                                    <div class="form-group col-sm-6">
+                                                        <label for="name">Name <span
+                                                                class="text-danger">*</span></label>
+                                                        <input type="text" class="form-control" required=""
+                                                            id="name" name="name">
+                                                    </div>
+                                                    <div class="form-group col-sm-6">
+                                                        <label for="email">Email <span
+                                                                class="text-danger">*</span></label>
+                                                        <input type="email" required="" class="form-control"
+                                                            id="email" name="email">
+                                                    </div>
+                                                    <div class="form-group  col-sm-6">
+                                                        <label for="contact">Mobile Number <span
+                                                                class="text-danger">*</span></label>
+                                                        <input type="text" required="" class="form-control"
+                                                            id="phone" name="phone">
+                                                    </div>
+
+                                                    <div class="form-group  col-sm-6">
+                                                        <label for="contact">Company Name </label>
+                                                        <input type="text" class="form-control" id="contact"
+                                                            name="company_name">
+                                                    </div>
+                                                    <div class="form-group  col-sm-6">
+                                                        <label for="contact">Quantity </label>
+                                                        <input type="number" class="form-control" id="contact"
+                                                            name="qty">
+                                                    </div>
+                                                    <div class="form-group  col-sm-6">
+                                                        <label for="contact">Custom Image </label>
+                                                        <input type="file" name="image" class="form-control"
+                                                            id="image" accept="image/*" />
+                                                        <div class="form-text" style="font-size:11px;">Accepts only png,
+                                                            jpg, jpeg images</div>
+                                                    </div>
+
+                                                    <div class="form-group  col-sm-12">
+                                                        <label for="message">Type Message</label>
+                                                        <textarea class="form-control" id="message" name="message" rows="4"></textarea>
+                                                    </div>
+
+                                                    <div class="form-group  col-sm-12 px-3 mx-3">
+                                                        <input class="mr-2" type="checkbox" name="call"
+                                                            id="call" value="1">
+                                                        <label for="call">Also Please Call Me</label>
+
+                                                    </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="reset" class="btn btn-light col-lg-3 mr-auto"
+                                                        data-dismiss="modal"><i class="fas fa-window-close mr-2"></i>
+                                                        Cancel</button>
+                                                    <button type="submit" class="btn btn-primary col-lg-3"
+                                                        id="submit_btn">Submit &nbsp;<i
+                                                            class="fa fa-paper-plane"></i></button>
+                                                </div>
+                                            </div>
+
+                                        </form>
+                                    @endif
+
+                                </div><!-- //modal-content -->
+
+                            </div><!-- modal-dialog -->
+                        </div>
+                        <!-- modal -->
+                    @endforeach
+                    <!-- product item -->
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
     <!---------End -------->
     <!--======// Feature tab //======-->
     {{-- <section>
@@ -686,7 +688,7 @@
             <h5>Category and Software Products List</h5>
             <p class="home_title_text">Explore our Software related products, categories and brands</p>
         </div>
-        <div class="row w-75 mx-auto">
+        <div class="row mx-auto" style="width:85%;">
             <div class="col-md-12">
                 <!-- Tabs with icons on Card -->
                 <div class="card card-nav-tabs">
@@ -732,84 +734,107 @@
                                         <div class="row">
                                             <div class="col-md-3">
                                                 <!-- Tabs nav -->
-                                                @php
-                                                    $cat_products =[];
-                                                    foreach($categories as $item) {
-                                                        foreach($item->subitems as $subitem) {
-                                                        $subitems[$subitem->id] = $subitem;
-                                                        }
-                                                    }
-                                                @endphp
+
                                                 <div class="nav flex-column nav-pills nav-pills-custom" id="v-pills-tab"
                                                     role="tablist" aria-orientation="vertical">
                                                     @foreach ($categories as $item)
-                                                        <a class="nav-link mb-1 p-1 shadow " id="v-pills-home-tab"
-                                                            data-toggle="pill" href="#category-{{$item->id}}" role="tab"
-                                                            aria-controls="v-pills-home" aria-selected="true">
 
-                                                            <span class="font-weight-bold small text-uppercase">{{$item->title}}
+                                                        @php
+                                                            $products = App\Models\Admin\Product::where('sub_cat_id',$item->id)->where('product_status','product')
+                                                            ->where('product_type','software')->select('id','name','price','slug')->get();
+                                                        @endphp
+
+                                                        @if (count($products) > 0)
+                                                            <a class="nav-link mb-1 p-1 shadow " id="v-pills-home-tab"
+                                                                data-toggle="pill" href="#category-{{ $item->id }}"
+                                                                role="tab" aria-controls="v-pills-home"
+                                                                aria-selected="true">
+                                                                <span
+                                                                    class="font-weight-bold small text-uppercase">{{ $item->title }}
                                                                 </span>
-                                                        </a>
+                                                            </a>
+                                                        @endif
                                                     @endforeach
 
-                                                    </div>
+                                                </div>
                                             </div>
 
 
                                             <div class="col-md-9 p-0">
                                                 <!-- Tabs content -->
                                                 <div class="tab-content p-0" id="v-pills-tabContent">
-                                                    @foreach ($categories as $item)
-                                                        @php
-                                                        $products = App\Models\Admin\Product::where('sub_cat_id',$item->id)->select('products.name','products.slug','products.price')->get();
-                                                        @endphp
-                                                    @endforeach
-                                                    <div class="tab-pane fade shadow rounded bg-white show active p-2 mr-2"
-                                                        id="category-{{$item->id}}" role="tabpanel" aria-labelledby="v-pills-home-tab">
+                                                    @foreach ($categories as $key => $item)
 
-                                                        <div class="panel">
-                                                            <div class="panel-heading">
-                                                                <div
-                                                                    class="row p-0 d-flex justify-content-center align-items-center">
-                                                                    <div class="col-lg-9">
-                                                                        <h4 class="">Product List For Softwares</h4>
-                                                                    </div>
-                                                                    <div class="col-lg-3 text-right">
-                                                                        <form action=" ">
-                                                                            <div class="btn_group">
-                                                                                <input type="text" class="form-control"
-                                                                                    placeholder="Search">
+                                                        @if (count($products) > 0)
+                                                            <div class="tab-pane fade shadow rounded bg-white p-5 mr-2"
+                                                                id="category-{{ $item->id }}" role="tabpanel" aria-labelledby="v-pills-profile-tab">
+                                                                <div class="panel">
+                                                                    <div class="panel-heading">
+                                                                        <div
+                                                                            class="row p-0 d-flex justify-content-center align-items-center">
+                                                                            <div class="col-lg-9">
+                                                                                <h4 class="">Product Lists For {{$item->title}}
+                                                                                </h4>
                                                                             </div>
-                                                                        </form>
+                                                                            <div class="col-lg-3 text-right">
+                                                                                <form action=" ">
+                                                                                    <div class="btn_group">
+                                                                                        <input type="text" class="form-control" placeholder="Search">
+                                                                                    </div>
+                                                                                </form>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+
+
+                                                                    <div class="panel-body table-responsive">
+                                                                       <div id="product-table">
+                                                                            <table class="table productDT">
+                                                                                <thead>
+                                                                                    <tr>
+                                                                                        <th>Sl</th>
+                                                                                        <th>Product Name</th>
+                                                                                        <th>Price</th>
+                                                                                    </tr>
+                                                                                </thead>
+                                                                                <tbody>
+
+                                                                                    @if (!empty($products))
+                                                                                        @foreach ($products as $key => $item)
+                                                                                            <tr>
+                                                                                                <td>{{ ++$key }}</td>
+                                                                                                <td>
+                                                                                                    <a href="{{route('product.details',$item->slug)}}">
+                                                                                                        {{ Str::limit($item->name, 55) }}
+                                                                                                    </a>
+                                                                                                </td>
+                                                                                                <td>{{ $item->price }}</td>
+                                                                                            </tr>
+                                                                                        @endforeach
+                                                                                        {{-- <div class="d-flex justify-content-center">
+                                                                                            <div id="pagination-links">
+                                                                                                <nav aria-label="Page navigation example">
+                                                                                                    <ul class="pagination">
+
+                                                                                                        {{ $products->links() }}
+                                                                                                    </ul>
+
+                                                                                                </nav>
+                                                                                            </div>
+
+                                                                                        </div> --}}
+                                                                                    @endif
+
+                                                                                </tbody>
+                                                                            </table>
+                                                                        </div>
                                                                     </div>
                                                                 </div>
                                                             </div>
+                                                        @endif
 
+                                                    @endforeach
 
-                                                                <div class="panel-body table-responsive">
-                                                                    <table class="table">
-                                                                        <thead>
-                                                                            <tr>
-                                                                                <th>Sl</th>
-                                                                                <th>Product Name</th>
-                                                                                <th>Price</th>
-                                                                            </tr>
-                                                                        </thead>
-                                                                        <tbody>
-
-                                                                            @foreach ($products as $key=>$item)
-                                                                                <tr>
-                                                                                    <td>{{++$key}}</td>
-                                                                                    <td>{{$item->name}}</td>
-                                                                                    <td>{{$item->price}}</td>
-                                                                                </tr>
-                                                                            @endforeach
-
-                                                                        </tbody>
-                                                                    </table>
-                                                                </div>
-                                                        </div>
-                                                    </div>
 
 
 
@@ -820,6 +845,7 @@
                                     </div>
                                 </section>
                             </div>
+
                             <div class="tab-pane" id="brand">
                                 {{-- Brand Sub Tab --}}
                                 <section class="py-3">
@@ -830,13 +856,22 @@
                                                 <div class="nav flex-column nav-pills nav-pills-custom" id="v-pills-tab"
                                                     role="tablist" aria-orientation="vertical">
                                                     @foreach ($brands as $item)
-                                                        <a class="nav-link mb-1 p-1 shadow " id="v-pills-home-tab"
-                                                            data-toggle="pill" href="#category-1" role="tab"
-                                                            aria-controls="v-pills-home" aria-selected="true">
 
-                                                            <span class="font-weight-bold small text-uppercase">{{$item->title}}
+                                                        @php
+                                                            $products = App\Models\Admin\Product::where('brand_id',$item->id)->where('product_status','product')
+                                                            ->where('product_type','software')->select('id','name','price','slug')->get();
+                                                        @endphp
+
+                                                        @if (count($products) > 0)
+                                                            <a class="nav-link mb-1 p-1 shadow " id="v-pills-home-tab"
+                                                                data-toggle="pill" href="#brand-{{ $item->id }}"
+                                                                role="tab" aria-controls="v-pills-home"
+                                                                aria-selected="true">
+                                                                <span
+                                                                    class="font-weight-bold small text-uppercase">{{ $item->title }}
                                                                 </span>
-                                                        </a>
+                                                            </a>
+                                                        @endif
                                                     @endforeach
 
                                                 </div>
@@ -846,50 +881,65 @@
                                             <div class="col-md-9 p-0">
                                                 <!-- Tabs content -->
                                                 <div class="tab-content p-0" id="v-pills-tabContent">
-                                                    <div class="tab-pane fade shadow rounded bg-white show active p-2 mr-2"
-                                                        id="brand-1" role="tabpanel"
-                                                        aria-labelledby="v-pills-home-tab">
-                                                        <p class="text-muted mb-2"></p>
-                                                    </div>
+                                                    @foreach ($brands as $key => $item)
 
-                                                    <div class="tab-pane fade shadow rounded bg-white p-5 mr-2"
-                                                        id="brand-2" role="tabpanel"
-                                                        aria-labelledby="v-pills-profile-tab">
-                                                        <p class="text-muted mb-2">brand-2 Lorem ipsum dolor sit amet,
-                                                            consectetur adipisicing elit, sed do eiusmod tempor incididunt
-                                                            ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-                                                            nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-                                                            commodo consequat. Duis aute irure dolor in reprehenderit in
-                                                            voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-                                                            Excepteur sint occaecat cupidatat non proident, sunt in culpa
-                                                            qui officia deserunt mollit anim id est laborum.</p>
-                                                    </div>
+                                                        @if (count($products) > 0)
+                                                            <div class="tab-pane fade shadow rounded bg-white p-5 mr-2"
+                                                                id="brand-{{ $item->id }}" role="tabpanel" aria-labelledby="v-pills-profile-tab">
+                                                                <div class="panel">
+                                                                    <div class="panel-heading">
+                                                                        <div
+                                                                            class="row p-0 d-flex justify-content-center align-items-center">
+                                                                            <div class="col-lg-9">
+                                                                                <h4 class="">Product Lists For {{$item->title}}
+                                                                                </h4>
+                                                                            </div>
+                                                                            <div class="col-lg-3 text-right">
+                                                                                <form action=" ">
+                                                                                    <div class="btn_group">
+                                                                                        <input type="text" class="form-control" placeholder="Search">
+                                                                                    </div>
+                                                                                </form>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
 
-                                                    <div class="tab-pane fade shadow rounded bg-white p-5 mr-2"
-                                                        id="brand-3" role="tabpanel"
-                                                        aria-labelledby="v-pills-messages-tab">
-                                                        <p class="text-muted mb-2">brand-3 Lorem ipsum dolor sit amet,
-                                                            consectetur adipisicing elit, sed do eiusmod tempor incididunt
-                                                            ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-                                                            nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-                                                            commodo consequat. Duis aute irure dolor in reprehenderit in
-                                                            voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-                                                            Excepteur sint occaecat cupidatat non proident, sunt in culpa
-                                                            qui officia deserunt mollit anim id est laborum.</p>
-                                                    </div>
+                                                                    <div class="panel-body table-responsive">
+                                                                       <div id="product-table">
+                                                                            <table class="table productDT">
+                                                                                <thead>
+                                                                                    <tr>
+                                                                                        <th>Sl</th>
+                                                                                        <th>Product Name</th>
+                                                                                        <th>Price</th>
+                                                                                    </tr>
+                                                                                </thead>
+                                                                                <tbody>
 
-                                                    <div class="tab-pane fade shadow rounded bg-white p-5 mr-2"
-                                                        id="brand-4" role="tabpanel"
-                                                        aria-labelledby="v-pills-settings-tab">
-                                                        <p class="text-muted mb-2">brand-4 Lorem ipsum dolor sit amet,
-                                                            consectetur adipisicing elit, sed do eiusmod tempor incididunt
-                                                            ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-                                                            nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-                                                            commodo consequat. Duis aute irure dolor in reprehenderit in
-                                                            voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-                                                            Excepteur sint occaecat cupidatat non proident, sunt in culpa
-                                                            qui officia deserunt mollit anim id est laborum.</p>
-                                                    </div>
+                                                                                    @if (!empty($products))
+                                                                                        @foreach ($products as $key => $item)
+                                                                                            <tr>
+                                                                                                <td>{{ ++$key }}</td>
+                                                                                                <td>
+                                                                                                    <a href="{{route('product.details',$item->slug)}}">
+                                                                                                        {{ Str::limit($item->name, 55) }}
+                                                                                                    </a>
+                                                                                                </td>
+                                                                                                <td>{{ $item->price }}</td>
+                                                                                            </tr>
+                                                                                        @endforeach
+
+                                                                                    @endif
+
+                                                                                </tbody>
+                                                                            </table>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        @endif
+
+                                                    @endforeach
                                                 </div>
                                             </div>
                                         </div>
@@ -905,58 +955,26 @@
                                                 <!-- Tabs nav -->
                                                 <div class="nav flex-column nav-pills nav-pills-custom" id="v-pills-tab"
                                                     role="tablist" aria-orientation="vertical">
-                                                    <a class="nav-link mb-1 p-1 shadow active" id="v-pills-home-tab"
-                                                        data-toggle="pill" href="#industry-1" role="tab"
-                                                        aria-controls="v-pills-home" aria-selected="true">
+                                                    @foreach ($industrys as $item)
 
-                                                        <span class="font-weight-bold small text-uppercase">Industry
-                                                            1</span></a>
+                                                        @php
+                                                            $product_ids = App\Models\Admin\MultiIndustry::where('industry_id',$item->id)->get();
+                                                            //dd($product_ids);
+                                                            // $products = App\Models\Admin\Product::where('industry_id',$item->id)->where('product_status','product')
+                                                            // ->where('product_type','software')->select('id','name','price','slug')->get();
+                                                        @endphp
 
-                                                    <a class="nav-link mb-1 p-1 shadow" id="v-pills-profile-tab"
-                                                        data-toggle="pill" href="#industry-2" role="tab"
-                                                        aria-controls="v-pills-profile" aria-selected="false">
-
-                                                        <span class="font-weight-bold small text-uppercase">Industry
-                                                            2</span></a>
-
-                                                    <a class="nav-link mb-1 p-1 shadow" id="v-pills-messages-tab"
-                                                        data-toggle="pill" href="#industry-3" role="tab"
-                                                        aria-controls="v-pills-messages" aria-selected="false">
-
-                                                        <span class="font-weight-bold small text-uppercase">Industry
-                                                            3</span></a>
-
-                                                    <a class="nav-link mb-1 p-1 shadow" id="v-pills-settings-tab"
-                                                        data-toggle="pill" href="#industry-4" role="tab"
-                                                        aria-controls="v-pills-settings" aria-selected="false">
-
-                                                        <span class="font-weight-bold small text-uppercase">Industry
-                                                            4</span></a>
-
-                                                    <a class="nav-link mb-1 p-1 shadow" id="v-pills-settings-tab"
-                                                        data-toggle="pill" href="#industry-4" role="tab"
-                                                        aria-controls="v-pills-settings" aria-selected="false">
-
-                                                        <span class="font-weight-bold small text-uppercase">Industry
-                                                            5</span></a>
-                                                    <a class="nav-link mb-1 p-1 shadow" id="v-pills-settings-tab"
-                                                        data-toggle="pill" href="#industry-4" role="tab"
-                                                        aria-controls="v-pills-settings" aria-selected="false">
-
-                                                        <span class="font-weight-bold small text-uppercase">Industry
-                                                            6</span></a>
-                                                    <a class="nav-link mb-1 p-1 shadow" id="v-pills-settings-tab"
-                                                        data-toggle="pill" href="#industry-4" role="tab"
-                                                        aria-controls="v-pills-settings" aria-selected="false">
-
-                                                        <span class="font-weight-bold small text-uppercase">Industry
-                                                            7</span></a>
-                                                    <a class="nav-link mb-1 p-1 shadow" id="v-pills-settings-tab"
-                                                        data-toggle="pill" href="#industry-4" role="tab"
-                                                        aria-controls="v-pills-settings" aria-selected="false">
-
-                                                        <span class="font-weight-bold small text-uppercase">Industry
-                                                            8</span></a>
+                                                        @if (count($product_ids) > 0)
+                                                            <a class="nav-link mb-1 p-1 shadow " id="v-pills-home-tab"
+                                                                data-toggle="pill" href="#brand-{{ $item->id }}"
+                                                                role="tab" aria-controls="v-pills-home"
+                                                                aria-selected="true">
+                                                                <span
+                                                                    class="font-weight-bold small text-uppercase">{{ $item->title }}
+                                                                </span>
+                                                            </a>
+                                                        @endif
+                                                    @endforeach
 
 
                                                 </div>
@@ -966,57 +984,66 @@
                                             <div class="col-md-9 p-0">
                                                 <!-- Tabs content -->
                                                 <div class="tab-content p-0" id="v-pills-tabContent">
-                                                    <div class="tab-pane fade shadow rounded bg-white show active p-2 mr-2"
-                                                        id="industry-1" role="tabpanel"
-                                                        aria-labelledby="v-pills-home-tab">
-                                                        <p class=" text-muted mb-2">industry -1 Lorem ipsum dolor sit amet,
-                                                            consectetur adipisicing elit, sed do eiusmod tempor incididunt
-                                                            ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-                                                            nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-                                                            commodo consequat. Duis aute irure dolor in reprehenderit in
-                                                            voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-                                                            Excepteur sint occaecat cupidatat non proident, sunt in culpa
-                                                            qui officia deserunt mollit anim id est laborum.</p>
-                                                    </div>
+                                                    @foreach ($industrys as $key => $item)
 
-                                                    <div class="tab-pane fade shadow rounded bg-white p-5 mr-2"
-                                                        id="industry-2" role="tabpanel"
-                                                        aria-labelledby="v-pills-profile-tab">
-                                                        <p class=" text-muted mb-2">industry-2 Lorem ipsum dolor sit amet,
-                                                            consectetur adipisicing elit, sed do eiusmod tempor incididunt
-                                                            ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-                                                            nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-                                                            commodo consequat. Duis aute irure dolor in reprehenderit in
-                                                            voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-                                                            Excepteur sint occaecat cupidatat non proident, sunt in culpa
-                                                            qui officia deserunt mollit anim id est laborum.</p>
-                                                    </div>
+                                                        @if (count($product_ids) > 0)
+                                                            <div class="tab-pane fade shadow rounded bg-white p-5 mr-2"
+                                                                id="brand-{{ $item->id }}" role="tabpanel" aria-labelledby="v-pills-profile-tab">
+                                                                <div class="panel">
+                                                                    <div class="panel-heading">
+                                                                        <div
+                                                                            class="row p-0 d-flex justify-content-center align-items-center">
+                                                                            <div class="col-lg-9">
+                                                                                <h4 class="">Product Lists For {{$item->title}}
+                                                                                </h4>
+                                                                            </div>
+                                                                            <div class="col-lg-3 text-right">
+                                                                                <form action=" ">
+                                                                                    <div class="btn_group">
+                                                                                        <input type="text" class="form-control" placeholder="Search">
+                                                                                    </div>
+                                                                                </form>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
 
-                                                    <div class="tab-pane fade shadow rounded bg-white p-5 mr-2"
-                                                        id="industry-3" role="tabpanel"
-                                                        aria-labelledby="v-pills-messages-tab">
-                                                        <p class=" text-muted mb-2">industry-3 Lorem ipsum dolor sit amet,
-                                                            consectetur adipisicing elit, sed do eiusmod tempor incididunt
-                                                            ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-                                                            nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-                                                            commodo consequat. Duis aute irure dolor in reprehenderit in
-                                                            voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-                                                            Excepteur sint occaecat cupidatat non proident, sunt in culpa
-                                                            qui officia deserunt mollit anim id est laborum.</p>
-                                                    </div>
+                                                                    <div class="panel-body table-responsive">
+                                                                       <div id="product-table">
+                                                                            <table class="table productDT">
+                                                                                <thead>
+                                                                                    <tr>
+                                                                                        <th>Sl</th>
+                                                                                        <th>Product Name</th>
+                                                                                        <th>Price</th>
+                                                                                    </tr>
+                                                                                </thead>
+                                                                                <tbody>
 
-                                                    <div class="tab-pane fade shadow rounded bg-white p-5 mr-2"
-                                                        id="industry-4" role="tabpanel"
-                                                        aria-labelledby="v-pills-settings-tab">
-                                                        <p class=" text-muted mb-2">industry-4 Lorem ipsum dolor sit amet,
-                                                            consectetur adipisicing elit, sed do eiusmod tempor incididunt
-                                                            ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-                                                            nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-                                                            commodo consequat. Duis aute irure dolor in reprehenderit in
-                                                            voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-                                                            Excepteur sint occaecat cupidatat non proident, sunt in culpa
-                                                            qui officia deserunt mollit anim id est laborum.</p>
-                                                    </div>
+                                                                                    @if (!empty($product_ids))
+                                                                                        @foreach ($product_ids as $key => $item)
+                                                                                        @dd($item->product_id);
+                                                                                            <tr>
+                                                                                                <td>{{ ++$key }}</td>
+                                                                                                <td>
+                                                                                                    <a href="{{route('product.details',App\Models\Admin\Product::where('id',$item->product_id)->value('slug'))}}">
+                                                                                                        {{ Str::limit(App\Models\Admin\Product::where('id',$item->product_id)->value('name'), 55) }}
+                                                                                                    </a>
+                                                                                                </td>
+                                                                                                <td>{{ App\Models\Admin\Product::where('id',$item->product_id)->value('price') }}</td>
+                                                                                            </tr>
+                                                                                        @endforeach
+
+                                                                                    @endif
+
+                                                                                </tbody>
+                                                                            </table>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        @endif
+
+                                                    @endforeach
                                                 </div>
                                             </div>
                                         </div>
@@ -1212,84 +1239,99 @@
                             <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
                                 <a class="nav-item nav-link active" id="nav-healthcare" data-toggle="tab"
                                     href="#nav-home" role="tab" aria-controls="nav-home"
-                                    aria-selected="true">{{$story1->badge}}</a>
+                                    aria-selected="true">{{ $story1->badge }}</a>
                                 <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile"
-                                    role="tab" aria-controls="nav-profile" aria-selected="false">{{$story2->badge}}</a>
+                                    role="tab" aria-controls="nav-profile"
+                                    aria-selected="false">{{ $story2->badge }}</a>
                                 <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact"
-                                    role="tab" aria-controls="nav-contact" aria-selected="false">{{$story3->badge}}</a>
+                                    role="tab" aria-controls="nav-contact"
+                                    aria-selected="false">{{ $story3->badge }}</a>
                                 <a class="nav-item nav-link" id="nav-about-tab" data-toggle="tab" href="#nav-about"
-                                    role="tab" aria-controls="nav-about" aria-selected="false">{{$story4->badge}}</a>
+                                    role="tab" aria-controls="nav-about"
+                                    aria-selected="false">{{ $story4->badge }}</a>
                             </div>
                         </nav>
                         @php
-                        $tags_1=explode(',',$story1->tags);
-                        $tags_2=explode(',',$story2->tags);
-                        $tags_3=explode(',',$story3->tags);
-                        $tags_4=explode(',',$story4->tags);
+                            $tags_1 = explode(',', $story1->tags);
+                            $tags_2 = explode(',', $story2->tags);
+                            $tags_3 = explode(',', $story3->tags);
+                            $tags_4 = explode(',', $story4->tags);
 
                         @endphp
                         <div class="tab-content py-3 px-3 px-sm-0" id="nav-tabContent">
-                            <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-healthcare">
-                                <div class="row">
-                                <div class="col-lg-4 col-md-4 col-sm-12">
-                                    <div class="tab_side_image">
-                                    <img src="{{ asset('storage/' . $story1->image) }}" alt="">
-                                    </div>
-                                </div>
-                                <div class="col-lg-8 col-md-6 col-sm-12">
-                                    <h5 class="home_title_heading" style="text-align: left;">{{$story1->title}} </h5>
-                                    <p>{{$story1->header}}</p>
-                                    <div class="home_card_button p-2">
-                                        <a class="effect01" href="{{route('blog.details',$story1->id)}}">Read more</a>
-                                    </div>
-                                </div>
-                                </div>
-                            </div>
-                            <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+                            <div class="tab-pane fade show active" id="nav-home" role="tabpanel"
+                                aria-labelledby="nav-healthcare">
                                 <div class="row">
                                     <div class="col-lg-4 col-md-4 col-sm-12">
-                                    <div class="tab_side_image">
-                                        <img src="{{ asset('storage/' . $story2->image) }}" alt="">
-                                    </div>
+                                        <div class="tab_side_image">
+                                            <img src="{{ asset('storage/' . $story1->image) }}" alt="">
+                                        </div>
                                     </div>
                                     <div class="col-lg-8 col-md-6 col-sm-12">
-                                    <h5 class="home_title_heading" style="text-align: left;">{{$story2->title}} </h5>
-                                    <p>{{$story2->header}}</p>
-                                    <div class="home_card_button p-2">
-                                        <a class="effect01" href="{{route('blog.details',$story2->id)}}">Read more</a>
-                                    </div>
+                                        <h5 class="home_title_heading" style="text-align: left;">{{ $story1->title }}
+                                        </h5>
+                                        <p>{{ $story1->header }}</p>
+                                        <div class="home_card_button p-2">
+                                            <a class="effect01" href="{{ route('blog.details', $story1->id) }}">Read
+                                                more</a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
+                            <div class="tab-pane fade" id="nav-profile" role="tabpanel"
+                                aria-labelledby="nav-profile-tab">
                                 <div class="row">
                                     <div class="col-lg-4 col-md-4 col-sm-12">
-                                    <div class="tab_side_image">
-                                        <img src="{{ asset('storage/' . $story3->image) }}" alt="">
-                                    </div>
+                                        <div class="tab_side_image">
+                                            <img src="{{ asset('storage/' . $story2->image) }}" alt="">
+                                        </div>
                                     </div>
                                     <div class="col-lg-8 col-md-6 col-sm-12">
-                                    <h5 class="home_title_heading" style="text-align: left;">{{$story3->title}} </h5>
-                                    <p>{{$story3->header}}</p>
-                                    <div class="home_card_button p-2">
-                                        <a class="effect01" href="{{route('story.details',$story3->id)}}">Read more</a>
-                                    </div>
+                                        <h5 class="home_title_heading" style="text-align: left;">{{ $story2->title }}
+                                        </h5>
+                                        <p>{{ $story2->header }}</p>
+                                        <div class="home_card_button p-2">
+                                            <a class="effect01" href="{{ route('blog.details', $story2->id) }}">Read
+                                                more</a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
+                            <div class="tab-pane fade" id="nav-contact" role="tabpanel"
+                                aria-labelledby="nav-contact-tab">
                                 <div class="row">
                                     <div class="col-lg-4 col-md-4 col-sm-12">
-                                    <div class="tab_side_image">
-                                        <img src="{{ asset('storage/' . $story4->image) }}" alt="">
-                                    </div>
+                                        <div class="tab_side_image">
+                                            <img src="{{ asset('storage/' . $story3->image) }}" alt="">
+                                        </div>
                                     </div>
                                     <div class="col-lg-8 col-md-6 col-sm-12">
-                                    <h5 class="home_title_heading" style="text-align: left;">{{$story4->title}} </h5>
-                                    <p>{{$story4->header}}</p>
-                                    <div class="home_card_button p-2">
-                                        <a class="effect01" href="{{route('story.details',$story4->id)}}">Read more</a>
+                                        <h5 class="home_title_heading" style="text-align: left;">{{ $story3->title }}
+                                        </h5>
+                                        <p>{{ $story3->header }}</p>
+                                        <div class="home_card_button p-2">
+                                            <a class="effect01" href="{{ route('story.details', $story3->id) }}">Read
+                                                more</a>
+                                        </div>
                                     </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="nav-contact" role="tabpanel"
+                                aria-labelledby="nav-contact-tab">
+                                <div class="row">
+                                    <div class="col-lg-4 col-md-4 col-sm-12">
+                                        <div class="tab_side_image">
+                                            <img src="{{ asset('storage/' . $story4->image) }}" alt="">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-8 col-md-6 col-sm-12">
+                                        <h5 class="home_title_heading" style="text-align: left;">{{ $story4->title }}
+                                        </h5>
+                                        <p>{{ $story4->header }}</p>
+                                        <div class="home_card_button p-2">
+                                            <a class="effect01" href="{{ route('story.details', $story4->id) }}">Read
+                                                more</a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -1305,22 +1347,23 @@
     <!--=====// Global call section //=====-->
     <section class="global_call_section section_padding">
         <div class="container">
-          <!-- content -->
-          @php
-            $sentence = $learnmore->consult_title;
-          @endphp
-          <div class="global_call_section_content">
-            <div class="home_title" style="width: 100%; margin: 0px;">
-              <h5 class="home_title_heading" style="text-align: left; color: #fff;">
-                <span>{{\Illuminate\Support\Str::substr($sentence, 0, 1)}}</span>{{ \Illuminate\Support\Str::substr($sentence, 1) }}
+            <!-- content -->
+            @php
+                $sentence = $learnmore->consult_title;
+            @endphp
+            <div class="global_call_section_content">
+                <div class="home_title" style="width: 100%; margin: 0px;">
+                    <h5 class="home_title_heading" style="text-align: left; color: #fff;">
+                        <span>{{ \Illuminate\Support\Str::substr($sentence, 0, 1) }}</span>{{ \Illuminate\Support\Str::substr($sentence, 1) }}
 
-              </h5>
-              <p class="home_title_text text-white" style="text-align: left;">{{$learnmore->consult_short_des}}</p>
-              <div class="business_seftion_button" style="text-align: left;">
-                <a href="#Contact">Explore business outcomes</a>
-              </div>
+                    </h5>
+                    <p class="home_title_text text-white" style="text-align: left;">{{ $learnmore->consult_short_des }}
+                    </p>
+                    <div class="business_seftion_button" style="text-align: left;">
+                        <a href="#Contact">Explore business outcomes</a>
+                    </div>
+                </div>
             </div>
-          </div>
         </div>
     </section>
     <!---------End -------->
@@ -1411,78 +1454,95 @@
     <div class="container pb-5">
         <!-- section title -->
         <div class="clint_help_section_heading_wrapper">
-          <!-- title -->
-          <h5 class="home_title_heading" style="text-align: left;">
+            <!-- title -->
             <h5 class="home_title_heading" style="text-align: left;">
-              <div class="software_feature_title">
-                <h1 class="text-center pt-4 pb-4">
-                   Industries We Serve
-                </h1>
-              </div>
-            </h5>
-            <p class="home_title_text">
-              <span class="font-weight-bold">{{$learnmore->industry_header}} </span>
-            </p>
+                <h5 class="home_title_heading" style="text-align: left;">
+                    <div class="software_feature_title">
+                        <h1 class="text-center pt-4 pb-4">
+                            Industries We Serve
+                        </h1>
+                    </div>
+                </h5>
+                <p class="home_title_text">
+                    <span class="font-weight-bold">{{ $learnmore->industry_header }} </span>
+                </p>
         </div>
         <!-- section content wrapper -->
         <div class="row mb-4">
-          <!-- content -->
-          <div class="col-lg-9 col-sm-12">
-            <!-- we_serveItem_wrapper -->
-            <div class="row">
-              <!-- item -->
+            <!-- content -->
+            <div class="col-lg-9 col-sm-12">
+                <!-- we_serveItem_wrapper -->
+                <div class="row">
+                    <!-- item -->
 
-              @if ($industrys)
-                @foreach ($industrys as $item)
-                    <div class="col-lg-3 col-sm-6">
-                      <a href="{{route('industry.details',$item->id)}}" class="we_serve_item">
-                        <div class="we_serve_item_image">
-                          <img src="{{asset('storage/'.$item->logo)}}" alt="">
-                        </div>
-                        <div class="we_serve_item_text">{{$item->title}}</div>
-                      </a>
-                    </div>
-                @endforeach
-              @endif
-
-            </div>
-          </div>
-          <!-- sidebar -->
-          <div class="col-lg-3 col-sm-12">
-            <div class="we_serve_title">
-              <p>Private sector</p>
-            </div>
-            <!-- sidebar list -->
-            <div>
-                @if ($random_industries)
-                    @foreach ($random_industries as $item)
-                        <div class="pt-2">
-                            <a href="{{route('industry.details',$item->id)}}">
-                                <div id="fed-bg">
-                                    <div class="p-2">
-                                        <h5 class="text-white brand_side_text">{{$item->title}} ›</h5>
+                    @if ($industrys)
+                        @foreach ($industrys as $item)
+                            <div class="col-lg-3 col-sm-6">
+                                <a href="{{ route('industry.details', $item->id) }}" class="we_serve_item">
+                                    <div class="we_serve_item_image">
+                                        <img src="{{ asset('storage/' . $item->logo) }}" alt="">
                                     </div>
-                                </div>
-                            </a>
-                        </div>
-                    @endforeach
-                @endif
+                                    <div class="we_serve_item_text">{{ $item->title }}</div>
+                                </a>
+                            </div>
+                        @endforeach
+                    @endif
 
+                </div>
             </div>
-          </div>
+            <!-- sidebar -->
+            <div class="col-lg-3 col-sm-12">
+                <div class="we_serve_title">
+                    <p>Private sector</p>
+                </div>
+                <!-- sidebar list -->
+                <div>
+                    @if ($random_industries)
+                        @foreach ($random_industries as $item)
+                            <div class="pt-2">
+                                <a href="{{ route('industry.details', $item->id) }}">
+                                    <div id="fed-bg">
+                                        <div class="p-2">
+                                            <h5 class="text-white brand_side_text">{{ $item->title }} ›</h5>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        @endforeach
+                    @endif
+
+                </div>
+            </div>
         </div>
-      </div>
-      <!---------End -------->
+    </div>
+    <!---------End -------->
     <!---------End -------->
     <!--=====// Pageform section //=====-->
     @include('frontend.partials.footer_contact')
     <!---------End -------->
 @endsection
 
+@section('scripts')
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('.productDT').DataTable({
+
+                dom: '<"datatable-header"fl><"datatable-scroll"t><"datatable-footer"ip>',
+                "iDisplayLength": 10,
+                "lengthMenu": [10, 26, 30, 50],
+                columnDefs: [{
+                    orderable: false,
+                    targets: [0,1,2],
+                }, ],
+
+                searching: false,
+                ordering: false,
+                info: false
+            });
+        });
 
 
-
-
-
-
+    </script>
+@endsection
 

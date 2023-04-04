@@ -69,13 +69,13 @@ class FeatureController extends Controller
             $imageMainFile = $request->image;
             $uploadPath = storage_path('app/public/');
             if (isset($logoMainFile)) {
-                $globalFunImgLogo = Helper::singleImageUpload($logoMainFile, $uploadPath, 90, 90);
+                $globalFunImgLogo = Helper::singleImageUpload($logoMainFile, $uploadPath);
             } else {
                 $globalFunImgLogo = ['status' => 0];
             }
 
             if (isset($imageMainFile)) {
-                $globalFunImage = Helper::singleImageUpload($imageMainFile, $uploadPath, 531, 349);
+                $globalFunImage = Helper::singleImageUpload($imageMainFile, $uploadPath);
             } else {
                 $globalFunImage = ['status' => 0];
             }
@@ -165,13 +165,13 @@ class FeatureController extends Controller
             $imageMainFile = $request->image;
             $uploadPath    = storage_path('app/public/');
             if (isset($logoMainFile)) {
-                $globalFunImgLogo = Helper::singleImageUpload($logoMainFile, $uploadPath, 90, 90);
+                $globalFunImgLogo = Helper::singleImageUpload($logoMainFile, $uploadPath);
             } else {
                 $globalFunImgLogo = ['status' => 0];
             }
 
             if (isset($imageMainFile)) {
-                $globalFunImage = Helper::singleImageUpload($imageMainFile, $uploadPath, 531, 348);
+                $globalFunImage = Helper::singleImageUpload($imageMainFile, $uploadPath);
             } else {
                 $globalFunImage = ['status' => 0];
             }

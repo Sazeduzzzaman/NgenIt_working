@@ -158,7 +158,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
 
     Route::post('/mark-as-read', [AdminController::class, 'markNotification'])->name('markNotification');
     Route::post('/markread', [AdminController::class, 'markAsRead'])->name('markAsRead');
-     // Admin Profile All Route
+    // Admin Profile All Route
     Route::get('/dashboard',        [AdminController::class, 'AdminDashboard'])->name('admin.dashboard');
     Route::get('/logout',           [AdminController::class, 'AdminDestroy'])->name('admin.logout');
     Route::get('/profile',          [AdminController::class, 'AdminProfile'])->name('admin.profile');
@@ -171,13 +171,12 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
     Route::get('/add/admin',        [AdminController::class, 'AddAdmin'])->name('add.admin');
     Route::get('/edit/admin/{id}',  [AdminController::class, 'EditAdminUser'])->name('edit.admin');
     Route::put('/edit/admin/{id}',  [AdminController::class, 'AdminUserUpdate'])->name('update.admin');
-    Route::post('/admin/user/store',[AdminController::class, 'AdminUserStore'])->name('admin.user.store');
+    Route::post('/admin/user/store', [AdminController::class, 'AdminUserStore'])->name('admin.user.store');
     Route::post('admin-status',     [AdminController::class, 'AdminStatus'])->name('admin.status');
 
 
 
     // Category All Route
-    Route::resource('category', CategoryController::class);
     Route::controller(CategoryController::class)->group(function () {
 
         // Route::get('category', 'index')->name('category.index');
@@ -205,69 +204,43 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
 
 
 
-//     // SolutionAll Route
-//     Route::resource('solution', SolutionController::class);
-//     //Contact
-//     Route::resource('contact', ContactController::class);
-//     //newsletter
-//     Route::resource('newsLetter', NewsLetterController::class);
-// //Client Experience
-// Route::resource('clientExperince', ClientController::class);
-// //Clients
-// Route::resource('clientPermission', ClientPermission::class);
-// //partners
-// Route::resource('partnerPermission', PartnerPermission::class);
-// //home Page Builder
-// Route::resource('homepage', HomepageController::class);
-// //blog
-// Route::resource('blog', BlogController::class);
+    //     // SolutionAll Route
+    //     //Contact
+    //     //newsletter
+    // //Client Experience
+    // //Clients
+    // //partners
+    // //home Page Builder
+    // //blog
 
-// //Row builder
-// Route::resource('row', RowController::class);
+    // //Row builder
 
-// //Row with column builder
-// Route::resource('rowWithCol', RowWithColController::class);
+    // //Row with column builder
 
-// //Client Story
-// Route::resource('clientstory', ClientStoryController::class);
+    // //Client Story
 
-// //TechGlossy
-// Route::resource('techglossy', TechGlossyController::class);
+    // //TechGlossy
 
-// //Learn More
-// Route::resource('learnMore', LearnMoreController::class);
+    // //Learn More
 
 
 
-// //Industry Page resource route
-// Route::resource('industryPage', IndustryPageController::class);
+    // //Industry Page resource route
 
-// //Solution Card resource route
-// Route::resource('solutionCard', SolutionCardController::class);
+    // //Solution Card resource route
 
-// //Solution Details resource route
-// Route::resource('solutionDetails', SolutionDetailsController::class);
+    // //Solution Details resource route
 
-// //Policy resource route
-// Route::resource('policy', PolicyController::class);
+    // //Policy resource route
 
-// //Job resource route
-// Route::resource('job', JobController::class);
+    // //Job resource route
 
-//   // RFQ
-//   Route::resource('rfq', RFQController::class);
-//   //Deal
-//     Route::resource('deal', DealController::class);
-//   // Feature
-//   Route::resource('feature', FeatureController::class);
-//   Route::resource('brandPage', BrandPageController::class);
-//   Route::resource('country', CountryController::class);
-//   Route::resource('region', RegionController::class);
-//   //Product Sourcing
-//   Route::resource('product-sourcing', SourcingController::class);
-//  // SAS All Route
+    //   // RFQ
+    //   //Deal
+    //   // Feature
+    //   //Product Sourcing
+    //  // SAS All Route
 
-//  Route::resource('sas', SASController::class);
 
 
     // Product All Route
@@ -374,224 +347,215 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
 
 
 
- // Admin Order All Route
-Route::controller(AdminOrderController::class)->group(function(){
-    Route::get('/pending/order' , 'PendingOrder')->name('pending.order');
-    Route::get('/admin/order/details/{order_id}' , 'AdminOrderDetails')->name('admin.order.details');
+    // Admin Order All Route
+    Route::controller(AdminOrderController::class)->group(function () {
+        Route::get('/pending/order', 'PendingOrder')->name('pending.order');
+        Route::get('/admin/order/details/{order_id}', 'AdminOrderDetails')->name('admin.order.details');
 
-    Route::get('/admin/confirmed/order' , 'AdminConfirmedOrder')->name('admin.confirmed.order');
+        Route::get('/admin/confirmed/order', 'AdminConfirmedOrder')->name('admin.confirmed.order');
 
-    Route::get('/admin/processing/order' , 'AdminProcessingOrder')->name('admin.processing.order');
+        Route::get('/admin/processing/order', 'AdminProcessingOrder')->name('admin.processing.order');
 
- Route::get('/admin/delivered/order' , 'AdminDeliveredOrder')->name('admin.delivered.order');
+        Route::get('/admin/delivered/order', 'AdminDeliveredOrder')->name('admin.delivered.order');
 
- Route::get('/pending/confirm/{order_id}' , 'PendingToConfirm')->name('pending-confirm');
- Route::get('/confirm/processing/{order_id}' , 'ConfirmToProcess')->name('confirm-processing');
+        Route::get('/pending/confirm/{order_id}', 'PendingToConfirm')->name('pending-confirm');
+        Route::get('/confirm/processing/{order_id}', 'ConfirmToProcess')->name('confirm-processing');
 
-  Route::get('/processing/delivered/{order_id}' , 'ProcessToDelivered')->name('processing-delivered');
+        Route::get('/processing/delivered/{order_id}', 'ProcessToDelivered')->name('processing-delivered');
 
-  Route::get('/admin/invoice/download/{order_id}' , 'AdminInvoiceDownload')->name('admin.invoice.download');
-
-});
-
-
- // Return Order All Route
-Route::controller(ReturnController::class)->group(function(){
-    Route::get('/return/request' , 'ReturnRequest')->name('return.request');
-
-    Route::get('/return/request/approved/{order_id}' , 'ReturnRequestApproved')->name('return.request.approved');
-
-    Route::get('/complete/return/request' , 'CompleteReturnRequest')->name('complete.return.request');
+        Route::get('/admin/invoice/download/{order_id}', 'AdminInvoiceDownload')->name('admin.invoice.download');
+    });
 
 
-});
+    // Return Order All Route
+    Route::controller(ReturnController::class)->group(function () {
+        Route::get('/return/request', 'ReturnRequest')->name('return.request');
+
+        Route::get('/return/request/approved/{order_id}', 'ReturnRequestApproved')->name('return.request.approved');
+
+        Route::get('/complete/return/request', 'CompleteReturnRequest')->name('complete.return.request');
+    });
 
 
- // Report All Route
-Route::controller(ReportController::class)->group(function(){
+    // Report All Route
+    Route::controller(ReportController::class)->group(function () {
 
-    Route::get('/report/view' , 'ReportView')->name('report.view');
-    Route::post('/search/by/date' , 'SearchByDate')->name('search-by-date');
-    Route::post('/search/by/month' , 'SearchByMonth')->name('search-by-month');
-    Route::post('/search/by/year' , 'SearchByYear')->name('search-by-year');
+        Route::get('/report/view', 'ReportView')->name('report.view');
+        Route::post('/search/by/date', 'SearchByDate')->name('search-by-date');
+        Route::post('/search/by/month', 'SearchByMonth')->name('search-by-month');
+        Route::post('/search/by/year', 'SearchByYear')->name('search-by-year');
 
-    Route::get('/order/by/user' , 'OrderByUser')->name('order.by.user');
-    Route::post('/search/by/user' , 'SearchByUser')->name('search-by-user');
+        Route::get('/order/by/user', 'OrderByUser')->name('order.by.user');
+        Route::post('/search/by/user', 'SearchByUser')->name('search-by-user');
+    });
 
-});
-
-  //jobRegister
-  Route::get('job-register-user', [App\Http\Controllers\Frontend\JobController::class, 'jobRegisterUser'])
-  ->name('job.regiserUser');
+    //jobRegister
+    Route::get('job-register-user', [App\Http\Controllers\Frontend\JobController::class, 'jobRegisterUser'])
+        ->name('job.regiserUser');
     Route::get('job-register-user/show/{id}', [App\Http\Controllers\Frontend\JobController::class, 'jobRegisterUserShow'])
-    ->name('job.regiserUser.show');
+        ->name('job.regiserUser.show');
     Route::delete('job-register-user/{id}', [App\Http\Controllers\Frontend\JobController::class, 'jobRegisterUserDestroy'])
-    ->name('job.regiserUser.destroy');
+        ->name('job.regiserUser.destroy');
     Route::get('job-register-user/download/{id}', [App\Http\Controllers\Frontend\JobController::class, 'jobRegisterUserDownload'])
-    ->name('resume.download');
+        ->name('resume.download');
 
 
-Route::put('assign_salesmanager/{id}', [RFQController::class,'AssignSalesMan'])->name('assign.salesman');
-Route::controller(RFQController::class)->group(function(){
-    Route::get('/edit/{id}/rfq-to-deal', 'DealConvert')->name('deal.convert');
-    Route::put('convert-deal/store/{id}', 'ConvertDealStore')->name('convert.deal');
-    Route::get('/client/ajax/{client_id}' , 'GetClient');
-  });
+    Route::put('assign_salesmanager/{id}', [RFQController::class, 'AssignSalesMan'])->name('assign.salesman');
+    Route::controller(RFQController::class)->group(function () {
+        Route::get('/edit/{id}/rfq-to-deal', 'DealConvert')->name('deal.convert');
+        Route::put('convert-deal/store/{id}', 'ConvertDealStore')->name('convert.deal');
+        Route::get('/client/ajax/{client_id}', 'GetClient');
+    });
 
 
-//   Route::get('/partner/ajax/{partner_id}' , [DealController::class,'GetPartner']);
-//   Route::get('/client/ajax/{client_id}' , [DealController::class,'GetClient']);
-  Route::controller(DealController::class)->group(function(){
-    Route::get('/partner/ajax/{partner_id}' , 'GetPartner');
-    Route::get('/client/ajax/{client_id}' , 'GetClient');
-    Route::put('/send/quotation/{id}',  'SendQuotation')->name('quotation.send');
-    Route::put('/send/invoice/{id}',  'dealInvoiceSent')->name('invoice.send');
-    //Route::put('/upload/payment-proof/{id}',  'proofPaymentUpload')->name('payment-proof.upload');
-    Route::put('/check/quotation/{id}' , 'CheckQuotation')->name('quotation.check');
-});
-
-
-
-  //Route::get('/edit/product/{id}', 'EditProduct')->name('edit.product');
-//Revised Deal
-//  Route::resource('revised-deal', RevisedDealController::class);
+    //   Route::get('/partner/ajax/{partner_id}' , [DealController::class,'GetPartner']);
+    //   Route::get('/client/ajax/{client_id}' , [DealController::class,'GetClient']);
+    Route::controller(DealController::class)->group(function () {
+        Route::get('/partner/ajax/{partner_id}', 'GetPartner');
+        Route::get('/client/ajax/{client_id}', 'GetClient');
+        Route::put('/send/quotation/{id}',  'SendQuotation')->name('quotation.send');
+        Route::put('/send/invoice/{id}',  'dealInvoiceSent')->name('invoice.send');
+        //Route::put('/upload/payment-proof/{id}',  'proofPaymentUpload')->name('payment-proof.upload');
+        Route::put('/check/quotation/{id}', 'CheckQuotation')->name('quotation.check');
+    });
 
 
 
+    //Route::get('/edit/product/{id}', 'EditProduct')->name('edit.product');
+    //Revised Deal
 
 
-  Route::controller(SourcingController::class)->group(function(){
+
+
+
+    Route::controller(SourcingController::class)->group(function () {
         //Route::post('industry', 'store')->name('industry.store');
         Route::get('approve-product',  'ProductApprove')->name('product.approve');
         Route::put('product-approve/store/{id}', 'StoreProductApproval')->name('product-approve.store');
         //Route::delete('industry/{id}', 'destroy')->name('industry.destroy');
     });
-  //Product Sourcing
+    //Product Sourcing
 
 
 
 
- Route::get('/sas/{id}/sourcing', [App\Http\Controllers\SAS\SASController::class, 'SourcingSas'])->name('sourcing.sas');
+    Route::get('/sas/{id}/sourcing', [App\Http\Controllers\SAS\SASController::class, 'SourcingSas'])->name('sourcing.sas');
 
- //Deal SAS
-//  Route::resource('deal-sas', DealSasController::class);
- Route::get('/deal_sas_show/{id}', [DealSasController::class, 'DealSasShow'])->name('dealsasshow');
- Route::get('/deal_sas_approve/{id}', [DealSasController::class, 'DealSasApprove'])->name('dealsasapprove');
- Route::put('/deal_sas/product_unitprice/update/{id}/', [DealSasController::class, 'UnitPriceUpdate'])->name('update.unitprice');
- Route::put('/deal-sas/approve/{id}/store/', [DealSasController::class, 'DealSasApproveStore'])->name('approve.deal-sas');
-
+    //Deal SAS
+    Route::get('/deal_sas_show/{id}', [DealSasController::class, 'DealSasShow'])->name('dealsasshow');
+    Route::get('/deal_sas_approve/{id}', [DealSasController::class, 'DealSasApprove'])->name('dealsasapprove');
+    Route::put('/deal_sas/product_unitprice/update/{id}/', [DealSasController::class, 'UnitPriceUpdate'])->name('update.unitprice');
+    Route::put('/deal-sas/approve/{id}/store/', [DealSasController::class, 'DealSasApproveStore'])->name('approve.deal-sas');
 
 
 
- Route::get('send/mail', [PartnerController::class, 'sendBulkMail'])->name('sendBulkMail');
 
- Route::get('bulksms',[BulkSmsController::class,'bulksms']);
- Route::post('bulksms',[BulkSmsController::class,'sendSms'])->name('sendSms');
+    Route::get('send/mail', [PartnerController::class, 'sendBulkMail'])->name('sendBulkMail');
+
+    Route::get('bulksms', [BulkSmsController::class, 'bulksms']);
+    Route::post('bulksms', [BulkSmsController::class, 'sendSms'])->name('sendSms');
 
 
 
     //Overview
-  Route::get('/income-expense/overview', [IncomeController::class, 'Overview'])->name('income-expense.overview');
+    Route::get('/income-expense/overview', [IncomeController::class, 'Overview'])->name('income-expense.overview');
 
-  //Ledger
-  Route::get('/income-expense/ledger', [ExpenseController::class, 'Ledger'])->name('income-expense.ledger');
+    //Ledger
+    Route::get('/income-expense/ledger', [ExpenseController::class, 'Ledger'])->name('income-expense.ledger');
 
- //Account Settings
- Route::resource('partner-account', PartnerController::class);
- Route::resource('sales-account', SalesAccountController::class);
 
- Route::resources(
-    [
-      'income'                 => IncomeController::class,
-      'product-section'        => SectionController::class,
-      'expense'                => ExpenseController::class,
-      'bulkEmail'              => BulkEmailController::class,
-      'office-location'        => OfficeLocationController::class,
-      'sales-forcast'          => SalesForcastController::class,
-      'account-profit-loss'    => AccountProfitLossController::class,
-      'account-payable'        => AccountsPayableController::class,
-      'account-receivable'     => AccountsReceivableController::class,
-      'purchase'               => PurchaseController::class,
-      'sales-profit-loss'      => SalesProfitLossController::class,
-      'salesTeamTarget'        => SalesTeamTargetController::class,
-      'salesYearTarget'        => SalesYearTargetController::class,
-      'rfqOrderStatus'         => RfqOrderStatusController::class,
-      'feedback'               => FeedbackController::class,
-      'partner-account'        => PartnerController::class,
-      'commercial-document'    => CommercialDocumentController::class,
-      'payment-method-details' => PaymentMethodDetailsController::class,
-      'rfq-manage'             => RFQManageController::class,
-      'sales-achievement'      => SalesAchievementController::class,
-      'deal-type-settings'     => DealTypeSettingController::class,
-      'effort-ratings'         => EffortRatingController::class,
-      'single-rfq'             => SingleRfqController::class,
-      'marketing-manager-role' => MarketingManagerRoleController::class,
-      'marketing-team-target'  => MarketingTeamTargetController::class,
-      'marketing-dmar'         => MarketingDmarController::class,
-      'notification'           => NotificationController::class,
-      'technology-data'        => TechnologyDataController::class,
-      'accounts-manager'       => AccountsManagerController::class,
-      'knowledge'              => KnowledgeController::class,
-      'presentation'           => PresentationController::class,
-      'show-case-video'        => ShowCaseVideoController::class,
-      'admin-menu-builder'     => AdminMenuBuilderController::class,
-      'client-database'        => ClientDatabaseController::class,
-      'what-we-do-page'        => WhatWeDoPageController::class,
-      'software-info-page'     => SoftwareInfoPageController::class,
-      'hardware-info-page'     => HardwareInfoPageController::class,
-      'category'               => CategoryController::class,
-      'brand'                  => BrandController::class,
-      'success'                => SuccessController::class,
-      'setting'                => SettingController::class,
-      'solution'               => SolutionController::class,
-      'contact'                => ContactController::class,
-      'newsLetter'             => NewsLetterController::class,
-      'clientExperince'        => ClientController::class,
-      'clientPermission'       => ClientPermission::class,
-      'partnerPermission'      => PartnerPermission::class,
-      'homepage'               => HomepageController::class,
-      'blog'                   => BlogController::class,
-      'row'                    => RowController::class,
-      'rowWithCol'             => RowWithColController::class,
-      'clientstory'            => ClientStoryController::class,
-      'techglossy'             => TechGlossyController::class,
-      'learnMore'              => LearnMoreController::class,
-      'industryPage'           => IndustryPageController::class,
-      'solutionCard'           => SolutionCardController::class,
-      'solutionDetails'        => SolutionDetailsController::class,
-      'policy'                 => PolicyController::class,
-      'job'                    => JobController::class,
-      'rfq'                    => RFQController::class,
-      'deal'                   => DealController::class,
-      'feature'                => FeatureController::class,
-      'brandPage'              => BrandPageController::class,
-      'country'                => CountryController::class,
-      'region'                 => RegionController::class,
-      'sas'                    => SASController::class,
-      'product-sourcing'       => SourcingController::class,
-      'deal-sas'               => DealSasController::class,
-      'revised-deal'           => RevisedDealController::class,
-      'partner-account'        => PartnerController::class,
-      'sales-account'          => SalesAccountController::class,
-    ]
-    // , [
-    //   'except' => ['show']
-    //   // you can set here other options e.g. 'only', 'except', 'names', 'middleware'
-    // ]
-  );
+    Route::resources(
+        [
+            'income'                 => IncomeController::class,
+            'product-section'        => SectionController::class,
+            'expense'                => ExpenseController::class,
+            'bulkEmail'              => BulkEmailController::class,
+            'office-location'        => OfficeLocationController::class,
+            'sales-forcast'          => SalesForcastController::class,
+            'account-profit-loss'    => AccountProfitLossController::class,
+            'account-payable'        => AccountsPayableController::class,
+            'account-receivable'     => AccountsReceivableController::class,
+            'purchase'               => PurchaseController::class,
+            'sales-profit-loss'      => SalesProfitLossController::class,
+            'salesTeamTarget'        => SalesTeamTargetController::class,
+            'salesYearTarget'        => SalesYearTargetController::class,
+            'rfqOrderStatus'         => RfqOrderStatusController::class,
+            'feedback'               => FeedbackController::class,
+            'partner-account'        => PartnerController::class,
+            'commercial-document'    => CommercialDocumentController::class,
+            'payment-method-details' => PaymentMethodDetailsController::class,
+            'rfq-manage'             => RFQManageController::class,
+            'sales-achievement'      => SalesAchievementController::class,
+            'deal-type-settings'     => DealTypeSettingController::class,
+            'effort-ratings'         => EffortRatingController::class,
+            'single-rfq'             => SingleRfqController::class,
+            'marketing-manager-role' => MarketingManagerRoleController::class,
+            'marketing-team-target'  => MarketingTeamTargetController::class,
+            'marketing-dmar'         => MarketingDmarController::class,
+            'notification'           => NotificationController::class,
+            'technology-data'        => TechnologyDataController::class,
+            'accounts-manager'       => AccountsManagerController::class,
+            'knowledge'              => KnowledgeController::class,
+            'presentation'           => PresentationController::class,
+            'show-case-video'        => ShowCaseVideoController::class,
+            'admin-menu-builder'     => AdminMenuBuilderController::class,
+            'client-database'        => ClientDatabaseController::class,
+            'what-we-do-page'        => WhatWeDoPageController::class,
+            'software-info-page'     => SoftwareInfoPageController::class,
+            'hardware-info-page'     => HardwareInfoPageController::class,
+            'category'               => CategoryController::class,
+            'brand'                  => BrandController::class,
+            'success'                => SuccessController::class,
+            'setting'                => SettingController::class,
+            'solution'               => SolutionController::class,
+            'contact'                => ContactController::class,
+            'newsLetter'             => NewsLetterController::class,
+            'clientExperince'        => ClientController::class,
+            'clientPermission'       => ClientPermission::class,
+            'partnerPermission'      => PartnerPermission::class,
+            'homepage'               => HomepageController::class,
+            'blog'                   => BlogController::class,
+            'row'                    => RowController::class,
+            'rowWithCol'             => RowWithColController::class,
+            'clientstory'            => ClientStoryController::class,
+            'techglossy'             => TechGlossyController::class,
+            'learnMore'              => LearnMoreController::class,
+            'industryPage'           => IndustryPageController::class,
+            'solutionCard'           => SolutionCardController::class,
+            'solutionDetails'        => SolutionDetailsController::class,
+            'policy'                 => PolicyController::class,
+            'job'                    => JobController::class,
+            'rfq'                    => RFQController::class,
+            'deal'                   => DealController::class,
+            'feature'                => FeatureController::class,
+            'brandPage'              => BrandPageController::class,
+            'country'                => CountryController::class,
+            'region'                 => RegionController::class,
+            'sas'                    => SASController::class,
+            'product-sourcing'       => SourcingController::class,
+            'deal-sas'               => DealSasController::class,
+            'revised-deal'           => RevisedDealController::class,
+            'partner-account'        => PartnerController::class,
+            'sales-account'          => SalesAccountController::class,
+        ]
+        // , [
+        //   'except' => ['show']
+        //   // you can set here other options e.g. 'only', 'except', 'names', 'middleware'
+        // ]
+    );
 
     //Assign Roles to Sales Manager
-    Route::put('assign_roles/SalesManager/{id}', [SalesAccountController::class,'assignSalesManagerRole'])->name('assign.salesmanager-role');
+    Route::put('assign_roles/SalesManager/{id}', [SalesAccountController::class, 'assignSalesManagerRole'])->name('assign.salesmanager-role');
 
 
     Route::post('notifiy/multi-delete', [NotificationController::class, 'multiDelete'])->name('notifiy.multi-delete');
-    Route::controller(EffortRatingController::class)->group(function(){
-        Route::get('/effort/ajax/{id}' , 'GetEffortRating')->name('get.effort.ajax');
+    Route::controller(EffortRatingController::class)->group(function () {
+        Route::get('/effort/ajax/{id}', 'GetEffortRating')->name('get.effort.ajax');
     });
 
 
-    Route::get('/sales-achievement/summary' , [SalesAchievementController::class, 'salesAchievementSummary'])->name('dashboard.salesachievement');
-    Route::get('/sales-report/dashboard' , [SalesYearTargetController::class, 'salesReportDashboard'])->name('dashboard.salesreport');
+    Route::get('/sales-achievement/summary', [SalesAchievementController::class, 'salesAchievementSummary'])->name('dashboard.salesachievement');
+    Route::get('/sales-report/dashboard', [SalesYearTargetController::class, 'salesReportDashboard'])->name('dashboard.salesreport');
 
 
     Route::post('salesmanager-status', [App\Http\Controllers\Sales\SalesAccountController::class, 'SalesStatus'])->name('sales.status');
@@ -604,53 +568,52 @@ Route::controller(RFQController::class)->group(function(){
 
 
 
-  // A function to run Artisan commands
-  function runCommand($command, $successMessage)
-  {
-    // dd
-    Artisan::call($command); //dd($command)
-    Toastr::success($successMessage); //dd($successMessage)
-    return back();
-  }
+    // A function to run Artisan commands
+    function runCommand($command, $successMessage)
+    {
+        // dd
+        Artisan::call($command); //dd($command)
+        Toastr::success($successMessage); //dd($successMessage)
+        return back();
+    }
 
-  // Route for creating a symbolic link
-  Route::get('link', function () {
-    return runCommand('storage:link', 'Storage linked successfully');
-  });
+    // Route for creating a symbolic link
+    Route::get('link', function () {
+        return runCommand('storage:link', 'Storage linked successfully');
+    });
 
-  // Route for clearing cache
-  Route::get('clear-cache', function () {
-    return runCommand('cache:clear', 'Cache cleared');
-  });
+    // Route for clearing cache
+    Route::get('clear-cache', function () {
+        return runCommand('cache:clear', 'Cache cleared');
+    });
 
-  // Route for optimizing class loader
-  Route::get('optimize', function () {
-    return runCommand('optimize:clear', 'Optimize cleared');
-  });
+    // Route for optimizing class loader
+    Route::get('optimize', function () {
+        return runCommand('optimize:clear', 'Optimize cleared');
+    });
 
-  // Route for caching routes
-  Route::get('route-cache', function () {
-    return runCommand('route:cache', 'Route cached');
-  });
+    // Route for caching routes
+    Route::get('route-cache', function () {
+        return runCommand('route:cache', 'Route cached');
+    });
 
-  // Route for clearing cached routes
-  Route::get('clear-route', function () {
-    return runCommand('route:clear', 'Route value cleared');
-  });
+    // Route for clearing cached routes
+    Route::get('clear-route', function () {
+        return runCommand('route:clear', 'Route value cleared');
+    });
 
-  // Route for clearing view cache
-  Route::get('clear-view', function () {
-    return runCommand('view:clear', 'View cleared');
-  });
+    // Route for clearing view cache
+    Route::get('clear-view', function () {
+        return runCommand('view:clear', 'View cleared');
+    });
 
-  // Route for clearing config cache
-  Route::get('clear-config', function () {
-    return runCommand('config:cache', 'Config cached');
-  });
+    // Route for clearing config cache
+    Route::get('clear-config', function () {
+        return runCommand('config:cache', 'Config cached');
+    });
 
-  // Route for running database migrations
-  Route::get('migrate', function () {
-    return runCommand('migrate', 'Migration completed');
-  });
-
+    // Route for running database migrations
+    Route::get('migrate', function () {
+        return runCommand('migrate', 'Migration completed');
+    });
 });

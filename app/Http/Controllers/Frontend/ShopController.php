@@ -9,6 +9,7 @@ use App\Models\Admin\Category;
 use App\Models\Admin\SubCategory;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use App\Models\Admin\BrandPage;
 use App\Models\Admin\SubSubCategory;
 use App\Models\Admin\SubSubSubCategory;
 
@@ -94,6 +95,8 @@ class ShopController extends Controller
         if (!empty($_GET['customBrand'])) {{
             $slug = $_GET['customBrand'];
                 $cat =Brand::where('slug', $slug)->first();
+                $brand_logo = BrandPage::where('brand_id' , $cat->id)->select('brand_pages.brand_logo')->first();
+                //dd($brand_logo);
                 $related_products = Product::where('brand_id',$cat->id)->orderBy('id','DESC')->limit(10)
                 ->select('products.id','products.rfq','products.slug','products.name','products.thumbnail','products.price','products.discount')
                 ->get();
@@ -227,7 +230,9 @@ class ShopController extends Controller
             $products = $products->whereBetween('price',$price);
          }
 
-         $count_brands = $products->pluck('brand_id')->toArray();
+         $count_products = $products->where('product_status', 'product');
+         $count_brands = $count_products->get();
+         //dd($count_brands);
 
         if(!empty($_GET['show'])){
             $products=$products->paginate($_GET['show']);
@@ -236,14 +241,15 @@ class ShopController extends Controller
             $products=$products->paginate(7);
         }
 
-        //$categories = Category::orderBy('title','ASC')->limit(8)->get();
+        $filter_categories = Category::orderBy('title','DESC')->select('categories.id','categories.title')->limit(8)->get();
 
 
         $newProduct = Product::orderBy('id','DESC')->where('product_status', 'product')->limit(3)->get();
 
 
 
-        return view('frontend.pages.product.allproduct',compact('products','count_brands','categories','subcategories','newProduct','brands','cat','related_products'));
+        return view('frontend.pages.product.allproduct',compact('products','brand_logo','filter_categories','count_brands','categories',
+        'subcategories','newProduct','brands','cat','related_products'));
 
     }
 

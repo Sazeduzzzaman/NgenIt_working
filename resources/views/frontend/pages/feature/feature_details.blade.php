@@ -25,7 +25,7 @@
             background-color: var(--heading);
             padding: 50px;
             margin-left: -15px;
-            margin-top: 1.9rem;
+            margin-top: 2.4rem;
         }
         .app-contact {
             margin-top: auto;
@@ -58,7 +58,7 @@
                 </div>
                 <div class="col-lg-6 col-sm-12 p-4">
                     <img class="img-fluid" src="{{ asset('storage/' . $feature->image) }}"
-                        alt="{{ $feature->badge }}">
+                        alt="{{ $feature->badge }}" style="border-radius: 8px;">
                 </div>
             </div>
         </div>
@@ -161,7 +161,7 @@
     <!-------------End--------->
     <!--======// Call to action //======-->
     <div class="call_to_action my-5"
-        style="background-image: linear-gradient(to right top, #ae0a46, #a40942, #9a083e, #91083a, #870736, #870736, #870736, #870736, #91083a, #9a083e, #a40942, #ae0a46);">
+        style="background-image: linear-gradient(to right top, #ae0a46, #bf0248, #9a083e, #ad0441, #b31a52, #870736, #b70647, #b30243, #db0050, #b91c56, #a40942, #ae0a46)">
         <div class="container">
             <div class="call_to_action_text mx-auto">
                 <h4 class="">{{ $feature->row_three_title }}</h4>
@@ -181,7 +181,8 @@
             <!-- home title -->
             <div class="home_title">
                 <h5 class="home_title_heading mb-4 pb-4 callout" style="font-size: 27px;"> {!! $feature->footer !!}</h5>
-                <h4 class="section_title py-3"><span class="topLine">K</span>ey business outcomes</h4>
+                <h4 class="section_title py-3 mt-4"><span class="topLine">{{\Illuminate\Support\Str::substr($feature->row_five_title, 0, 1)}}</span>{{ \Illuminate\Support\Str::substr($feature->row_five_title, 1) }}</h4>
+                <h5 class="py-3">{!! $feature->row_five_header !!}</h5>
             </div>
 
             <!-- business content -->
