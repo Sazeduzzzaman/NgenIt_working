@@ -12,10 +12,10 @@
               <!--BUTTON START-->
               <div class="d-flex justify-content-center align-items-center">
                 <div class="m-4">
-                    <button class="common_button2" href="product_filters.html">Talk to a specialist</button>
+                    <a class="common_button2" href="product_filters.html">Talk to a specialist</a>
                   </div>
                   <div class="m-4">
-                    <button class="common_button3" href="#">Shop all Surface devices</button>
+                    <a class="common_button3" href="{{route('software.common')}}">Shop all </a>
                   </div>
               </div>
           </div>
@@ -39,7 +39,7 @@
                                 <div class="text-center">
                                     <div class="buttons_style pt-3">
                                         <div class="container_btn">
-                                            <a href="{{route('category.html',$item->slug)}}" class="btns effect01" target="_blank"><span>Go</span></a>
+                                            <a href="{{route('category.html',$item->slug)}}" class="btns effect01"><span>Go</span></a>
                                         </div>
                                     </div>
                                 </div>
@@ -581,7 +581,7 @@
             <!-- home title -->
             <div class="home_title mt-3">
               <div class="software_feature_title">
-                <h1 class="text-center ">Brand Product</h1>
+                <h1 class="text-center ">Title</h1>
               </div>
               <p class="home_title_text">See how we’ve helped organizations of all sizes <span class="font-weight-bold">across every industry</span>
                 <br> maximize the value of their IT solutions, leverage emerging technologies and create fresh experiences.

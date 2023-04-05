@@ -663,7 +663,7 @@
                     possimus error iste veritatis reiciendis ducimus aut iusto</p>
                 <div class="d-flex justify-content-center align-items-center">
                     <div class="m-4">
-                        <button class="common_button2" href="product_filters.html">Talk to a specialist</button>
+                        <a class="common_button2" href="product_filters.html">Talk to a specialist</a>
                     </div>
                 </div>
             </div>
@@ -693,7 +693,7 @@
                                 <a class="nav-link" data-toggle="tab" href="#data_entry" role="tab">Data Entry</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" data-toggle="tab" href="#gp_design" role="tab">Graphich
+                                <a class="nav-link" data-toggle="tab" href="#gp_design" role="tab">Graphic
                                     Design</a>
                             </li>
                         </ul>
@@ -1305,13 +1305,7 @@
                         <div class="team-content">
                             <h3 class="title_name">Williamson</h3>
                             <span class="post">web developer</span>
-                            <ul class="social-links">
-                                <li><a href="#"><i class="fab fa-facebook"></i> </a></li>
-                                <li><a href="#"><i class="fab fa-google-plus"></i> </a></li>
-                                <li><a href="#"><i class="fab fa-twitter"></i> </a></li>
-                                <li><a href="#"><i class="fab fa-linkedin"></i> </a></li>
-                                <li><a href="#"><i class="fab fa-pinterest-p"></i> </a></li>
-                            </ul>
+                            
                         </div>
                     </div>
                 </div>
@@ -1322,13 +1316,7 @@
                         <div class="team-content">
                             <h3 class="title_name">kristina</h3>
                             <span class="post">Web Designer</span>
-                            <ul class="social-links">
-                                <li><a href="#"><i class="fab fa-facebook"></i> </a></li>
-                                <li><a href="#"><i class="fab fa-google-plus"></i> </a></li>
-                                <li><a href="#"><i class="fab fa-twitter"></i> </a></li>
-                                <li><a href="#"><i class="fab fa-linkedin"></i> </a></li>
-                                <li><a href="#"><i class="fab fa-pinterest-p"></i> </a></li>
-                            </ul>
+                            
                         </div>
                     </div>
                 </div>
@@ -1339,13 +1327,7 @@
                         <div class="team-content">
                             <h3 class="title_name">kristina</h3>
                             <span class="post">Web Designer</span>
-                            <ul class="social-links">
-                                <li><a href="#"><i class="fab fa-facebook"></i> </a></li>
-                                <li><a href="#"><i class="fab fa-google-plus"></i> </a></li>
-                                <li><a href="#"><i class="fab fa-twitter"></i> </a></li>
-                                <li><a href="#"><i class="fab fa-linkedin"></i> </a></li>
-                                <li><a href="#"><i class="fab fa-pinterest-p"></i> </a></li>
-                            </ul>
+                            
                         </div>
                     </div>
                 </div>
@@ -1356,13 +1338,7 @@
                         <div class="team-content">
                             <h3 class="title_name">kristina</h3>
                             <span class="post">Web Designer</span>
-                            <ul class="social-links">
-                                <li><a href="#"><i class="fab fa-facebook"></i> </a></li>
-                                <li><a href="#"><i class="fab fa-google-plus"></i> </a></li>
-                                <li><a href="#"><i class="fab fa-twitter"></i> </a></li>
-                                <li><a href="#"><i class="fab fa-linkedin"></i> </a></li>
-                                <li><a href="#"><i class="fab fa-pinterest-p"></i> </a></li>
-                            </ul>
+                            
                         </div>
                     </div>
                 </div>

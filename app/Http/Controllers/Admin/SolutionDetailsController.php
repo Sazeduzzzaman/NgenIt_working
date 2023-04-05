@@ -64,6 +64,7 @@ class SolutionDetailsController extends Controller
                 'banner_image'   => 'required|image|mimes:png,jpg,jpeg|max:10000',
             ],
             [
+                'required' => 'The :attribute is required',
                 'mimes' => 'The :attribute must be a file of type: PNG - JPEG - JPG'
             ],
 
@@ -188,6 +189,10 @@ class SolutionDetailsController extends Controller
                     'row_five_header'  => 'required',
 
                 ];
+                [
+                    'required' => 'The :attribute is required',
+                    'mimes' => 'The :attribute must be a file of type: PNG - JPEG - JPG'
+                ];
         } else {
             $validator =
                 // dd('not ima');
@@ -204,6 +209,10 @@ class SolutionDetailsController extends Controller
                     'row_five_header'  => 'required',
 
 
+                ];
+                [
+                    'required' => 'The :attribute is required',
+                    'mimes' => 'The :attribute must be a file of type: PNG - JPEG - JPG'
                 ];
         }
         $validator = Validator::make($request->all(), $validator);

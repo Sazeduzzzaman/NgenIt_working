@@ -117,7 +117,7 @@
         background-color: black;
         background-repeat: no-repeat;
         background-size: cover;
-        height:235px;">
+        height:300px;">
 
         <div class="container">
             <div class="single_banner_content">
@@ -609,115 +609,117 @@
 
                             <div class="container mt-1 mb-5">
                                 <div class="d-flex justify-content-center row">
-                                    <div class="col-md-12">
-                                        @if (count($products)>0)
-                                            <!-- First Product Start -->
-                                            @foreach ($products as $product)
-                                                <div class="row m-0 p-2 shadow-lg bg-white border rounded d-flex align-items-center">
-                                                    <div class="col-md-3 mt-1 mb-2">
-                                                        <img class="img-fluid img-responsive rounded product-image"
-                                                            src="{{ asset($product->thumbnail) }}" alt="{{ $product->name }}">
-                                                    </div>
-                                                    <div class="col-md-9 mb-2">
-                                                        <div class="row">
-                                                            <a href="{{ route('product.details',['id'=> $product->slug]) }}">
-                                                                <h4 class="my-3" style="color: #ae0a46;">{{$product->name}}</h4>
-                                                            </a>
-                                                        </div>
 
-                                                        <div class="row">
-                                                            <div class="col-lg-8 mt-1">
-
-                                                                <div class="row">
-
-                                                                    <span style="font-size: 14px;">
-                                                                        SKU #: {{$product->sku_code}} |
-                                                                        MF #:  {{$product->mf_code}} |
-                                                                    <br> NG #:  {{$product->product_code}}
-                                                                    </span>
-                                                                    <br>
-                                                                    <p>
-                                                                        {!! Str::limit($product->short_desc, 180) !!}
-                                                                    </p>
-                                                                </div>
-
-
-                                                            </div>
-                                                            <div class="col-lg-4 text-center border-left mt-1">
-                                                                <div class="text-center">
-                                                                    @if ($product->rfq != 1)
-                                                                        <small style="font-size: 0.6em;">USD</small>
-                                                                        @if (!empty($product->discount))
-                                                                        <h3 class="mr-1 font-number text-center">$ {{$product->discount}}</h3><span class="strike-text">$ {{ $product->price }}</span>
-                                                                        @else
-                                                                        <h3 class="mr-1 font-number text-center">$ {{ $product->price }}</h3>
-                                                                        @endif
-                                                                    @endif
-
-                                                                </div>
-                                                                @if (($product->qty) > 0)
-                                                                <h6 class="text-success font-number text-center" style="font-size:20px; text-transform:capitalize;">{{ $product->qty }} in stock</h6>
-
-                                                                    @else
-                                                                    <h6 class="text-center" style="font-size:20px; text-transform:capitalize;">{{ ucfirst($product->stock) }}</h6>
-                                                                @endif
-
-
-                                                                @if ($product->rfq != 1)
-
-                                                                    @php
-                                                                        $cart = Cart::content();
-                                                                        $exist = $cart->where('id', $product->id);
-
-                                                                    @endphp
-                                                                    @if ($cart->where('id', $product->id)->count())
-                                                                        {{-- <a href="javascript:void(0);" class="common_button6"> </a> --}}
-                                                                        <span class="common_button6">Already in Cart</span>
-                                                                    @else
-                                                                        <form action="{{ route('add.cart') }}" method="post">
-                                                                            @csrf
-                                                                            <input type="hidden" name="product_id" id="product_id"
-                                                                                value="{{ $product->id }}">
-                                                                            <input type="hidden" name="name" id="name"
-                                                                                value="{{ $product->name }}">
-                                                                            <input type="hidden" name="qty" id="qty" value="1">
-                                                                            <button type="submit" class="common_button effect01" style="padding:10px 20px;">Add to Basket</button>
-                                                                        </form>
-                                                                    @endif
-                                                                @else
-                                                                    {{-- <div class="product_item_price">
-                                                                        <span class="price_currency_value">
-                                                                            <a data-toggle="modal" data-target="#get_quote_modal-{{ $product->id }}">Ask
-                                                                                For Price</a>
-                                                                        </span>
-                                                                    </div> --}}
-                                                                    <a href="{{ route('product.details', $product->slug) }}"
-                                                                        class="common_button effect01">Details</a>
-                                                                @endif
-
-                                                                {{-- <div class="d-flex flex-column mt-4">
-                                                                    <button class="btn product_btn btn-sm"
-                                                                        type="button">Details
-                                                                    </button>
-                                                                    <button class="btn product_btn btn-sm mt-2"
-                                                                        type="button">Add to Basket
-                                                                    </button>
-                                                                </div> --}}
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
+                                    @if (count($products)>0)
+                                        <!-- First Product Start -->
+                                        @foreach ($products as $product)
+                                        <div class="col-md-12">
+                                            <div class="row m-0 p-2 shadow-lg bg-white border rounded d-flex align-items-center">
+                                                <div class="col-md-3 mt-1 mb-2">
+                                                    <img class="img-fluid img-responsive rounded product-image"
+                                                        src="{{ asset($product->thumbnail) }}" alt="{{ $product->name }}">
                                                 </div>
-                                            @endforeach
-                                            <!-- First Product End -->
-                                        @else
+                                                <div class="col-md-9 mb-2">
+                                                    <div class="row">
+                                                        <a href="{{ route('product.details',['id'=> $product->slug]) }}">
+                                                            <h4 class="my-3" style="color: #ae0a46;">{{$product->name}}</h4>
+                                                        </a>
+                                                    </div>
+
+                                                    <div class="row">
+                                                        <div class="col-lg-8 mt-1">
+
+                                                            <div class="row">
+
+                                                                <span style="font-size: 14px;">
+                                                                    SKU #: {{$product->sku_code}} |
+                                                                    MF #:  {{$product->mf_code}} |
+                                                                <br> NG #:  {{$product->product_code}}
+                                                                </span>
+                                                                <br>
+                                                                <p>
+                                                                    {!! Str::limit($product->short_desc, 180) !!}
+                                                                </p>
+                                                            </div>
+
+
+                                                        </div>
+                                                        <div class="col-lg-4 text-center border-left mt-1">
+                                                            <div class="text-center">
+                                                                @if ($product->rfq != 1)
+                                                                    <small style="font-size: 0.6em;">USD</small>
+                                                                    @if (!empty($product->discount))
+                                                                    <h3 class="mr-1 font-number text-center">$ {{$product->discount}}</h3><span class="strike-text">$ {{ $product->price }}</span>
+                                                                    @else
+                                                                    <h3 class="mr-1 font-number text-center">$ {{ $product->price }}</h3>
+                                                                    @endif
+                                                                @endif
+
+                                                            </div>
+                                                            @if (($product->qty) > 0)
+                                                            <h6 class="text-success font-number text-center" style="font-size:20px; text-transform:capitalize;">{{ $product->qty }} in stock</h6>
+
+                                                                @else
+                                                                <h6 class="text-center" style="font-size:20px; text-transform:capitalize;">{{ ucfirst($product->stock) }}</h6>
+                                                            @endif
+
+
+                                                            @if ($product->rfq != 1)
+
+                                                                @php
+                                                                    $cart = Cart::content();
+                                                                    $exist = $cart->where('id', $product->id);
+
+                                                                @endphp
+                                                                @if ($cart->where('id', $product->id)->count())
+                                                                    {{-- <a href="javascript:void(0);" class="common_button6"> </a> --}}
+                                                                    <span class="common_button6">Already in Cart</span>
+                                                                @else
+                                                                    <form action="{{ route('add.cart') }}" method="post">
+                                                                        @csrf
+                                                                        <input type="hidden" name="product_id" id="product_id"
+                                                                            value="{{ $product->id }}">
+                                                                        <input type="hidden" name="name" id="name"
+                                                                            value="{{ $product->name }}">
+                                                                        <input type="hidden" name="qty" id="qty" value="1">
+                                                                        <button type="submit" class="common_button effect01" style="padding:10px 20px;">Add to Basket</button>
+                                                                    </form>
+                                                                @endif
+                                                            @else
+                                                                {{-- <div class="product_item_price">
+                                                                    <span class="price_currency_value">
+                                                                        <a data-toggle="modal" data-target="#get_quote_modal-{{ $product->id }}">Ask
+                                                                            For Price</a>
+                                                                    </span>
+                                                                </div> --}}
+                                                                <a href="{{ route('product.details', $product->slug) }}"
+                                                                    class="common_button effect01">Details</a>
+                                                            @endif
+
+                                                            {{-- <div class="d-flex flex-column mt-4">
+                                                                <button class="btn product_btn btn-sm"
+                                                                    type="button">Details
+                                                                </button>
+                                                                <button class="btn product_btn btn-sm mt-2"
+                                                                    type="button">Add to Basket
+                                                                </button>
+                                                            </div> --}}
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        @endforeach
+                                        <!-- First Product End -->
+                                    @else
+                                    <div class="col-md-12">
                                         <div class="row m-0 p-2 shadow-lg bg-white border rounded d-flex align-items-center">
                                             <h4 class="text-danger text-center">No Product Found. Search again.</h4>
                                         </div>
-                                        @endif
-
-
                                     </div>
+                                    @endif
+
                                 </div>
                             </div>
 

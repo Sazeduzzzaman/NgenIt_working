@@ -301,8 +301,10 @@
         .Advance-Slider .item h3 {
             margin: 0px;
             color: #fff;
-            font-size: 84px;
+            font-size: 2rem;
             font-weight: 300;
+            font-family: "allumi-2-std", "Helvetica Neue", "Helvetica", Helvetica, Arial,
+            sans-serif;
             text-transform: capitalize;
         }
 
@@ -312,7 +314,8 @@
         }
 
         .Advance-Slider .item h5 {
-            font-size: 32px;
+            font-family: "Klinic Slab";
+            font-size: 1rem;
             font-weight: 300;
             padding: 10px 0 0;
             margin: 0;
@@ -440,13 +443,16 @@
                         <div class="dots-contain">
                             <img class="dots-img" src="{{ asset('storage/' . $home->branner1) }}" alt="">
                         </div>
-                        {{-- <div class="info">
-                        <div>
-                            <h3>Awesome<strong> Slick Slider</strong></h3>
-                            <h5>You can easily add image, html formatted texts and video layers over each slide and each
-                                layer accepts unique animation.</h5>
+                        <div class="info w-50 mb-3">
+                            <div>
+                                <h3>Awesome<strong> Slick Slider</strong></h3>
+                                <h5 class="text-white my-4 w-75 mx-auto">You can easily add image, html formatted texts and video layers over each slide and each
+                                    layer accepts unique animation.</h5>
+                            </div>
+                            <div class="my-4">
+                                <a class="common_button2" href="{{ $home->btn2_link }}">{{ $home->btn2_name }}</a>
+                            </div>
                         </div>
-                    </div> --}}
                     </div>
                 </div>
             </div>
@@ -460,13 +466,16 @@
                         <div class="dots-contain">
                             <img class="dots-img" src="{{ asset('storage/' . $home->branner2) }}" alt="">
                         </div>
-                        {{-- <div class="info">
-                        <div>
-                            <h3>easily add image<strong><span> video layers</span></strong></h3>
-                            <h5>You can easily add image, html formatted texts and video layers over each slide and each
-                                layer accepts unique animation.</h5>
+                        <div class="info w-50 ">
+                            <div>
+                                <h3>Awesome<strong> Slick Slider</strong></h3>
+                                <h5 class="text-white my-4 w-75 mx-auto">You can easily add image, html formatted texts and video layers over each slide and each
+                                    layer accepts unique animation.</h5>
+                            </div>
+                            <div class="my-4">
+                                <a class="common_button2" href="{{ $home->btn2_link }}">{{ $home->btn2_name }}</a>
+                            </div>
                         </div>
-                    </div> --}}
                     </div>
                 </div>
             </div>
@@ -480,13 +489,16 @@
                         <div class="dots-contain">
                             <img class="dots-img" src="{{ asset('storage/' . $home->branner3) }}" alt="">
                         </div>
-                        {{-- <div class="info">
-                        <div>
-                            <h3>easily add image<span> formatted slide</span></h3>
-                            <h5>You can easily add image, html formatted texts and video layers over each slide and each
-                                layer accepts unique animation.</h5>
+                        <div class="info w-50 mb-3">
+                            <div>
+                                <h3>Awesome<strong> Slick Slider</strong></h3>
+                                <h5 class="text-white my-4 w-75 mx-auto">You can easily add image, html formatted texts and video layers over each slide and each
+                                    layer accepts unique animation.</h5>
+                            </div>
+                            <div class="my-4">
+                                <a class="common_button2" href="{{ $home->btn2_link }}">{{ $home->btn2_name }}</a>
+                            </div>
                         </div>
-                    </div> --}}
                     </div>
                 </div>
             </div>

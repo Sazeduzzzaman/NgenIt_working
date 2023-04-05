@@ -103,14 +103,13 @@
             <div class="row d-flex justify-content-center pt-3">
                 <div class="col-lg-4 col-md-6">
                     <div class="product_veiw_details_item_image">
-                        <img src="{{ asset('storage/' . $card1->image) }}" alt="" width="150px"
-                            height="150px">
+                        <img src="{{ asset('storage/' . $card1->image) }}" alt="" width="150px" height="150px">
                     </div>
                     <!-- content -->
                     <div class="product_veiw_details_item_content">
-                        <p class="text-center" style="font-size: 20px; margin: 4px 0px;">{{ Str::limit($card1->title, 10) }}
+                        <p class="text-center" style="font-size: 20px; margin: 4px 0px;">{{ $card1->title}}
                         </p>
-                        <p class="text-center" style="font-size: 15px;">{{ Str::limit($card1->short_des, 70) }}</p>
+                        <p class="text-center" style="font-size: 15px;">{{ $card1->short_des}}</p>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6">
@@ -120,9 +119,9 @@
                     </div>
                     <!-- content -->
                     <div class="product_veiw_details_item_content">
-                        <p class="text-center" style="font-size: 20px; margin: 4px 0px;">{{ Str::limit($card2->title, 10) }}
+                        <p class="text-center" style="font-size: 20px; margin: 4px 0px;">{{ $card2->title }}
                         </p>
-                        <p class="text-center" style="font-size: 15px;">{{ Str::limit($card2->short_des, 70) }}</p>
+                        <p class="text-center" style="font-size: 15px;">{{ $card2->short_des }}</p>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6">
@@ -134,8 +133,8 @@
                     <!-- content -->
                     <div class="product_veiw_details_item_content">
                         <p class="text-center" style="font-size: 20px; margin: 4px 0px;">
-                            {{ Str::limit($card3->title, 10) }}</p>
-                        <p class="text-center" style="font-size: 15px;">{{ Str::limit($card3->short_des, 70) }}</p>
+                            {{ $card3->title }}</p>
+                        <p class="text-center" style="font-size: 15px;">{{ $card3->short_des }}</p>
                     </div>
                 </div>
             </div>
@@ -148,8 +147,8 @@
                     <!-- content -->
                     <div class="product_veiw_details_item_content">
                         <p class="text-center" style="font-size: 20px; margin: 4px 0px;">
-                            {{ Str::limit($card4->title, 10) }}</p>
-                        <p class="text-center" style="font-size: 15px;">{{ Str::limit($card4->short_des, 70) }}</p>
+                            {{ $card4->title }}</p>
+                        <p class="text-center" style="font-size: 15px;">{{ $card4->short_des }}</p>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6">
@@ -160,8 +159,8 @@
                     <!-- content -->
                     <div class="product_veiw_details_item_content">
                         <p class="text-center" style="font-size: 20px; margin: 4px 0px;">
-                            {{ Str::limit($card5->title, 10) }} </p>
-                        <p class="text-center" style="font-size: 15px;">{{ Str::limit($card5->short_des, 70) }}</p>
+                            {{ $card5->title }} </p>
+                        <p class="text-center" style="font-size: 15px;">{{$card5->short_des}}</p>
                     </div>
                 </div>
             </div>
@@ -194,7 +193,7 @@
                     </div>
                     <div class="col-lg-6 col-sm-12">
                         <img class="img-fluid rounded"
-                            src="https://images.unsplash.com/photo-1509043759401-136742328bb3?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8MXx8fGVufDB8fHx8&w=1000&q=80"
+                            src="{{asset('storage/'.$row_four->image)}}"
                             alt="" width="540px" height="338px">
                     </div>
                 </div>
@@ -217,12 +216,12 @@
                 <div class="col-lg-4 col-sm-12 product_veiw_details_item">
                     <!-- image -->
                     <div class="product_veiw_details_item_image">
-                        <img src="{{ asset('storage/' . $card6->image) }}" alt="">
+                        <img src="{{ asset('storage/' . $card6->image) }}" alt="" width="150px" height="150px">
                     </div>
                     <!-- content -->
                     <div class="product_veiw_details_item_content">
                         <p style="font-size: 20px; margin: 4px 0px;">{{ $card6->title }}</p>
-                        <p>{!! $card6->short_des !!}</p>
+                        <p style="font-size: 15px; margin: 4px 0px;">{!! $card6->short_des !!}</p>
                     </div>
                 </div>
 
@@ -230,13 +229,13 @@
                 <div class="col-lg-4 col-sm-12 product_veiw_details_item">
                     <!-- image -->
                     <div class="product_veiw_details_item_image">
-                        <img src="{{ asset('storage/' . $card7->image) }}" alt="">
+                        <img src="{{ asset('storage/' . $card7->image) }}" alt="" width="150px" height="150px">
                     </div>
                     <!-- content -->
                     <div class="product_veiw_details_item_content">
                         <p style="font-size: 20px; margin: 4px 0px;">{{ $card7->title }}</p>
                         {{-- <p>{{ Str::limit($card7->short_des, 30) }}</p> --}}
-                        <p>{!! $card7->short_des !!}</p>
+                        <p style="font-size: 15px; margin: 4px 0px;">{!! $card7->short_des !!}</p>
                     </div>
                 </div>
 
@@ -244,13 +243,13 @@
                 <div class="col-lg-4 col-sm-12 product_veiw_details_item">
                     <!-- image -->
                     <div class="product_veiw_details_item_image">
-                        <img src="{{ asset('storage/' . $card8->image) }}" alt="">
+                        <img src="{{ asset('storage/' . $card8->image) }}" alt="" width="150px" height="150px">
                     </div>
                     <!-- content -->
                     <div class="product_veiw_details_item_content">
                         <p style="font-size: 20px; margin: 4px 0px;">{{ $card8->title }}</p>
                         {{-- <p>{{ Str::limit($card8->short_des, 30) }}</p> --}}
-                        <p>{!! $card8->short_des !!}</p>
+                        <p style="font-size: 15px; margin: 4px 0px;">{!! $card8->short_des !!}</p>
                     </div>
                 </div>
             </div>
@@ -259,7 +258,7 @@
     </section>
     <!----------End--------->
 
-    <!--======// Solution feature //======-->
+    {{-- <!--======// Solution feature //======-->
     <section class="section_padding">
         <div class="container">
             <div class="row">
@@ -276,7 +275,7 @@
             </div>
         </div>
     </section>
-    <!-------------End--------->
+    <!-------------End---------> --}}
 
     <!--======// Featured content //======-->
     <section class="related_posts_wrapper">

@@ -316,7 +316,7 @@
                     </div>
                 </div>
             </div>
-            <div class="row py-3">
+            {{-- <div class="row py-3">
                 <div class="col-lg-3 col-lg-3 col-sm-12">
                     <div class="text-center">
                         <img src="{{ asset('frontend/assets/images/coin.png') }}" alt="" width="60px"
@@ -345,7 +345,7 @@
                         <h6 class="text-white">Fast Delivery</h6>
                     </div>
                 </div>
-            </div>
+            </div> --}}
         </div>
     </section>
     <!----------End--------->

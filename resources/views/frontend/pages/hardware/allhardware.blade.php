@@ -1,268 +1,264 @@
 @extends('frontend.master')
 @section('content')
 
+    <style>
+        .pagination-flat{
+            justify-content: center;
+            margin:0 0px 11px;
+        }
+        .datatable-header{
+            display: none;
+        }
+        .global_call_section::after {
+            background: url('{{ asset('storage/' . $learnmore->background_image) }}');
+            content: "";
+            position: absolute;
+            height: 250px;
+            background-position: top center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-attachment: fixed;
+            width: 100%;
+            background-color: #cbc4c3;
+            top: 16%;
+            left: 0px;
+            z-index: -1;
+        }
+
+        .container .title {
+            color: #3c4858;
+            text-decoration: none;
+            margin-top: 30px;
+            margin-bottom: 25px;
+            min-height: 32px;
+        }
+
+        .container .title h3 {
+            font-size: 25px;
+            font-weight: 300;
+        }
+
+        div.card {
+            border: 0;
+            margin-bottom: 30px;
+            margin-top: 30px;
+            border-radius: 6px;
+            color: rgba(0, 0, 0, .87);
+            background: #fff;
+            width: 100%;
+            box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .14), 0 3px 1px -2px rgba(0, 0, 0, .2), 0 1px 5px 0 rgba(0, 0, 0, .12);
+        }
+
+        div.card.card-plain {
+            background: transparent;
+            box-shadow: none;
+        }
+
+        div.card .card-header {
+            border-radius: 3px;
+            padding: 6px 5px;
+            margin-left: 15px;
+            margin-right: 15px;
+            margin-top: -30px;
+            border: 0;
+            background: linear-gradient(60deg, #eee, #bdbdbd);
+        }
+
+        .card-plain .card-header:not(.card-avatar) {
+            margin-left: 0;
+            margin-right: 0;
+        }
+
+        .div.card .card-body {
+            padding: 15px 30px;
+        }
+
+        div.card .card-header-primary {
+            background: #ae0a46;
+            box-shadow: 0 5px 20px 0 rgba(0, 0, 0, .2), 0 13px 24px -11px rgba(156, 39, 176, .6);
+        }
+
+        div.card .card-header-danger {
+            background: linear-gradient(60deg, #ef5350, #d32f2f);
+            box-shadow: 0 5px 20px 0 rgba(0, 0, 0, .2), 0 13px 24px -11px rgba(244, 67, 54, .6);
+        }
+
+
+        .card-nav-tabs .card-header {
+            margin-top: -17px !important;
+        }
+
+        .card .card-header .nav-tabs {
+            padding: 0;
+        }
+
+        .nav-tabs {
+            border: 0;
+            border-radius: 3px;
+        }
+
+        .nav {
+            display: flex;
+            flex-wrap: wrap;
+            padding-left: 0;
+            margin-bottom: 0;
+            list-style: none;
+        }
+
+        .nav-tabs .nav-item {
+            margin-bottom: -1px;
+        }
+
+        .nav-tabs .nav-item .nav-link.active {
+            background-color: hsla(0, 0%, 100%, .2);
+            transition: background-color .3s .2s;
+        }
+
+        .nav-tabs .nav-item .nav-link {
+            border: 0 !important;
+            color: #fff !important;
+            font-weight: 500;
+        }
+
+        .nav-tabs .nav-item .nav-link {
+            color: #fff;
+            border: 0;
+            margin: 0;
+            border-radius: 3px;
+            line-height: 0px !important;
+            text-transform: uppercase;
+            font-size: 12px;
+            padding: 15px 15px !important;
+            background-color: transparent;
+        }
+
+        .nav-link {
+            display: block;
+        }
+
+        .nav-tabs .nav-item .material-icons {
+            margin: -1px 5px 0 0;
+            vertical-align: middle;
+        }
+
+        .nav .nav-item {
+            position: relative;
+        }
+
+        footer {
+            margin-top: 100px;
+            color: #555;
+            background: #fff;
+            padding: 25px;
+            font-weight: 300;
+
+        }
+
+        .footer p {
+            margin-bottom: 0;
+            font-size: 14px;
+            margin: 0 0 10px;
+            font-weight: 300;
+        }
+
+        footer p a {
+            color: #555;
+            font-weight: 400;
+        }
+
+        footer p a:hover {
+            color: #9f26aa;
+            text-decoration: none;
+        }
+
+        .nav-pills-custom .nav-link {
+            color: #aaa;
+            background: #fff;
+            position: relative;
+        }
+
+        .nav-pills-custom .nav-link.active {
+            color: white !important;
+            background: #ae0a46;
+        }
+
+        .nav-tabs .nav-item .nav-link {
+            color: #fff;
+            border: 0;
+            margin: 0;
+            border-radius: 3px;
+            line-height: 24px;
+            text-transform: uppercase;
+            font-size: 12px;
+            padding: 15px 15px !important;
+            background-color: transparent;
+            transition: background-color .3s 0s;
+        }
+
+        .nav-tabs .nav-link.active,
+        .nav-tabs .nav-item.show .nav-link {
+            color: white !important;
+        }
+
+        .tab-content {
+            background: transparent;
+            line-height: 25px;
+            padding: 0px 0px;
+        }
+
+        /* Add indicator arrow for the active tab */
+        @media (min-width: 992px) {
+            .nav-pills-custom .nav-link::before {
+                content: '';
+                display: block;
+                border-top: 8px solid transparent;
+                border-left: 10px solid #ae0a46;
+                border-bottom: 8px solid transparent;
+                position: absolute;
+                top: 50%;
+                right: -10px;
+                transform: translateY(-50%);
+                opacity: 0;
+            }
+        }
+
+        .nav-pills-custom .nav-link.active::before {
+            opacity: 1;
+        }
+    </style>
     <!--======// Header Title //======-->
     <section class="common_product_header"
-        style="background-image: url('{{ asset('frontend/images/softwer-banner.jpg') }}'); margin-top:100px">
-        <div class="container">
-            <h1>Shop for Hardware</h1>
-            {{-- <h3>Through our deep partnerships with trusted brands, Insight offers a comprehensive catalog of software
-            for business.</h3> --}}
-
-            <div class="d-flex justify-content-center">
-                <div class="row">
-                    <!--BUTTON START-->
+        style="background-image: url('{{asset('frontend/images/hardware_common.jpg')}}');">
+        <div class="container ">
+            <h1>Hardware</h1>
+            <p class="text-center text-white">Through our deep partnerships with trusted brands, <br> Ngen It offers a
+                comprehensive catalog of hardware for business. </p>
+            <div class="row ">
+                <!--BUTTON START-->
+                <div class="d-flex justify-content-center align-items-center">
                     <div class="m-4">
-                        <a href="#Contact" class="common_button2">Hear From Our specialist</a>
+                        <a class="common_button2" href="{{ route('contact') }}">Talk with our specialist</a>
                     </div>
-
+                    <div class="m-4">
+                        <a class="common_button3" href="{{ route('hardware.info') }}">Details </a>
+                    </div>
                 </div>
-
             </div>
         </div>
-
     </section>
     <!----------End--------->
-
-    <!--======// Nasted tab //======-->
-    <div class="section_wp">
-        <!--Tab Section-->
-        <div class="container mb-5">
-            <!-- home title -->
-            <div class="nasted_tabbar_title">
-                <h5>Category and Hardware Products List</h5>
-                <p class="home_title_text">Explore our Hardware related products, categories and brands</p>
-            </div>
-            <div class="row tabbar_wrapper">
-                <div class="col-4 m-0 p-0 text-center">
-                    <div class="tabbar_header_title">Hardware</div>
-                    <div class="data_tabs_button" data-tabs>
-                        <button class="active">Products</button>
-                        <button>Category</button>
-                        <button>Brands</button>
-                        {{-- <button>Service</button> --}}
-                        {{-- <button>Industry</button> --}}
-                    </div>
-                </div>
-                <div class="col-8 data_tabs_content" data-panes>
-                    <!--==// Tab Item //==-->
-                    <div class="active">
-                        <!--Sub Button-->
-                        {{-- <div class="sub_tabs_button" data-tabs>
-                        <button class="active">QA Wolf</button>
-                        <button>Freshservice</button>
-                        <button>JIRA</button>
-                    </div> --}}
-
-                        <div class="sub_tabs_content" data-panes>
-                            <!--Sub Item-->
-                            <div class="active">
-                                <div class="col-lg-12">
-                                    <table class="table table-bordered">
-                                        <thead>
-                                            <tr class="bg-dark p-1">
-                                                <th width="80%">
-                                                    <h5 class="text-center text-white">Product List For Hardwares</h5>
-                                                </th>
-                                                <th width="20%"><input type="text" placeholder="Search From the table"
-                                                        id="softwareInput"></th>
-                                            </tr>
-                                            <tr class="p-1 text-center">
-                                                <th width="80%">Product Name</th>
-                                                <th width="20%">Price</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody id="softwareTable">
-                                            @foreach ($products as $product)
-                                                <tr class="p-1">
-                                                    <td class="p-1" width="80%"><a
-                                                            href="{{ route('product.details', $product->slug) }}">{{ $product->name }}</a>
-                                                    </td>
-                                                    <td class="p-1" width="20%">
-                                                        @if ($product->rfq != 1)
-                                                            @if ($product->discount == null)
-                                                                $ {{ $product->price }}
-                                                            @else
-                                                                $ {{ $product->discount }}
-                                                            @endif
-                                                        @else
-                                                        @endif
-                                                    </td>
-                                                </tr>
-                                            @endforeach
-                                        </tbody>
-                                    </table>
-                                </div>
-
-                                <div class="d-flex justify-content-center">
-                                    <nav aria-label="Page navigation example">
-                                        <ul class="pagination">
-                                            {{ $products->links() }}
-                                        </ul>
-
-                                    </nav>
-                                </div>
-
-                            </div>
-
-                        </div>
-                    </div>
-                    <!--==// Tab Item //==-->
-
-
-                    <div>
-                        <!--Sub Button-->
-                        <div>
-                            <div class="col-lg-12">
-                                <table class="table table-bordered">
-                                    <thead>
-                                        <tr class="bg-dark p-1">
-                                            <th width="80%">
-                                                <h5 class="text-center text-white">Category List For Hardwares</h5>
-                                            </th>
-                                            <th width="20%"><input type="text" placeholder="Search From the table"
-                                                    id="categoryInput"></th>
-                                        </tr>
-                                        <tr class="p-1 text-center">
-                                            <th width="80%">Category Name</th>
-                                            <th width="20%">Total Products</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody id="categoryTable">
-                                        @foreach ($categories as $item)
-                                            <tr class="p-1 text-center">
-                                                <td class="p-1" width="80%"><a
-                                                        href="{{ route('custom.product', $item->slug) }}">{{ $item->title }}</a>
-                                                </td>
-                                                <td class="p-1" width="20%">
-                                                    {{ App\Models\Admin\Product::where('cat_id', $item->id)->where('product_type', 'hardware')->count() }}
-                                                </td>
-                                            </tr>
-                                        @endforeach
-                                    </tbody>
-                                </table>
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <div>
-                        <!--Sub Button-->
-                        <div>
-                            <div class="col-lg-12">
-                                <table class="table table-bordered">
-                                    <thead>
-                                        <tr class="bg-dark p-1">
-                                            <th width="80%">
-                                                <h5 class="text-center text-white">Brand List For Hardwares</h5>
-                                            </th>
-                                            <th width="20%"><input type="text" placeholder="Search From the table"
-                                                    id="brandInput"></th>
-                                        </tr>
-                                        <tr class="p-1 text-center">
-                                            <th width="80%">Brand Name</th>
-                                            <th width="20%">Total Products</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody id="brandTable">
-                                        @foreach ($brands as $item)
-                                            <tr class="p-1 text-center">
-                                                <td class="p-1" width="80%"><a
-                                                        href="{{ route('custom.product', $item->slug) }}">{{ $item->title }}</a>
-                                                </td>
-                                                <td class="p-1" width="20%">
-                                                    {{ App\Models\Admin\Product::where('brand_id', $item->id)->where('product_type', 'hardware')->count() }}
-                                                </td>
-                                            </tr>
-                                        @endforeach
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div>
-                        <div>
-                            <div class="col-lg-12">
-                                <table class="table table-bordered">
-                                    <thead>
-                                        <tr class="bg-dark p-1">
-                                            <th width="80%">
-                                                <h5 class="text-center text-white">Industry List For Hardwares</h5>
-                                            </th>
-                                            <th width="20%"><input type="text" placeholder="Search From the table"
-                                                    id="brandInput"></th>
-                                        </tr>
-                                        <tr class="p-1 text-center">
-                                            <th width="80%">Brand Name</th>
-                                            <th width="20%">Total Products</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody id="brandTable">
-                                        @foreach ($brands as $item)
-                                            <tr class="p-1 text-center">
-                                                <td class="p-1" width="80%"><a
-                                                        href="{{ route('custom.product', $item->slug) }}">{{ $item->title }}</a>
-                                                </td>
-                                                <td class="p-1" width="20%">
-                                                    {{ App\Models\Admin\Product::where('brand_id', $item->id)->where('product_type', 'hardware')->count() }}
-                                                </td>
-                                            </tr>
-                                        @endforeach
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div>
-                        <!--Sub Button-->
-                        <div>
-                            <div class="col-lg-12">
-                                <table class="table table-bordered">
-                                    <thead>
-                                        <tr class="bg-dark">
-                                            <th width="80%">
-                                                <h5 class="text-center text-white">Industry List For Hardwares</h5>
-                                            </th>
-                                            <th width="20%"><input type="text" name="" id=""></th>
-                                        </tr>
-                                        <tr>
-                                            <th width="80%">Product Name</th>
-                                            <th width="20%">Price</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td width="80%"></td>
-                                            <td width="20%"></td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-    </div>
-
     <!--=======// Popular products //======-->
     <section class="popular_product_section section_padding">
         <!-- container -->
         <div class="container">
             <div class="popular_product_section_content">
                 <!-- section title -->
-                <div class="">
-                    <h3 class="title_top_heading text-center"><span class="topLine"> Po</span>pular Produ<span
-                            class="bottomLine">cts</span></h3>
+                <div class="software_feature_title">
+                    <h1 class="text-center pb-3">Popular Products</h1>
                 </div>
-                <!-- wrapper colum -->
+                <!-- wrapper -->
                 <div class="populer_product_slider">
-
                     <!-- product_item -->
-
                     @foreach ($products as $item)
                         <div class="product_item">
                             <!-- image -->
@@ -270,652 +266,1268 @@
                                 <img src="{{ asset($item->thumbnail) }}" alt="{{ $item->name }}" width="150px"
                                     height="113px">
                             </div>
-
                             <!-- product content -->
                             <div class="product_item_content">
                                 <a href="{{ route('product.details', $item->slug) }}" class="product_item_content_name"
-                                    style="height: 3rem;">{{ $item->name }}</a>
-
-                                <!-- price -->
-                                <div class="product_item_price">
-                                    <span class="price_currency">USD</span>
-                                    @if (!empty($item->discount))
-                                        <span class="price_currency_value"
-                                            style="text-decoration: line-through; color:red">$ {{ $item->price }}</span>
-                                        <span class="price_currency_value" style="color: black">$
-                                            {{ $item->discount }}</span>
+                                    style="height: 3rem;">{{ Str::limit($item->name, 50) }}</a>
+                                @if ($item->rfq != 1)
+                                    <!-- price -->
+                                    <div class="product_item_price">
+                                        <span class="price_currency">USD</span>
+                                        @if (!empty($item->discount))
+                                            <span class="price_currency_value"
+                                                style="text-decoration: line-through; color:red">$
+                                                {{ $item->price }}</span>
+                                            <span class="price_currency_value" style="color: black">$
+                                                {{ $item->discount }}</span>
+                                        @else
+                                            <span class="price_currency_value">$ {{ $item->price }}</span>
+                                        @endif
+                                    </div>
+                                    <!-- button --> @php
+                                        $cart = Cart::content();
+                                        $exist = $cart->where('id', $item->id);
+                                        //dd($cart->where('image' , $item->thumbnail )->count());
+                                    @endphp
+                                    @if ($cart->where('id', $item->id)->count())
+                                        {{-- <a href="javascript:void(0);" class="common_button6"> </a> --}}
+                                        <span class="common_button6">Already in Cart</span>
                                     @else
-                                        <span class="price_currency_value">$ {{ $item->price }}</span>
+                                        <form action="{{ route('add.cart') }}" method="post">
+                                            @csrf
+                                            <input type="hidden" name="product_id" id="product_id"
+                                                value="{{ $item->id }}">
+                                            <input type="hidden" name="name" id="name"
+                                                value="{{ $item->name }}">
+                                            <input type="hidden" name="qty" id="qty" value="1">
+                                            <button type="submit" class="common_button effect01">Add to Basket</button>
+                                        </form>
+                                    @endif
+                                @else
+                                    <div class="product_item_price">
+                                        <span class="price_currency_value">
+                                            <a href="javascript:void(0);" data-toggle="modal"
+                                                data-target="#get_quote_modal_{{ $item->id }}">Ask For Price</a>
+                                        </span>
+                                    </div>
+                                    <a href="{{ route('product.details', $item->slug) }}"
+                                        class="common_button effect01">Details</a>
+                                @endif
+                            </div>
+                        </div>
+                        <!-- left modal -->
+                        <div class="modal modal_outer fade" id="get_quote_modal_{{ $item->id }}" tabindex="-1"
+                            role="dialog" aria-labelledby="myModalLabel2">
+                            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
+
+
+                                <div class="modal-content">
+
+                                    <div class="modal-header p-0 m-0 pl-5 pr-3 py-2"
+                                        style="background: #ae0a46;color: white;">
+                                        <h5 class="modal-title">Get a Quote</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    @if (Auth::guard('client')->user())
+                                        <form action="{{ route('rfq.add') }}" method="post" id="get_quote_frm"
+                                            enctype="multipart/form-data">
+                                            @csrf
+                                            <div class="card mx-4">
+                                                <div class="card-body px-4 py-2">
+                                                    <div class="row border" style="font-size: 0.8rem;">
+                                                        <div class="col-lg-3 pl-2">
+                                                            {{ Auth::guard('client')->user()->name }}</div>
+                                                        <div class="col-lg-4" style="margin: 5px 0px">
+                                                            {{ Auth::guard('client')->user()->email }}</div>
+                                                        <div class="col-lg-4" style="margin: 5px 0px">
+                                                            {{ Auth::guard('client')->user()->phone }}
+                                                            <div class="form-group" id="Rfquser" style="display:none">
+                                                                <input type="text" required="" class="form-control"
+                                                                    id="phone" name="phone"
+                                                                    value="{{ Auth::guard('client')->user()->phone }}"
+                                                                    placeholder="Phone Number" style="font-size: 0.8rem;">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-lg-1" style="margin: 5px 0px"><a
+                                                                href="javascript:void(0);" id="editRfquser"><i
+                                                                    class="fa fa-pencil" aria-hidden="true"></i></a></div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            <input type="hidden" name="product_id" value="{{ $item->id }}">
+                                            <input type="hidden" name="client_id"
+                                                value="{{ Auth::guard('client')->user()->id }}">
+                                            <input type="hidden" name="client_type" value="client">
+                                            <input type="hidden" name="name"
+                                                value="{{ Auth::guard('client')->user()->name }}">
+                                            <input type="hidden" name="email"
+                                                value="{{ Auth::guard('client')->user()->email }}">
+                                            {{-- <input type="hidden" name="phone" value="{{Auth::guard('client')->user()->phone}}"> --}}
+                                            <div class="modal-body get_quote_view_modal_body">
+
+
+                                                <div class="form-row">
+
+                                                    <div class="form-group col-sm-4 m-0">
+
+                                                        <input type="text" class="form-control mt-4" id="contact"
+                                                            name="company_name"
+                                                            value="{{ Auth::guard('client')->user()->company_name }}"
+                                                            placeholder="Company Name" style="font-size: 0.7rem;">
+                                                    </div>
+                                                    <div class="form-group col-sm-4 m-0">
+
+                                                        <input type="number" class="form-control mt-4" id="contact"
+                                                            name="qty" placeholder="Quantity"
+                                                            style="font-size: 0.7rem;">
+                                                    </div>
+                                                    <div class="form-group col-sm-4">
+                                                        <label class="m-0" for="image"
+                                                            style="font-size: 0.7rem;">Upload Image</label>
+                                                        <input type="file" name="image" class="form-control"
+                                                            id="image" accept="image/*" style="font-size: 0.7rem;" />
+                                                        <div class="form-text" style="font-size:11px;">Only png, jpg, jpeg
+                                                            images</div>
+
+                                                    </div>
+
+                                                    <div class="form-group col-sm-12 border text-white"
+                                                        style="background: #7e7d7c">
+                                                        <h6 class="text-center pt-1">Product Name : {{ $item->name }}
+                                                        </h6>
+                                                    </div>
+
+                                                    <div class="form-group col-sm-12">
+
+                                                        <textarea class="form-control" id="message" name="message" rows="1"
+                                                            placeholder="Additional Information..."></textarea>
+                                                    </div>
+
+                                                    <div class="form-group  col-sm-12 px-3 mx-3">
+                                                        <input class="mr-2" type="checkbox" name="call"
+                                                            id="call" value="1">
+                                                        <label for="call">Also Please Call Me</label>
+
+                                                    </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="submit" class="btn btn-primary col-lg-3"
+                                                        id="submit_btn">Submit &nbsp;<i
+                                                            class="fa fa-paper-plane"></i></button>
+                                                </div>
+                                            </div>
+
+                                        </form>
+                                    @elseif (Auth::guard('partner')->user())
+                                        <form action="{{ route('rfq.add') }}" method="post" id="get_quote_frm"
+                                            enctype="multipart/form-data">
+                                            @csrf
+                                            <div class="card mx-4">
+                                                <div class="card-body p-4">
+                                                    <div class="row border">
+                                                        <div class="col-lg-3 pl-2">Name:
+                                                            {{ Auth::guard('partner')->user()->name }}</div>
+                                                        <div class="col-lg-4" style="margin: 5px 0px">
+                                                            {{ Auth::guard('partner')->user()->primary_email_address }}
+                                                        </div>
+                                                        <div class="col-lg-4" style="margin: 5px 0px">
+                                                            {{ Auth::guard('partner')->user()->company_number }}</div>
+                                                        <div class="col-lg-1" style="margin: 5px 0px"><a
+                                                                href="javascript:void(0);" id="editRfqpartner"><i
+                                                                    class="fa fa-pencil" aria-hidden="true"></i></a></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <input type="hidden" name="product_id" value="{{ $item->id }}">
+                                            <input type="hidden" name="client_type" value="partner">
+                                            <input type="hidden" name="partner_id"
+                                                value="{{ Auth::guard('partner')->user()->id }}">
+                                            <input type="hidden" name="name"
+                                                value="{{ Auth::guard('partner')->user()->name }}">
+                                            <input type="hidden" name="email"
+                                                value="{{ Auth::guard('partner')->user()->primary_email_address }}">
+                                            {{-- <input type="hidden" name="phone" value="{{Auth::guard('client')->user()->phone_number}}"> --}}
+                                            <div class="modal-body get_quote_view_modal_body">
+
+                                                <div class="form-group col-sm-12 border text-white"
+                                                    style="background: #7e7d7c">
+                                                    <h6 class="text-center pt-1">Product Name : {{ $item->name }}</h6>
+                                                </div>
+                                                <div class="row" id="Rfqpartner" style="display:none">
+                                                    <div class="form-group col-sm-6">
+                                                        <input type="text" required="" class="form-control"
+                                                            id="phone" name="phone"
+                                                            value="{{ Auth::guard('partner')->user()->company_number }}"
+                                                            placeholder="Company Phone Number">
+                                                    </div>
+                                                    <div class="form-group  col-sm-6">
+                                                        <label for="contact">Company Name </label>
+                                                        <input type="text" class="form-control" id="contact"
+                                                            name="company_name" required
+                                                            value="{{ Auth::guard('partner')->user()->company_name }}">
+                                                    </div>
+                                                </div>
+                                                <div class="form-row">
+                                                    <div class="form-group  col-sm-6">
+
+                                                        <input type="number" class="form-control" id="contact"
+                                                            name="qty" placeholder="Quantity">
+                                                    </div>
+                                                    <div class="form-group  col-sm-6">
+                                                        <label for="contact">Upload Image </label>
+                                                        <input type="file" name="image" class="form-control"
+                                                            id="image" accept="image/*" />
+                                                        <div class="form-text" style="font-size:11px;">Accepts only png,
+                                                            jpg, jpeg images</div>
+                                                    </div>
+
+                                                    <div class="form-group  col-sm-12">
+                                                        <textarea class="form-control" id="message" name="message" rows="1" placeholder="Additional Text.."></textarea>
+                                                    </div>
+
+                                                    <div class="form-group  col-sm-12 px-3 mx-3">
+                                                        <input class="mr-2" type="checkbox" name="call"
+                                                            id="call" value="1">
+                                                        <label for="call">Also Please Call Me</label>
+                                                    </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="reset" class="btn btn-light col-lg-3 mr-auto"
+                                                        data-dismiss="modal"><i class="fas fa-window-close mr-2"></i>
+                                                        Cancel</button>
+                                                    <button type="submit" class="btn btn-primary col-lg-3"
+                                                        id="submit_btn">Submit &nbsp;<i
+                                                            class="fa fa-paper-plane"></i></button>
+                                                </div>
+                                            </div>
+
+                                        </form>
+                                    @else
+                                        <form action="{{ route('rfq.add') }}" method="post" id="get_quote_frm"
+                                            enctype="multipart/form-data">
+                                            @csrf
+                                            <input type="hidden" name="product_id" value="{{ $item->id }}">
+                                            {{-- <input type="hidden" name="client_type" value="random"> --}}
+                                            <div class="modal-body get_quote_view_modal_body">
+                                                <div class="form-row">
+                                                    <div class="form-group col-sm-12 border text-white"
+                                                        style="background: #7e7d7c">
+                                                        <h6 class="text-center pt-1">Product Name : {{ $item->name }}
+                                                        </h6>
+                                                    </div>
+
+                                                    <div class="form-group col-sm-6">
+                                                        <label for="name">Name <span
+                                                                class="text-danger">*</span></label>
+                                                        <input type="text" class="form-control" required=""
+                                                            id="name" name="name">
+                                                    </div>
+                                                    <div class="form-group col-sm-6">
+                                                        <label for="email">Email <span
+                                                                class="text-danger">*</span></label>
+                                                        <input type="email" required="" class="form-control"
+                                                            id="email" name="email">
+                                                    </div>
+                                                    <div class="form-group  col-sm-6">
+                                                        <label for="contact">Mobile Number <span
+                                                                class="text-danger">*</span></label>
+                                                        <input type="text" required="" class="form-control"
+                                                            id="phone" name="phone">
+                                                    </div>
+
+                                                    <div class="form-group  col-sm-6">
+                                                        <label for="contact">Company Name </label>
+                                                        <input type="text" class="form-control" id="contact"
+                                                            name="company_name">
+                                                    </div>
+                                                    <div class="form-group  col-sm-6">
+                                                        <label for="contact">Quantity </label>
+                                                        <input type="number" class="form-control" id="contact"
+                                                            name="qty">
+                                                    </div>
+                                                    <div class="form-group  col-sm-6">
+                                                        <label for="contact">Custom Image </label>
+                                                        <input type="file" name="image" class="form-control"
+                                                            id="image" accept="image/*" />
+                                                        <div class="form-text" style="font-size:11px;">Accepts only png,
+                                                            jpg, jpeg images</div>
+                                                    </div>
+
+                                                    <div class="form-group  col-sm-12">
+                                                        <label for="message">Type Message</label>
+                                                        <textarea class="form-control" id="message" name="message" rows="4"></textarea>
+                                                    </div>
+
+                                                    <div class="form-group  col-sm-12 px-3 mx-3">
+                                                        <input class="mr-2" type="checkbox" name="call"
+                                                            id="call" value="1">
+                                                        <label for="call">Also Please Call Me</label>
+
+                                                    </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="reset" class="btn btn-light col-lg-3 mr-auto"
+                                                        data-dismiss="modal"><i class="fas fa-window-close mr-2"></i>
+                                                        Cancel</button>
+                                                    <button type="submit" class="btn btn-primary col-lg-3"
+                                                        id="submit_btn">Submit &nbsp;<i
+                                                            class="fa fa-paper-plane"></i></button>
+                                                </div>
+                                            </div>
+
+                                        </form>
                                     @endif
 
-                                </div>
+                                </div><!-- //modal-content -->
 
-                                <!-- button -->
-                                <a href="" class="product_button">Add to Basket</a>
+                            </div><!-- modal-dialog -->
+                        </div>
+                        <!-- modal -->
+                    @endforeach
+                    <!-- product item -->
+                </div>
+            </div>
+        </div>
+    </section>
+    <!---------End -------->
+    <!--======// Feature tab //======-->
+    {{-- <section>
+        <div class="container">
+            <div class="row">
+                <!-- first Card -->
+                <div class="col-lg-3 col-md-3 col-sm-12">
+                    <div class="iconbox">
+                        <div class="iconbox-icon">
+                            <img src="https://www.logodesign.net/images/nature-logo.png" alt="">
+                        </div>
+                        <div class="featureinfo">
+                            <h4 class="text-center">Business <br> applications </h4>
+
+                            <div class="text-center">
+                                <div class="buttons_style">
+                                    <div class="container_btn">
+                                        <a href="index.html" class="btns effect01" target="_blank">
+                                            <span>Go</span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- second Card -->
+                <div class="col-lg-3 col-md-3 col-sm-12">
+                    <div class="iconbox">
+                        <div class="iconbox-icon">
+                            <img src="https://www.logodesign.net/images/nature-logo.png" alt="">
+                        </div>
+                        <div class="featureinfo">
+                            <h4 class="text-center">Cloud <br> field services </h4>
+
+                            <div class="text-center">
+                                <div class="buttons_style">
+                                    <div class="container_btn">
+                                        <a href="index.html" class="btns effect01" target="_blank">
+                                            <span>Go</span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Third Card -->
+                <div class="col-lg-3 col-md-3 col-sm-12">
+                    <div class="iconbox">
+                        <div class="iconbox-icon">
+                            <img src="https://www.logodesign.net/images/nature-logo.png" alt="">
+                        </div>
+                        <div class="featureinfo">
+                            <h4 class="text-center">Communication <br> software </h4>
+
+                            <div class="text-center">
+                                <div class="buttons_style">
+                                    <div class="container_btn">
+                                        <a href="index.html" class="btns effect01" target="_blank">
+                                            <span>Go</span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Fouth Card -->
+                <div class="col-lg-3 col-md-3 col-sm-12">
+                    <div class="iconbox">
+                        <div class="iconbox-icon">
+                            <img src="https://www.logodesign.net/images/nature-logo.png" alt="">
+                        </div>
+                        <div class="featureinfo">
+                            <h4 class="text-center">Graphics <br> & design </h4>
+
+                            <div class="text-center">
+                                <div class="buttons_style">
+                                    <div class="container_btn">
+                                        <a href="index.html" class="btns effect01" target="_blank">
+                                            <span>Go</span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section> --}}
+    <!----------End--------->
+
+    <!--======// Nasted tab //======-->
+    <div class="container">
+        <div class="nasted_tabbar_title py-3">
+            <h5>Category and Harseare Products List</h5>
+            <p class="home_title_text">Explore our Hardware related products, categories and brands</p>
+        </div>
+        <div class="row mx-auto" style="width:85%;">
+            <div class="col-md-12">
+                <!-- Tabs with icons on Card -->
+                <div class="card card-nav-tabs">
+                    <div class="card-header card-header-primary">
+                        <!-- colors: "header-primary", "header-info", "header-success", "header-warning", "header-danger" -->
+                        <div class="nav-tabs-navigation">
+                            <div class="nav-tabs-wrapper">
+                                <ul class="nav nav-tabs d-flex justify-content-between" data-tabs="tabs">
+                                    <li class="nav-item ml-2">
+                                        <a class="nav-link active" href="#categories" data-toggle="tab">
+                                            Categories
+                                        </a>
+                                    </li>
+                                    <li class="nav-item ml-2">
+                                        <a class="nav-link" href="#brand" data-toggle="tab">
+                                            Brand
+                                        </a>
+                                    </li>
+                                    <li class="nav-item ml-2">
+                                        <a class="nav-link" href="#industry" data-toggle="tab">
+                                            Industry
+                                        </a>
+                                    </li>
+                                    <li class="nav-item ml-2">
+                                        <a class="nav-link" href="#solution" data-toggle="tab">
+                                            Solution
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="tab-content text-center">
+
+                            <div class="tab-pane active" id="categories">
+                                {{-- Categories Sub Tab --}}
+                                <section class="pt-1 pb-3">
+                                    <div class="container">
+                                        <div class="row">
+                                            <div class="col-md-3">
+                                                <!-- Tabs nav -->
+
+                                                <div class="nav flex-column nav-pills nav-pills-custom" id="v-pills-tab"
+                                                    role="tablist" aria-orientation="vertical">
+                                                    @foreach ($categories as $item)
+
+                                                    @php
+                                                        $product_count = App\Models\Admin\Product::where('sub_cat_id',$item->id)->where('product_status','product')
+                                                        ->where('product_type','hardware')->count();
+                                                    @endphp
+
+                                                        @if ($product_count > 0)
+                                                            <a class="nav-link mb-1 p-1 shadow " id="v-pills-home-tab"
+                                                                data-toggle="pill" href="#category-{{ $item->id }}"
+                                                                role="tab" aria-controls="v-pills-home"
+                                                                aria-selected="true">
+                                                                <span
+                                                                    class="font-weight-bold small text-uppercase">{{ $item->title }}
+                                                                </span>
+                                                            </a>
+                                                        @endif
+                                                    @endforeach
+
+                                                </div>
+                                            </div>
+
+
+                                            <div class="col-md-9 p-0">
+                                                <!-- Tabs content -->
+                                                <div class="tab-content p-0" id="v-pills-tabContent">
+                                                    @foreach ($categories as $key => $item)
+                                                    @php
+                                                        $products = App\Models\Admin\Product::where('sub_cat_id',$item->id)->where('product_status','product')
+                                                        ->where('product_type','hardware')->select('id','name','price','slug')->get();
+                                                    @endphp
+                                                        @if (count($products) > 0)
+                                                            <div class="tab-pane fade shadow rounded bg-white px-3 py-3 mr-2"
+                                                                id="category-{{ $item->id }}" role="tabpanel" aria-labelledby="v-pills-profile-tab">
+                                                                <div class="panel">
+                                                                    <div class="panel-heading">
+                                                                        <div
+                                                                            class="row p-0 d-flex justify-content-center align-items-center">
+                                                                            <div class="col-lg-9">
+                                                                                <h4 class="">Product Lists For {{$item->title}}
+                                                                                </h4>
+                                                                            </div>
+                                                                            <div class="col-lg-3 text-right">
+                                                                                <form action=" ">
+                                                                                    <div class="btn_group">
+                                                                                        <input type="text" class="form-control" placeholder="Search">
+                                                                                    </div>
+                                                                                </form>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+
+
+                                                                    <div class="panel-body table-responsive">
+                                                                       <div id="product-table">
+                                                                            <table class="table productDT">
+                                                                                <thead>
+                                                                                    <tr>
+                                                                                        <th>Sl</th>
+                                                                                        <th>Product Name</th>
+                                                                                        <th>Price</th>
+                                                                                    </tr>
+                                                                                </thead>
+                                                                                <tbody>
+
+                                                                                    @if (!empty($products))
+                                                                                        @foreach ($products as $key => $item)
+                                                                                            <tr>
+                                                                                                <td>{{ ++$key }}</td>
+                                                                                                <td>
+                                                                                                    <a href="{{route('product.details',$item->slug)}}">
+                                                                                                        {{ Str::limit($item->name, 80) }}
+                                                                                                    </a>
+                                                                                                </td>
+                                                                                                <td>{{ $item->price }}</td>
+                                                                                            </tr>
+                                                                                        @endforeach
+
+                                                                                    @endif
+
+                                                                                </tbody>
+                                                                            </table>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        @endif
+
+                                                    @endforeach
+
+
+
+
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </section>
                             </div>
 
+                            <div class="tab-pane" id="brand">
+                                {{-- Brand Sub Tab --}}
+                                <section class="pt-1 pb-3">
+                                    <div class="container">
+                                        <div class="row">
+                                            <div class="col-md-3">
+                                                <!-- Tabs nav -->
+                                                <div class="nav flex-column nav-pills nav-pills-custom" id="v-pills-tab"
+                                                    role="tablist" aria-orientation="vertical">
+                                                    @foreach ($brands as $item)
+
+                                                        @php
+                                                            $product_count = App\Models\Admin\Product::where('brand_id',$item->id)->where('product_status','product')
+                                                            ->where('product_type','hardware')->count();
+                                                        @endphp
+
+                                                        @if ($product_count > 0)
+                                                            <a class="nav-link mb-1 p-1 shadow " id="v-pills-home-tab"
+                                                                data-toggle="pill" href="#brand-{{ $item->id }}"
+                                                                role="tab" aria-controls="v-pills-home"
+                                                                aria-selected="true">
+                                                                <span
+                                                                    class="font-weight-bold small text-uppercase">{{ $item->title }}
+                                                                </span>
+                                                            </a>
+                                                        @endif
+                                                    @endforeach
+
+                                                </div>
+                                            </div>
+
+
+                                            <div class="col-md-9 p-0">
+                                                <!-- Tabs content -->
+                                                <div class="tab-content p-0" id="v-pills-tabContent">
+                                                    @foreach ($brands as $key => $item)
+                                                        @php
+                                                            $products = App\Models\Admin\Product::where('brand_id',$item->id)->where('product_status','product')
+                                                            ->where('product_type','hardware')->select('id','name','price','slug')->get();
+                                                        @endphp
+                                                        @if (count($products) > 0)
+                                                            <div class="tab-pane fade shadow rounded bg-white px-3 pb-2 mr-2"
+                                                                id="brand-{{ $item->id }}" role="tabpanel" aria-labelledby="v-pills-profile-tab">
+                                                                <div class="panel">
+                                                                    <div class="panel-heading">
+                                                                        <div
+                                                                            class="row p-0 d-flex justify-content-center align-items-center">
+                                                                            <div class="col-lg-9">
+                                                                                <h4 class="">Product Lists For {{$item->title}}
+                                                                                </h4>
+                                                                            </div>
+                                                                            <div class="col-lg-3 text-right">
+                                                                                <form action=" ">
+                                                                                    <div class="btn_group">
+                                                                                        <input type="text" class="form-control" placeholder="Search">
+                                                                                    </div>
+                                                                                </form>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div class="panel-body table-responsive">
+                                                                       <div id="product-table">
+                                                                            <table class="table productDT">
+                                                                                <thead>
+                                                                                    <tr>
+                                                                                        <th>Sl</th>
+                                                                                        <th>Product Name</th>
+                                                                                        <th>Price</th>
+                                                                                    </tr>
+                                                                                </thead>
+                                                                                <tbody>
+
+                                                                                    @if (!empty($products))
+                                                                                        @foreach ($products as $key => $item)
+                                                                                            <tr>
+                                                                                                <td>{{ ++$key }}</td>
+                                                                                                <td>
+                                                                                                    <a href="{{route('product.details',$item->slug)}}">
+                                                                                                        {{ Str::limit($item->name, 80) }}
+                                                                                                    </a>
+                                                                                                </td>
+                                                                                                <td>{{ $item->price }}</td>
+                                                                                            </tr>
+                                                                                        @endforeach
+
+                                                                                    @endif
+
+                                                                                </tbody>
+                                                                            </table>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        @endif
+
+                                                    @endforeach
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </section>
+                            </div>
+                            <div class="tab-pane" id="industry">
+                                {{-- Industry Sub Tab --}}
+                                <section class="pt-1 pb-3">
+                                    <div class="container">
+                                        <div class="row">
+                                            <div class="col-md-3">
+                                                <!-- Tabs nav -->
+                                                <div class="nav flex-column nav-pills nav-pills-custom" id="v-pills-tab"
+                                                    role="tablist" aria-orientation="vertical">
+                                                    @foreach ($industrys as $item)
+
+                                                        @php
+                                                            $product_ids = App\Models\Admin\MultiIndustry::where('industry_id',$item->id)->get();
+                                                        @endphp
+
+                                                        @if (count($product_ids) > 0)
+                                                            <a class="nav-link mb-1 p-1 shadow " id="v-pills-home-tab"
+                                                                data-toggle="pill" href="#industry-{{ $item->id }}"
+                                                                role="tab" aria-controls="v-pills-home"
+                                                                aria-selected="true">
+                                                                <span
+                                                                    class="font-weight-bold small text-uppercase">{{ $item->title }}
+                                                                </span>
+                                                            </a>
+                                                        @endif
+                                                    @endforeach
+
+
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-9 p-0">
+                                                <!-- Tabs content -->
+                                                <div class="tab-content p-0" id="v-pills-tabContent">
+                                                    @foreach ($industrys as $key => $item)
+                                                        @php
+                                                            $product_ids = App\Models\Admin\MultiIndustry::where('industry_id',$item->id)->get();
+                                                        @endphp
+                                                        @if (count($product_ids) > 0)
+                                                            <div class="tab-pane fade shadow rounded bg-white px-3 py-3 mr-2"
+                                                                id="industry-{{ $item->id }}" role="tabpanel" aria-labelledby="v-pills-profile-tab">
+                                                                <div class="panel">
+                                                                    <div class="panel-heading">
+                                                                        <div
+                                                                            class="row p-0 d-flex justify-content-center align-items-center">
+                                                                            <div class="col-lg-9">
+                                                                                <h4 class="">Product Lists For {{$item->title}}
+                                                                                </h4>
+                                                                            </div>
+                                                                            <div class="col-lg-3 text-right">
+                                                                                <form action=" ">
+                                                                                    <div class="btn_group">
+                                                                                        <input type="text" class="form-control" placeholder="Search">
+                                                                                    </div>
+                                                                                </form>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div class="panel-body table-responsive">
+                                                                       <div id="product-table">
+                                                                            <table class="table productDT">
+                                                                                <thead>
+                                                                                    <tr>
+                                                                                        <th>Sl</th>
+                                                                                        <th>Product Name</th>
+                                                                                        <th>Price</th>
+                                                                                    </tr>
+                                                                                </thead>
+                                                                                <tbody>
+
+                                                                                    @if (!empty($product_ids))
+                                                                                        @foreach ($product_ids as $key => $item)
+
+                                                                                            @if (App\Models\Admin\Product::where('id',$item->product_id)->count() > 0)
+                                                                                                <tr>
+                                                                                                    <td>{{ ++$key }}</td>
+                                                                                                    {{-- @dd($item->product_id); --}}
+                                                                                                    {{-- @dd(App\Models\Admin\Product::where('id' , $item->product_id)->value('name')); --}}
+                                                                                                    <td>
+                                                                                                        <a href="{{route('product.details',App\Models\Admin\Product::where('id',$item->product_id)->value('slug'))}}">
+                                                                                                            {{ Str::limit(App\Models\Admin\Product::where('id',$item->product_id)->value('name'), 80) }}
+                                                                                                        </a>
+                                                                                                    </td>
+                                                                                                    <td>{{ App\Models\Admin\Product::where('id',$item->product_id)->value('price') }}</td>
+                                                                                                </tr>
+                                                                                            @endif
+                                                                                        @endforeach
+                                                                                    @else
+                                                                                        <tr>No Product Available</tr>
+                                                                                    @endif
+
+                                                                                </tbody>
+                                                                            </table>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        @endif
+
+                                                    @endforeach
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </section>
+                            </div>
+                            <div class="tab-pane" id="solution">
+                                {{-- Solution Sub Tab --}}
+                                <section class="pt-1 pb-3">
+                                    <div class="container">
+                                        <div class="row">
+                                            <div class="col-md-3">
+                                                <!-- Tabs nav -->
+                                                <div class="nav flex-column nav-pills nav-pills-custom" id="v-pills-tab"
+                                                    role="tablist" aria-orientation="vertical">
+
+                                                    @foreach ($solutions as $item)
+
+                                                        @php
+                                                            $product_solution_ids = App\Models\Admin\MultiSolution::where('solution_id',$item->id)->get();
+
+                                                        @endphp
+
+                                                        @if (count($product_solution_ids) > 0)
+                                                            <a class="nav-link mb-1 p-1 shadow " id="v-pills-home-tab"
+                                                                data-toggle="pill" href="#solution-{{ $item->id }}"
+                                                                role="tab" aria-controls="v-pills-home"
+                                                                aria-selected="true">
+                                                                <span
+                                                                    class="font-weight-bold small text-uppercase">{{ $item->name }}
+                                                                </span>
+                                                            </a>
+                                                        @endif
+                                                    @endforeach
+
+
+                                                </div>
+                                            </div>
+
+
+                                            <div class="col-md-9 p-0">
+                                                <!-- Tabs content -->
+                                                <div class="tab-content p-0" id="v-pills-tabContent">
+
+                                                    @foreach ($solutions as $key => $item)
+                                                            @php
+                                                                $product_solution_ids = App\Models\Admin\MultiSolution::where('solution_id',$item->id)->get();
+                                                            @endphp
+                                                        {{-- @if (count($product_ids) > 0) --}}
+                                                            <div class="tab-pane fade shadow rounded bg-white px-3 py-3 mr-2"
+                                                                id="solution-{{ $item->id }}" role="tabpanel" aria-labelledby="v-pills-profile-tab">
+                                                                <div class="panel">
+                                                                    <div class="panel-heading">
+                                                                        <div
+                                                                            class="row p-0 d-flex justify-content-center align-items-center">
+                                                                            <div class="col-lg-9">
+                                                                                <h4 class="">Product Lists For {{$item->name}}
+                                                                                </h4>
+                                                                            </div>
+                                                                            <div class="col-lg-3 text-right">
+                                                                                <form action=" ">
+                                                                                    <div class="btn_group">
+                                                                                        <input type="text" class="form-control" placeholder="Search">
+                                                                                    </div>
+                                                                                </form>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div class="panel-body table-responsive">
+                                                                       <div id="product-table">
+                                                                            <table class="table productDT">
+                                                                                <thead>
+                                                                                    <tr>
+                                                                                        <th>Sl</th>
+                                                                                        <th>Product Name</th>
+                                                                                        <th>Price</th>
+                                                                                    </tr>
+                                                                                </thead>
+                                                                                <tbody>
+
+                                                                                    @if (count($product_solution_ids) > 0)
+                                                                                        @foreach ($product_solution_ids as $key => $item)
+
+                                                                                            @if (App\Models\Admin\Product::where('id',$item->product_id)->count() > 0)
+                                                                                                <tr>
+                                                                                                    <td>{{ ++$key }}</td>
+                                                                                                    {{-- @dd($item->product_id); --}}
+                                                                                                    {{-- @dd(App\Models\Admin\Product::where('id' , $item->product_id)->value('name')); --}}
+                                                                                                    <td>
+                                                                                                        <a href="{{route('product.details',App\Models\Admin\Product::where('id',$item->product_id)->value('slug'))}}">
+                                                                                                            {{ Str::limit(App\Models\Admin\Product::where('id',$item->product_id)->value('name'), 80) }}
+                                                                                                        </a>
+                                                                                                    </td>
+                                                                                                    <td>{{ App\Models\Admin\Product::where('id',$item->product_id)->value('price') }}</td>
+                                                                                                </tr>
+                                                                                            @endif
+                                                                                        @endforeach
+                                                                                    @else
+                                                                                        <tr>No Product Available</tr>
+                                                                                    @endif
+
+                                                                                </tbody>
+                                                                            </table>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+
+                                                    @endforeach
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </section>
+                            </div>
                         </div>
-                    @endforeach
-
-
-                    <!-- product item -->
-
-
+                    </div>
                 </div>
+                <!-- End Tabs with icons on Card -->
+            </div>
+        </div>
+    </div>
 
+
+
+
+
+    <section class="container mt-3 mb-5">
+        <div class="software_feature_title pb-5">
+            <h1 class="text-center ">Our Expertise</h1>
+        </div>
+        <div class="row d-flex justify-content-start align-items-center">
+            <div class="col-lg-6 col-sm-6">
+                <iframe allow="autoplay; fullscreen; picture-in-picture; camera; microphone; display-capture"
+                    allowfullscreen="" allowtransparency="true" referrerpolicy="no-referrer-when-downgrade"
+                    class="vidyard-iframe-W5NGDbKxgaZQQsSm1eaazn" frameborder="0" height="100%" width="100%"
+                    scrolling="no"
+                    src="https://play.vidyard.com/W5NGDbKxgaZQQsSm1eaazn?disable_popouts=1&amp;v=4.3.10&amp;type=inline"
+                    title="Be Ambitious"
+                    style="opacity: 1; background-color: transparent; height: 300px; max-width: 100%;"></iframe>
+            </div>
+            <div class="col-lg-6 col-sm-6">
+                <div class="home_title">
+                    <h5 class="home_title_heading" style="text-align: left;"> Areas of expertise </h5>
+                    <p class="home_title_text" style="text-align: left;">We’ll help you navigate today’s ever-changing
+                        business environment with teams of technical experts and decades of industry experience.</p>
+                    <div class="business_seftion_button d-flex justify-content-start">
+                        <button class="common_button2" href="product_filters.html">Talk to a specialist</button>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
     <!---------End -------->
 
-    <!--======// our client tab //======-->
+    <!--======// our clint tab //======-->
     <section class="clint_tab_section">
         <div class="container">
-            <div class="clint_tab_content">
+            <div class="clint_tab_content pb-3">
                 <!-- home title -->
-                <div class="home_title">
-                    <h5 class="home_title_heading">Featured Contents</h5>
-                    <p class="home_title_text"></p>
+                <div class="home_title mt-3">
+                    <div class="software_feature_title">
+                        <h1 class="text-center ">Contents</h1>
+                    </div>
+                    <p class="home_title_text">See how we’ve helped organizations of all sizes <span
+                            class="font-weight-bold">across every industry</span>
+                        <br> maximize the value of their IT solutions, leverage emerging technologies and create fresh
+                        experiences.
+                    </p>
                 </div>
+                <!-- Client Tab Start -->
+                <div class="row">
+                    <div class="col-xs-12 ">
+                        <nav>
+                            <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
+                                <a class="nav-item nav-link active" id="nav-healthcare" data-toggle="tab"
+                                    href="#nav-home" role="tab" aria-controls="nav-home"
+                                    aria-selected="true">{{ $story1->badge }}</a>
+                                <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile"
+                                    role="tab" aria-controls="nav-profile"
+                                    aria-selected="false">{{ $story2->badge }}</a>
+                                <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact"
+                                    role="tab" aria-controls="nav-contact"
+                                    aria-selected="false">{{ $story3->badge }}</a>
+                                <a class="nav-item nav-link" id="nav-about-tab" data-toggle="tab" href="#nav-about"
+                                    role="tab" aria-controls="nav-about"
+                                    aria-selected="false">{{ $story4->badge }}</a>
+                            </div>
+                        </nav>
+                        @php
+                            $tags_1 = explode(',', $story1->tags);
+                            $tags_2 = explode(',', $story2->tags);
+                            $tags_3 = explode(',', $story3->tags);
+                            $tags_4 = explode(',', $story4->tags);
 
-                <!-- clint_tab_content_button  -->
-
-                <!-- tab button content -->
-
-
-                <div class="clint_tab_btn_content">
-                    <ul class="nav nav-pills">
-                        <li class="nav-item"><a class="tab-links" href="#clintFirstTab"
-                                data-toggle="pill">{{ $story1->badge }}</a></li>
-                        <li class="nav-item"><a class="tab-links" href="#clintSecondTab"
-                                data-toggle="pill">{{ $story2->badge }}</a></li>
-                        <li class="nav-item"><a class="tab-links" href="#clintThirdTab"
-                                data-toggle="pill">{{ $story3->badge }}</a></li>
-
-                    </ul>
-                </div>
-                @php
-                    $tags_1 = explode(',', $story1->tags);
-                    $tags_2 = explode(',', $story2->tags);
-                    $tags_3 = explode(',', $story3->tags);
-                @endphp
-                <!-- clint tab contet area -->
-                <div class="tab-content clearfix mt-4">
-
-                    <!-- single area -->
-                    <div class="clint_tab_area tab-pane active" id="clintFirstTab">
-                        <!-- wrapper -->
-                        <div class="row">
-                            <!-- thumbanial -->
-                            <div class="col-lg-4 col-sm-12">
-                                <div class="clint_tab_area_thumbnail_image">
-                                    <img src="{{ asset('storage/' . $story1->image) }}" alt="">
+                        @endphp
+                        <div class="tab-content py-3 px-3 px-sm-0" id="nav-tabContent">
+                            <div class="tab-pane fade show active" id="nav-home" role="tabpanel"
+                                aria-labelledby="nav-healthcare">
+                                <div class="row d-flex align-items-center">
+                                    <div class="col-lg-4 col-md-4 col-sm-12">
+                                        <div class="tab_side_image">
+                                            <img src="{{ asset('storage/' . $story1->image) }}" alt="" style="height: 230px;">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-8 col-md-6 col-sm-12">
+                                        <h5 class="home_title_heading" style="text-align: left;">{{ $story1->title }}
+                                        </h5>
+                                        <p>{{ $story1->header }}</p>
+                                        <div class="home_card_button p-2">
+                                            <a class="effect01" href="{{ route('blog.details', $story1->id) }}">Read
+                                                more</a>
+                                        </div>
+                                    </div>
                                 </div>
-
-                                <div class="clint_tab_area_thumbnail_caption">
-                                    <p>{{ $story1->header }}</p>
+                            </div>
+                            <div class="tab-pane fade" id="nav-profile" role="tabpanel"
+                                aria-labelledby="nav-profile-tab">
+                                <div class="row d-flex align-items-center">
+                                    <div class="col-lg-4 col-md-4 col-sm-12">
+                                        <div class="tab_side_image">
+                                            <img src="{{ asset('storage/' . $story2->image) }}" alt="" style="height: 230px;">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-8 col-md-6 col-sm-12">
+                                        <h5 class="home_title_heading" style="text-align: left;">{{ $story2->title }}
+                                        </h5>
+                                        <p>{{ $story2->header }}</p>
+                                        <div class="home_card_button p-2">
+                                            <a class="effect01" href="{{ route('blog.details', $story2->id) }}">Read
+                                                more</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="nav-contact" role="tabpanel"
+                                aria-labelledby="nav-contact-tab">
+                                <div class="row d-flex align-items-center">
+                                    <div class="col-lg-4 col-md-4 col-sm-12">
+                                        <div class="tab_side_image">
+                                            <img src="{{ asset('storage/' . $story3->image) }}" alt="" style="height: 230px;">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-8 col-md-6 col-sm-12">
+                                        <h5 class="home_title_heading" style="text-align: left;">{{ $story3->title }}
+                                        </h5>
+                                        <p>{{ $story3->header }}</p>
+                                        <div class="home_card_button p-2">
+                                            <a class="effect01" href="{{ route('story.details', $story3->id) }}">Read
+                                                more</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="nav-contact" role="tabpanel"
+                                aria-labelledby="nav-contact-tab">
+                                <div class="row d-flex align-items-center">
+                                    <div class="col-lg-4 col-md-4 col-sm-12">
+                                        <div class="tab_side_image">
+                                            <img src="{{ asset('storage/' . $story4->image) }}" alt="" style="height: 230px;">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-8 col-md-6 col-sm-12">
+                                        <h5 class="home_title_heading" style="text-align: left;">{{ $story4->title }}
+                                        </h5>
+                                        <p>{{ $story4->header }}</p>
+                                        <div class="home_card_button p-2">
+                                            <a class="effect01" href="{{ route('story.details', $story4->id) }}">Read
+                                                more</a>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
 
-
-                            <!-- content -->
-                            <div class="col-lg-8 col-sm-12 pl-4">
-                                <p class="clint_tab_content_title">{{ $story1->title }}</p>
-
-                                {{-- <p class="clint_tab_content_text_title">Challenge</p> --}}
-                                <p class="clint_tab_content_text_paragraph">{!! $story2->short_des !!}</p>
-
-                                <div class="clint_tab_content_text_area_list">
-                                    <p class="clint_tab_content_text_title">Topics</p>
-
-                                    <ul>
-                                        @foreach ($tags_1 as $item)
-                                            <li>{{ $item }}</li>
-                                        @endforeach
-
-                                    </ul>
-                                </div>
-
-                                <!-- button -->
-                                <div class="business_seftion_button" style="text-align: left;">
-                                    <a href="#">Explore {{ $story1->badge }}</a>
-                                </div>
-
-                            </div>
                         </div>
                     </div>
-                    <!-- single area end -->
-
-
-                    <!-- single area -->
-                    <div class="clint_tab_area tab-pane" id="clintSecondTab">
-                        <!-- wrapper -->
-                        <div class="row">
-                            <!-- thumbanial -->
-                            <div class="col-lg-4 col-sm-12">
-                                <div class="clint_tab_area_thumbnail_image">
-                                    <img src="{{ asset('storage/' . $story2->image) }}" alt="">
-                                </div>
-
-                                <div class="clint_tab_area_thumbnail_caption">
-                                    <p>{{ $story2->header }}</p>
-                                </div>
-                            </div>
-
-
-                            <!-- content -->
-                            <div class="col-lg-8 col-sm-12 pl-4">
-                                <p class="clint_tab_content_title">{{ $story2->title }}</p>
-
-                                <div class="clint_tab_content_text_area">
-                                    {{-- <p class="clint_tab_content_text_title">Challenge</p> --}}
-                                    <p class="clint_tab_content_text_paragraph">{!! $story2->short_des !!}</p>
-                                </div>
-
-                                <!-- solution list -->
-
-                                <div class="clint_tab_content_text_area_list_marker">
-                                    <p class="clint_tab_content_text_title">Topics</p>
-
-                                    <ul>
-                                        @foreach ($tags_2 as $item)
-                                            <li>{{ $item }}</li>
-                                        @endforeach
-                                    </ul>
-                                </div>
-
-                                <!-- button -->
-                                <div class="business_seftion_button" style="text-align: left;">
-                                    <a href="#">Explore {{ $story2->badge }}</a>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-                    <!-- single area end -->
-
-
-
-                    <!-- single area -->
-                    <div class="clint_tab_area tab-pane" id="clintThirdTab">
-                        <!-- wrapper -->
-                        <div class="row">
-                            <!-- thumbanial -->
-                            <div class="col-lg-4 col-sm-12">
-                                <div class="clint_tab_area_thumbnail_image">
-                                    <img src="{{ asset('storage/' . $story3->image) }}" alt="">
-                                </div>
-
-                                <div class="clint_tab_area_thumbnail_caption">
-                                    <p>{{ $story3->header }}</p>
-                                </div>
-                            </div>
-
-
-                            <!-- content -->
-                            <div class="col-lg-8 col-sm-12 pl-4">
-                                <p class="clint_tab_content_title">{{ $story3->title }}</p>
-
-
-
-                                <div class="clint_tab_content_text_area">
-                                    {{-- <p class="clint_tab_content_text_title">solutions</p> --}}
-                                    <p class="clint_tab_content_text_paragraph">{!! $story3->short_des !!}</p>
-                                </div>
-
-                                <div class="clint_tab_content_text_area_list">
-                                    <p class="clint_tab_content_text_title">Topics</p>
-
-                                    <ul>
-                                        @foreach ($tags_3 as $item)
-                                            <li>{{ $item }}</li>
-                                        @endforeach
-                                    </ul>
-                                </div>
-
-                                <!-- button -->
-                                <div class="business_seftion_button" style="text-align: left;">
-                                    <a href="#">Explore {{ $story3->badge }}</a>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-                    <!-- single area end -->
-
-
-
-
                 </div>
-
+                <!-- Client Tab End -->
             </div>
         </div>
     </section>
     <!---------End -------->
-
-    <!--======// Our expert //======-->
-    <section class="account_benefits_section_wp">
-        <div class="container">
-            @if ($techglossy)
-                <div class="row">
-                    <div class="col-lg-6 col-sm-12">
-                        <img class="img-fluid" src="{{ asset('storage/' . $techglossy->image) }}"
-                            alt="{{ $techglossy->badge }}">
-                    </div>
-                    <div class="col-lg-6 col-sm-12 account_benefits_section">
-
-                        <h3>{{ $techglossy->badge }}</h3>
-                        <p>{{ $techglossy->title }}</p>
-                        <p>{{ $techglossy->header }}</p>
-                        <ul>
-                            @php
-                                $tag = $techglossy->tags;
-                                $tags = explode(',', $tag);
-                            @endphp
-                            @foreach ($tags as $item)
-                                <li class="col-lg-6">{{ ucwords($item) }}</li>
-                            @endforeach
-                        </ul>
-                        <a href="{{ route('techglossy.details', $techglossy->id) }}" class="common_button2">Read the
-                            Journal</a>
-                    </div>
-                </div>
-            @endif
-        </div>
-    </section><br>
-    <!---------End -------->
-
-    <!--======// Software show //======-->
-    <section class="container">
-        <!-- business item wrapper -->
-        <div class="row solution_business_item  my-4">
-            <!-- item -->
-            @foreach ($features as $feature1)
-                <div class="col-lg-4 col-sm-6">
-                    <!-- image -->
-                    <!-- image -->
-                    <div class="business_item_icon">
-                        <img src="{{ asset('storage/requestImg/' . $feature1->logo) }}" alt="">
-                    </div>
-
-                    <!-- content -->
-                    <div class="business_item_content">
-                        <p class="business_item_title">{{ $feature1->title }}</p>
-                        <p class="business_item_text">{{ Str::limit($feature1->short_desc, 150) }}</p>
-                        <a href="ngenit/client_experience.html" class="business_item_button"><span>Learn More</span> <span
-                                class="business_item_button_icon"><i class="fa-solid fa-arrow-right-long"></i></span></a>
-                    </div>
-                </div>
-            @endforeach
-
-        </div>
-    </section>
-    <!---------End -------->
-
 
     <!--=====// Global call section //=====-->
     <section class="global_call_section section_padding">
         <div class="container">
             <!-- content -->
+            @php
+                $sentence = $learnmore->consult_title;
+            @endphp
             <div class="global_call_section_content">
                 <div class="home_title" style="width: 100%; margin: 0px;">
-                    <h5 class="home_title_heading" style="text-align: left; color: #fff;"> <span>O</span>ur areas of
-                        expertise</h5>
+                    <h5 class="home_title_heading" style="text-align: left; color: #fff;">
+                        <span>{{ \Illuminate\Support\Str::substr($sentence, 0, 1) }}</span>{{ \Illuminate\Support\Str::substr($sentence, 1) }}
 
-                    <p class="home_title_text" style="text-align: left;color: #fff;line-height: 24px;font-size: 18px;">
-                        Turn ideas into powerful business outcomes quickly and smoothly. Our solution architects and
-                        technical experts are ready to help you achieve more with our Insight Intelligent Technology™
-                        portfolio.</p>
-
+                    </h5>
+                    <p class="home_title_text text-white" style="text-align: left;">{{ $learnmore->consult_short_des }}
+                    </p>
                     <div class="business_seftion_button" style="text-align: left;">
-                        <a href="#">Explore business outcomes</a>
+                        <a href="#Contact">Explore business outcomes</a>
                     </div>
                 </div>
             </div>
         </div>
     </section>
     <!---------End -------->
-
-    {{-- <!--=====// Tech solution //=====-->
-<div class="section_wp2">
-    <div class="container">
-        <div class="solution_number_wrapper">
-            <!-- title -->
-            <h5 class="home_title_heading" style="text-align: left;"> <span>D</span>elivering intelligent technology
-                solutions</h5>
+    <!--=====// Tech solution //=====-->
+    <div class="section_wp2">
+        <div class="container">
+            <div class="solution_number_wrapper">
+                <!-- title -->
+                <h5 class="home_title_heading" style="text-align: left;">
+                    <div class="software_feature_title">
+                        <h1 class="text-center pb-3">
+                            <span>T</span>echnology Solutions
+                        </h1>
+                    </div>
+                </h5>
+            </div>
+            <!-- tech wrapper -->
+            <div class="row">
+                <!-- item -->
+                <div class="col-lg-3 col-sm-6">
+                    <div class="tech_solution_item">
+                        <p class="tech_solution_title">33k+</p>
+                        <p class="tech_solution_text">hardware, software & cloud partners</p>
+                        <p class="tech_solution_award">Awarded in 2021</p>
+                    </div>
+                </div>
+                <!-- item -->
+                <div class="col-lg-3 col-sm-6">
+                    <div class="tech_solution_item">
+                        <p class="tech_solution_title">44k+</p>
+                        <p class="tech_solution_text">Ngen It teammates worldwide</p>
+                        <p class="tech_solution_award">Awarded in 2021</p>
+                    </div>
+                </div>
+                <!-- item -->
+                <div class="col-lg-3 col-sm-6">
+                    <div class="tech_solution_item">
+                        <p class="tech_solution_title">7.5k+</p>
+                        <p class="tech_solution_text">sales & service delivery professionals</p>
+                        <p class="tech_solution_award">Awarded in 2021</p>
+                    </div>
+                </div>
+                <!-- item -->
+                <div class="col-lg-3 col-sm-6">
+                    <div class="tech_solution_item">
+                        <p class="tech_solution_title">19</p>
+                        <p class="tech_solution_text">countries with Ngen It operations</p>
+                        <p class="tech_solution_award">Awarded in 2021</p>
+                    </div>
+                </div>
+                <!-- item -->
+                <div class="col-lg-3 col-sm-6">
+                    <div class="tech_solution_item">
+                        <p class="tech_solution_title">Top 1%</p>
+                        <p class="tech_solution_text">Ngen It is in the top 1% of all Microsoft partners</p>
+                        <p class="tech_solution_award">Awarded in 2021</p>
+                    </div>
+                </div>
+                <!-- item -->
+                <div class="col-lg-3 col-sm-6">
+                    <div class="tech_solution_item">
+                        <p class="tech_solution_title">#1</p>
+                        <p class="tech_solution_text">on the Channel Futures MSP 501</p>
+                        <p class="tech_solution_award">Awarded in 2021</p>
+                    </div>
+                </div>
+                <!-- item -->
+                <div class="col-lg-3 col-sm-6">
+                    <div class="tech_solution_item">
+                        <p class="tech_solution_title">#7</p>
+                        <p class="tech_solution_text">on Fortune World’s Most Admired Companies for IT services</p>
+                        <p class="tech_solution_award">Awarded in 2021</p>
+                    </div>
+                </div>
+                <!-- item -->
+                <div class="col-lg-3 col-sm-6">
+                    <div class="tech_solution_item">
+                        <p class="tech_solution_title">#373</p>
+                        <p class="tech_solution_text">on the Fortune 500</p>
+                        <p class="tech_solution_award">Awarded in 2021</p>
+                    </div>
+                </div>
+            </div>
         </div>
-
-        <!-- tech wrapper -->
-        <div class="row">
-
-            <!-- item -->
-            <div class="col-lg-3 col-sm-6">
-                <div class="tech_solution_item">
-                    <p class="tech_solution_title">33k+</p>
-                    <p class="tech_solution_text">hardware, software & cloud partners</p>
-                    <p class="tech_solution_award">Awarded in 2021</p>
-                </div>
-            </div>
-
-            <!-- item -->
-            <div class="col-lg-3 col-sm-6">
-                <div class="tech_solution_item">
-                    <p class="tech_solution_title">44k+</p>
-                    <p class="tech_solution_text">Insight teammates worldwide</p>
-                    <p class="tech_solution_award">Awarded in 2021</p>
-                </div>
-            </div>
-
-
-            <!-- item -->
-            <div class="col-lg-3 col-sm-6">
-                <div class="tech_solution_item">
-                    <p class="tech_solution_title">7.5k+</p>
-                    <p class="tech_solution_text">sales & service delivery professionals</p>
-                    <p class="tech_solution_award">Awarded in 2021</p>
-                </div>
-            </div>
-
-
-            <!-- item -->
-            <div class="col-lg-3 col-sm-6">
-                <div class="tech_solution_item">
-                    <p class="tech_solution_title">19</p>
-                    <p class="tech_solution_text">countries with Insight operations</p>
-                    <p class="tech_solution_award">Awarded in 2021</p>
-                </div>
-            </div>
-
-
-            <!-- item -->
-            <div class="col-lg-3 col-sm-6">
-                <div class="tech_solution_item">
-                    <p class="tech_solution_title">Top 1%</p>
-                    <p class="tech_solution_text">Insight is in the top 1% of all Microsoft partners</p>
-                    <p class="tech_solution_award">Awarded in 2021</p>
-                </div>
-            </div>
-
-
-            <!-- item -->
-            <div class="col-lg-3 col-sm-6">
-                <div class="tech_solution_item">
-                    <p class="tech_solution_title">#1</p>
-                    <p class="tech_solution_text">on the Channel Futures MSP 501</p>
-                    <p class="tech_solution_award">Awarded in 2021</p>
-                </div>
-            </div>
-
-
-            <!-- item -->
-            <div class="col-lg-3 col-sm-6">
-                <div class="tech_solution_item">
-                    <p class="tech_solution_title">#7</p>
-                    <p class="tech_solution_text">on Fortune World’s Most Admired Companies for IT services</p>
-                    <p class="tech_solution_award">Awarded in 2021</p>
-                </div>
-            </div>
-
-
-            <!-- item -->
-            <div class="col-lg-3 col-sm-6">
-                <div class="tech_solution_item">
-                    <p class="tech_solution_title">#373</p>
-                    <p class="tech_solution_text">on the Fortune 500</p>
-                    <p class="tech_solution_award">Awarded in 2021</p>
-                </div>
-            </div>
-
-
-        </div>
-
     </div>
-</div> --}}
     <!---------End -------->
-
     <!--=====// We serve //=====-->
-    <div class="container">
+    <div class="container pb-5">
         <!-- section title -->
         <div class="clint_help_section_heading_wrapper">
             <!-- title -->
-            <h5 class="home_title_heading" style="text-align: left;"> <span>Ind</span>ustries we serve</h5>
-            <p class="home_title_text" style="text-align: left;">We offer breadth and depth —
-                combining deep industry expertise and technical skills to connect you to the right IT solutions.
-                With one strategic partner, you’ll get guidance at any stage of your IT transformation journey.</p>
+            <h5 class="home_title_heading" style="text-align: left;">
+                <h5 class="home_title_heading" style="text-align: left;">
+                    <div class="software_feature_title">
+                        <h1 class="text-center pt-4 pb-4">
+                            Industries We Serve
+                        </h1>
+                    </div>
+                </h5>
+                <p class="home_title_text">
+                    <span class="font-weight-bold">{{ $learnmore->industry_header }} </span>
+                </p>
         </div>
-
         <!-- section content wrapper -->
         <div class="row mb-4">
             <!-- content -->
-            <div class="col-lg-12 col-sm-12">
-                <div class="we_serve_title">
-                    <p>Private sector</p>
-                </div>
+            <div class="col-lg-9 col-sm-12">
                 <!-- we_serveItem_wrapper -->
                 <div class="row">
                     <!-- item -->
-                    {{-- <div class="col-lg-3 col-sm-6">
-                    <a href="" class="we_serve_item">
-                        <div class="we_serve_item_image">
-                            <img src="images/serveicon/construction-industry-icon.png" alt="">
-                        </div>
-                        <div class="we_serve_item_text">Construction technology</div>
-                    </a>
-                </div> --}}
-                    @foreach ($industrys as $item)
-                        <div class="col-lg-4 col-sm-12">
-                            <div class="industry_solution_item">
-                                <div class="industry_solution_item_content" style="height: 15rem;">
-                                    <!-- img -->
-                                    <div class="industy_solution_item_image">
-                                        <img src="{{ asset('storage/requestImg/' . $item->logo) }}"
-                                            alt="{{ $item->title }}">
-                                    </div>
-                                    <!-- name -->
-                                    <div class="industy_solution_item_name">
-                                        <p>{{ $item->title }}</p>
-                                    </div>
 
-                                    <div class="industy_solution_item_text">
-                                        <p>{!! $item->short_desc !!}</p>
+                    @if ($industrys)
+                        @foreach ($industrys as $item)
+                            <div class="col-lg-3 col-sm-6">
+                                <a href="{{ route('industry.details', $item->id) }}" class="we_serve_item">
+                                    <div class="we_serve_item_image">
+                                        <img src="{{ asset('storage/' . $item->logo) }}" alt="">
                                     </div>
-                                </div>
-                                <a href="" class="industry_solution_item_button">Explore our solutions → </a>
+                                    <div class="we_serve_item_text">{{ $item->title }}</div>
+                                </a>
                             </div>
-                        </div>
-                    @endforeach
-
-
+                        @endforeach
+                    @endif
 
                 </div>
             </div>
-
             <!-- sidebar -->
-            {{-- <div class="col-lg-3 col-sm-12">
-            <div class="we_serve_title ml-4">
-                <p>Private sector</p>
-            </div>
-            <!-- sidebar list -->
-            <div class="we_serve_sidebar_list">
-                <ul>
-                    <li><a href="">Federal government ›</a></li>
-                    <li><a href="">Higher education  ›</a></li>
-                    <li><a href="">K-12 education ›</a></li>
-                    <li><a href="">Federal government ›</a></li>
-                </ul>
+            <div class="col-lg-3 col-sm-12">
+                <div class="we_serve_title">
+                    <p>Private sector</p>
+                </div>
+                <!-- sidebar list -->
+                <div>
+                    @if ($random_industries)
+                        @foreach ($random_industries as $item)
+                            <div class="pt-2">
+                                <a href="{{ route('industry.details', $item->id) }}">
+                                    <div id="fed-bg">
+                                        <div class="p-2">
+                                            <h5 class="text-white brand_side_text">{{ $item->title }} ›</h5>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        @endforeach
+                    @endif
 
-                <a href="" class="business_item_button"
-                    style="justify-content: left;padding-left:15px;"><span>Explore Insight Public Sector</span>
-                    <span class="business_item_button_icon"><i class="fa-solid fa-arrow-right-long"></i></span></a>
+                </div>
             </div>
-        </div> --}}
-
         </div>
     </div>
     <!---------End -------->
-
+    <!---------End -------->
     <!--=====// Pageform section //=====-->
-    <section class="solution_contact_wrapper">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-6 col-sm-12">
-                    <div class="contact_left_content">
-                        <h4 class="contact_left_title text-white text-white" style="font-size: 25px">Need immediate
-                            assistance?</h4>
-                        <p class="contact_left_text text-white text-white" style="font-size: 18px">Get assistance with
-                            tracking an order, requesting a quote, contacting your account representative and more by <a
-                                href="tel:01723507989">phone</a> or <a href="">over chat</a>.</p>
-
-                        <!-- contact left phone -->
-                        <div class="contact_anything_wrapper">
-                            <!-- call -->
-                            <div class="contact_call">
-                                <div class="contact_call_title text-white text-white">Call us</div>
-                                <div class="contact_call_number text-white text-white"> {{ $setting->mobile }}</div>
-                            </div>
-
-                            <!-- contact chat -->
-                            <div class="contact_call contact_chat">
-                                <div class="contact_call_title text-white">Chat now</div>
-                                <a href="" class="contact_chat_button text-white"> <span> <i
-                                            class="fa-solid fa-message"></i> </span> <span> Chat with us</span> </a>
-                            </div>
-                        </div>
-
-                        <!-- contact global -->
-                        <div class="contact_global">
-                            <div class="contact_global_title text-white">NGentIt Global Headquarters</div>
-                            <!-- adress -->
-                            <div class="gloabal_content_address">
-                                <span class="text-white"> {{ $setting->address }}</span>
-                            </div>
-
-                            <!-- contact call or email -->
-
-                            <div class="global_contact_phone">
-                                <!-- item -->
-                                <div class="global_contact_phone_item text-white">
-                                    <span class="text-white">Billing & invoice: </span> <a class="text-white"
-                                        href="tel:{{ $setting->mobile }}">{{ $setting->mobile }}</a>
-                                </div>
-
-                                <!-- item -->
-                                <div class="global_contact_phone_item text-white">
-                                    <span class="text-white">Information and sales:</span> <a class="text-white"
-                                        href="mail:{{ $setting->email2 }}">{{ $setting->email2 }}</a>
-                                </div>
-
-                                <!-- item -->
-                                <div class="global_contact_phone_item text-white">
-                                    <span class="text-white">OneCall support:</span> <a class="text-white"
-                                        href="tel:{{ $setting->mobile }}">{{ $setting->mobile }}</a>
-                                </div>
-
-                                <!-- item -->
-                                <div class="global_contact_phone_item text-white">
-                                    <span class="text-white">Returns:</span> <a class="text-white"
-                                        href="tel:{{ $setting->phone }}">{{ $setting->phone }}</a>
-                                </div>
-                            </div>
-
-                            <!-- location button -->
-                            <a href="" class="product_button">View all NGentIt office locations</a>
-
-                        </div>
-                    </div>
-                </div>
-                <!----------Sidebar Privacy Policy --------->
-                <div class="col-lg-6 col-sm-12 p-0" id="Contact">
-                    <!-- form Sidebar -->
-                    <form id="myform" action="{{ route('contact.store') }}" method="post"
-                        enctype="multipart/form-data">
-                        @csrf
-                        <div class="row specialist_contect_form">
-                            <h2 class="col-12">Let's connect</h2>
-
-                            <!-- item -->
-                            <div class="solution_form_item_wp col-lg-6 col-sm-12">
-                                <input type="text" name="fname" class="form_input" maxlength="100"
-                                    placeholder="First Name" />
-                                <label class="form_label" for="">First Name: *</label>
-                            </div>
-
-                            <!-- item -->
-                            <div class="solution_form_item_wp col-lg-6 col-sm-12">
-                                <input type="text" name="lname" class="form_input" maxlength="100"
-                                    placeholder="Last Name" />
-                                <label class="form_label" for="">Last Name: *</label>
-                            </div>
-
-                            <!-- item -->
-                            <div class="solution_form_item_wp col-lg-6 col-sm-12">
-                                <input type="email" name="email" class="form_input maxlength"
-                                    placeholder="Business Email" maxlength="100" />
-                                <label class="form_label" for="">Business Email: *</label>
-                            </div>
-
-                            <!-- item -->
-                            <div class="solution_form_item_wp col-lg-6 col-sm-12">
-                                <input type="text" name="phone" class="form_input maxlength" placeholder="Phone"
-                                    maxlength="100" />
-                                <label class="form_label" for="">Phone: *</label>
-                            </div>
-
-                            <div class="solution_form_item_wp col-lg-6 col-sm-12">
-                                <input class="form_input maxlength" name="state" type="text" placeholder="State"
-                                    maxlength="100">
-                                <label class="form_label" for="">State: *</label>
-                            </div>
-
-                            <!-- form item -->
-                            <div class="solution_form_item_wp col-lg-6 col-sm-12">
-                                <input class="form_input maxlength" maxlength="100" name="country" type="text"
-                                    placeholder="Country">
-
-                                <!-- label -->
-                                <label class="form_label" for="">Country: *</label>
-                            </div>
-
-                            <!-- item -->
-                            <div class="solution_form_item_wp col-lg-12 col-sm-12">
-                                <input class="form_input" type="text" name="company"
-                                    placeholder="Company / Organization *">
-                                <label class="form_label" for="">Company *</label>
-                            </div>
-                            <!-- item -->
-                            <div class="solution_form_item_wp col-lg-12 col-sm-12">
-                                <textarea class="form_input" name="message" id="" rows="2"
-                                    placeholder="To better assist you, please describe how we can help."></textarea>
-                                <label class="form_label" for="">To better assist you, please describe how we can
-                                    help.</label>
-                            </div>
-
-
-
-                            <div class="d-flex">
-                                <!-- checkbox input -->
-                                <div class="" style="margin-right: 10px;">
-                                    <input type="checkbox" name="terms" required>
-                                </div>
-                                <!-- content -->
-                                <div class="checkBox_content">By checking this box, I consent to receive Insight marketing
-                                    emails. We respect your privacy and will not share your personal information with any
-                                    other company, person or identity.</div>
-                            </div>
-
-
-                            <!-- submit button -->
-                            <div>
-                                <button type="submit" class="common_button2 ml-2 mt-4" id="submitbtn">Hear from a
-                                    specialist</button>
-                            </div>
-
-
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </section>
+    @include('frontend.partials.footer_contact')
     <!---------End -------->
 @endsection
+
+@section('scripts')
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('.productDT').DataTable({
+
+                dom: '<"datatable-header"fl><"datatable-scroll"t><"datatable-footer"ip>',
+                "iDisplayLength": 10,
+                "lengthMenu": [10, 26, 30, 50],
+                columnDefs: [{
+                    orderable: false,
+                    targets: [0,1,2],
+                }, ],
+
+                searching: false,
+                info: false,
+                ordering: false
+            });
+        });
+
+
+    </script>
+@endsection
+

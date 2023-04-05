@@ -246,6 +246,12 @@ class ShopController extends Controller
 
         $newProduct = Product::orderBy('id','DESC')->where('product_status', 'product')->limit(3)->get();
 
+        if (!empty($brand_logo)) {
+            $brand_logo = $brand_logo;
+        } else {
+            $brand_logo = '';
+        }
+
 
 
         return view('frontend.pages.product.allproduct',compact('products','brand_logo','filter_categories','count_brands','categories',

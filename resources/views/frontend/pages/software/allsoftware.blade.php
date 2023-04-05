@@ -2,6 +2,13 @@
 @section('content')
 
     <style>
+        .pagination-flat{
+            justify-content: center;
+            margin:0 0px 11px;
+        }
+        .datatable-header{
+            display: none;
+        }
         .global_call_section::after {
             background: url('{{ asset('storage/' . $learnmore->background_image) }}');
             content: "";
@@ -49,7 +56,7 @@
 
         div.card .card-header {
             border-radius: 3px;
-            padding: 5px 5px;
+            padding: 6px 5px;
             margin-left: 15px;
             margin-right: 15px;
             margin-top: -30px;
@@ -78,7 +85,7 @@
 
 
         .card-nav-tabs .card-header {
-            margin-top: -30px !important;
+            margin-top: -17px !important;
         }
 
         .card .card-header .nav-tabs {
@@ -121,7 +128,7 @@
             line-height: 0px !important;
             text-transform: uppercase;
             font-size: 12px;
-            padding: 5px 15px !important;
+            padding: 15px 15px !important;
             background-color: transparent;
         }
 
@@ -183,7 +190,7 @@
             line-height: 24px;
             text-transform: uppercase;
             font-size: 12px;
-            padding: 10px 15px !important;
+            padding: 15px 15px !important;
             background-color: transparent;
             transition: background-color .3s 0s;
         }
@@ -221,22 +228,19 @@
     </style>
     <!--======// Header Title //======-->
     <section class="common_product_header"
-        style="background-image: linear-gradient(
-            rgba(0,0,0,0.8),
-            rgba(0,0,0,0.8)
-            ),url('https://i.pcmag.com/imagery/roundups/02HDufdqeRUDu3tl0NnY2qZ-2..v1649351854.jpg');">
+        style="background-image: url('{{asset('frontend/images/software_common.jpg')}}');">
         <div class="container ">
             <h1>Software</h1>
-            <p class="text-center text-white">Through our deep partnerships with trusted brands, <br> Ngen It offers a
-                comprehensive catalog of software for business. </p>
+            <p class="text-center text-white">Through our deep partnerships with trusted brands,
+                <br> Ngen It offers a comprehensive catalog of software for business. </p>
             <div class="row ">
                 <!--BUTTON START-->
                 <div class="d-flex justify-content-center align-items-center">
                     <div class="m-4">
-                        <button class="common_button2" href="{{ route('contact') }}">Talk with our specialist</button>
+                        <a class="common_button2" href="{{ route('contact') }}">Talk with our specialist</a>
                     </div>
                     <div class="m-4">
-                        <button class="common_button3" href="{{ route('shop') }}">Shop all </button>
+                        <a class="common_button3" href="{{ route('software.info') }}">Details </a>
                     </div>
                 </div>
             </div>
@@ -699,25 +703,21 @@
                                 <ul class="nav nav-tabs d-flex justify-content-between" data-tabs="tabs">
                                     <li class="nav-item ml-2">
                                         <a class="nav-link active" href="#categories" data-toggle="tab">
-
                                             Categories
                                         </a>
                                     </li>
                                     <li class="nav-item ml-2">
                                         <a class="nav-link" href="#brand" data-toggle="tab">
-
                                             Brand
                                         </a>
                                     </li>
                                     <li class="nav-item ml-2">
                                         <a class="nav-link" href="#industry" data-toggle="tab">
-
                                             Industry
                                         </a>
                                     </li>
                                     <li class="nav-item ml-2">
                                         <a class="nav-link" href="#solution" data-toggle="tab">
-
                                             Solution
                                         </a>
                                     </li>
@@ -725,11 +725,12 @@
                             </div>
                         </div>
                     </div>
-                    <div class="card-body ">
+                    <div class="card-body">
                         <div class="tab-content text-center">
+
                             <div class="tab-pane active" id="categories">
                                 {{-- Categories Sub Tab --}}
-                                <section class="">
+                                <section class="pt-1 pb-3">
                                     <div class="container">
                                         <div class="row">
                                             <div class="col-md-3">
@@ -739,12 +740,12 @@
                                                     role="tablist" aria-orientation="vertical">
                                                     @foreach ($categories as $item)
 
-                                                        @php
-                                                            $products = App\Models\Admin\Product::where('sub_cat_id',$item->id)->where('product_status','product')
-                                                            ->where('product_type','software')->select('id','name','price','slug')->get();
-                                                        @endphp
+                                                    @php
+                                                        $product_count = App\Models\Admin\Product::where('sub_cat_id',$item->id)->where('product_status','product')
+                                                        ->where('product_type','software')->count();
+                                                    @endphp
 
-                                                        @if (count($products) > 0)
+                                                        @if ($product_count > 0)
                                                             <a class="nav-link mb-1 p-1 shadow " id="v-pills-home-tab"
                                                                 data-toggle="pill" href="#category-{{ $item->id }}"
                                                                 role="tab" aria-controls="v-pills-home"
@@ -764,9 +765,12 @@
                                                 <!-- Tabs content -->
                                                 <div class="tab-content p-0" id="v-pills-tabContent">
                                                     @foreach ($categories as $key => $item)
-
+                                                    @php
+                                                        $products = App\Models\Admin\Product::where('sub_cat_id',$item->id)->where('product_status','product')
+                                                        ->where('product_type','software')->select('id','name','price','slug')->get();
+                                                    @endphp
                                                         @if (count($products) > 0)
-                                                            <div class="tab-pane fade shadow rounded bg-white p-5 mr-2"
+                                                            <div class="tab-pane fade shadow rounded bg-white px-3 py-3 mr-2"
                                                                 id="category-{{ $item->id }}" role="tabpanel" aria-labelledby="v-pills-profile-tab">
                                                                 <div class="panel">
                                                                     <div class="panel-heading">
@@ -805,24 +809,13 @@
                                                                                                 <td>{{ ++$key }}</td>
                                                                                                 <td>
                                                                                                     <a href="{{route('product.details',$item->slug)}}">
-                                                                                                        {{ Str::limit($item->name, 55) }}
+                                                                                                        {{ Str::limit($item->name, 80) }}
                                                                                                     </a>
                                                                                                 </td>
                                                                                                 <td>{{ $item->price }}</td>
                                                                                             </tr>
                                                                                         @endforeach
-                                                                                        {{-- <div class="d-flex justify-content-center">
-                                                                                            <div id="pagination-links">
-                                                                                                <nav aria-label="Page navigation example">
-                                                                                                    <ul class="pagination">
 
-                                                                                                        {{ $products->links() }}
-                                                                                                    </ul>
-
-                                                                                                </nav>
-                                                                                            </div>
-
-                                                                                        </div> --}}
                                                                                     @endif
 
                                                                                 </tbody>
@@ -848,7 +841,7 @@
 
                             <div class="tab-pane" id="brand">
                                 {{-- Brand Sub Tab --}}
-                                <section class="py-3">
+                                <section class="pt-1 pb-3">
                                     <div class="container">
                                         <div class="row">
                                             <div class="col-md-3">
@@ -858,11 +851,11 @@
                                                     @foreach ($brands as $item)
 
                                                         @php
-                                                            $products = App\Models\Admin\Product::where('brand_id',$item->id)->where('product_status','product')
-                                                            ->where('product_type','software')->select('id','name','price','slug')->get();
+                                                            $product_count = App\Models\Admin\Product::where('brand_id',$item->id)->where('product_status','product')
+                                                            ->where('product_type','software')->count();
                                                         @endphp
 
-                                                        @if (count($products) > 0)
+                                                        @if ($product_count > 0)
                                                             <a class="nav-link mb-1 p-1 shadow " id="v-pills-home-tab"
                                                                 data-toggle="pill" href="#brand-{{ $item->id }}"
                                                                 role="tab" aria-controls="v-pills-home"
@@ -882,9 +875,12 @@
                                                 <!-- Tabs content -->
                                                 <div class="tab-content p-0" id="v-pills-tabContent">
                                                     @foreach ($brands as $key => $item)
-
+                                                        @php
+                                                            $products = App\Models\Admin\Product::where('brand_id',$item->id)->where('product_status','product')
+                                                            ->where('product_type','software')->select('id','name','price','slug')->get();
+                                                        @endphp
                                                         @if (count($products) > 0)
-                                                            <div class="tab-pane fade shadow rounded bg-white p-5 mr-2"
+                                                            <div class="tab-pane fade shadow rounded bg-white px-3 pb-2 mr-2"
                                                                 id="brand-{{ $item->id }}" role="tabpanel" aria-labelledby="v-pills-profile-tab">
                                                                 <div class="panel">
                                                                     <div class="panel-heading">
@@ -922,7 +918,7 @@
                                                                                                 <td>{{ ++$key }}</td>
                                                                                                 <td>
                                                                                                     <a href="{{route('product.details',$item->slug)}}">
-                                                                                                        {{ Str::limit($item->name, 55) }}
+                                                                                                        {{ Str::limit($item->name, 80) }}
                                                                                                     </a>
                                                                                                 </td>
                                                                                                 <td>{{ $item->price }}</td>
@@ -948,7 +944,7 @@
                             </div>
                             <div class="tab-pane" id="industry">
                                 {{-- Industry Sub Tab --}}
-                                <section class="py-3">
+                                <section class="pt-1 pb-3">
                                     <div class="container">
                                         <div class="row">
                                             <div class="col-md-3">
@@ -958,15 +954,12 @@
                                                     @foreach ($industrys as $item)
 
                                                         @php
-                                                            $product_ids = App\Models\Admin\MultiIndustry::where('industry_id',$item->id)->get();
-                                                            //dd($product_ids);
-                                                            // $products = App\Models\Admin\Product::where('industry_id',$item->id)->where('product_status','product')
-                                                            // ->where('product_type','software')->select('id','name','price','slug')->get();
+                                                            $product_ids = App\Models\Admin\MultiIndustry::where('industry_id',$item->id)->where('product_status','product')->get();
                                                         @endphp
 
                                                         @if (count($product_ids) > 0)
                                                             <a class="nav-link mb-1 p-1 shadow " id="v-pills-home-tab"
-                                                                data-toggle="pill" href="#brand-{{ $item->id }}"
+                                                                data-toggle="pill" href="#industry-{{ $item->id }}"
                                                                 role="tab" aria-controls="v-pills-home"
                                                                 aria-selected="true">
                                                                 <span
@@ -980,15 +973,16 @@
                                                 </div>
                                             </div>
 
-
                                             <div class="col-md-9 p-0">
                                                 <!-- Tabs content -->
                                                 <div class="tab-content p-0" id="v-pills-tabContent">
                                                     @foreach ($industrys as $key => $item)
-
+                                                        @php
+                                                            $product_ids = App\Models\Admin\MultiIndustry::where('industry_id',$item->id)->where('product_status','product')->get();
+                                                        @endphp
                                                         @if (count($product_ids) > 0)
-                                                            <div class="tab-pane fade shadow rounded bg-white p-5 mr-2"
-                                                                id="brand-{{ $item->id }}" role="tabpanel" aria-labelledby="v-pills-profile-tab">
+                                                            <div class="tab-pane fade shadow rounded bg-white px-3 py-3 mr-2"
+                                                                id="industry-{{ $item->id }}" role="tabpanel" aria-labelledby="v-pills-profile-tab">
                                                                 <div class="panel">
                                                                     <div class="panel-heading">
                                                                         <div
@@ -1021,18 +1015,23 @@
 
                                                                                     @if (!empty($product_ids))
                                                                                         @foreach ($product_ids as $key => $item)
-                                                                                        @dd($item->product_id);
-                                                                                            <tr>
-                                                                                                <td>{{ ++$key }}</td>
-                                                                                                <td>
-                                                                                                    <a href="{{route('product.details',App\Models\Admin\Product::where('id',$item->product_id)->value('slug'))}}">
-                                                                                                        {{ Str::limit(App\Models\Admin\Product::where('id',$item->product_id)->value('name'), 55) }}
-                                                                                                    </a>
-                                                                                                </td>
-                                                                                                <td>{{ App\Models\Admin\Product::where('id',$item->product_id)->value('price') }}</td>
-                                                                                            </tr>
-                                                                                        @endforeach
 
+                                                                                            @if (App\Models\Admin\Product::where('id',$item->product_id)->count() > 0)
+                                                                                                <tr>
+                                                                                                    <td>{{ ++$key }}</td>
+                                                                                                    {{-- @dd($item->product_id); --}}
+                                                                                                    {{-- @dd(App\Models\Admin\Product::where('id' , $item->product_id)->value('name')); --}}
+                                                                                                    <td>
+                                                                                                        <a href="{{route('product.details',App\Models\Admin\Product::where('id',$item->product_id)->value('slug'))}}">
+                                                                                                            {{ Str::limit(App\Models\Admin\Product::where('id',$item->product_id)->value('name'), 80) }}
+                                                                                                        </a>
+                                                                                                    </td>
+                                                                                                    <td>{{ App\Models\Admin\Product::where('id',$item->product_id)->value('price') }}</td>
+                                                                                                </tr>
+                                                                                            @endif
+                                                                                        @endforeach
+                                                                                    @else
+                                                                                        <tr>No Product Available</tr>
                                                                                     @endif
 
                                                                                 </tbody>
@@ -1052,68 +1051,34 @@
                             </div>
                             <div class="tab-pane" id="solution">
                                 {{-- Solution Sub Tab --}}
-                                <section class="py-3">
+                                <section class="pt-1 pb-3">
                                     <div class="container">
                                         <div class="row">
                                             <div class="col-md-3">
                                                 <!-- Tabs nav -->
                                                 <div class="nav flex-column nav-pills nav-pills-custom" id="v-pills-tab"
                                                     role="tablist" aria-orientation="vertical">
-                                                    <a class="nav-link mb-1 p-1 shadow active" id="v-pills-home-tab"
-                                                        data-toggle="pill" href="#solution-1" role="tab"
-                                                        aria-controls="v-pills-home" aria-selected="true">
 
-                                                        <span class="font-weight-bold small text-uppercase">Solution
-                                                            1</span></a>
+                                                    @foreach ($solutions as $item)
 
-                                                    <a class="nav-link mb-1 p-1 shadow" id="v-pills-profile-tab"
-                                                        data-toggle="pill" href="#solution-2" role="tab"
-                                                        aria-controls="v-pills-profile" aria-selected="false">
+                                                        @php
+                                                            $product_solution_ids = App\Models\Admin\MultiSolution::where('solution_id',$item->id)->where('product_status','product')->get();
 
-                                                        <span class="font-weight-bold small text-uppercase">Solution
-                                                            2</span></a>
+                                                        @endphp
 
-                                                    <a class="nav-link mb-1 p-1 shadow" id="v-pills-messages-tab"
-                                                        data-toggle="pill" href="#solution-3" role="tab"
-                                                        aria-controls="v-pills-messages" aria-selected="false">
+                                                        @if (count($product_solution_ids) > 0)
+                                                            <a class="nav-link mb-1 p-1 shadow " id="v-pills-home-tab"
+                                                                data-toggle="pill" href="#solution-{{ $item->id }}"
+                                                                role="tab" aria-controls="v-pills-home"
+                                                                aria-selected="true">
+                                                                <span
+                                                                    class="font-weight-bold small text-uppercase">{{ $item->name }}
+                                                                </span>
+                                                            </a>
+                                                        @endif
+                                                    @endforeach
 
-                                                        <span class="font-weight-bold small text-uppercase">Solution
-                                                            3</span></a>
 
-                                                    <a class="nav-link mb-1 p-1 shadow" id="v-pills-settings-tab"
-                                                        data-toggle="pill" href="#solution-4" role="tab"
-                                                        aria-controls="v-pills-settings" aria-selected="false">
-
-                                                        <span class="font-weight-bold small text-uppercase">Solution
-                                                            4</span></a>
-
-                                                    <a class="nav-link mb-1 p-1 shadow" id="v-pills-settings-tab"
-                                                        data-toggle="pill" href="#solution-4" role="tab"
-                                                        aria-controls="v-pills-settings" aria-selected="false">
-
-                                                        <span class="font-weight-bold small text-uppercase">Solution
-                                                            5</span></a>
-
-                                                    <a class="nav-link mb-1 p-1 shadow" id="v-pills-settings-tab"
-                                                        data-toggle="pill" href="#solution-4" role="tab"
-                                                        aria-controls="v-pills-settings" aria-selected="false">
-
-                                                        <span class="font-weight-bold small text-uppercase">Solution
-                                                            6</span></a>
-
-                                                    <a class="nav-link mb-1 p-1 shadow" id="v-pills-settings-tab"
-                                                        data-toggle="pill" href="#solution-4" role="tab"
-                                                        aria-controls="v-pills-settings" aria-selected="false">
-
-                                                        <span class="font-weight-bold small text-uppercase">Solution
-                                                            7</span></a>
-
-                                                    <a class="nav-link mb-1 p-1 shadow" id="v-pills-settings-tab"
-                                                        data-toggle="pill" href="#solution-4" role="tab"
-                                                        aria-controls="v-pills-settings" aria-selected="false">
-
-                                                        <span class="font-weight-bold small text-uppercase">Solution
-                                                            8</span></a>
                                                 </div>
                                             </div>
 
@@ -1121,57 +1086,75 @@
                                             <div class="col-md-9 p-0">
                                                 <!-- Tabs content -->
                                                 <div class="tab-content p-0" id="v-pills-tabContent">
-                                                    <div class="tab-pane fade shadow rounded bg-white show active p-2 mr-2"
-                                                        id="solution-1" role="tabpanel"
-                                                        aria-labelledby="v-pills-home-tab">
-                                                        <p class=" text-muted mb-2">solution -1 Lorem ipsum dolor sit amet,
-                                                            consectetur adipisicing elit, sed do eiusmod tempor incididunt
-                                                            ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-                                                            nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-                                                            commodo consequat. Duis aute irure dolor in reprehenderit in
-                                                            voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-                                                            Excepteur sint occaecat cupidatat non proident, sunt in culpa
-                                                            qui officia deserunt mollit anim id est laborum.</p>
-                                                    </div>
 
-                                                    <div class="tab-pane fade shadow rounded bg-white p-5 mr-2"
-                                                        id="solution-2" role="tabpanel"
-                                                        aria-labelledby="v-pills-profile-tab">
-                                                        <p class=" text-muted mb-2">solution-2 Lorem ipsum dolor sit amet,
-                                                            consectetur adipisicing elit, sed do eiusmod tempor incididunt
-                                                            ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-                                                            nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-                                                            commodo consequat. Duis aute irure dolor in reprehenderit in
-                                                            voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-                                                            Excepteur sint occaecat cupidatat non proident, sunt in culpa
-                                                            qui officia deserunt mollit anim id est laborum.</p>
-                                                    </div>
+                                                    @foreach ($solutions as $key => $item)
+                                                            @php
+                                                                $product_solution_ids = App\Models\Admin\MultiSolution::where('solution_id',$item->id)->where('product_status','product')->get();
+                                                            @endphp
+                                                        {{-- @if (count($product_ids) > 0) --}}
+                                                            <div class="tab-pane fade shadow rounded bg-white px-3 py-3 mr-2"
+                                                                id="solution-{{ $item->id }}" role="tabpanel" aria-labelledby="v-pills-profile-tab">
+                                                                <div class="panel">
+                                                                    <div class="panel-heading">
+                                                                        <div
+                                                                            class="row p-0 d-flex justify-content-center align-items-center">
+                                                                            <div class="col-lg-9">
+                                                                                <h4 class="">Product Lists For {{$item->name}}
+                                                                                </h4>
+                                                                            </div>
+                                                                            <div class="col-lg-3 text-right">
+                                                                                <form action=" ">
+                                                                                    <div class="btn_group">
+                                                                                        <input type="text" class="form-control" placeholder="Search">
+                                                                                    </div>
+                                                                                </form>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
 
-                                                    <div class="tab-pane fade shadow rounded bg-white p-5 mr-2"
-                                                        id="solution-3" role="tabpanel"
-                                                        aria-labelledby="v-pills-messages-tab">
-                                                        <p class="text-muted mb-2">solution-3 Lorem ipsum dolor sit amet,
-                                                            consectetur adipisicing elit, sed do eiusmod tempor incididunt
-                                                            ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-                                                            nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-                                                            commodo consequat. Duis aute irure dolor in reprehenderit in
-                                                            voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-                                                            Excepteur sint occaecat cupidatat non proident, sunt in culpa
-                                                            qui officia deserunt mollit anim id est laborum.</p>
-                                                    </div>
+                                                                    <div class="panel-body table-responsive">
+                                                                       <div id="product-table">
+                                                                            <table class="table productDT">
+                                                                                <thead>
+                                                                                    <tr>
+                                                                                        <th>Sl</th>
+                                                                                        <th>Product Name</th>
+                                                                                        <th>Price</th>
+                                                                                    </tr>
+                                                                                </thead>
+                                                                                <tbody>
 
-                                                    <div class="tab-pane fade shadow rounded bg-white p-5 mr-2"
-                                                        id="solution-4" role="tabpanel"
-                                                        aria-labelledby="v-pills-settings-tab">
-                                                        <p class="text-muted mb-2">solution-4 Lorem ipsum dolor sit amet,
-                                                            consectetur adipisicing elit, sed do eiusmod tempor incididunt
-                                                            ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-                                                            nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-                                                            commodo consequat. Duis aute irure dolor in reprehenderit in
-                                                            voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-                                                            Excepteur sint occaecat cupidatat non proident, sunt in culpa
-                                                            qui officia deserunt mollit anim id est laborum.</p>
-                                                    </div>
+                                                                                    @if (count($product_solution_ids) > 0)
+                                                                                        @foreach ($product_solution_ids as $key => $item)
+
+                                                                                            @if (App\Models\Admin\Product::where('id',$item->product_id)->count() > 0)
+                                                                                                <tr>
+                                                                                                    <td>{{ ++$key }}</td>
+                                                                                                    {{-- @dd($item->product_id); --}}
+                                                                                                    {{-- @dd(App\Models\Admin\Product::where('id' , $item->product_id)->value('name')); --}}
+                                                                                                    <td>
+                                                                                                        <a href="{{route('product.details',App\Models\Admin\Product::where('id',$item->product_id)->value('slug'))}}">
+                                                                                                            {{ Str::limit(App\Models\Admin\Product::where('id',$item->product_id)->value('name'), 80) }}
+                                                                                                        </a>
+                                                                                                    </td>
+                                                                                                    <td>{{ App\Models\Admin\Product::where('id',$item->product_id)->value('price') }}</td>
+                                                                                                </tr>
+                                                                                            @endif
+                                                                                        @endforeach
+                                                                                    @else
+                                                                                        <tr>No Product Available</tr>
+                                                                                    @endif
+
+                                                                                </tbody>
+                                                                            </table>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+
+                                                    @endforeach
+
                                                 </div>
                                             </div>
                                         </div>
@@ -1261,10 +1244,10 @@
                         <div class="tab-content py-3 px-3 px-sm-0" id="nav-tabContent">
                             <div class="tab-pane fade show active" id="nav-home" role="tabpanel"
                                 aria-labelledby="nav-healthcare">
-                                <div class="row">
+                                <div class="row d-flex align-items-center">
                                     <div class="col-lg-4 col-md-4 col-sm-12">
                                         <div class="tab_side_image">
-                                            <img src="{{ asset('storage/' . $story1->image) }}" alt="">
+                                            <img src="{{ asset('storage/' . $story1->image) }}" alt="" style="height: 230px;">
                                         </div>
                                     </div>
                                     <div class="col-lg-8 col-md-6 col-sm-12">
@@ -1280,10 +1263,10 @@
                             </div>
                             <div class="tab-pane fade" id="nav-profile" role="tabpanel"
                                 aria-labelledby="nav-profile-tab">
-                                <div class="row">
+                                <div class="row d-flex align-items-center">
                                     <div class="col-lg-4 col-md-4 col-sm-12">
                                         <div class="tab_side_image">
-                                            <img src="{{ asset('storage/' . $story2->image) }}" alt="">
+                                            <img src="{{ asset('storage/' . $story2->image) }}" alt="" style="height: 230px;">
                                         </div>
                                     </div>
                                     <div class="col-lg-8 col-md-6 col-sm-12">
@@ -1299,10 +1282,10 @@
                             </div>
                             <div class="tab-pane fade" id="nav-contact" role="tabpanel"
                                 aria-labelledby="nav-contact-tab">
-                                <div class="row">
+                                <div class="row d-flex align-items-center">
                                     <div class="col-lg-4 col-md-4 col-sm-12">
                                         <div class="tab_side_image">
-                                            <img src="{{ asset('storage/' . $story3->image) }}" alt="">
+                                            <img src="{{ asset('storage/' . $story3->image) }}" alt="" style="height: 230px;">
                                         </div>
                                     </div>
                                     <div class="col-lg-8 col-md-6 col-sm-12">
@@ -1318,10 +1301,10 @@
                             </div>
                             <div class="tab-pane fade" id="nav-contact" role="tabpanel"
                                 aria-labelledby="nav-contact-tab">
-                                <div class="row">
+                                <div class="row d-flex align-items-center">
                                     <div class="col-lg-4 col-md-4 col-sm-12">
                                         <div class="tab_side_image">
-                                            <img src="{{ asset('storage/' . $story4->image) }}" alt="">
+                                            <img src="{{ asset('storage/' . $story4->image) }}" alt="" style="height: 230px;">
                                         </div>
                                     </div>
                                     <div class="col-lg-8 col-md-6 col-sm-12">
@@ -1537,8 +1520,8 @@
                 }, ],
 
                 searching: false,
-                ordering: false,
-                info: false
+                info: false,
+                ordering: false
             });
         });
 

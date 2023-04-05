@@ -610,21 +610,21 @@ class HomeController extends Controller
                             ->inRandomOrder()
                             ->limit(16)
                             ->get();
-        $data['hardware'] = Product::where('product_type','hardware')->where('product_status', 'product')
-                            ->select('products.id','products.rfq','products.slug','products.name','products.thumbnail','products.price','products.discount')
-                            ->inRandomOrder()
-                            ->paginate(8);
+        // $data['hardware'] = Product::where('product_type','hardware')->where('product_status', 'product')
+        //                     ->select('products.id','products.rfq','products.slug','products.name','products.thumbnail','products.price','products.discount')
+        //                     ->inRandomOrder()
+        //                     ->limit(12)->get();
         $data['categories'] = DB::table('sub_categories')
                             ->join('products', 'sub_categories.id', '=', 'products.sub_cat_id')
                             ->where('products.product_type', '=', 'software')
                             ->select('sub_categories.id','sub_categories.slug','sub_categories.title','sub_categories.image')
-                            ->distinct()->paginate(8);
+                            ->distinct()->limit(12)->get();
 
         $data['brands']     = DB::table('brands')
                             ->join('products', 'brands.id', '=', 'products.brand_id')
                             ->where('products.product_type', '=', 'software')
                             ->select('brands.id','brands.slug','brands.title','brands.image')
-                            ->distinct()->paginate(8);
+                            ->distinct()->limit(12)->get();
 
         $data['solutions'] = SolutionDetail::orderBy('id', 'DESC')->select('id','name')->limit(10)->get();
 
@@ -632,7 +632,7 @@ class HomeController extends Controller
         $data['story2'] = Blog::inRandomOrder()->where('id','!=',$data['story1']->id)->first();
         $data['story3'] = ClientStory::inRandomOrder()->first();
         $data['story4'] = ClientStory::inRandomOrder()->where('id','!=',$data['story3']->id)->first();
-        $data['industrys'] = Industry::latest()->select('industries.id','industries.logo','industries.title')->limit(8)->get();
+        $data['industrys'] = Industry::latest()->select('industries.id','industries.logo','industries.title')->limit(12)->get();
         $data['random_industries'] = Industry::inRandomOrder()->select('industries.id','industries.title')->limit(4)->get();
         return view('frontend.pages.software.allsoftware',$data);
     }
@@ -642,35 +642,34 @@ class HomeController extends Controller
     public function HardwareCommon()
     {
         $data['learnmore'] = LearnMore::orderBy('id','DESC')->select('learn_mores.industry_header','learn_mores.consult_title','learn_mores.consult_short_des','learn_mores.background_image')->first();
-        $data['products'] = Product::where('product_type','hardware')->where('product_status', 'product')->latest()->paginate(10);
-        $data['hardware'] = Product::where('product_type','hardware')->where('product_status', 'product')->latest()->paginate(10);
+
+        $data['products'] = Product::where('product_type','hardware')->where('product_status', 'product')
+                            ->select('products.id','products.rfq','products.slug','products.name','products.thumbnail','products.price','products.discount')
+                            ->inRandomOrder()
+                            ->limit(16)
+                            ->get();
         $data['categories'] = DB::table('categories')
                             ->join('products', 'categories.id', '=', 'products.cat_id')
                             ->where('products.product_type', '=', 'hardware')
-                            ->select('categories.id','categories.slug','categories.title','categories.image')
-                            ->distinct()->paginate(10);
+                            ->select('categories.id','categories.slug','categories.title')
+                            ->distinct()->limit(12)->get();
 
         $data['brands']     = DB::table('brands')
                             ->join('products', 'brands.id', '=', 'products.brand_id')
                             ->where('products.product_type', '=', 'hardware')
                             ->select('brands.id','brands.slug','brands.title','brands.image')
-                            ->distinct()->paginate(10);
-        // $data['industries']  = DB::table('industries')
-        //                     ->join('products', 'industires.id', '=', 'products.brand_id')
-        //                     ->where('products.product_type', '=', 'software')
-        //                     ->select('brands.id','brands.slug','brands.title','brands.image')
-        //                     ->distinct()->get();
+                            ->distinct()->limit(12)->get();
+        
 
-        $data['featured_brands'] = Brand::where('category','Featured')->orderBy('id','DESC')->get();
-        $data['others'] = Brand::all();
-        $data['story1'] = TechGlossy::inRandomOrder()->first();
-        $data['story2'] = Blog::inRandomOrder()->first();
+        $data['solutions'] = SolutionDetail::orderBy('id', 'DESC')->select('id','name')->limit(10)->get();
+
+        $data['story1'] = Blog::inRandomOrder()->first();
+        $data['story2'] = Blog::inRandomOrder()->where('id','!=',$data['story1']->id)->first();
         $data['story3'] = ClientStory::inRandomOrder()->first();
-        $data['techglossy'] = TechGlossy::inRandomOrder()->first();
-        $data['features'] = Client::inRandomOrder()->limit(2)->get();
-        $data['setting'] = Setting::latest()->first();
-        $data['industrys'] = Industry::latest()->select('industries.id','industries.logo','industries.title')->get();
+        $data['story4'] = ClientStory::inRandomOrder()->where('id','!=',$data['story3']->id)->first();
+        $data['industrys'] = Industry::latest()->select('industries.id','industries.logo','industries.title')->limit(12)->get();
         $data['random_industries'] = Industry::inRandomOrder()->select('industries.id','industries.title')->limit(4)->get();
+
         return view('frontend.pages.hardware.allhardware',$data);
     }
 

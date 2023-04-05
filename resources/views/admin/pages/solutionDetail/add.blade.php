@@ -412,7 +412,7 @@
                                         </div>
                                         <!--End Row Five with Solution Card-->
 
-                                        <!--Row six with Left side Image-->
+                                        {{-- <!--Row six with Left side Image-->
                                         <div class="row border my-2 p-3">
                                             <div class="col-12 text-center">
                                                 <h5 class="border-bottom pb-2">Row Six with Left Side Image</h5>
@@ -435,7 +435,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <!--End Row six with Left side Image-->
+                                        <!--End Row six with Left side Image--> --}}
 
 
                                         <div class="row">
