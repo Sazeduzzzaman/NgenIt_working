@@ -86,6 +86,7 @@ use App\Http\Controllers\Admin\ClientPermission;
 use App\Http\Controllers\Admin\IncomeController;
 use App\Http\Controllers\Admin\PolicyController;
 use App\Http\Controllers\Admin\RegionController;
+use App\Http\Controllers\Admin\TaxVatController;
 use App\Http\Controllers\Order\ReportController;
 use App\Http\Controllers\Order\ReturnController;
 use App\Http\Middleware\RedirectIfAuthenticated;
@@ -119,6 +120,7 @@ use App\Http\Controllers\Admin\RowWithColController;
 use App\Http\Controllers\Admin\TechGlossyController;
 use App\Http\Controllers\Order\AdminOrderController;
 use App\Http\Controllers\Admin\ClientStoryController;
+use App\Http\Controllers\Admin\ExpenseTypeController;
 use App\Http\Controllers\Admin\EffortRatingController;
 use App\Http\Controllers\Admin\IndustryPageController;
 use App\Http\Controllers\Admin\NotificationController;
@@ -136,6 +138,7 @@ use App\Http\Controllers\Admin\TechnologyDataController;
 use App\Http\Controllers\Admin\AccountsManagerController;
 use App\Http\Controllers\Admin\AccountsPayableController;
 use App\Http\Controllers\Admin\DealTypeSettingController;
+use App\Http\Controllers\Admin\ExpenseCategoryController;
 use App\Http\Controllers\Admin\SalesProfitLossController;
 use App\Http\Controllers\Admin\SalesTeamTargetController;
 use App\Http\Controllers\Admin\SalesYearTargetController;
@@ -537,6 +540,9 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
             'revised-deal'           => RevisedDealController::class,
             'partner-account'        => PartnerController::class,
             'sales-account'          => SalesAccountController::class,
+            'expense-category'       => ExpenseCategoryController::class,
+            'expense-type'           => ExpenseTypeController::class,
+            'tax-vat'                => TaxVatController::class,
         ]
         // , [
         //   'except' => ['show']

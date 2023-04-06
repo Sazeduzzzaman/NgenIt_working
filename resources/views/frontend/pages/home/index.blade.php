@@ -445,9 +445,10 @@
                         </div>
                         <div class="info w-50 mb-3">
                             <div>
-                                <h3>Awesome<strong> Slick Slider</strong></h3>
-                                <h5 class="text-white my-4 w-75 mx-auto">You can easily add image, html formatted texts and video layers over each slide and each
-                                    layer accepts unique animation.</h5>
+                                <h3>Be <strong>ambitious.</strong></h3>
+                                <h5 class="text-white my-4 w-75 mx-auto">
+                                    You have what it takes to achieve your bold technology goals.
+                                </h5>
                             </div>
                             <div class="my-4">
                                 <a class="common_button2" href="{{ $home->btn2_link }}">{{ $home->btn2_name }}</a>
@@ -468,9 +469,11 @@
                         </div>
                         <div class="info w-50 ">
                             <div>
-                                <h3>Awesome<strong> Slick Slider</strong></h3>
-                                <h5 class="text-white my-4 w-75 mx-auto">You can easily add image, html formatted texts and video layers over each slide and each
-                                    layer accepts unique animation.</h5>
+                                <h3>Enjoy paid <strong>software.</strong></h3>
+                                <h5 class="text-white my-4 w-75 mx-auto">
+                                    Here is the best-paid software for your device. While free apps are plentiful,
+                                    sometimes it's worth spending money on premium options.
+                                </h5>
                             </div>
                             <div class="my-4">
                                 <a class="common_button2" href="{{ $home->btn2_link }}">{{ $home->btn2_name }}</a>
@@ -491,9 +494,11 @@
                         </div>
                         <div class="info w-50 mb-3">
                             <div>
-                                <h3>Awesome<strong> Slick Slider</strong></h3>
-                                <h5 class="text-white my-4 w-75 mx-auto">You can easily add image, html formatted texts and video layers over each slide and each
-                                    layer accepts unique animation.</h5>
+                                <h3>Purchase Heavy Equipment's <strong>Parts & Accessories.</strong></h3>
+                                <h5 class="text-white my-4 w-75 mx-auto">
+                                    We are committed to providing you with the highest quality heavy equipment
+                                    parts & accessories at the best prices possible!
+                                </h5>
                             </div>
                             <div class="my-4">
                                 <a class="common_button2" href="{{ $home->btn2_link }}">{{ $home->btn2_name }}</a>

@@ -128,7 +128,7 @@ class ExpenseCategoryController extends Controller
                 'notes'    => $request->notes,
                 'custom'   => $request->custom,
             ]);
-            Toastr::success('Data Insert Successfully.');
+            Toastr::success('Data Updated Successfully.');
         } else {
             $messages = $validator->messages();
             foreach ($messages->all() as $message) {

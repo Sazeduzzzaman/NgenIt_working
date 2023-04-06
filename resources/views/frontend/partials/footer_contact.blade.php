@@ -55,7 +55,8 @@
                         <input class="app-form-control" placeholder="CONTACT NO">
                       </div>
                       <div class="app-form-group message">
-                        <input class="app-form-control" placeholder="MESSAGE">
+                        <textarea class="app-form-control" name="" placeholder="MESSAGE"></textarea>
+                        {{-- <input class="app-form-control" placeholder="MESSAGE"> --}}
                       </div>
                       <div class="app-form-group buttons">
                         {{-- <button class="app-form-button">CANCEL</button> --}}

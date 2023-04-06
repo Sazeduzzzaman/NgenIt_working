@@ -954,7 +954,7 @@
                                                     @foreach ($industrys as $item)
 
                                                         @php
-                                                            $product_ids = App\Models\Admin\MultiIndustry::where('industry_id',$item->id)->where('product_status','product')->get();
+                                                            $product_ids = App\Models\Admin\MultiIndustry::where('industry_id',$item->id)->get();
                                                         @endphp
 
                                                         @if (count($product_ids) > 0)
@@ -978,7 +978,7 @@
                                                 <div class="tab-content p-0" id="v-pills-tabContent">
                                                     @foreach ($industrys as $key => $item)
                                                         @php
-                                                            $product_ids = App\Models\Admin\MultiIndustry::where('industry_id',$item->id)->where('product_status','product')->get();
+                                                            $product_ids = App\Models\Admin\MultiIndustry::where('industry_id',$item->id)->get();
                                                         @endphp
                                                         @if (count($product_ids) > 0)
                                                             <div class="tab-pane fade shadow rounded bg-white px-3 py-3 mr-2"
@@ -1062,7 +1062,7 @@
                                                     @foreach ($solutions as $item)
 
                                                         @php
-                                                            $product_solution_ids = App\Models\Admin\MultiSolution::where('solution_id',$item->id)->where('product_status','product')->get();
+                                                            $product_solution_ids = App\Models\Admin\MultiSolution::where('solution_id',$item->id)->get();
 
                                                         @endphp
 
@@ -1089,7 +1089,7 @@
 
                                                     @foreach ($solutions as $key => $item)
                                                             @php
-                                                                $product_solution_ids = App\Models\Admin\MultiSolution::where('solution_id',$item->id)->where('product_status','product')->get();
+                                                                $product_solution_ids = App\Models\Admin\MultiSolution::where('solution_id',$item->id)->get();
                                                             @endphp
                                                         {{-- @if (count($product_ids) > 0) --}}
                                                             <div class="tab-pane fade shadow rounded bg-white px-3 py-3 mr-2"
