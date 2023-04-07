@@ -143,6 +143,7 @@
             outline: none;
             box-shadow: none;
             color: white;
+            background-color: #ae0a46 !important;
             -webkit-box-shadow: none;
             -webkit-user-select: none;
             transition: none;
@@ -285,7 +286,7 @@
                     <div class="col text-right">$ {{ number_format(Cart::total(), 2) }}</div>
                 </div>
                 <div class="d-flex justify-content-center pt-5">
-                    <button href="{{route('checkout')}}" class="btn product_btn">CHECKOUT</button>
+                    <a href="{{route('checkout')}}" class="btn product_btn">CHECKOUT</a>
                 </div>
             </div>
         </div>

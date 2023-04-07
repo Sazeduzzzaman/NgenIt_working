@@ -1,4 +1,7 @@
 <!--=====// Pageform section //=====-->
+@php
+    $setting = App\Models\Admin\Setting::first();
+@endphp
 <section class=" solution_contact_wrapper">
     <div class="container" id="Contact">
       <div class="row d-flex justify-content-center align-items-center">
@@ -9,11 +12,11 @@
             </h4>
             <p>Get assistance with tracking an order, requesting a quote, contacting your account representative and more by phone or over chat.</p>
             <h5>NGentIt Global Headquarters</h5>
-            <p>Haque Chamber <br>(11 floor - C&D) 89/2, Panthapath, Dhaka-1215 </p>
-            <p>Billing & invoice: <span class="">+88 01714243446</span>
-              <br> Information and sales: <span class="">sales@ngenitltd.com</span>
-              <br> OneCall support: <span class="">+88 01714243446</span>
-              <br> Returns: <span class="">(+88) 0258155838</span>
+            <p>{{$setting->address}}</p>
+            <p>Billing & invoice: <span class="font-number">+88 01714243446</span>
+              <br> Information and sales: <span class="">{{$setting->email1}}</span>
+              <br> OneCall support: <span class="font-number">+88 01714243446</span>
+              <br> Returns: <span class="font-number">(+88) 0258155838</span>
             </p>
             <!-- <h5><i class="fa-solid fa-phone"></i>NgenIT</h5> -->
           </div>
@@ -36,34 +39,46 @@
                   </div>
                 </div>
                 <div class="screen-body">
-                  <div class="screen-body-item left">
-                    <div class="app-title">
-                      <span>CONTACT</span>
-                      <span>US</span>
+                    <div class="screen-body-item left">
+                        <div class="app-title">
+                        <span>CONTACT</span>
+                        <span>US</span>
+                        </div>
                     </div>
+                    <form id="myform" action="{{ route('contact.store') }}" method="post" enctype="multipart/form-data">
+                        @csrf
+                        <div class="screen-body-item screen-body-item-right">
+                            <div class="app-form">
 
-                  </div>
-                  <div class="screen-body-item screen-body-item-right">
-                    <div class="app-form">
-                      <div class="app-form-group">
-                        <input class="app-form-control" placeholder="NAME">
-                      </div>
-                      <div class="app-form-group">
-                        <input class="app-form-control" placeholder="EMAIL">
-                      </div>
-                      <div class="app-form-group">
-                        <input class="app-form-control" placeholder="CONTACT NO">
-                      </div>
-                      <div class="app-form-group message">
-                        <textarea class="app-form-control" name="" placeholder="MESSAGE"></textarea>
-                        {{-- <input class="app-form-control" placeholder="MESSAGE"> --}}
-                      </div>
-                      <div class="app-form-group buttons">
-                        {{-- <button class="app-form-button">CANCEL</button> --}}
-                        <button class="app-form-button">SEND</button>
-                      </div>
-                    </div>
-                  </div>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="app-form-group">
+                                        <input class="app-form-control" name="fname" placeholder="First Name">
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="app-form-group">
+                                        <input class="app-form-control" name="lname" placeholder="Last Name">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="app-form-group">
+                                <input class="app-form-control" name="email" placeholder="EMAIL">
+                            </div>
+                            <div class="app-form-group">
+                                <input class="app-form-control" name="phone" placeholder="CONTACT NO">
+                            </div>
+                            <div class="app-form-group message">
+                                <textarea class="app-form-control" name="message" placeholder="MESSAGE"></textarea>
+                            </div>
+                            <div class="app-form-group buttons">
+                                {{-- <button class="app-form-button">CANCEL</button> --}}
+                                <button class="app-form-button" type="submit">SEND</button>
+                            </div>
+                            </div>
+                        </div>
+                    </form>
                 </div>
               </div>
             </div>
@@ -71,5 +86,5 @@
         </div>
       </div>
     </div>
-  </section>
+</section>
   <!---------End -------->

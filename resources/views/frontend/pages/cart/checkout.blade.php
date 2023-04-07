@@ -213,11 +213,14 @@
                             <!-- Accordion item 2 -->
                             <div class="card">
                                 <div id="headingTwo" class="card-header  shadow-sm ">
-                                    <h6 class="mb-0 font-weight-bold"><a href="#" data-toggle="collapse"
+                                    <h6 class="mb-0 font-weight-bold">
+                                        <a href="#" data-toggle="collapse"
                                             data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo"
                                             class="d-block position-relative collapsed text-black text-uppercase collapsible-link py-2"
-                                            style="font-size: 12px;">Ship
-                                            to Another Address ?</a></h6>
+                                            style="font-size: 12px;">
+                                            Ship to Another Address ?
+                                        </a>
+                                    </h6>
                                 </div>
                                 <div id="collapseTwo" aria-labelledby="headingTwo" data-parent="#accordionExample"
                                     class="collapse">

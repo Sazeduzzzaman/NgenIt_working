@@ -514,7 +514,7 @@
                                 <li>{{ ucwords($item) }}</li>
                             @endforeach
                         </ul>
-                        <button class="common_button2">Read Details</button>
+                        <a href="{{route('blog.details',$techglossy->id)}}" class="common_button">Read Details</a>
                     </div>
                 </div>
             @endif

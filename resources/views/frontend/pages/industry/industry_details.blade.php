@@ -260,7 +260,7 @@
         <!--------item-------> @foreach ($storys as $item) <div class="col-lg-3 col-md-6 col-sm-12">
           <div class="related-item">
             <a href="">
-              <img class="img-fluid" src="{{ asset('storage/requestImg/' . $item->image) }}" alt="" style="height: 190px; ">
+              <img class="img-fluid" src="{{ asset('storage/requestImg/' . $item->image) }}" alt="" style="height: 140px; ">
               <h4>{{$item->badge}}
                 </h6>
                 <h3>

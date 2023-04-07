@@ -147,7 +147,7 @@
                     </div>
                 </div>
                 <div class="mb-5">
-                    <div class="callout m-0 p-4">
+                    <div class="callout m-0 p-4 text-center">
                         <p><strong>{!!$blog->footer!!} </strong></p>
                     </div>
                 </div>

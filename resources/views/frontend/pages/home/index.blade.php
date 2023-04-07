@@ -78,7 +78,7 @@
         }
 
         .Advance-Slider .item {
-            height: 80vh;
+            height: 65vh; /*80vh*/
             overflow: hidden;
             outline: none;
         }
@@ -516,7 +516,7 @@
         <div class="container px-4">
             <div class="row gx-5">
                 <div class="col">
-                    <div class="p-5 border bg-light custom_shadow">
+                    <div class="border bg-light custom_shadow" style="padding:2.8rem;">
                         <h2 class="text-center">{{ $home->btn1_title }}</h2>
                         <div class="home_card_button">
                             <a class="effect01" href="{{ route('learn.more') }}">{{ $home->btn1_name }}</a>
@@ -524,7 +524,7 @@
                     </div>
                 </div>
                 <div class="col">
-                    <div class="p-5 border bg-light custom_shadow">
+                    <div class="border bg-light custom_shadow" style="padding:2.8rem;">
                         <h2 class="text-center">{{ $home->btn2_title }}</h2>
                         <div class="home_card_button">
                             <a class="effect01" href="{{ $home->btn2_link }}">{{ $home->btn2_name }}</a>
@@ -553,10 +553,10 @@
                 <div class="text-center">
                     <img src="{{ asset('storage/requestImg/' . $feature1->logo) }}" alt="" height="80px"
                         width="85px">
-                    <h5>{{ Str::limit($feature1->badge, 16) }}</h5>
+                    <h5>{{ Str::limit($feature1->badge, 30) }}</h5>
                 </div>
                 <div class="feature_description">
-                    <p class="feature_descrip">{{ Str::limit($feature1->header, 55) }}</p>
+                    <p class="feature_descrip">{{ Str::limit($feature1->header, 80) }}</p>
                 </div>
                 <a href="{{ route('feature.details', $feature1->id) }}" class="business_item_button">
                     <span>Learn More</span>
@@ -571,10 +571,10 @@
                 <div class="text-center">
                     <img src="{{ asset('storage/requestImg/' . $feature2->logo) }}" alt="" height="80px"
                         width="85px">
-                    <h5>{{ Str::limit($feature2->badge, 16) }}</h5>
+                    <h5>{{ Str::limit($feature2->badge, 30) }}</h5>
                 </div>
                 <div class="feature_description">
-                    <p class="feature_descrip">{{ Str::limit($feature2->header, 55) }}</p>
+                    <p class="feature_descrip">{{ Str::limit($feature2->header, 80) }}</p>
                 </div>
                 <a href="{{ route('feature.details', $feature1->id) }}" class="business_item_button">
                     <span>Learn More</span>
@@ -589,10 +589,10 @@
                 <div class="text-center">
                     <img src="{{ asset('storage/requestImg/' . $feature3->logo) }}" alt="" height="80px"
                         width="85px">
-                    <h5>{{ Str::limit($feature3->badge, 16) }}</h5>
+                    <h5>{{ Str::limit($feature3->badge, 30) }}</h5>
                 </div>
                 <div class="feature_description">
-                    <p class="feature_descrip">{{ Str::limit($feature3->header, 55) }}</p>
+                    <p class="feature_descrip">{{ Str::limit($feature3->header, 80) }}</p>
                 </div>
                 <a href="{{ route('feature.details', $feature1->id) }}" class="business_item_button">
                     <span>Learn More</span>
@@ -607,10 +607,10 @@
                 <div class="text-center">
                     <img src="{{ asset('storage/requestImg/' . $feature4->logo) }}" alt="" height="80px"
                         width="85px">
-                    <h5>{{ Str::limit($feature4->badge, 16) }}</h5>
+                    <h5>{{ Str::limit($feature4->badge, 30) }}</h5>
                 </div>
                 <div class="feature_description">
-                    <p class="feature_descrip">{{ Str::limit($feature4->header, 55) }}</p>
+                    <p class="feature_descrip">{{ Str::limit($feature4->header, 80) }}</p>
                 </div>
                 <a href="{{ route('feature.details', $feature1->id) }}" class="business_item_button">
                     <span>Learn More</span>
@@ -625,10 +625,10 @@
                 <div class="text-center">
                     <img src="{{ asset('storage/requestImg/' . $feature5->logo) }}" alt="" height="80px"
                         width="85px">
-                    <h5>{{ Str::limit($feature5->badge, 16) }}</h5>
+                    <h5>{{ Str::limit($feature5->badge, 30) }}</h5>
                 </div>
                 <div class="feature_description">
-                    <p class="feature_descrip">{{ Str::limit($feature5->header, 55) }}</p>
+                    <p class="feature_descrip">{{ Str::limit($feature5->header, 80) }}</p>
                 </div>
                 <a href="{{ route('feature.details', $feature1->id) }}" class="business_item_button">
                     <span>Learn More</span>

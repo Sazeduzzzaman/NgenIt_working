@@ -120,19 +120,19 @@
         transition-duration: 0.2s;
     }
     .dropdown-item {
-    display: block;
-    width: 100%;
-    padding: var(--bs-dropdown-item-padding-y) var(--bs-dropdown-item-padding-x);
-    clear: both;
-    font-weight: 400;
-    color: var(--bs-dropdown-link-color);
-    text-align: inherit;
-    text-decoration: none;
-    white-space: nowrap;
-    background-color: transparent;
-    border: 0;
-    padding-left: 0px !important;
-}
+        display: block;
+        width: 100%;
+        padding: var(--bs-dropdown-item-padding-y) var(--bs-dropdown-item-padding-x);
+        clear: both;
+        font-weight: 400;
+        color: var(--bs-dropdown-link-color);
+        text-align: inherit;
+        text-decoration: none;
+        white-space: nowrap;
+        background-color: transparent;
+        border: 0;
+        /* padding-left: 0px !important; */
+    }
 </style>
 
 {{-- New Header Start --}}
@@ -155,20 +155,20 @@
                             <div class="dropdown-menu dropdown-items_drop" aria-labelledby="dropdownMenuButton"
                                 style="z-index: 9999;background: #ae0a46 !important; margin-top: 5px;">
                                 @if (Auth::guard('client')->user())
-                                    <a class="dropdown-item text-white px-3 py-1 p-0"
+                                    <a class="dropdown-item text-white px-3 py-1"
                                         href="{{ route('client.dashboard') }}"
                                         style="border-bottom: 1px #ffffff dotted">Client Dashboard</a>
                                 @else
-                                    <a class="dropdown-item text-white px-3 py-1 p-0" href="{{ route('client.login') }}"
+                                    <a class="dropdown-item text-white px-3 py-1" href="{{ route('client.login') }}"
                                         style="border-bottom: 1px #ffffff dotted">Client</a>
                                 @endif
 
                                 @if (Auth::guard('partner')->user())
-                                    <a class="dropdown-item text-white px-3 py-1 p-0"
+                                    <a class="dropdown-item text-white px-3 py-1"
                                         href="{{ route('partner.dashboard') }}"
                                         style="border-bottom: 1px #ffffff dotted">Partner Dashboard</a>
                                 @else
-                                    <a class="dropdown-item text-white px-3 py-1 p-0"
+                                    <a class="dropdown-item text-white px-3 py-1"
                                         href="{{ route('partner.login') }}"
                                         style="border-bottom: 1px #ffffff dotted">Partner</a>
                                 @endif
@@ -183,8 +183,10 @@
                                 style="z-index: 9999;"> Support </button>
                             <div class="dropdown-menu dropdown-items_drop" aria-labelledby="dropdownMenuButton"
                                 style="z-index: 9999;background: #ae0a46 !important; margin-top: 5px;">
-                                <a class="dropdown-item text-white" href="#">On Call Support</a>
-                                <a class="dropdown-item text-white" href="#">Web Support Assistance</a>
+                                <a class="dropdown-item text-white pl-3" href="#"
+                                    style="border-bottom: 1px #ffffff dotted">On Call Support</a>
+                                <a class="dropdown-item text-white pl-3" href="#"
+                                    style="border-bottom: 1px #ffffff dotted">Web Support Assistance</a>
                             </div>
                         </div>
                         <button class="btn text-white add_cart p-0">
@@ -440,7 +442,7 @@
                                                 <span class="text-uppercase menu_title "></span>
                                                 <p class="mt-2 mr-2"><strong><span style="border-top: 2px solid #ae0a46 !important;">Fea</span>tured Events</strong></p>
                                                 @foreach ($feature_events as $item)
-                                                    <a class="text-black" href="{{route('techglossy.details',$item->id)}}">
+                                                    <a class="text-black" href="{{route('feature.details',$item->id)}}">
                                                         <div class="d-flex align-items-center mb-3">
                                                             <img class="img-fluid"
                                                                 src="{{asset('storage/'.$item->image)}}"
