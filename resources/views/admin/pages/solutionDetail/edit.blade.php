@@ -65,7 +65,8 @@
                                 </div>
                                 {{-- @if ($industrie->id == $industryPage->industry_id) selected @endif --}}
                                 <div class="card-body">
-                                    <form method="post" action="{{ route('solutionDetails.update', $solutionDetail->id) }}" enctype="multipart/form-data">
+                                    <form method="post" action="{{ route('solutionDetails.update', $solutionDetail->id) }}"
+                                        enctype="multipart/form-data">
                                         @csrf
                                         @method('PUT')
 
@@ -109,15 +110,40 @@
                                             </div>
                                             <div class="col-sm-9 text-secondary">
                                                 <input type="file" name="banner_image" class="form-control"
-                                                    id="image" accept="image/*" value="{{$solutionDetail->banner_image}}"/>
+                                                    id="image" accept="image/*"
+                                                    value="{{ $solutionDetail->banner_image }}" />
                                                 <div class="form-text">Accepts only png, jpg, jpeg images</div>
                                                 <img id="showImage" height="87px" width="157px"
-                                                    src="{{asset('storage/requestImg/'.$solutionDetail->banner_image)}}"
+                                                    src="{{ asset('storage/requestImg/' . $solutionDetail->banner_image) }}"
                                                     alt="">
                                             </div>
                                         </div>
 
-                                        <div class="row mb-3">
+                                        <!--Row One With List-->
+                                        <div class="row border my-2 p-3">
+                                            <div class="col-12 text-center">
+                                                <h5 class="border-bottom pb-2">Row One With List</h5>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <h6 class="mb-0">Row with List ID </h6>
+                                            </div>
+                                            <div class="form-group col-sm-8 text-secondary">
+                                                <select name="row_one_id" data-placeholder="Select row_one_id.."
+                                                    class="form-control select p-1 ">
+                                                    <option></option>
+                                                    @foreach ($rows as $row)
+                                                        <option @if ($row->id == $solutionDetail->row_one_id) selected @endif
+                                                            class="form-control" value="{{ $row->id }}">
+                                                            {{ $row->title }}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <!--End Row One With List-->
+
+
+
+                                        {{-- <div class="row mb-3">
                                             <div class="col-sm-4">
                                                 <h6 class="mb-0">row_one_id </h6>
                                             </div>
@@ -148,194 +174,287 @@
                                                     @endforeach
                                                 </select>
                                             </div>
-                                        </div>
+                                        </div> --}}
 
 
-                                        <div class="row mb-3">
-                                            <div class="col-sm-4">
-                                                <h6 class="mb-0">Solution Card One </h6>
+                                        <!--Row Two with Solution Card-->
+                                        <div class="row border my-2 py-2">
+                                            <div class="col-12 text-center">
+                                                <h5 class="border-bottom pb-2">Row Two with Solution Card</h5>
                                             </div>
-                                            <div class="form-group col-sm-8 text-secondary">
-                                                <select name="solution_card_one_id" data-placeholder="Select row_four_id.."
-                                                    class="form-control select">
-                                                    <option></option>
-                                                    @foreach ($solution_cards as $solution_card)
-                                                        <option @if ($solution_card->id == $solutionDetail->solution_card_one_id) selected @endif
-                                                            class="form-control" value="{{ $solution_card->id }}">
-                                                            {{ $solution_card->title }}</option>
-                                                    @endforeach
-                                                </select>
+                                            <div class="row mb-3">
+                                                <div class="col-sm-4">
+                                                    <h6 class="mb-0">Solution Card Section Title </h6>
+                                                </div>
+                                                <div class="form-group col-sm-8 text-secondary">
+                                                    <input type="text" value="{{ $solutionDetail->row_two_title }}"
+                                                        name="row_two_title" class="form-control maxlength"
+                                                        maxlength="100" />
+                                                </div>
+                                            </div>
+                                            <div class="row mb-3">
+                                                <div class="col-sm-4">
+                                                    <h6 class="mb-0">Solution Card Section Header</h6>
+                                                </div>
+                                                <div class="form-group col-sm-8 text-secondary">
+                                                    <textarea name="row_two_header" id="" class="form-control" cols="30" rows="3">{{ $solutionDetail->row_two_header }}</textarea>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-lg-4 col-sm-4">
+                                                    <div class="row mb-3">
+                                                        <div class="col-sm-4">
+                                                            <h6 class="mb-0">Solution Card One </h6>
+                                                        </div>
+                                                        <div class="form-group col-sm-8 text-secondary">
+                                                            <select name="solution_card_one_id"
+                                                                data-placeholder="Select row_four_id.."
+                                                                class="form-control select">
+                                                                <option></option>
+                                                                @foreach ($solution_cards as $solution_card)
+                                                                    <option
+                                                                        @if ($solution_card->id == $solutionDetail->solution_card_one_id) selected @endif
+                                                                        class="form-control"
+                                                                        value="{{ $solution_card->id }}">
+                                                                        {{ $solution_card->title }}</option>
+                                                                @endforeach
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-4 col-sm-4">
+                                                    <div class="row mb-3">
+                                                        <div class="col-sm-4">
+                                                            <h6 class="mb-0">Solution Card Two </h6>
+                                                        </div>
+                                                        <div class="form-group col-sm-8 text-secondary">
+                                                            <select name="solution_card_two_id"
+                                                                data-placeholder="Select row_four_id.."
+                                                                class="form-control select">
+                                                                <option></option>
+                                                                @foreach ($solution_cards as $solution_card)
+                                                                    <option
+                                                                        @if ($solution_card->id == $solutionDetail->solution_card_two_id) selected @endif
+                                                                        class="form-control"
+                                                                        value="{{ $solution_card->id }}">
+                                                                        {{ $solution_card->title }}</option>
+                                                                @endforeach
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-4 col-sm-4">
+                                                    <div class="row mb-3">
+                                                        <div class="col-sm-4">
+                                                            <h6 class="mb-0">Solution Card Three </h6>
+                                                        </div>
+                                                        <div class="form-group col-sm-8 text-secondary">
+                                                            <select name="solution_card_three_id"
+                                                                data-placeholder="Select row_four_id.."
+                                                                class="form-control select">
+                                                                <option></option>
+                                                                @foreach ($solution_cards as $solution_card)
+                                                                    <option
+                                                                        @if ($solution_card->id == $solutionDetail->solution_card_three_id) selected @endif
+                                                                        class="form-control"
+                                                                        value="{{ $solution_card->id }}">
+                                                                        {{ $solution_card->title }}</option>
+                                                                @endforeach
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-3 col-sm-3"></div>
+                                                <div class="col-lg-3 col-sm-3">
+                                                    <div class="row mb-3">
+                                                        <div class="col-sm-4">
+                                                            <h6 class="mb-0">Solution Card Four </h6>
+                                                        </div>
+                                                        <div class="form-group col-sm-8 text-secondary">
+                                                            <select name="solution_card_four_id"
+                                                                data-placeholder="Select row_four_id.."
+                                                                class="form-control select">
+                                                                <option></option>
+                                                                @foreach ($solution_cards as $solution_card)
+                                                                    <option
+                                                                        @if ($solution_card->id == $solutionDetail->solution_card_four_id) selected @endif
+                                                                        class="form-control"
+                                                                        value="{{ $solution_card->id }}">
+                                                                        {{ $solution_card->title }}</option>
+                                                                @endforeach
+                                                            </select>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                                <div class="col-lg-3 col-sm-3">
+                                                    <div class="row mb-3">
+                                                        <div class="col-sm-4">
+                                                            <h6 class="mb-0">Solution Card Five </h6>
+                                                        </div>
+                                                        <div class="form-group col-sm-8 text-secondary">
+                                                            <select name="solution_card_five_id"
+                                                                data-placeholder="Select row_four_id.."
+                                                                class="form-control select">
+                                                                <option></option>
+                                                                @foreach ($solution_cards as $solution_card)
+                                                                    <option
+                                                                        @if ($solution_card->id == $solutionDetail->solution_card_five_id) selected @endif
+                                                                        class="form-control"
+                                                                        value="{{ $solution_card->id }}">
+                                                                        {{ $solution_card->title }}</option>
+                                                                @endforeach
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
-                                        <div class="row mb-3">
-                                            <div class="col-sm-4">
-                                                <h6 class="mb-0">Solution Card Two </h6>
+                                        <!--End Row Two with Solution Card-->
+
+                                        <!--Row Three with Background Color-->
+
+                                        <div class="row">
+                                            <div class="col-12 text-center">
+                                                <h5 class="border-bottom pb-2">Row Three with Background Color</h5>
                                             </div>
-                                            <div class="form-group col-sm-8 text-secondary">
-                                                <select name="solution_card_two_id" data-placeholder="Select row_four_id.."
-                                                    class="form-control select">
-                                                    <option></option>
-                                                    @foreach ($solution_cards as $solution_card)
-                                                        <option @if ($solution_card->id == $solutionDetail->solution_card_two_id) selected @endif
-                                                            class="form-control" value="{{ $solution_card->id }}">
-                                                            {{ $solution_card->title }}</option>
-                                                    @endforeach
-                                                </select>
+                                            <div class="row mb-3">
+                                                <div class="col-sm-4">
+                                                    <h6 class="mb-0">Title </h6>
+                                                </div>
+                                                <div class="form-group col-sm-8 text-secondary">
+                                                    <input type="text" value="{{ $solutionDetail->row_three_title }}"
+                                                        name="row_three_title" class="form-control maxlength"
+                                                        maxlength="100" />
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="row mb-3">
-                                            <div class="col-sm-4">
-                                                <h6 class="mb-0">solution_card_three_id </h6>
-                                            </div>
-                                            <div class="form-group col-sm-8 text-secondary">
-                                                <select name="solution_card_three_id"
-                                                    data-placeholder="Select row_four_id.." class="form-control select">
-                                                    <option></option>
-                                                    @foreach ($solution_cards as $solution_card)
-                                                        <option @if ($solution_card->id == $solutionDetail->solution_card_three_id) selected @endif
-                                                            class="form-control" value="{{ $solution_card->id }}">
-                                                            {{ $solution_card->title }}</option>
-                                                    @endforeach
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="row mb-3">
-                                            <div class="col-sm-4">
-                                                <h6 class="mb-0">solution_card_four_id </h6>
-                                            </div>
-                                            <div class="form-group col-sm-8 text-secondary">
-                                                <select name="solution_card_four_id" data-placeholder="Select row_four_id.."
-                                                    class="form-control select">
-                                                    <option></option>
-                                                    @foreach ($solution_cards as $solution_card)
-                                                        <option @if ($solution_card->id == $solutionDetail->solution_card_four_id) selected @endif
-                                                            class="form-control" value="{{ $solution_card->id }}">
-                                                            {{ $solution_card->title }}</option>
-                                                    @endforeach
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="row mb-3">
-                                            <div class="col-sm-4">
-                                                <h6 class="mb-0">solution_card_five_id </h6>
-                                            </div>
-                                            <div class="form-group col-sm-8 text-secondary">
-                                                <select name="solution_card_five_id"
-                                                    data-placeholder="Select row_four_id.." class="form-control select">
-                                                    <option></option>
-                                                    @foreach ($solution_cards as $solution_card)
-                                                        <option @if ($solution_card->id == $solutionDetail->solution_card_five_id) selected @endif
-                                                            class="form-control" value="{{ $solution_card->id }}">
-                                                            {{ $solution_card->title }}</option>
-                                                    @endforeach
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="row mb-3">
-                                            <div class="col-sm-4">
-                                                <h6 class="mb-0">solution_card_six_id </h6>
-                                            </div>
-                                            <div class="form-group col-sm-8 text-secondary">
-                                                <select name="solution_card_six_id"
-                                                    data-placeholder="Select row_four_id.." class="form-control select">
-                                                    <option></option>
-                                                    @foreach ($solution_cards as $solution_card)
-                                                        <option @if ($solution_card->id == $solutionDetail->solution_card_six_id) selected @endif
-                                                            class="form-control" value="{{ $solution_card->id }}">
-                                                            {{ $solution_card->title }}</option>
-                                                    @endforeach
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="row mb-3">
-                                            <div class="col-sm-4">
-                                                <h6 class="mb-0">solution_card_seven_id </h6>
-                                            </div>
-                                            <div class="form-group col-sm-8 text-secondary">
-                                                <select name="solution_card_seven_id"
-                                                    data-placeholder="Select row_four_id.." class="form-control select">
-                                                    <option></option>
-                                                    @foreach ($solution_cards as $solution_card)
-                                                        <option @if ($solution_card->id == $solutionDetail->solution_card_seven_id) selected @endif
-                                                            class="form-control" value="{{ $solution_card->id }}">
-                                                            {{ $solution_card->title }}</option>
-                                                    @endforeach
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="row mb-3">
-                                            <div class="col-sm-4">
-                                                <h6 class="mb-0">solution_card_eight_id </h6>
-                                            </div>
-                                            <div class="form-group col-sm-8 text-secondary">
-                                                <select name="solution_card_eight_id"
-                                                    data-placeholder="Select row_four_id.." class="form-control select">
-                                                    <option></option>
-                                                    @foreach ($solution_cards as $solution_card)
-                                                        <option @if ($solution_card->id == $solutionDetail->solution_card_eight_id) selected @endif
-                                                            class="form-control" value="{{ $solution_card->id }}">
-                                                            {{ $solution_card->title }}</option>
-                                                    @endforeach
-                                                </select>
+                                            <div class="row mb-3">
+                                                <div class="col-sm-4">
+                                                    <h6 class="mb-0">Header</h6>
+                                                </div>
+                                                <div class="form-group col-sm-8 text-secondary">
+                                                    <textarea name="row_three_header" id="" class="form-control" cols="30" rows="3">{{ $solutionDetail->row_three_header }}</textarea>
+                                                </div>
                                             </div>
                                         </div>
 
+                                        <!--End Row Three with Background Color-->
+
+                                        <!--Row Four with Right side Image-->
+                                        <div class="row border my-2 p-3">
+                                            <div class="col-12 text-center">
+                                                <h5 class="border-bottom pb-2">Row Four with Right side Image</h5>
+                                            </div>
+                                            <div class="row mb-3">
+                                                <div class="col-sm-4">
+                                                    <h6 class="mb-0">Row Four ID </h6>
+                                                </div>
+                                                <div class="form-group col-sm-8 text-secondary">
+                                                    <select name="row_four_id" data-placeholder="Select .."
+                                                        class="form-control select">
+                                                        <option></option>
+                                                        @foreach ($rows as $row)
+                                                            <option @if ($row->id == $solutionDetail->row_four_id) selected @endif
+                                                                class="form-control" value="{{ $row->id }}">
+                                                                {{ $row->title }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!--End Row Four with Right side Image-->
 
 
-                                        <div class="row mb-3">
-                                            <div class="col-sm-4">
-                                                <h6 class="mb-0">row_two_title </h6>
+                                        <!--Row Five with Solution Card-->
+                                        <div class="row border my-2 p-3">
+                                            <div class="col-12 text-center">
+                                                <h5 class="border-bottom pb-2">Row Five with Solution Card</h5>
                                             </div>
-                                            <div class="form-group col-sm-8 text-secondary">
-                                                <input type="text" value="{{ $solutionDetail->row_two_title }}"
-                                                    name="row_two_title" class="form-control maxlength"
-                                                    maxlength="100" />
+                                            <div class="row mb-3">
+                                                <div class="col-sm-4">
+                                                    <h6 class="mb-0">Title </h6>
+                                                </div>
+                                                <div class="form-group col-sm-8 text-secondary">
+                                                    <input type="text" value="{{ $solutionDetail->row_five_title }}"
+                                                        name="row_five_title" class="form-control maxlength"
+                                                        maxlength="100" />
+                                                </div>
+                                            </div>
+                                            <div class="row mb-3">
+                                                <div class="col-sm-4">
+                                                    <h6 class="mb-0">Header</h6>
+                                                </div>
+                                                <div class="form-group col-sm-8 text-secondary">
+                                                    <textarea name="row_five_header" id="" class="form-control" cols="30" rows="3">{{ $solutionDetail->row_five_header }}</textarea>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-lg-4">
+                                                <div class="row mb-3">
+                                                    <div class="col-sm-4">
+                                                        <h6 class="mb-0">Solution Card Six </h6>
+                                                    </div>
+                                                    <div class="form-group col-sm-8 text-secondary">
+                                                        <select name="solution_card_six_id"
+                                                            data-placeholder="Select row_four_id.."
+                                                            class="form-control select">
+                                                            <option></option>
+                                                            @foreach ($solution_cards as $solution_card)
+                                                                <option @if ($solution_card->id == $solutionDetail->solution_card_six_id) selected @endif
+                                                                    class="form-control"
+                                                                    value="{{ $solution_card->id }}">
+                                                                    {{ $solution_card->title }}</option>
+                                                            @endforeach
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-4">
+                                                <div class="row mb-3">
+                                                    <div class="col-sm-4">
+                                                        <h6 class="mb-0">Solution Card Seven </h6>
+                                                    </div>
+                                                    <div class="form-group col-sm-8 text-secondary">
+                                                        <select name="solution_card_seven_id"
+                                                            data-placeholder="Select row_four_id.."
+                                                            class="form-control select">
+                                                            <option></option>
+                                                            @foreach ($solution_cards as $solution_card)
+                                                                <option @if ($solution_card->id == $solutionDetail->solution_card_seven_id) selected @endif
+                                                                    class="form-control"
+                                                                    value="{{ $solution_card->id }}">
+                                                                    {{ $solution_card->title }}</option>
+                                                            @endforeach
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-4">
+                                                <div class="row mb-3">
+                                                    <div class="col-sm-4">
+                                                        <h6 class="mb-0">Solution Card Eight</h6>
+                                                    </div>
+                                                    <div class="form-group col-sm-8 text-secondary">
+                                                        <select name="solution_card_eight_id"
+                                                            data-placeholder="Select row_four_id.."
+                                                            class="form-control select">
+                                                            <option></option>
+                                                            @foreach ($solution_cards as $solution_card)
+                                                                <option @if ($solution_card->id == $solutionDetail->solution_card_eight_id) selected @endif
+                                                                    class="form-control"
+                                                                    value="{{ $solution_card->id }}">
+                                                                    {{ $solution_card->title }}</option>
+                                                            @endforeach
+                                                        </select>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
-                                        <div class="row mb-3">
-                                            <div class="col-sm-4">
-                                                <h6 class="mb-0">row_two_header</h6>
-                                            </div>
-                                            <div class="form-group col-sm-8 text-secondary">
-                                                <textarea name="row_two_header" id="" class="form-control" cols="30" rows="3">{{ $solutionDetail->row_two_header }}</textarea>
-                                            </div>
-                                        </div>
-                                        <div class="row mb-3">
-                                            <div class="col-sm-4">
-                                                <h6 class="mb-0">row_three_title </h6>
-                                            </div>
-                                            <div class="form-group col-sm-8 text-secondary">
-                                                <input type="text" value="{{ $solutionDetail->row_three_title }}"
-                                                    name="row_three_title" class="form-control maxlength"
-                                                    maxlength="100" />
-                                            </div>
-                                        </div>
-                                        <div class="row mb-3">
-                                            <div class="col-sm-4">
-                                                <h6 class="mb-0">row_three_header</h6>
-                                            </div>
-                                            <div class="form-group col-sm-8 text-secondary">
-                                                <textarea name="row_three_header" id="" class="form-control" cols="30" rows="3">{{ $solutionDetail->row_three_header }}</textarea>
-                                            </div>
-                                        </div>
-                                        <div class="row mb-3">
-                                            <div class="col-sm-4">
-                                                <h6 class="mb-0">row_five_title </h6>
-                                            </div>
-                                            <div class="form-group col-sm-8 text-secondary">
-                                                <input type="text" value="{{ $solutionDetail->row_five_title }}"
-                                                    name="row_five_title" class="form-control maxlength"
-                                                    maxlength="100" />
-                                            </div>
-                                        </div>
-                                        <div class="row mb-3">
-                                            <div class="col-sm-4">
-                                                <h6 class="mb-0">row_five_header</h6>
-                                            </div>
-                                            <div class="form-group col-sm-8 text-secondary">
-                                                <textarea name="row_five_header" id="" class="form-control" cols="30" rows="3">{{ $solutionDetail->row_five_header }}</textarea>
-                                            </div>
-                                        </div>
+                                        <!--End Row Five with Solution Card-->
+
+
+
+
                                         <div class="row">
                                             <div class="col-sm-4"></div>
                                             <div class="col-sm-8 text-secondary">

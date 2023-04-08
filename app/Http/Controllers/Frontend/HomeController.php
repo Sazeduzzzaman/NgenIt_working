@@ -659,7 +659,7 @@ class HomeController extends Controller
                             ->where('products.product_type', '=', 'hardware')
                             ->select('brands.id','brands.slug','brands.title','brands.image')
                             ->distinct()->limit(12)->get();
-        
+
 
         $data['solutions'] = SolutionDetail::orderBy('id', 'DESC')->select('id','name')->limit(10)->get();
 

@@ -515,16 +515,16 @@
     <section>
         <div class="container px-4">
             <div class="row gx-5">
-                <div class="col">
-                    <div class="border bg-light custom_shadow" style="padding:2.8rem;">
+                <div class="col px-2">
+                    <div class="border bg-light custom_shadow px-3" style="padding-top:2.8rem;padding-bottom:2.8rem;">
                         <h2 class="text-center">{{ $home->btn1_title }}</h2>
                         <div class="home_card_button">
                             <a class="effect01" href="{{ route('learn.more') }}">{{ $home->btn1_name }}</a>
                         </div>
                     </div>
                 </div>
-                <div class="col">
-                    <div class="border bg-light custom_shadow" style="padding:2.8rem;">
+                <div class="col px-2">
+                    <div class="border bg-light custom_shadow px-3" style="padding-top:2.8rem;padding-bottom:2.8rem;">
                         <h2 class="text-center">{{ $home->btn2_title }}</h2>
                         <div class="home_card_button">
                             <a class="effect01" href="{{ $home->btn2_link }}">{{ $home->btn2_name }}</a>

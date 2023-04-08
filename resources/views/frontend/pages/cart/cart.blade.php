@@ -4,7 +4,7 @@
     <style>
         .counter span {
             display: block;
-            margin-top: -6px;
+            margin-top: -24px;
             font-size: 25px;
             padding: 0 10px;
             cursor: pointer;
@@ -215,7 +215,12 @@
                                     <th width="15%">Unit Price</th>
                                     <th width="17%">QTY</th>
                                     <th width="15%">Unit Total</th>
-                                    <th width="10%"><a href="" class="text-danger">Empty Cart</a></th>
+                                    <th width="10%">
+                                        <form method="get" action="{{route('cart.destroy')}}">
+
+                                            <a href="javascript:void(0);" class="rmvBtn text-danger">Empty Cart</a>
+                                        </form>
+                                    </th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -260,7 +265,7 @@
                 {{-- Header Title End --}}
                 <div class="d-flex justify-content-end  mb-2">
                     <div class="back-to-shop">
-                        <a href="#">&leftarrow; <span class="text-danger fw-bold" style="font-size: 16px">Back to
+                        <a href="{{route('shop')}}">&leftarrow; <span class="text-danger fw-bold" style="font-size: 16px">Back to
                                 shop</span></a>
                     </div>
                 </div>
@@ -709,13 +714,11 @@
 
         }
 
-
         // ---------- END CART INCREMENT -----///
 
 
 
         // -------- CART Decrement  --------//
-
 
         function decreaseCount(a, b, c) {
             var input = b.nextElementSibling;
