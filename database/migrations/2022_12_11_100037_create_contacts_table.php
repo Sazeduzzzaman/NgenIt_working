@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('phone');
             $table->string('email');
             $table->string('state')->nullable();
+            $table->string('serial_number')->nullable();
             $table->string('country')->nullable();
             $table->string('company')->nullable();
             $table->string('msg_type')->nullable();

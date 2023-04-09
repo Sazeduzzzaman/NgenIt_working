@@ -566,7 +566,7 @@ class SourcingController extends Controller
         Product::findOrFail($product_id->id)->update([
             'price'           => $request->price,
             'action_status'   => 'product_approved',
-             'product_status' => 'product',
+            'product_status' => 'product',
             ]);
 
         Toastr::success('Product has been approved Successfully');

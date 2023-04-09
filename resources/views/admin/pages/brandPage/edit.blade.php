@@ -114,7 +114,7 @@
                                                         <input type="file" name="brand_logo" class="form-control"
                                                             id="image1" accept="image/*" />
                                                         <div class="form-text">Accepts only png, jpg, jpeg images</div>
-                                                        <img id="showImage1" height="70px" width="70px"
+                                                        <img id="showImage1" height="60px" width="120px" style="background: black;"
                                                             src="{{ asset('storage/requestImg/' . $brandPage->brand_logo) }}"
                                                             alt="">
                                                     </div>
@@ -131,7 +131,7 @@
                                                         <input type="file" name="banner_image" class="form-control"
                                                             id="image1" accept="image/*" />
                                                         <div class="form-text">Accepts only png, jpg, jpeg images</div>
-                                                        <img id="showImage1" height="70px" width="70px"
+                                                        <img id="showImage1" height="60px" width="120px"
                                                             src="{{ asset('storage/requestImg/' . $brandPage->banner_image) }}"
                                                             alt="">
                                                     </div>

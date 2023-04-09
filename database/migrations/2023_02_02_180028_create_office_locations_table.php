@@ -15,13 +15,16 @@ return new class extends Migration
     {
         Schema::create('office_locations', function (Blueprint $table) {
             $table->id();
-            $table->string('name')->nullable();
+            $table->unsignedBigInteger('region_id')->nullable();
             $table->unsignedBigInteger('country_id')->nullable();
+            $table->string('name')->nullable();
             $table->text('address')->nullable();
             $table->string('mobile_number')->nullable();
             $table->string('whatsapp_number')->nullable();
             $table->string('zip_code')->nullable();
-            $table->foreign('country_id')->references('id')->on('countries')->onUpdate('cascade')->onDelete('cascade');
+            $table->string('email_id')->nullable();
+            $table->foreign('region_id')->references('id')->on('regions')->onUpdate('cascade');
+            $table->foreign('country_id')->references('id')->on('countries')->onUpdate('cascade');
             $table->timestamps();
         });
     }

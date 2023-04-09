@@ -77,30 +77,7 @@ class TaxVatController extends Controller
         return redirect()->back();
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        $data['regions']   = Region::select('regions.id', 'regions.region_name')->get();
-        $data['countries'] = Country::select('countries.id', 'countries.country_name')->get();
-        $data['taxVat']    = TaxVat::find($id);
-        return view('admin.pages.taxVat.edit', $data);
-    }
 
     /**
      * Update the specified resource in storage.

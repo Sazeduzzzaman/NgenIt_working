@@ -19,28 +19,46 @@ class UsersTableSeeder extends Seeder
         DB::table('users')->insert([
             //Admin
             [
-                'name' => 'Ngen It Admin',
-                'email' => 'admin@ngenit.com',
+                'name' => 'Ngen It Super Admin',
+                'email' => 'ngenit@gmail.com',
                 'password' => Hash::make('ngenitadmin'),
+                'role' => 'admin',
+                'status' => 'active',
+
+            ],
+            //Admin
+            // [
+            //     'name' => 'Ngen It Admin',
+            //     'email' => 'jara.groups@gmail.com',
+            //     'password' => Hash::make('ngenitadmin'),
+            //     'role' => 'admin',
+            //     'status' => 'active',
+
+            // ],
+              //Sales Admin
+            [
+                'name' => 'Sales Admin',
+                'email' => 'sales@ngenitltd.com',
+                'password' => Hash::make('12345678'),
                 'role' => 'admin',
                 'status' => 'active',
 
             ],
               //Sales
             [
-                'name' => 'Ngen It Sales',
-                'email' => 'sales@ngenit.com',
-                'password' => Hash::make('111'),
+                'name' => 'Sales Manager',
+                'email' => 'bdm@ngenitltd.com',
+                'password' => Hash::make('12345678'),
                 'role' => 'sales',
                 'status' => 'active',
 
             ],
               //User OR Customer
             [
-                'name' => 'Ngen It Client',
-                'email' => 'client@ngenit.com',
-                'password' => Hash::make('111'),
-                'role' => 'client',
+                'name' => 'Finance Admin',
+                'email' => 'finance@ngenitltd.com',
+                'password' => Hash::make('12345678'),
+                'role' => 'accounts',
                 'status' => 'active',
 
             ],

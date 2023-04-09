@@ -15,29 +15,36 @@ return new class extends Migration
     {
         Schema::create('partners', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('company_name')->nullable();
-            $table->string('company_site_name')->nullable();
-            $table->text('company_address')->nullable();
-            $table->string('company_email_address')->nullable();
-            $table->string('primary_email_address')->unique();
-            $table->string('phone_number')->nullable();
-            $table->string('company_number')->nullable();
-            $table->string('company_trade_license')->nullable();
-            $table->string('company_tin_number')->nullable();
-            $table->string('company_vat')->nullable();
-            $table->string('business_type')->nullable();
-            $table->string('business_since')->nullable()->comment('business_since');
-            $table->string('logo')->nullable();
+            $table->string('name')->nullable();
+            $table->string('phone')->nullable();
+            $table->string('email')->nullable();
+            $table->string('image')->nullable();
+            $table->text('address')->nullable();
             $table->string('city')->nullable();
             $table->string('country')->nullable();
-            $table->string('postal')->nullable();
-            $table->string('last_seen')->nullable();
-            $table->enum('status', ['active', 'inactive'])->default('inactive')->nullable();
-            // $table->tinyInteger('is_partner')->default(0);
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
+            $table->bigInteger('postal')->nullable();
+            $table->enum('status',['active','inactive'])->nullable();
+            $table->string('company_name')->nullable();
+            $table->string('company_phone_number')->nullable();
+            $table->string('company_logo')->nullable();
+            $table->string('company_url')->nullable();
+            $table->date('company_established_date')->nullable();
+            $table->text('company_address')->nullable();
+            $table->string('vat_number')->nullable();
+            $table->string('tax_number')->nullable();
+            $table->string('trade_license_number')->nullable();
+            $table->string('tin_number')->nullable();
+            $table->string('tin')->nullable()->comment('pdf');
+            $table->string('bin_certificate')->nullable()->comment('pdf');
+            $table->string('trade_license')->nullable()->comment('pdf');
+            $table->string('audit_paper')->nullable()->comment('pdf');
+            $table->string('industry_id_percentage')->nullable()->comment('multi_id');
+            $table->string('product')->nullable()->comment('multi_id');
+            $table->string('solution')->nullable()->comment('multi_id');
+            $table->string('working_country')->nullable()->comment('multi_id');
+            $table->string('yearly_revenue')->nullable()->comment('dropdown-select');
             $table->timestamps();
+
         });
     }
 

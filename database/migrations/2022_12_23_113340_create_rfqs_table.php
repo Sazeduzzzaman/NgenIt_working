@@ -30,6 +30,12 @@ return new class extends Migration
             $table->string('company_name')->nullable();
             $table->string('designation')->nullable();
             $table->text('address')->nullable();
+            $table->string('partner_name')->nullable();
+            $table->string('partner_email')->nullable();
+            $table->string('partner_phone')->nullable();
+            $table->string('partner_company_name')->nullable();
+            $table->string('partner_designation')->nullable();
+            $table->text('partner_address')->nullable();
             $table->date('create_date')->nullable();
             $table->date('close_date')->nullable();
             $table->date('sale_date')->nullable();
@@ -39,7 +45,7 @@ return new class extends Migration
             $table->integer('qty')->nullable();
             $table->string('image')->nullable();
             $table->text('message')->nullable();
-            $table->enum('rfq_type', ['rfq', 'deal' , 'sales'])->default('rfq')->nullable();
+            $table->enum('rfq_type', ['rfq', 'deal' , 'sales' , 'order' ,'delivery'])->default('rfq')->nullable();
             $table->enum('call', ['0', '1'])->default('0')->nullable();
             $table->enum('regular', ['0', '1'])->default('0')->nullable();
             $table->enum('special', ['0', '1'])->default('0')->nullable();

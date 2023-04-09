@@ -127,11 +127,11 @@ class RFQController extends Controller
                         'company_name'         => $request->company_name,
                         'designation'          => $request->designation,
                         'address'              => $request->address,
-                        'create_date'          => Carbon::now(),
+                        'create_date'          => Carbon                    :: now(),
                         'close_date'           => $request->close_date,
-                        'image'                => $globalFunImage['status']  == 1 ? $globalFunImage['file_name'] : '',
+                        'image'                => $globalFunImage['status'] == 1 ? $globalFunImage['file_name']: '',
                         'status'               => 'rfq_created',
-                        'created_at'           => Carbon::now(),
+                        'created_at'           => Carbon                    :: now(),
                     ]);
 
 
@@ -445,6 +445,12 @@ class RFQController extends Controller
                 'company_name'         => $request->company_name,
                 'designation'          => $request->designation,
                 'address'              => $request->address,
+                'partner_name'         => $request->partner_name,
+                'partner_email'        => $request->partner_email,
+                'partner_phone'        => $request->partner_phone,
+                'partner_company_name' => $request->partner_company_name,
+                'partner_designation'  => $request->partner_designation,
+                'partner_address'      => $request->partner_address,
                 'close_date'           => $request->close_date,
                 'pq_code'              => $data['pq_code'],
                 'pqr_code_one'         => $request->pqr_code_one,

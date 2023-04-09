@@ -28,6 +28,7 @@ return new class extends Migration
             $table->string('routing')->nullable();
             $table->string('check_address')->nullable();
             $table->string('check_note')->nullable();
+            $table->double('gst')->nullable();
             $table->foreign('region_id')->references('id')->on('regions')->onUpdate('cascade');
             $table->timestamps();
         });

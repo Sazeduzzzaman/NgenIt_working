@@ -24,6 +24,7 @@ return new class extends Migration
             $table->string('title')->nullable();
             $table->text('header')->nullable();
             $table->string('created_by')->nullable();
+            $table->string('added_by')->nullable();
             $table->string('tags')->nullable();
             $table->string('image')->nullable();
             $table->longText('short_des')->comment('summernote')->nullable();

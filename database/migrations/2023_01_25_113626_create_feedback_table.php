@@ -21,6 +21,7 @@ return new class extends Migration
             $table->enum('pricing',['1','2','3','4','5'])->nullable();
             $table->enum('solutions',['1','2','3','4','5'])->nullable();
             $table->enum('search',['1','2','3','4','5'])->nullable();
+            $table->enum('filtering',['1','2','3','4','5'])->nullable();
             $table->timestamps();
         });
     }

@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('industries', function (Blueprint $table) {
             $table->id();
+            $table->string('category')->nullable();
             $table->string('title')->nullable();
             $table->string('logo')->nullable();
             $table->string('image')->nullable();

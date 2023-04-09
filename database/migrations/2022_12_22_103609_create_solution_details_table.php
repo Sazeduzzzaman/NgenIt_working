@@ -36,6 +36,7 @@ return new class extends Migration
             $table->text('row_three_header')->nullable();
             $table->string('row_five_title')->nullable();
             $table->text('row_five_header')->nullable();
+            $table->string('added_by')->nullable();
 
             $table->foreign('row_one_id')->references('id')->on('rows')->onUpdate('cascade')->onDelete('cascade');
             $table->foreign('solution_card_one_id')->references('id')->on('solution_cards')->onUpdate('cascade')->onDelete('cascade');

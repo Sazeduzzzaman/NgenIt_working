@@ -23,6 +23,7 @@ return new class extends Migration
             $table->string('badge')->nullable();
             $table->string('title')->nullable();
             $table->text('header')->nullable();
+            $table->string('added_by')->nullable();
             $table->string('created_by')->nullable();
             $table->string('tags')->nullable();
             $table->string('image')->nullable();

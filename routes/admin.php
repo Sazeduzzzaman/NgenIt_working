@@ -544,10 +544,10 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
             'expense-type'           => ExpenseTypeController::class,
             'tax-vat'                => TaxVatController::class,
         ]
-        // , [
-        //   'except' => ['show']
-        //   // you can set here other options e.g. 'only', 'except', 'names', 'middleware'
-        // ]
+        , [
+        //   'except' => ['show','tax-vat','create','edit','expense-type']
+          // you can set here other options e.g. 'only', 'except', 'names', 'middleware'
+        ]
     );
 
     //Assign Roles to Sales Manager

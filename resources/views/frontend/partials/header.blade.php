@@ -142,8 +142,9 @@
         <div class="container ">
             <div class="row p-0">
                 <div class="d-flex text-white justify-content-between align-items-center p-0">
-                    <div style="font-family: 'Poppins', sans-serif !important;"><strong>{{ date('Y') }} NGen
-                            It</strong></div>
+                    <div style="font-family: 'Poppins', sans-serif !important;">
+                        {{-- <strong>{{ date('Y') }} NGen It</strong> --}}
+                    </div>
                     <div>{{ $setting->email2 }} | <span style="font-family: 'Poppins', sans-serif !important;">(+88)
                             0258155838</span></div>
                     <div class="d-flex justify-content-end">
@@ -289,10 +290,10 @@
                                                             href="{{ route('feature.details', $item->id) }}">
                                                             <div class="d-flex align-items-center">
                                                                 <img src="{{ asset('storage/' . $item->image) }}"
-                                                                    alt=""  style="width:150px; height:80px;">
+                                                                    alt=""  style="width:140px; height:70px;">
                                                                 <div style="margin-left: 20px;" class="feature_text">
                                                                     <p class="m-0 font-weight-bold">
-                                                                        {{ Str::limit($item->title, 100) }}...</p>
+                                                                        {{ Str::limit($item->title, 100) }}</p>
                                                                     <p class="m-0 font-weight-lighter content_date">
                                                                         {{ $item->badge }} /
                                                                         {{ $item->created_at->format('d-m-Y') }}</p>
@@ -310,9 +311,9 @@
                                                     <a class="text-black" href="{{route('blog.details',$item->id)}}">
                                                         <div class="d-flex align-items-center mb-3">
                                                             <img src="{{ asset('storage/requestImg/' . $item->image) }}"
-                                                                alt=""  style="width:150px; height:80px;">
+                                                                alt=""  style="width:140px; height:70px;">
                                                             <div style="margin-left: 20px;" class="feature_text">
-                                                                <p class="m-0 font-weight-bold">{{ Str::limit($item->title, 55) }}...</p>
+                                                                <p class="m-0 font-weight-bold">{{ Str::limit($item->title, 55) }}</p>
                                                                 <p class="m-0 font-weight-lighter content_date">
                                                                     {{$item->badge}} / {{$item->created_at->format('d-m-Y')}}</p>
                                                             </div>
@@ -325,9 +326,9 @@
                                                 <a class="text-black" href="{{route('story.details',$item->id)}}">
                                                     <div class="d-flex align-items-center mb-3">
                                                         <img src="{{ asset('storage/requestImg/' . $item->image) }}"
-                                                            alt=""  style="width:150px; height:80px;">
+                                                            alt=""  style="width:140px; height:70px;">
                                                         <div style="margin-left: 20px;" class="feature_text">
-                                                            <p class="m-0 font-weight-bold">{{ Str::limit($item->title, 55) }}...</p>
+                                                            <p class="m-0 font-weight-bold">{{ Str::limit($item->title, 55) }}</p>
                                                             <p class="m-0 font-weight-lighter content_date">
                                                                 {{$item->badge}} / {{$item->created_at->format('d-m-Y')}}</p>
                                                         </div>
@@ -340,9 +341,9 @@
                                                 <a class="text-black" href="{{route('techglossy.details',$item->id)}}">
                                                     <div class="d-flex align-items-center mb-3">
                                                         <img src="{{ asset('storage/requestImg/' . $item->image) }}"
-                                                            alt=""  style="width:150px; height:80px;">
+                                                            alt=""  style="width:140px; height:70px;">
                                                         <div style="margin-left: 20px;" class="feature_text">
-                                                            <p class="m-0 font-weight-bold">{{ Str::limit($item->title, 55) }}...</p>
+                                                            <p class="m-0 font-weight-bold">{{ Str::limit($item->title, 55) }}</p>
                                                             <p class="m-0 font-weight-lighter content_date">
                                                                 {{$item->badge}} / {{$item->created_at->format('d-m-Y')}}</p>
                                                         </div>
@@ -444,13 +445,12 @@
                                                 @foreach ($feature_events as $item)
                                                     <a class="text-black" href="{{route('feature.details',$item->id)}}">
                                                         <div class="d-flex align-items-center mb-3">
-                                                            <img class="img-fluid"
-                                                                src="{{asset('storage/'.$item->image)}}"
-                                                                alt="" style="width:150px; height:80px;">
+                                                            <img class="img-fluid" src="{{asset('storage/'.$item->image)}}" alt=""
+                                                                style="width:140px; height:70px;">
 
-                                                            <div class="pl-3">
+                                                            <div class="pl-3 feature_text">
                                                                 <p class="m-0 font-weight-bold">
-                                                                    {{ Str::limit($item->title, 100) }}...</p>
+                                                                    {{ Str::limit($item->title, 100) }}</p>
                                                                 <p class="m-0 font-weight-lighter content_date">
                                                                     {{ $item->badge }} /
                                                                     {{ $item->created_at->format('d-m-Y') }}</p>
@@ -536,7 +536,7 @@
                             @csrf
                             <div class="search-bar">
                                 <input type="text" id="search_text" name="search" class="textbox"
-                                    placeholder="type here..." />
+                                    placeholder="type here" />
                                 <a class="search-btn" href="#" type="submit">
                                     <p><i class="fas fa-search text-white"
                                             style="font-size: 15px; margin: 0px 0px 7px;"></i>

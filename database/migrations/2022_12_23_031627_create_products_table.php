@@ -42,6 +42,13 @@ return new class extends Migration
             $table->enum('refurbished',['0','1'])->default('0')->nullable();
             $table->enum('rfq',['0','1'])->default('0')->nullable();
             $table->string('product_type');
+            $table->unsignedBigInteger('cat_id')->nullable();
+            $table->unsignedBigInteger('sub_cat_id')->nullable();
+            $table->unsignedBigInteger('sub_sub_cat_id')->nullable();
+            $table->unsignedBigInteger('sub_sub_sub_cat_id')->nullable();
+            $table->unsignedBigInteger('brand_id')->nullable();
+            $table->enum('status',['active','inactive'])->default('active');
+            $table->timestamps();
             $table->enum('product_status', ['sourcing', 'product'])->default('sourcing');
             $table->double('source_one_price')->nullable();
             $table->double('source_two_price')->nullable();
@@ -56,30 +63,35 @@ return new class extends Migration
             $table->string('competetor_two_name')->nullable();
             $table->string('competetor_one_link')->nullable();
             $table->string('competetor_two_link')->nullable();
-
             $table->enum('source_one_approval', ['0', '1'])->default(0)->nullable();
             $table->enum('source_two_approval', ['0', '1'])->default(0)->nullable();
-
+            $table->string('notification_days')->nullable();
+            $table->date('create_date')->nullable();
             $table->enum('solid_source', ['yes', 'no'])->default('no')->nullable();
             $table->enum('direct_principal', ['yes', 'no'])->default('no')->nullable();
             $table->enum('agreement', ['yes', 'no'])->default('no')->nullable();
             $table->string('source_type')->nullable();
             $table->text('source_contact')->nullable();
             $table->string('action_status')->nullable();
+            $table->string('added_by')->nullable();
+            $table->double('source_one_estimate_time')->nullabale();
+            $table->double('source_one_principal_time')->nullabale();
+            $table->double('source_one_shipping_time')->nullabale();
+            $table->string('source_one_location')->nullabale();
+            $table->string('source_one_country')->nullabale();
+            $table->double('source_two_estimate_time')->nullabale();
+            $table->double('source_two_principal_time')->nullabale();
+            $table->double('source_two_shipping_time')->nullabale();
+            $table->string('source_two_location')->nullabale();
+            $table->string('source_two_country')->nullabale();
 
-            $table->unsignedBigInteger('cat_id')->nullable();
-            $table->unsignedBigInteger('sub_cat_id')->nullable();
-            $table->unsignedBigInteger('sub_sub_cat_id')->nullable();
-            $table->unsignedBigInteger('sub_sub_sub_cat_id')->nullable();
-            $table->unsignedBigInteger('brand_id')->nullable();
-            $table->enum('status',['active','inactive'])->default('active');
             $table->foreign('brand_id')->references('id')->on('brands')->onDelete('SET NULL');
             $table->foreign('cat_id')->references('id')->on('categories')->onDelete('SET NULL');
             $table->foreign('sub_cat_id')->references('id')->on('sub_categories')->onDelete('SET NULL');
             $table->foreign('sub_sub_cat_id')->references('id')->on('sub_sub_categories')->onDelete('SET NULL');
             $table->foreign('sub_sub_sub_cat_id')->references('id')->on('sub_sub_sub_categories')->onDelete('SET NULL');
 
-            $table->timestamps();
+
         });
     }
 

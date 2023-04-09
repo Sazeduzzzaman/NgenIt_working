@@ -57,6 +57,7 @@ return new class extends Migration
             $table->string('currency')->nullable();
             $table->double('amount')->nullable();
             $table->double('tax')->nullable();
+            $table->double('gst')->nullable();
             $table->double('delivery_charge')->nullable();
             $table->double('packaging_charge')->nullable();
 

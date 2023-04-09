@@ -17,6 +17,11 @@
             color: white !important;
         }
 
+        .feature_text p{
+            font-size: 14px !important;
+            line-height: 20px !important;
+        }
+
         p {
             font-family: "Allumi Std Extended" !important;
             font-size: 16px;
@@ -107,7 +112,7 @@
 
                     </div>
                     <div class="col-lg-6 col-sm-12">
-                        <img class="img-fluid mt-5" src="{{ asset('storage/' . $row_one->image) }}" alt=""
+                        <img class="img-fluid" src="{{ asset('storage/' . $row_one->image) }}" alt=""
                             style="height: 300px;width: 580px;border-radius: 15px;">
                     </div>
                 </div>
@@ -123,7 +128,7 @@
             <div class="container">
                 <div class="row d-flex justify-content-center my-3">
                     <div class="col-lg-6 col-sm-12">
-                        <img class="img-fluid mt-5" src="{{ asset('storage/' . $row_three->image) }}" alt=""
+                        <img class="img-fluid" src="{{ asset('storage/' . $row_three->image) }}" alt=""
                             style="height: 300px;width: 580px;border-radius: 15px;">
                     </div>
                     <div class="col-lg-6 col-sm-12 ">
@@ -215,7 +220,7 @@
 
                     </div>
                     <div class="col-lg-6 col-sm-12">
-                        <img class="img-fluid mt-5" src="{{ asset('storage/' . $row_four->image) }}" alt=""
+                        <img class="img-fluid" src="{{ asset('storage/' . $row_four->image) }}" alt=""
                             style="height: 300px;width: 580px;border-radius: 15px;">
                     </div>
                 </div>
@@ -230,7 +235,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-6 col-sm-12">
-                        <img class="img-fluid mt-5" src="{{ asset('storage/' . $row_five->image) }}"
+                        <img class="img-fluid" src="{{ asset('storage/' . $row_five->image) }}"
                             style="height: 300px;width: 580px;border-radius: 15px;">
                     </div>
                     <div class="col-lg-6 col-sm-12 pl-4 section_text_wrapper">

@@ -44,7 +44,7 @@ return new class extends Migration
             $table->string('row_five_title')->nullable();
 
             $table->text('footer')->nullable();
-
+            $table->string('added_by')->nullable();
 
             $table->timestamps();
         });

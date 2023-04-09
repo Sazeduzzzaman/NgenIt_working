@@ -34,6 +34,7 @@ return new class extends Migration
             $table->text('row_six_header')->nullable();
             $table->string('row_nine_title')->nullable();
             $table->text('row_nine_header')->nullable();
+            $table->string('added_by')->nullable();
 
             $table->foreign('brand_id')->references('id')->on('brands')->onDelete('cascade')->onUpdate('cascade');
             $table->foreign('solution_card_one_id')->references('id')->on('solution_cards')->onDelete('cascade')->onUpdate('cascade');

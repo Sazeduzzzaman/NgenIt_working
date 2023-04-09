@@ -576,7 +576,7 @@
                 <div class="feature_description">
                     <p class="feature_descrip">{{ Str::limit($feature2->header, 80) }}</p>
                 </div>
-                <a href="{{ route('feature.details', $feature1->id) }}" class="business_item_button">
+                <a href="{{ route('feature.details', $feature2->id) }}" class="business_item_button">
                     <span>Learn More</span>
                     <span class="business_item_button_icon">
                         <i class="fa-solid fa-arrow-right-long"></i>
@@ -594,7 +594,7 @@
                 <div class="feature_description">
                     <p class="feature_descrip">{{ Str::limit($feature3->header, 80) }}</p>
                 </div>
-                <a href="{{ route('feature.details', $feature1->id) }}" class="business_item_button">
+                <a href="{{ route('feature.details', $feature3->id) }}" class="business_item_button">
                     <span>Learn More</span>
                     <span class="business_item_button_icon">
                         <i class="fa-solid fa-arrow-right-long"></i>
@@ -612,7 +612,7 @@
                 <div class="feature_description">
                     <p class="feature_descrip">{{ Str::limit($feature4->header, 80) }}</p>
                 </div>
-                <a href="{{ route('feature.details', $feature1->id) }}" class="business_item_button">
+                <a href="{{ route('feature.details', $feature4->id) }}" class="business_item_button">
                     <span>Learn More</span>
                     <span class="business_item_button_icon">
                         <i class="fa-solid fa-arrow-right-long"></i>
@@ -630,7 +630,7 @@
                 <div class="feature_description">
                     <p class="feature_descrip">{{ Str::limit($feature5->header, 80) }}</p>
                 </div>
-                <a href="{{ route('feature.details', $feature1->id) }}" class="business_item_button">
+                <a href="{{ route('feature.details', $feature5->id) }}" class="business_item_button">
                     <span>Learn More</span>
                     <span class="business_item_button_icon">
                         <i class="fa-solid fa-arrow-right-long"></i>
