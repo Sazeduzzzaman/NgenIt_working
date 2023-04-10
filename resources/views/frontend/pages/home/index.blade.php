@@ -433,107 +433,119 @@
     </style>
 
     <!--======// Banner Section //======-->
-    <section>
-        <div class="Advance-Slider">
-            <!-- Item -->
-            <div class="item">
-                <div class="img-fill">
-                    <img src="{{ asset('storage/' . $home->branner1) }}" alt="">
-                    <div class="contain-wrapper">
-                        <div class="dots-contain">
-                            <img class="dots-img" src="{{ asset('storage/' . $home->branner1) }}" alt="">
-                        </div>
-                        <div class="info w-50 mb-3">
-                            <div>
-                                <h3>Be <strong>ambitious.</strong></h3>
-                                <h5 class="text-white my-4 w-75 mx-auto">
-                                    You have what it takes to achieve your bold technology goals.
-                                </h5>
-                            </div>
-                            <div class="my-4">
-                                <a class="common_button2" href="{{ $home->btn2_link }}">{{ $home->btn2_name }}</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- // Item -->
-
-            <!-- Item -->
-            <div class="item">
-                <div class="img-fill">
-                    <img src="{{ asset('storage/' . $home->branner2) }} " alt="">
-                    <div class="contain-wrapper">
-                        <div class="dots-contain">
-                            <img class="dots-img" src="{{ asset('storage/' . $home->branner2) }}" alt="">
-                        </div>
-                        <div class="info w-50 ">
-                            <div>
-                                <h3>Enjoy paid <strong>software.</strong></h3>
-                                <h5 class="text-white my-4 w-75 mx-auto">
-                                    Here is the best-paid software for your device. While free apps are plentiful,
-                                    sometimes it's worth spending money on premium options.
-                                </h5>
-                            </div>
-                            <div class="my-4">
-                                <a class="common_button2" href="{{ $home->btn2_link }}">{{ $home->btn2_name }}</a>
+    @if ($home)
+        <section>
+            <div class="Advance-Slider">
+                <!-- Item -->
+                @if (!empty($home->branner1))
+                    <div class="item">
+                        <div class="img-fill">
+                            <img src="{{ asset('storage/' . $home->branner1) }}" alt="">
+                            <div class="contain-wrapper">
+                                <div class="dots-contain">
+                                    <img class="dots-img" src="{{ asset('storage/' . $home->branner1) }}" alt="">
+                                </div>
+                                <div class="info w-50 mb-3">
+                                    <div>
+                                        <h3>Be <strong>ambitious.</strong></h3>
+                                        <h5 class="text-white my-4 w-75 mx-auto">
+                                            You have what it takes to achieve your bold technology goals.
+                                        </h5>
+                                    </div>
+                                    <div class="my-4">
+                                        <a class="common_button2" href="{{ $home->btn2_link }}">{{ $home->btn2_name }}</a>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
-            <!-- // Item -->
+                @endif
+                <!-- // Item -->
 
-            <!-- Item -->
-            <div class="item">
-                <div class="img-fill">
-                    <img src="{{ asset('storage/' . $home->branner3) }} " alt="">
-                    <div class="contain-wrapper">
-                        <div class="dots-contain">
-                            <img class="dots-img" src="{{ asset('storage/' . $home->branner3) }}" alt="">
-                        </div>
-                        <div class="info w-50 mb-3">
-                            <div>
-                                <h3>Purchase Heavy Equipment's <strong>Parts & Accessories.</strong></h3>
-                                <h5 class="text-white my-4 w-75 mx-auto">
-                                    We are committed to providing you with the highest quality heavy equipment
-                                    parts & accessories at the best prices possible!
-                                </h5>
-                            </div>
-                            <div class="my-4">
-                                <a class="common_button2" href="{{ $home->btn2_link }}">{{ $home->btn2_name }}</a>
+                <!-- Item -->
+                @if (!empty($home->branner2))
+                    <div class="item">
+                        <div class="img-fill">
+                            <img src="{{ asset('storage/' . $home->branner2) }} " alt="">
+                            <div class="contain-wrapper">
+                                <div class="dots-contain">
+                                    <img class="dots-img" src="{{ asset('storage/' . $home->branner2) }}" alt="">
+                                </div>
+                                <div class="info w-50 ">
+                                    <div>
+                                        <h3>Enjoy paid <strong>software.</strong></h3>
+                                        <h5 class="text-white my-4 w-75 mx-auto">
+                                            Here is the best-paid software for your device. While free apps are plentiful,
+                                            sometimes it's worth spending money on premium options.
+                                        </h5>
+                                    </div>
+                                    <div class="my-4">
+                                        <a class="common_button2" href="{{ $home->btn2_link }}">{{ $home->btn2_name }}</a>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
-            <!-- // Item -->
+                @endif
+                <!-- // Item -->
 
-        </div>
-    </section>
+                <!-- Item -->
+                @if (!empty($home->branner3))
+                    <div class="item">
+                        <div class="img-fill">
+                            <img src="{{ asset('storage/' . $home->branner3) }} " alt="">
+                            <div class="contain-wrapper">
+                                <div class="dots-contain">
+                                    <img class="dots-img" src="{{ asset('storage/' . $home->branner3) }}" alt="">
+                                </div>
+                                <div class="info w-50 mb-3">
+                                    <div>
+                                        <h3>Purchase Heavy Equipment's <strong>Parts & Accessories.</strong></h3>
+                                        <h5 class="text-white my-4 w-75 mx-auto">
+                                            We are committed to providing you with the highest quality heavy equipment
+                                            parts & accessories at the best prices possible!
+                                        </h5>
+                                    </div>
+                                    <div class="my-4">
+                                        <a class="common_button2" href="{{ $home->btn2_link }}">{{ $home->btn2_name }}</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                @endif
+                <!-- // Item -->
+
+            </div>
+        </section>
+    @endif
     {{-- Banner Bottom Card --}}
-    <section>
-        <div class="container px-4">
-            <div class="row gx-5">
-                <div class="col px-2">
-                    <div class="border bg-light custom_shadow px-3" style="padding-top:2.8rem;padding-bottom:2.8rem;">
-                        <h2 class="text-center">{{ $home->btn1_title }}</h2>
-                        <div class="home_card_button">
-                            <a class="effect01" href="{{ route('learn.more') }}">{{ $home->btn1_name }}</a>
-                        </div>
+    @if (!empty($home))
+        <section>
+            <div class="container px-4">
+                <div class="row gx-5">
+                    <div class="col px-2">
+                        @if (!empty($home->btn1_title))
+                            <div class="border bg-light custom_shadow px-3" style="padding-top:2.8rem;padding-bottom:2.8rem;">
+                                <h2 class="text-center">{{ $home->btn1_title }}</h2>
+                                <div class="home_card_button">
+                                    <a class="effect01" href="{{ route('learn.more') }}">{{ $home->btn1_name }}</a>
+                                </div>
+                            </div>
+                        @endif
                     </div>
-                </div>
-                <div class="col px-2">
-                    <div class="border bg-light custom_shadow px-3" style="padding-top:2.8rem;padding-bottom:2.8rem;">
-                        <h2 class="text-center">{{ $home->btn2_title }}</h2>
-                        <div class="home_card_button">
-                            <a class="effect01" href="{{ $home->btn2_link }}">{{ $home->btn2_name }}</a>
+                    <div class="col px-2">
+                        <div class="border bg-light custom_shadow px-3" style="padding-top:2.8rem;padding-bottom:2.8rem;">
+                            <h2 class="text-center">{{ $home->btn2_title }}</h2>
+                            <div class="home_card_button">
+                                <a class="effect01" href="{{ $home->btn2_link }}">{{ $home->btn2_name }}</a>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
+    @endif
     <!---------End -------->
 
     <!--======// Business section //======-->

@@ -68,8 +68,11 @@
 
 use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CRMController;
 use Illuminate\Support\Facades\Artisan;
 use App\Http\Controllers\SAS\SASController;
+use App\Http\Controllers\BusinessController;
+use App\Http\Controllers\DeliveryController;
 use App\Http\Controllers\Admin\JobController;
 use App\Http\Controllers\Admin\RFQController;
 use App\Http\Controllers\Admin\RowController;
@@ -77,10 +80,13 @@ use App\Http\Controllers\Admin\BlogController;
 use App\Http\Controllers\Admin\DealController;
 use App\Http\Controllers\Admin\PageController;
 use App\Http\Controllers\Admin\RoleController;
+use App\Http\Controllers\HRandAdminController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Admin\StoryController;
 use App\Http\Controllers\SAS\DealSasController;
+use App\Http\Controllers\SiteContentController;
+use App\Http\Controllers\SiteSettingController;
 use App\Http\Controllers\Admin\ClientController;
 use App\Http\Controllers\Admin\ClientPermission;
 use App\Http\Controllers\Admin\IncomeController;
@@ -109,6 +115,7 @@ use App\Http\Controllers\Admin\IndustryController;
 use App\Http\Controllers\Admin\PurchaseController;
 use App\Http\Controllers\Admin\SolutionController;
 use App\Http\Controllers\Admin\SourcingController;
+use App\Http\Controllers\AccountsFinanceController;
 use App\Http\Controllers\Admin\BrandPageController;
 use App\Http\Controllers\Admin\KnowledgeController;
 use App\Http\Controllers\Admin\LearnMoreController;
@@ -543,12 +550,24 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
             'expense-category'       => ExpenseCategoryController::class,
             'expense-type'           => ExpenseTypeController::class,
             'tax-vat'                => TaxVatController::class,
+            'business' => BusinessController::class,
+            'accounts-finance' => AccountsFinanceController::class,
+            'site-content' => SiteContentController::class,
+            'crm' => CRMController::class,
+            'hr-and-admin' => HRandAdminController::class,
+            'site-setting' => SiteSettingController::class,
+            'delivery' => DeliveryController::class,
+            'sales-dashboard' => SalesDashboardController::class,
+            'marketing-dashboard' => MarketingDashboardController::class,
+            'product-showcase-dashboard' => ProductShowcaseDashboardController::class,
         ]
         , [
         //   'except' => ['show','tax-vat','create','edit','expense-type']
           // you can set here other options e.g. 'only', 'except', 'names', 'middleware'
         ]
     );
+
+    Route::get('supply-chain',  [AdminController::class,'supplyChain'])->name('supplychain');
 
     //Assign Roles to Sales Manager
     Route::put('assign_roles/SalesManager/{id}', [SalesAccountController::class, 'assignSalesManagerRole'])->name('assign.salesmanager-role');

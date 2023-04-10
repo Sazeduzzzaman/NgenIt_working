@@ -1,37 +1,123 @@
 <!-- Main navbar -->
-<div class="navbar navbar-dark navbar-expand-lg navbar-static border-bottom border-bottom-white border-opacity-10"
-style="background: #0080c4;">
+<style>
+    .containers {
+        max-width: 100%;
+    }
+
+    .searchbar {
+        position: relative;
+        min-width: 35px;
+        width: 0%;
+        height: 30px;
+        float: right;
+        -webkit-transition: width 0.3s;
+        -moz-transition: width 0.3s;
+        -ms-transition: width 0.3s;
+        -o-transition: width 0.3s;
+        transition: width 0.3s;
+    }
+
+    .searchbar-input {
+        top: 1px !important;
+        right: 108px;
+        border: 0;
+        outline: 0;
+        background: rgba(255, 255, 255, 0.324);
+        width: 100%;
+        height: 30px;
+        border-radius: 25px;
+        padding: 15px ;
+        margin-top: 8px;
+        font-size: 20px;
+        color: #fff;
+        font-size: 13px;
+    }
+
+    .searchbar-input::-webkit-input-placeholder {
+        color: #fff;
+    }
+
+    .searchbar-input:-moz-placeholder {
+        color: #fff;
+    }
+
+    .searchbar-input::-moz-placeholder {
+        color: #fff;
+    }
+
+    .searchbar-input:-ms-input-placeholder {
+        color: #fff;
+    }
+
+    .searchbar-icon,
+    .searchbar-submit {
+        width: 35px;
+        height: 35px;
+        display: block;
+        border-radius: 50%;
+        position: absolute;
+        top: 5px;
+        font-size: 14px;
+        right: 0;
+        padding: 0;
+        margin: 0;
+        border: 0;
+        outline: 0;
+        line-height: 40px;
+        text-align: center;
+        cursor: pointer;
+        color: #fff;
+        background: none;
+    }
+
+    .searchbar-open {
+        width: 100%;
+    }
+
+    .brand_logo {
+        width: 50px;
+        height: 40px !important;
+    }
+</style>
+<div class="navbar navbar-expand-lg navbar-static border-bottom border-bottom-white border-opacity-10"
+    style="background-image:url('{{ asset('backend/images/final.jpg') }}');background-repeat:no-repeat;  padding:0px; background-size: cover;">
     <div class="container-fluid">
-        <div class="d-flex d-lg-none me-2">
+        {{-- <div class="d-flex d-lg-none me-2">
             <button type="button" class="navbar-toggler sidebar-mobile-main-toggle rounded-pill">
                 <i class="ph-list"></i>
             </button>
-        </div>
+        </div> --}}
         @php
             $setting = App\Models\Admin\Setting::latest()->first();
         @endphp
 
         <div class="navbar-brand flex-1 flex-lg-0">
-            <a href="{{route('admin.dashboard')}}" class="d-inline-flex align-items-center">
-                <img src="{{ (!file_exists('upload/logoimage/'.$setting->logo)) ? url('upload/logoimage/'.$setting->logo):$setting->logo }}" alt="">
-                {{-- <img src="{{asset('upload/logoimage/'.$setting->logo)}}" class="d-none d-sm-inline-block h-16px ms-3" alt=""> --}}
+            <a href="{{ route('admin.dashboard') }}" class="d-inline-flex align-items-center">
+                {{-- <img src="{{ !file_exists('upload/logoimage/' . $setting->logo) ? url('upload/logoimage/' . $setting->logo) : $setting->logo }}"
+                    alt=""> --}}
+                <img src="{{ !file_exists('upload/logoimage/' . $setting->logo) ? url('upload/logoimage/' . $setting->logo) : $setting->logo }}"
+                    class="img-fluid brand_logo" width="50px" height="40px" alt="">
             </a>
         </div>
 
-        <ul class="nav flex-row">
+        {{-- <ul class="nav flex-row">
             <li class="nav-item d-lg-none">
-                <a href="#navbar_search" class="navbar-nav-link navbar-nav-link-icon rounded-pill" data-bs-toggle="collapse">
+                <a href="#navbar_search" class="navbar-nav-link navbar-nav-link-icon rounded-pill"
+                    data-bs-toggle="collapse">
                     <i class="ph-magnifying-glass"></i>
                 </a>
             </li>
 
 
-        </ul>
+        </ul> --}}
 
-        <div class="navbar-collapse justify-content-center flex-lg-1 order-2 order-lg-1 collapse" id="navbar_search">
+
+
+        {{-- <div class="navbar-collapse justify-content-center flex-lg-1 order-2 order-lg-1 collapse" id="navbar_search">
             <div class="navbar-search flex-fill position-relative mt-2 mt-lg-0 mx-lg-3">
                 <div class="form-control-feedback form-control-feedback-start flex-grow-1" data-color-theme="dark">
-                    <input type="text" class="form-control bg-transparent rounded-pill" placeholder="Search" data-bs-toggle="dropdown" style="width: 17rem">
+                    <input type="text" class="form-control bg-transparent rounded-pill" placeholder="Search"
+                        data-bs-toggle="dropdown" style="width: 17rem; height: 2rem;">
                     <div class="form-control-feedback-icon">
                         <i class="ph-magnifying-glass"></i>
                     </div>
@@ -56,7 +142,8 @@ style="background: #0080c4;">
 
                             <div class="dropdown-item cursor-pointer">
                                 <div class="me-3">
-                                    <img src="{{ asset('/') }}backend/assets/images/demo/users/face3.jpg" class="w-32px h-32px rounded-pill" alt="">
+                                    <img src="{{ asset('/') }}backend/assets/images/demo/users/face3.jpg"
+                                        class="w-32px h-32px rounded-pill" alt="">
                                 </div>
 
                                 <div class="d-flex flex-column flex-grow-1">
@@ -73,7 +160,8 @@ style="background: #0080c4;">
 
                             <div class="dropdown-item cursor-pointer">
                                 <div class="me-3">
-                                    <img src="{{ asset('/') }}backend/assets/images/demo/users/face24.jpg" class="w-32px h-32px rounded-pill" alt="">
+                                    <img src="{{ asset('/') }}backend/assets/images/demo/users/face24.jpg"
+                                        class="w-32px h-32px rounded-pill" alt="">
                                 </div>
 
                                 <div class="d-flex flex-column flex-grow-1">
@@ -100,7 +188,8 @@ style="background: #0080c4;">
 
                             <div class="dropdown-item cursor-pointer">
                                 <div class="me-3">
-                                    <img src="{{ asset('/') }}backend/assets/images/brands/adobe.svg" class="w-32px h-32px rounded-pill" alt="">
+                                    <img src="{{ asset('/') }}backend/assets/images/brands/adobe.svg"
+                                        class="w-32px h-32px rounded-pill" alt="">
                                 </div>
 
                                 <div class="d-flex flex-column flex-grow-1">
@@ -117,7 +206,8 @@ style="background: #0080c4;">
 
                             <div class="dropdown-item cursor-pointer">
                                 <div class="me-3">
-                                    <img src="{{ asset('/') }}backend/assets/images/brands/holiday-inn.svg" class="w-32px h-32px rounded-pill" alt="">
+                                    <img src="{{ asset('/') }}backend/assets/images/brands/holiday-inn.svg"
+                                        class="w-32px h-32px rounded-pill" alt="">
                                 </div>
 
                                 <div class="d-flex flex-column flex-grow-1">
@@ -134,7 +224,8 @@ style="background: #0080c4;">
 
                             <div class="dropdown-item cursor-pointer">
                                 <div class="me-3">
-                                    <img src="{{ asset('/') }}backend/assets/images/brands/ing.svg" class="w-32px h-32px rounded-pill" alt="">
+                                    <img src="{{ asset('/') }}backend/assets/images/brands/ing.svg"
+                                        class="w-32px h-32px rounded-pill" alt="">
                                 </div>
 
                                 <div class="d-flex flex-column flex-grow-1">
@@ -218,32 +309,49 @@ style="background: #0080c4;">
                     </div>
                 </div>
             </div>
-        </div>
+        </div> --}}
 
         <ul class="nav flex-row justify-content-end order-1 order-lg-2">
+            {{-- <li class="nav-item ms-lg-2">
+                <div class="containers">
+                    <form class="searchbar">
+                        <input type="search" placeholder="Search here" name="search" class="searchbar-input"
+                            onkeyup="buttonUp();" required>
+                        <input type="submit" class="searchbar-submit" value="">
+                        <span class="searchbar-icon"><i class="fa fa-search" aria-hidden="true"></i></span>
+                    </form>
+                </div>
+            </li> --}}
             <li class="nav-item ms-lg-2">
-                <a type="button" class="navbar-nav-link navbar-nav-link-icon rounded-pill" data-bs-toggle="offcanvas" data-bs-target="#demo_config">
+                <a type="button" class="navbar-nav-link navbar-nav-link-icon rounded-pill" data-bs-toggle="offcanvas"
+                    data-bs-target="#demo_config">
                     <i class="ph-gear"></i>
                 </a>
             </li>
             @php
-            $ncount = Auth::user()->unreadNotifications()->count()
+                $ncount = Auth::user()
+                    ->unreadNotifications()
+                    ->count();
             @endphp
 
             <li class="nav-item ms-lg-2">
-                <a href="#" class="navbar-nav-link navbar-nav-link-icon rounded-pill" data-bs-toggle="offcanvas" data-bs-target="#notifications">
+                <a href="#" class="navbar-nav-link navbar-nav-link-icon rounded-pill" data-bs-toggle="offcanvas"
+                    data-bs-target="#notifications">
                     <i class="ph-bell"></i>
-                    <span class="badge bg-yellow text-black position-absolute top-0 end-0 translate-middle-top zindex-1 rounded-pill mt-1 me-1">{{ $ncount }}</span>
+                    <span
+                        class="badge bg-yellow text-black position-absolute top-0 end-0 translate-middle-top zindex-1 rounded-pill mt-1 me-1">{{ $ncount }}</span>
                 </a>
             </li>
 
             <li class="nav-item nav-item-dropdown-lg dropdown ms-lg-2">
                 <a href="#" class="navbar-nav-link align-items-center rounded-pill p-1" data-bs-toggle="dropdown">
                     <div class="status-indicator-container">
-                        <img src="{{ (!empty(Auth::user()->photo)) ? url('upload/Profile/admin/'.Auth::user()->photo):url('upload/no_image.jpg') }}" class="w-32px h-32px rounded-pill" alt="">
+                        <img src="{{ !empty(Auth::user()->photo) ? url('upload/Profile/admin/' . Auth::user()->photo) : url('upload/no_image.jpg') }}"
+                            class="rounded-pill" alt="" style="height:1.6rem;width:1.6rem;">
+                            {{-- w-32px h-32px  --}}
                         <span class="status-indicator bg-success"></span>
                     </div>
-                    <span class="d-none d-lg-inline-block mx-lg-2">{{Auth::user()->name}}</span>
+                    <span class="d-none d-lg-inline-block mx-lg-2 text-white">{{ Auth::user()->name }}</span>
                 </a>
 
                 <div class="dropdown-menu dropdown-menu-end">
@@ -283,4 +391,3 @@ style="background: #0080c4;">
     </div>
 </div>
 <!-- /main navbar -->
-

@@ -57,11 +57,11 @@ class HomepageController extends Controller
             $request->all(),
             [
 
-                'branner1' => 'required|image|mimes:png,jpg,jpeg|max:5000',
-                'branner2' => 'required|image|mimes:png,jpg,jpeg|max:5000',
-                'branner3' => 'required|image|mimes:png,jpg,jpeg|max:5000',
-                'header1'    => 'required|max:400',
-                'header2'    => 'required|max:400',
+                'branner1' => 'required|image|mimes: png,jpg,jpeg|max: 5000',
+                'branner2' => 'required|image|mimes: png,jpg,jpeg|max: 5000',
+                'branner3' => 'required|image|mimes: png,jpg,jpeg|max: 5000',
+                'header1'  => 'required|max        : 400',
+                'header2'  => 'required|max        : 400',
 
             ]
 
@@ -89,30 +89,42 @@ class HomepageController extends Controller
                 $globalFunBannerThree = ['status' => 0];
             }
             Homepage::create([
-                'header1'       => $request->header1,
-                'header2'       => $request->header2,
-                'btn1_title'    => $request->btn1_title,
-                'btn1_name'    => $request->btn1_name,
-                'btn1_link'    => $request->btn1_link,
-                'btn2_title'    => $request->btn2_title,
-                'btn2_name'    => $request->btn2_name,
-                'btn2_link'    => $request->btn2_link,
-                'story1_id'    => $request->story1_id,
-                'story2_id'    => $request->story2_id,
-                'story3_id'    => $request->story3_id,
-                'story4_id'    => $request->story4_id,
-                'story5_id'    => $request->story5_id,
-                'solution1_id' => $request->solution1_id,
-                'solution2_id' => $request->solution2_id,
-                'solution3_id' => $request->solution3_id,
-                'solution4_id' => $request->solution4_id,
-                'techglossy_id' => $request->techglossy_id,
-                'success1_id'  => $request->success1_id,
-                'success2_id'  => $request->success2_id,
-                'success3_id'  => $request->success3_id,
-                'branner1' => $globalFunImgBannerOne['status'] == 1 ? $globalFunImgBannerOne['file_name'] : '',
-                'branner2' => $globalFunBannerTwo['status']    == 1 ? $globalFunBannerTwo['file_name']   : '',
-                'branner3' => $globalFunBannerThree['status']  == 1 ? $globalFunBannerThree['file_name'] : '',
+                'banner1_title'             => $request->banner1_title,
+                'banner1_short_description' => $request->banner1_short_description,
+                'banner1_button_name'       => $request->banner1_button_name,
+                'banner1_button_link'       => $request->banner1_button_link,
+                'banner2_title'             => $request->banner2_title,
+                'banner2_short_description' => $request->banner2_short_description,
+                'banner2_button_name'       => $request->banner2_button_name,
+                'banner2_button_link'       => $request->banner2_button_link,
+                'banner3_title'             => $request->banner3_title,
+                'banner3_short_description' => $request->banner3_short_description,
+                'banner3_button_name'       => $request->banner3_button_name,
+                'banner3_button_link'       => $request->banner3_button_link,
+                'header1'                   => $request->header1,
+                'header2'                   => $request->header2,
+                'btn1_title'                => $request->btn1_title,
+                'btn1_name'                 => $request->btn1_name,
+                'btn1_link'                 => $request->btn1_link,
+                'btn2_title'                => $request->btn2_title,
+                'btn2_name'                 => $request->btn2_name,
+                'btn2_link'                 => $request->btn2_link,
+                'story1_id'                 => $request->story1_id,
+                'story2_id'                 => $request->story2_id,
+                'story3_id'                 => $request->story3_id,
+                'story4_id'                 => $request->story4_id,
+                'story5_id'                 => $request->story5_id,
+                'solution1_id'              => $request->solution1_id,
+                'solution2_id'              => $request->solution2_id,
+                'solution3_id'              => $request->solution3_id,
+                'solution4_id'              => $request->solution4_id,
+                'techglossy_id'             => $request->techglossy_id,
+                'success1_id'               => $request->success1_id,
+                'success2_id'               => $request->success2_id,
+                'success3_id'               => $request->success3_id,
+                'branner1'                  => $globalFunImgBannerOne['status'] == 1 ? $globalFunImgBannerOne['file_name']: '',
+                'branner2'                  => $globalFunBannerTwo['status']    == 1 ? $globalFunBannerTwo['file_name']   : '',
+                'branner3'                  => $globalFunBannerThree['status']  == 1 ? $globalFunBannerThree['file_name'] : '',
             ]);
             Toastr::success('data has been created');
         } else {
@@ -160,28 +172,29 @@ class HomepageController extends Controller
      */
     public function update(Request $request, $id)
     {
+        dd($request->all());
 
         $homepage = Homepage::find($id);
         if (!empty($homepage)) {
             $validator =
                 [
                     [
-                        'branner1' => 'required|image|mimes:png,jpg,jpeg|max:5000',
-                        'branner2' => 'required|image|mimes:png,jpg,jpeg|max:5000',
-                        'branner3' => 'required|image|mimes:png,jpg,jpeg|max:5000',
-                        'header1'    => 'required|max:400',
-                        'header2'    => 'required|max:400',
+                        'branner1' => 'required|image|mimes: png,jpg,jpeg|max: 5000',
+                        'branner2' => 'required|image|mimes: png,jpg,jpeg|max: 5000',
+                        'branner3' => 'required|image|mimes: png,jpg,jpeg|max: 5000',
+                        'header1'  => 'required|max        : 400',
+                        'header2'  => 'required|max        : 400',
                     ]
                 ];
         } else {
             $validator =
                 [
                     [
-                        'branner1' => 'required|image|mimes:png,jpg,jpeg|max:5000',
-                        'branner2' => 'required|image|mimes:png,jpg,jpeg|max:5000',
-                        'branner3' => 'required|image|mimes:png,jpg,jpeg|max:5000',
-                        'header1'    => 'required|max:400',
-                        'header2'    => 'required|max:400',
+                        'branner1' => 'required|image|mimes: png,jpg,jpeg|max: 5000',
+                        'branner2' => 'required|image|mimes: png,jpg,jpeg|max: 5000',
+                        'branner3' => 'required|image|mimes: png,jpg,jpeg|max: 5000',
+                        'header1'  => 'required|max        : 400',
+                        'header2'  => 'required|max        : 400',
                     ]
                 ];
         }
@@ -226,30 +239,42 @@ class HomepageController extends Controller
             }
 
             $homepage->update([
-                'header1'      => $request->header1,
-                'header2'      => $request->header2,
-                'btn1_title'   => $request->btn1_title,
-                'btn1_name'    => $request->btn1_name,
-                'btn1_link'    => $request->btn1_link,
-                'btn2_title'   => $request->btn2_title,
-                'btn2_name'    => $request->btn2_name,
-                'btn2_link'    => $request->btn2_link,
-                'story1_id'    => $request->story1_id,
-                'story2_id'    => $request->story2_id,
-                'story3_id'    => $request->story3_id,
-                'story4_id'    => $request->story4_id,
-                'story5_id'    => $request->story5_id,
-                'solution1_id' => $request->solution1_id,
-                'solution2_id' => $request->solution2_id,
-                'solution3_id' => $request->solution3_id,
-                'solution4_id' => $request->solution4_id,
-                'techglossy_id' => $request->techglossy_id,
-                'success1_id'  => $request->success1_id,
-                'success2_id'  => $request->success2_id,
-                'success3_id'  => $request->success3_id,
-                'branner1' => $globalFunImgBannerOne['status'] == 1 ? $globalFunImgBannerOne['file_name'] : $homepage->branner1,
-                'branner2' => $globalFunBannerTwo['status']    == 1 ? $globalFunBannerTwo['file_name']   : $homepage->branner2,
-                'branner3' => $globalFunBannerThree['status']  == 1 ? $globalFunBannerThree['file_name'] : $homepage->branner3,
+                'banner1_title'             => $request->banner1_title,
+                'banner1_short_description' => $request->banner1_short_description,
+                'banner1_button_name'       => $request->banner1_button_name,
+                'banner1_button_link'       => $request->banner1_button_link,
+                'banner2_title'             => $request->banner2_title,
+                'banner2_short_description' => $request->banner2_short_description,
+                'banner2_button_name'       => $request->banner2_button_name,
+                'banner2_button_link'       => $request->banner2_button_link,
+                'banner3_title'             => $request->banner3_title,
+                'banner3_short_description' => $request->banner3_short_description,
+                'banner3_button_name'       => $request->banner3_button_name,
+                'banner3_button_link'       => $request->banner3_button_link,
+                'header1'                   => $request->header1,
+                'header2'                   => $request->header2,
+                'btn1_title'                => $request->btn1_title,
+                'btn1_name'                 => $request->btn1_name,
+                'btn1_link'                 => $request->btn1_link,
+                'btn2_title'                => $request->btn2_title,
+                'btn2_name'                 => $request->btn2_name,
+                'btn2_link'                 => $request->btn2_link,
+                'story1_id'                 => $request->story1_id,
+                'story2_id'                 => $request->story2_id,
+                'story3_id'                 => $request->story3_id,
+                'story4_id'                 => $request->story4_id,
+                'story5_id'                 => $request->story5_id,
+                'solution1_id'              => $request->solution1_id,
+                'solution2_id'              => $request->solution2_id,
+                'solution3_id'              => $request->solution3_id,
+                'solution4_id'              => $request->solution4_id,
+                'techglossy_id'             => $request->techglossy_id,
+                'success1_id'               => $request->success1_id,
+                'success2_id'               => $request->success2_id,
+                'success3_id'               => $request->success3_id,
+                'branner1'                  => $globalFunImgBannerOne['status'] == 1 ? $globalFunImgBannerOne['file_name']: $homepage->branner1,
+                'branner2'                  => $globalFunBannerTwo['status']    == 1 ? $globalFunBannerTwo['file_name']   : $homepage->branner2,
+                'branner3'                  => $globalFunBannerThree['status']  == 1 ? $globalFunBannerThree['file_name'] : $homepage->branner3,
 
 
             ]);

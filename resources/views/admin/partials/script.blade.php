@@ -10,7 +10,6 @@
 <script src="{{ asset('backend/assets/js/vendor/visualization/d3/d3.min.js') }}"></script>
 <script src="{{ asset('backend/assets/js/vendor/visualization/d3/d3_tooltip.js') }}"></script>
 
-
 <script src="{{ asset('backend/assets/js/vendor/tables/datatables/datatables.min.js') }}"></script>
 
 
@@ -21,13 +20,14 @@
 {{-- <script src="{{ asset('backend/assets/js/vendor/editors/ckeditor/ckeditor_classic.js') }}"></script> --}}
 <script src="{{ asset('backend/assets/js/vendor/forms/selects/select2.min.js') }}"></script>
 <script src="{{ asset('backend/assets/js/vendor/forms/tags/tokenfield.min.js') }}"></script>
-
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
 
 <script src="{{ asset('backend') }}/assets/js/vendor/forms/validation/validate.min.js"></script>
 <script src="{{ asset('backend') }}/assets/js/vendor/forms/selects/bootstrap_multiselect.js"></script>
 <script src="{{ asset('backend/assets/js/app.js') }}"></script>
+<script src="{{ asset('backend') }}//assets/demo/pages/widgets_stats.js"></script>
 <script src="{{ asset('backend') }}/assets/demo/pages/form_multiselect.js"></script>
 <script src="{{ asset('backend') }}/assets/demo/pages/form_validation_library.js"></script>
 <script src="{{ asset('backend/assets/demo/pages/form_select2.js') }}"></script>
@@ -70,6 +70,10 @@
 
 
 <script>
+    $(document).ready(function() {
+        $('#example').DataTable();
+    });
+
     $('.product thead').on('click', '.addRow', function() {
         var tr = "<tr>" +
 
@@ -101,7 +105,7 @@
             var self = $(this);
             self.val(self.val().replace(/[^0-9\.]/g, ''));
             if ((evt.which != 46 || self.val().indexOf('.') != -1) && (evt.which < 48 || evt.which >
-                57)) {
+                    57)) {
                 evt.preventDefault();
             }
         });
@@ -135,20 +139,7 @@ function addToCart(event) {
             console.log(error);
          });
 }
-
-
-
-
-
-
 </script> --}}
-
-
-
-
-
-
-
 
 
 <script>
@@ -223,91 +214,91 @@ function addToCart(event) {
 <script>
     $(document).ready(function() {
         $('#short_desc').summernote({
-            placeholder:"Short Description",
-            // toolbar: [
-            //     ['style', ['style']],
-            //     ['font', ['bold', 'underline', 'clear']],
-            //     ['color', ['color']],
-            //     ['para', ['ul', 'ol', 'paragraph']],
-            //     ['table', ['table']],
-            //     ['insert', ['link', 'picture', 'video']],
-            //     ['view', ['fullscreen', 'codeview', 'help']]
-            // ]
+            placeholder: "Short Description",
+            toolbar: [
+                ['style', ['style']],
+                ['font', ['bold', 'underline', 'clear']],
+                ['color', ['color']],
+                ['para', ['ul', 'ol', 'paragraph']],
+                ['table', ['table']],
+                ['insert', ['link', 'picture', 'video']],
+                ['view', ['fullscreen', 'codeview', 'help']]
+            ]
         });
         $('#featured_desc').summernote({
-            placeholder:"Featured Description",
-            // toolbar: [
-            //     ['style', ['style']],
-            //     ['font', ['bold', 'underline', 'clear']],
-            //     ['color', ['color']],
-            //     ['para', ['ul', 'ol', 'paragraph']],
-            //     ['table', ['table']],
-            //     ['insert', ['link', 'picture', 'video']],
-            //     ['view', ['fullscreen', 'codeview', 'help']]
-            // ]
+            placeholder: "Featured Description",
+            toolbar: [
+                ['style', ['style']],
+                ['font', ['bold', 'underline', 'clear']],
+                ['color', ['color']],
+                ['para', ['ul', 'ol', 'paragraph']],
+                ['table', ['table']],
+                ['insert', ['link', 'picture', 'video']],
+                ['view', ['fullscreen', 'codeview', 'help']]
+            ]
         });
         $('#footer').summernote({
-            placeholder:"Conclusion Texts..",
-            // toolbar: [
-            //     ['style', ['style']],
-            //     ['font', ['bold', 'underline', 'clear']],
-            //     ['color', ['color']],
-            //     ['para', ['ul', 'ol', 'paragraph']],
-            //     ['table', ['table']],
-            //     ['insert', ['link', 'picture', 'video']],
-            //     ['view', ['fullscreen', 'codeview', 'help']]
-            // ]
+            placeholder: "Conclusion Texts..",
+            toolbar: [
+                ['style', ['style']],
+                ['font', ['bold', 'underline', 'clear']],
+                ['color', ['color']],
+                ['para', ['ul', 'ol', 'paragraph']],
+                ['table', ['table']],
+                ['insert', ['link', 'picture', 'video']],
+                ['view', ['fullscreen', 'codeview', 'help']]
+            ]
         });
         $('#long_desc').summernote({
-            placeholder:"Long Description",
-            // toolbar: [
-            //     ['style', ['style']],
-            //     ['font', ['bold', 'underline', 'clear']],
-            //     ['color', ['color']],
-            //     ['para', ['ul', 'ol', 'paragraph']],
-            //     ['table', ['table']],
-            //     ['insert', ['link', 'picture', 'video']],
-            //     ['view', ['fullscreen', 'codeview', 'help']]
-            // ]
+            placeholder: "Long Description",
+            toolbar: [
+                ['style', ['style']],
+                ['font', ['bold', 'underline', 'clear']],
+                ['color', ['color']],
+                ['para', ['ul', 'ol', 'paragraph']],
+                ['table', ['table']],
+                ['insert', ['link', 'picture', 'video']],
+                ['view', ['fullscreen', 'codeview', 'help']]
+            ]
         });
         $('#overview').summernote({
-            placeholder:"Product Overview",
-            // toolbar: [
-            //     ['style', ['style']],
-            //     ['font', ['bold', 'underline', 'clear']],
-            //     ['color', ['color']],
-            //     ['para', ['ul', 'ol', 'paragraph']],
-            //     ['table', ['table']],
-            //     ['insert', ['link', 'picture', 'video']],
-            //     ['view', ['fullscreen', 'codeview', 'help']]
-            // ]
+            placeholder: "Product Overview",
+            toolbar: [
+                ['style', ['style']],
+                ['font', ['bold', 'underline', 'clear']],
+                ['color', ['color']],
+                ['para', ['ul', 'ol', 'paragraph']],
+                ['table', ['table']],
+                ['insert', ['link', 'picture', 'video']],
+                ['view', ['fullscreen', 'codeview', 'help']]
+            ]
         });
         $('#specification').summernote({
-            placeholder:"Product Specification",
-            // toolbar: [
-            //     ['style', ['style']],
-            //     ['font', ['bold', 'underline', 'clear']],
-            //     ['color', ['color']],
-            //     ['para', ['ul', 'ol', 'paragraph']],
-            //     ['table', ['table']],
-            //     ['insert', ['link', 'picture', 'video']],
-            //     ['view', ['fullscreen', 'codeview', 'help']]
-            // ]
+            placeholder: "Product Specification",
+            toolbar: [
+                ['style', ['style']],
+                ['font', ['bold', 'underline', 'clear']],
+                ['color', ['color']],
+                ['para', ['ul', 'ol', 'paragraph']],
+                ['table', ['table']],
+                ['insert', ['link', 'picture', 'video']],
+                ['view', ['fullscreen', 'codeview', 'help']]
+            ]
         });
         $('#accessories').summernote({
-            placeholder:"Product accessories",
-            // toolbar: [
-            //     ['style', ['style']],
-            //     ['font', ['bold', 'underline', 'clear']],
-            //     ['color', ['color']],
-            //     ['para', ['ul', 'ol', 'paragraph']],
-            //     ['table', ['table']],
-            //     ['insert', ['link', 'picture', 'video']],
-            //     ['view', ['fullscreen', 'codeview', 'help']]
-            // ]
+            placeholder: "Product accessories",
+            toolbar: [
+                ['style', ['style']],
+                ['font', ['bold', 'underline', 'clear']],
+                ['color', ['color']],
+                ['para', ['ul', 'ol', 'paragraph']],
+                ['table', ['table']],
+                ['insert', ['link', 'picture', 'video']],
+                ['view', ['fullscreen', 'codeview', 'help']]
+            ]
         });
         $('#warranty').summernote({
-            placeholder:"Product warranty",
+            placeholder: "Product warranty",
             toolbar: [
                 ['style', ['style']],
                 ['font', ['bold', 'underline', 'clear']],
@@ -317,16 +308,16 @@ function addToCart(event) {
             ]
         });
         $('#common').summernote({
-            placeholder:"Write Text Here....",
-            // toolbar: [
-            //     ['style', ['style']],
-            //     ['font', ['bold', 'underline', 'clear']],
-            //     ['color', ['color']],
-            //     ['para', ['ul', 'ol', 'paragraph']],
-            //     ['table', ['table']],
-            //     ['insert', ['link', 'picture', 'video']],
-            //     ['view', ['fullscreen', 'codeview', 'help']]
-            // ]
+            placeholder: "Write Text Here....",
+            toolbar: [
+                ['style', ['style']],
+                ['font', ['bold', 'underline', 'clear']],
+                ['color', ['color']],
+                ['para', ['ul', 'ol', 'paragraph']],
+                ['table', ['table']],
+                ['insert', ['link', 'picture', 'video']],
+                ['view', ['fullscreen', 'codeview', 'help']]
+            ]
         });
 
         $("#common").on("keypress", function() {
@@ -359,7 +350,7 @@ function addToCart(event) {
             var self = $(this);
             self.val(self.val().replace(/[^0-9\.]/g, ''));
             if ((evt.which != 46 || self.val().indexOf('.') != -1) && (evt.which < 48 || evt.which >
-                57)) {
+                    57)) {
                 evt.preventDefault();
             }
         });
@@ -368,7 +359,7 @@ function addToCart(event) {
             var self = $(this);
             self.val(self.val().replace(/[^0-9\.]/g, ''));
             if ((evt.which != 46 || self.val().indexOf('.') != -1) && (evt.which < 48 || evt.which >
-                57)) {
+                    57)) {
                 evt.preventDefault();
             }
         });
@@ -377,7 +368,7 @@ function addToCart(event) {
             var self = $(this);
             self.val(self.val().replace(/[^0-9\.]/g, ''));
             if ((evt.which != 46 || self.val().indexOf('.') != -1) && (evt.which < 48 || evt.which >
-                57)) {
+                    57)) {
                 evt.preventDefault();
             }
         });
@@ -386,7 +377,7 @@ function addToCart(event) {
             var self = $(this);
             self.val(self.val().replace(/[^0-9\.]/g, ''));
             if ((evt.which != 46 || self.val().indexOf('.') != -1) && (evt.which < 48 || evt.which >
-                57)) {
+                    57)) {
                 evt.preventDefault();
             }
         });
@@ -395,7 +386,7 @@ function addToCart(event) {
             var self = $(this);
             self.val(self.val().replace(/[^0-9\.]/g, ''));
             if ((evt.which != 46 || self.val().indexOf('.') != -1) && (evt.which < 48 || evt.which >
-                57)) {
+                    57)) {
                 evt.preventDefault();
             }
         });
@@ -404,12 +395,55 @@ function addToCart(event) {
             var self = $(this);
             self.val(self.val().replace(/[^0-9\.]/g, ''));
             if ((evt.which != 46 || self.val().indexOf('.') != -1) && (evt.which < 48 || evt.which >
-                57)) {
+                    57)) {
                 evt.preventDefault();
             }
         });
 
     });
+
+
+    // for search
+    $(document).ready(function() {
+        var submitIcon = $('.searchbar-icon');
+        var inputBox = $('.searchbar-input');
+        var searchbar = $('.searchbar');
+        var isOpen = false;
+        submitIcon.click(function() {
+            if (isOpen == false) {
+                searchbar.addClass('searchbar-open');
+                inputBox.focus();
+                isOpen = true;
+            } else {
+                searchbar.removeClass('searchbar-open');
+                inputBox.focusout();
+                isOpen = false;
+            }
+        });
+        submitIcon.mouseup(function() {
+            return false;
+        });
+        searchbar.mouseup(function() {
+            return false;
+        });
+        $(document).mouseup(function() {
+            if (isOpen == true) {
+                $('.searchbar-icon').css('display', 'block');
+                submitIcon.click();
+            }
+        });
+    });
+
+    function buttonUp() {
+        var inputVal = $('.searchbar-input').val();
+        inputVal = $.trim(inputVal).length;
+        if (inputVal !== 0) {
+            $('.searchbar-icon').css('display', 'none');
+        } else {
+            $('.searchbar-input').val('');
+            $('.searchbar-icon').css('display', 'block');
+        }
+    }
 </script>
 
 

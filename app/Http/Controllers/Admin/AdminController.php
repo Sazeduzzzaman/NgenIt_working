@@ -310,6 +310,11 @@ class AdminController extends Controller
         return response()->json(['msg' => 'Successfully Updated Status', 'status' => true]);
     }
 
+    public function supplyChain()
+    {
+        return view('admin.pages.supplyChain.all');
+    }
+
 
 
 }
