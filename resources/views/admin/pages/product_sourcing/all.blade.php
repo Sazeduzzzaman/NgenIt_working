@@ -9,10 +9,10 @@
             padding: 10px;
         }
     </style>
-    
+
     <div class="content-wrapper">
-        <div class="content">
-            <section>
+
+            
                 <!-- Page header -->
                 <section class="shadow-sm">
                     <div class="d-flex justify-content-between align-items-center">
@@ -232,8 +232,8 @@
                     </div>
                 </section>
 
-            </section>
-        </div>
+
+
     </div>
 
 

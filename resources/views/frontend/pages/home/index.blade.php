@@ -13,13 +13,19 @@
             font-weight: 400;
         }
 
+        /* .footer_top{
+            padding: 13px 0px 1px !important;
+        } */
+        .footer_top p{
+            font-size: 1.5rem !important;
+        }
         .custom_col-2 {
             flex: 0 0 auto;
             width: 20%;
         }
 
         .feature_descrip {
-            height: 6rem;
+            height: 5rem;
         }
 
         .tag_btn {
@@ -34,6 +40,14 @@
             padding: 0;
         }
 
+        p {
+            font-size: 14px !important;
+        }
+
+        .brand_side_text {
+            transition: 0.5s all !important;
+        }
+
         .Advance-Slider {
             float: left;
             width: 100%;
@@ -44,7 +58,7 @@
 
             padding-bottom: 3rem;
             color: #3e332d;
-            margin-top: 7rem;
+            margin-top: 2rem;
         }
 
 
@@ -78,7 +92,8 @@
         }
 
         .Advance-Slider .item {
-            height: 65vh; /*80vh*/
+            height: 65vh;
+            /*80vh*/
             overflow: hidden;
             outline: none;
         }
@@ -304,7 +319,7 @@
             font-size: 2rem;
             font-weight: 300;
             font-family: "allumi-2-std", "Helvetica Neue", "Helvetica", Helvetica, Arial,
-            sans-serif;
+                sans-serif;
             text-transform: capitalize;
         }
 
@@ -339,20 +354,20 @@
         }
 
         /* .Advance-Slider .item h3 {
-                    animation: fadeOutRight 1s both;
-                }
+                                animation: fadeOutRight 1s both;
+                            }
 
-                .Advance-Slider .item.slick-active h3 {
-                    animation: fadeInDown 1s both 1s;
-                }
+                            .Advance-Slider .item.slick-active h3 {
+                                animation: fadeInDown 1s both 1s;
+                            }
 
-                .Advance-Slider .item h5 {
-                    animation: fadeOutLeft 1s both;
-                }
+                            .Advance-Slider .item h5 {
+                                animation: fadeOutLeft 1s both;
+                            }
 
-                .Advance-Slider .item.slick-active h5 {
-                    animation: fadeInLeft 1s both 1.5s;
-                } */
+                            .Advance-Slider .item.slick-active h5 {
+                                animation: fadeInLeft 1s both 1.5s;
+                            } */
         .slick-dotted.slick-slider {
             margin-bottom: -100px !important;
         }
@@ -361,17 +376,26 @@
             display: none;
         }
 
-        /* @keyframes myMove {
-                    from {
-                        transform: scale(1.0, 1.0);
-                        transform-origin: 50% 50%;
-                    }
+        .our_success_item_body {
+            padding: 20px 20px 0px 20px;
+        }
 
-                    to {
-                        transform: scale(1.8, 1.9);
-                        transform-origin: 50% 0%;
-                    }
-                } */
+        h1,
+        h2 {
+            font-size: 24px !important;
+        }
+
+        /* @keyframes myMove {
+                                from {
+                                    transform: scale(1.0, 1.0);
+                                    transform-origin: 50% 50%;
+                                }
+
+                                to {
+                                    transform: scale(1.8, 1.9);
+                                    transform-origin: 50% 0%;
+                                }
+                            } */
 
         @keyframes Slick-FastSwipeIn {
             0% {
@@ -433,7 +457,7 @@
     </style>
 
     <!--======// Banner Section //======-->
-    @if ($home)
+    @if (!empty($home->branner1) && !empty($home->branner2) && !empty($home->branner3))
         <section>
             <div class="Advance-Slider">
                 <!-- Item -->
@@ -446,15 +470,20 @@
                                     <img class="dots-img" src="{{ asset('storage/' . $home->branner1) }}" alt="">
                                 </div>
                                 <div class="info w-50 mb-3">
-                                    <div>
-                                        <h3>Be <strong>ambitious.</strong></h3>
-                                        <h5 class="text-white my-4 w-75 mx-auto">
-                                            You have what it takes to achieve your bold technology goals.
-                                        </h5>
-                                    </div>
-                                    <div class="my-4">
-                                        <a class="common_button2" href="{{ $home->btn2_link }}">{{ $home->btn2_name }}</a>
-                                    </div>
+                                    @if ($home->banner1_title)
+                                        <div>
+                                            <h3><strong>{{ $home->banner1_title }}</strong></h3>
+                                            <h5 class="text-white my-4 w-75 mx-auto">
+                                                {{ $home->banner1_short_description }}
+                                            </h5>
+                                        </div>
+                                    @endif
+                                    @if ($home->banner1_button_link)
+                                        <div class="my-4">
+                                            <a class="common_button2"
+                                                href="{{ $home->banner1_button_link }}">{{ $home->banner1_button_name }}</a>
+                                        </div>
+                                    @endif
                                 </div>
                             </div>
                         </div>
@@ -471,17 +500,21 @@
                                 <div class="dots-contain">
                                     <img class="dots-img" src="{{ asset('storage/' . $home->branner2) }}" alt="">
                                 </div>
-                                <div class="info w-50 ">
-                                    <div>
-                                        <h3>Enjoy paid <strong>software.</strong></h3>
-                                        <h5 class="text-white my-4 w-75 mx-auto">
-                                            Here is the best-paid software for your device. While free apps are plentiful,
-                                            sometimes it's worth spending money on premium options.
-                                        </h5>
-                                    </div>
-                                    <div class="my-4">
-                                        <a class="common_button2" href="{{ $home->btn2_link }}">{{ $home->btn2_name }}</a>
-                                    </div>
+                                <div class="info w-50 mb-3">
+                                    @if ($home->banner2_title)
+                                        <div>
+                                            <h3><strong>{{ $home->banner2_title }}</strong></h3>
+                                            <h5 class="text-white my-4 w-75 mx-auto">
+                                                {{ $home->banner2_short_description }}
+                                            </h5>
+                                        </div>
+                                    @endif
+                                    @if ($home->banner2_button_link)
+                                        <div class="my-4">
+                                            <a class="common_button2"
+                                                href="{{ $home->banner2_button_link }}">{{ $home->banner2_button_name }}</a>
+                                        </div>
+                                    @endif
                                 </div>
                             </div>
                         </div>
@@ -499,16 +532,20 @@
                                     <img class="dots-img" src="{{ asset('storage/' . $home->branner3) }}" alt="">
                                 </div>
                                 <div class="info w-50 mb-3">
-                                    <div>
-                                        <h3>Purchase Heavy Equipment's <strong>Parts & Accessories.</strong></h3>
-                                        <h5 class="text-white my-4 w-75 mx-auto">
-                                            We are committed to providing you with the highest quality heavy equipment
-                                            parts & accessories at the best prices possible!
-                                        </h5>
-                                    </div>
-                                    <div class="my-4">
-                                        <a class="common_button2" href="{{ $home->btn2_link }}">{{ $home->btn2_name }}</a>
-                                    </div>
+                                    @if ($home->banner3_title)
+                                        <div>
+                                            <h3><strong>{{ $home->banner3_title }}</strong></h3>
+                                            <h5 class="text-white my-4 w-75 mx-auto">
+                                                {{ $home->banner3_short_description }}
+                                            </h5>
+                                        </div>
+                                    @endif
+                                    @if ($home->banner3_button_link)
+                                        <div class="my-4">
+                                            <a class="common_button2"
+                                                href="{{ $home->banner3_button_link }}">{{ $home->banner3_button_name }}</a>
+                                        </div>
+                                    @endif
                                 </div>
                             </div>
                         </div>
@@ -523,10 +560,11 @@
     @if (!empty($home))
         <section>
             <div class="container px-4">
-                <div class="row gx-5">
+                <div class="row gx-5 mx-auto" style="width: 80% !important">
                     <div class="col px-2">
                         @if (!empty($home->btn1_title))
-                            <div class="border bg-light custom_shadow px-3" style="padding-top:2.8rem;padding-bottom:2.8rem;">
+                            <div class="border bg-light custom_shadow px-3"
+                                style="padding-top:1.8rem;padding-bottom:1.8rem;height: 11rem; ">
                                 <h2 class="text-center">{{ $home->btn1_title }}</h2>
                                 <div class="home_card_button">
                                     <a class="effect01" href="{{ route('learn.more') }}">{{ $home->btn1_name }}</a>
@@ -535,7 +573,8 @@
                         @endif
                     </div>
                     <div class="col px-2">
-                        <div class="border bg-light custom_shadow px-3" style="padding-top:2.8rem;padding-bottom:2.8rem;">
+                        <div class="border bg-light custom_shadow px-3"
+                            style="padding-top:1.8rem;padding-bottom:1.8rem;height: 11rem; ">
                             <h2 class="text-center">{{ $home->btn2_title }}</h2>
                             <div class="home_card_button">
                                 <a class="effect01" href="{{ $home->btn2_link }}">{{ $home->btn2_name }}</a>
@@ -549,114 +588,130 @@
     <!---------End -------->
 
     <!--======// Business section //======-->
-    <section class="container padding_bottom pt-56 pb-3">
-        <!-- home title -->
-        <div class="row my-3">
-            @if ($home)
-                <div class="home_title">
-                    <h5 class="home_title_heading"> {{ $home->header1 }}</h5>
-                    <p class="home_title_text">{{ $home->header2 }}</p>
-                </div>
-            @endif
-        </div>
-        <!-- business content -->
-        <div class="row d-flex justify-content-center">
-            <div class="custom_col-2 col-md-6 col-sm-12">
-                <div class="text-center">
-                    <img src="{{ asset('storage/requestImg/' . $feature1->logo) }}" alt="" height="80px"
-                        width="85px">
-                    <h5>{{ Str::limit($feature1->badge, 30) }}</h5>
-                </div>
-                <div class="feature_description">
-                    <p class="feature_descrip">{{ Str::limit($feature1->header, 80) }}</p>
-                </div>
-                <a href="{{ route('feature.details', $feature1->id) }}" class="business_item_button">
-                    <span>Learn More</span>
-                    <span class="business_item_button_icon">
-                        <i class="fa-solid fa-arrow-right-long"></i>
-                    </span>
-                </a>
+    @if (!empty($feature1) && !empty($feature2) && !empty($feature3) && !empty($feature4) && !empty($feature5))
+        <section class="container padding_bottom pt-56 pb-3">
+            <!-- home title -->
+            <div class="row my-3">
+                @if ($home)
+                    <div class="home_title w-75 mx-auto">
+                        <h6 class="home_title_heading" style="font-size: 24px;line-height: 28px; text-transform: capitalize"> {{ $home->header1 }}</h6>
+                        <p class="home_title_text" style="font-size: 15px">{{ $home->header2 }}</p>
+                    </div>
+                @endif
+            </div>
+            <!-- business content -->
+
+
+            <div class="row d-flex justify-content-center">
+                @if (!empty($feature1))
+                    <div class="custom_col-2 col-md-6 col-sm-12">
+                        <div class="text-center">
+                            <img src="{{ asset('storage/requestImg/' . $feature1->logo) }}" alt="" height="80px"
+                                width="85px">
+                            <h5>{{ Str::limit($feature1->badge, 30) }}</h5>
+                        </div>
+                        <div class="feature_description">
+                            <p class="feature_descrip">{{ Str::limit($feature1->header, 80) }}</p>
+                        </div>
+                        <a href="{{ route('feature.details', $feature1->id) }}" class="business_item_button">
+                            <span>Learn More</span>
+                            <span class="business_item_button_icon">
+                                <i class="fa-solid fa-arrow-right-long"></i>
+                            </span>
+                        </a>
+                    </div>
+                @endif
+
+
+                @if (!empty($feature2))
+                    <div class="custom_col-2 col-md-6 col-sm-12">
+                        <div class="text-center">
+                            <img src="{{ asset('storage/requestImg/' . $feature2->logo) }}" alt="" height="80px"
+                                width="85px">
+                            <h5>{{ Str::limit($feature2->badge, 30) }}</h5>
+                        </div>
+                        <div class="feature_description">
+                            <p class="feature_descrip">{{ Str::limit($feature2->header, 80) }}</p>
+                        </div>
+                        <a href="{{ route('feature.details', $feature2->id) }}" class="business_item_button">
+                            <span>Learn More</span>
+                            <span class="business_item_button_icon">
+                                <i class="fa-solid fa-arrow-right-long"></i>
+                            </span>
+                        </a>
+                    </div>
+                @endif
+
+
+                @if (!empty($feature3))
+                    <div class="custom_col-2 col-md-6 col-sm-12">
+                        <div class="text-center">
+                            <img src="{{ asset('storage/requestImg/' . $feature3->logo) }}" alt="" height="80px"
+                                width="85px">
+                            <h5>{{ Str::limit($feature3->badge, 30) }}</h5>
+                        </div>
+                        <div class="feature_description">
+                            <p class="feature_descrip">{{ Str::limit($feature3->header, 80) }}</p>
+                        </div>
+                        <a href="{{ route('feature.details', $feature3->id) }}" class="business_item_button">
+                            <span>Learn More</span>
+                            <span class="business_item_button_icon">
+                                <i class="fa-solid fa-arrow-right-long"></i>
+                            </span>
+                        </a>
+                    </div>
+                @endif
+
+
+                @if (!empty($feature4))
+                    <div class="custom_col-2 col-md-6 col-sm-12">
+                        <div class="text-center">
+                            <img src="{{ asset('storage/requestImg/' . $feature4->logo) }}" alt=""
+                                height="80px" width="85px">
+                            <h5>{{ Str::limit($feature4->badge, 30) }}</h5>
+                        </div>
+                        <div class="feature_description">
+                            <p class="feature_descrip">{{ Str::limit($feature4->header, 80) }}</p>
+                        </div>
+                        <a href="{{ route('feature.details', $feature4->id) }}" class="business_item_button">
+                            <span>Learn More</span>
+                            <span class="business_item_button_icon">
+                                <i class="fa-solid fa-arrow-right-long"></i>
+                            </span>
+                        </a>
+                    </div>
+                @endif
+
+
+                @if (!empty($feature5))
+                    <div class="custom_col-2 col-md-6 col-sm-12">
+                        <div class="text-center">
+                            <img src="{{ asset('storage/requestImg/' . $feature5->logo) }}" alt=""
+                                height="80px" width="85px">
+                            <h5>{{ Str::limit($feature5->badge, 30) }}</h5>
+                        </div>
+                        <div class="feature_description">
+                            <p class="feature_descrip">{{ Str::limit($feature5->header, 80) }}</p>
+                        </div>
+                        <a href="{{ route('feature.details', $feature5->id) }}" class="business_item_button">
+                            <span>Learn More</span>
+                            <span class="business_item_button_icon">
+                                <i class="fa-solid fa-arrow-right-long"></i>
+                            </span>
+                        </a>
+                    </div>
+                @endif
             </div>
 
 
-            <div class="custom_col-2 col-md-6 col-sm-12">
-                <div class="text-center">
-                    <img src="{{ asset('storage/requestImg/' . $feature2->logo) }}" alt="" height="80px"
-                        width="85px">
-                    <h5>{{ Str::limit($feature2->badge, 30) }}</h5>
-                </div>
-                <div class="feature_description">
-                    <p class="feature_descrip">{{ Str::limit($feature2->header, 80) }}</p>
-                </div>
-                <a href="{{ route('feature.details', $feature2->id) }}" class="business_item_button">
-                    <span>Learn More</span>
-                    <span class="business_item_button_icon">
-                        <i class="fa-solid fa-arrow-right-long"></i>
-                    </span>
-                </a>
+
+
+            <!-- button -->
+            <div class="business_seftion_button py-3">
+                <a class="effect01" href="{{ route('whatwedo') }}">Explore all of what we do</a>
             </div>
-
-
-            <div class="custom_col-2 col-md-6 col-sm-12">
-                <div class="text-center">
-                    <img src="{{ asset('storage/requestImg/' . $feature3->logo) }}" alt="" height="80px"
-                        width="85px">
-                    <h5>{{ Str::limit($feature3->badge, 30) }}</h5>
-                </div>
-                <div class="feature_description">
-                    <p class="feature_descrip">{{ Str::limit($feature3->header, 80) }}</p>
-                </div>
-                <a href="{{ route('feature.details', $feature3->id) }}" class="business_item_button">
-                    <span>Learn More</span>
-                    <span class="business_item_button_icon">
-                        <i class="fa-solid fa-arrow-right-long"></i>
-                    </span>
-                </a>
-            </div>
-
-
-            <div class="custom_col-2 col-md-6 col-sm-12">
-                <div class="text-center">
-                    <img src="{{ asset('storage/requestImg/' . $feature4->logo) }}" alt="" height="80px"
-                        width="85px">
-                    <h5>{{ Str::limit($feature4->badge, 30) }}</h5>
-                </div>
-                <div class="feature_description">
-                    <p class="feature_descrip">{{ Str::limit($feature4->header, 80) }}</p>
-                </div>
-                <a href="{{ route('feature.details', $feature4->id) }}" class="business_item_button">
-                    <span>Learn More</span>
-                    <span class="business_item_button_icon">
-                        <i class="fa-solid fa-arrow-right-long"></i>
-                    </span>
-                </a>
-            </div>
-
-
-            <div class="custom_col-2 col-md-6 col-sm-12">
-                <div class="text-center">
-                    <img src="{{ asset('storage/requestImg/' . $feature5->logo) }}" alt="" height="80px"
-                        width="85px">
-                    <h5>{{ Str::limit($feature5->badge, 30) }}</h5>
-                </div>
-                <div class="feature_description">
-                    <p class="feature_descrip">{{ Str::limit($feature5->header, 80) }}</p>
-                </div>
-                <a href="{{ route('feature.details', $feature5->id) }}" class="business_item_button">
-                    <span>Learn More</span>
-                    <span class="business_item_button_icon">
-                        <i class="fa-solid fa-arrow-right-long"></i>
-                    </span>
-                </a>
-            </div>
-        </div>
-
-
-        <!-- button -->
-        <div class="business_seftion_button py-3">
-            <a class="effect01" href="{{ route('whatwedo') }}">Explore all of what we do</a>
-        </div>
-    </section>
+        </section>
+    @endif
     <!---------End -------->
 
     <!--=======// Shop product //======-->
@@ -674,7 +729,8 @@
                             <strong
                                 style="font-family: 'Poppins', sans-serif;">{{ App\Models\Admin\Brand::count() }}</strong>
                             brands at your service, we can provide you with the tools
-                            you need to succeed. Additionally, you may easily ask your exact requirements or contact us at anytime.
+                            you need to succeed. Additionally, you may easily ask your exact requirements or contact us at
+                            anytime.
                         </p>
                         <div class="d-flex justify-content-start">
                             <a href="{{ route('shop.html') }}" class="common_button effect01">Shop Now</a>
@@ -729,427 +785,454 @@
     <!---------End -------->
 
     <!--=======// Popular products //======-->
-    <section class="popular_product_section section_padding">
-        <!-- container -->
-        <div class="container">
-            <div class="popular_product_section_content">
-                <!-- section title -->
-                <div class="software_feature_title">
-                    <h1 class="text-center pb-3">Popular Products</h1>
-                </div>
-                <!-- wrapper -->
-                <div class="populer_product_slider">
-                    <!-- product_item -->
-                    @foreach ($products as $item)
-                        <div class="product_item">
-                            <!-- image -->
-                            <div class="product_item_thumbnail">
-                                <img src="{{ asset($item->thumbnail) }}" alt="{{ $item->name }}" width="150px"
-                                    height="113px">
-                            </div>
-                            <!-- product content -->
-                            <div class="product_item_content">
-                                <a href="{{ route('product.details', $item->slug) }}" class="product_item_content_name"
-                                    style="height: 3rem;">{{ Str::limit($item->name, 50) }}</a>
-                                @if ($item->rfq != 1)
-                                    <!-- price -->
-                                    <div class="product_item_price">
-                                        <span class="price_currency">USD</span>
-                                        @if (!empty($item->discount))
-                                            <span class="price_currency_value"
-                                                style="text-decoration: line-through; color:red">$
-                                                {{ $item->price }}</span>
-                                            <span class="price_currency_value" style="color: black">$
-                                                {{ $item->discount }}</span>
-                                        @else
-                                            <span class="price_currency_value">$ {{ $item->price }}</span>
-                                        @endif
-                                    </div>
-                                    <!-- button --> @php
-                                        $cart = Cart::content();
-                                        $exist = $cart->where('id', $item->id);
-                                        //dd($cart->where('image' , $item->thumbnail )->count());
-                                    @endphp
-                                    @if ($cart->where('id', $item->id)->count())
-                                        {{-- <a href="javascript:void(0);" class="common_button6"> </a> --}}
-                                        <span class="common_button6">Already in Cart</span>
-                                    @else
-                                        <form action="{{ route('add.cart') }}" method="post">
-                                            @csrf
-                                            <input type="hidden" name="product_id" id="product_id"
-                                                value="{{ $item->id }}">
-                                            <input type="hidden" name="name" id="name"
-                                                value="{{ $item->name }}">
-                                            <input type="hidden" name="qty" id="qty" value="1">
-                                            <button type="submit" class="common_button effect01">Add to Basket</button>
-                                        </form>
-                                    @endif
-                                @else
-                                    <div class="product_item_price">
-                                        <span class="price_currency_value">
-                                            <a href="javascript:void(0);" data-toggle="modal"
-                                                data-target="#get_quote_modal_{{ $item->id }}">Ask For Price</a>
-                                        </span>
-                                    </div>
+    @if (!empty($products))
+        <section class="popular_product_section section_padding mb-5" style="height: 26rem;">
+            <!-- container -->
+            <div class="container">
+                <div class="popular_product_section_content">
+                    <!-- section title -->
+                    <div class="software_feature_title">
+                        <h1 class="text-center pb-3">Popular Products</h1>
+                    </div>
+                    <!-- wrapper -->
+                    <div class="populer_product_slider">
+                        <!-- product_item -->
+                        @foreach ($products as $item)
+                            <div class="product_item">
+                                <!-- image -->
+                                <div class="product_item_thumbnail">
+                                    <img src="{{ asset($item->thumbnail) }}" alt="{{ $item->name }}" width="150px"
+                                        height="113px">
+                                </div>
+                                <!-- product content -->
+                                <div class="product_item_content">
                                     <a href="{{ route('product.details', $item->slug) }}"
-                                        class="common_button effect01">Details</a>
-                                @endif
+                                        class="product_item_content_name"
+                                        style="height: 3rem;">{{ Str::limit($item->name, 50) }}</a>
+                                    @if ($item->rfq != 1)
+                                        <!-- price -->
+                                        <div class="product_item_price">
+                                            <span class="price_currency">USD</span>
+                                            @if (!empty($item->discount))
+                                                <span class="price_currency_value"
+                                                    style="text-decoration: line-through; color:red">$
+                                                    {{ $item->price }}</span>
+                                                <span class="price_currency_value" style="color: black">$
+                                                    {{ $item->discount }}</span>
+                                            @else
+                                                <span class="price_currency_value">$ {{ $item->price }}</span>
+                                            @endif
+                                        </div>
+                                        <!-- button --> @php
+                                            $cart = Cart::content();
+                                            $exist = $cart->where('id', $item->id);
+                                            //dd($cart->where('image' , $item->thumbnail )->count());
+                                        @endphp
+                                        @if ($cart->where('id', $item->id)->count())
+                                            {{-- <a href="javascript:void(0);" class="common_button6"> </a> --}}
+                                            <span class="common_button6">Already in Cart</span>
+                                        @else
+                                            <form action="{{ route('add.cart') }}" method="post">
+                                                @csrf
+                                                <input type="hidden" name="product_id" id="product_id"
+                                                    value="{{ $item->id }}">
+                                                <input type="hidden" name="name" id="name"
+                                                    value="{{ $item->name }}">
+                                                <input type="hidden" name="qty" id="qty" value="1">
+                                                <button type="submit" class="common_button effect01">Add to
+                                                    Basket</button>
+                                            </form>
+                                        @endif
+                                    @else
+                                        <div class="product_item_price">
+                                            <span class="price_currency_value">
+                                                <a href="javascript:void(0);" data-toggle="modal"
+                                                    data-target="#get_quote_modal_{{ $item->id }}">Ask For Price</a>
+                                            </span>
+                                        </div>
+                                        <a href="{{ route('product.details', $item->slug) }}"
+                                            class="common_button effect01">Details</a>
+                                    @endif
+                                </div>
                             </div>
-                        </div>
-                        <!-- left modal -->
-                        <div class="modal modal_outer fade" id="get_quote_modal_{{ $item->id }}" tabindex="-1"
-                            role="dialog" aria-labelledby="myModalLabel2">
-                            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
+                            <!-- left modal -->
+                            <div class="modal modal_outer fade" id="get_quote_modal_{{ $item->id }}" tabindex="-1"
+                                role="dialog" aria-labelledby="myModalLabel2">
+                                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
 
 
-                                <div class="modal-content">
+                                    <div class="modal-content">
 
-                                    <div class="modal-header p-0 m-0 pl-5 pr-3 py-2"
-                                        style="background: #ae0a46;color: white;">
-                                        <h5 class="modal-title">Get a Quote</h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
-                                    @if (Auth::guard('client')->user())
-                                        <form action="{{ route('rfq.add') }}" method="post" id="get_quote_frm"
-                                            enctype="multipart/form-data">
-                                            @csrf
-                                            <div class="card mx-4">
-                                                <div class="card-body px-4 py-2">
-                                                    <div class="row border" style="font-size: 0.8rem;">
-                                                        <div class="col-lg-3 pl-2">
-                                                            {{ Auth::guard('client')->user()->name }}</div>
-                                                        <div class="col-lg-4" style="margin: 5px 0px">
-                                                            {{ Auth::guard('client')->user()->email }}</div>
-                                                        <div class="col-lg-4" style="margin: 5px 0px">
-                                                            {{ Auth::guard('client')->user()->phone }}
-                                                            <div class="form-group" id="Rfquser" style="display:none">
-                                                                <input type="text" required="" class="form-control"
-                                                                    id="phone" name="phone"
-                                                                    value="{{ Auth::guard('client')->user()->phone }}"
-                                                                    placeholder="Phone Number" style="font-size: 0.8rem;">
+                                        <div class="modal-header p-0 m-0 pl-5 pr-3 py-2"
+                                            style="background: #ae0a46;color: white;">
+                                            <h5 class="modal-title">Get a Quote</h5>
+                                            <button type="button" class="close" data-dismiss="modal"
+                                                aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        @if (Auth::guard('client')->user())
+                                            <form action="{{ route('rfq.add') }}" method="post" id="get_quote_frm"
+                                                enctype="multipart/form-data">
+                                                @csrf
+                                                <div class="card mx-4">
+                                                    <div class="card-body px-4 py-2">
+                                                        <div class="row border" style="font-size: 0.8rem;">
+                                                            <div class="col-lg-3 pl-2">
+                                                                {{ Auth::guard('client')->user()->name }}</div>
+                                                            <div class="col-lg-4" style="margin: 5px 0px">
+                                                                {{ Auth::guard('client')->user()->email }}</div>
+                                                            <div class="col-lg-4" style="margin: 5px 0px">
+                                                                {{ Auth::guard('client')->user()->phone }}
+                                                                <div class="form-group" id="Rfquser"
+                                                                    style="display:none">
+                                                                    <input type="text" required=""
+                                                                        class="form-control" id="phone"
+                                                                        name="phone"
+                                                                        value="{{ Auth::guard('client')->user()->phone }}"
+                                                                        placeholder="Phone Number"
+                                                                        style="font-size: 0.8rem;">
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-lg-1" style="margin: 5px 0px"><a
+                                                                    href="javascript:void(0);" id="editRfquser"><i
+                                                                        class="fa fa-pencil" aria-hidden="true"></i></a>
                                                             </div>
                                                         </div>
-                                                        <div class="col-lg-1" style="margin: 5px 0px"><a
-                                                                href="javascript:void(0);" id="editRfquser"><i
-                                                                    class="fa fa-pencil" aria-hidden="true"></i></a></div>
                                                     </div>
+
                                                 </div>
-
-                                            </div>
-                                            <input type="hidden" name="product_id" value="{{ $item->id }}">
-                                            <input type="hidden" name="client_id"
-                                                value="{{ Auth::guard('client')->user()->id }}">
-                                            <input type="hidden" name="client_type" value="client">
-                                            <input type="hidden" name="name"
-                                                value="{{ Auth::guard('client')->user()->name }}">
-                                            <input type="hidden" name="email"
-                                                value="{{ Auth::guard('client')->user()->email }}">
-                                            {{-- <input type="hidden" name="phone" value="{{Auth::guard('client')->user()->phone}}"> --}}
-                                            <div class="modal-body get_quote_view_modal_body">
+                                                <input type="hidden" name="product_id" value="{{ $item->id }}">
+                                                <input type="hidden" name="client_id"
+                                                    value="{{ Auth::guard('client')->user()->id }}">
+                                                <input type="hidden" name="client_type" value="client">
+                                                <input type="hidden" name="name"
+                                                    value="{{ Auth::guard('client')->user()->name }}">
+                                                <input type="hidden" name="email"
+                                                    value="{{ Auth::guard('client')->user()->email }}">
+                                                {{-- <input type="hidden" name="phone" value="{{Auth::guard('client')->user()->phone}}"> --}}
+                                                <div class="modal-body get_quote_view_modal_body">
 
 
-                                                <div class="form-row">
+                                                    <div class="form-row">
 
-                                                    <div class="form-group col-sm-4 m-0">
+                                                        <div class="form-group col-sm-4 m-0">
 
-                                                        <input type="text" class="form-control mt-4" id="contact"
-                                                            name="company_name"
-                                                            value="{{ Auth::guard('client')->user()->company_name }}"
-                                                            placeholder="Company Name" style="font-size: 0.7rem;">
-                                                    </div>
-                                                    <div class="form-group col-sm-4 m-0">
-
-                                                        <input type="number" class="form-control mt-4" id="contact"
-                                                            name="qty" placeholder="Quantity"
-                                                            style="font-size: 0.7rem;">
-                                                    </div>
-                                                    <div class="form-group col-sm-4">
-                                                        <label class="m-0" for="image"
-                                                            style="font-size: 0.7rem;">Upload Image</label>
-                                                        <input type="file" name="image" class="form-control"
-                                                            id="image" accept="image/*" style="font-size: 0.7rem;" />
-                                                        <div class="form-text" style="font-size:11px;">Only png, jpg, jpeg
-                                                            images</div>
-
-                                                    </div>
-
-                                                    <div class="form-group col-sm-12 border text-white"
-                                                        style="background: #7e7d7c">
-                                                        <h6 class="text-center pt-1">Product Name : {{ $item->name }}
-                                                        </h6>
-                                                    </div>
-
-                                                    <div class="form-group col-sm-12">
-
-                                                        <textarea class="form-control" id="message" name="message" rows="1"
-                                                            placeholder="Additional Information..."></textarea>
-                                                    </div>
-
-                                                    <div class="form-group  col-sm-12 px-3 mx-3">
-                                                        <input class="mr-2" type="checkbox" name="call"
-                                                            id="call" value="1">
-                                                        <label for="call">Also Please Call Me</label>
-
-                                                    </div>
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="submit" class="btn btn-primary col-lg-3"
-                                                        id="submit_btn">Submit &nbsp;<i
-                                                            class="fa fa-paper-plane"></i></button>
-                                                </div>
-                                            </div>
-
-                                        </form>
-                                    @elseif (Auth::guard('partner')->user())
-                                        <form action="{{ route('rfq.add') }}" method="post" id="get_quote_frm"
-                                            enctype="multipart/form-data">
-                                            @csrf
-                                            <div class="card mx-4">
-                                                <div class="card-body p-4">
-                                                    <div class="row border">
-                                                        <div class="col-lg-3 pl-2">Name:
-                                                            {{ Auth::guard('partner')->user()->name }}</div>
-                                                        <div class="col-lg-4" style="margin: 5px 0px">
-                                                            {{ Auth::guard('partner')->user()->primary_email_address }}
+                                                            <input type="text" class="form-control mt-4"
+                                                                id="contact" name="company_name"
+                                                                value="{{ Auth::guard('client')->user()->company_name }}"
+                                                                placeholder="Company Name" style="font-size: 0.7rem;">
                                                         </div>
-                                                        <div class="col-lg-4" style="margin: 5px 0px">
-                                                            {{ Auth::guard('partner')->user()->company_number }}</div>
-                                                        <div class="col-lg-1" style="margin: 5px 0px"><a
-                                                                href="javascript:void(0);" id="editRfqpartner"><i
-                                                                    class="fa fa-pencil" aria-hidden="true"></i></a></div>
+                                                        <div class="form-group col-sm-4 m-0">
+
+                                                            <input type="number" class="form-control mt-4"
+                                                                id="contact" name="qty" placeholder="Quantity"
+                                                                style="font-size: 0.7rem;">
+                                                        </div>
+                                                        <div class="form-group col-sm-4">
+                                                            <label class="m-0" for="image"
+                                                                style="font-size: 0.7rem;">Upload Image</label>
+                                                            <input type="file" name="image" class="form-control"
+                                                                id="image" accept="image/*"
+                                                                style="font-size: 0.7rem;" />
+                                                            <div class="form-text" style="font-size:11px;">Only png, jpg,
+                                                                jpeg
+                                                                images</div>
+
+                                                        </div>
+
+                                                        <div class="form-group col-sm-12 border text-white"
+                                                            style="background: #7e7d7c">
+                                                            <h6 class="text-center pt-1">Product Name :
+                                                                {{ $item->name }}
+                                                            </h6>
+                                                        </div>
+
+                                                        <div class="form-group col-sm-12">
+
+                                                            <textarea class="form-control" id="message" name="message" rows="1"
+                                                                placeholder="Additional Information..."></textarea>
+                                                        </div>
+
+                                                        <div class="form-group  col-sm-12 px-3 mx-3">
+                                                            <input class="mr-2" type="checkbox" name="call"
+                                                                id="call" value="1">
+                                                            <label for="call">Also Please Call Me</label>
+
+                                                        </div>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="submit" class="btn btn-primary col-lg-3"
+                                                            id="submit_btn">Submit &nbsp;<i
+                                                                class="fa fa-paper-plane"></i></button>
                                                     </div>
                                                 </div>
-                                            </div>
-                                            <input type="hidden" name="product_id" value="{{ $item->id }}">
-                                            <input type="hidden" name="client_type" value="partner">
-                                            <input type="hidden" name="partner_id"
-                                                value="{{ Auth::guard('partner')->user()->id }}">
-                                            <input type="hidden" name="name"
-                                                value="{{ Auth::guard('partner')->user()->name }}">
-                                            <input type="hidden" name="email"
-                                                value="{{ Auth::guard('partner')->user()->primary_email_address }}">
-                                            {{-- <input type="hidden" name="phone" value="{{Auth::guard('client')->user()->phone_number}}"> --}}
-                                            <div class="modal-body get_quote_view_modal_body">
 
-                                                <div class="form-group col-sm-12 border text-white"
-                                                    style="background: #7e7d7c">
-                                                    <h6 class="text-center pt-1">Product Name : {{ $item->name }}</h6>
-                                                </div>
-                                                <div class="row" id="Rfqpartner" style="display:none">
-                                                    <div class="form-group col-sm-6">
-                                                        <input type="text" required="" class="form-control"
-                                                            id="phone" name="phone"
-                                                            value="{{ Auth::guard('partner')->user()->company_number }}"
-                                                            placeholder="Company Phone Number">
-                                                    </div>
-                                                    <div class="form-group  col-sm-6">
-                                                        <label for="contact">Company Name </label>
-                                                        <input type="text" class="form-control" id="contact"
-                                                            name="company_name" required
-                                                            value="{{ Auth::guard('partner')->user()->company_name }}">
+                                            </form>
+                                        @elseif (Auth::guard('partner')->user())
+                                            <form action="{{ route('rfq.add') }}" method="post" id="get_quote_frm"
+                                                enctype="multipart/form-data">
+                                                @csrf
+                                                <div class="card mx-4">
+                                                    <div class="card-body p-4">
+                                                        <div class="row border">
+                                                            <div class="col-lg-3 pl-2">Name:
+                                                                {{ Auth::guard('partner')->user()->name }}</div>
+                                                            <div class="col-lg-4" style="margin: 5px 0px">
+                                                                {{ Auth::guard('partner')->user()->primary_email_address }}
+                                                            </div>
+                                                            <div class="col-lg-4" style="margin: 5px 0px">
+                                                                {{ Auth::guard('partner')->user()->company_number }}</div>
+                                                            <div class="col-lg-1" style="margin: 5px 0px"><a
+                                                                    href="javascript:void(0);" id="editRfqpartner"><i
+                                                                        class="fa fa-pencil" aria-hidden="true"></i></a>
+                                                            </div>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                                <div class="form-row">
-                                                    <div class="form-group  col-sm-6">
+                                                <input type="hidden" name="product_id" value="{{ $item->id }}">
+                                                <input type="hidden" name="client_type" value="partner">
+                                                <input type="hidden" name="partner_id"
+                                                    value="{{ Auth::guard('partner')->user()->id }}">
+                                                <input type="hidden" name="name"
+                                                    value="{{ Auth::guard('partner')->user()->name }}">
+                                                <input type="hidden" name="email"
+                                                    value="{{ Auth::guard('partner')->user()->primary_email_address }}">
+                                                {{-- <input type="hidden" name="phone" value="{{Auth::guard('client')->user()->phone_number}}"> --}}
+                                                <div class="modal-body get_quote_view_modal_body">
 
-                                                        <input type="number" class="form-control" id="contact"
-                                                            name="qty" placeholder="Quantity">
-                                                    </div>
-                                                    <div class="form-group  col-sm-6">
-                                                        <label for="contact">Upload Image </label>
-                                                        <input type="file" name="image" class="form-control"
-                                                            id="image" accept="image/*" />
-                                                        <div class="form-text" style="font-size:11px;">Accepts only png,
-                                                            jpg, jpeg images</div>
-                                                    </div>
-
-                                                    <div class="form-group  col-sm-12">
-                                                        <textarea class="form-control" id="message" name="message" rows="1" placeholder="Additional Text.."></textarea>
-                                                    </div>
-
-                                                    <div class="form-group  col-sm-12 px-3 mx-3">
-                                                        <input class="mr-2" type="checkbox" name="call"
-                                                            id="call" value="1">
-                                                        <label for="call">Also Please Call Me</label>
-                                                    </div>
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="reset" class="btn btn-light col-lg-3 mr-auto"
-                                                        data-dismiss="modal"><i class="fas fa-window-close mr-2"></i>
-                                                        Cancel</button>
-                                                    <button type="submit" class="btn btn-primary col-lg-3"
-                                                        id="submit_btn">Submit &nbsp;<i
-                                                            class="fa fa-paper-plane"></i></button>
-                                                </div>
-                                            </div>
-
-                                        </form>
-                                    @else
-                                        <form action="{{ route('rfq.add') }}" method="post" id="get_quote_frm"
-                                            enctype="multipart/form-data">
-                                            @csrf
-                                            <input type="hidden" name="product_id" value="{{ $item->id }}">
-                                            {{-- <input type="hidden" name="client_type" value="random"> --}}
-                                            <div class="modal-body get_quote_view_modal_body">
-                                                <div class="form-row">
                                                     <div class="form-group col-sm-12 border text-white"
                                                         style="background: #7e7d7c">
                                                         <h6 class="text-center pt-1">Product Name : {{ $item->name }}
                                                         </h6>
                                                     </div>
+                                                    <div class="row" id="Rfqpartner" style="display:none">
+                                                        <div class="form-group col-sm-6">
+                                                            <input type="text" required="" class="form-control"
+                                                                id="phone" name="phone"
+                                                                value="{{ Auth::guard('partner')->user()->company_number }}"
+                                                                placeholder="Company Phone Number">
+                                                        </div>
+                                                        <div class="form-group  col-sm-6">
+                                                            <label for="contact">Company Name </label>
+                                                            <input type="text" class="form-control" id="contact"
+                                                                name="company_name" required
+                                                                value="{{ Auth::guard('partner')->user()->company_name }}">
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-row">
+                                                        <div class="form-group  col-sm-6">
 
-                                                    <div class="form-group col-sm-6">
-                                                        <label for="name">Name <span
-                                                                class="text-danger">*</span></label>
-                                                        <input type="text" class="form-control" required=""
-                                                            id="name" name="name">
-                                                    </div>
-                                                    <div class="form-group col-sm-6">
-                                                        <label for="email">Email <span
-                                                                class="text-danger">*</span></label>
-                                                        <input type="email" required="" class="form-control"
-                                                            id="email" name="email">
-                                                    </div>
-                                                    <div class="form-group  col-sm-6">
-                                                        <label for="contact">Mobile Number <span
-                                                                class="text-danger">*</span></label>
-                                                        <input type="text" required="" class="form-control"
-                                                            id="phone" name="phone">
-                                                    </div>
+                                                            <input type="number" class="form-control" id="contact"
+                                                                name="qty" placeholder="Quantity">
+                                                        </div>
+                                                        <div class="form-group  col-sm-6">
+                                                            <label for="contact">Upload Image </label>
+                                                            <input type="file" name="image" class="form-control"
+                                                                id="image" accept="image/*" />
+                                                            <div class="form-text" style="font-size:11px;">Accepts only
+                                                                png,
+                                                                jpg, jpeg images</div>
+                                                        </div>
 
-                                                    <div class="form-group  col-sm-6">
-                                                        <label for="contact">Company Name </label>
-                                                        <input type="text" class="form-control" id="contact"
-                                                            name="company_name">
-                                                    </div>
-                                                    <div class="form-group  col-sm-6">
-                                                        <label for="contact">Quantity </label>
-                                                        <input type="number" class="form-control" id="contact"
-                                                            name="qty">
-                                                    </div>
-                                                    <div class="form-group  col-sm-6">
-                                                        <label for="contact">Custom Image </label>
-                                                        <input type="file" name="image" class="form-control"
-                                                            id="image" accept="image/*" />
-                                                        <div class="form-text" style="font-size:11px;">Accepts only png,
-                                                            jpg, jpeg images</div>
-                                                    </div>
+                                                        <div class="form-group  col-sm-12">
+                                                            <textarea class="form-control" id="message" name="message" rows="1" placeholder="Additional Text.."></textarea>
+                                                        </div>
 
-                                                    <div class="form-group  col-sm-12">
-                                                        <label for="message">Type Message</label>
-                                                        <textarea class="form-control" id="message" name="message" rows="4"></textarea>
+                                                        <div class="form-group  col-sm-12 px-3 mx-3">
+                                                            <input class="mr-2" type="checkbox" name="call"
+                                                                id="call" value="1">
+                                                            <label for="call">Also Please Call Me</label>
+                                                        </div>
                                                     </div>
-
-                                                    <div class="form-group  col-sm-12 px-3 mx-3">
-                                                        <input class="mr-2" type="checkbox" name="call"
-                                                            id="call" value="1">
-                                                        <label for="call">Also Please Call Me</label>
-
+                                                    <div class="modal-footer">
+                                                        <button type="reset" class="btn btn-light col-lg-3 mr-auto"
+                                                            data-dismiss="modal"><i class="fas fa-window-close mr-2"></i>
+                                                            Cancel</button>
+                                                        <button type="submit" class="btn btn-primary col-lg-3"
+                                                            id="submit_btn">Submit &nbsp;<i
+                                                                class="fa fa-paper-plane"></i></button>
                                                     </div>
                                                 </div>
-                                                <div class="modal-footer">
-                                                    <button type="reset" class="btn btn-light col-lg-3 mr-auto"
-                                                        data-dismiss="modal"><i class="fas fa-window-close mr-2"></i>
-                                                        Cancel</button>
-                                                    <button type="submit" class="btn btn-primary col-lg-3"
-                                                        id="submit_btn">Submit &nbsp;<i
-                                                            class="fa fa-paper-plane"></i></button>
+
+                                            </form>
+                                        @else
+                                            <form action="{{ route('rfq.add') }}" method="post" id="get_quote_frm"
+                                                enctype="multipart/form-data">
+                                                @csrf
+                                                <input type="hidden" name="product_id" value="{{ $item->id }}">
+                                                {{-- <input type="hidden" name="client_type" value="random"> --}}
+                                                <div class="modal-body get_quote_view_modal_body">
+                                                    <div class="form-row">
+                                                        <div class="form-group col-sm-12 border text-white"
+                                                            style="background: #7e7d7c">
+                                                            <h6 class="text-center pt-1">Product Name :
+                                                                {{ $item->name }}
+                                                            </h6>
+                                                        </div>
+
+                                                        <div class="form-group col-sm-6">
+                                                            <label for="name">Name <span
+                                                                    class="text-danger">*</span></label>
+                                                            <input type="text" class="form-control" required=""
+                                                                id="name" name="name">
+                                                        </div>
+                                                        <div class="form-group col-sm-6">
+                                                            <label for="email">Email <span
+                                                                    class="text-danger">*</span></label>
+                                                            <input type="email" required="" class="form-control"
+                                                                id="email" name="email">
+                                                        </div>
+                                                        <div class="form-group  col-sm-6">
+                                                            <label for="contact">Mobile Number <span
+                                                                    class="text-danger">*</span></label>
+                                                            <input type="text" required="" class="form-control"
+                                                                id="phone" name="phone">
+                                                        </div>
+
+                                                        <div class="form-group  col-sm-6">
+                                                            <label for="contact">Company Name </label>
+                                                            <input type="text" class="form-control" id="contact"
+                                                                name="company_name">
+                                                        </div>
+                                                        <div class="form-group  col-sm-6">
+                                                            <label for="contact">Quantity </label>
+                                                            <input type="number" class="form-control" id="contact"
+                                                                name="qty">
+                                                        </div>
+                                                        <div class="form-group  col-sm-6">
+                                                            <label for="contact">Custom Image </label>
+                                                            <input type="file" name="image" class="form-control"
+                                                                id="image" accept="image/*" />
+                                                            <div class="form-text" style="font-size:11px;">Accepts only
+                                                                png,
+                                                                jpg, jpeg images</div>
+                                                        </div>
+
+                                                        <div class="form-group  col-sm-12">
+                                                            <label for="message">Type Message</label>
+                                                            <textarea class="form-control" id="message" name="message" rows="4"></textarea>
+                                                        </div>
+
+                                                        <div class="form-group  col-sm-12 px-3 mx-3">
+                                                            <input class="mr-2" type="checkbox" name="call"
+                                                                id="call" value="1">
+                                                            <label for="call">Also Please Call Me</label>
+
+                                                        </div>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="reset" class="btn btn-light col-lg-3 mr-auto"
+                                                            data-dismiss="modal"><i class="fas fa-window-close mr-2"></i>
+                                                            Cancel</button>
+                                                        <button type="submit" class="btn btn-primary col-lg-3"
+                                                            id="submit_btn">Submit &nbsp;<i
+                                                                class="fa fa-paper-plane"></i></button>
+                                                    </div>
                                                 </div>
-                                            </div>
 
-                                        </form>
-                                    @endif
+                                            </form>
+                                        @endif
 
-                                </div><!-- //modal-content -->
+                                    </div><!-- //modal-content -->
 
-                            </div><!-- modal-dialog -->
-                        </div>
-                        <!-- modal -->
-                    @endforeach
-                    <!-- product item -->
+                                </div><!-- modal-dialog -->
+                            </div>
+                            <!-- modal -->
+                        @endforeach
+                        <!-- product item -->
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
+    @endif
     <!---------End -------->
 
     <!--======// Learn clint history //======-->
-    <section class="account_benefits_section_wp">
-        <div class="container">
-            <!-- title -->
-            <div class="section_title story_title">
-                <h3 class="title_top_heading">Our few services at Clients.</h3>
-            </div>
-            @if ($home)
+    @if (!empty($story1) && !empty($story2) && !empty($story3) && !empty($story4))
+        <section class="account_benefits_section_wp">
+            <div class="container">
+                <!-- title -->
+                <div class="section_title story_title">
+                    <h3 class="title_top_heading">Our Few Services at Clients.</h3>
+                </div>
+
                 <div class="row">
                     <!--------item------->
-                    <div class="col-lg-3 col-md-6 col-sm-12">
-                        <div class="client_stories_item">
-                            <a href="{{ route('story.details', $story1->id) }}">
-                                <img class="" src="{{ asset('storage/' . $story1->image) }}"
-                                    alt="{{ $story1->badge }}" width="280px" height="160px">
-                                <h6 class="mt-4">{{ $story1->badge }}</h6>
-                                <h3>
-                                    <strong>{{ Str::limit($story1->title, 65) }}</strong>
-                                </h3>
-                            </a>
+                    @if (!empty($story1))
+                        <div class="col-lg-3 col-md-6 col-sm-12">
+                            <div class="client_stories_item">
+                                <a href="{{ route('story.details', $story1->id) }}">
+                                    <img class="" src="{{ asset('storage/' . $story1->image) }}"
+                                        alt="{{ $story1->badge }}" width="280px" height="160px">
+                                    <h6 class="mt-4">{{ $story1->badge }}</h6>
+                                    <h3>
+                                        <strong>{{ Str::limit($story1->title, 65) }}</strong>
+                                    </h3>
+                                </a>
+                            </div>
                         </div>
-                    </div>
+                    @endif
                     <!--------item------->
-                    <div class="col-lg-3 col-md-6 col-sm-12">
-                        <div class="client_stories_item">
-                            <a href="{{ route('story.details', $story2->id) }}">
-                                <img class="" src="{{ asset('storage/' . $story2->image) }}"
-                                    alt="{{ $story2->badge }}" width="280px" height="160px">
-                                <h6 class="mt-4">{{ $story2->badge }}</h6>
-                                <h3>
-                                    <strong>{{ Str::limit($story2->title, 65) }}</strong>
-                                </h3>
-                            </a>
+                    @if (!empty($story2))
+                        <div class="col-lg-3 col-md-6 col-sm-12">
+                            <div class="client_stories_item">
+                                <a href="{{ route('story.details', $story2->id) }}">
+                                    <img class="" src="{{ asset('storage/' . $story2->image) }}"
+                                        alt="{{ $story2->badge }}" width="280px" height="160px">
+                                    <h6 class="mt-4">{{ $story2->badge }}</h6>
+                                    <h3>
+                                        <strong>{{ Str::limit($story2->title, 65) }}</strong>
+                                    </h3>
+                                </a>
+                            </div>
                         </div>
-                    </div>
+                    @endif
                     <!--------item------->
-                    <div class="col-lg-3 col-md-6 col-sm-12">
-                        <div class="client_stories_item">
-                            <a href="{{ route('story.details', $story3->id) }}">
-                                <img class="" src="{{ asset('storage/' . $story3->image) }}"
-                                    alt="{{ $story3->badge }}" width="280px" height="160px">
-                                <h6 class="mt-4">{{ $story3->badge }}</h6>
-                                <h3>
-                                    <strong>{{ Str::limit($story3->title, 65) }}</strong>
-                                </h3>
-                            </a>
+                    @if (!empty($story3))
+                        <div class="col-lg-3 col-md-6 col-sm-12">
+                            <div class="client_stories_item">
+                                <a href="{{ route('story.details', $story3->id) }}">
+                                    <img class="" src="{{ asset('storage/' . $story3->image) }}"
+                                        alt="{{ $story3->badge }}" width="280px" height="160px">
+                                    <h6 class="mt-4">{{ $story3->badge }}</h6>
+                                    <h3>
+                                        <strong>{{ Str::limit($story3->title, 65) }}</strong>
+                                    </h3>
+                                </a>
+                            </div>
                         </div>
-                    </div>
+                    @endif
                     <!--------item------->
-                    <div class="col-lg-3 col-md-6 col-sm-12">
-                        <div class="client_stories_item">
-                            <a href="{{ route('story.details', $story4->id) }}">
-                                <img class="" src="{{ asset('storage/' . $story4->image) }}"
-                                    alt="{{ $story4->badge }}" width="280px" height="160px">
-                                <h6 class="mt-4">{{ $story4->badge }}</h6>
-                                <h3>
-                                    <strong>{{ Str::limit($story4->title, 65) }}</strong>
-                                </h3>
-                            </a>
+                    @if (!empty($story4))
+                        <div class="col-lg-3 col-md-6 col-sm-12">
+                            <div class="client_stories_item">
+                                <a href="{{ route('story.details', $story4->id) }}">
+                                    <img class="" src="{{ asset('storage/' . $story4->image) }}"
+                                        alt="{{ $story4->badge }}" width="280px" height="160px">
+                                    <h6 class="mt-4">{{ $story4->badge }}</h6>
+                                    <h3>
+                                        <strong>{{ Str::limit($story4->title, 65) }}</strong>
+                                    </h3>
+                                </a>
+                            </div>
                         </div>
-                    </div>
+                    @endif
                 </div>
-            @endif
-            <!-- button -->
-            <div class="learn_clint_history_btn">
-                <a href="{{ route('all.story') }}">See all client stories</a>
+
+                <!-- button -->
+                <div class="learn_clint_history_btn">
+                    <a href="{{ route('all.story') }}">See all client stories</a>
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
+    @endif
     <!---------End -------->
 
     <!--======// Magazine Section //======-->
-    <section class="account_benefits_section_wp">
-        <div class="container">
-            @if ($techglossy)
+    @if (!empty($techglossy))
+        <section class="account_benefits_section_wp">
+            <div class="container">
                 <div class="row magazine_section">
                     <div class="col-lg-6 col-sm-12">
                         <img class="img-fluid" src="{{ asset('storage/' . $techglossy->image) }}"
@@ -1173,7 +1256,7 @@
                                             class="btn tag_btn ml-1 px-1"></button> --}}
                                         {{-- <ul class="p-0 m-0">
                                                 <li class="d-flex">
-                                                  {{ ucwords($item) }}
+                                                    {{ ucwords($item) }}
                                                 </li>
                                             </ul> --}}
                                     @endforeach
@@ -1186,57 +1269,59 @@
                             class="common_button2 effect01">Read the Journal</button>
                     </div>
                 </div>
-            @endif
-        </div>
-    </section>
+            </div>
+        </section>
+    @endif
     <!----------End--------->
 
     <!--======// our success section //======-->
-    <section class="container">
-        <div class="our_success_wrapper">
-            <!-- title -->
-            <div class="section_title">
-                <h3 class="title_top_heading py-5">Our Success Starts With Our Culture.</h3>
-            </div>
-            <!-- wrapper -->
-            @if ($home)
+    @if (!empty($success1) && !empty($success2) && !empty($success3))
+        <section class="container">
+            <div class="our_success_wrapper">
+                <!-- title -->
+                <div class="section_title">
+                    <h3 class="title_top_heading py-5">Our Success Starts With Our Culture.</h3>
+                </div>
+                <!-- wrapper -->
+
                 <div class="row">
                     <!-- item -->
-                    @if ($success1)
+                    @if (!empty($success1))
                         <div class="col-lg-4 col-sm-12">
                             <div class="our_success_item">
                                 <p class="our_success_item_title">{{ $success1->title }}</p>
-                                <div class="our_success_item_body">
+                                <div class="our_success_item_body shadow-lg" style="height: 14rem; border: none;">
                                     {{ $success1->description }}
                                 </div>
                             </div>
                         </div>
                     @endif
                     <!-- item -->
-                    @if ($success2)
+                    @if (!empty($success2))
                         <div class="col-lg-4 col-sm-12">
                             <div class="our_success_item">
                                 <p class="our_success_item_title our_success_item_title2">{{ $success2->title }}</p>
-                                <div class="our_success_item_body">
+                                <div class="our_success_item_body shadow-lg" style="height: 14rem; border: none;">
                                     {{ $success2->description }}
                                 </div>
                             </div>
                         </div>
                     @endif
                     <!-- item -->
-                    @if ($success3)
+                    @if (!empty($success3))
                         <div class="col-lg-4 col-sm-12">
                             <div class="our_success_item">
                                 <p class="our_success_item_title our_success_item_title3">{{ $success3->title }}</p>
-                                <div class="our_success_item_body">
+                                <div class="our_success_item_body shadow-lg" style="height: 14rem; border: none;">
                                     {{ $success3->description }}
                                 </div>
                             </div>
                         </div>
                     @endif
                 </div>
-            @endif
-        </div>
-    </section>
+
+            </div>
+        </section>
+    @endif
     <!---------End -------->
 @endsection

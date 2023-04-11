@@ -37,21 +37,21 @@
                 <!-- item -->
                 <div class="col-lg-2 col-md-2 col-sm-12 footer_item_wrapper">
                     <!-- title -->
-                    <h6 class="home_title_text" style="text-align: start;">About NgenIt</h6>
+                    <h6 class="home_title_text" style="text-align: start;">About & Contact</h6>
                     <!-- nav list -->
                     <div class="footer_nav_list">
                         <ul class="footer_link_text">
                             <li>
-                                <a href="javascript:void(0);">Company</a>
+                                <a href="javascript:void(0);">Company</a>  &  <a href="">Portfolios</a>
                             </li>
                             <li>
-                                <a href="javascript:void(0);">Client</a>
+                                <a href="{{route('portfolio')}}">Design</a>  &  <a href="{{route('portfolio')}}">Development</a>
                             </li>
                             <li>
-                                <a href="{{ route('contact') }}">Contact us</a>
+                                <a href="">Partner</a>  &  <a href="">Clients</a>
                             </li>
                             <li>
-                                <a href="{{ route('support') }}">Supports</a>
+                                <a href="{{ route('contact') }}">Contact</a>  &  <a href="{{ route('support') }}">Supports</a>
                             </li>
                         </ul>
                     </div>
@@ -59,21 +59,21 @@
                 <!-- item -->
                 <div class="col-lg-2 col-md-2 col-sm-12 footer_item_wrapper">
                     <!-- title -->
-                    <h6 class="home_title_text" style="text-align: start;">Services</h6>
+                    <h6 class="home_title_text" style="text-align: start;">Product & Services</h6>
                     <!-- nav list -->
                     <div class="footer_nav_list">
                         <ul class="footer_link_text">
                             <li>
-                                <a href="{{ route('shop.html') }}">Products</a>
+                                <a href="{{route('software.common')}}">Software</a>  &  <a href="{{route('hardware.common')}}">Hardware</a>
                             </li>
                             <li>
-                                <a href="{{ route('all.industry') }}">Solutions</a>
+                                <a href="{{route('all.industry')}}">Industry</a>  &  <a href="{{route('all.industry')}}">Solutions</a>
                             </li>
                             <li>
-                                <a href="{{ route('all.industry') }}">Training</a>
+                                <a href="javascript:void(0);">Training</a>  &  <a href="javascript:void(0);">Books</a>
                             </li>
                             <li>
-                                <a href="{{ route('shop.html') }}">Books</a>
+                                <a href="{{ route('contact') }}">Support</a>  &  <a href="{{ route('support') }}">Services</a>
                             </li>
                         </ul>
                     </div>
@@ -81,21 +81,21 @@
                 <!-- item -->
                 <div class="col-lg-2 col-md-2 col-sm-12 footer_item_wrapper">
                     <!-- title -->
-                    <h6 class="home_title_text" style="text-align: start;">Knowledge</h6>
+                    <h6 class="home_title_text" style="text-align: start;">Knowledge Base</h6>
                     <!-- nav list -->
                     <div class="footer_nav_list">
                         <ul class="footer_link_text">
                             <li>
-                                <a href="{{ route('all.story') }}">Client Story</a>
-                            </li>
-                            <li>
-                                <a href="{{ route('client.login') }}">Product Showcase</a>
+                                <a href="{{ route('all.story') }}">Tech Contents</a>
                             </li>
                             <li>
                                 <a href="{{ route('all.techglossy') }}">Tech Glossary</a>
                             </li>
                             <li>
-                                <a href="{{ route('all.blog') }}">Client Stories</a>
+                                <a href="{{ route('all.story') }}">Client Stories</a>
+                            </li>
+                            <li>
+                                <a href="{{ route('all.blog') }}">FAQs</a>
                             </li>
                         </ul>
                     </div>
@@ -103,7 +103,7 @@
             </div>
         </div>
     </div>
-    </div>
+    {{-- </div> --}}
     <!-- footer social -->
     <div class="container-fluid bg-black">
         <div class="row d-flex justify-content-center align-items-center">
@@ -139,7 +139,7 @@
     <div class="footer_bottom container">
         <div class="footer_bottom_wrapper">
             <!-- copy -->
-            <div class="footer_copy">&copy NgenIt</div>
+            <div class="footer_copy">&copy {{date('Y')}} NgenIt</div>
             <!-- footer bottom list -->
             <div class="footer_bottom_list">
                 <ul class="footer_bottom_text">

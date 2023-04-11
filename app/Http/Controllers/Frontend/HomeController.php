@@ -62,7 +62,9 @@ class HomeController extends Controller
                         ->where('product_status', '=', 'product')
                         ->distinct()
                         ->select('products.id','products.rfq','products.slug','products.name','products.thumbnail','products.price','products.discount')
-                        ->limit(12)->get();
+                        ->limit(12)
+                        ->inRandomOrder()
+                        ->get();
         }else{
             $data['products'] = DB::table('products')->inRandomOrder()->where('product_status', 'product')
             ->select('products.id','products.rfq','products.slug','products.name','products.thumbnail','products.price','products.discount')
