@@ -202,6 +202,8 @@ Route::post('cart_store', [App\Http\Controllers\Frontend\CartController::class,'
  Route::post('/checkout/store', [CheckoutController::class, 'CheckoutStore'])->name('checkout.store');
  Route::get('/payment/page/{id}', [CheckoutController::class, 'PaymentPage'])->name('payment.page');
 
+ Route::get('/checkout/ajax/{region_id}' , [CheckoutController::class,'getGST']);
+
 // Stripe Payment
  Route::controller(StripeController::class)->group(function(){
     Route::post('/stripe/order' , 'StripeOrder')->name('stripe.order');

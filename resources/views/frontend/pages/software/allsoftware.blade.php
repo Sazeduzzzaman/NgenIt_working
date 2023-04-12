@@ -1,6 +1,26 @@
 @extends('frontend.master')
 @section('content')
 
+@if (!empty($learnmore->background_image))
+    <style>
+        .global_call_section::after {
+                background: url('{{ asset('storage/' . $learnmore->background_image) }}');
+                content: "";
+                position: absolute;
+                height: 250px;
+                background-position: top center;
+                background-repeat: no-repeat;
+                background-size: cover;
+                background-attachment: fixed;
+                width: 100%;
+                background-color: #cbc4c3;
+                top: 16%;
+                left: 0px;
+                z-index: -1;
+            }
+    </style>
+@endif
+
     <style>
         .pagination-flat{
             justify-content: center;
@@ -9,21 +29,9 @@
         .datatable-header{
             display: none;
         }
-        .global_call_section::after {
-            background: url('{{ asset('storage/' . $learnmore->background_image) }}');
-            content: "";
-            position: absolute;
-            height: 250px;
-            background-position: top center;
-            background-repeat: no-repeat;
-            background-size: cover;
-            background-attachment: fixed;
-            width: 100%;
-            background-color: #cbc4c3;
-            top: 16%;
-            left: 0px;
-            z-index: -1;
-        }
+
+
+
 
         .container .title {
             color: #3c4858;
@@ -796,9 +804,9 @@
                                                                             <table class="table productDT">
                                                                                 <thead>
                                                                                     <tr>
-                                                                                        <th>Sl</th>
-                                                                                        <th>Product Name</th>
-                                                                                        <th>Price</th>
+                                                                                        <th width="5%">Sl</th>
+                                                                                        <th width="77%">Product Name</th>
+                                                                                        <th width="18%">Price</th>
                                                                                     </tr>
                                                                                 </thead>
                                                                                 <tbody>
@@ -807,12 +815,12 @@
                                                                                         @foreach ($products as $key => $item)
                                                                                             <tr>
                                                                                                 <td>{{ ++$key }}</td>
-                                                                                                <td>
+                                                                                                <td class="text-left px-2">
                                                                                                     <a href="{{route('product.details',$item->slug)}}">
-                                                                                                        {{ Str::limit($item->name, 80) }}
+                                                                                                        {{ Str::limit($item->name, 70) }}
                                                                                                     </a>
                                                                                                 </td>
-                                                                                                <td>{{ $item->price }}</td>
+                                                                                                <td class="text-left"><small style="font-size:8px;">USD</small> <strong>$ {{ number_format($item->price, 2) }}</strong></td>
                                                                                             </tr>
                                                                                         @endforeach
 
@@ -883,9 +891,8 @@
                                                             <div class="tab-pane fade shadow rounded bg-white px-3 pb-2 mr-2"
                                                                 id="brand-{{ $item->id }}" role="tabpanel" aria-labelledby="v-pills-profile-tab">
                                                                 <div class="panel">
-                                                                    <div class="panel-heading">
-                                                                        <div
-                                                                            class="row p-0 d-flex justify-content-center align-items-center">
+                                                                    <div class="panel-heading pt-2">
+                                                                        <div class="row p-0 d-flex justify-content-center align-items-center">
                                                                             <div class="col-lg-9">
                                                                                 <h4 class="">Product Lists For {{$item->title}}
                                                                                 </h4>
@@ -905,9 +912,9 @@
                                                                             <table class="table productDT">
                                                                                 <thead>
                                                                                     <tr>
-                                                                                        <th>Sl</th>
-                                                                                        <th>Product Name</th>
-                                                                                        <th>Price</th>
+                                                                                        <th width="5%">Sl</th>
+                                                                                        <th width="77%">Product Name</th>
+                                                                                        <th width="18%">Price</th>
                                                                                     </tr>
                                                                                 </thead>
                                                                                 <tbody>
@@ -916,12 +923,15 @@
                                                                                         @foreach ($products as $key => $item)
                                                                                             <tr>
                                                                                                 <td>{{ ++$key }}</td>
-                                                                                                <td>
+                                                                                                <td class="text-left px-2">
                                                                                                     <a href="{{route('product.details',$item->slug)}}">
-                                                                                                        {{ Str::limit($item->name, 80) }}
+                                                                                                        {{ Str::limit($item->name, 70) }}
                                                                                                     </a>
                                                                                                 </td>
-                                                                                                <td>{{ $item->price }}</td>
+                                                                                                <td class="text-left">
+                                                                                                    <small style="font-size:8px;">USD</small>
+                                                                                                    <strong>$ {{ number_format($item->price, 2) }}</strong>
+                                                                                                </td>
                                                                                             </tr>
                                                                                         @endforeach
 
@@ -984,7 +994,7 @@
                                                             <div class="tab-pane fade shadow rounded bg-white px-3 py-3 mr-2"
                                                                 id="industry-{{ $item->id }}" role="tabpanel" aria-labelledby="v-pills-profile-tab">
                                                                 <div class="panel">
-                                                                    <div class="panel-heading">
+                                                                    <div class="panel-heading pt-2">
                                                                         <div
                                                                             class="row p-0 d-flex justify-content-center align-items-center">
                                                                             <div class="col-lg-9">
@@ -1006,9 +1016,9 @@
                                                                             <table class="table productDT">
                                                                                 <thead>
                                                                                     <tr>
-                                                                                        <th>Sl</th>
-                                                                                        <th>Product Name</th>
-                                                                                        <th>Price</th>
+                                                                                        <th width="5%">Sl</th>
+                                                                                        <th width="77%">Product Name</th>
+                                                                                        <th width="18%">Price</th>
                                                                                     </tr>
                                                                                 </thead>
                                                                                 <tbody>
@@ -1019,14 +1029,16 @@
                                                                                             @if (App\Models\Admin\Product::where('id',$item->product_id)->count() > 0)
                                                                                                 <tr>
                                                                                                     <td>{{ ++$key }}</td>
-                                                                                                    {{-- @dd($item->product_id); --}}
-                                                                                                    {{-- @dd(App\Models\Admin\Product::where('id' , $item->product_id)->value('name')); --}}
-                                                                                                    <td>
+                                                                                                    <td class="text-left">
                                                                                                         <a href="{{route('product.details',App\Models\Admin\Product::where('id',$item->product_id)->value('slug'))}}">
                                                                                                             {{ Str::limit(App\Models\Admin\Product::where('id',$item->product_id)->value('name'), 80) }}
                                                                                                         </a>
                                                                                                     </td>
-                                                                                                    <td>{{ App\Models\Admin\Product::where('id',$item->product_id)->value('price') }}</td>
+                                                                                                    <td class="text-left">
+                                                                                                        <small style="font-size:8px;">USD</small>
+                                                                                                        <strong>$ {{ number_format( App\Models\Admin\Product::where('id',$item->product_id)->value('price') , 2) }}</strong>
+                                                                                                        {{-- {{ App\Models\Admin\Product::where('id',$item->product_id)->value('price') }} --}}
+                                                                                                    </td>
                                                                                                 </tr>
                                                                                             @endif
                                                                                         @endforeach
@@ -1095,7 +1107,7 @@
                                                             <div class="tab-pane fade shadow rounded bg-white px-3 py-3 mr-2"
                                                                 id="solution-{{ $item->id }}" role="tabpanel" aria-labelledby="v-pills-profile-tab">
                                                                 <div class="panel">
-                                                                    <div class="panel-heading">
+                                                                    <div class="panel-heading pt-2">
                                                                         <div
                                                                             class="row p-0 d-flex justify-content-center align-items-center">
                                                                             <div class="col-lg-9">
@@ -1117,9 +1129,9 @@
                                                                             <table class="table productDT">
                                                                                 <thead>
                                                                                     <tr>
-                                                                                        <th>Sl</th>
-                                                                                        <th>Product Name</th>
-                                                                                        <th>Price</th>
+                                                                                        <th width="5%">Sl</th>
+                                                                                        <th width="77%">Product Name</th>
+                                                                                        <th width="18%">Price</th>
                                                                                     </tr>
                                                                                 </thead>
                                                                                 <tbody>
@@ -1130,14 +1142,17 @@
                                                                                             @if (App\Models\Admin\Product::where('id',$item->product_id)->count() > 0)
                                                                                                 <tr>
                                                                                                     <td>{{ ++$key }}</td>
-                                                                                                    {{-- @dd($item->product_id); --}}
-                                                                                                    {{-- @dd(App\Models\Admin\Product::where('id' , $item->product_id)->value('name')); --}}
-                                                                                                    <td>
+                                                                                                    <td class="text-left">
                                                                                                         <a href="{{route('product.details',App\Models\Admin\Product::where('id',$item->product_id)->value('slug'))}}">
                                                                                                             {{ Str::limit(App\Models\Admin\Product::where('id',$item->product_id)->value('name'), 80) }}
                                                                                                         </a>
                                                                                                     </td>
-                                                                                                    <td>{{ App\Models\Admin\Product::where('id',$item->product_id)->value('price') }}</td>
+                                                                                                    <td class="text-left">
+                                                                                                        <small style="font-size:8px;">USD</small>
+                                                                                                        <strong>$ {{ number_format( App\Models\Admin\Product::where('id',$item->product_id)->value('price') , 2) }}</strong>
+                                                                                                        {{-- {{ App\Models\Admin\Product::where('id',$item->product_id)->value('price') }} --}}
+                                                                                                    </td>
+
                                                                                                 </tr>
                                                                                             @endif
                                                                                         @endforeach
@@ -1216,139 +1231,143 @@
                     </p>
                 </div>
                 <!-- Client Tab Start -->
-                <div class="row">
-                    <div class="col-xs-12 ">
-                        <nav>
-                            <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
-                                <a class="nav-item nav-link active" id="nav-healthcare" data-toggle="tab"
-                                    href="#nav-home" role="tab" aria-controls="nav-home"
-                                    aria-selected="true">{{ $story1->badge }}</a>
-                                <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile"
-                                    role="tab" aria-controls="nav-profile"
-                                    aria-selected="false">{{ $story2->badge }}</a>
-                                <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact"
-                                    role="tab" aria-controls="nav-contact"
-                                    aria-selected="false">{{ $story3->badge }}</a>
-                                <a class="nav-item nav-link" id="nav-about-tab" data-toggle="tab" href="#nav-about"
-                                    role="tab" aria-controls="nav-about"
-                                    aria-selected="false">{{ $story4->badge }}</a>
-                            </div>
-                        </nav>
-                        @php
-                            $tags_1 = explode(',', $story1->tags);
-                            $tags_2 = explode(',', $story2->tags);
-                            $tags_3 = explode(',', $story3->tags);
-                            $tags_4 = explode(',', $story4->tags);
+                @if (!empty($story1) && !empty($story2) && !empty($story3))
+                    <div class="row">
+                        <div class="col-xs-12 ">
+                            <nav>
+                                <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
+                                    <a class="nav-item nav-link active" id="nav-healthcare" data-toggle="tab"
+                                        href="#nav-home" role="tab" aria-controls="nav-home"
+                                        aria-selected="true">{{ $story1->badge }}</a>
+                                    <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile"
+                                        role="tab" aria-controls="nav-profile"
+                                        aria-selected="false">{{ $story2->badge }}</a>
+                                    <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact"
+                                        role="tab" aria-controls="nav-contact"
+                                        aria-selected="false">{{ $story3->badge }}</a>
+                                    <a class="nav-item nav-link" id="nav-about-tab" data-toggle="tab" href="#nav-about"
+                                        role="tab" aria-controls="nav-about"
+                                        aria-selected="false">{{ $story4->badge }}</a>
+                                </div>
+                            </nav>
+                            @php
+                                $tags_1 = explode(',', $story1->tags);
+                                $tags_2 = explode(',', $story2->tags);
+                                $tags_3 = explode(',', $story3->tags);
+                                $tags_4 = explode(',', $story4->tags);
 
-                        @endphp
-                        <div class="tab-content py-3 px-3 px-sm-0" id="nav-tabContent">
-                            <div class="tab-pane fade show active" id="nav-home" role="tabpanel"
-                                aria-labelledby="nav-healthcare">
-                                <div class="row d-flex align-items-center">
-                                    <div class="col-lg-4 col-md-4 col-sm-12">
-                                        <div class="tab_side_image">
-                                            <img src="{{ asset('storage/' . $story1->image) }}" alt="" style="height: 230px;">
+                            @endphp
+                            <div class="tab-content py-3 px-3 px-sm-0" id="nav-tabContent">
+                                <div class="tab-pane fade show active" id="nav-home" role="tabpanel"
+                                    aria-labelledby="nav-healthcare">
+                                    <div class="row d-flex align-items-center">
+                                        <div class="col-lg-4 col-md-4 col-sm-12">
+                                            <div class="tab_side_image">
+                                                <img src="{{ asset('storage/' . $story1->image) }}" alt="" style="height: 230px;">
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="col-lg-8 col-md-6 col-sm-12">
-                                        <h5 class="home_title_heading" style="text-align: left;">{{ $story1->title }}
-                                        </h5>
-                                        <p>{{ $story1->header }}</p>
-                                        <div class="home_card_button p-2">
-                                            <a class="effect01" href="{{ route('blog.details', $story1->id) }}">Read
-                                                more</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="tab-pane fade" id="nav-profile" role="tabpanel"
-                                aria-labelledby="nav-profile-tab">
-                                <div class="row d-flex align-items-center">
-                                    <div class="col-lg-4 col-md-4 col-sm-12">
-                                        <div class="tab_side_image">
-                                            <img src="{{ asset('storage/' . $story2->image) }}" alt="" style="height: 230px;">
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-8 col-md-6 col-sm-12">
-                                        <h5 class="home_title_heading" style="text-align: left;">{{ $story2->title }}
-                                        </h5>
-                                        <p>{{ $story2->header }}</p>
-                                        <div class="home_card_button p-2">
-                                            <a class="effect01" href="{{ route('blog.details', $story2->id) }}">Read
-                                                more</a>
+                                        <div class="col-lg-8 col-md-6 col-sm-12">
+                                            <h5 class="home_title_heading" style="text-align: left;">{{ $story1->title }}
+                                            </h5>
+                                            <p>{{ $story1->header }}</p>
+                                            <div class="home_card_button p-2">
+                                                <a class="effect01" href="{{ route('blog.details', $story1->id) }}">Read
+                                                    more</a>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="tab-pane fade" id="nav-contact" role="tabpanel"
-                                aria-labelledby="nav-contact-tab">
-                                <div class="row d-flex align-items-center">
-                                    <div class="col-lg-4 col-md-4 col-sm-12">
-                                        <div class="tab_side_image">
-                                            <img src="{{ asset('storage/' . $story3->image) }}" alt="" style="height: 230px;">
+                                <div class="tab-pane fade" id="nav-profile" role="tabpanel"
+                                    aria-labelledby="nav-profile-tab">
+                                    <div class="row d-flex align-items-center">
+                                        <div class="col-lg-4 col-md-4 col-sm-12">
+                                            <div class="tab_side_image">
+                                                <img src="{{ asset('storage/' . $story2->image) }}" alt="" style="height: 230px;">
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="col-lg-8 col-md-6 col-sm-12">
-                                        <h5 class="home_title_heading" style="text-align: left;">{{ $story3->title }}
-                                        </h5>
-                                        <p>{{ $story3->header }}</p>
-                                        <div class="home_card_button p-2">
-                                            <a class="effect01" href="{{ route('story.details', $story3->id) }}">Read
-                                                more</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="tab-pane fade" id="nav-contact" role="tabpanel"
-                                aria-labelledby="nav-contact-tab">
-                                <div class="row d-flex align-items-center">
-                                    <div class="col-lg-4 col-md-4 col-sm-12">
-                                        <div class="tab_side_image">
-                                            <img src="{{ asset('storage/' . $story4->image) }}" alt="" style="height: 230px;">
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-8 col-md-6 col-sm-12">
-                                        <h5 class="home_title_heading" style="text-align: left;">{{ $story4->title }}
-                                        </h5>
-                                        <p>{{ $story4->header }}</p>
-                                        <div class="home_card_button p-2">
-                                            <a class="effect01" href="{{ route('story.details', $story4->id) }}">Read
-                                                more</a>
+                                        <div class="col-lg-8 col-md-6 col-sm-12">
+                                            <h5 class="home_title_heading" style="text-align: left;">{{ $story2->title }}
+                                            </h5>
+                                            <p>{{ $story2->header }}</p>
+                                            <div class="home_card_button p-2">
+                                                <a class="effect01" href="{{ route('blog.details', $story2->id) }}">Read
+                                                    more</a>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                                <div class="tab-pane fade" id="nav-contact" role="tabpanel"
+                                    aria-labelledby="nav-contact-tab">
+                                    <div class="row d-flex align-items-center">
+                                        <div class="col-lg-4 col-md-4 col-sm-12">
+                                            <div class="tab_side_image">
+                                                <img src="{{ asset('storage/' . $story3->image) }}" alt="" style="height: 230px;">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-8 col-md-6 col-sm-12">
+                                            <h5 class="home_title_heading" style="text-align: left;">{{ $story3->title }}
+                                            </h5>
+                                            <p>{{ $story3->header }}</p>
+                                            <div class="home_card_button p-2">
+                                                <a class="effect01" href="{{ route('story.details', $story3->id) }}">Read
+                                                    more</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tab-pane fade" id="nav-contact" role="tabpanel"
+                                    aria-labelledby="nav-contact-tab">
+                                    <div class="row d-flex align-items-center">
+                                        <div class="col-lg-4 col-md-4 col-sm-12">
+                                            <div class="tab_side_image">
+                                                <img src="{{ asset('storage/' . $story4->image) }}" alt="" style="height: 230px;">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-8 col-md-6 col-sm-12">
+                                            <h5 class="home_title_heading" style="text-align: left;">{{ $story4->title }}
+                                            </h5>
+                                            <p>{{ $story4->header }}</p>
+                                            <div class="home_card_button p-2">
+                                                <a class="effect01" href="{{ route('story.details', $story4->id) }}">Read
+                                                    more</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
 
+                            </div>
                         </div>
                     </div>
-                </div>
+                @endif
                 <!-- Client Tab End -->
             </div>
         </div>
     </section>
     <!---------End -------->
     <!--=====// Global call section //=====-->
-    <section class="global_call_section section_padding">
-        <div class="container">
-            <!-- content -->
-            @php
-                $sentence = $learnmore->consult_title;
-            @endphp
-            <div class="global_call_section_content mt-0">
-                <div class="home_title" style="width: 100%; margin: 0px;">
-                    <h5 class="home_title_heading" style="text-align: left; color: #fff;">
-                        <span>{{ \Illuminate\Support\Str::substr($sentence, 0, 1) }}</span>{{ \Illuminate\Support\Str::substr($sentence, 1) }}
+    @if (!empty($learnmore))
+        <section class="global_call_section section_padding">
+            <div class="container">
+                <!-- content -->
+                @php
+                    $sentence = $learnmore->consult_title;
+                @endphp
+                <div class="global_call_section_content mt-0">
+                    <div class="home_title" style="width: 100%; margin: 0px;">
+                        <h5 class="home_title_heading" style="text-align: left; color: #fff;">
+                            <span>{{ \Illuminate\Support\Str::substr($sentence, 0, 1) }}</span>{{ \Illuminate\Support\Str::substr($sentence, 1) }}
 
-                    </h5>
-                    <p class="home_title_text text-white" style="text-align: left;">{{ $learnmore->consult_short_des }}
-                    </p>
-                    <div class="business_seftion_button" style="text-align: left;">
-                        <a href="{{route('whatwedo')}}">Explore our Business</a>
+                        </h5>
+                        <p class="home_title_text text-white" style="text-align: left;">{{ $learnmore->consult_short_des }}
+                        </p>
+                        <div class="business_seftion_button" style="text-align: left;">
+                            <a href="{{route('whatwedo')}}">Explore our Business</a>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
+    @endif
     <!---------End -------->
     <!--=====// Tech solution //=====-->
     <div class="section_wp2">
@@ -1446,9 +1465,11 @@
                         </h1>
                     </div>
                 </h5>
-                <p class="home_title_text">
-                    <span class="font-weight-bold">{{ $learnmore->industry_header }} </span>
-                </p>
+                @if (!empty($learnmore->industry_header))
+                    <p class="home_title_text">
+                        <span class="font-weight-bold">{{ $learnmore->industry_header }} </span>
+                    </p>
+                @endif
         </div>
         <!-- section content wrapper -->
         <div class="row mb-4">
@@ -1458,7 +1479,7 @@
                 <div class="row">
                     <!-- item -->
 
-                    @if ($industrys)
+                    @if (!empty($industrys))
                         @foreach ($industrys as $item)
                             <div class="col-lg-3 col-sm-6">
                                 <a href="{{ route('industry.details', $item->id) }}" class="we_serve_item">

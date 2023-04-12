@@ -607,6 +607,7 @@ class HomeController extends Controller
     public function SoftwareCommon()
     {
         $data['learnmore'] = LearnMore::orderBy('id','DESC')->select('learn_mores.industry_header','learn_mores.consult_title','learn_mores.consult_short_des','learn_mores.background_image')->first();
+
         $data['products'] = Product::where('product_type','software')->where('product_status', 'product')
                             ->select('products.id','products.rfq','products.slug','products.name','products.thumbnail','products.price','products.discount')
                             ->inRandomOrder()
@@ -631,9 +632,12 @@ class HomeController extends Controller
         $data['solutions'] = SolutionDetail::orderBy('id', 'DESC')->select('id','name')->limit(10)->get();
 
         $data['story1'] = Blog::inRandomOrder()->first();
-        $data['story2'] = Blog::inRandomOrder()->where('id','!=',$data['story1']->id)->first();
-        $data['story3'] = ClientStory::inRandomOrder()->first();
-        $data['story4'] = ClientStory::inRandomOrder()->where('id','!=',$data['story3']->id)->first();
+        if (!empty($data['story1'])) {
+            $data['story2'] = Blog::inRandomOrder()->where('id','!=',$data['story1']->id)->first();
+            $data['story3'] = ClientStory::inRandomOrder()->first();
+            $data['story4'] = ClientStory::inRandomOrder()->where('id','!=',$data['story3']->id)->first();
+        }
+
         $data['industrys'] = Industry::latest()->select('industries.id','industries.logo','industries.title')->limit(12)->get();
         $data['random_industries'] = Industry::inRandomOrder()->select('industries.id','industries.title')->limit(4)->get();
         return view('frontend.pages.software.allsoftware',$data);
@@ -644,7 +648,7 @@ class HomeController extends Controller
     public function HardwareCommon()
     {
         $data['learnmore'] = LearnMore::orderBy('id','DESC')->select('learn_mores.industry_header','learn_mores.consult_title','learn_mores.consult_short_des','learn_mores.background_image')->first();
-
+        
         $data['products'] = Product::where('product_type','hardware')->where('product_status', 'product')
                             ->select('products.id','products.rfq','products.slug','products.name','products.thumbnail','products.price','products.discount')
                             ->inRandomOrder()
@@ -666,9 +670,11 @@ class HomeController extends Controller
         $data['solutions'] = SolutionDetail::orderBy('id', 'DESC')->select('id','name')->limit(10)->get();
 
         $data['story1'] = Blog::inRandomOrder()->first();
-        $data['story2'] = Blog::inRandomOrder()->where('id','!=',$data['story1']->id)->first();
-        $data['story3'] = ClientStory::inRandomOrder()->first();
-        $data['story4'] = ClientStory::inRandomOrder()->where('id','!=',$data['story3']->id)->first();
+        if (!empty($data['story1'])) {
+            $data['story2'] = Blog::inRandomOrder()->where('id','!=',$data['story1']->id)->first();
+            $data['story3'] = ClientStory::inRandomOrder()->first();
+            $data['story4'] = ClientStory::inRandomOrder()->where('id','!=',$data['story3']->id)->first();
+        }
         $data['industrys'] = Industry::latest()->select('industries.id','industries.logo','industries.title')->limit(12)->get();
         $data['random_industries'] = Industry::inRandomOrder()->select('industries.id','industries.title')->limit(4)->get();
 

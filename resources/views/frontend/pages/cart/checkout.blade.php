@@ -19,16 +19,17 @@
         }
 
         /*
-            *
-            * ==========================================
-            * CUSTOM UTIL CLASSES
-            * ==========================================
-            *
-            */
+                *
+                * ==========================================
+                * CUSTOM UTIL CLASSES
+                * ==========================================
+                *
+                */
         /* Horizontal line */
-        .select2-container .select2-selection--single{
+        .select2-container .select2-selection--single {
             height: 30px !important;
         }
+
         .collapsible-link::before {
             content: '';
             width: 14px;
@@ -131,12 +132,13 @@
                 <h1 class="text-center pb-3 primary_color">Checkout Page
                 </h1>
             </div>
-            <form action="" class="p-4">
+            <form action="{{ route('checkout.store') }}" class="p-4" enctype="multipart/form-data">
+                @csrf
                 <div class="row">
 
-                    <div class="col-lg-6">
+                    <div class="col-lg-7">
                         <div class="">
-                            <h4 class="primary_color pt-3">Billing Summury</h4>
+                            <h4 class="primary_color pt-3">Client Information</h4>
                         </div>
                         <!-- Accordion -->
                         <div id="accordionExample" class="accordion shadow">
@@ -156,9 +158,9 @@
                                     class="collapse show">
                                     <input type="hidden" name="client_type" value="{{ $client_type }}">
                                     @if ($client_type == 'client')
-                                    <input type="hidden" name="client_id" value="{{ $id }}">
+                                        <input type="hidden" name="client_id" value="{{ $id }}">
                                     @else
-                                    <input type="hidden" name="partner_id" value="{{ $id }}">
+                                        <input type="hidden" name="partner_id" value="{{ $id }}">
                                     @endif
                                     <div class="card-body p-2">
                                         <div class="d-flex justify-content-center">
@@ -167,6 +169,11 @@
                                                 <input name="billing_name" type="text" class="form-control"
                                                     aria-describedby="emailHelp" placeholder="Enter Full Name" required>
                                             </div>
+                                            <div class="form-group ml-2 "style="width: 100% !important;">
+                                                <label for="exampleInputEmail1">Email</label>
+                                                <input name="billing_email" type="email" class="form-control"
+                                                    aria-describedby="emailHelp" placeholder="Enter Email" required>
+                                            </div>
                                             <div class="form-group ml-2 " style="width: 100% !important;">
                                                 <label for="exampleInputEmail1">Phone Number</label>
                                                 <input name="billing_phone" type="number" class="form-control"
@@ -174,42 +181,42 @@
                                             </div>
                                         </div>
                                         <div class="d-flex justify-content-center">
-                                            <div class="form-group ml-2 "style="width: 100% !important;">
-                                                <label for="exampleInputEmail1">Email</label>
-                                                <input name="billing_email" type="email" class="form-control"
-                                                    aria-describedby="emailHelp" placeholder="Enter Email" required>
-                                            </div>
+
                                             <div class="form-group ml-2 " style="width: 100% !important;">
                                                 <label for="exampleInputEmail1">Address</label>
                                                 <input name="billing_address" type="text" class="form-control"
                                                     aria-describedby="emailHelp" placeholder="Enter Address" required>
                                             </div>
-                                        </div>
-                                        <div class="d-flex justify-content-center">
                                             <div class="form-group ml-2 " style="width: 100% !important;">
                                                 <label for="exampleInputEmail1">City</label>
                                                 <input name="billing_city" type="text" class="form-control"
                                                     aria-describedby="emailHelp" placeholder="Enter City" required>
                                             </div>
                                             <div class="form-group ml-2 " style="width: 100% !important;">
-                                                <label for="exampleInputEmail1">Company Name</label>
-                                                <input name="billing_company_name" type="text" class="form-control"
-                                                    aria-describedby="emailHelp" placeholder="Enter Company Name" required>
-                                            </div>
-                                        </div>
-                                        <div class="d-flex justify-content-center">
-                                            <div class="form-group ml-2 " style="width: 100% !important;">
                                                 <label for="exampleInputEmail1">Zip Code </label>
                                                 <input name="billing_postal" type="number" class="form-control"
                                                     aria-describedby="emailHelp" placeholder="Enter Zip Code" required>
                                             </div>
+
+                                        </div>
+                                        <div class="d-flex justify-content-center">
+
+                                            <div class="form-group ml-2 " style="width: 100% !important;">
+                                                <label for="exampleInputEmail1">Company Name</label>
+                                                <input name="billing_company_name" type="text" class="form-control"
+                                                    aria-describedby="emailHelp" placeholder="Enter Company Name" required>
+                                            </div>
+
                                             <div class="form-group ml-2 " style="width: 100% !important;">
                                                 <label for="exampleInputEmail1">Country</label>
-                                                <select name="billing_country" class="form-control select2" aria-label="Searchable Select"
-                                                    data-placeholder="Choose Country" required style="width: 100% !important;">
+                                                <select name="billing_country" class="form-control select2"
+                                                    aria-label="Searchable Select" data-placeholder="Choose Country"
+                                                    required style="width: 100% !important;">
                                                     <option></option>
                                                     @foreach ($countries as $item)
-                                                        <option value="{{ $item->country_name }}">{{ $item->country_name }}</option>
+                                                        <option value="{{ $item->country_name }}"
+                                                            data-value1="{{ $item->region_id }}">{{ $item->country_name }}
+                                                        </option>
                                                     @endforeach
                                                 </select>
                                             </div>
@@ -224,8 +231,8 @@
                             <div class="card">
                                 <div id="headingTwo" class="card-header  shadow-sm ">
                                     <h6 class="mb-0 font-weight-bold">
-                                        <a href="#" data-toggle="collapse"
-                                            data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo"
+                                        <a href="#" data-toggle="collapse" data-target="#collapseTwo"
+                                            aria-expanded="false" aria-controls="collapseTwo"
                                             class="d-block position-relative collapsed text-black text-uppercase collapsible-link py-2"
                                             style="font-size: 12px;">
                                             Ship to Another Address ?
@@ -283,11 +290,15 @@
                                                     <label for="country">Country</label>
                                                 </div>
                                                 <div>
-                                                    <select id="country" name="shipping_country" class="form-control select2" aria-label="Searchable Select"
-                                                        data-placeholder="Choose Country" required style="width: 100% !important;">
+                                                    <select id="country" name="shipping_country"
+                                                        class="form-control select2" aria-label="Searchable Select"
+                                                        data-placeholder="Choose Country" required
+                                                        style="width: 100% !important;">
                                                         <option></option>
                                                         @foreach ($countries as $item)
-                                                            <option value="{{ $item->country_name }}">{{ $item->country_name }}</option>
+                                                            <option value="{{ $item->country_name }}"
+                                                                data-value2="{{ $item->region_id }}">
+                                                                {{ $item->country_name }}</option>
                                                         @endforeach
                                                     </select>
                                                 </div>
@@ -352,108 +363,135 @@
 
                         </div>
                     </div>
-                    <div class="col-lg-6 ">
+                    <div class="col-lg-5 ">
                         <div class="">
-                            <h4 class="primary_color pt-3">Order Summury</h4>
+                            <h4 class="primary_color pt-3">Order Summary</h4>
                         </div>
                         <div class="row rounded primary_shadow">
 
-                                <div class="col p-3 pb-0">
-                                    <table class="table no-border">
-                                        <tbody>
-                                            @foreach ($carts as $item)
+                            <div class="col p-3 pb-0">
+                                <table class="table no-border">
+                                    <tbody>
+                                        @foreach ($carts as $item)
                                             @php
                                                 $slug = App\Models\Admin\Product::where('id', $item->id)->value('slug');
                                             @endphp
-                                                <tr class="border-none" style="border: none;">
-                                                    <td width="70%" style="border: none; vertical-align:middle;">
-                                                        <a class="text-primary" href="{{ route('product.details', $slug) }}" title="{{ $item->name }}">
-                                                            {{ Str::limit($item->name, 50) }}
-                                                        </a>
-                                                    </td>
-                                                    <td class="text-center" width="10%" style="border: none; vertical-align:middle;">
-                                                        X {{ $item->qty }}
-                                                    </td>
-                                                    <td class="text-center" width="20%" style="border: none; vertical-align:middle;">
-                                                        ${{ $item->price }}
-                                                    </td>
-                                                </tr>
-                                            @endforeach
-                                        </tbody>
-                                    </table>
-                                    <hr>
+                                            <tr class="border-none" style="border: none;">
+                                                <td width="70%" style="border: none; vertical-align:middle;">
+                                                    <a class="text-primary" href="{{ route('product.details', $slug) }}"
+                                                        title="{{ $item->name }}">
+                                                        {{ Str::limit($item->name, 50) }}
+                                                    </a>
+                                                </td>
+                                                <td class="text-center" width="10%"
+                                                    style="border: none; vertical-align:middle;">
+                                                    X {{ $item->qty }}
+                                                </td>
+                                                <td class="text-center" width="20%"
+                                                    style="border: none; vertical-align:middle;">
+                                                    ${{ $item->price }}
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                                <hr>
+                            </div>
+
+                            <div class="summury_count pt-0">
+                                <table class="table no-border">
+                                    <tbody>
+                                        <tr class="border-none " style="border: none;">
+                                            <td width="40%" style="border: none;">
+
+                                            </td>
+                                            <td class="text-right" width="30%" style="border: none;">
+                                                <h5>Subtotal :</h5>
+                                            </td>
+
+                                            <td class="text-center" width="30%"
+                                                style="border: none; vertical-align: middle;">
+                                                <h6 class="font-number" style="font-size: 14px;">
+                                                    <small style="font-size:10px;">USD</small>
+                                                    <strong>$ {{ number_format($cartsubTotal, 2) }}</strong>
+                                                </h6>
+                                            </td>
+                                        </tr>
+                                        <tr class="border-none text-center" style="border: none;">
+                                            <td width="40%" style="border: none;">
+
+                                            </td>
+                                            <td class="text-right" width="30%" style="border: none;">
+                                                <h5>GST :</h5>
+                                            </td>
+
+                                            <td class="text-center" width="30%"
+                                                style="border: none; vertical-align: middle;">
+                                                <h6 class="font-number" style="font-size: 14px;">
+                                                    <small style="font-size:10px;">USD</small>
+                                                    <strong>$ <span class="gst">0.00</span></strong>
+                                                </h6>
+                                            </td>
+                                        </tr>
+                                        <tr class="border-none text-center" style="border: none;">
+                                            <td width="40%" style="border: none;">
+
+                                            </td>
+                                            <td class="text-right" width="30%" style="border: none;">
+                                                <h5>Total :</h5>
+                                            </td>
+
+                                            <td class="text-center" width="30%"
+                                                style="border: none; vertical-align: middle;">
+                                                <h6 class="font-number" style="font-size: 14px;">
+                                                    <small style="font-size:10px;">USD</small>
+                                                    <strong>$ <input type="hidden" class="cart_total"
+                                                            value="{{ number_format($cartTotal, 2) }}">
+                                                        <input type="hidden" class="grand_total" name="cartTotal"
+                                                            value="{{ number_format($cartTotal, 2) }}">
+                                                        <span class="grandTotal">{{ number_format($cartTotal, 2) }}
+                                                        </span>
+                                                    </strong>
+                                                </h6>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+
+                                <!-- Button trigger modal -->
+                                <div class="submit_button text-center">
+                                    <button class="common_button2" type="submit">Proceed</button>
+                                    {{-- <input class="common_button2" type="submit" value="Proceed"> --}}
                                 </div>
 
-                                <div class="summury_count pt-0">
-                                    <table class="table no-border">
-                                        <tbody>
-                                            <tr class="border-none " style="border: none;">
-                                                <td width="50%" style="border: none;">
 
-                                                </td>
-                                                <td class="text-right" width="20%" style="border: none;">
-                                                    <h5>Subtotal :</h5>
-                                                </td>
-
-                                                <td class="text-center" width="30%" style="border: none; vertical-align: middle;">
-                                                    <h6 class="font-number" style="font-size: 14px;">
-                                                        <small style="font-size:10px;">USD</small>
-                                                        <strong>$ {{ number_format($cartsubTotal, 2) }}</strong>
-                                                    </h6>
-                                                </td>
-                                            </tr>
-                                            <tr class="border-none text-center" style="border: none;">
-                                                <td width="50%" style="border: none;">
-
-                                                </td>
-                                                <td class="text-right" width="20%" style="border: none;">
-                                                    <h5>Total :</h5>
-                                                </td>
-
-                                                <td class="text-center" width="30%" style="border: none; vertical-align: middle;">
-                                                    <h6 class="font-number" style="font-size: 14px;">
-                                                        <small style="font-size:10px;">USD</small>
-                                                        <strong>$ {{ number_format($cartTotal, 2) }}</strong>
-                                                    </h6>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-
-                                    <!-- Button trigger modal -->
-                                    <div class="submit_button text-center">
-                                        <button class="common_button2" type="submit">Proceed</button>
-                                        {{-- <input class="common_button2" type="submit" value="Proceed"> --}}
-                                    </div>
-
-
-                                    <!-- Modal -->
-                                    <div class="modal fade" id="bankModal" tabindex="-1"
-                                        aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                        <div class="modal-dialog">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h5 class="modal-title" id="exampleModalLabel">Payment Details
-                                                    </h5>
-                                                    <button type="button" class="close" data-dismiss="modal"
-                                                        aria-label="Close">
-                                                        <span aria-hidden="true">×</span>
-                                                    </button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    <strong>Bank Name:</strong>
-                                                    <p> Dutch Bangla Bank</p><br>
-                                                    <strong>Account Title:</strong>
-                                                    <p> NGen IT</p><br>
-                                                    <strong>Account Number:</strong>
-                                                    <p> 234***********</p><br>
-                                                    <strong>Branch Title:</strong>
-                                                    <p>West Panthapath</p><br>
-                                                </div>
+                                <!-- Modal -->
+                                <div class="modal fade" id="bankModal" tabindex="-1"
+                                    aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel">Payment Details
+                                                </h5>
+                                                <button type="button" class="close" data-dismiss="modal"
+                                                    aria-label="Close">
+                                                    <span aria-hidden="true">×</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <strong>Bank Name:</strong>
+                                                <p> Dutch Bangla Bank</p><br>
+                                                <strong>Account Title:</strong>
+                                                <p> NGen IT</p><br>
+                                                <strong>Account Number:</strong>
+                                                <p> 234***********</p><br>
+                                                <strong>Branch Title:</strong>
+                                                <p>West Panthapath</p><br>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
+                            </div>
 
 
                         </div>
@@ -584,6 +622,37 @@
                 $("#rocketExpand").toggle(this.checked);
             });
         </script>
+
+        <script type="text/javascript">
+            $(document).ready(function() {
+                $('select[name="shipping_country"]').on('change', function() {
+
+                    const billing_country = $('select[name="billing_country"] option:selected').data('value1');
+                    const shipping_country = $(this).find('option:selected').data('value2');
+                    const cart_total = $('.cart_total').val();
+
+                    if (billing_country == shipping_country) {
+                        $.ajax({
+                            url: "{{ url('checkout/ajax') }}/" + billing_country,
+                            type: "GET",
+                            dataType: "json",
+                            success: function(data) {
+                                // alert(billing_country);
+                                // alert(data.gst);
+
+                                $('.gst').html(data.gst);
+                                $grand_total = parseFloat(cart_total) + parseFloat(data.gst);
+                                $('.grandTotal').html($grand_total);
+                                $('.grand_total').val($grand_total);
+
+                            },
+
+                        });
+                    } else {
+
+                    }
+                });
+            });
+        </script>
     @endsection
 @endonce
-

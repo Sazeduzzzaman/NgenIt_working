@@ -19,6 +19,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 use App\Models\Admin\CommercialDocument;
+use App\Models\Admin\PaymentMethodDetails;
 use Gloudemans\Shoppingcart\Facades\Cart;
 
 class CheckoutController extends Controller
@@ -285,6 +286,13 @@ class CheckoutController extends Controller
         //dd($data['order_items']);
         return view('frontend.pages.payment.payment',$data);
 
+    }
+
+    public function getGST($region_id)
+    {
+        $gst = PaymentMethodDetails::where('region_id', $region_id)->select('gst')->first();
+        // dd($gst);
+        return json_encode($gst);
     }
 
 

@@ -1,6 +1,26 @@
 @extends('frontend.master')
 @section('content')
 
+    @if (!empty($learnmore->background_image))
+        <style>
+            .global_call_section::after {
+                    background: url('{{ asset('storage/' . $learnmore->background_image) }}');
+                    content: "";
+                    position: absolute;
+                    height: 250px;
+                    background-position: top center;
+                    background-repeat: no-repeat;
+                    background-size: cover;
+                    background-attachment: fixed;
+                    width: 100%;
+                    background-color: #cbc4c3;
+                    top: 16%;
+                    left: 0px;
+                    z-index: -1;
+                }
+        </style>
+    @endif
+
     <style>
         .pagination-flat{
             justify-content: center;
@@ -9,21 +29,7 @@
         .datatable-header{
             display: none;
         }
-        .global_call_section::after {
-            background: url('{{ asset('storage/' . $learnmore->background_image) }}');
-            content: "";
-            position: absolute;
-            height: 250px;
-            background-position: top center;
-            background-repeat: no-repeat;
-            background-size: cover;
-            background-attachment: fixed;
-            width: 100%;
-            background-color: #cbc4c3;
-            top: 16%;
-            left: 0px;
-            z-index: -1;
-        }
+
 
         .container .title {
             color: #3c4858;
@@ -248,350 +254,352 @@
     </section>
     <!----------End--------->
     <!--=======// Popular products //======-->
-    <section class="popular_product_section section_padding">
-        <!-- container -->
-        <div class="container">
-            <div class="popular_product_section_content">
-                <!-- section title -->
-                <div class="software_feature_title">
-                    <h1 class="text-center pb-3">Popular Products</h1>
-                </div>
-                <!-- wrapper -->
-                <div class="populer_product_slider">
-                    <!-- product_item -->
-                    @foreach ($products as $item)
-                        <div class="product_item">
-                            <!-- image -->
-                            <div class="product_item_thumbnail">
-                                <img src="{{ asset($item->thumbnail) }}" alt="{{ $item->name }}" width="150px"
-                                    height="113px">
-                            </div>
-                            <!-- product content -->
-                            <div class="product_item_content">
-                                <a href="{{ route('product.details', $item->slug) }}" class="product_item_content_name"
-                                    style="height: 3rem;">{{ Str::limit($item->name, 50) }}</a>
-                                @if ($item->rfq != 1)
-                                    <!-- price -->
-                                    <div class="product_item_price">
-                                        <span class="price_currency">USD</span>
-                                        @if (!empty($item->discount))
-                                            <span class="price_currency_value"
-                                                style="text-decoration: line-through; color:red">$
-                                                {{ $item->price }}</span>
-                                            <span class="price_currency_value" style="color: black">$
-                                                {{ $item->discount }}</span>
+    @if (!empty($products))
+        <section class="popular_product_section section_padding">
+            <!-- container -->
+            <div class="container">
+                <div class="popular_product_section_content">
+                    <!-- section title -->
+                    <div class="software_feature_title">
+                        <h1 class="text-center pb-3">Popular Products</h1>
+                    </div>
+                    <!-- wrapper -->
+                    <div class="populer_product_slider">
+                        <!-- product_item -->
+                        @foreach ($products as $item)
+                            <div class="product_item">
+                                <!-- image -->
+                                <div class="product_item_thumbnail">
+                                    <img src="{{ asset($item->thumbnail) }}" alt="{{ $item->name }}" width="150px"
+                                        height="113px">
+                                </div>
+                                <!-- product content -->
+                                <div class="product_item_content">
+                                    <a href="{{ route('product.details', $item->slug) }}" class="product_item_content_name"
+                                        style="height: 3rem;">{{ Str::limit($item->name, 50) }}</a>
+                                    @if ($item->rfq != 1)
+                                        <!-- price -->
+                                        <div class="product_item_price">
+                                            <span class="price_currency">USD</span>
+                                            @if (!empty($item->discount))
+                                                <span class="price_currency_value"
+                                                    style="text-decoration: line-through; color:red">$
+                                                    {{ $item->price }}</span>
+                                                <span class="price_currency_value" style="color: black">$
+                                                    {{ $item->discount }}</span>
+                                            @else
+                                                <span class="price_currency_value">$ {{ $item->price }}</span>
+                                            @endif
+                                        </div>
+                                        <!-- button --> @php
+                                            $cart = Cart::content();
+                                            $exist = $cart->where('id', $item->id);
+                                            //dd($cart->where('image' , $item->thumbnail )->count());
+                                        @endphp
+                                        @if ($cart->where('id', $item->id)->count())
+                                            {{-- <a href="javascript:void(0);" class="common_button6"> </a> --}}
+                                            <span class="common_button6">Already in Cart</span>
                                         @else
-                                            <span class="price_currency_value">$ {{ $item->price }}</span>
+                                            <form action="{{ route('add.cart') }}" method="post">
+                                                @csrf
+                                                <input type="hidden" name="product_id" id="product_id"
+                                                    value="{{ $item->id }}">
+                                                <input type="hidden" name="name" id="name"
+                                                    value="{{ $item->name }}">
+                                                <input type="hidden" name="qty" id="qty" value="1">
+                                                <button type="submit" class="common_button effect01">Add to Basket</button>
+                                            </form>
                                         @endif
-                                    </div>
-                                    <!-- button --> @php
-                                        $cart = Cart::content();
-                                        $exist = $cart->where('id', $item->id);
-                                        //dd($cart->where('image' , $item->thumbnail )->count());
-                                    @endphp
-                                    @if ($cart->where('id', $item->id)->count())
-                                        {{-- <a href="javascript:void(0);" class="common_button6"> </a> --}}
-                                        <span class="common_button6">Already in Cart</span>
                                     @else
-                                        <form action="{{ route('add.cart') }}" method="post">
-                                            @csrf
-                                            <input type="hidden" name="product_id" id="product_id"
-                                                value="{{ $item->id }}">
-                                            <input type="hidden" name="name" id="name"
-                                                value="{{ $item->name }}">
-                                            <input type="hidden" name="qty" id="qty" value="1">
-                                            <button type="submit" class="common_button effect01">Add to Basket</button>
-                                        </form>
+                                        <div class="product_item_price">
+                                            <span class="price_currency_value">
+                                                <a href="javascript:void(0);" data-toggle="modal"
+                                                    data-target="#get_quote_modal_{{ $item->id }}">Ask For Price</a>
+                                            </span>
+                                        </div>
+                                        <a href="{{ route('product.details', $item->slug) }}"
+                                            class="common_button effect01">Details</a>
                                     @endif
-                                @else
-                                    <div class="product_item_price">
-                                        <span class="price_currency_value">
-                                            <a href="javascript:void(0);" data-toggle="modal"
-                                                data-target="#get_quote_modal_{{ $item->id }}">Ask For Price</a>
-                                        </span>
-                                    </div>
-                                    <a href="{{ route('product.details', $item->slug) }}"
-                                        class="common_button effect01">Details</a>
-                                @endif
+                                </div>
                             </div>
-                        </div>
-                        <!-- left modal -->
-                        <div class="modal modal_outer fade" id="get_quote_modal_{{ $item->id }}" tabindex="-1"
-                            role="dialog" aria-labelledby="myModalLabel2">
-                            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
+                            <!-- left modal -->
+                            <div class="modal modal_outer fade" id="get_quote_modal_{{ $item->id }}" tabindex="-1"
+                                role="dialog" aria-labelledby="myModalLabel2">
+                                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
 
 
-                                <div class="modal-content">
+                                    <div class="modal-content">
 
-                                    <div class="modal-header p-0 m-0 pl-5 pr-3 py-2"
-                                        style="background: #ae0a46;color: white;">
-                                        <h5 class="modal-title">Get a Quote</h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
-                                    @if (Auth::guard('client')->user())
-                                        <form action="{{ route('rfq.add') }}" method="post" id="get_quote_frm"
-                                            enctype="multipart/form-data">
-                                            @csrf
-                                            <div class="card mx-4">
-                                                <div class="card-body px-4 py-2">
-                                                    <div class="row border" style="font-size: 0.8rem;">
-                                                        <div class="col-lg-3 pl-2">
-                                                            {{ Auth::guard('client')->user()->name }}</div>
-                                                        <div class="col-lg-4" style="margin: 5px 0px">
-                                                            {{ Auth::guard('client')->user()->email }}</div>
-                                                        <div class="col-lg-4" style="margin: 5px 0px">
-                                                            {{ Auth::guard('client')->user()->phone }}
-                                                            <div class="form-group" id="Rfquser" style="display:none">
-                                                                <input type="text" required="" class="form-control"
-                                                                    id="phone" name="phone"
-                                                                    value="{{ Auth::guard('client')->user()->phone }}"
-                                                                    placeholder="Phone Number" style="font-size: 0.8rem;">
+                                        <div class="modal-header p-0 m-0 pl-5 pr-3 py-2"
+                                            style="background: #ae0a46;color: white;">
+                                            <h5 class="modal-title">Get a Quote</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        @if (Auth::guard('client')->user())
+                                            <form action="{{ route('rfq.add') }}" method="post" id="get_quote_frm"
+                                                enctype="multipart/form-data">
+                                                @csrf
+                                                <div class="card mx-4">
+                                                    <div class="card-body px-4 py-2">
+                                                        <div class="row border" style="font-size: 0.8rem;">
+                                                            <div class="col-lg-3 pl-2">
+                                                                {{ Auth::guard('client')->user()->name }}</div>
+                                                            <div class="col-lg-4" style="margin: 5px 0px">
+                                                                {{ Auth::guard('client')->user()->email }}</div>
+                                                            <div class="col-lg-4" style="margin: 5px 0px">
+                                                                {{ Auth::guard('client')->user()->phone }}
+                                                                <div class="form-group" id="Rfquser" style="display:none">
+                                                                    <input type="text" required="" class="form-control"
+                                                                        id="phone" name="phone"
+                                                                        value="{{ Auth::guard('client')->user()->phone }}"
+                                                                        placeholder="Phone Number" style="font-size: 0.8rem;">
+                                                                </div>
                                                             </div>
+                                                            <div class="col-lg-1" style="margin: 5px 0px"><a
+                                                                    href="javascript:void(0);" id="editRfquser"><i
+                                                                        class="fa fa-pencil" aria-hidden="true"></i></a></div>
                                                         </div>
-                                                        <div class="col-lg-1" style="margin: 5px 0px"><a
-                                                                href="javascript:void(0);" id="editRfquser"><i
-                                                                    class="fa fa-pencil" aria-hidden="true"></i></a></div>
+                                                    </div>
+
+                                                </div>
+                                                <input type="hidden" name="product_id" value="{{ $item->id }}">
+                                                <input type="hidden" name="client_id"
+                                                    value="{{ Auth::guard('client')->user()->id }}">
+                                                <input type="hidden" name="client_type" value="client">
+                                                <input type="hidden" name="name"
+                                                    value="{{ Auth::guard('client')->user()->name }}">
+                                                <input type="hidden" name="email"
+                                                    value="{{ Auth::guard('client')->user()->email }}">
+                                                {{-- <input type="hidden" name="phone" value="{{Auth::guard('client')->user()->phone}}"> --}}
+                                                <div class="modal-body get_quote_view_modal_body">
+
+
+                                                    <div class="form-row">
+
+                                                        <div class="form-group col-sm-4 m-0">
+
+                                                            <input type="text" class="form-control mt-4" id="contact"
+                                                                name="company_name"
+                                                                value="{{ Auth::guard('client')->user()->company_name }}"
+                                                                placeholder="Company Name" style="font-size: 0.7rem;">
+                                                        </div>
+                                                        <div class="form-group col-sm-4 m-0">
+
+                                                            <input type="number" class="form-control mt-4" id="contact"
+                                                                name="qty" placeholder="Quantity"
+                                                                style="font-size: 0.7rem;">
+                                                        </div>
+                                                        <div class="form-group col-sm-4">
+                                                            <label class="m-0" for="image"
+                                                                style="font-size: 0.7rem;">Upload Image</label>
+                                                            <input type="file" name="image" class="form-control"
+                                                                id="image" accept="image/*" style="font-size: 0.7rem;" />
+                                                            <div class="form-text" style="font-size:11px;">Only png, jpg, jpeg
+                                                                images</div>
+
+                                                        </div>
+
+                                                        <div class="form-group col-sm-12 border text-white"
+                                                            style="background: #7e7d7c">
+                                                            <h6 class="text-center pt-1">Product Name : {{ $item->name }}
+                                                            </h6>
+                                                        </div>
+
+                                                        <div class="form-group col-sm-12">
+
+                                                            <textarea class="form-control" id="message" name="message" rows="1"
+                                                                placeholder="Additional Information..."></textarea>
+                                                        </div>
+
+                                                        <div class="form-group  col-sm-12 px-3 mx-3">
+                                                            <input class="mr-2" type="checkbox" name="call"
+                                                                id="call" value="1">
+                                                            <label for="call">Also Please Call Me</label>
+
+                                                        </div>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="submit" class="btn btn-primary col-lg-3"
+                                                            id="submit_btn">Submit &nbsp;<i
+                                                                class="fa fa-paper-plane"></i></button>
                                                     </div>
                                                 </div>
 
-                                            </div>
-                                            <input type="hidden" name="product_id" value="{{ $item->id }}">
-                                            <input type="hidden" name="client_id"
-                                                value="{{ Auth::guard('client')->user()->id }}">
-                                            <input type="hidden" name="client_type" value="client">
-                                            <input type="hidden" name="name"
-                                                value="{{ Auth::guard('client')->user()->name }}">
-                                            <input type="hidden" name="email"
-                                                value="{{ Auth::guard('client')->user()->email }}">
-                                            {{-- <input type="hidden" name="phone" value="{{Auth::guard('client')->user()->phone}}"> --}}
-                                            <div class="modal-body get_quote_view_modal_body">
-
-
-                                                <div class="form-row">
-
-                                                    <div class="form-group col-sm-4 m-0">
-
-                                                        <input type="text" class="form-control mt-4" id="contact"
-                                                            name="company_name"
-                                                            value="{{ Auth::guard('client')->user()->company_name }}"
-                                                            placeholder="Company Name" style="font-size: 0.7rem;">
+                                            </form>
+                                        @elseif (Auth::guard('partner')->user())
+                                            <form action="{{ route('rfq.add') }}" method="post" id="get_quote_frm"
+                                                enctype="multipart/form-data">
+                                                @csrf
+                                                <div class="card mx-4">
+                                                    <div class="card-body p-4">
+                                                        <div class="row border">
+                                                            <div class="col-lg-3 pl-2">Name:
+                                                                {{ Auth::guard('partner')->user()->name }}</div>
+                                                            <div class="col-lg-4" style="margin: 5px 0px">
+                                                                {{ Auth::guard('partner')->user()->primary_email_address }}
+                                                            </div>
+                                                            <div class="col-lg-4" style="margin: 5px 0px">
+                                                                {{ Auth::guard('partner')->user()->company_number }}</div>
+                                                            <div class="col-lg-1" style="margin: 5px 0px"><a
+                                                                    href="javascript:void(0);" id="editRfqpartner"><i
+                                                                        class="fa fa-pencil" aria-hidden="true"></i></a></div>
+                                                        </div>
                                                     </div>
-                                                    <div class="form-group col-sm-4 m-0">
-
-                                                        <input type="number" class="form-control mt-4" id="contact"
-                                                            name="qty" placeholder="Quantity"
-                                                            style="font-size: 0.7rem;">
-                                                    </div>
-                                                    <div class="form-group col-sm-4">
-                                                        <label class="m-0" for="image"
-                                                            style="font-size: 0.7rem;">Upload Image</label>
-                                                        <input type="file" name="image" class="form-control"
-                                                            id="image" accept="image/*" style="font-size: 0.7rem;" />
-                                                        <div class="form-text" style="font-size:11px;">Only png, jpg, jpeg
-                                                            images</div>
-
-                                                    </div>
+                                                </div>
+                                                <input type="hidden" name="product_id" value="{{ $item->id }}">
+                                                <input type="hidden" name="client_type" value="partner">
+                                                <input type="hidden" name="partner_id"
+                                                    value="{{ Auth::guard('partner')->user()->id }}">
+                                                <input type="hidden" name="name"
+                                                    value="{{ Auth::guard('partner')->user()->name }}">
+                                                <input type="hidden" name="email"
+                                                    value="{{ Auth::guard('partner')->user()->primary_email_address }}">
+                                                {{-- <input type="hidden" name="phone" value="{{Auth::guard('client')->user()->phone_number}}"> --}}
+                                                <div class="modal-body get_quote_view_modal_body">
 
                                                     <div class="form-group col-sm-12 border text-white"
                                                         style="background: #7e7d7c">
-                                                        <h6 class="text-center pt-1">Product Name : {{ $item->name }}
-                                                        </h6>
+                                                        <h6 class="text-center pt-1">Product Name : {{ $item->name }}</h6>
                                                     </div>
-
-                                                    <div class="form-group col-sm-12">
-
-                                                        <textarea class="form-control" id="message" name="message" rows="1"
-                                                            placeholder="Additional Information..."></textarea>
-                                                    </div>
-
-                                                    <div class="form-group  col-sm-12 px-3 mx-3">
-                                                        <input class="mr-2" type="checkbox" name="call"
-                                                            id="call" value="1">
-                                                        <label for="call">Also Please Call Me</label>
-
-                                                    </div>
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="submit" class="btn btn-primary col-lg-3"
-                                                        id="submit_btn">Submit &nbsp;<i
-                                                            class="fa fa-paper-plane"></i></button>
-                                                </div>
-                                            </div>
-
-                                        </form>
-                                    @elseif (Auth::guard('partner')->user())
-                                        <form action="{{ route('rfq.add') }}" method="post" id="get_quote_frm"
-                                            enctype="multipart/form-data">
-                                            @csrf
-                                            <div class="card mx-4">
-                                                <div class="card-body p-4">
-                                                    <div class="row border">
-                                                        <div class="col-lg-3 pl-2">Name:
-                                                            {{ Auth::guard('partner')->user()->name }}</div>
-                                                        <div class="col-lg-4" style="margin: 5px 0px">
-                                                            {{ Auth::guard('partner')->user()->primary_email_address }}
+                                                    <div class="row" id="Rfqpartner" style="display:none">
+                                                        <div class="form-group col-sm-6">
+                                                            <input type="text" required="" class="form-control"
+                                                                id="phone" name="phone"
+                                                                value="{{ Auth::guard('partner')->user()->company_number }}"
+                                                                placeholder="Company Phone Number">
                                                         </div>
-                                                        <div class="col-lg-4" style="margin: 5px 0px">
-                                                            {{ Auth::guard('partner')->user()->company_number }}</div>
-                                                        <div class="col-lg-1" style="margin: 5px 0px"><a
-                                                                href="javascript:void(0);" id="editRfqpartner"><i
-                                                                    class="fa fa-pencil" aria-hidden="true"></i></a></div>
+                                                        <div class="form-group  col-sm-6">
+                                                            <label for="contact">Company Name </label>
+                                                            <input type="text" class="form-control" id="contact"
+                                                                name="company_name" required
+                                                                value="{{ Auth::guard('partner')->user()->company_name }}">
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-row">
+                                                        <div class="form-group  col-sm-6">
+
+                                                            <input type="number" class="form-control" id="contact"
+                                                                name="qty" placeholder="Quantity">
+                                                        </div>
+                                                        <div class="form-group  col-sm-6">
+                                                            <label for="contact">Upload Image </label>
+                                                            <input type="file" name="image" class="form-control"
+                                                                id="image" accept="image/*" />
+                                                            <div class="form-text" style="font-size:11px;">Accepts only png,
+                                                                jpg, jpeg images</div>
+                                                        </div>
+
+                                                        <div class="form-group  col-sm-12">
+                                                            <textarea class="form-control" id="message" name="message" rows="1" placeholder="Additional Text.."></textarea>
+                                                        </div>
+
+                                                        <div class="form-group  col-sm-12 px-3 mx-3">
+                                                            <input class="mr-2" type="checkbox" name="call"
+                                                                id="call" value="1">
+                                                            <label for="call">Also Please Call Me</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="reset" class="btn btn-light col-lg-3 mr-auto"
+                                                            data-dismiss="modal"><i class="fas fa-window-close mr-2"></i>
+                                                            Cancel</button>
+                                                        <button type="submit" class="btn btn-primary col-lg-3"
+                                                            id="submit_btn">Submit &nbsp;<i
+                                                                class="fa fa-paper-plane"></i></button>
                                                     </div>
                                                 </div>
-                                            </div>
-                                            <input type="hidden" name="product_id" value="{{ $item->id }}">
-                                            <input type="hidden" name="client_type" value="partner">
-                                            <input type="hidden" name="partner_id"
-                                                value="{{ Auth::guard('partner')->user()->id }}">
-                                            <input type="hidden" name="name"
-                                                value="{{ Auth::guard('partner')->user()->name }}">
-                                            <input type="hidden" name="email"
-                                                value="{{ Auth::guard('partner')->user()->primary_email_address }}">
-                                            {{-- <input type="hidden" name="phone" value="{{Auth::guard('client')->user()->phone_number}}"> --}}
-                                            <div class="modal-body get_quote_view_modal_body">
 
-                                                <div class="form-group col-sm-12 border text-white"
-                                                    style="background: #7e7d7c">
-                                                    <h6 class="text-center pt-1">Product Name : {{ $item->name }}</h6>
-                                                </div>
-                                                <div class="row" id="Rfqpartner" style="display:none">
-                                                    <div class="form-group col-sm-6">
-                                                        <input type="text" required="" class="form-control"
-                                                            id="phone" name="phone"
-                                                            value="{{ Auth::guard('partner')->user()->company_number }}"
-                                                            placeholder="Company Phone Number">
-                                                    </div>
-                                                    <div class="form-group  col-sm-6">
-                                                        <label for="contact">Company Name </label>
-                                                        <input type="text" class="form-control" id="contact"
-                                                            name="company_name" required
-                                                            value="{{ Auth::guard('partner')->user()->company_name }}">
-                                                    </div>
-                                                </div>
-                                                <div class="form-row">
-                                                    <div class="form-group  col-sm-6">
+                                            </form>
+                                        @else
+                                            <form action="{{ route('rfq.add') }}" method="post" id="get_quote_frm"
+                                                enctype="multipart/form-data">
+                                                @csrf
+                                                <input type="hidden" name="product_id" value="{{ $item->id }}">
+                                                {{-- <input type="hidden" name="client_type" value="random"> --}}
+                                                <div class="modal-body get_quote_view_modal_body">
+                                                    <div class="form-row">
+                                                        <div class="form-group col-sm-12 border text-white"
+                                                            style="background: #7e7d7c">
+                                                            <h6 class="text-center pt-1">Product Name : {{ $item->name }}
+                                                            </h6>
+                                                        </div>
 
-                                                        <input type="number" class="form-control" id="contact"
-                                                            name="qty" placeholder="Quantity">
-                                                    </div>
-                                                    <div class="form-group  col-sm-6">
-                                                        <label for="contact">Upload Image </label>
-                                                        <input type="file" name="image" class="form-control"
-                                                            id="image" accept="image/*" />
-                                                        <div class="form-text" style="font-size:11px;">Accepts only png,
-                                                            jpg, jpeg images</div>
-                                                    </div>
+                                                        <div class="form-group col-sm-6">
+                                                            <label for="name">Name <span
+                                                                    class="text-danger">*</span></label>
+                                                            <input type="text" class="form-control" required=""
+                                                                id="name" name="name">
+                                                        </div>
+                                                        <div class="form-group col-sm-6">
+                                                            <label for="email">Email <span
+                                                                    class="text-danger">*</span></label>
+                                                            <input type="email" required="" class="form-control"
+                                                                id="email" name="email">
+                                                        </div>
+                                                        <div class="form-group  col-sm-6">
+                                                            <label for="contact">Mobile Number <span
+                                                                    class="text-danger">*</span></label>
+                                                            <input type="text" required="" class="form-control"
+                                                                id="phone" name="phone">
+                                                        </div>
 
-                                                    <div class="form-group  col-sm-12">
-                                                        <textarea class="form-control" id="message" name="message" rows="1" placeholder="Additional Text.."></textarea>
-                                                    </div>
+                                                        <div class="form-group  col-sm-6">
+                                                            <label for="contact">Company Name </label>
+                                                            <input type="text" class="form-control" id="contact"
+                                                                name="company_name">
+                                                        </div>
+                                                        <div class="form-group  col-sm-6">
+                                                            <label for="contact">Quantity </label>
+                                                            <input type="number" class="form-control" id="contact"
+                                                                name="qty">
+                                                        </div>
+                                                        <div class="form-group  col-sm-6">
+                                                            <label for="contact">Custom Image </label>
+                                                            <input type="file" name="image" class="form-control"
+                                                                id="image" accept="image/*" />
+                                                            <div class="form-text" style="font-size:11px;">Accepts only png,
+                                                                jpg, jpeg images</div>
+                                                        </div>
 
-                                                    <div class="form-group  col-sm-12 px-3 mx-3">
-                                                        <input class="mr-2" type="checkbox" name="call"
-                                                            id="call" value="1">
-                                                        <label for="call">Also Please Call Me</label>
-                                                    </div>
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="reset" class="btn btn-light col-lg-3 mr-auto"
-                                                        data-dismiss="modal"><i class="fas fa-window-close mr-2"></i>
-                                                        Cancel</button>
-                                                    <button type="submit" class="btn btn-primary col-lg-3"
-                                                        id="submit_btn">Submit &nbsp;<i
-                                                            class="fa fa-paper-plane"></i></button>
-                                                </div>
-                                            </div>
+                                                        <div class="form-group  col-sm-12">
+                                                            <label for="message">Type Message</label>
+                                                            <textarea class="form-control" id="message" name="message" rows="4"></textarea>
+                                                        </div>
 
-                                        </form>
-                                    @else
-                                        <form action="{{ route('rfq.add') }}" method="post" id="get_quote_frm"
-                                            enctype="multipart/form-data">
-                                            @csrf
-                                            <input type="hidden" name="product_id" value="{{ $item->id }}">
-                                            {{-- <input type="hidden" name="client_type" value="random"> --}}
-                                            <div class="modal-body get_quote_view_modal_body">
-                                                <div class="form-row">
-                                                    <div class="form-group col-sm-12 border text-white"
-                                                        style="background: #7e7d7c">
-                                                        <h6 class="text-center pt-1">Product Name : {{ $item->name }}
-                                                        </h6>
-                                                    </div>
+                                                        <div class="form-group  col-sm-12 px-3 mx-3">
+                                                            <input class="mr-2" type="checkbox" name="call"
+                                                                id="call" value="1">
+                                                            <label for="call">Also Please Call Me</label>
 
-                                                    <div class="form-group col-sm-6">
-                                                        <label for="name">Name <span
-                                                                class="text-danger">*</span></label>
-                                                        <input type="text" class="form-control" required=""
-                                                            id="name" name="name">
+                                                        </div>
                                                     </div>
-                                                    <div class="form-group col-sm-6">
-                                                        <label for="email">Email <span
-                                                                class="text-danger">*</span></label>
-                                                        <input type="email" required="" class="form-control"
-                                                            id="email" name="email">
-                                                    </div>
-                                                    <div class="form-group  col-sm-6">
-                                                        <label for="contact">Mobile Number <span
-                                                                class="text-danger">*</span></label>
-                                                        <input type="text" required="" class="form-control"
-                                                            id="phone" name="phone">
-                                                    </div>
-
-                                                    <div class="form-group  col-sm-6">
-                                                        <label for="contact">Company Name </label>
-                                                        <input type="text" class="form-control" id="contact"
-                                                            name="company_name">
-                                                    </div>
-                                                    <div class="form-group  col-sm-6">
-                                                        <label for="contact">Quantity </label>
-                                                        <input type="number" class="form-control" id="contact"
-                                                            name="qty">
-                                                    </div>
-                                                    <div class="form-group  col-sm-6">
-                                                        <label for="contact">Custom Image </label>
-                                                        <input type="file" name="image" class="form-control"
-                                                            id="image" accept="image/*" />
-                                                        <div class="form-text" style="font-size:11px;">Accepts only png,
-                                                            jpg, jpeg images</div>
-                                                    </div>
-
-                                                    <div class="form-group  col-sm-12">
-                                                        <label for="message">Type Message</label>
-                                                        <textarea class="form-control" id="message" name="message" rows="4"></textarea>
-                                                    </div>
-
-                                                    <div class="form-group  col-sm-12 px-3 mx-3">
-                                                        <input class="mr-2" type="checkbox" name="call"
-                                                            id="call" value="1">
-                                                        <label for="call">Also Please Call Me</label>
-
+                                                    <div class="modal-footer">
+                                                        <button type="reset" class="btn btn-light col-lg-3 mr-auto"
+                                                            data-dismiss="modal"><i class="fas fa-window-close mr-2"></i>
+                                                            Cancel</button>
+                                                        <button type="submit" class="btn btn-primary col-lg-3"
+                                                            id="submit_btn">Submit &nbsp;<i
+                                                                class="fa fa-paper-plane"></i></button>
                                                     </div>
                                                 </div>
-                                                <div class="modal-footer">
-                                                    <button type="reset" class="btn btn-light col-lg-3 mr-auto"
-                                                        data-dismiss="modal"><i class="fas fa-window-close mr-2"></i>
-                                                        Cancel</button>
-                                                    <button type="submit" class="btn btn-primary col-lg-3"
-                                                        id="submit_btn">Submit &nbsp;<i
-                                                            class="fa fa-paper-plane"></i></button>
-                                                </div>
-                                            </div>
 
-                                        </form>
-                                    @endif
+                                            </form>
+                                        @endif
 
-                                </div><!-- //modal-content -->
+                                    </div><!-- //modal-content -->
 
-                            </div><!-- modal-dialog -->
-                        </div>
-                        <!-- modal -->
-                    @endforeach
-                    <!-- product item -->
+                                </div><!-- modal-dialog -->
+                            </div>
+                            <!-- modal -->
+                        @endforeach
+                        <!-- product item -->
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
+    @endif
     <!---------End -------->
     <!--======// Feature tab //======-->
     {{-- <section>
@@ -796,9 +804,9 @@
                                                                             <table class="table productDT">
                                                                                 <thead>
                                                                                     <tr>
-                                                                                        <th>Sl</th>
-                                                                                        <th>Product Name</th>
-                                                                                        <th>Price</th>
+                                                                                        <th width="5%">Sl</th>
+                                                                                        <th width="77%">Product Name</th>
+                                                                                        <th width="18%">Price</th>
                                                                                     </tr>
                                                                                 </thead>
                                                                                 <tbody>
@@ -807,12 +815,12 @@
                                                                                         @foreach ($products as $key => $item)
                                                                                             <tr>
                                                                                                 <td>{{ ++$key }}</td>
-                                                                                                <td>
+                                                                                                <td class="text-left px-2">
                                                                                                     <a href="{{route('product.details',$item->slug)}}">
-                                                                                                        {{ Str::limit($item->name, 80) }}
+                                                                                                        {{ Str::limit($item->name, 70) }}
                                                                                                     </a>
                                                                                                 </td>
-                                                                                                <td>{{ $item->price }}</td>
+                                                                                                <td class="text-left"><small style="font-size:8px;">USD</small> <strong>$ {{ number_format($item->price, 2) }}</strong></td>
                                                                                             </tr>
                                                                                         @endforeach
 
@@ -883,9 +891,8 @@
                                                             <div class="tab-pane fade shadow rounded bg-white px-3 pb-2 mr-2"
                                                                 id="brand-{{ $item->id }}" role="tabpanel" aria-labelledby="v-pills-profile-tab">
                                                                 <div class="panel">
-                                                                    <div class="panel-heading">
-                                                                        <div
-                                                                            class="row p-0 d-flex justify-content-center align-items-center">
+                                                                    <div class="panel-heading pt-2">
+                                                                        <div class="row p-0 d-flex justify-content-center align-items-center">
                                                                             <div class="col-lg-9">
                                                                                 <h4 class="">Product Lists For {{$item->title}}
                                                                                 </h4>
@@ -905,9 +912,9 @@
                                                                             <table class="table productDT">
                                                                                 <thead>
                                                                                     <tr>
-                                                                                        <th>Sl</th>
-                                                                                        <th>Product Name</th>
-                                                                                        <th>Price</th>
+                                                                                        <th width="5%">Sl</th>
+                                                                                        <th width="77%">Product Name</th>
+                                                                                        <th width="18%">Price</th>
                                                                                     </tr>
                                                                                 </thead>
                                                                                 <tbody>
@@ -916,12 +923,15 @@
                                                                                         @foreach ($products as $key => $item)
                                                                                             <tr>
                                                                                                 <td>{{ ++$key }}</td>
-                                                                                                <td>
+                                                                                                <td class="text-left px-2">
                                                                                                     <a href="{{route('product.details',$item->slug)}}">
-                                                                                                        {{ Str::limit($item->name, 80) }}
+                                                                                                        {{ Str::limit($item->name, 70) }}
                                                                                                     </a>
                                                                                                 </td>
-                                                                                                <td>{{ $item->price }}</td>
+                                                                                                <td class="text-left">
+                                                                                                    <small style="font-size:8px;">USD</small>
+                                                                                                    <strong>$ {{ number_format($item->price, 2) }}</strong>
+                                                                                                </td>
                                                                                             </tr>
                                                                                         @endforeach
 
@@ -984,7 +994,7 @@
                                                             <div class="tab-pane fade shadow rounded bg-white px-3 py-3 mr-2"
                                                                 id="industry-{{ $item->id }}" role="tabpanel" aria-labelledby="v-pills-profile-tab">
                                                                 <div class="panel">
-                                                                    <div class="panel-heading">
+                                                                    <div class="panel-heading pt-2">
                                                                         <div
                                                                             class="row p-0 d-flex justify-content-center align-items-center">
                                                                             <div class="col-lg-9">
@@ -1006,9 +1016,9 @@
                                                                             <table class="table productDT">
                                                                                 <thead>
                                                                                     <tr>
-                                                                                        <th>Sl</th>
-                                                                                        <th>Product Name</th>
-                                                                                        <th>Price</th>
+                                                                                        <th width="5%">Sl</th>
+                                                                                        <th width="77%">Product Name</th>
+                                                                                        <th width="18%">Price</th>
                                                                                     </tr>
                                                                                 </thead>
                                                                                 <tbody>
@@ -1019,14 +1029,16 @@
                                                                                             @if (App\Models\Admin\Product::where('id',$item->product_id)->count() > 0)
                                                                                                 <tr>
                                                                                                     <td>{{ ++$key }}</td>
-                                                                                                    {{-- @dd($item->product_id); --}}
-                                                                                                    {{-- @dd(App\Models\Admin\Product::where('id' , $item->product_id)->value('name')); --}}
-                                                                                                    <td>
+                                                                                                    <td class="text-left">
                                                                                                         <a href="{{route('product.details',App\Models\Admin\Product::where('id',$item->product_id)->value('slug'))}}">
                                                                                                             {{ Str::limit(App\Models\Admin\Product::where('id',$item->product_id)->value('name'), 80) }}
                                                                                                         </a>
                                                                                                     </td>
-                                                                                                    <td>{{ App\Models\Admin\Product::where('id',$item->product_id)->value('price') }}</td>
+                                                                                                    <td class="text-left">
+                                                                                                        <small style="font-size:8px;">USD</small>
+                                                                                                        <strong>$ {{ number_format( App\Models\Admin\Product::where('id',$item->product_id)->value('price') , 2) }}</strong>
+                                                                                                        {{-- {{ App\Models\Admin\Product::where('id',$item->product_id)->value('price') }} --}}
+                                                                                                    </td>
                                                                                                 </tr>
                                                                                             @endif
                                                                                         @endforeach
@@ -1095,7 +1107,7 @@
                                                             <div class="tab-pane fade shadow rounded bg-white px-3 py-3 mr-2"
                                                                 id="solution-{{ $item->id }}" role="tabpanel" aria-labelledby="v-pills-profile-tab">
                                                                 <div class="panel">
-                                                                    <div class="panel-heading">
+                                                                    <div class="panel-heading pt-2">
                                                                         <div
                                                                             class="row p-0 d-flex justify-content-center align-items-center">
                                                                             <div class="col-lg-9">
@@ -1117,9 +1129,9 @@
                                                                             <table class="table productDT">
                                                                                 <thead>
                                                                                     <tr>
-                                                                                        <th>Sl</th>
-                                                                                        <th>Product Name</th>
-                                                                                        <th>Price</th>
+                                                                                        <th width="5%">Sl</th>
+                                                                                        <th width="77%">Product Name</th>
+                                                                                        <th width="18%">Price</th>
                                                                                     </tr>
                                                                                 </thead>
                                                                                 <tbody>
@@ -1130,14 +1142,17 @@
                                                                                             @if (App\Models\Admin\Product::where('id',$item->product_id)->count() > 0)
                                                                                                 <tr>
                                                                                                     <td>{{ ++$key }}</td>
-                                                                                                    {{-- @dd($item->product_id); --}}
-                                                                                                    {{-- @dd(App\Models\Admin\Product::where('id' , $item->product_id)->value('name')); --}}
-                                                                                                    <td>
+                                                                                                    <td class="text-left">
                                                                                                         <a href="{{route('product.details',App\Models\Admin\Product::where('id',$item->product_id)->value('slug'))}}">
                                                                                                             {{ Str::limit(App\Models\Admin\Product::where('id',$item->product_id)->value('name'), 80) }}
                                                                                                         </a>
                                                                                                     </td>
-                                                                                                    <td>{{ App\Models\Admin\Product::where('id',$item->product_id)->value('price') }}</td>
+                                                                                                    <td class="text-left">
+                                                                                                        <small style="font-size:8px;">USD</small>
+                                                                                                        <strong>$ {{ number_format( App\Models\Admin\Product::where('id',$item->product_id)->value('price') , 2) }}</strong>
+                                                                                                        {{-- {{ App\Models\Admin\Product::where('id',$item->product_id)->value('price') }} --}}
+                                                                                                    </td>
+
                                                                                                 </tr>
                                                                                             @endif
                                                                                         @endforeach
@@ -1217,112 +1232,114 @@
                     </p>
                 </div>
                 <!-- Client Tab Start -->
-                <div class="row">
-                    <div class="col-xs-12 ">
-                        <nav>
-                            <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
-                                <a class="nav-item nav-link active" id="nav-healthcare" data-toggle="tab"
-                                    href="#nav-home" role="tab" aria-controls="nav-home"
-                                    aria-selected="true">{{ $story1->badge }}</a>
-                                <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile"
-                                    role="tab" aria-controls="nav-profile"
-                                    aria-selected="false">{{ $story2->badge }}</a>
-                                <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact"
-                                    role="tab" aria-controls="nav-contact"
-                                    aria-selected="false">{{ $story3->badge }}</a>
-                                <a class="nav-item nav-link" id="nav-about-tab" data-toggle="tab" href="#nav-about"
-                                    role="tab" aria-controls="nav-about"
-                                    aria-selected="false">{{ $story4->badge }}</a>
-                            </div>
-                        </nav>
-                        @php
-                            $tags_1 = explode(',', $story1->tags);
-                            $tags_2 = explode(',', $story2->tags);
-                            $tags_3 = explode(',', $story3->tags);
-                            $tags_4 = explode(',', $story4->tags);
+                @if (!empty($story1) && !empty($story2) && !empty($story3))
+                    <div class="row">
+                        <div class="col-xs-12 ">
+                            <nav>
+                                <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
+                                    <a class="nav-item nav-link active" id="nav-healthcare" data-toggle="tab"
+                                        href="#nav-home" role="tab" aria-controls="nav-home"
+                                        aria-selected="true">{{ $story1->badge }}</a>
+                                    <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile"
+                                        role="tab" aria-controls="nav-profile"
+                                        aria-selected="false">{{ $story2->badge }}</a>
+                                    <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact"
+                                        role="tab" aria-controls="nav-contact"
+                                        aria-selected="false">{{ $story3->badge }}</a>
+                                    <a class="nav-item nav-link" id="nav-about-tab" data-toggle="tab" href="#nav-about"
+                                        role="tab" aria-controls="nav-about"
+                                        aria-selected="false">{{ $story4->badge }}</a>
+                                </div>
+                            </nav>
+                            @php
+                                $tags_1 = explode(',', $story1->tags);
+                                $tags_2 = explode(',', $story2->tags);
+                                $tags_3 = explode(',', $story3->tags);
+                                $tags_4 = explode(',', $story4->tags);
 
-                        @endphp
-                        <div class="tab-content py-3 px-3 px-sm-0" id="nav-tabContent">
-                            <div class="tab-pane fade show active" id="nav-home" role="tabpanel"
-                                aria-labelledby="nav-healthcare">
-                                <div class="row d-flex align-items-center">
-                                    <div class="col-lg-4 col-md-4 col-sm-12">
-                                        <div class="tab_side_image">
-                                            <img src="{{ asset('storage/' . $story1->image) }}" alt="" style="height: 230px;">
+                            @endphp
+                            <div class="tab-content py-3 px-3 px-sm-0" id="nav-tabContent">
+                                <div class="tab-pane fade show active" id="nav-home" role="tabpanel"
+                                    aria-labelledby="nav-healthcare">
+                                    <div class="row d-flex align-items-center">
+                                        <div class="col-lg-4 col-md-4 col-sm-12">
+                                            <div class="tab_side_image">
+                                                <img src="{{ asset('storage/' . $story1->image) }}" alt="" style="height: 230px;">
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="col-lg-8 col-md-6 col-sm-12">
-                                        <h5 class="home_title_heading" style="text-align: left;">{{ $story1->title }}
-                                        </h5>
-                                        <p>{{ $story1->header }}</p>
-                                        <div class="home_card_button p-2">
-                                            <a class="effect01" href="{{ route('blog.details', $story1->id) }}">Read
-                                                more</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="tab-pane fade" id="nav-profile" role="tabpanel"
-                                aria-labelledby="nav-profile-tab">
-                                <div class="row d-flex align-items-center">
-                                    <div class="col-lg-4 col-md-4 col-sm-12">
-                                        <div class="tab_side_image">
-                                            <img src="{{ asset('storage/' . $story2->image) }}" alt="" style="height: 230px;">
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-8 col-md-6 col-sm-12">
-                                        <h5 class="home_title_heading" style="text-align: left;">{{ $story2->title }}
-                                        </h5>
-                                        <p>{{ $story2->header }}</p>
-                                        <div class="home_card_button p-2">
-                                            <a class="effect01" href="{{ route('blog.details', $story2->id) }}">Read
-                                                more</a>
+                                        <div class="col-lg-8 col-md-6 col-sm-12">
+                                            <h5 class="home_title_heading" style="text-align: left;">{{ $story1->title }}
+                                            </h5>
+                                            <p>{{ $story1->header }}</p>
+                                            <div class="home_card_button p-2">
+                                                <a class="effect01" href="{{ route('blog.details', $story1->id) }}">Read
+                                                    more</a>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="tab-pane fade" id="nav-contact" role="tabpanel"
-                                aria-labelledby="nav-contact-tab">
-                                <div class="row d-flex align-items-center">
-                                    <div class="col-lg-4 col-md-4 col-sm-12">
-                                        <div class="tab_side_image">
-                                            <img src="{{ asset('storage/' . $story3->image) }}" alt="" style="height: 230px;">
+                                <div class="tab-pane fade" id="nav-profile" role="tabpanel"
+                                    aria-labelledby="nav-profile-tab">
+                                    <div class="row d-flex align-items-center">
+                                        <div class="col-lg-4 col-md-4 col-sm-12">
+                                            <div class="tab_side_image">
+                                                <img src="{{ asset('storage/' . $story2->image) }}" alt="" style="height: 230px;">
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="col-lg-8 col-md-6 col-sm-12">
-                                        <h5 class="home_title_heading" style="text-align: left;">{{ $story3->title }}
-                                        </h5>
-                                        <p>{{ $story3->header }}</p>
-                                        <div class="home_card_button p-2">
-                                            <a class="effect01" href="{{ route('story.details', $story3->id) }}">Read
-                                                more</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="tab-pane fade" id="nav-contact" role="tabpanel"
-                                aria-labelledby="nav-contact-tab">
-                                <div class="row d-flex align-items-center">
-                                    <div class="col-lg-4 col-md-4 col-sm-12">
-                                        <div class="tab_side_image">
-                                            <img src="{{ asset('storage/' . $story4->image) }}" alt="" style="height: 230px;">
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-8 col-md-6 col-sm-12">
-                                        <h5 class="home_title_heading" style="text-align: left;">{{ $story4->title }}
-                                        </h5>
-                                        <p>{{ $story4->header }}</p>
-                                        <div class="home_card_button p-2">
-                                            <a class="effect01" href="{{ route('story.details', $story4->id) }}">Read
-                                                more</a>
+                                        <div class="col-lg-8 col-md-6 col-sm-12">
+                                            <h5 class="home_title_heading" style="text-align: left;">{{ $story2->title }}
+                                            </h5>
+                                            <p>{{ $story2->header }}</p>
+                                            <div class="home_card_button p-2">
+                                                <a class="effect01" href="{{ route('blog.details', $story2->id) }}">Read
+                                                    more</a>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                                <div class="tab-pane fade" id="nav-contact" role="tabpanel"
+                                    aria-labelledby="nav-contact-tab">
+                                    <div class="row d-flex align-items-center">
+                                        <div class="col-lg-4 col-md-4 col-sm-12">
+                                            <div class="tab_side_image">
+                                                <img src="{{ asset('storage/' . $story3->image) }}" alt="" style="height: 230px;">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-8 col-md-6 col-sm-12">
+                                            <h5 class="home_title_heading" style="text-align: left;">{{ $story3->title }}
+                                            </h5>
+                                            <p>{{ $story3->header }}</p>
+                                            <div class="home_card_button p-2">
+                                                <a class="effect01" href="{{ route('story.details', $story3->id) }}">Read
+                                                    more</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tab-pane fade" id="nav-contact" role="tabpanel"
+                                    aria-labelledby="nav-contact-tab">
+                                    <div class="row d-flex align-items-center">
+                                        <div class="col-lg-4 col-md-4 col-sm-12">
+                                            <div class="tab_side_image">
+                                                <img src="{{ asset('storage/' . $story4->image) }}" alt="" style="height: 230px;">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-8 col-md-6 col-sm-12">
+                                            <h5 class="home_title_heading" style="text-align: left;">{{ $story4->title }}
+                                            </h5>
+                                            <p>{{ $story4->header }}</p>
+                                            <div class="home_card_button p-2">
+                                                <a class="effect01" href="{{ route('story.details', $story4->id) }}">Read
+                                                    more</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
 
+                            </div>
                         </div>
                     </div>
-                </div>
+                @endif
                 <!-- Client Tab End -->
             </div>
         </div>
@@ -1330,27 +1347,29 @@
     <!---------End -------->
 
     <!--=====// Global call section //=====-->
-    <section class="global_call_section section_padding">
-        <div class="container">
-            <!-- content -->
-            @php
-                $sentence = $learnmore->consult_title;
-            @endphp
-            <div class="global_call_section_content mt-0">
-                <div class="home_title" style="width: 100%; margin: 0px;">
-                    <h5 class="home_title_heading" style="text-align: left; color: #fff;">
-                        <span>{{ \Illuminate\Support\Str::substr($sentence, 0, 1) }}</span>{{ \Illuminate\Support\Str::substr($sentence, 1) }}
+    @if (!empty($learnmore))
+        <section class="global_call_section section_padding">
+            <div class="container">
+                <!-- content -->
+                @php
+                    $sentence = $learnmore->consult_title;
+                @endphp
+                <div class="global_call_section_content mt-0">
+                    <div class="home_title" style="width: 100%; margin: 0px;">
+                        <h5 class="home_title_heading" style="text-align: left; color: #fff;">
+                            <span>{{ \Illuminate\Support\Str::substr($sentence, 0, 1) }}</span>{{ \Illuminate\Support\Str::substr($sentence, 1) }}
 
-                    </h5>
-                    <p class="home_title_text text-white" style="text-align: left;">{{ $learnmore->consult_short_des }}
-                    </p>
-                    <div class="business_seftion_button" style="text-align: left;">
-                        <a href="{{route('whatwedo')}}">Explore our Business</a>
+                        </h5>
+                        <p class="home_title_text text-white" style="text-align: left;">{{ $learnmore->consult_short_des }}
+                        </p>
+                        <div class="business_seftion_button" style="text-align: left;">
+                            <a href="{{route('whatwedo')}}">Explore our Business</a>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
+    @endif
     <!---------End -------->
     <!--=====// Tech solution //=====-->
     <div class="section_wp2">
@@ -1448,9 +1467,11 @@
                         </h1>
                     </div>
                 </h5>
-                <p class="home_title_text">
-                    <span class="font-weight-bold">{{ $learnmore->industry_header }} </span>
-                </p>
+                @if (!empty($learnmore->industry_header))
+                    <p class="home_title_text">
+                        <span class="font-weight-bold">{{ $learnmore->industry_header }} </span>
+                    </p>
+                @endif
         </div>
         <!-- section content wrapper -->
         <div class="row mb-4">
@@ -1460,7 +1481,7 @@
                 <div class="row">
                     <!-- item -->
 
-                    @if ($industrys)
+                    @if (!empty($industrys))
                         @foreach ($industrys as $item)
                             <div class="col-lg-3 col-sm-6">
                                 <a href="{{ route('industry.details', $item->id) }}" class="we_serve_item">
