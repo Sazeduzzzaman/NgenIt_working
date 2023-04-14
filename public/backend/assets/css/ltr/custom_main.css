@@ -29,7 +29,7 @@
 /* font face for Klinic Slab End*/
 
 body {
-    font-size: 10px !important;
+    font-size: 11px !important;
 }
 .main_bg_color {
     background-color: #247297 !important;
@@ -177,7 +177,8 @@ thead {
 }
 
 .para_color {
-    color: #bfb9b9 !important;
+    font-family: "Klinic Slab";
+    color: #0e0e0e !important;
 }
 /* DataTable Pagination */
 .dataTables_info {
@@ -390,10 +391,10 @@ textarea {
 }
 
 .card_title {
-    font-size: 10px;
+    font-size: 13px;
 }
 .card_para {
-    font-size: 8px;
+    font-size: 11px;
 }
 .card a {
     color: black;
@@ -401,11 +402,11 @@ textarea {
     font-size: 11px;
 }
 .value {
-    font-size: 10px !important;
+    font-size: 11px !important;
 }
 /* Accordion */
 .accourdion_btns {
-    font-size: 9px;
+    font-size: 11px;
 }
 .accourdion_btns::after {
     background-size: 9px !important;
@@ -418,7 +419,7 @@ textarea {
 }
 .table th,
 table td {
-    font-size: 9px !important;
+    font-size: 11px !important;
 }
 .business_tab {
     cursor: pointer !important;
@@ -434,10 +435,10 @@ table td {
     padding: 2px;
     height: 18px !important;
     width: 18px !important;
-    font-size: 8px !important;
+    font-size: 11px !important;
 }
 .modal-title {
-    font-size: 12px !important;
+    font-size: 13px !important;
 }
 .validation-invalid-label,
 .validation-valid-label {

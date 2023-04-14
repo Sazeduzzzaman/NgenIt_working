@@ -1,5 +1,6 @@
 @extends('admin.master')
 @section('content')
+<link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.4.1/css/responsive.dataTables.min.css">
     <style>
         .accordion {
             --accordion-border-width: 0px !important;
