@@ -125,18 +125,18 @@ class PartnerController extends Controller
         $validator = Validator::make(
             $request->all(),
             [
-                'name'                   => 'required',
-                'primary_email_address'  => 'required|unique:partners|max:70',
-                'password'               => 'required|confirmed',
+                'name'     => 'required',
+                'email'    => 'required|unique:partners|max: 70',
+                'password' => 'required|confirmed',
             ],
         );
+
         if ($validator->passes()) {
             $partner = Partner::create([
-                'name'                   => $request->name,
-                'primary_email_address'  => $request->primary_email_address,
-                'status'                 => 'inactive',
-                'password'               => Hash::make($request->password),
-
+                'name'     => $request->name,
+                'email'    => $request->email,
+                'status'   => 'inactive',
+                'password' => Hash::make($request->password),
 
             ]);
 

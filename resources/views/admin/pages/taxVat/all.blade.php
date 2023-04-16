@@ -295,7 +295,7 @@
                 "lengthMenu": [10, 25, 30, 50],
                 columnDefs: [{
                     orderable: false,
-                    targets: [0,1,4,5,6,7],
+                    targets: [7],
                 }, ],
             });
 

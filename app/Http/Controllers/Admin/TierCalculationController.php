@@ -22,16 +22,6 @@ class TierCalculationController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -42,12 +32,12 @@ class TierCalculationController extends Controller
         $validator = Validator::make(
             $request->all(),
             [
-                'point'    => 'nullable|numeric|min:1|max:15',
-                'tier'     => 'nullable|numeric|min:1|max:15',
-                'rebates'  => 'nullable|numeric|min:1|max:15',
-                'benifits' => 'nullable|numeric|min:1|max:15',
-                'amount'   => 'nullable|numeric|min:1|max:15',
-                'value'    => 'nullable|numeric|min:1|max:15',
+                'point'    => 'nullable|min:1|max:15',
+                'tier'     => 'nullable|min:1|max:15',
+                'rebates'  => 'nullable|min:1|max:15',
+                'benifits' => 'nullable|min:1|max:15',
+                'amount'   => 'nullable|min:1|max:15',
+                'value'    => 'nullable|min:1|max:15',
             ]
         );
 
@@ -71,29 +61,6 @@ class TierCalculationController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        $data['tierCalculations']   = TierCalculation::find($id);
-        return view('admin.pages.tierCalculation.all', $data);
-    }
-
-    /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -105,12 +72,12 @@ class TierCalculationController extends Controller
         $validator = Validator::make(
             $request->all(),
             [
-                'point'    => 'nullable|numeric|min:1|max:15',
-                'tier'     => 'nullable|numeric|min:1|max:15',
-                'rebates'  => 'nullable|numeric|min:1|max:15',
-                'benifits' => 'nullable|numeric|min:1|max:15',
-                'amount'   => 'nullable|numeric|min:1|max:15',
-                'value'    => 'nullable|numeric|min:1|max:15',
+                'point'    => 'nullable|min:1|max:15',
+                'tier'     => 'nullable|min:1|max:15',
+                'rebates'  => 'nullable|min:1|max:15',
+                'benifits' => 'nullable|min:1|max:15',
+                'amount'   => 'nullable|min:1|max:15',
+                'value'    => 'nullable|min:1|max:15',
             ]
         );
 

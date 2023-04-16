@@ -23,16 +23,6 @@ class ExpenseCategoryController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        return view('admin.pages.expenseCategory.add');
-    }
-
-    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -45,9 +35,7 @@ class ExpenseCategoryController extends Controller
             [
                 'name'     => 'required|string',
                 'status'   => 'required|string',
-                'comments' => 'required|string',
                 'notes'    => 'required|string',
-                'custom'   => 'required|string',
             ],
             [
                 'required' => 'This :attribute field is needed.',
@@ -59,9 +47,7 @@ class ExpenseCategoryController extends Controller
                 'name'     => $request->name,
                 'slug'     => Str::slug($request->name),
                 'status'   => $request->status,
-                'comments' => $request->comments,
                 'notes'    => $request->notes,
-                'custom'   => $request->custom,
             ]);
             Toastr::success('Data Insert Successfully.');
         } else {
@@ -71,29 +57,6 @@ class ExpenseCategoryController extends Controller
             }
         }
         return redirect()->back();
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        $data['expenseCategory'] = ExpenseCategory::find($id);
-        return view('admin.pages.expenseCategory.edit', $data);
     }
 
     /**
@@ -110,9 +73,7 @@ class ExpenseCategoryController extends Controller
             [
                 'name'     => 'required|string',
                 'status'   => 'required|string',
-                'comments' => 'required|string',
                 'notes'    => 'required|string',
-                'custom'   => 'required|string',
             ],
             [
                 'required' => 'This :attribute field is needed.',
@@ -124,9 +85,7 @@ class ExpenseCategoryController extends Controller
                 'name'     => $request->name,
                 'slug'     => Str::slug($request->name),
                 'status'   => $request->status,
-                'comments' => $request->comments,
                 'notes'    => $request->notes,
-                'custom'   => $request->custom,
             ]);
             Toastr::success('Data Updated Successfully.');
         } else {

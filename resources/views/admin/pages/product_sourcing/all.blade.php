@@ -12,7 +12,7 @@
 
     <div class="content-wrapper">
 
-            
+
                 <!-- Page header -->
                 <section class="shadow-sm">
                     <div class="d-flex justify-content-between align-items-center">
@@ -71,9 +71,9 @@
                                 </ul>
                             </div>
                         </div>
-                        <div class="row rounded  mx-2">
+                        <div class="row rounded mx-2 mt-1">
                             <div class="tab-content">
-                                <div class="tab-pane fade show active bg-white" id="saved">
+                                <div class="tab-pane fade show active" id="saved">
                                     <table class="table table-bordered table-hover sourcingDT text-center ">
                                         <thead>
                                             <tr>
@@ -99,9 +99,9 @@
                                                         <td>{{ $item->source_two_price }}</td>
                                                         <td class="text-center">
                                                             @if ($item->action_status == 'save')
-                                                                <span class="rounded-pill text-success">Not Completed</span>
+                                                                <span class="text-success">Not Completed</span>
                                                             @else
-                                                                <span class="rounded-pill text-danger">Listed</span>
+                                                                <span class=" text-danger">Listed</span>
                                                             @endif
                                                         </td>
                                                         <td>
@@ -127,7 +127,7 @@
                                 </div>
                             </div>
                             <div class="tab-content">
-                                <div class="tab-pane fade show bg-white" id="completed">
+                                <div class="tab-pane fade show" id="completed">
                                     <table class="table table-bordered table-hover sourcingDT2 text-center ">
                                         <thead>
                                             <tr>
@@ -152,9 +152,9 @@
                                                         <td>{{ $item->source_two_price }}</td>
                                                         <td class="text-center">
                                                             @if ($item->action_status == 'save')
-                                                                <span class="badge rounded-pill bg-success">Not Completed</span>
+                                                                <span class="text-success">Not Completed</span>
                                                             @else
-                                                                <span class="badge rounded-pill bg-danger">Listed</span>
+                                                                <span class="text-danger">Listed</span>
                                                             @endif
                                                         </td>
                                                         <td>
@@ -200,13 +200,13 @@
                                                     <td>{{ ucfirst($item->stock) }}</td>
                                                     <td>
                                                         @if ($item->discount == null)
-                                                            <span class="badge rounded-pill bg-info">No Discount</span>
+                                                            <span class="text-info">No Discount</span>
                                                         @else
                                                             @php
                                                                 $amount = $item->price - $item->discount;
                                                                 $discount = ($amount / $item->price) * 100;
                                                             @endphp
-                                                            <span class="badge rounded-pill bg-danger">
+                                                            <span class="text-danger">
                                                                 {{ round($discount) }}%</span>
                                                         @endif
                                                     </td>

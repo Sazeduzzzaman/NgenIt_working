@@ -19,19 +19,9 @@ class ExpenseTypeController extends Controller
      */
     public function index()
     {
-        $data['expenseCategory'] = ExpenseCategory::select('expense_categories.id', 'expense_categories.name')->get();
-        $data['expenseType']     = ExpenseType::latest()->get();
+        $data['expenseCategorys'] = ExpenseCategory::select('expense_categories.id', 'expense_categories.name')->get();
+        $data['expenseTypes']     = ExpenseType::latest()->get();
         return view('admin.pages.expenseType.all', $data);
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        // no need to use this function
     }
 
     /**
@@ -48,7 +38,6 @@ class ExpenseTypeController extends Controller
                 'expense_category_id' => 'required|integer',
                 'name'                => 'required|string',
                 'status'              => 'required|string',
-                'comments'            => 'required|string',
                 'notes'               => 'required|string',
             ],
             [
@@ -62,7 +51,6 @@ class ExpenseTypeController extends Controller
                 'name'                => $request->name,
                 'slug'                => Str::slug($request->name),
                 'status'              => $request->status,
-                'comments'            => $request->comments,
                 'notes'               => $request->notes,
             ]);
             Toastr::success('Data Insert Successfully.');
@@ -73,30 +61,6 @@ class ExpenseTypeController extends Controller
             }
         }
         return redirect()->back();
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        $data['expenseCategory'] = ExpenseCategory::select('expense_categories.id', 'expense_categories.name')->get();
-        $data['expenseType']     = ExpenseType::find($id);
-        return view('admin.pages.expenseType.edit', $data);
     }
 
     /**
@@ -114,7 +78,6 @@ class ExpenseTypeController extends Controller
                 'expense_category_id' => 'required|integer',
                 'name'                => 'required|string',
                 'status'              => 'required|string',
-                'comments'            => 'required|string',
                 'notes'               => 'required|string',
             ],
             [
@@ -128,7 +91,6 @@ class ExpenseTypeController extends Controller
                 'name'                => $request->name,
                 'slug'                => Str::slug($request->name),
                 'status'              => $request->status,
-                'comments'            => $request->comments,
                 'notes'               => $request->notes,
             ]);
             Toastr::success('Data Updated Successfully.');

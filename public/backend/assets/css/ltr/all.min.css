@@ -2633,7 +2633,9 @@ progress {
     --input-font-size: var(--body-font-size-sm);
     --input-line-height: var(--body-line-height-sm);
     --input-border-radius: var(--border-radius-sm);
-    font-size: 10px;
+    font-size: 11px;
+    color: black;
+    font-weight: 500;
 }
 
 .form-control-lg {
@@ -18663,8 +18665,7 @@ html[data-color-theme=dark] .navbar {
 
 .navbar-nav-link-icon i {
     margin-left: calc((var(--body-line-height-computed) - var(--icon-font-size)) * .5);
-    margin-right: calc((var(--body-line-height-computed) - var(--icon-font-size)) * .5);
-    font-size: 19px;
+    margin-right: calc((var(--body-line-height-computed) - var(--icon-font-size)) * .5)
 }
 
 .navbar-brand {

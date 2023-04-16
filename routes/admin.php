@@ -96,6 +96,8 @@ use App\Http\Controllers\Admin\TaxVatController;
 use App\Http\Controllers\Order\ReportController;
 use App\Http\Controllers\Order\ReturnController;
 use App\Http\Middleware\RedirectIfAuthenticated;
+use App\Http\Controllers\Admin\AboutUsController;
+use App\Http\Controllers\Admin\BankingController;
 use App\Http\Controllers\Admin\BulkSmsController;
 use App\Http\Controllers\Admin\ContactController;
 use App\Http\Controllers\Admin\CountryController;
@@ -137,6 +139,8 @@ use App\Http\Controllers\Admin\SalesForcastController;
 use App\Http\Controllers\Admin\SolutionCardController;
 use App\Http\Controllers\Admin\WhatWeDoPageController;
 use App\Http\Controllers\Sales\SalesAccountController;
+use App\Http\Controllers\Admin\PortfolioPageController;
+use App\Http\Controllers\Admin\PortfolioTeamController;
 use App\Http\Controllers\Admin\ShowCaseVideoController;
 use App\Http\Controllers\Marketing\BulkEmailController;
 use App\Http\Controllers\Admin\ClientDatabaseController;
@@ -147,19 +151,26 @@ use App\Http\Controllers\Admin\AccountsManagerController;
 use App\Http\Controllers\Admin\AccountsPayableController;
 use App\Http\Controllers\Admin\DealTypeSettingController;
 use App\Http\Controllers\Admin\ExpenseCategoryController;
+use App\Http\Controllers\Admin\PortfolioClientController;
+use App\Http\Controllers\Admin\PortfolioDetailController;
 use App\Http\Controllers\Admin\SalesProfitLossController;
 use App\Http\Controllers\Admin\SalesTeamTargetController;
 use App\Http\Controllers\Admin\SalesYearTargetController;
 use App\Http\Controllers\Admin\SolutionDetailsController;
+use App\Http\Controllers\Admin\TierCalculationController;
 use App\Http\Controllers\Admin\AdminMenuBuilderController;
 use App\Http\Controllers\Admin\HardwareInfoPageController;
 use App\Http\Controllers\Admin\SoftwareInfoPageController;
 use App\Http\Controllers\Sales\SalesAchievementController;
 use App\Http\Controllers\Admin\AccountProfitLossController;
+use App\Http\Controllers\Admin\PortfolioCategoryController;
+use App\Http\Controllers\Admin\PortfolioChooseUsController;
 use App\Http\Controllers\Marketing\MarketingDmarController;
 use App\Http\Controllers\Admin\AccountsReceivableController;
 use App\Http\Controllers\Admin\CommercialDocumentController;
+use App\Http\Controllers\Admin\FrontendMenuBuilderController;
 use App\Http\Controllers\Admin\PaymentMethodDetailsController;
+use App\Http\Controllers\Admin\PortfolioClientFeedbackController;
 use App\Http\Controllers\Marketing\MarketingTeamTargetController;
 use App\Http\Controllers\Marketing\MarketingManagerRoleController;
 
@@ -511,9 +522,6 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
             'show-case-video'            => ShowCaseVideoController::class,
             'admin-menu-builder'         => AdminMenuBuilderController::class,
             'client-database'            => ClientDatabaseController::class,
-            'what-we-do-page'            => WhatWeDoPageController::class,
-            'software-info-page'         => SoftwareInfoPageController::class,
-            'hardware-info-page'         => HardwareInfoPageController::class,
             'category'                   => CategoryController::class,
             'brand'                      => BrandController::class,
             'success'                    => SuccessController::class,
@@ -562,6 +570,27 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
             'marketing-dashboard'        => MarketingDashboardController::class,
             'product-showcase-dashboard' => ProductShowcaseDashboardController::class,
             'offer-price'                => OfferPriceController::class,
+
+             // phase 2 part 2
+            'what-we-do-page'           => WhatWeDoPageController::class, // done
+            'software-info-page'        => SoftwareInfoPageController::class, // done
+            'hardware-info-page'        => HardwareInfoPageController::class, // done
+
+            'banking'                   => BankingController::class, // allmost - pending
+            'tax-vat'                   => TaxVatController::class, // done
+            'expense-category'          => ExpenseCategoryController::class, // done
+            'frontend-menu-builder'     => FrontendMenuBuilderController::class, //pending
+            'about-us'                  => AboutUsController::class, //pending
+            'expense-type'              => ExpenseTypeController::class, //done
+            'tier-calculation'          => TierCalculationController::class, //done
+            'portfolio-client'          => PortfolioClientController::class, //done
+            'portfolio-team'            => PortfolioTeamController::class, //done
+            'portfolio-choose-us'       => PortfolioChooseUsController::class, //done
+
+            'portfolio-category'        => PortfolioCategoryController::class,
+            'portfolio-page'            => PortfolioPageController::class,
+            'portfolio-detail'          => PortfolioDetailController::class, //pending dd
+            'portfolio-client-feedback' => PortfolioClientFeedbackController::class,
         ],
         [
             //   'except' => ['show','tax-vat','create','edit','expense-type']
