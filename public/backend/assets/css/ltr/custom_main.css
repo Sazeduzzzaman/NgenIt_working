@@ -31,16 +31,15 @@
 body {
     font-size: 11px !important;
 }
-#DataTables_Table_0_length select{
+#DataTables_Table_0_length select {
     margin-left: 4px !important;
     margin-right: 4px !important;
     text-transform: capitalize !important;
-
 }
-#DataTables_Table_0_previous{
+#DataTables_Table_0_previous {
     margin-right: 30px !important;
 }
-#DataTables_Table_0_next{
+#DataTables_Table_0_next {
     margin-right: 10px !important;
 }
 .main_bg_color {
@@ -200,7 +199,6 @@ thead {
     visibility: hidden !important;
 }
 
-
 .dataTables_paginate {
     margin: 0px;
     padding: 0px;
@@ -231,7 +229,7 @@ table thead tr {
     margin-bottom: 5px !important;
     margin-right: 5px !important;
 }
-#DataTables_Table_0_wrapper{
+#DataTables_Table_0_wrapper {
     margin-top: -10px !important;
 }
 #DataTables_Table_0_filter input,
@@ -479,22 +477,18 @@ table td {
     color: #247297;
 }
 
-
 .main_bg {
     background-color: #247297;
 }
-
 
 .title_text_link a h6 {
     font-size: 14px;
     color: #555555 !important;
 }
 
-
 .title_text_link span {
     font-size: 12px;
 }
-
 
 .box_details {
     font-size: 13px;
@@ -503,12 +497,8 @@ table td {
 .dataTable thead .sorting:before,
 .dataTable thead .sorting_asc_disabled:before,
 .dataTable thead .sorting_desc_disabled:after {
-
-
     font-size: 10px !important;
 }
-
-
 
 .back-btn {
     background-color: #fff;
@@ -526,4 +516,13 @@ table td {
 }
 .label_style {
     width: 151px !important;
+}
+
+.multiselect-selected-text {
+    height: 0px !important;
+    padding: 0px 0px 14px 4px !important;
+    font-size: 10px !important;
+}
+.form-control-feedback-icon {
+    display: none;
 }

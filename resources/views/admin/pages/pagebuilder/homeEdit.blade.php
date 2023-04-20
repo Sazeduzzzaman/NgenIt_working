@@ -2,319 +2,476 @@
 @section('content')
     <div class="content-wrapper">
 
-        <!-- Inner content -->
-
-
-        <!-- Page header -->
-        <div class="page-header page-header-light shadow">
-            <div class="page-header-content d-lg-flex border-top">
-                <div class="d-flex">
-                    <div class="breadcrumb py-2">
-                        <a href="index.html" class="breadcrumb-item"><i class="ph-house"></i></a>
-                        <a href="{{ route('admin.dashboard') }}" class="breadcrumb-item">Home</a>
-                        <span class="breadcrumb-item active">Home Management</span>
+        <!-- Content area -->
+        <div class="content pt-2 w-75 mx-auto">
+            <div class="text-start">
+                <div class="d-flex align-items-center justify-content-start main_bg py-1 rounded-1">
+                    <div class="ms-2">
+                        <a class="btn btn-primary btn-rounded rounded-circle btn-icon back-btn"
+                            href="{{ route('homepage.index') }}">
+                            <i class="fa-solid fa-arrow-left main_color"></i>
+                        </a>
+                    </div>
+                    <div class="me-2" style="margin-left: 18.7rem;">
+                        <p class="text-white p-0 m-0 fw-bold">Home Page Builder</p>
+                    </div>
+                    <div style="margin-left: 14rem;">
+                        <a href="{{ route('product-sourcing.index') }}" class="btn navigation_btn">
+                            <div class="d-flex align-items-center ">
+                                <i class="fa-solid fa-nfc-magnifying-glass me-1" style="font-size: 10px;"></i>
+                                <span>Row Builder</span>
+                            </div>
+                        </a>
+                        <a href="{{ route('purchase.index') }}" class="btn navigation_btn">
+                            <div class="d-flex align-items-center ">
+                                <i class="fa-solid fa-money-check-dollar-pen me-1" style="font-size: 10px;"></i>
+                                <span>Solution Card</span>
+                            </div>
+                        </a>
                     </div>
                 </div>
             </div>
-        </div>
-        <!-- /page header -->
-
-
-        <!-- Content area -->
-        <div class="content">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="card">
-                        <div class="card-header">
-
-                            <h5 class="mb-0 float-start">Home Page Edit Form</h5>
-                            <a href="{{ route('allpage') }}" type="button"
-                                class="btn btn-sm btn-success btn-labeled btn-labeled-start float-end">
-                                <span class="btn-labeled-icon bg-black bg-opacity-20">
-                                    <i class="icon-eye"></i>
-                                </span>
-                                All
-                            </a>
-                        </div>
-
-                        <div class="card-body">
-                            <form id="myform" method="post" action="{{ route('homepage.update', $homePage->id) }}"
-                                enctype="multipart/form-data" id="myform">
-                                @csrf
-                                @method('PUT')
-                                <div class="col-12" style="border-bottom: 1px solid black; padding: 10px">
-                                </div>
-                                <div class="col-12" style="border-bottom: 1px solid black;margin-top:10px;padding:10px">
-                                    <h6 class="text-center" style="background:white;">Banner Section</h6>
-                                    <div class="row">
-                                        <div class="form-group col-lg-4 col-md-6 col-sm-12">
-                                            <label>Banner 1</label>
-                                            <input type="file" name="branner1" class="form-control"
-                                                placeholder="Upload your banner" id="image" >
-                                            <div class="form-text">Accepts only png, jpg, jpeg images</div>
-                                            <img class="mb-3" id="showImage" height="100px" width="100px"
-                                                src="{{ asset('storage/requestImg/' . $homePage->branner1) }}"
-                                                alt="">
-
-                                            <div class="row">
-                                                <div class="form-group col-lg-6 col-md-6 col-sm-12 mb-3">
-                                                    <label>Banner 1 Title</label>
-                                                    <input type="text" name="banner1_title" class="form-control"
-                                                        placeholder="Write Something..." value="{{$homePage->banner1_title}}">
-                                                </div>
-                                                <div class="form-group col-lg-6 col-md-6 col-sm-12 mb-3">
-                                                    <label>Banner 1 ShortDescription</label>
-                                                    <input type="text" name="banner1_short_description" class="form-control"
-                                                        placeholder="Write Something..." value="{{$homePage->banner1_short_description}}">
-                                                </div>
-                                                <div class="form-group col-lg-6 col-md-6 col-sm-12">
-                                                    <label>Banner 1 Button name</label>
-                                                    <input type="text" name="banner1_button_name" class="form-control"
-                                                        placeholder="Write Something..." value="{{$homePage->banner1_button_name}}">
-                                                </div>
-                                                <div class="form-group col-lg-6 col-md-6 col-sm-12">
-                                                    <label>Banner 1 Button Link</label>
-                                                    <input type="text" name="banner1_button_link" class="form-control"
-                                                        placeholder="Write Something..." value="{{$homePage->banner1_button_link}}">
-                                                </div>
+            <form id="myform" method="post" action="{{ route('homepage.update', $homePage->id) }}"
+                enctype="multipart/form-data" id="myform">
+                @csrf
+                @method('PUT')
+                <div class="card">
+                    <!--Banner Section-->
+                    <div class="container">
+                        <div class="row g-2 p-1">
+                            <div class="col-lg-6 col-sm-12">
+                                <span class="mt-1 fw-bold text-info">Banner One Section</span>
+                                <div class="px-2 py-2 rounded bg-light">
+                                    {{--  --}}
+                                    <div class="d-flex align-items-center pt-1">
+                                        <label
+                                            class="col-form-label label_style col-lg-2 p-0 text-start text-black label_style">Banner
+                                            Image One</label>
+                                        <div class="d-flex">
+                                            <div class="" style="width: 70%">
+                                                <input name="branner1" id="image" accept="image/*" type="file"
+                                                    class="form-control form-control-sm"
+                                                    placeholder="Enter Banner Image One">
                                             </div>
-                                        </div>
-
-                                        <div class="form-group col-lg-4 col-md-6 col-sm-12">
-                                            <label>Banner 2</label>
-                                            <input type="file" name="branner2" class="form-control"
-                                                placeholder="Upload your banner" id="image1" >
-                                            <div class="form-text">Accepts only png, jpg, jpeg images</div>
-                                            <img class="mb-3" id="showImage1" height="100px" width="100px"
-                                                src="{{ asset('storage/requestImg/' . $homePage->branner2) }}"
-                                                alt="">
-
-                                            <div class="row">
-                                                <div class="form-group col-lg-6 col-md-6 col-sm-12 mb-3">
-                                                    <label>Banner 2 Title</label>
-                                                    <input type="text" name="banner2_title" class="form-control"
-                                                        placeholder="Write Something..." value="{{$homePage->banner2_title}}">
-                                                </div>
-                                                <div class="form-group col-lg-6 col-md-6 col-sm-12 mb-3">
-                                                    <label>Banner 2 ShortDescription</label>
-                                                    <input type="text" name="banner2_short_description" class="form-control"
-                                                        placeholder="Write Something..." value="{{$homePage->banner2_short_description}}">
-                                                </div>
-                                                <div class="form-group col-lg-6 col-md-6 col-sm-12">
-                                                    <label>Banner 2 Button name</label>
-                                                    <input type="text" name="banner2_button_name" class="form-control"
-                                                        placeholder="Write Something..." value="{{$homePage->banner2_button_name}}">
-                                                </div>
-                                                <div class="form-group col-lg-6 col-md-6 col-sm-12">
-                                                    <label>Banner 2 Button Link</label>
-                                                    <input type="text" name="banner2_button_link" class="form-control"
-                                                        placeholder="Write Something..." value="{{$homePage->banner2_button_link}}">
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="form-group col-lg-4 col-md-6 col-sm-12">
-                                            <label>Banner 3</label>
-                                            <input type="file" name="branner3" class="form-control"
-                                                placeholder="Upload your banner" id="image2">
-                                            <div class="form-text">Accepts only png, jpg, jpeg images</div>
-                                            <img class="mb-3" id="showImage2" height="100px" width="100px"
-                                                src="{{ asset('storage/requestImg/' . $homePage->branner3) }}"
-                                                alt="">
-
-                                            <div class="row">
-                                                <div class="form-group col-lg-6 col-md-6 col-sm-12 mb-3">
-                                                    <label>Banner 3 Title</label>
-                                                    <input type="text" name="banner3_title" class="form-control"
-                                                        placeholder="Write Something..." value="{{$homePage->banner3_title}}">
-                                                </div>
-                                                <div class="form-group col-lg-6 col-md-6 col-sm-12 mb-3">
-                                                    <label>Banner 3 ShortDescription</label>
-                                                    <input type="text" name="banner3_short_description" class="form-control"
-                                                        placeholder="Write Something..." value="{{$homePage->banner3_short_description}}">
-                                                </div>
-                                                <div class="form-group col-lg-6 col-md-6 col-sm-12">
-                                                    <label>Banner 3 Button name</label>
-                                                    <input type="text" name="banner3_button_name" class="form-control"
-                                                        placeholder="Write Something..." value="{{$homePage->banner3_button_name}}">
-                                                </div>
-                                                <div class="form-group col-lg-6 col-md-6 col-sm-12">
-                                                    <label>Banner 3 Button Link</label>
-                                                    <input type="text" name="banner3_button_link" class="form-control"
-                                                        placeholder="Write Something..." value="{{$homePage->banner3_button_link}}">
-                                                </div>
+                                            <div class=" ms-2" style="width: 10%">
+                                                <img class="img-fluid rounded-circle" id="showImage"
+                                                    src="{{ asset('storage/requestImg/' . $homePage->branner1) }}"
+                                                    alt=""
+                                                    style="width: 30px;
+                                                        height: 30px;
+                                                         margin-left: 2.5rem;">
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-
-                                <div class="col-12" style="border-bottom: 1px solid black;margin-top:10px;padding:10px">
-                                    <h6 class="text-center" style="background:white;">Double Button Section</h6>
-                                    <div class="row">
-                                        <div class="form-group col-lg-6 col-md-6 col-sm-12">
-                                            <label>Button 1 Title</label>
-                                            <input type="text" value="{{ $homePage->btn1_title }}" name="btn1_title"
-                                                class="form-control" placeholder="Write Something..." required>
-                                        </div>
-                                        <div class="form-group col-lg-6 col-md-6 col-sm-12">
-                                            <label>Button 2 Title</label>
-                                            <input type="text" name="btn2_title" class="form-control"
-                                               value="{{ $homePage->btn2_title }}" placeholder="Write Something..." required>
-                                        </div>
-                                        <div class="form-group col-lg-6 col-md-6 col-sm-12">
-                                            <label>Button 1 Name</label>
-                                            <input type="text" value="{{ $homePage->btn1_name }}" name="btn1_name"
-                                                class="form-control" placeholder="Write Something..." required>
-                                        </div>
-                                        <div class="form-group col-lg-6 col-md-6 col-sm-12">
-                                            <label>Button 2 Name</label>
-                                            <input type="text" name="btn2_name" class="form-control"
-                                               value="{{ $homePage->btn2_name }}" placeholder="Write Something..." required>
-                                        </div>
-                                        <div class="form-group col-lg-6 col-md-6 col-sm-12">
-                                            <label>Button 1 Link</label>
-                                            <input type="text" value="{{ $homePage->btn1_link }}" name="btn1_link"
-                                                class="form-control" placeholder="Write Something..." required>
-                                        </div>
-                                        <div class="form-group col-lg-6 col-md-6 col-sm-12">
-                                            <label>Button 2 Link</label>
-                                            <input type="text" name="btn2_link" class="form-control"
-                                               value="{{ $homePage->btn2_link }}" placeholder="Write Something..." required>
+                                    {{--  --}}
+                                    <div class="d-flex align-items-center pt-1">
+                                        <label
+                                            class="col-form-label label_style col-lg-2 p-0 text-start text-black label_style">Banner
+                                            Title One</label>
+                                        <div class="input-group">
+                                            <input name="banner1_title" maxlength="255" type="text"
+                                                class="form-control form-control-sm" placeholder="Enter Banner Title One"
+                                                value="{{ $homePage->banner1_title }}">
                                         </div>
                                     </div>
-                                </div>
-
-                                <div class="col-12" style="border-bottom: 1px solid black;margin-top:10px; padding:10px">
-                                    <h6 class="text-center" style="background:white;">Features Section</h6>
-                                    <div class="row">
-                                        <div class="form-group col-lg-6 col-md-6 col-sm-12">
-                                            <label>Header 1</label>
-                                            <input type="text" value="{{ $homePage->header1 }}" name="header1"
-                                                class="form-control" placeholder="Write Something..." required>
+                                    {{--  --}}
+                                    <div class="d-flex align-items-center pt-1">
+                                        <label
+                                            class="col-form-label label_style col-lg-2 p-0 text-start text-black label_style">One
+                                            ShortDescription</label>
+                                        <div class="input-group">
+                                            <input name="banner1_short_description" type="text"
+                                                class="form-control form-control-sm"
+                                                placeholder="Enter Banner One ShortDescription"
+                                                value="{{ $homePage->banner1_short_description }}">
                                         </div>
-
-                                        <div class="form-group col-lg-6 col-md-6 col-sm-12">
-                                            <label>Header 2</label>
-                                            <input type="text" value="{{ $homePage->header2 }}" name="header2"
-                                                class="form-control" placeholder="Write Something..." required>
-                                        </div>
-
                                     </div>
+                                    {{--  --}}
+                                    <div class="d-flex align-items-center pt-1">
+                                        <label
+                                            class="col-form-label label_style col-lg-2 p-0 text-start text-black label_style">Banner
+                                            One Button Name</label>
+                                        <div class="input-group">
+                                            <input name="banner1_button_name" type="text" maxlength="255"
+                                                class="form-control form-control-sm"
+                                                placeholder="Enter Banner One Button Name"
+                                                value="{{ $homePage->banner1_button_name }}">
+                                        </div>
+                                    </div>
+                                    {{--  --}}
+                                    <div class="d-flex align-items-center pt-1">
+                                        <label
+                                            class="col-form-label label_style col-lg-2 p-0 text-start text-black label_style">Banner
+                                            One Button Link</label>
+                                        <div class="input-group">
+                                            <input name="banner1_button_link" maxlength="255" type="url"
+                                                class="form-control form-control-sm"
+                                                placeholder="Enter Banner One Button Name"
+                                                value="{{ $homePage->banner1_button_link }}">
+                                        </div>
+                                    </div>
+                                    {{--  --}}
                                 </div>
 
-                                <div class="col-12" style="border-bottom: 1px solid black; margin-top:10px">
-                                    <h6 class="text-center" style="background:white;">Features Row</h6>
-                                    <div class="row">
-                                        <!-- /# row -->
-                                        <div class="col-lg-12">
-                                            <div class="row">
-                                                <div class="card-body col-4">
-                                                    <div class="basic-form">
-                                                        <label>Features 1</label>
-                                                        <div class="form-group row">
-
-                                                            <select name="story1_id" class="form-control select"
-                                                                id="select1">
-                                                                <option></option>
-                                                                @foreach ($client_experiences as $item)
-                                                                    <option value="{{ $item->id }}" {{ ( $item->id == $homePage->story1_id ) ? 'selected' : '' }}>
-                                                                        {{ $item->title }}
-                                                                    </option>
-                                                                @endforeach
-                                                            </select>
-
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                                <div class="card-body col-4">
-                                                    <div class="basic-form">
-                                                        <label>Features 2</label>
-                                                        <div class="form-group row">
-
-                                                            <select name="story2_id" class="form-control select">
-                                                                <option></option>
-                                                                @foreach ($client_experiences as $item)
-                                                                    <option value="{{ $item->id }}" {{ ( $item->id == $homePage->story2_id ) ? 'selected' : '' }}>
-                                                                        {{ $item->title }}
-                                                                    </option>
-                                                                @endforeach
-                                                            </select>
-
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                                <div class="card-body col-4">
-                                                    <div class="basic-form">
-                                                        <label>Features 3</label>
-                                                        <div class="form-group row">
-
-                                                            <select name="story3_id" class="form-control select"
-                                                                id="select3">
-                                                                <option></option>
-                                                                @foreach ($client_experiences as $item)
-                                                                    <option value="{{ $item->id }}" {{ ( $item->id == $homePage->story3_id ) ? 'selected' : '' }}>
-                                                                        {{ $item->title }}</option>
-                                                                @endforeach
-                                                            </select>
-
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                <span class="mt-1 fw-bold text-info">Banner Two Section</span>
+                                <div class="px-2 py-2 rounded bg-light">
+                                    {{--  --}}
+                                    <div class="d-flex align-items-center pt-1">
+                                        <label
+                                            class="col-form-label label_style col-lg-2 p-0 text-start text-black label_style">Banner
+                                            Image Two</label>
+                                        <div class="d-flex">
+                                            <div class="" style="width: 70%">
+                                                <input name="branner2" id="image" accept="image/*" type="file"
+                                                    class="form-control form-control-sm"
+                                                    placeholder="Enter Banner Image Two">
                                             </div>
-
-                                            <div class="row">
-                                                <div class="card-body col-4">
-                                                    <div class="basic-form">
-                                                        <label>Features 4</label>
-                                                        <div class="form-group row">
-
-                                                            <select name="story4_id" class="form-control select"
-                                                                id="select4">
-                                                                <option></option>
-                                                                @foreach ($client_experiences as $item)
-                                                                    <option value="{{ $item->id }}" {{ ( $item->id == $homePage->story4_id ) ? 'selected' : '' }}>
-                                                                        {{ $item->title }}</option>
-                                                                @endforeach
-                                                            </select>
-
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                                <div class="card-body col-4">
-                                                    <div class="basic-form">
-                                                        <div class="form-group">
-
-                                                            <label>Features 5</label>
-                                                            <select name="story5_id" class="form-control select"
-                                                                id="select5">
-                                                                <option></option>
-                                                                @foreach ($client_experiences as $item)
-                                                                    <option value="{{ $item->id }}" {{ ( $item->id == $homePage->story5_id ) ? 'selected' : '' }}>
-                                                                        {{ $item->title }}</option>
-                                                                @endforeach
-                                                            </select>
-
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-4"></div>
+                                            <div class=" ms-2" style="width: 10%">
+                                                <img class="img-fluid rounded-circle" id="showImage"
+                                                    src="{{ asset('storage/requestImg/' . $homePage->branner2) }}"
+                                                    alt=""
+                                                    style="width: 30px;
+                                                        height: 30px;
+                                                         margin-left: 2.5rem;">
                                             </div>
+                                        </div>
+                                    </div>
+                                    {{--  --}}
+                                    <div class="d-flex align-items-center pt-1">
+                                        <label
+                                            class="col-form-label label_style col-lg-2 p-0 text-start text-black label_style">Banner
+                                            Title Two</label>
+                                        <div class="input-group">
+                                            <input name="banner2_title" maxlength="255" type="text"
+                                                class="form-control form-control-sm" placeholder="Enter Banner Title Two"
+                                                value="{{ $homePage->banner2_title }}">
+                                        </div>
+                                    </div>
+                                    {{--  --}}
+                                    <div class="d-flex align-items-center pt-1">
+                                        <label
+                                            class="col-form-label label_style col-lg-2 p-0 text-start text-black label_style">Two
+                                            ShortDescription</label>
+                                        <div class="input-group">
+                                            <input name="banner2_short_description" type="text"
+                                                class="form-control form-control-sm"
+                                                placeholder="Enter Banner Two ShortDescription"
+                                                value="{{ $homePage->banner2_short_description }}">
+                                        </div>
+                                    </div>
+                                    {{--  --}}
+                                    <div class="d-flex align-items-center pt-1">
+                                        <label
+                                            class="col-form-label label_style col-lg-2 p-0 text-start text-black label_style">Banner
+                                            Two Button Name</label>
+                                        <div class="input-group">
+                                            <input name="banner2_button_name" type="text" maxlength="255"
+                                                class="form-control form-control-sm"
+                                                placeholder="Enter Banner Two Button Name"
+                                                value="{{ $homePage->banner2_button_name }}">
+                                        </div>
+                                    </div>
+                                    {{--  --}}
+                                    <div class="d-flex align-items-center pt-1">
+                                        <label
+                                            class="col-form-label label_style col-lg-2 p-0 text-start text-black label_style">Banner
+                                            Two Button Link</label>
+                                        <div class="input-group">
+                                            <input name="banner2_button_link" maxlength="255" type="url"
+                                                class="form-control form-control-sm"
+                                                placeholder="Enter Banner Two Button Name"
+                                                value="{{ $homePage->banner2_button_link }}">
+                                        </div>
+                                    </div>
+                                    {{--  --}}
+                                </div>
 
+                                <span class="mt-1 fw-bold text-info">Banner Three Section</span>
+                                <div class="px-2 py-2 rounded bg-light">
+                                    {{--  --}}
+                                    <div class="d-flex align-items-center pt-1">
+                                        <label
+                                            class="col-form-label label_style col-lg-2 p-0 text-start text-black label_style">Banner
+                                            Image Three</label>
+                                        <div class="d-flex">
+                                            <div class="" style="width: 70%">
+                                                <input name="branner3" id="image" accept="image/*" type="file"
+                                                    class="form-control form-control-sm"
+                                                    placeholder="Enter Banner Image Three">
+                                            </div>
+                                            <div class=" ms-2" style="width: 10%">
+                                                <img class="img-fluid rounded-circle" id="showImage"
+                                                    src="{{ asset('storage/requestImg/' . $homePage->branner3) }}"
+                                                    alt=""
+                                                    style="width: 30px;
+                                                        height: 30px;
+                                                         margin-left: 2.5rem;">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {{--  --}}
+                                    <div class="d-flex align-items-center pt-1">
+                                        <label
+                                            class="col-form-label label_style col-lg-2 p-0 text-start text-black label_style">Banner
+                                            Title Three</label>
+                                        <div class="input-group">
+                                            <input name="banner3_title" maxlength="255" type="text"
+                                                class="form-control form-control-sm"
+                                                placeholder="Enter Banner Title Three"
+                                                value="{{ $homePage->banner3_title }}">
+                                        </div>
+                                    </div>
+                                    {{--  --}}
+                                    <div class="d-flex align-items-center pt-1">
+                                        <label
+                                            class="col-form-label label_style col-lg-2 p-0 text-start text-black label_style">Three
+                                            ShortDescription</label>
+                                        <div class="input-group">
+                                            <input name="banner3_short_description" type="text"
+                                                class="form-control form-control-sm"
+                                                placeholder="Enter Banner Three ShortDescription"
+                                                value="{{ $homePage->banner3_short_description }}">
+                                        </div>
+                                    </div>
+                                    {{--  --}}
+                                    <div class="d-flex align-items-center pt-1">
+                                        <label
+                                            class="col-form-label label_style col-lg-2 p-0 text-start text-black label_style">Banner
+                                            Three Button Name</label>
+                                        <div class="input-group">
+                                            <input name="banner3_button_name" type="text" maxlength="255"
+                                                class="form-control form-control-sm"
+                                                placeholder="Enter Banner Three Button Name"
+                                                value="{{ $homePage->banner3_button_name }}">
+                                        </div>
+                                    </div>
+                                    {{--  --}}
+                                    <div class="d-flex align-items-center pt-1">
+                                        <label
+                                            class="col-form-label label_style col-lg-2 p-0 text-start text-black label_style">Banner
+                                            Three Button Link</label>
+                                        <div class="input-group">
+                                            <input name="banner3_button_link" maxlength="255" type="url"
+                                                class="form-control form-control-sm"
+                                                placeholder="Enter Banner Three Button Name"
+                                                value="{{ $homePage->banner3_button_link }}">
+                                        </div>
+                                    </div>
+                                    {{--  --}}
+                                </div>
+
+                                <span class="mt-1 fw-bold text-info">Client Success Row</span>
+                                <div class="px-2 py-2 rounded bg-light d-flex align-items-center mt-1">
+                                    <div class=" pt-1">
+                                        <label
+                                            class="col-form-label label_style col-lg-2 p-0 text-start text-black label_style">Client Success One</label>
+                                        <div class="input-group" style="width: 130px;">
+                                            <select name="success1_id" class="form-control form-control-sm select" id="select10">
+                                                <option></option>
+                                                @foreach ($successes as $item)
+                                                    <option value="{{ $item->id }}" {{ ( $item->id == $homePage->success1_id ) ? 'selected' : '' }}>{{ $item->title }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class=" pt-1">
+                                        <label
+                                            class="col-form-label label_style col-lg-2 p-0 text-start text-black label_style">Client Success Two</label>
+                                        <div class="input-group" style="width: 130px;">
+                                            <select name="success2_id" class="form-control form-control-sm select" id="select11">
+                                                <option></option>
+                                                @foreach ($successes as $item)
+                                                    <option value="{{ $item->id }}" {{ ( $item->id == $homePage->success2_id ) ? 'selected' : '' }}>{{ $item->title }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class=" pt-1">
+                                        <label
+                                            class="col-form-label label_style col-lg-2 p-0 text-start text-black label_style">Client Success Three</label>
+                                        <div class="input-group" style="width: 130px;">
+                                            <select name="success3_id" class="form-control form-control-sm select" id="select12">
+                                                <option></option>
+                                                @foreach ($successes as $item)
+                                                    <option value="{{ $item->id }}" {{ ( $item->id == $homePage->success3_id ) ? 'selected' : '' }}>{{ $item->title }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
                                         </div>
                                     </div>
                                 </div>
-
-                                <div class="col-12" style="border-bottom: 1px solid black;margin-top:10px">
-                                    <h6 class="text-center" style="background:white;">Client Stories Row</h6>
-                                    <div class="row pt-3 pb-3">
-
-                                        <div class="form-group col-3">
-
-                                            <label>Client Story 1</label>
-                                            <select name="solution1_id" class="form-control select"
+                            </div>
+                            <div class="col-lg-6 col-sm-12">
+                                <span class="mt-1 fw-bold text-info">Double Button One Section</span>
+                                <div class="px-2 py-2 rounded bg-light mb-2">
+                                    <div class="d-flex align-items-center pt-1">
+                                        <label
+                                            class="col-form-label label_style col-lg-2 p-0 text-start text-black label_style">Button
+                                            One Title </label>
+                                        <div class="input-group">
+                                            <input name="btn1_title" maxlength="255" type="text"
+                                                class="form-control form-control-sm" placeholder="Enter Button One Title"
+                                                value="{{ $homePage->btn1_title }}">
+                                        </div>
+                                    </div>
+                                    <div class="d-flex align-items-center pt-1">
+                                        <label
+                                            class="col-form-label label_style col-lg-2 p-0 text-start text-black label_style">Button
+                                            One Name </label>
+                                        <div class="input-group">
+                                            <input name="btn1_name" maxlength="255" type="text"
+                                                class="form-control form-control-sm" placeholder="Enter Button One Name"
+                                                value="{{ $homePage->btn1_name }}">
+                                        </div>
+                                    </div>
+                                    {{--  --}}
+                                    <div class="d-flex align-items-center pt-1">
+                                        <label
+                                            class="col-form-label label_style col-lg-2 p-0 text-start text-black label_style">Button
+                                            One Link </label>
+                                        <div class="input-group">
+                                            <input name="btn1_link" maxlength="255" type="url"
+                                                class="form-control form-control-sm" placeholder="Enter Button One Link"
+                                                value="{{ $homePage->btn1_link }}">
+                                        </div>
+                                    </div>
+                                    {{--  --}}
+                                </div>
+                                <span class="mt-1 fw-bold text-info">Double Button Two Section</span>
+                                <div class="px-2 py-2 rounded bg-light mb-2">
+                                    <div class="d-flex align-items-center pt-1">
+                                        <label
+                                            class="col-form-label label_style col-lg-2 p-0 text-start text-black label_style">Button
+                                            Two Title </label>
+                                        <div class="input-group">
+                                            <input name="btn2_title" maxlength="255" type="text"
+                                                class="form-control form-control-sm" placeholder="Enter Button Two Title"
+                                                value="{{ $homePage->btn2_title }}">
+                                        </div>
+                                    </div>
+                                    <div class="d-flex align-items-center pt-1">
+                                        <label
+                                            class="col-form-label label_style col-lg-2 p-0 text-start text-black label_style">Button
+                                            Two Name </label>
+                                        <div class="input-group">
+                                            <input name="btn2_name" maxlength="255" type="text"
+                                                class="form-control form-control-sm" placeholder="Enter Button Two Name"
+                                                value="{{ $homePage->btn2_name }}">
+                                        </div>
+                                    </div>
+                                    {{--  --}}
+                                    <div class="d-flex align-items-center pt-1">
+                                        <label
+                                            class="col-form-label label_style col-lg-2 p-0 text-start text-black label_style">Button
+                                            Two Link </label>
+                                        <div class="input-group">
+                                            <input name="btn2_link" maxlength="255" type="url"
+                                                class="form-control form-control-sm" placeholder="Enter Button Two Link"
+                                                value="{{ $homePage->btn2_link }}">
+                                        </div>
+                                    </div>
+                                    {{--  --}}
+                                </div>
+                                
+                                <span class="mt-1 fw-bold text-info">Features Row</span>
+                                <div class="px-2 py-2 rounded bg-light mb-2">
+                                    {{--  --}}
+                                    <div class="d-flex align-items-center pt-1">
+                                        <label
+                                            class="col-form-label label_style col-lg-2 p-0 text-start text-black label_style">Feature
+                                            One</label>
+                                        <div class="input-group" style="width: 275px;">
+                                            <select name="story1_id" class="form-control form-control-sm select"
+                                                id="select1">
+                                                <option></option>
+                                                @foreach ($client_experiences as $item)
+                                                    <option value="{{ $item->id }}"
+                                                        {{ $item->id == $homePage->story1_id ? 'selected' : '' }}>
+                                                        {{ $item->title }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
+                                    {{--  --}}
+                                    <div class="d-flex align-items-center pt-1">
+                                        <label
+                                            class="col-form-label label_style col-lg-2 p-0 text-start text-black label_style">Feature
+                                            Two</label>
+                                        <div class="input-group" style="width: 275px;">
+                                            <select name="story2_id" class="form-control form-control-sm select"
+                                                id="select2">
+                                                <option></option>
+                                                @foreach ($client_experiences as $item)
+                                                    <option value="{{ $item->id }}"
+                                                        {{ $item->id == $homePage->story2_id ? 'selected' : '' }}>
+                                                        {{ $item->title }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
+                                    {{--  --}}
+                                    <div class="d-flex align-items-center pt-1">
+                                        <label
+                                            class="col-form-label label_style col-lg-2 p-0 text-start text-black label_style">Feature
+                                            Three</label>
+                                        <div class="input-group" style="width: 275px;">
+                                            <select name="story3_id" class="form-control form-control-sm select"
+                                                id="select3">
+                                                <option></option>
+                                                @foreach ($client_experiences as $item)
+                                                    <option value="{{ $item->id }}"
+                                                        {{ $item->id == $homePage->story3_id ? 'selected' : '' }}>
+                                                        {{ $item->title }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
+                                    {{--  --}}
+                                    <div class="d-flex align-items-center pt-1">
+                                        <label
+                                            class="col-form-label label_style col-lg-2 p-0 text-start text-black label_style">Feature
+                                            Four</label>
+                                        <div class="input-group" style="width: 275px;">
+                                            <select name="story4_id" class="form-control form-control-sm select"
+                                                id="select4">
+                                                @foreach ($client_experiences as $item)
+                                                    <option value="{{ $item->id }}"
+                                                        {{ $item->id == $homePage->story4_id ? 'selected' : '' }}>
+                                                        {{ $item->title }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
+                                    {{--  --}}
+                                    <div class="d-flex align-items-center pt-1">
+                                        <label
+                                            class="col-form-label label_style col-lg-2 p-0 text-start text-black label_style">Feature
+                                            Five</label>
+                                        <div class="input-group" style="width: 275px;">
+                                            <select name="story5_id" class="form-control form-control-sm select"
+                                                id="select5">
+                                                <option></option>
+                                                @foreach ($client_experiences as $item)
+                                                    <option value="{{ $item->id }}"
+                                                        {{ $item->id == $homePage->story5_id ? 'selected' : '' }}>
+                                                        {{ $item->title }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <span class="mt-1 fw-bold text-info">Client Stories Row</span>
+                                <div class="px-2 py-2 rounded bg-light mb-1">
+                                    <div class="d-flex align-items-center pt-1">
+                                        <label
+                                            class="col-form-label label_style col-lg-2 p-0 text-start text-black label_style">Client
+                                            Story One</label>
+                                        <div class="input-group">
+                                            <select name="solution1_id" class="form-control form-control-sm select"
                                                 id="select6">
                                                 <option></option>
                                                 @foreach ($storys as $item)
@@ -322,25 +479,32 @@
                                                     </option>
                                                 @endforeach
                                             </select>
-
                                         </div>
-                                        <div class="form-group col-3">
-
-                                            <label>Client Story 2</label>
-                                            <select name="solution2_id" class="form-control select"
+                                    </div>
+                                    {{--  --}}
+                                    <div class="d-flex align-items-center pt-1">
+                                        <label
+                                            class="col-form-label label_style col-lg-2 p-0 text-start text-black label_style">Client
+                                            Story Two</label>
+                                        <div class="input-group">
+                                            <select name="solution2_id" class="form-control form-control-sm select"
                                                 id="select7">
+                                                <option></option>
                                                 <option></option>
                                                 @foreach ($storys as $item)
                                                     <option value="{{ $item->id }}" {{ ( $item->id == $homePage->solution2_id ) ? 'selected' : '' }}>{{ $item->badge }}
                                                     </option>
                                                 @endforeach
                                             </select>
-
                                         </div>
-                                        <div class="form-group col-3">
-
-                                            <label>Client Story 3</label>
-                                            <select name="solution3_id" class="form-control select"
+                                    </div>
+                                    {{--  --}}
+                                    <div class="d-flex align-items-center pt-1">
+                                        <label
+                                            class="col-form-label label_style col-lg-2 p-0 text-start text-black label_style">Client
+                                            Story Three</label>
+                                        <div class="input-group">
+                                            <select name="solution3_id" class="form-control form-control-sm select"
                                                 id="select8">
                                                 <option></option>
                                                 @foreach ($storys as $item)
@@ -348,12 +512,15 @@
                                                     </option>
                                                 @endforeach
                                             </select>
-
                                         </div>
-                                        <div class="form-group col-3">
-
-                                            <label>Client Story 4</label>
-                                            <select name="solution4_id" class="form-control select"
+                                    </div>
+                                    {{--  --}}
+                                    <div class="d-flex align-items-center pt-1">
+                                        <label
+                                            class="col-form-label label_style col-lg-2 p-0 text-start text-black label_style">Client
+                                            Story Four</label>
+                                        <div class="input-group">
+                                            <select name="solution4_id" class="form-control form-control-sm select"
                                                 id="select9">
                                                 <option></option>
                                                 @foreach ($storys as $item)
@@ -361,86 +528,38 @@
                                                     </option>
                                                 @endforeach
                                             </select>
-
                                         </div>
-
                                     </div>
+                                    {{--  --}}
                                 </div>
-
-                                <div class="col-12" style="border-bottom: 1px solid black;margin-top:10px">
-                                    <h6 class="text-center" style="background:white;">Single Tech Glosy Row</h6>
-                                    <div class="row pt-3 pb-3">
-
-                                        <div class="form-group col-10">
-
-                                            <label>Sigle Tech Glossy</label>
-                                            <select name="techglossy_id" class="form-control select"
-                                                id="select6">
+                                <span class="mt-1 fw-bold text-info">Single Tech Glosy Row</span>
+                                <div class="px-2 py-2 rounded bg-light">
+                                    <div class="d-flex align-items-center pt-1">
+                                        <label
+                                            class="col-form-label label_style col-lg-2 p-0 text-start text-black label_style">Sigle
+                                            Tech Glossy</label>
+                                        <div class="input-group">
+                                            <select name="techglossy_id" class="form-control form-control-sm select" id="select6">
                                                 <option></option>
                                                 @foreach ($techglossys as $item)
                                                     <option value="{{ $item->id }}" {{ ( $item->id == $homePage->techglossy_id ) ? 'selected' : '' }}>{{ $item->badge }}
                                                     </option>
                                                 @endforeach
                                             </select>
-
                                         </div>
                                     </div>
                                 </div>
-
-                                <div class="col-12" style="border-bottom: 1px solid black;margin-top:10px">
-                                    <h6 class="text-center" style="background:white;">Client Success Row</h6>
-                                    <div class="row pt-3 pb-3">
-                                        <div class="form-group col-4">
-
-                                            <label>Client Success 1</label>
-                                            <select name="success1_id" class="form-control select"
-                                                id="select10">
-                                                <option></option>
-                                                @foreach ($successes as $item)
-                                                    <option value="{{ $item->id }}" {{ ( $item->id == $homePage->success1_id ) ? 'selected' : '' }}>{{ $item->title }}
-                                                    </option>
-                                                @endforeach
-                                            </select>
-
-                                        </div>
-                                        <div class="form-group col-4">
-
-                                            <label>Client Success 2</label>
-                                            <select name="success2_id" class="form-control select"
-                                                id="select11">
-                                                <option></option>
-                                                @foreach ($successes as $item)
-                                                    <option value="{{ $item->id }}" {{ ( $item->id == $homePage->success2_id ) ? 'selected' : '' }}>{{ $item->title }}
-                                                    </option>
-                                                @endforeach
-                                            </select>
-
-                                        </div>
-                                        <div class="form-group col-4">
-
-                                            <label>Client Success 3</label>
-                                            <select name="success3_id" class="form-control select"
-                                                id="select12">
-                                                <option></option>
-                                                @foreach ($successes as $item)
-                                                    <option value="{{ $item->id }}" {{ ( $item->id == $homePage->success3_id ) ? 'selected' : '' }}>{{ $item->title }}
-                                                    </option>
-                                                @endforeach
-                                            </select>
-
-                                        </div>
-                                    </div>
-                                </div><br>
-                                <button type="submit" id="submitbtn" class="btn btn-sm btn-primary pull-right">Update<i
-                                    class="ph-paper-plane-tilt ms-2"></i></button>
-                            </form>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </div>
+                    <div class="modal-footer border-0 p-2">
+                        <button type="button" class="submit_close_btn " data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="submit_btn from-prevent-multiple-submits"
+                            style="padding: 4px 9px;">Submit</button>
+                    </div>
+            </form>
         </div>
         <!-- /content area -->
-        <!-- /inner content -->
 
     </div>
 @endsection

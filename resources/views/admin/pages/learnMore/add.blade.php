@@ -24,15 +24,29 @@
         <!-- Content area -->
         <div class="content pt-5 w-75 mx-auto">
             <div class="text-start">
-                <div class="d-flex align-items-center justify-content-start main_bg py-1">
+                <div class="d-flex align-items-center justify-content-start main_bg py-1 rounded-1">
                     <div class="ms-2">
                         <a class="btn btn-primary btn-rounded rounded-circle btn-icon back-btn"
-                            href="{{ route('solutionCard.index') }}">
+                            href="{{ route('learnMore.index') }}">
                             <i class="fa-solid fa-arrow-left main_color"></i>
                         </a>
                     </div>
-                    <div class="me-2" style="margin-left: 23rem;">
-                        <p class="text-white p-0 m-0 fw-bold"> Add Learn More Form </p>
+                    <div class="me-2" style="margin-left: 19.7rem;">
+                        <p class="text-white p-0 m-0 fw-bold"> Edit Learn More </p>
+                    </div>
+                    <div style="margin-left: 14rem;">
+                        <a href="{{ route('product-sourcing.index') }}" class="btn navigation_btn">
+                            <div class="d-flex align-items-center ">
+                                <i class="fa-solid fa-nfc-magnifying-glass me-1" style="font-size: 10px;"></i>
+                                <span>Row Builder</span>
+                            </div>
+                        </a>
+                        <a href="{{ route('purchase.index') }}" class="btn navigation_btn">
+                            <div class="d-flex align-items-center ">
+                                <i class="fa-solid fa-money-check-dollar-pen me-1" style="font-size: 10px;"></i>
+                                <span>Solution Card</span>
+                            </div>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -44,7 +58,7 @@
                         <div class="row g-2 p-1">
                             <div class="col">
                                 <span class="mt-1 fw-bold text-info">Description</span>
-                                <div class="px-2 py-2 rounded bg-light">
+                                <div class="px-2 py-2 rounded bg-light mb-3">
                                     {{--  --}}
                                     <div class="d-flex align-items-center pt-1">
                                         <label
@@ -108,7 +122,7 @@
                                     </div>
                                 </div>
                                 <span class="mt-1 fw-bold text-info">Header</span>
-                                <div class="px-2 py-2 rounded bg-light mb-2">
+                                <div class="px-2 py-2 rounded bg-light mb-3">
                                     <div class="d-flex align-items-center pt-1">
                                         <label
                                             class="col-form-label label_style col-lg-2 p-0 text-start text-black label_style">Header
@@ -154,7 +168,6 @@
                                         </div>
                                     </div>
                                     {{--  --}}
-
                                     <div class="d-flex align-items-center pt-1">
                                         <label
                                             class="col-form-label label_style col-lg-2 p-0 text-start text-black label_style">Consult
@@ -164,14 +177,14 @@
                                                 placeholder="Enter Consult Short Description"required></textarea>
                                         </div>
                                     </div>
-
                                     {{--  --}}
                                     <div class="d-flex align-items-center pt-1">
                                         <label
-                                            class="col-form-label label_style col-lg-2 p-0 text-start text-black label_style">Industry Header</label>
+                                            class="col-form-label label_style col-lg-2 p-0 text-start text-black label_style">Industry
+                                            Header</label>
                                         <div class="input-group">
-                                            <textarea name="industry_header" type="text" rows="2"
-                                                class="form-control " placeholder="Enter Industry Header"required></textarea>
+                                            <textarea name="industry_header" type="text" rows="2" class="form-control "
+                                                placeholder="Enter Industry Header"required></textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -275,7 +288,10 @@
                                                 placeholder="Enter Box Three link" required></textarea>
                                         </div>
                                     </div>
-                                    {{--  --}}
+                                </div>
+                                {{--  --}}
+                                <span class="mt-1 fw-bold text-info">Client Area</span>
+                                <div class="px-2 py-2 rounded bg-light">
                                     <div class="d-flex align-items-center pt-1">
                                         <label
                                             class="col-form-label label_style col-lg-2 p-0 text-start text-black label_style">Success
@@ -346,7 +362,6 @@
             </form>
         </div>
         <!-- /content area -->
-        <!-- /inner content -->
 
     </div>
 @endsection
