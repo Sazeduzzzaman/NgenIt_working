@@ -17,7 +17,7 @@
 
     .table th {
         /* padding: 12px 40px 12px 20px!important; */
-        padding: 20!important;
+        padding: 20 !important;
     }
 
     table tbody td {
@@ -35,8 +35,7 @@
 <link href="{{ asset('backend/assets/icons/fontawesome/styles.min.css') }}" rel="stylesheet" type="text/css">
 {{-- <link href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css" rel="stylesheet" type="text/css"> --}}
 
-
-<link rel="stylesheet"  href="https://site-assets.fontawesome.com/releases/v6.4.0/css/all.css">
+<link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.4.0/css/all.css">
 <link href="{{ asset('backend/assets/icons/material/styles.min.css') }}" rel="stylesheet" type="text/css">
 <!-- /global stylesheets -->
 <link href="{{ asset('backend/assets/css/oliullah.css') }}" id="stylesheet" rel="stylesheet" type="text/css">

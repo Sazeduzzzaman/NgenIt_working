@@ -8,6 +8,16 @@
         .submit_btn:hover {
             padding: 10px;
         }
+
+        .pagination-flat .disabled {
+            width: 60px !important;
+            padding-left: 10px;
+            padding-right: 10px;
+
+        }
+        .pagination {
+            margin-right: 35px !important;
+        }
     </style>
 
     <div class="content-wrapper">

@@ -1,22 +1,20 @@
 @extends('admin.master')
 @section('content')
+    <style>
+        .label_style {
+            width: 151px !important;
+        }
+    </style>
     <div class="content-wrapper">
-
-        <!-- Inner content -->
-
-
         <!-- Page header -->
         <div class="page-header page-header-light shadow">
-
-
             <div class="page-header-content d-lg-flex border-top">
                 <div class="d-flex">
                     <div class="breadcrumb py-2">
-                        <a href="index.html" class="breadcrumb-item"><i class="ph-house"></i></a>
-                        <a href="{{ route('admin.dashboard') }}" class="breadcrumb-item">Home</a>
-                        <span class="breadcrumb-item active">Solution Details Management</span>
+                        <a href="{{ route('admin.dashboard') }}" class="breadcrumb-item"><i class="ph-house me-2"></i> Home</a>
+                        <a href="{{ route('solutionDetails.index') }}" class="breadcrumb-item">Solution Details</a>
+                        <a href="" class="breadcrumb-item">Add</a>
                     </div>
-
                     <a href="#breadcrumb_elements"
                         class="btn btn-light align-self-center collapsed d-lg-none border-transparent rounded-pill p-0 ms-auto"
                         data-bs-toggle="collapse">
@@ -27,392 +25,307 @@
         </div>
         <!-- /page header -->
 
-
         <!-- Content area -->
-        <div class="content">
-            <div class="card">
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-lg-7">
-                            <h5 class="text-center">Add Solution Detail Form</h5>
-                        </div>
-
-                        <div class="col-lg-3"></div>
-                        <div class="col-lg-2">
-                            <a href="{{ route('solutionDetails.index') }}" type="button"
-                                class="btn btn-sm btn-warning btn-labeled btn-labeled-start float-end">
-                                <span class="btn-labeled-icon bg-black bg-opacity-20">
-                                    <i class="icon-eye"></i>
-                                </span>
-                                All Solution Detail
-                            </a>
-                        </div>
-                    </div>
-
-                </div>
+        <div class="content pt-2 w-75 mx-auto">
+            <div class="text-center">
+                <h5> Add Solution Details </h5>
             </div>
+            <form method="post" action="{{ route('solutionDetails.store') }}" enctype="multipart/form-data">
+                @csrf
+                <div class="card">
+                    <!--Banner Section-->
+                    <div class="container">
+                        <div class="row g-2 p-1">
+                            <div class="col">
+                                <span class="mt-1 fw-bold text-info">Banner Section</span>
 
-            <div class="tab-content">
-                <div class="tab-pane fade show active" id="js-tab1">
-                    <div class="row">
-                        <div class="col-lg-1"></div>
-                        <div class="col-lg-10">
-                            <div id="table1" class="card cardTd">
-
-                                <div class="card-body">
-                                    <form method="post" action="{{ route('solutionDetails.store') }}"
-                                        enctype="multipart/form-data">
-                                        @csrf
-
-                                        <!--Banner Section-->
-                                        <div class="row border">
-                                            <div class="col-12 text-center">
-                                                <h5 class="border-bottom p-2">Banner Section</h5>
-                                            </div>
-                                            <div class="row mb-3 mt-2">
-                                                <div class="col-sm-3"></div>
-                                                <div class="col-sm-2">
-                                                    <h6 class="mb-0">Industry Title <span class="text-danger">*</span> </h6>
-                                                </div>
-                                                <div class="form-group col-sm-4 text-secondary">
-                                                    <select data-placeholder="Select Industry" class="form-select"
-                                                        id="industry_id" name="industry_id"
-                                                        data-tags="false">
-                                                        <option></option>
-                                                        @foreach ($industries as $industrie)
-                                                            <option value="{{ $industrie->id }}">{{ $industrie->title }}
-                                                            </option>
-                                                        @endforeach
-                                                    </select>
-                                                </div>
-                                            </div>
-
-                                            <div class="row">
-                                                <div class="col-lg-6">
-                                                    <div class="row mb-3">
-
-                                                        <div class="col-sm-12">
-                                                            <h6 class="mb-0">Banner Image <span class="text-danger">*</span> </h6>
-                                                        </div>
-                                                        <div class="col-sm-12 text-secondary">
-                                                            <input type="file" name="banner_image" class="form-control"
-                                                                id="image" accept="image/*" />
-                                                            <div class="form-text">Accepts only png, jpg, jpeg images</div>
-                                                            <img id="showImage" height="50px" width="70px"
-                                                                src="https://cdn.pixabay.com/photo/2017/02/07/02/16/cloud-2044823_960_720.png"
-                                                                alt="">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-6">
-                                                    <div class="row mb-3">
-                                                        <div class="col-sm-12">
-                                                            <h6 class="mb-0">Solution Name <span class="text-danger">*</span></h6>
-                                                        </div>
-                                                        <div class="form-group col-sm-12 text-secondary">
-                                                            <input type="text" name="name"
-                                                                class="form-control maxlength" maxlength="255" />
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="row mb-3">
-                                                <div class="col-1"></div>
-                                                <div class="col-sm-2">
-                                                    <h6 class="mb-0">Solution Header <span class="text-danger">*</span></h6>
-                                                </div>
-                                                <div class="form-group col-sm-8 text-secondary">
-                                                    <textarea name="header" id="" class="form-control" cols="40" rows="3"></textarea>
-                                                </div>
-                                            </div>
+                                <div class="px-2 py-2 rounded bg-light">
+                                    {{--  --}}
+                                    <div class="d-flex align-items-center pt-1">
+                                        <label
+                                            class="col-form-label label_style col-lg-2 p-0 text-start text-black">Industry
+                                            Title</label>
+                                        <select name="industry_id" class="form-control form-select-sm select"
+                                            data-container-css-class="select-sm" data-minimum-results-for-search="Infinity"
+                                            data-placeholder="Chose Industry Title" required>
+                                            <option></option>
+                                            @foreach ($industries as $industrie)
+                                                <option value="{{ $industrie->id }}">{{ $industrie->title }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    {{--  --}}
+                                    <div class="d-flex align-items-center pt-1">
+                                        <label
+                                            class="col-form-label label_style col-lg-2 p-0 text-start text-black label_style">Banner
+                                            Image</label>
+                                        <div class="input-group">
+                                            <input name="banner_image" id="image" accept="image/*" type="file"
+                                                class="form-control form-control-sm" placeholder="Enter Banner Image">
                                         </div>
-                                        <!--End Banner Section-->
-
-                                        <!--Row One With List-->
-                                        <div class="row border my-2 p-3">
-                                            <div class="col-12 text-center">
-                                                <h5 class="border-bottom pb-2">Row One With List</h5>
-                                            </div>
-                                            <div class="col-sm-4">
-                                                <h6 class="mb-0">Row with List ID </h6>
-                                            </div>
-                                            <div class="form-group col-sm-8 text-secondary">
-                                                <select name="row_one_id" data-placeholder="Select row_one_id.."
-                                                    class="form-control select p-1 ">
-                                                    <option></option>
-                                                    @foreach ($rows as $row)
-                                                        <option class="form-control" value="{{ $row->id }}">
-                                                            {{ $row->title }}</option>
-                                                    @endforeach
-                                                </select>
-                                            </div>
+                                    </div>
+                                    {{--  --}}
+                                    <div class="d-flex align-items-center pt-1">
+                                        <label
+                                            class="col-form-label label_style col-lg-2 p-0 text-start text-black label_style">Solution
+                                            Name</label>
+                                        <div class="input-group">
+                                            <input name="name" type="text" maxlength="255"
+                                                class="form-control form-control-sm" placeholder="Enter Solution Name"
+                                                style="padding: 2px 10px 0px 10px;">
                                         </div>
-                                        <!--End Row One With List-->
-
-
-                                        <!--Row Two with Solution Card-->
-                                        <div class="row border my-2 py-2">
-                                            <div class="col-12 text-center">
-                                                <h5 class="border-bottom pb-2">Row Two with Solution Card</h5>
-                                            </div>
-                                            <div class="row mb-3">
-                                                <div class="col-sm-4">
-                                                    <h6 class="mb-0">Solution Card Section Title <span class="text-danger">*</span> </h6>
-                                                </div>
-                                                <div class="form-group col-sm-8 text-secondary">
-                                                    <input type="text" name="row_two_title"
-                                                        class="form-control maxlength" maxlength="255" />
-                                                </div>
-                                            </div>
-                                            <div class="row mb-3">
-
-                                                <div class="col-sm-4">
-                                                    <h6 class="mb-0">Solution Card Section Header <span class="text-danger">*</span></h6>
-                                                </div>
-                                                <div class="form-group col-sm-8 text-secondary">
-                                                    <textarea name="row_two_header" id="" class="form-control" cols="30" rows="3"></textarea>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-lg-4 col-sm-4">
-                                                    <div class="row mb-3">
-                                                        <div class="col-sm-12">
-                                                            <h6 class="mb-0">Solution Card-1 </h6>
-                                                        </div>
-                                                        <div class="form-group col-sm-12 text-secondary">
-                                                            <select name="solution_card_one_id"
-                                                                data-placeholder="Select Solution Card-1.."
-                                                                class="form-control select">
-                                                                <option></option>
-                                                                @foreach ($solution_cards as $solution_card)
-                                                                    <option class="form-control"
-                                                                        value="{{ $solution_card->id }}">
-                                                                        {{ $solution_card->title }}</option>
-                                                                @endforeach
-                                                            </select>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-4 col-sm-4">
-                                                    <div class="row mb-3">
-                                                        <div class="col-sm-12">
-                                                            <h6 class="mb-0">Solution Card-2 </h6>
-                                                        </div>
-                                                        <div class="form-group col-sm-12 text-secondary">
-                                                            <select name="solution_card_two_id"
-                                                                data-placeholder="Select Solution Card-2.."
-                                                                class="form-control select">
-                                                                <option></option>
-                                                                @foreach ($solution_cards as $solution_card)
-                                                                    <option class="form-control"
-                                                                        value="{{ $solution_card->id }}">
-                                                                        {{ $solution_card->title }}</option>
-                                                                @endforeach
-                                                            </select>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-4 col-sm-4">
-                                                    <div class="row mb-3">
-                                                        <div class="col-sm-12">
-                                                            <h6 class="mb-0">Solution Card-3 </h6>
-                                                        </div>
-                                                        <div class="form-group col-sm-12 text-secondary">
-                                                            <select name="solution_card_three_id"
-                                                                data-placeholder="Select Solution Card-3..."
-                                                                class="form-control select">
-                                                                <option></option>
-                                                                @foreach ($solution_cards as $solution_card)
-                                                                    <option class="form-control"
-                                                                        value="{{ $solution_card->id }}">
-                                                                        {{ $solution_card->title }}</option>
-                                                                @endforeach
-                                                            </select>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-3 col-sm-3"></div>
-                                                <div class="col-lg-3 col-sm-3">
-                                                    <div class="row mb-3">
-                                                        <div class="col-sm-12">
-                                                            <h6 class="mb-0">Solution Card-4 </h6>
-                                                        </div>
-                                                        <div class="form-group col-sm-12 text-secondary">
-                                                            <select name="solution_card_four_id"
-                                                                data-placeholder="Select Solution Card-4..."
-                                                                class="form-control select">
-                                                                <option></option>
-                                                                @foreach ($solution_cards as $solution_card)
-                                                                    <option class="form-control"
-                                                                        value="{{ $solution_card->id }}">
-                                                                        {{ $solution_card->title }}</option>
-                                                                @endforeach
-                                                            </select>
-                                                        </div>
-                                                    </div>
-
-                                                </div>
-                                                <div class="col-lg-3 col-sm-3">
-                                                    <div class="row mb-3">
-                                                        <div class="col-sm-12">
-                                                            <h6 class="mb-0">Solution Card-5 </h6>
-                                                        </div>
-                                                        <div class="form-group col-sm-12 text-secondary">
-                                                            <select name="solution_card_five_id"
-                                                                data-placeholder="Select Solution Card-5..."
-                                                                class="form-control select">
-                                                                <option></option>
-                                                                @foreach ($solution_cards as $solution_card)
-                                                                    <option class="form-control"
-                                                                        value="{{ $solution_card->id }}">
-                                                                        {{ $solution_card->title }}</option>
-                                                                @endforeach
-                                                            </select>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                    </div>
+                                    {{--  --}}
+                                    <div class="d-flex align-items-center pt-1">
+                                        <label
+                                            class="col-form-label label_style col-lg-2 p-0 text-start text-black label_style">Solution
+                                            Header</label>
+                                        <div class="input-group">
+                                            <textarea class="form-control form-control-sm" name="header" cols="60" rows="2"
+                                                placeholder="Enter Solution Header"></textarea>
                                         </div>
-                                        <!--End Row Two with Solution Card-->
+                                    </div>
+                                </div>
 
-
-
-                                        <!--Row Three with Background Color-->
-
-                                        <div class="row">
-                                            <div class="col-12 text-center">
-                                                <h5 class="border-bottom pb-2">Row Three with Background Color</h5>
-                                            </div>
-                                            <div class="row mb-3">
-                                                <div class="col-sm-4">
-                                                    <h6 class="mb-0">Title <span class="text-danger">*</span> </h6>
-                                                </div>
-                                                <div class="form-group col-sm-8 text-secondary">
-                                                    <input type="text" name="row_three_title"
-                                                        class="form-control maxlength" maxlength="255" />
-                                                </div>
-                                            </div>
-                                            <div class="row mb-3">
-                                                <div class="col-sm-4">
-                                                    <h6 class="mb-0">Header <span class="text-danger">*</span></h6>
-                                                </div>
-                                                <div class="form-group col-sm-8 text-secondary">
-                                                    <textarea name="row_three_header" id="" class="form-control" cols="30" rows="3"></textarea>
-                                                </div>
-                                            </div>
+                                <div class="px-2 py-2 rounded bg-light mt-2">
+                                    {{--  --}}
+                                    <span class="mt-1 fw-bold text-info">Row Two with Solution Card</span>
+                                    <div class="d-flex align-items-center pt-1">
+                                        <label
+                                            class="col-form-label label_style col-lg-2 p-0 text-start text-black label_style">Solution
+                                            Card Section Title</label>
+                                        <div class="input-group">
+                                            <input type="text" name="row_two_title" class="form-control form-control-sm"
+                                                maxlength="255" placeholder="Enter Solution Card Section Title" />
                                         </div>
-
-                                        <!--End Row Three with Background Color-->
-
-
-                                        <!--Row Four with Right side Image-->
-                                        <div class="row border my-2 p-3">
-                                            <div class="col-12 text-center">
-                                                <h5 class="border-bottom pb-2">Row Four with Right side Image</h5>
-                                            </div>
-                                            <div class="row mb-3">
-                                                <div class="col-sm-4">
-                                                    <h6 class="mb-0">Row Four ID </h6>
-                                                </div>
-                                                <div class="form-group col-sm-8 text-secondary">
-                                                    <select name="row_four_id" data-placeholder="Select .."
-                                                        class="form-control select">
-                                                        <option></option>
-                                                        @foreach ($rows as $row)
-                                                            <option class="form-control" value="{{ $row->id }}">
-                                                                {{ $row->title }}</option>
-                                                        @endforeach
-                                                    </select>
-                                                </div>
-                                            </div>
+                                    </div>
+                                    {{--  --}}
+                                    <div class="d-flex align-items-center pt-1">
+                                        <label
+                                            class="col-form-label label_style col-lg-2 p-0 text-start text-black label_style">Solution
+                                            Card Section Header</label>
+                                        <div class="input-group">
+                                            <textarea class="form-control form-control-sm" name="row_two_header" cols="60" rows="2"
+                                                placeholder="Enter Solution Card Section Header"></textarea>
                                         </div>
-                                        <!--End Row Four with Right side Image-->
+                                    </div>
+                                    {{--  --}}
+                                    <div class="d-flex align-items-center pt-1">
+                                        <label
+                                            class="col-form-label label_style col-lg-2 p-0 text-start text-black">Solution
+                                            Card One</label>
+                                        <select name="solution_card_one_id" class="form-control form-select-sm select"
+                                            data-container-css-class="select-sm" data-minimum-results-for-search="Infinity"
+                                            data-placeholder="Chose Solution Card One" required>
+                                            <option></option>
+                                            @foreach ($solution_cards as $solution_card)
+                                                <option class="form-control" value="{{ $solution_card->id }}">
+                                                    {{ $solution_card->title }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    {{--  --}}
+                                    <div class="d-flex align-items-center pt-1">
+                                        <label
+                                            class="col-form-label label_style col-lg-2 p-0 text-start text-black">Solution
+                                            Card Two</label>
+                                        <select name="solution_card_two_id" class="form-control form-select-sm select"
+                                            data-container-css-class="select-sm" data-minimum-results-for-search="Infinity"
+                                            data-placeholder="Chose Solution Card Two" required>
+                                            <option></option>
+                                            @foreach ($solution_cards as $solution_card)
+                                                <option class="form-control" value="{{ $solution_card->id }}">
+                                                    {{ $solution_card->title }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    {{--  --}}
+                                    <div class="d-flex align-items-center pt-1">
+                                        <label
+                                            class="col-form-label label_style col-lg-2 p-0 text-start text-black">Solution
+                                            Card Three</label>
+                                        <select name="solution_card_three_id" class="form-control form-select-sm select"
+                                            data-container-css-class="select-sm"
+                                            data-minimum-results-for-search="Infinity"
+                                            data-placeholder="Chose Solution Card Three" required>
+                                            <option></option>
+                                            @foreach ($solution_cards as $solution_card)
+                                                <option class="form-control" value="{{ $solution_card->id }}">
+                                                    {{ $solution_card->title }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    {{--  --}}
+                                    <div class="d-flex align-items-center pt-1">
+                                        <label
+                                            class="col-form-label label_style col-lg-2 p-0 text-start text-black">Solution
+                                            Card Four</label>
+                                        <select name="solution_card_four_id" class="form-control form-select-sm select"
+                                            data-container-css-class="select-sm"
+                                            data-minimum-results-for-search="Infinity"
+                                            data-placeholder="Chose Solution Card Four" required>
+                                            <option></option>
+                                            @foreach ($solution_cards as $solution_card)
+                                                <option class="form-control" value="{{ $solution_card->id }}">
+                                                    {{ $solution_card->title }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    {{--  --}}
+                                    <div class="d-flex align-items-center pt-1">
+                                        <label
+                                            class="col-form-label label_style col-lg-2 p-0 text-start text-black">Solution
+                                            Card Five</label>
+                                        <select name="solution_card_five_id" class="form-control form-select-sm select"
+                                            data-container-css-class="select-sm"
+                                            data-minimum-results-for-search="Infinity"
+                                            data-placeholder="Chose Solution Card Five" required>
+                                            <option></option>
+                                            @foreach ($solution_cards as $solution_card)
+                                                <option class="form-control" value="{{ $solution_card->id }}">
+                                                    {{ $solution_card->title }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
 
-                                        <!--Row Five with Solution Card-->
-                                        <div class="row border my-2 p-3">
-                                            <div class="col-12 text-center">
-                                                <h5 class="border-bottom pb-2">Row Five with Solution Card</h5>
-                                            </div>
-                                            <div class="row mb-3">
-                                                <div class="col-sm-4">
-                                                    <h6 class="mb-0"> Title <span class="text-danger">*</span> </h6>
-                                                </div>
-                                                <div class="form-group col-sm-8 text-secondary">
-                                                    <input type="text" name="row_five_title"
-                                                        class="form-control maxlength" maxlength="255" />
-                                                </div>
-                                            </div>
-                                            <div class="row mb-3">
-                                                <div class="col-sm-4">
-                                                    <h6 class="mb-0"> Header <span class="text-danger">*</span></h6>
-                                                </div>
-                                                <div class="form-group col-sm-8 text-secondary">
-                                                    <textarea name="row_five_header" id="" class="form-control" cols="30" rows="3"></textarea>
-                                                </div>
-                                            </div>
-
-                                            <div class="col-lg-4">
-                                                <div class="row mb-3">
-                                                    <div class="col-sm-12">
-                                                        <h6 class="mb-0">Solution Card-6 </h6>
-                                                    </div>
-                                                    <div class="form-group col-sm-12 text-secondary">
-                                                        <select name="solution_card_six_id"
-                                                            data-placeholder="Select Solution Card-6.."
-                                                            class="form-control select">
-                                                            <option></option>
-                                                            @foreach ($solution_cards as $solution_card)
-                                                                <option class="form-control"
-                                                                    value="{{ $solution_card->id }}">
-                                                                    {{ $solution_card->title }}</option>
-                                                            @endforeach
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-4">
-                                                <div class="row mb-3">
-                                                    <div class="col-sm-12">
-                                                        <h6 class="mb-0">Solution Card-7 </h6>
-                                                    </div>
-                                                    <div class="form-group col-sm-12 text-secondary">
-                                                        <select name="solution_card_seven_id"
-                                                            data-placeholder="Select Solution Card-7.."
-                                                            class="form-control select">
-                                                            <option></option>
-                                                            @foreach ($solution_cards as $solution_card)
-                                                                <option class="form-control"
-                                                                    value="{{ $solution_card->id }}">
-                                                                    {{ $solution_card->title }}</option>
-                                                            @endforeach
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-4">
-                                                <div class="row mb-3">
-                                                    <div class="col-sm-12">
-                                                        <h6 class="mb-0">Solution Card-8 </h6>
-                                                    </div>
-                                                    <div class="form-group col-sm-12 text-secondary">
-                                                        <select name="solution_card_eight_id"
-                                                            data-placeholder="Select Solution Card-8.."
-                                                            class="form-control select">
-                                                            <option></option>
-                                                            @foreach ($solution_cards as $solution_card)
-                                                                <option class="form-control"
-                                                                    value="{{ $solution_card->id }}">
-                                                                    {{ $solution_card->title }}</option>
-                                                            @endforeach
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                            </div>
+                            </div>
+                            <div class="col">
+                                <span class="mt-1 fw-bold text-info">Row One With List</span>
+                                <div class="px-2 py-2 rounded bg-light">
+                                    {{--  --}}
+                                    <div class="d-flex align-items-center pt-1">
+                                        <label class="col-form-label label_style col-lg-2 p-0 text-start text-black">Row
+                                            With List
+                                            ID</label>
+                                        <select name="row_one_id" class="form-control form-select-sm select"
+                                            data-container-css-class="select-sm"
+                                            data-minimum-results-for-search="Infinity"
+                                            data-placeholder="Chose Row One List Id" required>
+                                            <option></option>
+                                            @foreach ($rows as $row)
+                                                <option class="form-control" value="{{ $row->id }}">
+                                                    {{ $row->title }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                                <span class="mt-1 fw-bold text-info">Row Three With Background Color</span>
+                                <div class="px-2 py-2 rounded bg-light">
+                                    <div class="d-flex align-items-center pt-1">
+                                        <label
+                                            class="col-form-label label_style col-lg-2 p-0 text-start text-black label_style">Row
+                                            Three Title</label>
+                                        <div class="input-group">
+                                            <input name="row_three_title" type="text" maxlength="255"
+                                                class="form-control form-control-sm" placeholder="Enter Row Three Title"
+                                                style="padding: 2px 10px 0px 10px;">
                                         </div>
-                                        <!--End Row Five with Solution Card-->
+                                    </div>
+                                    <div class="d-flex align-items-center pt-1">
+                                        <label
+                                            class="col-form-label label_style col-lg-2 p-0 text-start text-black label_style">Row
+                                            Three Header</label>
+                                        <div class="input-group">
+                                            <textarea class="form-control form-control-sm" name="row_three_header" cols="60" rows="2"
+                                                placeholder="Enter Row Three Header"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <span class="mt-1 fw-bold text-info">Row Four with Right side Image</span>
+                                <div class="px-2 py-2 rounded bg-light">
+                                    {{--  --}}
+                                    <div class="d-flex align-items-center pt-1">
+                                        <label class="col-form-label label_style col-lg-2 p-0 text-start text-black">Row
+                                            With List ID</label>
+                                        <select name="row_four_id" class="form-control form-select-sm select"
+                                            data-container-css-class="select-sm"
+                                            data-minimum-results-for-search="Infinity"
+                                            data-placeholder="Chose Row Four With List ID" required>
+                                            <option></option>
+                                            @foreach ($rows as $row)
+                                                <option class="form-control" value="{{ $row->id }}">
+                                                    {{ $row->title }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
 
-                                        {{-- <!--Row six with Left side Image-->
+                                <span class="mt-1 fw-bold text-info">Row Five with Solution Card</span>
+                                <div class="px-2 py-2 rounded bg-light">
+                                    <div class="d-flex align-items-center pt-1">
+                                        <label
+                                            class="col-form-label label_style col-lg-2 p-0 text-start text-black label_style">Row
+                                            Five Title</label>
+                                        <div class="input-group">
+                                            <input name="row_five_title" type="text" maxlength="255"
+                                                class="form-control form-control-sm" placeholder="Enter Row Five Title"
+                                                style="padding: 2px 10px 0px 10px;">
+                                        </div>
+                                    </div>
+                                    {{--  --}}
+                                    <div class="d-flex align-items-center pt-1">
+                                        <label
+                                            class="col-form-label label_style col-lg-2 p-0 text-start text-black label_style">Row
+                                            Five Header</label>
+                                        <div class="input-group">
+                                            <textarea class="form-control form-control-sm" name="row_five_header" cols="60" rows="2"
+                                                placeholder="Enter Row Five Header"></textarea>
+                                        </div>
+                                    </div>
+                                    {{--  --}}
+                                    <div class="d-flex align-items-center pt-1">
+                                        <label
+                                            class="col-form-label label_style col-lg-2 p-0 text-start text-black label_style">Solution
+                                            Card Six</label>
+                                        <select name="solution_card_six_id" class="form-control form-select-sm select"
+                                            data-container-css-class="select-sm"
+                                            data-minimum-results-for-search="Infinity"
+                                            data-placeholder="Chose Solution Card One" required>
+                                            <option></option>
+                                            @foreach ($solution_cards as $solution_card)
+                                                <option class="form-control" value="{{ $solution_card->id }}">
+                                                    {{ $solution_card->title }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    {{--  --}}
+                                    <div class="d-flex align-items-center pt-1">
+                                        <label
+                                            class="col-form-label label_style col-lg-2 p-0 text-start text-black label_style">Solution
+                                            Card Seven</label>
+                                        <select name="solution_card_seven_id" class="form-control form-select-sm select"
+                                            data-container-css-class="select-sm"
+                                            data-minimum-results-for-search="Infinity"
+                                            data-placeholder="Chose Solution Card One" required>
+                                            <option></option>
+                                            @foreach ($solution_cards as $solution_card)
+                                                <option class="form-control" value="{{ $solution_card->id }}">
+                                                    {{ $solution_card->title }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    {{--  --}}
+                                    <div class="d-flex align-items-center pt-1">
+                                        <label
+                                            class="col-form-label label_style col-lg-2 p-0 text-start text-black label_style">Solution
+                                            Card Eight</label>
+                                        <select name="solution_card_eight_id" class="form-control form-select-sm select"
+                                            data-container-css-class="select-sm"
+                                            data-minimum-results-for-search="Infinity"
+                                            data-placeholder="Chose Solution Card Eigh" required>
+                                            <option></option>
+                                            @foreach ($solution_cards as $solution_card)
+                                                <option class="form-control" value="{{ $solution_card->id }}">
+                                                    {{ $solution_card->title }}</option>
+                                            @endforeach
+                                        </select>
+
+                                    </div>
+                                </div>
+                                {{-- Extra  If Need Then Comment Out The Box--}}
+                                {{-- Box Start --}}
+                                {{-- <!--Row six with Left side Image-->
                                         <div class="row border my-2 p-3">
                                             <div class="col-12 text-center">
                                                 <h5 class="border-bottom pb-2">Row Six with Left Side Image</h5>
@@ -436,24 +349,18 @@
                                             </div>
                                         </div>
                                         <!--End Row six with Left side Image--> --}}
-
-
-                                        <div class="row">
-                                            <div class="col-sm-4"></div>
-                                            <div class="col-sm-8 text-secondary">
-                                                <input type="submit" class="btn btn-primary px-4 mt-5" value="Submit" />
-                                            </div>
-                                        </div>
-                                    </form>
-                                </div>
+                                {{-- Box End --}}
                             </div>
                         </div>
                     </div>
 
                 </div>
-            </div>
-
-
+                <div class="modal-footer border-0 pb-0 pe-0">
+                    <button type="button" class="submit_close_btn " data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="submit_btn from-prevent-multiple-submits"
+                        style="padding: 4px 9px;">Submit</button>
+                </div>
+            </form>
         </div>
         <!-- /content area -->
         <!-- /inner content -->

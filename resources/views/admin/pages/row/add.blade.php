@@ -1,253 +1,290 @@
 @extends('admin.master')
 @section('content')
     <div class="content-wrapper">
-
-        <!-- Inner content -->
- 
         <!-- Page header -->
-        <div class="page-header page-header-light shadow">
-
-            <div class="page-header-content d-lg-flex border-top">
-                <div class="d-flex">
-                    <div class="breadcrumb py-2">
-                        <a href="index.html" class="breadcrumb-item"><i class="ph-house"></i></a>
-                        <a href="{{ route('admin.dashboard') }}" class="breadcrumb-item">Home</a>
-                        <span class="breadcrumb-item active">Row Management</span>
+        <section class="shadow-sm">
+            <div class="d-flex justify-content-between align-items-center">
+                {{-- Page Destination/ BreadCrumb --}}
+                <div class="page-header-content d-lg-flex ">
+                    <div class="d-flex px-2">
+                        <div class="breadcrumb py-2">
+                            <a href="index.html" class="breadcrumb-item"><i class="ph-house"></i></a>
+                            <a href="{{ route('admin.dashboard') }}" class="breadcrumb-item">Home</a>
+                            <a href="{{ route('row.index') }}" class="breadcrumb-item">Row</a>
+                            <span class="breadcrumb-item active">Add</span>
+                        </div>
+                        <a href="#breadcrumb_elements"
+                            class="btn btn-light align-self-center collapsed d-lg-none border-transparent rounded-pill p-0 ms-auto"
+                            data-bs-toggle="collapse">
+                            <i class="ph-caret-down collapsible-indicator ph-sm m-1"></i>
+                        </a>
                     </div>
-
-                    <a href="#breadcrumb_elements"
-                        class="btn btn-light align-self-center collapsed d-lg-none border-transparent rounded-pill p-0 ms-auto"
-                        data-bs-toggle="collapse">
-                        <i class="ph-caret-down collapsible-indicator ph-sm m-1"></i>
-                    </a>
                 </div>
-            </div>
-        </div>
+                {{-- Inner Page Tab --}}
+        </section>
         <!-- /page header -->
-
-        <!-- Content area -->
-        <div class="content">
-            <div class="row">
-                <div class="col-lg-2">
-                    <button id="imgRowBtn" class="btn btn-warning btn-sm w-100">Image with row</button>
-                    <button id='rowListBtn' class="btn btn-warning btn-sm mt-2 w-100">Row with list</button>
-                </div>
-                <div class="col-lg-10">
-                    <div class="card">
-                        <div class="card-header">
-
-                            <div class="row">
-                                <div class="col-lg-8">
-                                    <h4 class="mb-0 text-center">Add Row Form</h4>
-                                </div>
-                                <div class="col-lg-4">
-                                    <a href="{{ route('row.index') }}" type="button"
-                                        class="btn btn-sm btn-warning btn-labeled btn-labeled-start float-end">
-                                        <span class="btn-labeled-icon bg-black bg-opacity-20">
-                                            <i class="icon-plus2"></i>
-                                        </span>
-                                        All Row
+        <!-- product-sourcing Content Start -->
+        <section>
+            <div class="container-fluid mt-2">
+                <div class="row rounded w-75 mx-auto" id="exTab3">
+                    <div class="d-flex justify-content-between align-items-center p-0">
+                        <div class="ms-2">
+                            <a class="btn btn-primary btn-rounded rounded-circle btn-icon back-btn"
+                                href="{{ route('row.index') }}">
+                                <i class="fa-solid fa-arrow-left main_text_color"></i>
+                            </a>
+                        </div>
+                        <div class="me-2">
+                            <ul class="nav nav-tabs border-0">
+                                <li class="nav-item ">
+                                    <a href="#imageWithRow" class=" nav-link active cat-tab1 p-1" data-bs-toggle="tab">
+                                        <p class="m-0 p-1">
+                                            Image With Row<span class="ms-2">|</span></p>
                                     </a>
-                                </div>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a href="#rowWithList" class=" nav-link cat-tab2 p-1 " data-bs-toggle="tab">
+                                        <p class="m-0 p-1">
+                                            Row With List <span class="ms-2">|</span></p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="row rounded mt-1 w-75 mx-auto">
+                    <div class="tab-content">
+                        <div class="tab-pane fade show active" id="imageWithRow">
+                            <div>
+                                <form id="myform1" method="post" action="{{ route('row.store') }}"
+                                    enctype="multipart/form-data">
+                                    @csrf
+                                    <div class="card pb-1">
+                                        <!--Banner Section-->
+                                        <div class="container">
+                                            <div class="mt-2">
+                                                <span class="fw-bold text-info ms-1">Image Form</span>
+                                            </div>
+                                            <div class="row rounded bg-light mx-1">
+                                                <div class="col p-1">
+                                                    <div class="d-flex align-items-center">
+                                                        <label
+                                                            class="col-form-label  col-lg-2 p-0 text-start text-black ">Badge</label>
+                                                        <div class="input-group">
+                                                            <input name="badge" type="text" maxlength="250"
+                                                                class="form-control form-control-sm"
+                                                                placeholder="Enter Badge">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col p-1">
+
+                                                    <div class="d-flex align-items-center">
+                                                        <label
+                                                            class="col-form-label col-lg-2 p-0 text-start text-black">Title</label>
+                                                        <div class="input-group">
+                                                            <input name="title" type="text"
+                                                                class="form-control form-control-sm"
+                                                                placeholder="Enter Image With Row Title">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row g-2 pb-1 ">
+                                                <div class="col p-2">
+                                                    <span class="mt-1 fw-bold text-info">Image Info Area</span>
+                                                    <div class="px-2 py-2 rounded bg-light">
+                                                        <div class="pt-1">
+                                                            <label
+                                                                class="col-form-label label_style col-lg-2 p-0 text-start text-black w-100">Description</label>
+                                                            <textarea class="form-control form-control-sm" name="description" id="long_desc"
+                                                                style=" font-size: 12px; font-weight: 500;" rows="2" cols="60"></textarea>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col p-2">
+                                                    <span class="mt-1 fw-bold text-info">Row Image Area</span>
+                                                    <div class="px-2 py-2 rounded bg-light">
+                                                        <div class="d-flex align-items-center pt-1">
+                                                            <label
+                                                                class="col-form-label label_style col-lg-2 p-0 text-start text-black label_style">Row
+                                                                Image</label>
+                                                            <div class="input-group">
+                                                                <input name="image" id="image" accept="image/*"
+                                                                    type="file" class="form-control form-control-sm"
+                                                                    placeholder="Enter Row Image">
+                                                            </div>
+                                                        </div>
+                                                        {{--  --}}
+                                                        <div class="d-flex align-items-center pt-1">
+                                                            <label
+                                                                class="col-form-label label_style col-lg-2 p-0 text-start text-black label_style">Row
+                                                                Button Name</label>
+                                                            <div class="input-group">
+                                                                <input name="btn_name" type="text" maxlength="250"
+                                                                    class="form-control form-control-sm"
+                                                                    placeholder="Enter Row Button Name">
+                                                            </div>
+                                                        </div>
+                                                        {{--  --}}
+                                                        <div class="d-flex align-items-center pt-1">
+                                                            <label
+                                                                class="col-form-label label_style col-lg-2 p-0 text-start text-black label_style">Row
+                                                                Button Link</label>
+                                                            <div class="input-group">
+                                                                <input name="link" type="url" maxlength="250"
+                                                                    class="form-control form-control-sm"
+                                                                    placeholder="Enter Row Button Link">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer border-0 pb-0 pe-0">
+                                        <button type="button" class="submit_close_btn "
+                                            data-bs-dismiss="modal">Close</button>
+                                        <button type="submit" class="submit_btn from-prevent-multiple-submits"
+                                            style="padding: 4px 9px;" id="submitbtn">Submit</button>
+                                    </div>
+                                </form>
                             </div>
                         </div>
+                    </div>
+                    <div class="tab-content">
+                        <div class="tab-pane fade show" id="rowWithList">
+                            <div>
+                                <form id="myform2" method="post" action="{{ route('row.store') }}"
+                                    enctype="multipart/form-data">
+                                    @csrf
+                                    <div class="card pb-1">
+                                        <!--Banner Section-->
+                                        <div class="container">
+                                            <div class="mt-2">
+                                                <span class="mt-2 fw-bold text-info ms-1">Row Form</span>
+                                            </div>
+                                            <div class="row rounded bg-light mx-1">
+                                                <div class="col p-1">
+                                                    <div class="d-flex align-items-center pt-1">
+                                                        <label
+                                                            class="col-form-label col-lg-2 p-0 text-start text-black">Badge</label>
+                                                        <div class="input-group">
+                                                            <input name="badge" type="text" maxlength="250"
+                                                                class="form-control form-control-sm"
+                                                                placeholder="Enter Badge">
+                                                        </div>
+                                                    </div>
+                                                    {{--  --}}
+                                                </div>
+                                                <div class="col p-1">
 
-                        <div class="card-body d-none">
-                            <form id="myform1" class="d-none" method="post" action="{{ route('row.store') }}"
-                                enctype="multipart/form-data">
-                                @csrf
-                                <div class="row mb-3">
-                                    <div class="col-3"></div>
-                                    <div class="col-sm-1">
-                                        <h6 class="mb-0">Badge</h6>
-                                    </div>
-                                    <div class="form-group col-sm-4 text-secondary">
-                                        <input type="text" name="badge" class="form-control maxlength"
-                                            maxlength="255" />
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-6">
+                                                    <div class="d-flex align-items-center pt-1">
+                                                        <label
+                                                            class="col-form-label col-lg-2 p-0 text-start text-black">Title</label>
+                                                        <div class="input-group">
+                                                            <input name="title" type="text"
+                                                                class="form-control form-control-sm"
+                                                                placeholder="Enter Image With Row Title">
+                                                        </div>
+                                                    </div>
+                                                    {{--  --}}
+                                                </div>
+                                            </div>
+                                            <div class="row g-2 pb-1">
+                                                <div class="col p-2">
+                                                    <span class="mt-1 fw-bold text-info">Row List Description</span>
+                                                    <div class="px-2 py-2 rounded bg-light">
+                                                        {{--  --}}
+                                                        <div class="pt-1">
+                                                            <label
+                                                                class="col-form-label label_style col-lg-2 p-0 text-start text-black label_style">List
+                                                                Description</label>
+                                                            <div class="input-group">
+                                                                <textarea class="form-control" name="short_des" rows="30" id="common"
+                                                                    style=" font-size: 12px; font-weight: 500;"></textarea>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col p-2">
+                                                    <span class="mt-1 fw-bold text-info">Row List Description
+                                                        Area</span>
+                                                    <div class="px-2 py-2 rounded bg-light">
 
-                                        <div class="row mb-3">
-                                            <div class="col-sm-3">
-                                                <h6 class="mb-0">Row Image <span class="text-danger">*</span></h6>
-                                            </div>
-                                            <div class="col-sm-9 text-secondary">
-                                                <input type="file" name="image" class="form-control" id="image"
-                                                    accept="image/*" />
-                                                <div class="form-text">Accepts only png, jpg, jpeg images</div>
-                                                <img id="showImage" height="100px" width="100px"
-                                                    src="https://cdn.pixabay.com/photo/2017/02/07/02/16/cloud-2044823_960_720.png"
-                                                    alt="">
-                                            </div>
-                                        </div>
-                                        <div class="row mb-3">
-                                            <div class="col-sm-3">
-                                                <h6 class="mb-0">Button Name</h6>
-                                            </div>
-                                            <div class="form-group col-sm-9 text-secondary">
-                                                <input type="text" name="btn_name" class="form-control maxlength"
-                                                    maxlength="255" />
-                                            </div>
-                                        </div>
-                                        <div class="row mb-3">
-                                            <div class="col-sm-3">
-                                                <h6 class="mb-0">link</h6>
-                                            </div>
-                                            <div class="form-group col-sm-9 text-secondary">
-                                                <input type="text" name="link" class="form-control maxlength"
-                                                    maxlength="255" />
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-6">
-
-                                        <div class="row mb-3">
-                                            <div class="col-sm-3">
-                                                <h6 class="mb-0">Title<span class="text-danger">*</span></h6>
-                                            </div>
-                                            <div class="form-group col-sm-9 text-secondary">
-                                                <input type="text" name="title" class="form-control maxlength"
-                                                    maxlength="255" />
-                                            </div>
-                                        </div>
-
-                                        <div class="row mb-3">
-                                            <div class="col-sm-3">
-                                                <h6 class="mb-0">
-                                                    Description</h6>
-                                            </div>
-                                            <div class="form-group col-sm-9 text-secondary">
-                                                <textarea class="form-control" name="description" id="long_desc" style=" font-size: 12px; font-weight: 500;"></textarea>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-5"></div>
-                                    <div class="col-sm-7 text-secondary">
-                                        <button type="submit" class="btn btn-primary" id="submitbtn">Submit<i
-                                                class="ph-paper-plane-tilt ms-2"></i></button>
-                                    </div>
-                                </div>
-                            </form>
-                            <form id="myform2" class="d-none" method="post" action="{{ route('row.store') }}"
-                                enctype="multipart/form-data">
-                                @csrf
-                                <div class="row mb-3">
-                                    <div class="col-3"></div>
-                                    <div class="col-sm-1">
-                                        <h6 class="mb-0">Badge</h6>
-                                    </div>
-                                    <div class="form-group col-sm-4 text-secondary">
-                                        <input type="text" name="badge" class="form-control maxlength"
-                                            maxlength="255" />
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-6">
-                                        <div class="row mb-3">
-                                            <div class="col-sm-12">
-                                                <h6 class="mb-0">Title<span class="text-danger">*</span></h6>
-                                            </div>
-                                            <div class="form-group col-sm-12 text-secondary">
-                                                <input type="text" name="title" class="form-control maxlength"
-                                                    maxlength="255" />
-                                            </div>
-                                        </div>
-                                        <div class="row mb-3">
-                                            <div class="col-sm-12">
-                                                <h6 class="mb-0">
-                                                    Short Description</h6>
-                                            </div>
-                                            <div class="form-group col-sm-12 text-secondary">
-                                                <textarea class="form-control" name="short_des" rows="30" id="common" style=" font-size: 12px; font-weight: 500;"></textarea>
+                                                        <div class="d-flex align-items-center pt-1">
+                                                            <label
+                                                                class="col-form-label label_style col-lg-2 p-0 text-start text-black label_style">List
+                                                                Title</label>
+                                                            <div class="input-group">
+                                                                <input name="list_title" type="text" maxlength="250"
+                                                                    class="form-control form-control-sm"
+                                                                    placeholder="Enter List Title">
+                                                            </div>
+                                                        </div>
+                                                        {{--  --}}
+                                                        <div class="d-flex align-items-center pt-1">
+                                                            <label
+                                                                class="col-form-label label_style col-lg-2 p-0 text-start text-black label_style">List
+                                                                Title One</label>
+                                                            <div class="input-group">
+                                                                <input name="list_one" type="text" maxlength="250"
+                                                                    class="form-control form-control-sm"
+                                                                    placeholder="Enter List Title One">
+                                                            </div>
+                                                        </div>
+                                                        {{--  --}}
+                                                        <div class="d-flex align-items-center pt-1">
+                                                            <label
+                                                                class="col-form-label label_style col-lg-2 p-0 text-start text-black label_style">List
+                                                                Title Two</label>
+                                                            <div class="input-group">
+                                                                <input name="list_two" type="text" maxlength="250"
+                                                                    class="form-control form-control-sm"
+                                                                    placeholder="Enter List Title Two">
+                                                            </div>
+                                                        </div>
+                                                        {{--  --}}
+                                                        <div class="d-flex align-items-center pt-1">
+                                                            <label
+                                                                class="col-form-label label_style col-lg-2 p-0 text-start text-black label_style">List
+                                                                Title Three</label>
+                                                            <div class="input-group">
+                                                                <input name="list_three" type="text" maxlength="250"
+                                                                    class="form-control form-control-sm"
+                                                                    placeholder="Enter List Title Three">
+                                                            </div>
+                                                        </div>
+                                                        {{--  --}}
+                                                        <div class="d-flex align-items-center pt-1">
+                                                            <label
+                                                                class="col-form-label label_style col-lg-2 p-0 text-start text-black label_style">List
+                                                                Title Four</label>
+                                                            <div class="input-group">
+                                                                <input name="list_four" type="text" maxlength="250"
+                                                                    class="form-control form-control-sm"
+                                                                    placeholder="Enter List Title Four">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-6">
-                                        <div class="row mb-3">
-                                            <div class="col-sm-12">
-                                                <h6 class="mb-0">List Title</h6>
-                                            </div>
-                                            <div class="form-group col-sm-12 text-secondary">
-                                                <input type="text" name="list_title" class="form-control maxlength"
-                                                    maxlength="255" />
-                                            </div>
-                                        </div>
-                                        <div class="row mb-3">
-                                            <div class="col-sm-12">
-                                                <h6 class="mb-0">List One</h6>
-                                            </div>
-                                            <div class="form-group col-sm-12 text-secondary">
-                                                <input type="text" name="list_one" class="form-control maxlength"
-                                                    maxlength="255" />
-                                            </div>
-                                        </div>
-                                        <div class="row mb-3">
-                                            <div class="col-sm-12">
-                                                <h6 class="mb-0">List Two</h6>
-                                            </div>
-                                            <div class="form-group col-sm-12 text-secondary">
-                                                <input type="text" name="list_two" class="form-control maxlength"
-                                                    maxlength="255" />
-                                            </div>
-                                        </div>
-                                        <div class="row mb-3">
-                                            <div class="col-sm-12">
-                                                <h6 class="mb-0">List Three</h6>
-                                            </div>
-                                            <div class="form-group col-sm-12 text-secondary">
-                                                <input type="text" name="list_three" class="form-control maxlength"
-                                                    maxlength="255" />
-                                            </div>
-                                        </div>
-                                        <div class="row mb-3">
-                                            <div class="col-sm-12">
-                                                <h6 class="mb-0">List Four</h6>
-                                            </div>
-                                            <div class="form-group col-sm-12 text-secondary">
-                                                <input type="text" name="list_four" class="form-control maxlength"
-                                                    maxlength="255" />
-                                            </div>
-                                        </div>
-
+                                    <div class="modal-footer border-0 pb-0 pe-0">
+                                        <button type="button" class="submit_close_btn "
+                                            data-bs-dismiss="modal">Close</button>
+                                        <button type="submit" class="submit_btn from-prevent-multiple-submits"
+                                            style="padding: 4px 9px;" id="submitbtn">Submit</button>
                                     </div>
-                                </div>
-                                <div class="row">
-                                    {{-- <div class="col-sm-5"></div> --}}
-                                    <div class="col-sm-12 text-secondary d-flex justify-content-center">
-                                        <button type="submit" class="btn btn-primary" id="submitbtn">Submit<i
-                                                class="ph-paper-plane-tilt ms-2"></i></button>
-                                    </div>
-                                </div>
-                            </form>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-
-        </div>
-        <!-- /content area -->
-        <!-- /inner content -->
-
+        </section>
     </div>
 @endsection
-
-@push('scripts')
-<script>
-    $(document).ready(function(){
-        $('#imgRowBtn').click(e=>{
-            $('#myform1')[0].parentNode.classList.remove('d-none');
-            $('#myform1')[0].classList.remove('d-none');
-            $('#myform2')[0].classList.add('d-none')
-        });
-        $('#rowListBtn').click(e=>{
-            $('#myform1')[0].parentNode.classList.remove('d-none');
-            $('#myform2')[0].classList.remove('d-none')
-            $('#myform1')[0].classList.add('d-none');
-        });
-    });
-</script>
-@endpush

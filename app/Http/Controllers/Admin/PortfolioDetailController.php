@@ -14,7 +14,7 @@ class PortfolioDetailController extends Controller
      */
     public function index()
     {
-        //
+        return view('admin.pages.portfolioDetail.all');
     }
 
     /**
@@ -24,7 +24,8 @@ class PortfolioDetailController extends Controller
      */
     public function create()
     {
-        //
+        // return view('admin.pages.portfolioDetail.add');
+        return view('admin.pages.portfolioDetail.edit');
     }
 
     /**

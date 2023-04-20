@@ -1,23 +1,16 @@
 @extends('admin.master')
 @section('content')
-
     <div class="content-wrapper">
-
         <!-- Inner content -->
-
-
         <!-- Page header -->
         <div class="page-header page-header-light shadow">
-
-
             <div class="page-header-content d-lg-flex border-top">
                 <div class="d-flex">
                     <div class="breadcrumb py-2">
-                        <a href="index.html" class="breadcrumb-item"><i class="ph-house"></i></a>
-                        <a href="{{ route('admin.dashboard') }}" class="breadcrumb-item">Home</a>
-                        <span class="breadcrumb-item active">Learn More Management</span>
+                        <a href="{{ route('admin.dashboard') }}" class="breadcrumb-item"><i class="ph-house me-2"></i> Home</a>
+                        <a href="{{ route('learnMore.index') }}" class="breadcrumb-item">Site Content</a>
+                        <a href="{{ route('learnMore.index') }}" class="breadcrumb-item">Learn More Management</a>
                     </div>
-
                     <a href="#breadcrumb_elements"
                         class="btn btn-light align-self-center collapsed d-lg-none border-transparent rounded-pill p-0 ms-auto"
                         data-bs-toggle="collapse">
@@ -27,77 +20,80 @@
             </div>
         </div>
         <!-- /page header -->
-
-
-        <!-- Content area -->
-        <div class="content">
-            <div class="row">
-                <div class="col-lg-1"></div>
-                <div class="col-lg-9">
-                    <div class="card">
-                        <div class="card-header">
-                            <div class="row">
-                                <div class="col-lg-8">
-                                    <h2 class="mb-0 text-center">All Learn More</h2>
-                                </div>
-                                <div class="col-lg-4">
-                                    <a href="{{ route('learnMore.create') }}" type="button"
-                                        class="btn btn-sm btn-success btn-labeled btn-labeled-start float-end">
-                                        <span class="btn-labeled-icon bg-black bg-opacity-20">
-                                            <i class="icon-plus2"></i>
-                                        </span>
-                                        Add New
-                                    </a>
-                                </div>
-                            </div>
+        <div class="content pt-0 w-75 mx-auto">
+            <div class="d-flex align-items-center py-2">
+                {{-- Add Details Start --}}
+                <div class="text-success nav-link cat-tab3"
+                    style="position: relative;
+                    z-index: 999;
+                    margin-bottom: -40px;">
+                    <a href="{{ route('learnMore.create') }}">
+                        <div class="d-flex align-items-center">
+                            <span class="ms-2 icon_btn" style="font-weight: 800;" data-bs-toggle="tooltip"
+                                data-bs-placement="top" title="Add Solution Details">
+                                <i class="ph-plus icons_design"></i> </span>
+                            <span class="ms-1" style="color: #247297;">Add</span>
                         </div>
-
-                        <table class="datatable table table-bordered table-hover">
-                            <thead>
-                                <tr>
-                                    <th width="10%">Sl No:</th>
-                                    <th width="15%">Logo</th>
-                                    <th width="20%">header_one</th>
-                                    <th width="40%">box_one_short_des</th>
-                                    <th width="15%" class="text-center">Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @if ($learnMores)
-                                    @foreach ($learnMores as $key => $learnMore)
-                                        <tr>
-                                            <td>{{ ++$key }}</td>
-                                            <td class="text-center"><img
-                                                    src="{{ asset('storage/thumb/' . $learnMore->image_banner) }}"
-                                                    height="40" width="50" alt=""></td>
-                                            <td>{{ $learnMore->header_one }}</td>
-                                            <td>{!! $learnMore->box_one_short_des !!}</td>
-                                            <td class="text-center">
-                                                <a href="{{ route('learnMore.edit', [$learnMore->id]) }}"
-                                                    class="text-primary">
-                                                    <i class="icon-pencil"></i>
-                                                </a>
-                                                <a href="{{ route('learnMore.destroy', [$learnMore->id]) }}"
-                                                    class="text-danger delete mx-2">
-                                                    <i class="delete icon-trash"></i>
-                                                </a>
-
-                                            </td>
-                                        </tr>
-                                    @endforeach
-                                @endif
-                            </tbody>
-                        </table>
+                    </a>
+                    <div class="text-center" style="margin-left: 300px">
+                        <h5 class="ms-1" style="color: #247297;">All Learn More</h5>
                     </div>
                 </div>
+                {{-- Add Details End --}}
             </div>
-
+            <div>
+                <table class="table whatWeDoDt table-bordered table-hover text-center">
+                    <thead>
+                        <tr>
+                            <th width="3%">SL</th>
+                            <th width="7%">Logo</th>
+                            <th width="40%">Header One</th>
+                            <th width="40%">Box One Short Des</th>
+                            <th width="10%" class="text-center">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if ($learnMores)
+                            @foreach ($learnMores as $key => $learnMore)
+                                <tr>
+                                    <td class="text-center">{{ ++$key }}</td>
+                                    <td>
+                                        <img class="rounded-circle img-fluid"
+                                            src="{{ asset('storage/thumb/' . $learnMore->image_banner) }}" alt=""
+                                            style="width: 30px;  height: 30px;">
+                                    </td>
+                                    <td>{{ $learnMore->header_one }}</td>
+                                    <td>{!! $learnMore->box_one_short_des !!}</td>
+                                    <td>
+                                        <a href="{{ route('learnMore.edit', [$learnMore->id]) }}" class="text-primary">
+                                            <i class="fa-solid fa-pen-to-square me-2 p-1 rounded-circle text-primary"></i>
+                                        </a>
+                                        <a href="{{ route('learnMore.destroy', [$learnMore->id]) }}"
+                                            class="text-danger delete">
+                                            <i class="fa-solid fa-trash p-1 rounded-circle text-danger"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        @endif
+                    </tbody>
+                </table>
+            </div>
         </div>
-        <!-- /content area -->
-        <!-- /inner content -->
-
     </div>
 @endsection
-
-@push('script')
-@endpush
+@once
+    @push('scripts')
+        <script type="text/javascript">
+            $('.whatWeDoDt').DataTable({
+                dom: '<"datatable-header"fl><"datatable-scroll"t><"datatable-footer"ip>',
+                "iDisplayLength": 10,
+                "lengthMenu": [10, 25, 30, 50],
+                columnDefs: [{
+                    orderable: false,
+                    targets: [4],
+                }, ],
+            });
+        </script>
+    @endpush
+@endonce
