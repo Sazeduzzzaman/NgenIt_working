@@ -1,3 +1,4 @@
+
 <div class="content_wrapper">
     <!--Sidebar Wrapper-->
     <div id="mySidebar">

@@ -31,27 +31,30 @@
         <div class="content">
             <div class="row">
                 <div class="col-lg-12">
-                    <div class="card cardT">
-                        <div class="card-header">
-                            <div class="row">
-                                <div class="col-lg-8">
-                                    <h4 class="mb-0 text-center">All Accounts Manager</h4>
-                                </div>
-
-                                <div class="col-lg-4">
-                                    <a href="{{ route('accounts-manager.create') }}" type="button"
-                                        class="btn btn-sm btn-success btn-labeled btn-labeled-start float-end">
-                                        <span class="btn-labeled-icon bg-black bg-opacity-20">
-                                            <i class="icon-plus2"></i>
-                                        </span>
-                                        Add New
-                                    </a>
+                    <div class="cardT">
+                        <div class="d-flex align-items-center py-2">
+                            {{-- Add Details Start --}}
+                            <div class="text-success nav-link cat-tab3"
+                                style="position: relative;
+                                z-index: 999;
+                                margin-bottom: -40px;">
+                                <a href="{{ route('accounts-manager.create') }}">
+                                    <div class="d-flex align-items-center">
+                                        <span class="ms-2 icon_btn" style="font-weight: 800;" data-bs-toggle="tooltip"
+                                            data-bs-placement="top" title="Add Solution Details">
+                                            <i class="ph-plus icons_design"></i> </span>
+                                        <span class="ms-1" style="color: #247297;">Add</span>
+                                    </div>
+                                </a>
+                                <div class="text-center" style="margin-left: 30rem">
+                                    <h5 class="ms-1" style="color: #247297;">All Accounts Managers</h5>
                                 </div>
                             </div>
+                            {{-- Add Details End --}}
                         </div>
 
-                        <div class="card-body">
-                            <table class="table table-bordered table-hover salesaccountDT">
+                        <div>
+                            <table class="table table-bordered table-hover salesaccountDT text-center">
                                 <thead>
                                     <tr class="text-center">
                                         <th width="10%">Sl</th>
@@ -69,150 +72,178 @@
                                             <tr>
                                                 <td>{{ ++$key }}</td>
                                                 <td class="text-center"><img class="rounded-circle"
-                                                    src="{{ asset('upload/Profile/Admin/' . $salesman->photo) }}"
-                                                        height="50" width="50" alt=""></td>
+                                                        src="{{ asset('upload/Profile/Admin/' . $salesman->photo) }}"
+                                                        height="25" width="25" alt=""></td>
                                                 <td>{{ $salesman->name }}</td>
                                                 <td>{{ $salesman->email }}</td>
                                                 <td>{{ $salesman->designation }}</td>
                                                 <td>
-                                                    @foreach($salesman->roles as $role)
-                                                        <span class="badge bg-danger">{{ $role->name }}</span>
+                                                    @foreach ($salesman->roles as $role)
+                                                        <span class="text-danger">{{ $role->name }}</span>
                                                     @endforeach
                                                 </td>
                                                 <td>
 
-                                                    <div class="row">
-                                                        <div class="col-3">
+                                                    <div class="d-flex align-items-center justify-content-center">
+                                                        <a>
                                                             <div class="form-switch">
                                                                 <input name="toggle" type="checkbox"
                                                                     class="form-check-input form-check-input-danger"
                                                                     value="{{ $salesman->id }}" id="sc_r_danger"
                                                                     {{ $salesman->status == 'inactive' ? 'checked' : '' }}>
                                                             </div>
-                                                        </div>
-                                                        <div class="col-9">
-                                                            <a href="javascript:void(0);" class="text-success mx-3"
-                                                                data-bs-toggle="modal" title="View & Assign Roles to Accounts Manager"
-                                                                data-bs-target="#assign-manager-{{ $salesman->id }}">
-                                                                <i class="icon-user-check icon-1x"></i>
-                                                            </a>
-                                                            <a href="{{ route('accounts-manager.edit', [$salesman->id]) }}"
-                                                                class="text-primary mx-2">
-                                                                <i class="icon-pencil"></i>
-                                                            </a>
-                                                            <a href="{{ route('accounts-manager.destroy', [$salesman->id]) }}"
-                                                                class="text-danger delete mx-2">
-                                                                <i class="delete icon-trash"></i>
-                                                            </a>
+                                                        </a>
+                                                        <a href="javascript:void(0);" class="text-success"
+                                                            data-bs-toggle="modal"
+                                                            title="View & Assign Roles to Accounts Manager"
+                                                            data-bs-target="#assign-manager-{{ $salesman->id }}">
+                                                            <i
+                                                                class="fa-solid fa-user-check p-1 rounded-circle text-primar"></i>
+                                                        </a>
+                                                        <a href="{{ route('accounts-manager.edit', [$salesman->id]) }}"
+                                                            class="text-primary">
+                                                            <i
+                                                                class="fa-solid fa-pen-to-square p-1 rounded-circle text-primary"></i>
+                                                        </a>
+                                                        <a href="{{ route('accounts-manager.destroy', [$salesman->id]) }}"
+                                                            class="text-danger delete">
+                                                            <i class="fa-solid fa-trash p-1 rounded-circle text-danger"></i>
+                                                        </a>
 
-                                                            <!---Assign Manager modal--->
-                                                                <div id="assign-manager-{{ $salesman->id }}" class="modal fade" tabindex="-1" style="display: none;"
-                                                                    aria-hidden="true">
-                                                                    <div class="modal-dialog modal-dialog-scrollable modal-lg">
-                                                                        <div class="modal-content">
-                                                                            <div class="modal-header">
-                                                                                @php
-                                                                                    $sales_manager = App\Models\User::where('id', $salesman->id)->first();
-                                                                                @endphp
-                                                                                <h5 class="modal-title">Assign Role for Sales Manager : {{ $sales_manager->name }}</h5>
-                                                                                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                                                                            </div>
+                                                        <!---Assign Manager modal--->
+                                                        <div id="assign-manager-{{ $salesman->id }}" class="modal fade"
+                                                            tabindex="-1" style="display: none;" aria-hidden="true">
+                                                            <div class="modal-dialog modal-dialog-scrollable modal-lg">
+                                                                <div class="modal-content">
+                                                                    <div class="modal-header">
+                                                                        @php
+                                                                            $sales_manager = App\Models\User::where('id', $salesman->id)->first();
+                                                                        @endphp
+                                                                        <h5 class="modal-title">Assign Role for Sales
+                                                                            Manager : {{ $sales_manager->name }}</h5>
+                                                                        <button type="button" class="btn-close"
+                                                                            data-bs-dismiss="modal"></button>
+                                                                    </div>
 
-                                                                            <div class="modal-body border br-7">
+                                                                    <div class="modal-body border br-7">
 
-                                                                                <form method="post" action="{{ route('assign.salesmanager-role',$salesman->id) }}"
-                                                                                    enctype="multipart/form-data">
-                                                                                    @csrf
-                                                                                    @method('PUT')
+                                                                        <form method="post"
+                                                                            action="{{ route('assign.salesmanager-role', $salesman->id) }}"
+                                                                            enctype="multipart/form-data">
+                                                                            @csrf
+                                                                            @method('PUT')
+                                                                            <div class="row">
+                                                                                <div class="card">
                                                                                     <div class="row">
-                                                                                        <div class="card">
-                                                                                            <div class="row">
-                                                                                                <table class="table table-bordered table-striped p-1">
-                                                                                                    <thead>
-                                                                                                        <tr>
+                                                                                        <table
+                                                                                            class="table table-bordered table-striped p-1">
+                                                                                            <thead>
+                                                                                                <tr>
 
-                                                                                                            <th style="padding:7px !important;">
-                                                                                                                Name : {{ ucfirst($sales_manager->name) }}
-                                                                                                            </th>
-                                                                                                            <th style="padding:7px !important;">
-                                                                                                                Country: {{ ucfirst($sales_manager->country) }}
-                                                                                                            </th>
-                                                                                                            <th style="padding:7px !important;">
-                                                                                                                Designation: {{ ucfirst($sales_manager->designation) }}
-                                                                                                            </th>
+                                                                                                    <th
+                                                                                                        style="padding:7px !important;">
+                                                                                                        Name :
+                                                                                                        {{ ucfirst($sales_manager->name) }}
+                                                                                                    </th>
+                                                                                                    <th
+                                                                                                        style="padding:7px !important;">
+                                                                                                        Country:
+                                                                                                        {{ ucfirst($sales_manager->country) }}
+                                                                                                    </th>
+                                                                                                    <th
+                                                                                                        style="padding:7px !important;">
+                                                                                                        Designation:
+                                                                                                        {{ ucfirst($sales_manager->designation) }}
+                                                                                                    </th>
 
-                                                                                                        </tr>
+                                                                                                </tr>
 
-                                                                                                    </thead>
-                                                                                                </table>
-                                                                                            </div>
-                                                                                            <div class="row mt-2 p-2 text-center">
-                                                                                                <div class="col-12 text-white py-1" style="background:black;">
-                                                                                                    Assign Roles :
-                                                                                                    <a class="p-1 editRfquser" href="javascript:void(0);">
-                                                                                                        <i class="ph-note-pencil" aria-hidden="true"></i>
-                                                                                                    </a>
+                                                                                            </thead>
+                                                                                        </table>
+                                                                                    </div>
+                                                                                    <div class="row mt-2 p-2 text-center">
+                                                                                        <div class="col-12 text-white py-1"
+                                                                                            style="background:black;">
+                                                                                            Assign Roles :
+                                                                                            <a class="p-1 editRfquser"
+                                                                                                href="javascript:void(0);">
+                                                                                                <i class="ph-note-pencil"
+                                                                                                    aria-hidden="true"></i>
+                                                                                            </a>
+                                                                                        </div>
+                                                                                        <div class="col-12 Rfquser"
+                                                                                            style="display:none">
+                                                                                            <div
+                                                                                                class="row mb-3 p-2 border">
+
+
+                                                                                                <div class="col-lg-4">
+
                                                                                                 </div>
-                                                                                                <div class="col-12 Rfquser" style="display:none">
-                                                                                                    <div class="row mb-3 p-2 border">
-
-
-                                                                                                        <div class="col-lg-4">
-
-                                                                                                        </div>
-                                                                                                        <div class="col-lg-4">
-                                                                                                            <div class="col-sm-12">
-                                                                                                                <h6 class="mb-0 text-black">Assign Roles</h6>
-                                                                                                            </div>
-                                                                                                            <div class="form-group text-secondary col-sm-12">
-                                                                                                                {{-- <select name="roles" class="form-control select"
+                                                                                                <div class="col-lg-4">
+                                                                                                    <div class="col-sm-12">
+                                                                                                        <h6
+                                                                                                            class="mb-0 text-black">
+                                                                                                            Assign Roles
+                                                                                                        </h6>
+                                                                                                    </div>
+                                                                                                    <div
+                                                                                                        class="form-group text-secondary col-sm-12">
+                                                                                                        {{-- <select name="roles" class="form-control select"
                                                                                                                     data-placeholder="Choose Role...">
                                                                                                                     <option></option>
-                                                                                                                    @foreach($roles as $role)
+                                                                                                                    @foreach ($roles as $role)
                                                                                                                         <option value="{{ $role->id }}">{{ $role->name }}</option>
                                                                                                                     @endforeach
                                                                                                                 </select> --}}
-                                                                                                                <select name="roles" class="form-control select"
-                                                                                                                    data-placeholder="Choose Role...">
-                                                                                                                    <option></option>
+                                                                                                        <select
+                                                                                                            name="roles"
+                                                                                                            class="form-control select"
+                                                                                                            data-placeholder="Choose Role...">
+                                                                                                            <option>
+                                                                                                            </option>
 
-                                                                                                                    @foreach($roles as $role)
-                                                                                                                    <option value="{{ $role->id }}" {{ $sales_manager->hasRole($role->name) ? 'selected' : '' }} >
-                                                                                                                        {{ $role->name }}</option>
-                                                                                                                    @endforeach
-                                                                                                                </select>
-                                                                                                            </div>
-                                                                                                        </div>
-
-                                                                                                        <div class="col-lg-4">
-
-                                                                                                        </div>
+                                                                                                            @foreach ($roles as $role)
+                                                                                                                <option
+                                                                                                                    value="{{ $role->id }}"
+                                                                                                                    {{ $sales_manager->hasRole($role->name) ? 'selected' : '' }}>
+                                                                                                                    {{ $role->name }}
+                                                                                                                </option>
+                                                                                                            @endforeach
+                                                                                                        </select>
                                                                                                     </div>
                                                                                                 </div>
 
+                                                                                                <div class="col-lg-4">
+
+                                                                                                </div>
                                                                                             </div>
                                                                                         </div>
+
                                                                                     </div>
-
-
-
-
-                                                                                    <div class="row">
-                                                                                        <div class="col-sm-3"></div>
-                                                                                        <div class="col-sm-9 text-secondary text-center">
-                                                                                            <button type="submit" class="btn btn-primary">Submit</button>
-                                                                                        </div>
-                                                                                    </div>
-
-                                                                                </form>
+                                                                                </div>
                                                                             </div>
 
 
-                                                                        </div>
+
+
+                                                                            <div class="row">
+                                                                                <div class="col-sm-3"></div>
+                                                                                <div
+                                                                                    class="col-sm-9 text-secondary text-center">
+                                                                                    <button type="submit"
+                                                                                        class="btn btn-primary">Submit</button>
+                                                                                </div>
+                                                                            </div>
+
+                                                                        </form>
                                                                     </div>
+
+
                                                                 </div>
-                                                            <!---Assign Manager modal--->
+                                                            </div>
                                                         </div>
+                                                        <!---Assign Manager modal--->
                                                     </div>
 
                                                 </td>
@@ -257,9 +288,6 @@
                 })
             })
         })
-
-
-
     </script>
     <script>
         $(document).ready(function() {
@@ -279,7 +307,7 @@
                 "lengthMenu": [10, 26, 30, 50],
                 columnDefs: [{
                     orderable: false,
-                    targets: [2, 6, 7],
+                    targets: [6],
                 }, ],
             });
         </script>

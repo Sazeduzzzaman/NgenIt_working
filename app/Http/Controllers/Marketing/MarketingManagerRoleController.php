@@ -19,6 +19,7 @@ class MarketingManagerRoleController extends Controller
     public function index()
     {
         $data['marketingManagerRoles'] = MarketingManagerRole::latest()->get();
+        $data['users'] = User::where('role','sales')->select('users.id','users.name')->get();
         return view('admin.pages.marketingManagerRole.all', $data);
     }
 
@@ -30,6 +31,7 @@ class MarketingManagerRoleController extends Controller
     public function create()
     {
         $data['users'] = User::where('role','sales')->select('users.id','users.name')->get();
+        
         return view('admin.pages.marketingManagerRole.add', $data);
     }
 

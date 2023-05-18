@@ -35,7 +35,7 @@
                         <span class="btn-labeled-icon bg-black bg-opacity-20">
                             <i class="icon-plus2"></i>
                         </span>
-                        Back To Product Approval
+                        Back To Product Approvals
                     </a>
                 </div>
                 <div class="col-lg-3">

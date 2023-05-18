@@ -55,7 +55,7 @@
                                 <table class="sectionDT table table-bordered table-hover text-center">
                                     <thead>
                                         <tr>
-                                            <th width="15%">Sl No:</th>
+                                            <th width="15%">Id</th>
                                             <th width="25%">Product Section Image</th>
                                             <th width="35%">Product Section Name</th>
                                             <th width="15%" class="text-center">Actions</th>

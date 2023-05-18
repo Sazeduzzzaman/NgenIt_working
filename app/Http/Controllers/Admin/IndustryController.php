@@ -26,16 +26,16 @@ class IndustryController extends Controller
     public function index()
     {
         $data['industrys'] = Industry::latest()->get();
-        $data['sub_industrys'] = SubIndustry::latest()->get();
+        // $data['sub_industrys'] = SubIndustry::latest()->get();
         return view('admin.pages.industry.all', $data);
-    } // End Method
+    } 
 
 
     public function create()
     {
         $data['industrys'] = Industry::latest()->get();
         return view('admin.pages.industry.add', $data);
-    } // End Method
+    } 
 
 
     public function store(Request $request)
@@ -84,21 +84,19 @@ class IndustryController extends Controller
         }
 
         return redirect()->back();
-    } // End Method
+    } 
 
 
-    public function edit($id)
-    {
-        if (Industry::findOrFail($id)) {
-            $data['industry'] = Industry::findOrFail($id);
-        } else {
-            $data['sub_industry'] = SubIndustry::findOrFail($id);
-        }
+    // public function edit($id)
+    // {
+    //     if (Industry::findOrFail($id)) {
+    //         $data['industry'] = Industry::findOrFail($id);
+    //     } else {
+    //         $data['sub_industry'] = SubIndustry::findOrFail($id);
+    //     }
 
-        //$data['industry'] = Industry::findOrFail($id);
-
-        return view('admin.pages.industry.edit', $data);
-    } // End Method
+    //     return view('admin.pages.industry.edit', $data);
+    // } 
 
 
     public function update(Request $request, $id)
@@ -107,7 +105,6 @@ class IndustryController extends Controller
         if (!empty($industry)) {
             $validator =
                 [
-
                     'title'      => 'required',
                     'short_desc' => 'required|max:600',
 
@@ -166,7 +163,7 @@ class IndustryController extends Controller
             }
         }
         return redirect()->back();
-    } // End Method
+    } 
 
 
     public function destroy($id)
@@ -195,7 +192,7 @@ class IndustryController extends Controller
             File::delete(public_path('storage/thumb/') . $industry->image);
         }
         $industry->delete();
-    } // End Method
+    } 
 
 
 }

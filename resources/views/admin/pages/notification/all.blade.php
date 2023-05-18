@@ -23,98 +23,102 @@
         <!-- Content area -->
 
         <div class="content">
-            <div class="card">
-                <div class="card-body">
-                    <div class="row mb-3">
-                        <div class="col-lg-9">
-                            <h4 class="text-center mb-0">All Notification</h4>
+            <div class="row">
+                <div class="table-responsive">
+                    <div class="d-flex align-items-center py-2">
+                        {{-- Add Details Start --}}
+                        <div class="text-success nav-link cat-tab3"
+                            style="position: relative;
+                            z-index: 999;
+                            margin-bottom: -40px;">
+                            {{-- <a href="{{ route('notification.create') }}">
+                                <div class="d-flex align-items-center">
+                                    <span class="ms-2 icon_btn" style="font-weight: 800;" data-bs-toggle="tooltip"
+                                        data-bs-placement="top" title="Add Solution Details">
+                                        <i class="ph-plus icons_design"></i> </span>
+                                    <span class="ms-1 " style="color: #247297;">Add</span>
+                                </div>
+                            </a> --}}
+                            {{-- <a href="{{ route('notifiy.multi-delete') }}" id="delete-selected-records">
+                                <div class="d-flex align-items-center">
+                                    <span class="ms-2 icon_btn" style="font-weight: 800;" data-bs-toggle="tooltip"
+                                        data-bs-placement="top" title="Add Solution Details">
+                                        <i class="fa-solid fa-trash text-danger icons_design" style="font-size: 14px;"></i>
+                                    </span>
+                                    <span class="ms-1 " style="color: #247297;">Add</span>
+                                </div>
+                            </a> --}}
+                            <div class="text-center" style="margin-left: 30rem">
+                                <h5 class="ms-1" style="color: #247297;">All Notification</h5>
+                            </div>
                         </div>
-                        <div class="col-lg-3">
-                            <a href="{{ route('notification.create') }}" type="button"
-                                class="btn btn-sm btn-success btn-labeled btn-labeled-start float-end mx-2">
-                                <span class="btn-labeled-icon bg-black bg-opacity-20">
-                                    <i class="icon-plus2"></i>
-                                </span>
-                                Add New
-                            </a>
-                            <button class="btn btn-sm btn-flat-danger" id="delete-selected-records"
-                                multiDeleteLinkUrl="{{ route('notifiy.multi-delete') }}"> Delete Selected Items</button>
-                        </div>
+                        {{-- Add Details End --}}
                     </div>
-                    <div class="row">
-                        <div class="table-responsive">
-                            <table id="notificationTable" class="datatable table table-bordered table-hover notificationDT">
-                                <thead>
+                    <table class="table newsLetterDt table-bordered table-hover text-center">
+                        <thead>
+                            <tr>
+                                <th width="5%">
+                                    <input id="select-all-checkbox" type="checkbox" class="form-check-input">
+                                </th>
+                                <th width="25%">Name</th>
+                                <th width="50%">Message</th>
+                                <th width="15%">Created Time</th>
+                                <th width="5%" class="text-center">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if ($notifications)
+                                @foreach ($notifications as $key => $notification)
+                                    @php
+                                        $notificationObject = json_decode($notification->data, true);
+                                        // $notificationObject = cache()->remember("notification.{$notification->id}", now()->addHour(), function () use ($notification) {
+                                        //     return json_decode($notification->data, true);
+                                        // });
+                                        //dd($notificationObject['link']);
+                                    @endphp
                                     <tr>
-                                        <th width="5%"><input id="select-all-checkbox" type="checkbox"
-                                                class="form-check-input"></th>
-                                        {{-- <th>Sl No:</th>
-                                        <th>Notifiable Id</th> --}}
-                                        <th>Name</th>
-                                        <th>Message</th>
-                                        <th>Created Time</th>
-                                        <th class="text-center">Actions</th>
+                                        <td>
+                                            <input type="checkbox" name="id[]" class="form-check-input"
+                                                value="{{ $notification->id }}" />
+                                        </td>
+                                        <td>{{ $notificationObject['name'] }}</td>
+                                        <td>
+                                            @if (isset($notificationObject['message1']))
+                                                @if (!empty($notification->read_at))
+                                                    <span>
+                                                        {{ $notificationObject['name'] }}
+                                                        {{ $notificationObject['message1'] }}
+                                                        <a href="{{ $notificationObject['link'] }}"
+                                                            data-id="{{ $notification->id }}"
+                                                            class="fw-semibold mark-as-read">
+                                                            {{ $notificationObject['message2'] }}
+                                                    </span>
+                                                @else
+                                                    <span class="text-danger">
+                                                        {{ $notificationObject['name'] }}
+                                                        {{ $notificationObject['message1'] }}
+                                                        <a href="{{ $notificationObject['link'] }}"
+                                                            data-id="{{ $notification->id }}"
+                                                            class="fw-semibold mark-as-read">
+                                                            {{ $notificationObject['message2'] }}
+                                                    </span>
+                                                @endif
+                                            @endif
+                                        </td>
+                                        <td>
+                                            {{ Carbon\Carbon::parse($notification->created_at)->diffForHumans() }}
+                                        </td>
+                                        <td class="text-center">
+                                            <a href="{{ route('notification.destroy', [$notification->id]) }}"
+                                                class="text-danger delete mx-2">
+                                                <i class="fa-solid fa-trash p-1 rounded-circle text-danger"></i>
+                                            </a>
+                                        </td>
                                     </tr>
-                                </thead>
-                                <tbody>
-                                    @if ($notifications)
-                                        @foreach ($notifications as $key => $notification)
-                                            @php
-                                                $notificationObject = json_decode($notification->data, true);
-                                                // $notificationObject = cache()->remember("notification.{$notification->id}", now()->addHour(), function () use ($notification) {
-                                                //     return json_decode($notification->data, true);
-                                                // });
-                                                //dd($notificationObject['link']);
-                                            @endphp
-                                            <tr>
-                                                <td><input type="checkbox" name="id[]"
-                                                        class="form-check-input"
-                                                        value="{{ $notification->id }}" />
-                                                </td>
-                                                {{-- <td>{{ ++$key }}</td>
-                                                <td>{{ $notification->notifiable_id }}</td> --}}
-                                                <td>{{ $notificationObject['name'] }}</td>
-                                                <td>
-                                                    @if (isset($notificationObject['message1']))
-                                                        @if (!empty($notification->read_at))
-                                                            <span>
-                                                                {{ $notificationObject['name'] }} {{ $notificationObject['message1'] }}
-                                                                <a href="{{ $notificationObject['link'] }}" data-id="{{ $notification->id }}"
-                                                                    class="fw-semibold mark-as-read">
-                                                                    {{ $notificationObject['message2'] }}
-                                                            </span>
-                                                        @else
-
-                                                            <span class="text-danger">
-                                                                {{ $notificationObject['name'] }} {{ $notificationObject['message1'] }}
-                                                                <a href="{{ $notificationObject['link'] }}" data-id="{{ $notification->id }}"
-                                                                    class="fw-semibold mark-as-read">
-                                                                    {{ $notificationObject['message2'] }}
-                                                            </span>
-
-                                                        @endif
-                                                    @endif
-                                                </td>
-                                                <td>
-                                                    {{ Carbon\Carbon::parse($notification->created_at)->diffForHumans() }}
-                                                </td>
-                                                <td class="text-center">
-                                                    <a href="{{ route('notification.edit', [$notification->id]) }}"
-                                                        class="text-primary">
-                                                        <i class="icon-pencil"></i>
-                                                    </a>
-                                                    <a href="{{ route('notification.destroy', [$notification->id]) }}"
-                                                        class="text-danger delete mx-2">
-                                                        <i class="delete icon-trash"></i>
-                                                    </a>
-                                                </td>
-                                            </tr>
-                                        @endforeach
-                                    @endif
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
+                                @endforeach
+                            @endif
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
@@ -126,16 +130,17 @@
 @endsection
 @push('scripts')
     <script type="text/javascript">
-        $('.notificationDT').DataTable({
+        $('.newsLetterDt').DataTable({
             dom: '<"datatable-header"fl><"datatable-scroll"t><"datatable-footer"ip>',
             "iDisplayLength": 10,
-            "lengthMenu": [10, 26, 30, 50],
+            "lengthMenu": [10, 25, 30, 50],
             columnDefs: [{
                 orderable: false,
                 targets: [0, 4],
             }, ],
         });
-
+    </script>
+    <script type="text/javascript">
         const selectAllCheckbox = $('#select-all-checkbox');
         const tableBody = $('#notificationTable tbody');
 

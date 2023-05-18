@@ -1,3 +1,4 @@
+
 @extends('admin.master')
 @section('content')
     <div class="content-wrapper">
@@ -70,11 +71,11 @@
             <!-- Content area -->
             <div class="content">
                 <!-- Table components -->
-                <div class="card m-auto w-50 mb-3 p-2">
-                    <table class="table  table-bordered table-xs table-responsive">
-                        <tr>
-                            <th colspan="7">
-                                <h5 class="mb-0 text-center"> Sales Profit & Loss
+                <div class=" m-auto w-50 mb-3 p-2">
+                    <table class="table  table-bordered table-xs table-responsive table-hover">
+                        <tr class="main_bg">
+                            <th colspan="7" > 
+                                <h5 class="mb-0 text-center text-white"> Sales Profit & Loss
                                     {{-- <button type="button" class="bg-teal float-end text-white" data-bs-toggle="modal"
                                         data-bs-target="#modal_sale_profit_loss"> <i
                                             class="ph-plus-circle ph-1x"></i></button> --}}
@@ -82,14 +83,14 @@
                             </th>
                         </tr>
                         <tr class="text-center">
-                            <th class="bg-primary text-white">Total Sales </th>
-                            <th class="bg-success text-white"> Profit </th>
-                            <th class="bg-secondary text-white"> % </th>
+                            <th class=" text-black">Total Sales </th>
+                            <th class=" text-black"> Profit </th>
+                            <th class=" text-black"> % </th>
                         </tr>
                         <tr class="text-center">
-                            <td class="bg-primary text-white"> {{ $grandTotalSum }}</td>
-                            <td class="bg-success text-white"> {{ $netProfitSum }}</td>
-                            <td class="bg-secondary text-white"> {{ $netProfitPercentageSum }} %</td>
+                            <td class=" text-black"> {{ $grandTotalSum }}</td>
+                            <td class=" text-black"> {{ $netProfitSum }}</td>
+                            <td class=" text-black"> {{ $netProfitPercentageSum }} %</td>
                         </tr>
                     </table>
                 </div>
@@ -359,9 +360,9 @@
                     </div>
                 </form> --}}
                 <!-- model-Update end -->
-                <div class="card">
+                <div class="">
                     <!-- tab menu start-->
-                    <ul class="nav nav-tabs mb-3" role="tablist">
+                    <ul class="nav nav-tabs w-75 mx-auto d-flex justify-content-center align-items-center" role="tablist" style="border-bottom: 1px solid #247297;">
                         <li class="nav-item" role="presentation">
                             <a href="#js-January-tab" class="nav-link active" data-bs-toggle="tab" aria-selected="true"
                                 role="tab" tabindex="-1">
@@ -437,9 +438,29 @@
                     </ul>
                     <!-- tab menu end -->
                     <!-- monthly table view start  -->
-                    <div class="card-body">
+                    <div class="body w-75 mx-auto">
                         <div class="tab-content table-responsive">
                             <div class="tab-pane fade active show" id="js-January-tab" role="tabpanel">
+                                <div class="d-flex align-items-center py-2">
+                                    {{-- Add Details Start --}}
+                                    <div class="text-success nav-link cat-tab3"
+                                        style="position: relative;
+                                        z-index: 999;
+                                        margin-bottom: -40px;">
+                                        {{-- <a href="{{ route('knowledge.create') }}">
+                                            <div class="d-flex align-items-center">
+                                                <span class="ms-2 icon_btn" style="font-weight: 800;" data-bs-toggle="tooltip"
+                                                    data-bs-placement="top" title="Add Solution Details">
+                                                    <i class="ph-plus icons_design"></i> </span>
+                                                <span class="ms-1" style="color: #247297;">Add</span>
+                                            </div>
+                                        </a> --}}
+                                        <div class="text-center" style="margin-left: 25rem;">
+                                            <h5 class="ms-1" style="color: #247297;">January</h5>
+                                        </div>
+                                    </div>
+                                    {{-- Add Details End --}}
+                                </div>
                                 <table class="table january table-xs table-bordered datatable-basic">
                                     <thead>
                                         <tr>
@@ -475,6 +496,26 @@
                                 </table>
                             </div>
                             <div class="tab-pane fade" id="js-February-tab" role="tabpanel">
+                                <div class="d-flex align-items-center py-2">
+                            {{-- Add Details Start --}}
+                            <div class="text-success nav-link cat-tab3"
+                                style="position: relative;
+                                z-index: 999;
+                                margin-bottom: -40px;">
+                                {{-- <a href="{{ route('knowledge.create') }}">
+                                    <div class="d-flex align-items-center">
+                                        <span class="ms-2 icon_btn" style="font-weight: 800;" data-bs-toggle="tooltip"
+                                            data-bs-placement="top" title="Add Solution Details">
+                                            <i class="ph-plus icons_design"></i> </span>
+                                        <span class="ms-1" style="color: #247297;">Add</span>
+                                    </div>
+                                </a> --}}
+                                <div class="text-center" style="margin-left: 25rem;">
+                                    <h5 class="ms-1" style="color: #247297;">February</h5>
+                                </div>
+                            </div>
+                            {{-- Add Details End --}}
+                        </div>
                                 <table class="table february table-xs table-bordered datatable-basic">
                                     <thead>
                                         <tr>
@@ -510,6 +551,26 @@
                                 </table>
                             </div>
                             <div class="tab-pane fade" id="js-March-tab" role="tabpanel">
+                                <div class="d-flex align-items-center py-2">
+                                    {{-- Add Details Start --}}
+                                    <div class="text-success nav-link cat-tab3"
+                                        style="position: relative;
+                                        z-index: 999;
+                                        margin-bottom: -40px;">
+                                        {{-- <a href="{{ route('knowledge.create') }}">
+                                            <div class="d-flex align-items-center">
+                                                <span class="ms-2 icon_btn" style="font-weight: 800;" data-bs-toggle="tooltip"
+                                                    data-bs-placement="top" title="Add Solution Details">
+                                                    <i class="ph-plus icons_design"></i> </span>
+                                                <span class="ms-1" style="color: #247297;">Add</span>
+                                            </div>
+                                        </a> --}}
+                                        <div class="text-center" style="margin-left: 25rem;">
+                                            <h5 class="ms-1" style="color: #247297;">March</h5>
+                                        </div>
+                                    </div>
+                                    {{-- Add Details End --}}
+                                </div>
                                 <table class="table march table-xs table-bordered datatable-basic">
                                     <thead>
                                         <tr>
@@ -545,6 +606,26 @@
                                 </table>
                             </div>
                             <div class="tab-pane fade" id="js-April-tab" role="tabpanel">
+                                <div class="d-flex align-items-center py-2">
+                                    {{-- Add Details Start --}}
+                                    <div class="text-success nav-link cat-tab3"
+                                        style="position: relative;
+                                        z-index: 999;
+                                        margin-bottom: -40px;">
+                                        {{-- <a href="{{ route('knowledge.create') }}">
+                                            <div class="d-flex align-items-center">
+                                                <span class="ms-2 icon_btn" style="font-weight: 800;" data-bs-toggle="tooltip"
+                                                    data-bs-placement="top" title="Add Solution Details">
+                                                    <i class="ph-plus icons_design"></i> </span>
+                                                <span class="ms-1" style="color: #247297;">Add</span>
+                                            </div>
+                                        </a> --}}
+                                        <div class="text-center" style="margin-left: 25rem;">
+                                            <h5 class="ms-1" style="color: #247297;">April</h5>
+                                        </div>
+                                    </div>
+                                    {{-- Add Details End --}}
+                                </div>
                                 <table class="table april table-xs table-bordered datatable-basic">
                                     <thead>
                                         <tr>
@@ -580,6 +661,26 @@
                                 </table>
                             </div>
                             <div class="tab-pane fade" id="js-May-tab" role="tabpanel">
+                                <div class="d-flex align-items-center py-2">
+                                    {{-- Add Details Start --}}
+                                    <div class="text-success nav-link cat-tab3"
+                                        style="position: relative;
+                                        z-index: 999;
+                                        margin-bottom: -40px;">
+                                        {{-- <a href="{{ route('knowledge.create') }}">
+                                            <div class="d-flex align-items-center">
+                                                <span class="ms-2 icon_btn" style="font-weight: 800;" data-bs-toggle="tooltip"
+                                                    data-bs-placement="top" title="Add Solution Details">
+                                                    <i class="ph-plus icons_design"></i> </span>
+                                                <span class="ms-1" style="color: #247297;">Add</span>
+                                            </div>
+                                        </a> --}}
+                                        <div class="text-center" style="margin-left: 25rem;">
+                                            <h5 class="ms-1" style="color: #247297;">May</h5>
+                                        </div>
+                                    </div>
+                                    {{-- Add Details End --}}
+                                </div>
                                 <table class="table may table-xs table-bordered datatable-basic">
                                     <thead>
                                         <tr>
@@ -615,6 +716,26 @@
                                 </table>
                             </div>
                             <div class="tab-pane fade" id="js-June-tab" role="tabpanel">
+                                <div class="d-flex align-items-center py-2">
+                                    {{-- Add Details Start --}}
+                                    <div class="text-success nav-link cat-tab3"
+                                        style="position: relative;
+                                        z-index: 999;
+                                        margin-bottom: -40px;">
+                                        {{-- <a href="{{ route('knowledge.create') }}">
+                                            <div class="d-flex align-items-center">
+                                                <span class="ms-2 icon_btn" style="font-weight: 800;" data-bs-toggle="tooltip"
+                                                    data-bs-placement="top" title="Add Solution Details">
+                                                    <i class="ph-plus icons_design"></i> </span>
+                                                <span class="ms-1" style="color: #247297;">Add</span>
+                                            </div>
+                                        </a> --}}
+                                        <div class="text-center" style="margin-left: 25rem;">
+                                            <h5 class="ms-1" style="color: #247297;">June</h5>
+                                        </div>
+                                    </div>
+                                    {{-- Add Details End --}}
+                                </div>
                                 <table class="table june table-xs table-bordered datatable-basic">
                                     <thead>
                                         <tr>
@@ -650,6 +771,26 @@
                                 </table>
                             </div>
                             <div class="tab-pane fade" id="js-July-tab" role="tabpanel">
+                                <div class="d-flex align-items-center py-2">
+                                    {{-- Add Details Start --}}
+                                    <div class="text-success nav-link cat-tab3"
+                                        style="position: relative;
+                                        z-index: 999;
+                                        margin-bottom: -40px;">
+                                        {{-- <a href="{{ route('knowledge.create') }}">
+                                            <div class="d-flex align-items-center">
+                                                <span class="ms-2 icon_btn" style="font-weight: 800;" data-bs-toggle="tooltip"
+                                                    data-bs-placement="top" title="Add Solution Details">
+                                                    <i class="ph-plus icons_design"></i> </span>
+                                                <span class="ms-1" style="color: #247297;">Add</span>
+                                            </div>
+                                        </a> --}}
+                                        <div class="text-center" style="margin-left: 25rem;">
+                                            <h5 class="ms-1" style="color: #247297;">July</h5>
+                                        </div>
+                                    </div>
+                                    {{-- Add Details End --}}
+                                </div>
                                 <table class="table july table-xs table-bordered datatable-basic">
                                     <thead>
                                         <tr>
@@ -685,6 +826,26 @@
                                 </table>
                             </div>
                             <div class="tab-pane fade" id="js-August-tab" role="tabpanel">
+                                <div class="d-flex align-items-center py-2">
+                                    {{-- Add Details Start --}}
+                                    <div class="text-success nav-link cat-tab3"
+                                        style="position: relative;
+                                        z-index: 999;
+                                        margin-bottom: -40px;">
+                                        {{-- <a href="{{ route('knowledge.create') }}">
+                                            <div class="d-flex align-items-center">
+                                                <span class="ms-2 icon_btn" style="font-weight: 800;" data-bs-toggle="tooltip"
+                                                    data-bs-placement="top" title="Add Solution Details">
+                                                    <i class="ph-plus icons_design"></i> </span>
+                                                <span class="ms-1" style="color: #247297;">Add</span>
+                                            </div>
+                                        </a> --}}
+                                        <div class="text-center" style="margin-left: 25rem;">
+                                            <h5 class="ms-1" style="color: #247297;">August</h5>
+                                        </div>
+                                    </div>
+                                    {{-- Add Details End --}}
+                                </div>
                                 <table class="table august table-xs table-bordered datatable-basic">
                                     <thead>
                                         <tr>
@@ -720,6 +881,26 @@
                                 </table>
                             </div>
                             <div class="tab-pane fade" id="js-September-tab" role="tabpanel">
+                                <div class="d-flex align-items-center py-2">
+                                    {{-- Add Details Start --}}
+                                    <div class="text-success nav-link cat-tab3"
+                                        style="position: relative;
+                                        z-index: 999;
+                                        margin-bottom: -40px;">
+                                        {{-- <a href="{{ route('knowledge.create') }}">
+                                            <div class="d-flex align-items-center">
+                                                <span class="ms-2 icon_btn" style="font-weight: 800;" data-bs-toggle="tooltip"
+                                                    data-bs-placement="top" title="Add Solution Details">
+                                                    <i class="ph-plus icons_design"></i> </span>
+                                                <span class="ms-1" style="color: #247297;">Add</span>
+                                            </div>
+                                        </a> --}}
+                                        <div class="text-center" style="margin-left: 25rem;">
+                                            <h5 class="ms-1" style="color: #247297;">September</h5>
+                                        </div>
+                                    </div>
+                                    {{-- Add Details End --}}
+                                </div>
                                 <table class="table september table-xs table-bordered datatable-basic">
                                     <thead>
                                         <tr>
@@ -755,6 +936,26 @@
                                 </table>
                             </div>
                             <div class="tab-pane fade" id="js-October-tab" role="tabpanel">
+                                <div class="d-flex align-items-center py-2">
+                                    {{-- Add Details Start --}}
+                                    <div class="text-success nav-link cat-tab3"
+                                        style="position: relative;
+                                        z-index: 999;
+                                        margin-bottom: -40px;">
+                                        {{-- <a href="{{ route('knowledge.create') }}">
+                                            <div class="d-flex align-items-center">
+                                                <span class="ms-2 icon_btn" style="font-weight: 800;" data-bs-toggle="tooltip"
+                                                    data-bs-placement="top" title="Add Solution Details">
+                                                    <i class="ph-plus icons_design"></i> </span>
+                                                <span class="ms-1" style="color: #247297;">Add</span>
+                                            </div>
+                                        </a> --}}
+                                        <div class="text-center" style="margin-left: 25rem;">
+                                            <h5 class="ms-1" style="color: #247297;">October</h5>
+                                        </div>
+                                    </div>
+                                    {{-- Add Details End --}}
+                                </div>
                                 <table class="table october table-xs table-bordered datatable-basic">
                                     <thead>
                                         <tr>
@@ -790,6 +991,26 @@
                                 </table>
                             </div>
                             <div class="tab-pane fade" id="js-November-tab" role="tabpanel">
+                                <div class="d-flex align-items-center py-2">
+                                    {{-- Add Details Start --}}
+                                    <div class="text-success nav-link cat-tab3"
+                                        style="position: relative;
+                                        z-index: 999;
+                                        margin-bottom: -40px;">
+                                        {{-- <a href="{{ route('knowledge.create') }}">
+                                            <div class="d-flex align-items-center">
+                                                <span class="ms-2 icon_btn" style="font-weight: 800;" data-bs-toggle="tooltip"
+                                                    data-bs-placement="top" title="Add Solution Details">
+                                                    <i class="ph-plus icons_design"></i> </span>
+                                                <span class="ms-1" style="color: #247297;">Add</span>
+                                            </div>
+                                        </a> --}}
+                                        <div class="text-center" style="margin-left: 25rem;">
+                                            <h5 class="ms-1" style="color: #247297;">November</h5>
+                                        </div>
+                                    </div>
+                                    {{-- Add Details End --}}
+                                </div>
                                 <table class="table november table-xs table-bordered datatable-basic">
                                     <thead>
                                         <tr>
@@ -825,6 +1046,26 @@
                                 </table>
                             </div>
                             <div class="tab-pane fade" id="js-December-tab" role="tabpanel">
+                                <div class="d-flex align-items-center py-2">
+                                    {{-- Add Details Start --}}
+                                    <div class="text-success nav-link cat-tab3"
+                                        style="position: relative;
+                                        z-index: 999;
+                                        margin-bottom: -40px;">
+                                        {{-- <a href="{{ route('knowledge.create') }}">
+                                            <div class="d-flex align-items-center">
+                                                <span class="ms-2 icon_btn" style="font-weight: 800;" data-bs-toggle="tooltip"
+                                                    data-bs-placement="top" title="Add Solution Details">
+                                                    <i class="ph-plus icons_design"></i> </span>
+                                                <span class="ms-1" style="color: #247297;">Add</span>
+                                            </div>
+                                        </a> --}}
+                                        <div class="text-center" style="margin-left: 25rem;">
+                                            <h5 class="ms-1" style="color: #247297;">December</h5>
+                                        </div>
+                                    </div>
+                                    {{-- Add Details End --}}
+                                </div>
                                 <table class="table december table-xs table-bordered datatable-basic">
                                     <thead>
                                         <tr>

@@ -231,14 +231,14 @@
                     <div class="col-lg-2 col-md-3 col-sm-12">
                         <div class="iconbox">
                             <div class="iconbox-icon">
-                                <img src="{{ asset('storage/requestImg/' . App\Models\Admin\Brand::where('id', $item->brand_id)->value('image')) }}"
+                                <img src="http://165.22.48.109/ngenit/storage/requestImg/dNEuynFfqRcE4EyD1679484195.png"
                                     alt="">
                             </div>
                             <div class="featureinfo">
                                 <h4 class="text-center">{{ Str::limit($item->title, 10) }}</h4>
-                                <div class="d-flex justify-content-between px-3">
+                                <div class="d-flex justify-content-center">
 
-                                    <div>
+                                    {{-- <div>
                                         <a href="{{ route('brandpage.html', App\Models\Admin\Brand::where('id', $item->brand_id)->value('slug')) }}"><button
                                                 class="btn btn-light p-1 " style="font-size: 12px;">Details</button></a>
 
@@ -248,7 +248,11 @@
                                         href="{{ route('custom.product', App\Models\Admin\Brand::where('id', $item->brand_id)->value('slug')) }}">
                                             Shop</a>
 
-                                    </div>
+                                    </div> --}}
+                                    <div class="buttonsss">
+                                        <button>Details</button>
+                                        <button>Shop</button>
+                                      </div>
                                 </div>
                             </div>
                         </div>
@@ -279,20 +283,13 @@
                 {{-- first brand --}}
                 @foreach ($featured_brands as $item)
                     <div class="col-lg-2 col-md-3 col-sm-12">
-                        <div class="iconbox">
-                            <div class="iconbox-icon">
-                                <img src="{{ asset('storage/requestImg/' . $item->image) }}" alt="">
-                            </div>
-                            <div class="featureinfo">
-                                <h4 class="text-center">{{ Str::limit($item->title, 10) }}</h4>
-                                <div class="d-flex justify-content-center px-3">
-
-                                    <div>
-                                        <a href="{{ route('custom.product', $item->slug) }}"><button
-                                                class="btn btn-light p-1 main_color" style="font-size: 12px;">Shop</button></a>
-
-                                    </div>
-                                </div>
+                        <div class="">
+                            <div class="">
+                                <a href="{{ route('custom.product', $item->slug) }}">
+                                <img src="http://165.22.48.109/ngenit/storage/requestImg/dNEuynFfqRcE4EyD1679484195.png" alt=""     width="160px"
+                                height="160px"
+                            }>
+                            </a>
                             </div>
                         </div>
                     </div>

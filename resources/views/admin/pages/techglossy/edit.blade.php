@@ -1,21 +1,30 @@
 @extends('admin.master')
 @section('content')
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <style>
+        .label_style {
+            width: 80px !important;
+        }
 
-<div class="content-wrapper">
-
-    <!-- Inner content -->
-
-
+        .note-editor {
+            width: 100% !important;
+        }
+    </style>
+    <div class="content-wrapper">
         <!-- Page header -->
         <div class="page-header page-header-light shadow">
             <div class="page-header-content d-lg-flex border-top">
                 <div class="d-flex">
                     <div class="breadcrumb py-2">
-                        <a href="index.html" class="breadcrumb-item"><i class="ph-house"></i></a>
-                        <a href="{{route('admin.dashboard')}}" class="breadcrumb-item">Home</a>
-                        <span class="breadcrumb-item active">Tech Glossy Management</span>
+                        <a href="{{ route('admin.dashboard') }}" class="breadcrumb-item"><i class="ph-house me-2"></i> Home</a>
+                        <a href="{{ route('techglossy.index') }}" class="breadcrumb-item">Site Content</a>
+                        <a href="{{ route('techglossy.index') }}" class="breadcrumb-item">Tech Glossy Management</a>
+                        <a href="" class="breadcrumb-item">Edit</a>
                     </div>
+                    <a href="#breadcrumb_elements"
+                        class="btn btn-light align-self-center collapsed d-lg-none border-transparent rounded-pill p-0 ms-auto"
+                        data-bs-toggle="collapse">
+                        <i class="ph-caret-down collapsible-indicator ph-sm m-1 "></i>
+                    </a>
                 </div>
             </div>
         </div>
@@ -23,88 +32,75 @@
 
 
         <!-- Content area -->
-        <div class="content">
-            <div class="row">
-                <div class="col-lg-2"></div>
-                <div class="col-lg-8">
-                    <div class="card">
-                        <div class="card-header">
-
-                            <h5 class="mb-0 float-start">Tech Glossy Edit Form</h5>
-                            <a href="{{route('techglossy.index')}}" type="button" class="btn btn-sm btn-success btn-labeled btn-labeled-start float-end">
-                                <span class="btn-labeled-icon bg-black bg-opacity-20">
-                                    <i class="icon-eye"></i>
-                                </span>
-                                All Tech Glossy
-                            </a>
-                        </div>
-
-                        <div class="card-body">
-                            <form method="post" action="{{ route('techglossy.update', $story->id) }}"
-                                enctype="multipart/form-data" id="myform">
-                                @csrf
-                                @method('PUT')
-                                <input type="hidden" name="id" value="{{$story->id}}"/>
-                                <div class="row mb-3 border p-3">
-                                    <div class="col-lg-4">
-                                        <div class="col-sm-12">
-                                            <h6 class="mb-0">Author <span class="text-danger"> * </span></h6>
+        <div class="content pt-2 w-75 mx-auto">
+            <div class="text-start">
+                <div class="d-flex align-items-center justify-content-start main_bg py-1 rounded-1">
+                    <div class="ms-2">
+                        <a class="btn btn-primary btn-rounded rounded-circle btn-icon back-btn"
+                            href="{{ route('techglossy.index') }}">
+                            <i class="fa-solid fa-arrow-left main_color"></i>
+                        </a>
+                    </div>
+                    <div class="me-2" style="margin-left: 21.7rem;">
+                        <p class="text-white p-0 m-0 fw-bold"> Edit Story </p>
+                    </div>
+                    <div style="margin-left: 14rem;">
+                        <a href="{{ route('product-sourcing.index') }}" class="btn navigation_btn">
+                            <div class="d-flex align-items-center ">
+                                <i class="fa-solid fa-nfc-magnifying-glass me-1" style="font-size: 10px;"></i>
+                                <span>Row Builder</span>
+                            </div>
+                        </a>
+                        <a href="{{ route('purchase.index') }}" class="btn navigation_btn">
+                            <div class="d-flex align-items-center ">
+                                <i class="fa-solid fa-money-check-dollar-pen me-1" style="font-size: 10px;"></i>
+                                <span>Solution Card</span>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <form method="post" action="{{ route('techglossy.update', $story->id) }}" enctype="multipart/form-data"
+                id="myform">
+                @csrf
+                @method('PUT')
+                <div class="card">
+                    <!--Banner Section-->
+                    <div class="container py-2">
+                        <div class="row">
+                            <div class="col-lg-4 col-sm-6">
+                                <span class="mt-1 fw-bold text-info">Description</span>
+                                <div class="px-2 py-2 rounded bg-light ">
+                                    <div class="row mb-1">
+                                        <div class="col-lg-4 d-flex align-items-center">
+                                            <span>Brands</span>
                                         </div>
-                                        <div class="form-group col-sm-10 text-secondary">
-                                            <input type="text" name="created_by" class="form-control maxlength"
-                                                maxlength="255" value="{{$story->created_by}}"/>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-4">
-                                        <div class="col-sm-12">
-                                            <h6 class="mb-0">Badge Name <span class="text-danger"> * </span></h6>
-                                        </div>
-                                        <div class="form-group col-sm-10 text-secondary">
-                                            <input type="text" name="badge" class="form-control maxlength"
-                                                maxlength="255" value="{{$story->badge}}"/>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-4 mt-4">
-                                        <div class="form-check">
-                                            <input type="checkbox" class="form-check-input" name="featured" value="1" {{ ($story->featured == 1) ? 'checked' : '' }}>
-                                            <label class="form-check-label" for="cc_ls_c" >Featured</label>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="row mb-3">
-                                    <div class="col-lg-3 mb-3">
-                                        <div class="col-sm-12">
-                                            <h6 class="mb-0"> Brands</h6>
-                                        </div>
-                                        <div class="form-group text-secondary col-sm-12">
-                                            <select name="brand_id[]" class="form-control multiselect"
-                                                multiple="multiple" data-include-select-all-option="true"
-                                                data-enable-filtering="true"
-                                                data-enable-case-insensitive-filtering="true">
-                                                    @php
-                                                        $brandIds = isset($story->brand_id) ? json_decode($story->brand_id, true) : [];
-                                                        $brands = App\Models\Admin\Brand::pluck('title', 'id')->toArray();
-                                                    @endphp
-                                                    @foreach ($brands as $id => $title)
-                                                        <option value="{{ $id }}"
+                                        <div class="col-lg-8">
+                                            <select name="brand_id[]" class="form-control-sm multiselect btn btn-sm"
+                                                id="select6" multiple="multiple" data-include-select-all-option="true"
+                                                data-enable-filtering="true" data-enable-case-insensitive-filtering="true">
+                                                @php
+                                                    $brandIds = isset($story->brand_id) ? json_decode($story->brand_id, true) : [];
+                                                    $brands = App\Models\Admin\Brand::pluck('title', 'id')->toArray();
+                                                @endphp
+                                                @foreach ($brands as $id => $title)
+                                                    <option value="{{ $id }}"
                                                         {{ is_array($brandIds) && in_array($id, $brandIds) ? 'selected' : '' }}>
                                                         {{ $title }}
-                                                        </option>
-                                                    @endforeach
-
+                                                    </option>
+                                                @endforeach
                                             </select>
-
                                         </div>
                                     </div>
-                                    <div class="col-lg-3 mb-3">
-                                        <div class="col-sm-12">
-                                            <h6 class="mb-0"> Categories</h6>
+                                    {{--  --}}
+                                    <div class="row mb-1">
+                                        <div class="col-lg-4 d-flex align-items-center">
+                                            <span>Categories</span>
                                         </div>
-                                        <div class="form-group text-secondary col-sm-12">
-                                            <select name="category_id[]" class="form-control multiselect" multiple="multiple"
-                                                data-include-select-all-option="true" data-enable-filtering="true"
-                                                data-enable-case-insensitive-filtering="true">
+                                        <div class="col-lg-8">
+                                            <select name="brand_id[]" class="form-control multiselect" id="select6"
+                                                multiple="multiple" data-include-select-all-option="true"
+                                                data-enable-filtering="true" data-enable-case-insensitive-filtering="true">
                                                 @php
                                                     $categoryIds = isset($story->category_id) ? json_decode($story->category_id, true) : [];
                                                     $categories = App\Models\Admin\Category::pluck('title', 'id')->toArray();
@@ -119,15 +115,15 @@
                                             </select>
                                         </div>
                                     </div>
-                                    <div class="col-lg-3 mb-3">
-                                        <div class="col-sm-12">
-                                            <h6 class="mb-0">Industries</h6>
+                                    {{--  --}}
+                                    <div class="row mb-1">
+                                        <div class="col-lg-4 d-flex align-items-center">
+                                            <span>Industries</span>
                                         </div>
-                                        <div class="form-group text-secondary col-sm-12">
-                                            <select name="industry_id[]" class="form-control multiselect" multiple="multiple"
-                                                data-include-select-all-option="true" data-enable-filtering="true"
-                                                data-enable-case-insensitive-filtering="true">
-
+                                        <div class="col-lg-8">
+                                            <select name="brand_id[]" class="form-control-sm multiselect btn btn-sm"
+                                                id="select6" multiple="multiple" data-include-select-all-option="true"
+                                                data-enable-filtering="true" data-enable-case-insensitive-filtering="true">
                                                 @php
                                                     $industryIds = isset($story->industry_id) ? json_decode($story->industry_id, true) : [];
                                                     $industries = App\Models\Admin\Industry::pluck('title', 'id')->toArray();
@@ -142,16 +138,15 @@
                                             </select>
                                         </div>
                                     </div>
-                                    <div class="col-lg-3 mb-3">
-                                        <div class="col-sm-12">
-                                            <h6 class="mb-0">Solutions</h6>
+                                    {{--  --}}
+                                    <div class="row mb-1">
+                                        <div class="col-lg-4 d-flex align-items-center">
+                                            <span>Solutions</span>
                                         </div>
-                                        <div class="form-group text-secondary col-sm-12">
-
-                                            <select name="solution_id[]" class="form-control multiselect" multiple="multiple"
-                                                data-include-select-all-option="true" data-enable-filtering="true"
-                                                data-enable-case-insensitive-filtering="true">
-
+                                        <div class="col-lg-8">
+                                            <select name="brand_id[]" class="form-control-sm multiselect btn btn-sm"
+                                                id="select6" multiple="multiple" data-include-select-all-option="true"
+                                                data-enable-filtering="true" data-enable-case-insensitive-filtering="true">
                                                 @php
                                                     $solutionIds = isset($story->solution_id) ? json_decode($story->solution_id, true) : [];
                                                     $solutions = App\Models\Admin\SolutionDetail::pluck('name', 'id')->toArray();
@@ -167,90 +162,157 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="row mb-3">
-                                    <div class="col-sm-3">
-                                        <h6 class="mb-0">Title</h6>
-                                    </div>
-                                    <div class="form-group col-sm-9 text-secondary">
-                                        <input type="text" value="{{ $story->title }}" name="title"
-                                            class="form-control maxlength" maxlength="100" />
-                                    </div>
-                                </div>
-                                <div class="row mb-3">
-                                    <div class="col-sm-3">
-                                        <h6 class="mb-0">Header</h6>
-                                    </div>
-                                    <div class="form-group col-sm-9 text-secondary">
-                                        <textarea class="form-control maxlength" name="header" id="" maxlength="500" cols="30" rows="3">{{ $story->header }}</textarea>
-                                    </div>
-                                </div>
+                            </div>
 
-                                <div class="row mb-3">
-                                    <div class="col-sm-3">
-                                        <h6 class="mb-0">
-                                            Tags</h6>
+                            <div class="col-lg-4 col-sm-6">
+                                <span class="mt-1 fw-bold text-info">techglossy Details</span>
+                                <div class="px-2 py-2 rounded bg-light mb-1">
+                                    <div class="row mb-1">
+                                        <div class="col-lg-3 d-flex align-items-center">
+                                            <span>Title</span>
+                                        </div>
+                                        <div class="col-lg-9">
+                                            <input name="title" maxlength="255" type="text"
+                                                class="form-control form-control-sm" placeholder="Enter Box One Title"
+                                                value="{{ $story->title }}">
+                                        </div>
                                     </div>
-                                    <div class="form-group col-sm-9 text-secondary">
-                                        <input type="text" name="tags" class="form-control visually-hidden" data-role="tagsinput" value="{{ $story->tags }}">
+                                    {{--  --}}
+                                    <div class="row">
+                                        <div class="col-lg-3 d-flex align-items-center">
+                                            <span>Banner Image</span>
+                                        </div>
+                                        <div class="col-lg-9">
+                                            <div class="row">
+                                                <div class="col-lg-8">
+                                                    <input name="image" id="image" accept="image/*" type="file"
+                                                        class="form-control form-control-sm"
+                                                        placeholder="Enter Banner Image">
+                                                </div>
+                                                <div class="col-lg-4">
+                                                    <img class="img-fluid rounded-circle" id="showImage"
+                                                        src="{{ asset('storage/thumb/' . $story->image) }}"
+                                                        alt=""
+                                                        style="width: 30px;
+                                                        height: 30px;">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {{--  --}}
+                                    <div class="row mb-1">
+                                        <div class="col-lg-3 d-flex align-items-center">
+                                            <span>Header</span>
+                                        </div>
+                                        <div class="col-lg-9">
+                                            <textarea class="form-control maxlength" name="header" id="" maxlength="500" cols="30"
+                                                rows="3" placeholder="Enter Header">{{ $story->header }}</textarea>
+                                        </div>
                                     </div>
                                 </div>
+                            </div>
+                            <div class="col-lg-4 col-sm-6">
+                                <span class="mt-1 fw-bold text-info">Writer</span>
+                                <div class="px-2 py-2 rounded bg-light ">
+                                    {{--  --}}
+                                    <div class="row mb-1">
+                                        <div class="col-lg-4 ">
+                                            <span>Author</span>
+                                        </div>
+                                        <div class="col-lg-8">
+                                            <input name="created_by" maxlength="255" type="text"
+                                                class="form-control form-control-sm" placeholder="Enter Author"
+                                                value="{{ $story->created_by }}">
+                                        </div>
+                                    </div>
+                                    {{--  --}}
+                                    <div class="row mb-1">
+                                        <div class="col-lg-4 ">
+                                            <span>Badge
+                                                Name</span>
+                                        </div>
+                                        <div class="col-lg-8">
+                                            <input name="badge" maxlength="255" type="text"
+                                                class="form-control form-control-sm" placeholder="Enter Author Badge"
+                                                value="{{ $story->badge }}">
+                                        </div>
+                                    </div>
+                                    {{--  --}}
+                                    <div class="row mb-1">
+                                        <div class="col-lg-4">
+                                            <label class="form-check-label" for="sc_r_secondary">Featured</label>
+                                        </div>
+                                        <div class="col-lg-8">
+                                            <div class="input-group">
+                                                <input type="checkbox" name="featured" value="1"
+                                                    {{ $story->featured == 1 ? 'checked' : '' }}
+                                                    class="form-check-input form-check-input-secondary"
+                                                    id="sc_r_secondary">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {{--  --}}
+                                    <div class="row">
+                                        <div class="col-lg-4">
+                                            <span>Tags</span>
+                                        </div>
+                                        <div class="col-lg-8">
+                                            <input name="tags " maxlength="255" type="text"
+                                                class="form-control form-control-sm" placeholder="Enter Releted Tags "
+                                                value="{{ $story->tags }}">
+                                        </div>
+                                    </div>
+                                    {{--  --}}
+                                </div>
+                            </div>
+                        </div>
 
-                                <div class="row mb-3">
-                                    <div class="col-sm-3">
-                                        <h6 class="mb-0">Banner Image </h6>
+                        <div class="row">
+                            <div class="col">
+                                <span class="mt-1 fw-bold text-info">techglossy Details</span>
+                                <div class="px-2 py-2 rounded bg-light">
+                                    {{--  --}}
+                                    <div class=" pt-1">
+                                        <label
+                                            class="col-form-label fw-bold label_style col-lg-2 p-0 text-start text-black "
+                                            style="width: 120px !important;">Featured Description
+                                        </label>
+                                        <div class="input-group">
+                                            <textarea class="form-control" name="short_des" id="featured_desc" style=" font-size: 12px; font-weight: 500;">{!! $story->short_des !!}</textarea>
+                                        </div>
                                     </div>
-                                    <div class="col-sm-9 text-secondary">
-                                        <input type="file" value="" name="image" class="form-control"
-                                            id="image" accept="image/*" />
-                                        <div class="form-text">Accepts only png, jpg, jpeg images</div>
-                                        <img id="showImage" height="100px" width="100px"
-                                            src="{{ asset('storage/thumb/'.$story->image) }}">
+                                    {{--  --}}
+                                    <div class=" pt-1">
+                                        <label
+                                            class="col-form-label fw-bold label_style col-lg-2 p-0 text-start text-black label_style">Description
+                                        </label>
+                                        <div class="input-group">
+                                            <textarea class="form-control" name="long_des" id="long_desc" style=" font-size: 12px; font-weight: 500;">{!! $story->long_des !!}</textarea>
+                                        </div>
                                     </div>
+                                    {{--  --}}
+                                    <div class=" pt-1">
+                                        <label
+                                            class="col-form-label fw-bold label_style col-lg-2 p-0 text-start text-black label_style">Footer
+                                        </label>
+                                        <div class="input-group">
+                                            <textarea class="form-control" name="footer" id="footer" style=" font-size: 12px; font-weight: 500;">{!! $story->footer !!}</textarea>
+                                        </div>
+                                    </div>
+                                    {{--  --}}
                                 </div>
-
-                                <div class="row mb-3">
-                                    <div class="col-sm-3">
-                                        <h6 class="mb-0">Featured Description</h6>
-                                    </div>
-                                    <div class="form-group col-sm-9 text-secondary">
-                                        <textarea class="form-control" name="short_des" id="featured_desc" style=" font-size: 12px; font-weight: 500;">{!! $story->short_des !!}</textarea>
-                                    </div>
-                                </div>
-
-                                <div class="row mb-3">
-                                    <div class="col-sm-3">
-                                        <h6 class="mb-0"> Description</h6>
-                                    </div>
-                                    <div class="form-group col-sm-9 text-secondary">
-                                        <textarea class="form-control" name="long_des" id="long_desc" style=" font-size: 12px; font-weight: 500;">{!! $story->long_des !!}</textarea>
-                                    </div>
-                                </div>
-
-                                <div class="row mb-3">
-                                    <div class="col-sm-3">
-                                        <h6 class="mb-0">Footer </h6>
-                                    </div>
-                                    <div class="form-group col-sm-9 text-secondary">
-                                        <textarea class="form-control" name="footer" id="footer" style=" font-size: 12px; font-weight: 500;">{!! $story->footer !!}</textarea>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-6"></div>
-                                    <div class="col-sm-4 text-secondary">
-                                        <button type="submitbtn" class="btn btn-primary from-prevent-multiple-submits">Update<i
-                                            class="ph-paper-plane-tilt ms-2"></i></button>
-                                    </div>
-                                </div>
-
-                            </form>
+                            </div>
                         </div>
                     </div>
+                    <div class="modal-footer border-0 p-2">
+                        <button type="submit" class="submit_btn from-prevent-multiple-submits" id="submitbtn"
+                            style="padding: 4px 9px;">Update</button>
+                    </div>
                 </div>
-            </div>
+            </form>
         </div>
         <!-- /content area -->
-    <!-- /inner content -->
 
-</div>
+
+    </div>
 @endsection
-

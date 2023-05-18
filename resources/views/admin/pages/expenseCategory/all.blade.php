@@ -153,7 +153,6 @@
         </div>
         <!-- /content area End-->
         {{-- Add Expense Modal --}}
-        <!-- Basic modal -->
         <div id="expenceCategoryAdd" class="modal fade" tabindex="-1">
             <div class="modal-dialog modal-dialog-centered modal-sm">
                 <div class="modal-content">
@@ -201,7 +200,6 @@
                 </div>
             </div>
         </div>
-        <!-- /basic modal -->
         {{-- Add Expense Modal End --}}
     </div>
 @endsection

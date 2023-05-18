@@ -2850,7 +2850,7 @@ textarea.form-control-lg {
 }
 
 .form-check-input:checked {
-    background-color: var(--form-check-input-checked-bg-color);
+    background-color: #247297;
     border-color: var(--form-check-input-checked-border-color)
 }
 
@@ -21085,7 +21085,7 @@ html[data-color-theme=dark] .select2-selection--single .select2-selection__arrow
     left: calc(var(--s2-menu-item-padding-x) + var(--s2-search-padding-x));
     color: var(--gray-600);
     display: block;
-    font-size: var(--icon-font-size);
+    font-size: 12px;
     -webkit-transform: translateY(-50%);
     transform: translateY(-50%);
     line-height: 1;
@@ -35548,6 +35548,7 @@ body {
     position: absolute;
     bottom: var(--spacer);
     right: 1.25rem;
+    bottom: 3rem;
     -ms-flex-item-align: end;
     align-self: flex-end;
     opacity: 0;

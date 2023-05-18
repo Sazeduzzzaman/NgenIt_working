@@ -149,14 +149,7 @@
                                                             </select>
                                                         </div>
                                                     </div>
-
-
-
-
-
-
                                                 </div>
-
                                             </div>
                                         </div>
                                     </div>
@@ -375,7 +368,7 @@
                                                                     <td> <input type="text" class="form-control" name="regular_discount[]" ></td>
 
 
-                                                                    <td class="text-center"> <a href="javascript:void(0)" class="btn btn-danger removeRow"><i class="ph-minus"></i></a></td>
+                                                                    <td class="text-center"> <a href="javascript:void(0)" class=" removeRow"><i class="ph-minus"></i></a></td>
                                                                 </tr>
 
                                                             </tbody>

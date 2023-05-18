@@ -1,15 +1,18 @@
 @extends('admin.master')
 @section('content')
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    {{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script> --}}
+    <style>
+        #DataTables_Table_1_previous{
+            margin-right: 30px;
+        }
+        #DataTables_Table_1_next{
+            margin-right: 10px;
+        }
+    </style>
     <div class="content-wrapper">
-
         <!-- Inner content -->
-
-
         <!-- Page header -->
         <div class="page-header page-header-light shadow">
-
-
             <div class="page-header-content d-lg-flex border-top">
                 <div class="d-flex">
                     <div class="breadcrumb py-2">
@@ -17,7 +20,6 @@
                         <a href="{{ route('admin.dashboard') }}" class="breadcrumb-item">Home</a>
                         <span class="breadcrumb-item active">RFQ Management</span>
                     </div>
-
                     <a href="#breadcrumb_elements"
                         class="btn btn-light align-self-center collapsed d-lg-none border-transparent rounded-pill p-0 ms-auto"
                         data-bs-toggle="collapse">
@@ -29,306 +31,345 @@
         <!-- /page header -->
         <!-- Content area -->
         <div class="content">
-            <div class="row">
-                <div class="card">
-                    <div class="card-header">
-                        <div class="row">
-                            <div class="col-lg-3">
-                                <ul class="nav nav-tabs">
-                                    <li class="nav-item col-6">
-                                        <a href="#js-tab1" class="py-1 nav-link active cat-tab1" data-bs-toggle="tab">
-                                            <p style="font-size: 12px; font-weight:600;color:black;margin-bottom:0px;">
-                                                RFQs</p>
-                                        </a>
-                                    </li>
-
-                                    <li class="nav-item col-6">
-                                        <a href="#js-tab2" class="py-1 nav-link cat-tab2" data-bs-toggle="tab">
-                                            <p style="font-size: 12px; font-weight:600;color:black;margin-bottom:0px;">
-                                                Assigned RFQs</p>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="col-lg-6 text-center">
-                                <h2 class="mb-0 saved_title">RFQ List</h2>
-                                <h2 class="mb-0 completed_title d-none">Assigned RFQs Pending For Deal Registration</h2>
-                            </div>
-
-                            <div class="col-lg-3">
-                                {{-- <a href="{{route('product-sourcing.create')}}" type="button" class="btn btn-sm btn-success btn-labeled btn-labeled-start float-end">
-                                    <span class="btn-labeled-icon bg-black bg-opacity-20">
-                                        <i class="icon-plus2"></i>
-                                    </span>
-                                    Source New Product
+            <ul class="nav nav-tabs d-flex w-25 mx-auto justify-content-center align-items-center"
+                style="border-bottom: 1px solid #247297;;">
+                <li class="nav-item ">
+                    <a href="#js-tab1" class="py-1 nav-link active cat-tab1" data-bs-toggle="tab">
+                        <p style="font-size: 12px; font-weight:600;color:black;margin-bottom:0px;">
+                            RFQs</p>
+                    </a>
+                </li>
+                <li class="nav-item ">
+                    <a href="#js-tab2" class="py-1 nav-link cat-tab2" data-bs-toggle="tab">
+                        <p style="font-size: 12px; font-weight:600;color:black;margin-bottom:0px;">
+                            Assigned RFQs</p>
+                    </a>
+                </li>
+            </ul>
+            <div class="row ">
+                <div class="tab-content w-75 mx-auto">
+                    <div class="tab-pane fade show active" id="js-tab1">
+                        <div id="table1" class="card-body p-0 py-2">
+                            {{-- Add Details Start --}}
+                            <div class="text-success nav-link cat-tab3"
+                                style="position: relative; z-index: 999; margin-bottom: -40px;">
+                                {{-- <a href="{{ route('knowledge.create') }}">
+                                    <div class="d-flex align-items-center">
+                                        <span class="ms-2 icon_btn" style="font-weight: 800;" data-bs-toggle="tooltip"
+                                            data-bs-placement="top" title="Add Solution Details">
+                                            <i class="ph-plus icons_design"></i> </span>
+                                        <span class="ms-1" style="color: #247297;">Add</span>
+                                    </div>
                                 </a> --}}
+                                <div class="text-center" style="margin-left: 390px">
+                                    <h5 class="ms-1" style="color: #247297;">All RFQ Management</h5>
+                                </div>
                             </div>
-                        </div>
-                    </div>
-
-
-                    <div class="tab-content">
-                        <div class="tab-pane fade show active" id="js-tab1">
-                            <div id="table1" class="card-body">
-                                <table class="rfqDT1 table table-bordered table-hover">
-                                    <thead>
-                                        <tr>
-                                            <th width="15">Sl No:</th>
-                                            <th width="25">RFQ Code</th>
-                                            <th width="15">Create Date</th>
-                                            <th width="15">Client Type</th>
-                                            <th width="15">Status</th>
-                                            <th width="15" class="text-center">Actions</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @if ($rfqs)
-                                            @foreach ($rfqs as $key => $rfq)
-
-                                                <tr>
-                                                    <td>{{ ++$key }}</td>
-                                                    <td>{{ ucfirst($rfq->rfq_code) }}</td>
-                                                    <td>{{ ucfirst($rfq->create_date) }}</td>
-                                                    <td>{{ ucfirst($rfq->client_type) }}</td>
-                                                    <td>{{ ucfirst($rfq->status) }}</td>
-                                                    <td class="text-center">
-                                                        {{-- <a href="{{ route('rfq.edit', [$rfq->id]) }}"
-                                                            class="text-primary">
-                                                            <i class="icon-pencil"></i>
-                                                        </a> --}}
-                                                        <a href="{{ route('rfq.destroy', [$rfq->id]) }}"
-                                                            class="text-danger delete mx-2">
-                                                            <i class="delete icon-trash"></i>
-                                                        </a>
-                                                        <a href="javascript:void(0);" class="text-primary"
-                                                            data-bs-toggle="modal" title="View & Assign Sales Manager"
-                                                            data-bs-target="#update_category_{{ $rfq->rfq_code }}">
-                                                            <i class="ph-user-circle-plus"></i>
-                                                        </a>
-                                                        <!---Category Update modal--->
-                                                        <div id="update_category_{{ $rfq->rfq_code }}" class="modal fade"
-                                                            tabindex="-1" style="display: none;" aria-hidden="true">
-                                                            <div class="modal-dialog modal-dialog-scrollable modal-lg">
-                                                                <div class="modal-content">
-                                                                    <div class="modal-header">
-                                                                        @php
-                                                                            $rfq_details = App\Models\Admin\Rfq::where('rfq_code', $rfq->rfq_code)->first();
-                                                                        @endphp
-                                                                        <h5 class="modal-title">Assign Sales Manager For RFQ No : {{ $rfq_details->rfq_code }}</h5>
-                                                                        <button type="button" class="btn-close"
-                                                                            data-bs-dismiss="modal"></button>
-                                                                    </div>
-
-                                                                    <div class="modal-body border br-7">
-
-                                                                        <form method="post"
-                                                                            action="{{ route('assign.salesman', $rfq_details->rfq_code) }}"
-                                                                            enctype="multipart/form-data">
-                                                                            @csrf
-                                                                            @method('PUT')
-                                                                            <div class="row mb-3">
-                                                                                <div class="card">
-                                                                                    <div class="row">
-                                                                                        <table class="table table-bordered table-striped p-1">
-                                                                                            <thead>
-                                                                                                <tr>
-                                                                                                    <th>
-                                                                                                        Client Type : {{ ucfirst($rfq_details->client_type) }}
-                                                                                                    </th>
-                                                                                                    <th>
-                                                                                                        Name : {{ ucfirst($rfq_details->name) }}
-                                                                                                    </th>
-                                                                                                    <th>
-                                                                                                        Company Name : {{ ucfirst($rfq_details->company_name) }}
-                                                                                                   </th>
-                                                                                                </tr>
-                                                                                                <tr>
-                                                                                                    <th colspan="3" style="background: #7e7d7c">
-                                                                                                        <p class="text-center pt-1 text-white">Product Name : {{App\Models\Admin\Product::where('id' , $rfq_details->product_id)->value('name')}}</p>
-                                                                                                    </th>
-                                                                                                </tr>
-                                                                                                <tr>
-                                                                                                    <th>Asking Quantity : {{ $rfq_details->qty }}</th>
-                                                                                                    <th>Phone Number : {{ $rfq_details->phone }}</th>
-                                                                                                    <th>
-                                                                                                        @if (($rfq_details->call) == 1)
-                                                                                                            Need To be Called.
-                                                                                                        @else
-
-                                                                                                        @endif
-                                                                                                    </th>
-                                                                                                </tr>
-                                                                                            </thead>
-                                                                                        </table>
+                            {{-- Add Details End --}}
+                            <table class="table rfqDT table-bordered table-hover text-center">
+                                <thead>
+                                    <tr>
+                                        <th width="5%">Id</th>
+                                        <th width="25%">RFQ Code</th>
+                                        <th width="20%">Create Date</th>
+                                        <th width="20%">Client Type</th>
+                                        <th width="20%">Status</th>
+                                        <th width="10%" class="text-center">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @if ($rfqs)
+                                        @foreach ($rfqs as $key => $rfq)
+                                            <tr>
+                                                <td>{{ ++$key }}</td>
+                                                {{-- {{ ucfirst($rfq->rfq_code) }} --}}
+                                                <td>{{ ucfirst($rfq->create_date) }}</td>
+                                                <td>{{ ucfirst($rfq->client_type) }}</td>
+                                                <td>{{ ucfirst($rfq->status) }}</td>
+                                                <td class="text-center"><span class="text-danger">Listed</span>
+                                                <td>
+                                                    <a href="{{ route('rfq.edit', [$rfq->id]) }}" class="text-primary">
+                                                        <i
+                                                            class="fa-solid fa-pen-to-square me-2 p-1 rounded-circle text-primary"></i>
+                                                    </a>
+                                                    <a href="{{ route('rfq.destroy', [$rfq->id]) }}"
+                                                        class="text-danger delete">
+                                                        <i class="fa-solid fa-trash p-1 rounded-circle text-danger"></i>
+                                                    </a>
+                                                    <a href="" data-bs-toggle="modal"
+                                                        title="View & Assign Sales Manager"
+                                                        data-bs-target="#update_category_{{ $rfq->rfq_code }}">
+                                                        <i class="fa-solid fa-user p-1 rounded-circle text-danger"></i>
+                                                    </a>
+                                                    <!---Category Update modal--->
+                                                    <div id="update_category_{{ $rfq->rfq_code }}" class="modal fade"
+                                                        tabindex="-1" style="display: none;" aria-hidden="true">
+                                                        <div class="modal-dialog modal-dialog-scrollable modal-lg">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    @php
+                                                                        $rfq_details = App\Models\Admin\Rfq::where('rfq_code', $rfq->rfq_code)->first();
+                                                                    @endphp
+                                                                    <h5 class="modal-title">Assign Sales Manager For RFQ
+                                                                        No : {{ $rfq_details->rfq_code }}</h5>
+                                                                    <button type="button" class="btn-close"
+                                                                        data-bs-dismiss="modal"></button>
+                                                                </div>
+                                                                <div class="modal-body border br-7">
+                                                                    <form method="post"
+                                                                        action="{{ route('assign.salesman', $rfq_details->rfq_code) }}"
+                                                                        enctype="multipart/form-data">
+                                                                        @csrf
+                                                                        @method('PUT')
+                                                                        <div class="row mb-3">
+                                                                            <div class="card">
+                                                                                <div class="row">
+                                                                                    <table
+                                                                                        class="table table-bordered table-striped p-1">
+                                                                                        <thead>
+                                                                                            <tr>
+                                                                                                <th>
+                                                                                                    Client Type :
+                                                                                                    {{ ucfirst($rfq_details->client_type) }}
+                                                                                                </th>
+                                                                                                <th>
+                                                                                                    Name :
+                                                                                                    {{ ucfirst($rfq_details->name) }}
+                                                                                                </th>
+                                                                                                <th>
+                                                                                                    Company Name :
+                                                                                                    {{ ucfirst($rfq_details->company_name) }}
+                                                                                                </th>
+                                                                                            </tr>
+                                                                                            <tr>
+                                                                                                <th colspan="3"
+                                                                                                    style="background: #7e7d7c">
+                                                                                                    <p
+                                                                                                        class="text-center pt-1 text-white">
+                                                                                                        Product Name :
+                                                                                                        {{ App\Models\Admin\Product::where('id', $rfq_details->product_id)->value('name') }}
+                                                                                                    </p>
+                                                                                                </th>
+                                                                                            </tr>
+                                                                                            <tr>
+                                                                                                <th>Asking Quantity :
+                                                                                                    {{ $rfq_details->qty }}
+                                                                                                </th>
+                                                                                                <th>Phone Number :
+                                                                                                    {{ $rfq_details->phone }}
+                                                                                                </th>
+                                                                                                <th>
+                                                                                                    @if ($rfq_details->call == 1)
+                                                                                                        Need To be
+                                                                                                        Called.
+                                                                                                    @else
+                                                                                                    @endif
+                                                                                                </th>
+                                                                                            </tr>
+                                                                                        </thead>
+                                                                                    </table>
+                                                                                </div>
+                                                                                <div class="row p-2">
+                                                                                    <div class="col-12">
+                                                                                        Assign Sales Manager :
+                                                                                        <a class="p-1 editRfquser"
+                                                                                            href="javascript:void(0);">
+                                                                                            <i class="ph-note-pencil"
+                                                                                                aria-hidden="true"></i>
+                                                                                        </a>
                                                                                     </div>
-                                                                                    <div class="row p-2">
-                                                                                        <div class="col-12">
-                                                                                            Assign Sales Manager :
-                                                                                            <a class="p-1 editRfquser" href="javascript:void(0);">
-                                                                                                <i class="ph-note-pencil" aria-hidden="true"></i>
-                                                                                            </a>
-                                                                                        </div>
-                                                                                        <div class="col-12 Rfquser" style="display:none">
-                                                                                            <div class="row mb-3 p-2 border">
-                                                                                                <div class="col-12">
-                                                                                                    <h5 class="text-center">Assigned Sales Manager</h5>
+                                                                                    <div class="col-12 Rfquser"
+                                                                                        style="display:none">
+                                                                                        <div class="row mb-3 p-2 border">
+                                                                                            <div class="col-12">
+                                                                                                <h5 class="text-center">
+                                                                                                    Assigned Sales
+                                                                                                    Manager</h5>
+                                                                                            </div>
+                                                                                            <div class="col-lg-4">
+                                                                                                <div class="col-sm-12">
+                                                                                                    <p class="mb-0">
+                                                                                                        Sales Manager
+                                                                                                        Name (Leader -
+                                                                                                        L1) <span
+                                                                                                            class="text-danger">*</span>
+                                                                                                    </p>
                                                                                                 </div>
-
-                                                                                                <div class="col-lg-4">
-                                                                                                    <div class="col-sm-12">
-                                                                                                        <p class="mb-0">Sales Manager Name (Leader - L1) <span class="text-danger">*</span></p>
-                                                                                                    </div>
-                                                                                                    <div class="form-group text-secondary col-sm-12">
-                                                                                                        <select name="sales_man_id_L1" class="form-control select"
-                                                                                                            data-minimum-results-for-search="Infinity"
-                                                                                                            data-placeholder="Choose  ">
-                                                                                                            <option></option>
-                                                                                                            @foreach ($users as $user)
-                                                                                                                <option value="{{ $user->id }}">{{ $user->name }}</option>
-                                                                                                            @endforeach
-                                                                                                        </select>
-                                                                                                    </div>
+                                                                                                <div
+                                                                                                    class="form-group text-secondary col-sm-12">
+                                                                                                    <select
+                                                                                                        name="sales_man_id_L1"
+                                                                                                        class="form-control select"
+                                                                                                        data-minimum-results-for-search="Infinity"
+                                                                                                        data-placeholder="Choose  ">
+                                                                                                        <option>
+                                                                                                        </option>
+                                                                                                        @foreach ($users as $user)
+                                                                                                            <option
+                                                                                                                value="{{ $user->id }}">
+                                                                                                                {{ $user->name }}
+                                                                                                            </option>
+                                                                                                        @endforeach
+                                                                                                    </select>
                                                                                                 </div>
-                                                                                                <div class="col-lg-4">
-                                                                                                    <div class="col-sm-12">
-                                                                                                        <p class="mb-0">Sales Manager Name (Team - T1)</p>
-                                                                                                    </div>
-                                                                                                    <div class="form-group text-secondary col-sm-12">
-                                                                                                        <select name="sales_man_id_T1" class="form-control select"
-                                                                                                            data-minimum-results-for-search="Infinity"
-                                                                                                            data-placeholder="Choose  ">
-                                                                                                            <option></option>
-                                                                                                            @foreach ($users as $user)
-                                                                                                                <option value="{{ $user->id }}">{{ $user->name }}</option>
-                                                                                                            @endforeach
-                                                                                                        </select>
-                                                                                                    </div>
+                                                                                            </div>
+                                                                                            <div class="col-lg-4">
+                                                                                                <div class="col-sm-12">
+                                                                                                    <p class="mb-0">
+                                                                                                        Sales Manager
+                                                                                                        Name (Team - T1)
+                                                                                                    </p>
                                                                                                 </div>
-
-                                                                                                <div class="col-lg-4">
-                                                                                                    <div class="col-sm-12">
-                                                                                                        <p class="mb-0">Sales Manager Name (Team - T2)</p>
-                                                                                                    </div>
-                                                                                                    <div class="form-group text-secondary col-sm-12">
-                                                                                                        <select name="sales_man_id_T2" class="form-control select"
-                                                                                                            data-minimum-results-for-search="Infinity"
-                                                                                                            data-placeholder="Choose ">
-                                                                                                            <option></option>
-                                                                                                            @foreach ($users as $user)
-                                                                                                                <option value="{{ $user->id }}">{{ $user->name }}</option>
-                                                                                                            @endforeach
-                                                                                                        </select>
-                                                                                                    </div>
+                                                                                                <div
+                                                                                                    class="form-group text-secondary col-sm-12">
+                                                                                                    <select
+                                                                                                        name="sales_man_id_T1"
+                                                                                                        class="form-control select"
+                                                                                                        data-minimum-results-for-search="Infinity"
+                                                                                                        data-placeholder="Choose  ">
+                                                                                                        <option>
+                                                                                                        </option>
+                                                                                                        @foreach ($users as $user)
+                                                                                                            <option
+                                                                                                                value="{{ $user->id }}">
+                                                                                                                {{ $user->name }}
+                                                                                                            </option>
+                                                                                                        @endforeach
+                                                                                                    </select>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                            <div class="col-lg-4">
+                                                                                                <div class="col-sm-12">
+                                                                                                    <p class="mb-0">
+                                                                                                        Sales Manager
+                                                                                                        Name (Team - T2)
+                                                                                                    </p>
+                                                                                                </div>
+                                                                                                <div
+                                                                                                    class="form-group text-secondary col-sm-12">
+                                                                                                    <select
+                                                                                                        name="sales_man_id_T2"
+                                                                                                        class="form-control select"
+                                                                                                        data-minimum-results-for-search="Infinity"
+                                                                                                        data-placeholder="Choose ">
+                                                                                                        <option>
+                                                                                                        </option>
+                                                                                                        @foreach ($users as $user)
+                                                                                                            <option
+                                                                                                                value="{{ $user->id }}">
+                                                                                                                {{ $user->name }}
+                                                                                                            </option>
+                                                                                                        @endforeach
+                                                                                                    </select>
                                                                                                 </div>
                                                                                             </div>
                                                                                         </div>
-
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
-
-
-
-
-                                                                            <div class="row">
-                                                                                <div class="col-sm-3"></div>
-                                                                                <div class="col-sm-9 text-secondary">
-                                                                                    <button type="submit"
-                                                                                        class="btn btn-primary">Submit</button>
-                                                                                </div>
+                                                                        </div>
+                                                                        <div class="row">
+                                                                            <div class="col-sm-3"></div>
+                                                                            <div class="col-sm-9 text-secondary">
+                                                                                <button type="submit"
+                                                                                    class="btn btn-primary">Submit</button>
                                                                             </div>
-
-                                                                        </form>
-                                                                    </div>
-
-
+                                                                        </div>
+                                                                    </form>
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                        <!---Category Update modal--->
+                                                    </div>
+                                                    <!---Category Update modal--->
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                    @endif
+                                </tbody>
+                            </table>
 
-                                                    </td>
-                                                </tr>
-                                            @endforeach
-                                        @endif
-                                    </tbody>
-                                </table>
-                            </div>
                         </div>
                     </div>
-
-                    <div class="tab-content">
-                        <div class="tab-pane fade" id="js-tab2">
-                            <div class="card-body">
-                                <table class="rfqDT2 table table-bordered table-hover">
-                                    <thead>
+                </div>
+                <div class="tab-content mt-2 w-100 mx-auto">
+                    <div class="tab-pane fade" id="js-tab2">
+                        {{-- Add Details Start --}}
+                        <div class="text-success nav-link cat-tab3"
+                            style="position: relative; z-index: 999; margin-bottom: -40px;">
+                            {{-- <a href="{{ route('knowledge.create') }}">
+                                <div class="d-flex align-items-center">
+                                    <span class="ms-2 icon_btn" style="font-weight: 800;" data-bs-toggle="tooltip"
+                                        data-bs-placement="top" title="Add Solution Details">
+                                        <i class="ph-plus icons_design"></i> </span>
+                                    <span class="ms-1" style="color: #247297;">Add</span>
+                                </div>
+                            </a> --}}
+                            <div class="text-center" style="margin-left: 550px">
+                                <h5 class="ms-1" style="color: #247297;">Assigned RFQS</h5>
+                            </div>
+                        </div>
+                        {{-- Add Details End --}}
+                        <table class="table rfqDT2 table-bordered table-hover text-center">
+                            <thead>
+                                <tr>
+                                    <th width="5%">Id</th>
+                                    <th width="25%">RFQ Code</th>
+                                    <th width="20">Assigned Sales Manager</th>
+                                    <th width="10%">Create Date</th>
+                                    <th width="10%">Client Type</th>
+                                    <th width="20%">Status</th>
+                                    <th width="10%" class="text-center">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @if ($deals)
+                                    @foreach ($deals as $key => $deal)
                                         <tr>
-                                            <th>Sl No:</th>
-                                            <th>RFQ Code</th>
-                                            <th>Assigned Sales Manager</th>
-                                            <th>Create Date</th>
-                                            <th>Client Type</th>
-                                            <th>Status</th>
-                                            <th class="text-center">Actions</th>
+                                            <td>{{ ++$key }}</td>
+                                            <td>{{ ucfirst($deal->rfq_code) }}</td>
+                                            <td>L1 :
+                                                {{ App\Models\User::where('id', $deal->sales_man_id_L1)->value('name') }}
+                                                ,
+                                                T1 :
+                                                {{ App\Models\User::where('id', $deal->sales_man_id_T1)->value('name') }}
+                                                ,
+                                                T2 :
+                                                {{ App\Models\User::where('id', $deal->sales_man_id_T2)->value('name') }}
+                                            </td>
+                                            <td>{{ ucfirst($deal->create_date) }}</td>
+                                            <td>{{ ucfirst($deal->client_type) }}</td>
+                                            <td>{{ ucfirst($deal->status) }}</td>
+                                            <td>
+                                                <a href="{{ route('deal.convert', [$deal->id]) }}" class="text-primary">
+                                                    <i
+                                                        class="fa-solid fa-pen-to-square me-2 p-1 rounded-circle text-primary"></i>
+                                                </a>
+                                                <a href="{{ route('rfq.destroy', [$deal->id]) }}"
+                                                    class="text-danger delete">
+                                                    <i class="fa-solid fa-trash p-1 rounded-circle text-danger"></i>
+                                                </a>
+                                            </td>
                                         </tr>
-                                    </thead>
-                                    <tbody>
-                                        @if ($deals)
-                                            @foreach ($deals as $key => $deal)
-                                                <tr>
-                                                    <td>{{ ++$key }}</td>
-                                                    <td>{{ ucfirst($deal->rfq_code) }}</td>
-                                                    <td>L1 : {{ App\Models\User::where('id',$deal->sales_man_id_L1)->value('name') }} ,
-                                                        T1 : {{ App\Models\User::where('id',$deal->sales_man_id_T1)->value('name') }} ,
-                                                        T2 : {{ App\Models\User::where('id',$deal->sales_man_id_T2)->value('name') }}
-                                                    </td>
-                                                    <td>{{ ucfirst($deal->create_date) }}</td>
-                                                    <td>{{ ucfirst($deal->client_type) }}</td>
-                                                    <td>{{ ucfirst($deal->status) }}</td>
-                                                    <td class="text-center">
-                                                        {{-- <a href="{{ route('rfq.edit', [$deal->id]) }}"
-                                                            class="text-primary">
-                                                            <i class="icon-pencil"></i>
-                                                        </a> --}}
-                                                        <a href="{{ route('rfq.destroy', [$deal->id]) }}"
-                                                            class="text-danger delete mx-2">
-                                                            <i class="delete icon-trash"></i>
-                                                        </a>
-                                                        <a href="{{ route('deal.convert', [$deal->id]) }}"
-                                                            class="text-success" title="Convert To Deal">
-                                                            <i class="icon-pen-plus icon-1x"></i>
-                                                        </a>
-
-                                                    </td>
-                                                </tr>
-                                            @endforeach
-                                        @endif
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
+                                    @endforeach
+                                @endif
+                            </tbody>
+                        </table>
                     </div>
-
                 </div>
             </div>
         </div>
-
     </div>
     <!-- /content area -->
     <!-- /inner content -->
-
     </div>
-
-
 @endsection
-
 @once
     @push('scripts')
         <script type="text/javascript">
-            $('.rfqDT1').DataTable({
+            $('.rfqDT').DataTable({
                 dom: '<"datatable-header"fl><"datatable-scroll"t><"datatable-footer"ip>',
                 "iDisplayLength": 10,
-                "lengthMenu": [10, 26, 30, 50],
+                "lengthMenu": [10, 25, 30, 50],
                 columnDefs: [{
                     orderable: false,
                     targets: [5],
@@ -337,10 +378,10 @@
             $('.rfqDT2').DataTable({
                 dom: '<"datatable-header"fl><"datatable-scroll"t><"datatable-footer"ip>',
                 "iDisplayLength": 10,
-                "lengthMenu": [10, 26, 30, 50],
+                "lengthMenu": [10, 25, 30, 50],
                 columnDefs: [{
                     orderable: false,
-                    targets: [1,2,3,4,6],
+                    targets: [6],
                 }, ],
             });
         </script>
@@ -358,11 +399,10 @@
                     $(".saved_title").addClass('d-none');
                     $(".completed_title").removeClass('d-none');
                 });
-
             });
         </script>
         <script>
-            $(document).ready(function(){
+            $(document).ready(function() {
                 $('.editRfquser').click(function() {
                     $(".Rfquser").toggle(this.checked);
                 });

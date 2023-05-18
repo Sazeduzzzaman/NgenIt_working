@@ -1,6 +1,22 @@
 @extends('admin.master')
 @section('content')
-
+<style>
+    .pagination-flat .previous{
+        margin-right: 30px !important;
+    }
+    .dataTables_paginate {
+    margin: 0px;
+    padding: 0px;
+    margin-right: 15px;
+}
+.nav-tabs .nav-link.active {
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    color: #ffffff !important;
+    background-color: #247297;
+    border: none !important;
+    border-color: transparent !important;
+}
+</style>
     <div class="content-wrapper">
         <!-- Inner content -->
         <!-- Page header -->
@@ -22,37 +38,53 @@
         </div>
         <!-- /page header -->
         <!-- Content area -->
-
         <div class="content">
             <!-- Table components -->
             <div class="card">
-                <table class="table table-bordered table-xs table-responsive">
+                <table class="table table-bordered table-xs table-responsive text-center">
                     <tr>
-                        <th colspan="7">
-                            <h5 class="mb-0">Account Sales Profit & Loss Report FY22
-                                <button type="button" class="bg-warning float-end text-white" data-bs-toggle="modal"
-                                    data-bs-target="#modal_account_profitLoss"> <i
-                                        class="ph-plus-circle ph-1x"></i></button>
-                            </h5>
+                        <th colspan="7" class="py-2" style="background: #247297;">
+                            <div class="row">
+                                <div class="col-lg-6 col-sm-12">
+                                    {{-- Add Details Start --}}
+                                    <div class="text-success nav-link cat-tab3"
+                                        style="position: relative; z-index: 999; margin-bottom: -40px;">
+                                        <a href="" data-bs-toggle="modal"
+                                        data-bs-target="#modal_account_profitLoss">
+                                            <div class="d-flex align-items-center">
+                                                <span class="ms-2 icon_btn" style="font-weight: 800;"
+                                                    data-bs-toggle="tooltip" data-bs-placement="top"
+                                                    title="Add Solution Details">
+                                                    <i class="ph-plus icons_design text-white"></i> </span>
+                                                <span class="ms-1" style="color: #ffff;">Add</span>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    {{-- Add Details End --}}
+                                </div>
+                                <div class="col-lg-6 col-sm-12 text-end text-white">
+                                    <span>Account Sales Profit & Loss Report FY22</span>
+                                </div>
+                            </div>
                         </th>
                     </tr>
                     <tr>
-                        <th class="bg-primary text-white">Total Sales </th>
-                        <th class="bg-success  text-white"> Total Product Cost </th>
-                        <th class="bg-secondary text-white">Gross Profit </th>
-                        <th class="bg-warning text-white">Other Cost </th>
-                        <th class="bg-danger text-white">Tax/Vat </th>
-                        <th class="bg-info text-white">Total Cost </th>
-                        <th class="bg-teal text-white">Net Profit </th>
+                        <th class=" text-info">Total Sales </th>
+                        <th class="  text-info"> Total Product Cost </th>
+                        <th class=" text-info">Gross Profit </th>
+                        <th class=" text-info">Other Cost </th>
+                        <th class=" text-info">Tax/Vat </th>
+                        <th class=" text-info">Total Cost </th>
+                        <th class=" text-info">Net Profit </th>
                     </tr>
                     <tr>
-                        <td class="bg-primary text-white"> 0.00</td>
-                        <td class="bg-success  text-white"> 0.00</td>
-                        <td class="bg-secondary text-white"> 0.00</td>
-                        <td class="bg-warning text-white"> 0.00</td>
-                        <td class="bg-danger text-white"> 0.00</td>
-                        <td class="bg-info text-white"> 0.00 </td>
-                        <td class="bg-teal text-white"> 0.00</td>
+                        <td class=" text-black"> 0.00</td>
+                        <td class="  text-black"> 0.00</td>
+                        <td class=" text-black"> 0.00</td>
+                        <td class=" text-black"> 0.00</td>
+                        <td class=" text-black"> 0.00</td>
+                        <td class=" text-black"> 0.00 </td>
+                        <td class=" text-black"> 0.00</td>
                     </tr>
                 </table>
             </div>
@@ -87,8 +119,8 @@
                                     </tr>
                                     <tr>
                                         <th> Customs & Duty </th>
-                                        <td> <input type="number" name="CustomerDuty"
-                                                class="form-control form-control-sm" placeholder="00"> </td>
+                                        <td> <input type="number" name="CustomerDuty" class="form-control form-control-sm"
+                                                placeholder="00"> </td>
                                         <td> 9,830.00 </td>
                                     </tr>
                                     <tr>
@@ -149,9 +181,10 @@
                 </div>
             </form>
             <!-- /small modal two end -->
-            <div class="card">
+            <div class="">
+                <h3 class="text-info text-center">Monthly Account Profit Loss Management</h3>
                 <!-- tab menu start-->
-                <ul class="nav nav-tabs mb-3" role="tablist">
+                <ul class="w-75 mx-auto nav nav-tabs mb-1 d-flex align-items-center justify-content-center" role="tablist" style="    border-bottom: 1px solid #247297;">
                     <li class="nav-item" role="presentation">
                         <a href="#js-January-tab" class="nav-link active" data-bs-toggle="tab" aria-selected="true"
                             role="tab" tabindex="-1">
@@ -239,10 +272,19 @@
     </div>
 @endsection
 
-
 @push('scripts')
+<script type="text/javascript">
+    $('.accountProfitLossDT').DataTable({
+        dom: '<"datatable-header"fl><"datatable-scroll"t><"datatable-footer"ip>',
+        "iDisplayLength": 10,
+        "lengthMenu": [10, 25, 30, 50],
+        columnDefs: [{
+            orderable: false,
+            targets: [10],
+        }, ],
+    });
+</script>
     <script type="text/javascript">
-
         $("#sales_price, #cost_price").on("input", function() {
             var sales_price = $("#sales_price").val();
             var cost_price = $("#cost_price").val();
@@ -259,22 +301,22 @@
         });
     </script>
     <script>
-        $('#editprofitmodal').on('show.bs.modal', function (event) {
-        var button = $(event.relatedTarget) // Button that triggered the modal
+        $('#editprofitmodal').on('show.bs.modal', function(event) {
+            var button = $(event.relatedTarget) // Button that triggered the modal
 
 
-        var modal = $(this)
+            var modal = $(this)
 
-        // var unitprice = button.data('unitprice');
-        var myproduct = button.data('myproduct');
-        // var myname    = button.data('myname');
-        // var qty       = button.data('qty');
-        
-        // modal.find('.modal-title').text('Update Unit Price For : ' + myname)
-        // modal.find('.modal-body .productname').val(myname)
-        // modal.find('.modal-body .ID').val(myproduct)
-        // modal.find('.modal-body .Unitprice').val(unitprice)
-        // modal.find('.modal-body .quantity').val(qty)
+            // var unitprice = button.data('unitprice');
+            var myproduct = button.data('myproduct');
+            // var myname    = button.data('myname');
+            // var qty       = button.data('qty');
+
+            // modal.find('.modal-title').text('Update Unit Price For : ' + myname)
+            // modal.find('.modal-body .productname').val(myname)
+            // modal.find('.modal-body .ID').val(myproduct)
+            // modal.find('.modal-body .Unitprice').val(unitprice)
+            // modal.find('.modal-body .quantity').val(qty)
         })
     </script>
 @endpush

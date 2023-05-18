@@ -55,7 +55,7 @@
                         <table class="datatable table table-bordered table-hover">
                             <thead>
                                 <tr>
-                                    <th width="10%">Sl No:</th>
+                                    <th width="10%">Id</th>
                                     <th width="15%">Logo</th>
                                     <th width="20%">Title</th>
                                     <th width="40%">Header</th>

@@ -1,22 +1,20 @@
 @extends('admin.master')
 @section('content')
+    <style>
+        .label_style {
+            width: 151px !important;
+        }
+    </style>
     <div class="content-wrapper">
-
-        <!-- Inner content -->
-
-
         <!-- Page header -->
         <div class="page-header page-header-light shadow">
-
-
             <div class="page-header-content d-lg-flex border-top">
                 <div class="d-flex">
                     <div class="breadcrumb py-2">
-                        <a href="index.html" class="breadcrumb-item"><i class="ph-house"></i></a>
-                        <a href="{{ route('admin.dashboard') }}" class="breadcrumb-item">Home</a>
-                        <span class="breadcrumb-item active">Features Management</span>
+                        <a href="{{ route('admin.dashboard') }}" class="breadcrumb-item"><i class="ph-house me-2"></i> Home</a>
+                        <a href="{{ route('knowledge.index') }}" class="breadcrumb-item">Features Management</a>
+                        <a href="" class="breadcrumb-item">Add</a>
                     </div>
-
                     <a href="#breadcrumb_elements"
                         class="btn btn-light align-self-center collapsed d-lg-none border-transparent rounded-pill p-0 ms-auto"
                         data-bs-toggle="collapse">
@@ -27,339 +25,229 @@
         </div>
         <!-- /page header -->
 
-
         <!-- Content area -->
-        <div class="content">
-            <div class="row">
-                <div class="col-lg-1"></div>
-                <div class="col-lg-10">
-                    <div class="card">
-                        <div class="card-header">
+        <div class="content pt-2 w-75 mx-auto">
+            <div class="text-center">
+                <div class="text-start">
+                    <div class="row main_bg py-1 rounded-1 d-flex align-items-center gx-0 px-2">
 
-                            <div class="row">
-                                <div class="col-lg-8">
-                                    <h4 class="mb-0 text-center">Add Features</h4>
-                                </div>
-                                <div class="col-lg-4">
-                                    <a href="{{ route('feature.index') }}" type="button"
-                                        class="btn btn-sm btn-warning btn-labeled btn-labeled-start float-end">
-                                        <span class="btn-labeled-icon bg-black bg-opacity-20">
-                                            <i class="icon-plus2"></i>
-                                        </span>
-                                        All Features
-                                    </a>
-                                </div>
+                        <div class="col-lg-4 col-sm-12">
+                            <div>
+                                <a class="btn btn-primary btn-rounded rounded-circle btn-icon back-btn"
+                                    href="{{ route('feature.index') }}">
+                                    <i class="fa-solid fa-arrow-left main_color"></i>
+                                </a>
                             </div>
                         </div>
 
-                        <div class="card-body">
-                            <form id="myform" method="post" action="{{ route('feature.store') }}" enctype="multipart/form-data">
-                                @csrf
+                        <div class="col-lg-4 col-sm-12 d-flex justify-content-center">
+                            <p class="text-white p-0 m-0 fw-bold"> Add Features </p>
+                        </div>
 
-                                <!--Banner Section-->
-                                    <div class="row border">
-                                        <div class="col-12 text-center">
-                                            <h5 class="border-bottom p-2">Banner Section</h5>
-                                        </div>
-                                        <div class="row mb-3 mt-2">
-                                            <div class="col-lg-6">
-                                                <div class="col-lg-12 mb-4">
-                                                    <div class="col-sm-12">
-                                                        <h6 class="mb-0">Badge <span class="text-danger">*</span> </h6>
-                                                    </div>
-                                                    <div class="form-group col-sm-9 text-secondary">
-                                                        <input type="text" id="badge" name="badge" class="form-control maxlength"
-                                                        maxlength="255" placeholder="Badge"/>
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-12">
-                                                    <div class="col-sm-12">
-                                                        <h6 class="mb-0">Title <span class="text-danger">*</span></h6>
-                                                    </div>
-                                                    <div class="form-group col-sm-9 text-secondary">
-                                                        <input type="text" name="title" class="form-control maxlength"
-                                                            maxlength="255" placeholder="Feature Title"/>
-                                                    </div>
-                                                </div>
-
-                                            </div>
-
-                                            <div class="col-lg-6">
-                                                <div class="col-lg-12">
-                                                    <div class="row mb-3">
-                                                        <div class="col-sm-12">
-                                                            <h6 class="mb-0">Logo <span class="text-danger">*</span></h6>
-                                                        </div>
-                                                        <div class="col-sm-9 text-secondary">
-                                                            <input type="file" name="logo" class="form-control" id="image"
-                                                                accept="image/*" />
-                                                            <div class="form-text">Accepts only png, jpg, jpeg images</div>
-                                                            <img id="showImage" height="50px" width="50px"
-                                                                src="https://cdn.pixabay.com/photo/2017/02/07/02/16/cloud-2044823_960_720.png"
-                                                                alt="">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-12">
-                                                    <div class="row mb-3">
-                                                        <div class="col-sm-12">
-                                                            <h6 class="mb-0">Image <span class="text-danger">*</span></h6>
-                                                        </div>
-                                                        <div class="col-sm-9 text-secondary">
-                                                            <input type="file" name="image" class="form-control" id="image1"
-                                                                accept="image/*" />
-                                                            <div class="form-text">Accepts only png, jpg, jpeg images</div>
-                                                            <img id="showImage1" height="50px" width="50px"
-                                                                src="https://cdn.pixabay.com/photo/2017/02/07/02/16/cloud-2044823_960_720.png"
-                                                                alt="">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-
-                                    </div>
-                                <!--End Banner Section-->
-
-                                <!--- Short Description -->
-                                    <div class="row border my-3 p-4">
-                                        <div class="col-sm-3">
-                                            <h6 class="mb-0">Short Description For Homepage <span class="text-danger">*</span></h6>
-                                        </div>
-                                        <div class="form-group col-sm-9 text-secondary">
-                                            <textarea name="header" class="form-control" rows="3"
-                                            style=" font-size: 12px; font-weight: 500;"></textarea>
-                                        </div>
-                                    </div>
-                                <!--- Short Description -->
-
-                                <!---ROw with List--->
-                                    <div class="row border mb-1">
-                                        <div class="row my-2">
-                                            <div class="col-lg-9">
-                                                <h5 class="text-center text-primary">Row with List</h5>
-                                            </div>
-                                            <div class="col-lg-3">
-                                                <a href="{{ route('row.create') }}" type="button"
-                                                    class="btn btn-sm btn-success btn-labeled btn-labeled-start float-end">
-                                                    <span class="btn-labeled-icon bg-black bg-opacity-20">
-                                                        <i class="icon-eye"></i>
-                                                    </span>
-                                                    Add Row
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <hr class="p-0 m-0">
-
-                                        <div class="row mb-3 mt-2">
-                                            <div class="col-sm-4">
-                                                <h6 class="mb-0">Row With List </h6>
-                                            </div>
-                                            <div class="form-group col-sm-8 text-secondary">
-                                                <select name="row_one_id" data-placeholder="Select Row One.."
-                                                    class="form-select">
-                                                    <option></option>
-                                                    @foreach ($rows as $row)
-                                                        <option class="form-control" value="{{ $row->id }}">
-                                                            {{ $row->title }}</option>
-                                                    @endforeach
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                <!---ROw with List--->
-
-                                <!--Contact Row-->
-                                    <div class="row border mb-1">
-                                        <div class="col-12 text-center">
-                                            <h5 class="border-bottom pb-2">Contact Row</h5>
-                                        </div>
-
-                                        {{-- <div class="row mb-3">
-                                            <div class="col-sm-12">
-                                                <h6 class="mb-0">Image <span class="text-danger">*</span></h6>
-                                            </div>
-                                            <div class="col-sm-9 text-secondary">
-                                                <input type="file" name="row_four_image" class="form-control" id="image2"
-                                                    accept="image/*" />
-                                                <div class="form-text">Accepts only png, jpg, jpeg images</div>
-                                                <img id="showImage2" height="50px" width="50px"
-                                                    src="https://cdn.pixabay.com/photo/2017/02/07/02/16/cloud-2044823_960_720.png"
-                                                    alt="">
-                                            </div>
-                                        </div> --}}
-
-                                        <div class="row mb-3">
-                                            <div class="col-sm-4">
-                                                <h6 class="mb-0">Title </h6>
-                                            </div>
-                                            <div class="form-group col-sm-8 text-secondary">
-                                                <input type="text" name="row_four_title"
-                                                    class="form-control maxlength" maxlength="255" />
-                                            </div>
-                                        </div>
-                                        <div class="row mb-3">
-                                            <div class="col-sm-4">
-                                                <h6 class="mb-0">Short Description</h6>
-                                            </div>
-                                            <div class="form-group col-sm-8 text-secondary">
-                                                <textarea name="row_four_header" id="" class="form-control" cols="30" rows="3"></textarea>
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                <!--Contact Row-->
-
-                                <!---ROw with Left Image--->
-                                    <div class="row border mb-1">
-                                        <div class="row my-2">
-                                            <div class="col-lg-9">
-                                                <h5 class="text-center text-primary">Row with Left Image</h5>
-                                            </div>
-                                            <div class="col-lg-3">
-                                                <a href="{{ route('row.create') }}" type="button"
-                                                    class="btn btn-sm btn-success btn-labeled btn-labeled-start float-end">
-                                                    <span class="btn-labeled-icon bg-black bg-opacity-20">
-                                                        <i class="icon-eye"></i>
-                                                    </span>
-                                                    Add Row
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <hr class="p-0 m-0">
-
-                                        <div class="row mb-3 mt-2">
-                                            <div class="col-sm-4">
-                                                <h6 class="mb-0">Row With Left Image </h6>
-                                            </div>
-                                            <div class="form-group col-sm-8 text-secondary">
-                                                <select name="row_two_id" data-placeholder="Select Row Two.."
-                                                    class="form-select">
-                                                    <option></option>
-                                                    @foreach ($rows as $row)
-                                                        <option class="form-control" value="{{ $row->id }}">
-                                                            {{ $row->title }}</option>
-                                                    @endforeach
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                <!---ROw with Left Image--->
-
-
-                                <!--Row Three with Background Color-->
-
-                                    <div class="row border mb-1">
-                                        <div class="col-12 text-center">
-                                            <h5 class="border-bottom pb-2">Row Three with Background Color</h5>
-                                        </div>
-                                        <div class="row mb-3">
-                                            <div class="col-sm-4">
-                                                <h6 class="mb-0">Title </h6>
-                                            </div>
-                                            <div class="form-group col-sm-8 text-secondary">
-                                                <input type="text" name="row_three_title"
-                                                    class="form-control maxlength" maxlength="255" />
-                                            </div>
-                                        </div>
-                                        <div class="row mb-3">
-                                            <div class="col-sm-4">
-                                                <h6 class="mb-0">Short Description</h6>
-                                            </div>
-                                            <div class="form-group col-sm-8 text-secondary">
-                                                <textarea name="row_three_header" id="" class="form-control" cols="30" rows="3"></textarea>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                <!--End Row Three with Background Color-->
-
-
-                                {{-- <!--Related Features Row-->
-
-                                    <div class="row border mb-1">
-                                        <div class="col-12 text-center">
-                                            <h5 class="border-bottom pb-2">Related Feature Row</h5>
-                                        </div>
-                                        <div class="row mb-3">
-                                            <div class="col-sm-4">
-                                                <h6 class="mb-0">Title </h6>
-                                            </div>
-                                            <div class="form-group col-sm-8 text-secondary">
-                                                <input type="text" name="row_five_title"
-                                                    class="form-control maxlength" maxlength="255" />
-                                            </div>
-                                        </div>
-                                        <div class="row mb-3">
-                                            <div class="col-sm-4">
-                                                <h6 class="mb-0">Short Description</h6>
-                                            </div>
-                                            <div class="form-group col-sm-8 text-secondary">
-                                                <textarea name="row_five_header" id="" class="form-control" cols="30" rows="3"></textarea>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                <!--Related Features Row--> --}}
-
-
-                                <!---Footer--->
-                                    <div class="row border p-1 mb-2">
-                                        <div class="row mb-3">
-                                            <div class="col-sm-3">
-                                                <h6 class="mb-0">Footer </h6>
-                                            </div>
-                                            <div class="form-group col-sm-9 text-secondary">
-                                                <textarea class="form-control" name="footer" id="footer" style=" font-size: 12px; font-weight: 500;"></textarea>
-                                            </div>
-                                        </div>
-                                    </div>
-                                <!---Footer--->
-
-                                <!--Related Features Row-->
-                                    <div class="row border mb-1">
-                                        <div class="col-12 text-center">
-                                            <h5 class="border-bottom pb-2">Related Feature Row</h5>
-                                        </div>
-                                        <div class="row mb-3">
-                                            <div class="col-sm-4">
-                                                <h6 class="mb-0">Title </h6>
-                                            </div>
-                                            <div class="form-group col-sm-8 text-secondary">
-                                                <input type="text" name="row_five_title"
-                                                    class="form-control maxlength" maxlength="255" />
-                                            </div>
-                                        </div>
-                                        <div class="row mb-3">
-                                            <div class="col-sm-4">
-                                                <h6 class="mb-0">Short Description</h6>
-                                            </div>
-                                            <div class="form-group col-sm-8 text-secondary">
-                                                <textarea name="row_five_header" id="" class="form-control" cols="30" rows="3"></textarea>
-                                            </div>
-                                        </div>
-                                    </div>
-                                <!--Related Features Row-->
-
-
-
-
-                                <div class="row">
-                                    <div class="col-sm-3"></div>
-                                    <div class="col-sm-9 text-secondary">
-                                        {{-- <input type="submit" class="btn btn-primary px-4 mt-5" value="Submit" /> --}}
-
-                                        <button type="submit" class="btn btn-primary" id="submitbtn">Submit<i
-                                                class="ph-paper-plane-tilt ms-2"></i></button>
-                                    </div>
+                        <div class="col-lg-4 col-sm-12 d-flex justify-content-end">
+                            <a href="{{ route('row.index') }}" class="btn navigation_btn">
+                                <div class="d-flex align-items-center ">
+                                    <i class="fa-solid fa-nfc-magnifying-glass me-1" style="font-size: 10px;"></i>
+                                    <span>Row</span>
                                 </div>
-                            </form>
+                            </a>
+                            <a href="{{ route('purchase.index') }}" class="btn navigation_btn ms-2">
+                                <div class="d-flex align-items-center ">
+                                    <i class="fa-solid fa-money-check-dollar-pen me-1" style="font-size: 10px;"></i>
+                                    <span>Solution</span>
+                                </div>
+                            </a>
                         </div>
                     </div>
                 </div>
             </div>
 
+            <div class="card">
+                <form id="myform" method="post" action="{{ route('feature.store') }}" enctype="multipart/form-data">
+                    @csrf
+                    <!--Banner Section-->
+                    <div class="container">
+                        <div class="row g-2 p-1">
+                            <div class="col-lg-6 col-sm-12">
+                                <span class="m-0 p-0" style="border-bottom: 1px solid #247297;">Banner Section</span>
+                                <div class="px-2 py-2 rounded bg-light">
+                                    {{--  --}}
+                                    <div class="row mb-1">
+                                        <div class="col-lg-4 col-sm-12">
+                                            <span>Badge</span>
+                                        </div>
+                                        <div class="col-lg-8">
+                                            <input type="text" id="badge" name="badge"
+                                                class="form-control form-control-sm" maxlength="255" placeholder="Badge"
+                                                required />
+                                        </div>
+                                    </div>
+                                    {{--  --}}
+                                    <div class="row mb-1">
+                                        <div class="col-lg-4 col-sm-12">
+                                            <span>Title</span>
+                                        </div>
+                                        <div class="col-lg-8 col-sm-12">
+                                            <input type="text" name="title" class="form-control form-control-sm"
+                                                maxlength="255" placeholder="Feature Title" required />
+                                        </div>
+                                    </div>
+                                    {{--  --}}
+                                    <div class="row mb-1">
+                                        <div class="col-lg-4 col-sm-12">
+                                            <span>Logo</span>
+                                        </div>
+                                        <div class="col-lg-6 col-sm-12">
+                                            <input type="file" name="logo" class="form-control form-control-sm"
+                                                id="image" accept="image/*" />
+                                        </div>
+                                        <div class="col-lg-2 col-sm-12 text-end">
+                                            <img id="showImage" height="25px" width="25px"
+                                                src="https://cdn.pixabay.com/photo/2017/02/07/02/16/cloud-2044823_960_720.png"
+                                                alt="">
+                                        </div>
+                                    </div>
+                                    {{--  --}}
+                                    <div class="row mb-1">
+                                        <div class="col-lg-4 col-sm-12">
+                                            <span>Image</span>
+                                        </div>
+                                        <div class="col-lg-6 col-sm-12">
+                                            <input type="file" name="image" class="form-control form-control-sm"
+                                                id="image1" accept="image/*" />
+                                        </div>
+                                        <div class="col-lg-2 col-sm-12 text-end">
+                                            <img id="showImage1" height="25px" width="25px"
+                                                src="https://cdn.pixabay.com/photo/2017/02/07/02/16/cloud-2044823_960_720.png"
+                                                alt="">
+                                        </div>
+                                    </div>
+                                    {{--  --}}
+                                    <div class="row mb-1">
+                                        <div class="col-lg-4 col-sm-12">
+                                            <span>Short Description For Homepage</span>
+                                        </div>
+                                        <div class="col-lg-8 col-sm-12">
+                                            <textarea name="header" class="form-control form-control-sm" rows="3"
+                                                style=" font-size: 12px; font-weight: 500;" placeholder="Short Description For Homepage"></textarea>
+                                        </div>
+                                    </div>
+                                    {{--  --}}
+                                    <div class="row mb-1">
+                                        <div class="col-lg-4 col-sm-12">
+                                            <span>Row With List</span>
+                                        </div>
+                                        <div class="col-lg-8 col-sm-12">
+                                            <select name="row_one_id" data-placeholder="Select Row One.."
+                                                class="form-select" style="width: 100%;">
+                                                @foreach ($rows as $row)
+                                                    <option class="form-control" value="{{ $row->id }}">
+                                                        {{ $row->title }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
+                                    {{--  --}}
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-sm-12">
+                                <span class="m-0 p-0" style="border-bottom: 1px solid #247297;">Contact Row</span>
+                                <div class="px-2 py-2 rounded bg-light">
+                                    {{--  --}}
+                                    <div class="row mb-1">
+                                        <div class="col-lg-4 col-sm-12">
+                                            <span>Title</span>
+                                        </div>
+                                        <div class="col-lg-8">
+                                            <input type="text"name="row_four_title"
+                                                class="form-control form-control-sm" maxlength="255"
+                                                placeholder="Contact Title" required />
+                                        </div>
+                                    </div>
+                                    {{--  --}}
+                                    <div class="row mb-1">
+                                        <div class="col-lg-4 col-sm-12">
+                                            <span>Short Description</span>
+                                        </div>
+                                        <div class="col-lg-8 col-sm-12">
+                                            <textarea name="row_four_header" id="" class="form-control" cols="30" rows="1" placeholder="Short Description for Contact"></textarea>
+                                        </div>
+                                    </div>
+                                    {{--  --}}
+                                    <div class="row mb-1">
+                                        <div class="col-lg-4 col-sm-12">
+                                            <span>Row With Left Image</span>
+                                        </div>
+                                        <div class="col-lg-8 col-sm-12">
+                                            <select name="row_two_id" data-placeholder="Select Row Two.."
+                                                class="form-select" style="width: 100%;">
+                                                @foreach ($rows as $row)
+                                                    <option class="form-control" value="{{ $row->id }}">
+                                                        {{ $row->title }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
+                                    {{--  --}}
+                                    <div class="row mb-1">
+                                        <div class="col-lg-4 col-sm-12">
+                                            <span>Row Three Title</span>
+                                        </div>
+                                        <div class="col-lg-8 col-sm-12">
+                                            <input type="text" name="row_three_title" class="form-control form-control-sm"
+                                                maxlength="255" placeholder="Row Three Title" />
+                                        </div>
+                                    </div>
+                                    {{--  --}}
+                                    <div class="row mb-1">
+                                        <div class="col-lg-4 col-sm-12">
+                                            <span>Short Description</span>
+                                        </div>
+                                        <div class="col-lg-8 col-sm-12">
+                                            <textarea name="row_three_header" id="" class="form-control" cols="30" rows="1" placeholder="Row Three Short Description"></textarea>
+                                        </div>
+                                    </div>
+                                    {{--  --}}
+                                    <div class="row mb-1">
+                                        <div class="col-lg-4 col-sm-12">
+                                            <span>Feature Row Title</span>
+                                        </div>
+                                        <div class="col-lg-8 col-sm-12">
+                                            <input type="text" name="row_five_title" class="form-control form-control-sm maxlength"
+                                                maxlength="255" placeholder="Related Feature Row Title" />
+                                        </div>
+                                    </div>
+                                    {{--  --}}
+                                    <div class="row mb-1">
+                                        <div class="col-lg-4 col-sm-12">
+                                            <span>Short Description</span>
+                                        </div>
+                                        <div class="col-lg-8 col-sm-12">
+                                            <textarea name="row_five_header" id="" class="form-control" cols="30" rows="1" placeholder="Related Feature Row Short Description"></textarea>
+                                        </div>
+                                    </div>
+                                    {{--  --}}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <div class="row mb-1">
+                                    <div class="col-lg-12 col-sm-12">
+                                        <span>Footer</span>
+                                        <textarea class="form-control" name="footer" id="footer" style=" font-size: 12px; font-weight: 500;"></textarea>
+                                    </div>
+                                </div>
+                                {{--  --}}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer border-0 pb-2 pe-3">
+                        <button type="submit" class="submit_btn from-prevent-multiple-submits" id="submitbtn"
+                            style="padding: 4px 9px;">Submit</button>
+                    </div>
+                </form>
+            </div>
         </div>
         <!-- /content area -->
         <!-- /inner content -->

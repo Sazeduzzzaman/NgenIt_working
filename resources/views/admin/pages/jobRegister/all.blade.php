@@ -62,7 +62,7 @@
                                         <table class="datatable table table-bordered table-hover">
                                             <thead>
                                                 <tr>
-                                                    <th>Sl No:</th>
+                                                    <th>Id</th>
                                                     <th>name</th>
                                                     <th>email</th>
                                                     <th>phone_number</th>

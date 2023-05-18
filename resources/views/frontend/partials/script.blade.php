@@ -31,6 +31,7 @@
 <script src="{{ asset('backend/assets/js/custom.js') }}"></script>
 <script src="https://js.stripe.com/v3/"></script>
 <script src="http://cdn.bootcss.com/toastr.js/latest/js/toastr.min.js"></script>
+<script src="../../../assets/demo/pages/components_offcanvas.js"></script>
 
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>

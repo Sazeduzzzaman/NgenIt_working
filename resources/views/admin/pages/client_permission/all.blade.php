@@ -2,14 +2,8 @@
 @section('content')
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <div class="content-wrapper">
-
-        <!-- Inner content -->
-
-
         <!-- Page header -->
         <div class="page-header page-header-light shadow">
-
-
             <div class="page-header-content d-lg-flex border-top">
                 <div class="d-flex">
                     <div class="breadcrumb py-2">
@@ -28,27 +22,35 @@
         </div>
         <!-- /page header -->
         <!-- Content area -->
-        <div class="content">
+        <div class="content mx-auto" style="width: 80%;">
             <div class="row">
                 <div class="col-lg-12">
                     <div class="tab-content">
                         <div class="tab-pane fade show active" id="js-tab1">
-                            <div id="table1" class="card cardT">
-                                <div class="card-header">
-                                    <h4 class="mb-0 text-center">All Client Permission</h4>
+                            <div id="table1" class=" cardT">
+                                <div class="d-flex align-items-center py-2">
+                                    {{-- Add Details Start --}}
+                                    <div class="text-success nav-link cat-tab3"
+                                        style="position: relative;
+                                        z-index: 999;
+                                        margin-bottom: -40px;">
+                                        <div class="text-center">
+                                            <h5 class="ms-1" style="color: #247297;">All Client Permission</h5>
+                                        </div>
+                                    </div>
+                                    {{-- Add Details End --}}
                                 </div>
-
-                                <table class="datatable table table-bordered table-hover clientpermissionDT">
+                                <table class="table clientpermissionDT table-bordered table-hover text-center table-sm">
                                     <thead>
                                         <tr>
-                                            <th>id</th>
-                                            <th>name</th>
-                                            <th>image</th>
-                                            <th>phone</th>
-                                            <th>country</th>
-                                            <th>email</th>
-                                            <th>status</th>
-                                            <th class="text-center">Actions</th>
+                                            <th width="5">id</th>
+                                            <th width="5">image</th>
+                                            <th width="20">name</th>
+                                            <th width="10">phone</th>
+                                            <th width="15">country</th>
+                                            <th width="25">email</th>
+                                            <th width="10">status</th>
+                                            <th width="10" class="text-center">Actions</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -56,10 +58,10 @@
                                             @foreach ($clientPermissions as $key => $clientPermission)
                                                 <tr>
                                                     <td>{{ ++$key }}</td>
-                                                    <td>{{ $clientPermission->name }}</td>
                                                     <td class="text-center"><img class="rounded-circle"
-                                                            src="{{ asset('upload/Profile/user/' . $clientPermission->photo) }}"
-                                                            height="50" width="50" alt=""></td>
+                                                        src="{{ asset('upload/Profile/user/' . $clientPermission->photo) }}"
+                                                        height="25" width="25" alt=""></td>
+                                                    <td>{{ $clientPermission->name }}</td>
                                                     <td>{{ $clientPermission->phone }}</td>
                                                     <td>{{ $clientPermission->country }}</td>
                                                     <td>{{ $clientPermission->email }}</td>
@@ -73,19 +75,21 @@
                                                     </td>
                                                     <td>
 
-                                                        <div class="text-center">
-                                                            <div class="form-switch mb-2">
+                                                        <div class="text-center d-flex justify-content-center align-items-center">
+                                                            <div class="form-switch">
                                                                 <input name="toggle" type="checkbox"
-                                                                    class="form-check-input form-check-input-danger"
+                                                                    class="form-check-input form-check-input-sm form-check-input-danger"
                                                                     value="{{ $clientPermission->id }}" id="sc_r_danger"
                                                                     {{ $clientPermission->status == 'inactive' ? 'checked' : '' }}>
                                                             </div>
-                                                            <a href="{{ route('clientPermission.destroy', [$clientPermission->id]) }}"
-                                                                class="text-danger delete mx-2">
-                                                                <i class="delete icon-trash"></i>
-                                                            </a>
+                                                            <div>
+                                                                <a href="{{ route('clientPermission.destroy', [$clientPermission->id]) }}"
+                                                                    class="text-danger delete mx-2">
+                                                                    <i
+                                                                        class="fa-solid fa-trash p-1 rounded-circle text-danger"></i>
+                                                                </a>
+                                                            </div>
                                                         </div>
-
                                                     </td>
                                                 </tr>
                                             @endforeach
@@ -99,12 +103,8 @@
                 </div>
             </div>
         </div>
-
     </div>
     <!-- /content area -->
-    <!-- /inner content -->
-
-    </div>
 
     <script>
         $(document).ready(function() {
@@ -130,9 +130,6 @@
                 })
             })
         })
-
-
-
     </script>
 @endsection
 
@@ -145,7 +142,7 @@
                 "lengthMenu": [10, 26, 30, 50],
                 columnDefs: [{
                     orderable: false,
-                    targets: [2, 6, 7],
+                    targets: [7],
                 }, ],
             });
         </script>

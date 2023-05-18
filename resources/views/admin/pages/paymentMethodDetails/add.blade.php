@@ -30,23 +30,17 @@
         </div>
         <!-- /page header -->
         <!-- Content area -->
-        <div class="content">
-            <div class="card">
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-lg-7">
-                            <h5 class="text-center">Add Payment Method Details Form</h5>
-                        </div>
-                        <div class="col-lg-3"></div>
-                        <div class="col-lg-2">
-                            <a href="{{ route('payment-method-details.index') }}" type="button"
-                                class="btn btn-sm btn-warning btn-labeled btn-labeled-start float-end">
-                                <span class="btn-labeled-icon bg-black bg-opacity-20">
-                                    <i class="icon-eye"></i>
-                                </span>
-                                All Payment Method Details
-                            </a>
-                        </div>
+        <div class="content mx-auto" style="width: 60%;">
+            <div class="container">
+                <div class="row d-flex align-items-center rounded main_bg text-white py-1">
+                    <div class="col-lg-6">
+                        <a class="btn btn-primary btn-rounded rounded-circle btn-icon back-btn"
+                            href="{{ route('payment-method-details.index') }}">
+                            <i class="fa-solid fa-arrow-left main_color"></i>
+                        </a>
+                    </div>
+                    <div class="col-lg-6 text-end">
+                        <span class="">Add Payment Method Details Form</span>
                     </div>
                 </div>
             </div>
@@ -56,43 +50,52 @@
                         <form method="post" action="{{ route('payment-method-details.store') }}">
                             @csrf
                             <div class="row">
-                                <div class="col-lg-12">
-                                    <div id="table1" class="card">
+                                <div class="col-lg-12 gx-0 mb-1">
+                                    <div id="table1" class="card mb-1">
                                         <div class="card-body">
                                             <div class="row">
-                                                <div class="col-md-5">
-                                                    <div class=" mb-3">
-                                                        <h6 class="mb-0">Region Name</h6>
-                                                        <div class="form-group text-secondary ">
-                                                            <select name="region_id" class="form-control select"
-                                                                data-minimum-results-for-search="Infinity"
-                                                                data-placeholder="Chose Region Name ">
-                                                                <option></option>
-                                                                @foreach ($regions as $region)
-                                                                    <option value="{{ $region->id }}">
-                                                                        {{ $region->region_name }}
-                                                                    </option>
-                                                                @endforeach
-                                                            </select>
+                                                <div class="col-md-6">
+                                                    <div class="row d-flex align-items-center">
+                                                        <div class="col-sm-4 text-start">
+                                                            <span>Region Name</span>
+                                                        </div>
+                                                        <div class="col-sm-8">
+                                                            <div class="form-group text-secondary ">
+                                                                <select name="region_id"
+                                                                    class="form-control form-contro select"
+                                                                    data-minimum-results-for-search="Infinity"
+                                                                    data-placeholder="Chose Region Name ">
+                                                                    <option></option>
+                                                                    @foreach ($regions as $region)
+                                                                        <option value="{{ $region->id }}">
+                                                                            {{ $region->region_name }}
+                                                                        </option>
+                                                                    @endforeach
+                                                                </select>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="col-md-5">
-                                                    <div class="mb-3">
-                                                        <h6 class="mb-0">Type</h6>
-                                                        <div class="form-group text-secondary">
-                                                            <select name="type"
-                                                                class="form-control select product-type-switcher"
-                                                                data-minimum-results-for-search="Infinity"
-                                                                data-placeholder="Chose a type ">
-                                                                <option></option>
-                                                                <option value="bank">Bank</option>
-                                                                <option value="ach">Ach</option>
-                                                                <option value="check">Check</option>
-                                                                <option value="online-paypal">Online Paypal</option>
-                                                                <option value="online-payoneer">Online Payoneer</option>
-                                                                <option value="stripe">Stripe</option>
-                                                            </select>
+                                                <div class="col-md-6">
+                                                    <div class="row d-flex align-items-center">
+                                                        <div class="col-sm-4 text-start">
+                                                            <span>Type</span>
+                                                        </div>
+                                                        <div class="col-sm-8">
+                                                            <div class="form-group text-secondary">
+                                                                <select name="type"
+                                                                    class="form-control form-contro select product-type-switcher"
+                                                                    data-minimum-results-for-search="Infinity"
+                                                                    data-placeholder="Chose a type ">
+                                                                    <option></option>
+                                                                    <option value="bank">Bank</option>
+                                                                    <option value="ach">Ach</option>
+                                                                    <option value="check">Check</option>
+                                                                    <option value="online-paypal">Online Paypal</option>
+                                                                    <option value="online-payoneer">Online Payoneer</option>
+                                                                    <option value="stripe">Stripe</option>
+                                                                </select>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -101,112 +104,147 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="col-lg-12">
-                                    <div id="table2" class="card">
-                                        <div class="card-body">
-                                            <div id="card_link" class="row hide-form-field form-field mb-3">
-                                                <div class="col-sm-4">
-                                                    <h6 class="mb-0">Card Link </h6>
-                                                </div>
-                                                <div class="form-group col-sm-8 text-secondary">
-                                                    <input type="text" name="card_link" class="form-control maxlength"
-                                                        maxlength="100" />
-                                                </div>
-                                            </div>
-                                            <div id="card_note" class="row hide-form-field form-field mb-3">
-                                                <div class="col-sm-4">
-                                                    <h6 class="mb-0">Card Note </h6>
-                                                </div>
-                                                <div class="form-group col-sm-8 text-secondary">
-                                                    <input type="text" name="card_note" class="form-control maxlength"
-                                                        maxlength="100" />
+                            <div class="row bg-white rounded  px-2 py-2">
+                                <div class="col-lg-6 gx-1">
+                                    <div id="table2" class="">
+                                        <div class="">
+                                            <div id="card_link" class="hide-form-field form-field mb-1">
+                                                <div class="d-flex align-items-center mb-1">
+                                                    <div class="col-sm-4 text-start">
+                                                        <span>Card Link </span>
+                                                    </div>
+                                                    <div class="form-group col-sm-8 text-secondary">
+                                                        <input type="text" name="card_link"
+                                                            class="form-control form-control-sm" maxlength="100" />
+                                                    </div>
                                                 </div>
                                             </div>
-                                            <div id="bank_name" class="row hide-form-field form-field mb-3">
-                                                <div class="col-sm-4">
-                                                    <h6 class="mb-0">Bank Name </h6>
-                                                </div>
-                                                <div class="form-group col-sm-8 text-secondary">
-                                                    <input type="text" name="bank_name" class="form-control maxlength"
-                                                        maxlength="100" />
-                                                </div>
-                                            </div>
-                                            <div id="bank_address" class="row hide-form-field form-field mb-3">
-                                                <div class="col-sm-4">
-                                                    <h6 class="mb-0">Bank Address </h6>
-                                                </div>
-                                                <div class="form-group col-sm-8 text-secondary">
-                                                    <input type="text" name="bank_address"
-                                                        class="form-control maxlength" maxlength="100" />
+                                            <div id="card_note" class="hide-form-field form-field mb-1">
+                                                <div class="d-flex align-items-center mb-1">
+                                                    <div class="col-sm-4 text-start">
+                                                        <span>Card Note </span>
+                                                    </div>
+                                                    <div class="form-group col-sm-8 text-secondary">
+                                                        <input type="text" name="card_note"
+                                                            class="form-control form-control-sm" maxlength="100" />
+                                                    </div>
                                                 </div>
                                             </div>
-                                            <div id="account_name" class="row hide-form-field form-field mb-3">
-                                                <div class="col-sm-4">
-                                                    <h6 class="mb-0">Account Name </h6>
-                                                </div>
-                                                <div class="form-group col-sm-8 text-secondary">
-                                                    <input type="text" name="account_name"
-                                                        class="form-control maxlength" maxlength="100" />
-                                                </div>
-                                            </div>
-                                            <div id="account_address" class="row hide-form-field form-field mb-3">
-                                                <div class="col-sm-4">
-                                                    <h6 class="mb-0">Account Address </h6>
-                                                </div>
-                                                <div class="form-group col-sm-8 text-secondary">
-                                                    <input type="text" name="account_address"
-                                                        class="form-control maxlength" maxlength="100" />
+                                            <div id="bank_name" class="hide-form-field form-field mb-1">
+                                                <div class="d-flex align-items-center mb-1">
+                                                    <div class="col-sm-4 text-start">
+                                                        <span>Bank Name </span>
+                                                    </div>
+                                                    <div class="form-group col-sm-8 text-secondary">
+                                                        <input type="text" name="bank_name"
+                                                            class="form-control form-control-sm" maxlength="100" />
+                                                    </div>
                                                 </div>
                                             </div>
-                                            <div id="account_type" class="row hide-form-field form-field mb-3">
-                                                <div class="col-sm-4">
-                                                    <h6 class="mb-0">Account Type </h6>
-                                                </div>
-                                                <div class="form-group col-sm-8 text-secondary">
-                                                    <input type="text" name="account_type"
-                                                        class="form-control maxlength" maxlength="100" />
-                                                </div>
-                                            </div>
-                                            <div id="branch" class="row hide-form-field form-field mb-3">
-                                                <div class="col-sm-4">
-                                                    <h6 class="mb-0">Branch </h6>
-                                                </div>
-                                                <div class="form-group col-sm-8 text-secondary">
-                                                    <input type="text" name="branch" class="form-control maxlength"
-                                                        maxlength="100" />
+                                            <div id="bank_address" class="hide-form-field form-field mb-1">
+                                                <div class="d-flex align-items-center mb-1">
+                                                    <div class="col-sm-4 text-start">
+                                                        <span>Bank Address </span>
+                                                    </div>
+                                                    <div class="form-group col-sm-8 text-secondary">
+                                                        <input type="text" name="bank_address"
+                                                            class="form-control form-control-sm" maxlength="100" />
+                                                    </div>
                                                 </div>
                                             </div>
-                                            <div id="routing" class="row hide-form-field form-field mb-3">
-                                                <div class="col-sm-4">
-                                                    <h6 class="mb-0">Routing </h6>
-                                                </div>
-                                                <div class="form-group col-sm-8 text-secondary">
-                                                    <input type="text" name="routing" class="form-control maxlength"
-                                                        maxlength="100" />
-                                                </div>
-                                            </div>
-                                            <div id="check_address" class="row hide-form-field form-field mb-3">
-                                                <div class="col-sm-4">
-                                                    <h6 class="mb-0">Check Address </h6>
-                                                </div>
-                                                <div class="form-group col-sm-8 text-secondary">
-                                                    <input type="text" name="check_address"
-                                                        class="form-control maxlength" maxlength="100" />
+                                            <div id="account_name" class="hide-form-field form-field mb-1">
+                                                <div class="d-flex align-items-center mb-1">
+                                                    <div class="col-sm-4 text-start">
+                                                        <span>Account Name </span>
+                                                    </div>
+                                                    <div class="form-group col-sm-8 text-secondary">
+                                                        <input type="text" name="account_name"
+                                                            class="form-control form-control-sm" maxlength="100" />
+                                                    </div>
                                                 </div>
                                             </div>
-                                            <div id="check_note" class="row hide-form-field form-field mb-3">
-                                                <div class="col-sm-4">
-                                                    <h6 class="mb-0">Check Note </h6>
+                                            <div id="account_address" class=" hide-form-field form-field mb-1">
+                                                <div class="d-flex align-items-center mb-1">
+                                                    <div class="col-sm-4 text-start">
+                                                        <span>Account Address </span>
+                                                    </div>
+                                                    <div class="form-group col-sm-8 text-secondary">
+                                                        <input type="text" name="account_address"
+                                                            class="form-control form-control-sm" maxlength="100" />
+                                                    </div>
                                                 </div>
-                                                <div class="form-group col-sm-8 text-secondary">
-                                                    <input type="text" name="check_note"
-                                                        class="form-control maxlength" maxlength="100" />
+                                            </div>
+                                            <div class="d-flex justify-content-end">
+                                                <div class="col ">
+                                                    <button id="button" type="submit"
+                                                        class="submit_btn from-prevent-multiple-submits hide-form-field form-field"
+                                                        style="padding: 4px 9px;">Submit</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 gx-1">
+                                    <div id="table2">
+                                        <div class="">
+                                            <div id="account_type" class="hide-form-field form-field mb-1">
+                                                <div class="d-flex align-items-center mb-1">
+                                                    <div class="col-sm-4 text-start">
+                                                        <span>Account Type </span>
+                                                    </div>
+                                                    <div class="form-group col-sm-8 text-secondary">
+                                                        <input type="text" name="account_type"
+                                                            class="form-control form-control-sm" maxlength="100" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div id="branch" class="hide-form-field form-field mb-1">
+                                                <div class="d-flex align-items-center mb-1">
+                                                    <div class="col-sm-4 text-start">
+                                                        <span>Branch </span>
+                                                    </div>
+                                                    <div class="form-group col-sm-8 text-secondary">
+                                                        <input type="text" name="branch"
+                                                            class="form-control form-control-sm" maxlength="100" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div id="routing" class="hide-form-field form-field mb-1">
+                                                <div class="d-flex align-items-center mb-1">
+                                                    <div class="col-sm-4 text-start">
+                                                        <span>Routing </span>
+                                                    </div>
+                                                    <div class="form-group col-sm-8 text-secondary">
+                                                        <input type="text" name="routing"
+                                                            class="form-control form-control-sm" maxlength="100" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div id="check_address" class="hide-form-field form-field mb-1">
+                                                <div class="d-flex align-items-center mb-1">
+                                                    <div class="col-sm-4 text-start">
+                                                        <span>Check Address </span>
+                                                    </div>
+                                                    <div class="form-group col-sm-8 text-secondary">
+                                                        <input type="text" name="check_address"
+                                                            class="form-control form-control-sm" maxlength="100" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div id="check_note" class="hide-form-field form-field mb-1">
+                                                <div class="d-flex align-items-center mb-1">
+                                                    <div class="col-sm-4 text-start">
+                                                        <span>Check Note </span>
+                                                    </div>
+                                                    <div class="form-group col-sm-8 text-secondary">
+                                                        <input type="text" name="check_note"
+                                                            class="form-control form-control-sm" maxlength="100" />
+                                                    </div>
                                                 </div>
                                             </div>
                                             <div class="col-md-2 text-secondary">
                                                 <input id="button" type="submit"
-                                                    class="btn btn-primary mt-4 hide-form-field form-field"
+                                                    class="btn btn-primary hide-form-field form-field"
                                                     value="Submit" />
                                             </div>
                                         </div>
@@ -322,5 +360,3 @@
         });
     </script>
 @endpush
-
-

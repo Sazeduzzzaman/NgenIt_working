@@ -1,11 +1,4 @@
 <!---Collapsible div--->
-
-
-
-
-
-
-
 <div id="update_page" class="modal fade" tabindex="-1" style="display: none;" aria-hidden="true">
     <div class="modal-dialog modal-dialog-scrollable modal-lg">
         <div class="modal-content">

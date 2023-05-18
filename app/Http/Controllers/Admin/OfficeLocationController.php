@@ -19,6 +19,7 @@ class OfficeLocationController extends Controller
     public function index()
     {
         $data['officeLocations'] = OfficeLocation::get();
+        $data['countrys'] = Country::get();
         return view('admin.pages.officeLocation.all', $data);
     }
 

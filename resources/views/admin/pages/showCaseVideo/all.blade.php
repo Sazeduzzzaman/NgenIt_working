@@ -51,7 +51,7 @@
                                         <table class="datatable table table-bordered table-hover showCaseVideoDT">
                                             <thead>
                                                 <tr>
-                                                    <th width="8%">Sl No:</th>
+                                                    <th width="8%">Id</th>
                                                     <th width="12%">Type</th>
                                                     <th width="70%">Show Case Video Link</th>
                                                     <th width="10%" class="text-center">Actions</th>

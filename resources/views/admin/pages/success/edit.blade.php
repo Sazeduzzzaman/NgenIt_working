@@ -45,7 +45,7 @@
                                         <span class="btn-labeled-icon bg-black bg-opacity-20">
                                             <i class="icon-eye"></i>
                                         </span>
-                                        All Category
+                                        All Success
                                     </a>
                                 </div>
                             </div>

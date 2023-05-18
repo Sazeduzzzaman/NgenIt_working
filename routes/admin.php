@@ -68,15 +68,16 @@
 
 use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\CRMController;
 use Illuminate\Support\Facades\Artisan;
 use App\Http\Controllers\SAS\SASController;
 use App\Http\Controllers\BusinessController;
 use App\Http\Controllers\DeliveryController;
+use App\Http\Controllers\Admin\CRMController;
 use App\Http\Controllers\Admin\JobController;
 use App\Http\Controllers\Admin\RFQController;
 use App\Http\Controllers\Admin\RowController;
 use App\Http\Controllers\Admin\BlogController;
+use App\Http\Controllers\Admin\CmarController;
 use App\Http\Controllers\Admin\DealController;
 use App\Http\Controllers\Admin\PageController;
 use App\Http\Controllers\Admin\RoleController;
@@ -562,7 +563,6 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
             'business'                   => BusinessController::class,
             'accounts-finance'           => AccountsFinanceController::class,
             'site-content'               => SiteContentController::class,
-            'crm'                        => CRMController::class,
             'hr-and-admin'               => HRandAdminController::class,
             'site-setting'               => SiteSettingController::class,
             'delivery'                   => DeliveryController::class,
@@ -591,6 +591,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
             'portfolio-page'            => PortfolioPageController::class,
             'portfolio-detail'          => PortfolioDetailController::class, //pending dd
             'portfolio-client-feedback' => PortfolioClientFeedbackController::class,
+            'cmar' => CmarController::class,
         ],
         [
             //   'except' => ['show','tax-vat','create','edit','expense-type']
@@ -673,3 +674,8 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
         return runCommand('migrate', 'Migration completed');
     });
 });
+
+
+
+// My Custom Route
+Route::get('crms',[CRMController::class,'FunctionName']);

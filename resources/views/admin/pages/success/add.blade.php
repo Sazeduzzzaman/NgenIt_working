@@ -54,7 +54,6 @@
                         <div class="card-body">
                             <form id="myform" method="post" action="{{ route('success.store') }}" enctype="multipart/form-data">
                                 @csrf
-
                                 <div class="row mb-3">
                                     <div class="col-sm-3">
                                         <h6 class="mb-0">Title <span class="text-danger">*</span> </h6>

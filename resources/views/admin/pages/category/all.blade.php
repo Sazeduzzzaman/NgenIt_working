@@ -1,101 +1,114 @@
 @extends('admin.master')
 @section('content')
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <div class="content-wrapper">
+    <style>
+        .submit_btn {
+            padding: 10px;
+        }
 
-        <!-- Inner content -->
+        .submit_btn:hover {
+            padding: 10px;
+        }
+
+        .pagination-flat .disabled {
+            width: 60px !important;
+            padding-left: 10px;
+            padding-right: 10px;
+
+        }
+
+        #DataTables_Table_0_previous {
+            margin-right: 0px !important;
+        }
+    </style>
+
+    <div class="content-wrapper">
 
 
         <!-- Page header -->
-        <div class="page-header page-header-light shadow">
-
-
-            <div class="page-header-content d-lg-flex border-top">
-                <div class="d-flex">
-                    <div class="breadcrumb py-2">
-                        <a href="index.html" class="breadcrumb-item"><i class="ph-house"></i></a>
-                        <a href="{{ route('admin.dashboard') }}" class="breadcrumb-item">Home</a>
-                        <span class="breadcrumb-item active">Category Management</span>
-                    </div>
-
-                    <a href="#breadcrumb_elements"
-                        class="btn btn-light align-self-center collapsed d-lg-none border-transparent rounded-pill p-0 ms-auto"
-                        data-bs-toggle="collapse">
-                        <i class="ph-caret-down collapsible-indicator ph-sm m-1"></i>
-                    </a>
-                </div>
-            </div>
-        </div>
-        <!-- /page header -->
-        <!-- Content area -->
-        <div class="content">
-            <div class="row">
-                <div class="col-lg-1"></div>
-                <div class="col-lg-10">
-                    <div class="card mt-1">
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-lg-9">
-                                    <ul class="nav nav-tabs">
-                                        <li class="nav-item col-3">
-                                            <a href="#js-tab1" class="py-1 nav-link active cat-tab1" data-bs-toggle="tab">
-                                                <p style="font-size: 12px; font-weight:600;color:black;margin-bottom:0px;">
-                                                    Category</p>
-                                            </a>
-                                        </li>
-
-                                        <li class="nav-item col-3">
-                                            <a href="#js-tab2" class="py-1 nav-link cat-tab2" data-bs-toggle="tab">
-                                                <p style="font-size: 12px; font-weight:600;color:black;margin-bottom:0px;">
-                                                    Sub Category</p>
-                                            </a>
-                                        </li>
-
-                                        <li class="nav-item col-3">
-                                            <a href="#js-tab3" class="py-1 nav-link cat-tab3" data-bs-toggle="tab">
-                                                <p style="font-size: 12px; font-weight:600;color:black;margin-bottom:0px;">
-                                                    Sub Sub Category</p>
-                                            </a>
-                                        </li>
-
-                                        <li class="nav-item col-3">
-                                            <a href="#js-tab4" class="py-1 nav-link cat-tab4" data-bs-toggle="tab">
-                                                <p style="font-size: 12px; font-weight:600;color:black;margin-bottom:0px;">
-                                                    Sub Sub Sub Category</p>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-
-
-                                <div class="col-lg-3">
-                                    <a href="{{ route('category.create') }}" type="button"
-                                        class="btn btn-sm btn-success btn-labeled btn-labeled-start float-end">
-                                        <span class="btn-labeled-icon bg-black bg-opacity-20">
-                                            <i class="icon-plus2"></i>
-                                        </span>
-                                        Add New
-                                    </a>
-                                </div>
-                            </div>
-
+        <section class="shadow-sm">
+            <div class="d-flex justify-content-between align-items-center">
+                {{-- Page Destination/ BreadCrumb --}}
+                <div class="page-header-content d-lg-flex ">
+                    <div class="d-flex px-2">
+                        <div class="breadcrumb py-2">
+                            <a href="index.html" class="breadcrumb-item"><i class="ph-house"></i></a>
+                            <a href="{{ route('admin.dashboard') }}" class="breadcrumb-item">Home</a>
+                            <span class="breadcrumb-item active">Category Management</span>
                         </div>
+                        <a href="#breadcrumb_elements"
+                            class="btn btn-light align-self-center collapsed d-lg-none border-transparent rounded-pill p-0 ms-auto"
+                            data-bs-toggle="collapse">
+                            <i class="ph-caret-down collapsible-indicator ph-sm m-1"></i>
+                        </a>
                     </div>
+                </div>
+                {{-- Inner Page Tab --}}
+        </section>
+        <!-- /page header -->
+        <!-- product-sourcing Content Start -->
+        <section>
+            <div class="text-center">
+                <h1>All Category</h1>
+            </div>
+            <div class="container-fluid mt-2 ">
+                <div class="row rounded " id="exTab3" style="position: relative;z-index: 999;">
+                    <div class="d-flex justify-content-center align-items-center p-0">
+                        <ul class="nav nav-tabs border-0">
+                            <li class="nav-item ">
+                                <a href="#category" class=" nav-link active cat-tab1 p-1" data-bs-toggle="tab">
+                                    <p class="m-0 p-1">
+                                        Category <span class="ms-2">|</span></p>
+                                </a>
+                            </li>
 
-                    <div class="tab-content">
-                        <div class="tab-pane fade show active" id="js-tab1">
-                            <div id="table1" class="card cardT">
-                                <div class="card-header">
-                                    <h4 class="mb-0 text-center">All Category</h4>
-                                </div>
-
-                                <table class="categoryDT table table-bordered table-hover datatable-highlight">
+                            <li class="nav-item">
+                                <a href="#sub_category" class=" nav-link cat-tab2 p-1 " data-bs-toggle="tab">
+                                    <p class="m-0 p-1"> Sub Category <span class="ms-2">|</span></p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#sub_sub_category" class=" nav-link cat-tab3 p-1" data-bs-toggle="tab">
+                                    <p class="m-0 p-1"> Sub Child Category <span class="ms-2">|</span></p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#sub_sub_sub_category" class=" nav-link cat-tab3 p-1" data-bs-toggle="tab">
+                                    <p class="m-0 p-1"> Sub Sub Child Category <span class="ms-2"></span></p>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="row rounded">
+                    <div class="tab-content p-0 mx-auto" style="width: 90%;">
+                        <div class="tab-pane fade show active" id="category">
+                            <div class="d-flex align-items-center py-2">
+                                {{-- Add Tax Vat Modal Category --}}
+                                <a href="" class=" text-success nav-link cat-tab3" data-bs-toggle="modal"
+                                    data-bs-target="#categoryAdd"
+                                    style="position: relative;
+                                    z-index: 999; margin-bottom: -30px;">
+                                    <span class="ms-2 icon_btn" style="font-weight: 800;" data-bs-toggle="tooltip"
+                                        data-bs-placement="top" title="Add Category">
+                                        <i class="ph-plus icons_design"></i>
+                                    </span>
+                                    <div class="d-flex justify-content-between">
+                                        <span class="ms-1">Add Category</span>
+                                    </div>
+                                    <div class="d-flex justify-content-between hide_mobile">
+                                        <h6 class="mb-0 text-black text-center" style="margin-left: 28rem !important;">
+                                            Category</h6>
+                                    </div>
+                                </a>
+                            </div>
+                            <div>
+                                <table class="table category  table-bordered table-hover datatable-highlight text-center ">
                                     <thead>
                                         <tr>
-                                            <th width="5%">Sl No:</th>
-                                            <th width="10%">Category Image</th>
-                                            <th width="10%">Category Banner Image</th>
-                                            <th width="45%">Category Name</th>
+                                            <th width="5%">Id</th>
+                                            <th width="15%">Image</th>
+                                            <th width="15%">Banner Image</th>
+                                            <th width="35%">Name</th>
                                             <th width="10%">Status</th>
                                             <th width="20%" class="text-center">Actions</th>
                                         </tr>
@@ -104,28 +117,27 @@
                                         @if ($categorys)
                                             @foreach ($categorys as $key => $category)
                                                 <tr>
-                                                    <td>{{ ++$key }}</td>
-                                                    <td class="text-center"><img
-                                                            src="{{ asset('storage/' . $category->image) }}"
-                                                            height="40" alt=""></td>
-                                                    <td class="text-center"><img
-                                                            src="{{ asset('storage/' . $category->banner_image) }}"
-                                                            height="40" alt=""></td>
+                                                    <td class="text-center">{{ ++$key }}</td>
+                                                    <td><img src="{{ asset('storage/' . $category->image) }}" alt=""
+                                                            width="25px" height="25px"></td>
+                                                    <td><img src="{{ asset('storage/' . $category->banner_image) }}"
+                                                            alt="" width="25px" height="25px"></td>
                                                     <td>{{ $category->title }}</td>
                                                     <td>
                                                         @if ($category->status == 'active')
-                                                            <span class="badge bg-success">Active</span>
+                                                            <span class="text-success">Active</span>
                                                         @else
-                                                            <span class="badge bg-danger">Inactive</span>
+                                                            <span class="text-info">Inactive</span>
                                                         @endif
                                                     </td>
                                                     <td class="text-center">
                                                         <a href="javascript:void(0);" class="text-primary"
                                                             data-bs-toggle="modal"
                                                             data-bs-target="#update_category_{{ $category->slug }}">
-                                                            <i class="icon-pencil"></i>
+                                                            <i
+                                                                class="fa-solid fa-pen-to-square me-2 p-1 rounded-circle text-primary"></i>
                                                         </a>
-                                                        <!---Category Update modal--->
+                                                        <!---Category Edit modal--->
                                                         <div id="update_category_{{ $category->slug }}" class="modal fade"
                                                             tabindex="-1" style="display: none;" aria-hidden="true">
                                                             <div class="modal-dialog modal-dialog-scrollable">
@@ -145,57 +157,61 @@
                                                                             enctype="multipart/form-data">
                                                                             @csrf
                                                                             @method('PUT')
-                                                                            <div class="row mb-3">
-                                                                                <div class="col-sm-3">
-                                                                                    <h6 class="mb-0">Category Name</h6>
+
+                                                                            <div class="row mb-1">
+                                                                                <div class="col-sm-4 text-start">
+                                                                                    <span>Category Name</span>
                                                                                 </div>
-                                                                                <div
-                                                                                    class="form-group col-sm-8 text-secondary">
+                                                                                <div class="col-sm-8 text-start">
                                                                                     <input type="text" name="title"
-                                                                                        class="form-control maxlength"
+                                                                                        class="form-control form-control-sm maxlength"
                                                                                         maxlength="100"
-                                                                                        value="{{ $category->title }}" />
+                                                                                        value="{{ $category->title }}"
+                                                                                        required />
                                                                                 </div>
                                                                             </div>
 
-                                                                            <div class="row mb-3">
-                                                                                <div class="col-sm-3">
-                                                                                    <h6 class="mb-0">Category Image </h6>
+                                                                            <div class="row mb-1">
+                                                                                <div class="col-sm-4 text-start">
+                                                                                    <span>Category Image</span>
                                                                                 </div>
-                                                                                <div class="col-sm-8 text-secondary">
+                                                                                <div class="col-sm-6 text-start">
                                                                                     <input type="file" name="image"
-                                                                                        class="form-control"
+                                                                                        class="form-control form-control-sm"
                                                                                         id="image" accept="image/*" />
-                                                                                    <div class="form-text">Accepts only
-                                                                                        png, jpg, jpeg images</div>
-                                                                                    <img src="{{ asset('storage/' . $category->image) }}"
-                                                                                        height="80" alt=""
-                                                                                        id="showImage">
+
+                                                                                </div>
+                                                                                <div class="col-sm-3 text-end">
+                                                                                    <img class="rounded-circle"
+                                                                                        src="{{ asset('storage/' . $category->image) }}"
+                                                                                        width="40" height="40"
+                                                                                        alt="" id="showImage">
                                                                                 </div>
                                                                             </div>
-
-                                                                            <div class="row mb-3">
-                                                                                <div class="col-sm-3">
-                                                                                    <h6 class="mb-0">Category Banner Image </h6>
+                                                                            <div class="row mb-1">
+                                                                                <div class="col-sm-4 text-start">
+                                                                                    <span>Category Banner
+                                                                                        Image</span>
                                                                                 </div>
-                                                                                <div class="col-sm-8 text-secondary">
-                                                                                    <input type="file" name="banner_image"
-                                                                                        class="form-control"
-                                                                                        id="banner_image" accept="image/*" />
-                                                                                    <div class="form-text">Accepts only
-                                                                                        png, jpg, jpeg images</div>
-                                                                                    <img src="{{ asset('storage/' . $category->banner_image) }}"
-                                                                                        height="80" alt=""
-                                                                                        id="showbannerImage">
+                                                                                <div class="col-sm-6 text-start">
+
+                                                                                    <input type="file"
+                                                                                        name="banner_image"
+                                                                                        class="form-control form-control-sm"
+                                                                                        id="image" accept="image/*" />
+                                                                                </div>
+                                                                                <div class="col-sm-2 text-end">
+                                                                                    <img class="rounded-circle"
+                                                                                        src="{{ asset('storage/' . $category->banner_image) }}"
+                                                                                        width="40" height="40"
+                                                                                        alt="" id="showImage">
                                                                                 </div>
                                                                             </div>
-
-                                                                            <div class="row mb-3">
-                                                                                <div class="col-sm-3">
-                                                                                    <h6 class="mb-0">Category Status</h6>
+                                                                            <div class="row mb-1">
+                                                                                <div class="col-sm-4 text-start">
+                                                                                    <span>Category Status</span>
                                                                                 </div>
-                                                                                <div
-                                                                                    class="form-group col-sm-4 text-secondary">
+                                                                                <div class="col-sm-8 text-start">
                                                                                     <div class="form-check">
                                                                                         <input class="form-check-input"
                                                                                             type="radio" name="status"
@@ -220,30 +236,24 @@
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
-
-
                                                                             <div class="row">
-                                                                                <div class="col-sm-3"></div>
-                                                                                <div class="col-sm-9 text-secondary">
+                                                                                <div class="col-sm-12 text-end">
                                                                                     <button type="submit"
-                                                                                        class="btn btn-primary">Update</button>
+                                                                                        class="text-white btn btn-sm"
+                                                                                        style="background-color:#247297 !important; padding: 5px 12px 5px;">Update</button>
                                                                                 </div>
                                                                             </div>
-
                                                                         </form>
                                                                     </div>
-
-
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                        <!---Category Update modal--->
-
+                                                        {{-- Category Modal End --}}
                                                         <a href="{{ route('category.destroy', [$category->id]) }}"
                                                             class="text-danger delete mx-2">
-                                                            <i class="delete icon-trash"></i>
+                                                            <i
+                                                                class="fa-solid fa-trash p-1 rounded-circle text-danger"></i>
                                                         </a>
-
                                                     </td>
                                                 </tr>
                                             @endforeach
@@ -253,54 +263,68 @@
                             </div>
                         </div>
                     </div>
-
-                    <div class="tab-content">
-                        <div class="tab-pane fade show" id="js-tab2">
-
-                            <div id="table2" class="card cardT">
-                                <div class="card-header">
-                                    <h4 class="mb-0 text-center">All Sub Category</h4>
-                                </div>
-                                <table class="subCategoryDT table table-bordered table-hover datatable-highlight">
+                    <div class="tab-content p-0 mx-auto" style="width: 90%;">
+                        <div class="tab-pane fade show" id="sub_category">
+                            <div class="d-flex align-items-center py-2">
+                                {{-- Add Tax Vat Modal Sub Category --}}
+                                <a href="" class=" text-success nav-link cat-tab3" data-bs-toggle="modal"
+                                    data-bs-target="#categoryAdd"
+                                    style="position: relative;
+                                    z-index: 999; margin-bottom: -30px;">
+                                    <span class="ms-2 icon_btn" style="font-weight: 800;" data-bs-toggle="tooltip"
+                                        data-bs-placement="top" title="Add Category">
+                                        <i class="ph-plus icons_design"></i>
+                                    </span>
+                                    <div class="d-flex justify-content-between">
+                                        <span class="ms-1">Add Sub
+                                            Category</span>
+                                    </div>
+                                    <div class="d-flex justify-content-between hide_mobile">
+                                        <h6 class="mb-0 text-black text-center" style="margin-left: 27rem !important;">Sub
+                                            Category</h6>
+                                    </div>
+                                </a>
+                            </div>
+                            <div>
+                                <table
+                                    class="table sub_category table-bordered table-hover datatable-highlight text-center ">
                                     <thead>
                                         <tr>
-                                            <th width="5%">Sl No:</th>
-                                            <th width="10%">Sub Category Image</th>
-                                            <th width="10%">Sub Category Banner Image</th>
-                                            <th width="25%">Sub Category Name</th>
-                                            <th width="20%">Category Name</th>
+                                            <th width="5%">Id</th>
+                                            <th width="5%">Image</th>
+                                            <th width="5%">Banner Image</th>
+                                            <th width="35%">Name</th>
+                                            <th width="30%">Category Name</th>
                                             <th width="10%">Status</th>
-                                            <th width="20%" class="text-center">Actions</th>
+                                            <th width="10%" class="text-center">Actions</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         @if ($sub_cats)
                                             @foreach ($sub_cats as $key => $sub_cat)
                                                 <tr>
-                                                    <td>{{ ++$key }}</td>
-                                                    <td class="text-center">
-                                                        <img src="{{ asset('storage/' . $sub_cat->image) }}"
-                                                            height="40" alt="">
-                                                    </td>
-                                                    <td class="text-center">
-                                                        <img src="{{ asset('storage/' . $sub_cat->banner_image) }}"
-                                                            height="40" alt="">
-                                                    </td>
+                                                    <td class="text-center">{{ ++$key }}</td>
+                                                    <td><img src="{{ asset('storage/' . $sub_cat->image) }}"
+                                                            alt="" width="25px" height="25px"></td>
+                                                    <td><img src="{{ asset('storage/' . $sub_cat->banner_image) }}"
+                                                            alt="" width="25px" height="25px"></td>
                                                     <td>{{ $sub_cat->title }}</td>
-                                                    <td> {{ App\Models\Admin\Category::where('id', $sub_cat->cat_id)->value('title') }}
+                                                    <td>
+                                                        {{ App\Models\Admin\Category::where('id', $sub_cat->cat_id)->value('title') }}
                                                     </td>
                                                     <td>
                                                         @if ($sub_cat->status == 'active')
-                                                            <span class="badge bg-success">Active</span>
+                                                            <span class="text-success">Active</span>
                                                         @else
-                                                            <span class="badge bg-danger">Inactive</span>
+                                                            <span class="text-info">Inactive</span>
                                                         @endif
                                                     </td>
                                                     <td class="text-center">
                                                         <a href="javascript:void(0);" class="text-primary"
                                                             data-bs-toggle="modal"
                                                             data-bs-target="#update_sub_cat_{{ $sub_cat->slug }}">
-                                                            <i class="icon-pencil"></i>
+                                                            <i
+                                                                class="fa-solid fa-pen-to-square me-2 p-1 rounded-circle text-primary"></i>
                                                         </a>
                                                         <!---Sub Category Update modal--->
                                                         <div id="update_sub_cat_{{ $sub_cat->slug }}" class="modal fade"
@@ -323,15 +347,14 @@
                                                                             enctype="multipart/form-data">
                                                                             @csrf
                                                                             @method('PUT')
-                                                                            <div class="row mb-3">
-                                                                                <div class="col-sm-3">
-                                                                                    <h6 class="mb-0">Category Name</h6>
+                                                                            <div class="row mb-1">
+                                                                                <div class="col-sm-4 text-start">
+                                                                                    <span>Category Name</span>
                                                                                 </div>
-                                                                                <div
-                                                                                    class="form-group col-sm-8 text-secondary">
+                                                                                <div class="col-sm-8 text-start">
                                                                                     <select name="cat_id"
                                                                                         class="form-control select"
-                                                                                        data-width="250"
+                                                                                        data-width="100%"
                                                                                         data-minimum-results-for-search="Infinity">
                                                                                         <option value=""> -- Select
                                                                                             Category -- </option>
@@ -346,57 +369,65 @@
                                                                                 </div>
                                                                             </div>
 
-                                                                            <div class="row mb-3">
-                                                                                <div class="col-sm-3">
-                                                                                    <h6 class="mb-0">Sub Category Name
-                                                                                    </h6>
+                                                                            <div class="row mb-1">
+                                                                                <div class="col-sm-4 text-start">
+                                                                                    <span>Sub Category Name</span>
                                                                                 </div>
-                                                                                <div class="form-group col-sm-8 text-secondary">
-                                                                                    <input type="text" name="title" class="form-control maxlength"
-                                                                                        maxlength="100" value="{{ $sub_cat->title }}" />
+                                                                                <div class="col-sm-8 text-start">
+                                                                                    <input type="text" name="title"
+                                                                                        class="form-control form-control-sm maxlength"
+                                                                                        maxlength="100"
+                                                                                        value="{{ $sub_cat->title }}" />
                                                                                 </div>
                                                                             </div>
 
-                                                                            <div class="row mb-3">
-                                                                                <div class="col-sm-3">
-                                                                                    <h6 class="mb-0">Sub Category Image
-                                                                                    </h6>
+                                                                            <div class="row mb-1">
+                                                                                <div class="col-sm-4 text-start">
+                                                                                    <span>Sub Category Image</span>
                                                                                 </div>
-                                                                                <div class="col-sm-8 text-secondary">
+                                                                                <div
+                                                                                    class="col-sm-6 text-start text-secondary">
                                                                                     <input type="file" name="image"
-                                                                                        class="form-control"
+                                                                                        class="form-control form-control-sm"
                                                                                         id="image1" accept="image/*" />
-                                                                                    <div class="form-text">Accepts only
-                                                                                        png, jpg, jpeg images</div>
-                                                                                    <img id="showImage1"
+
+                                                                                </div>
+                                                                                <div class="col-sm-3 text-end">
+                                                                                    <img class="rounded-circle"
+                                                                                        id="showImage1"
                                                                                         src="{{ asset('storage/' . $sub_cat->image) }}"
-                                                                                        height="80" alt="">
+                                                                                        width="40" height="40"
+                                                                                        alt="">
                                                                                 </div>
                                                                             </div>
 
-                                                                            <div class="row mb-3">
-                                                                                <div class="col-sm-3">
-                                                                                    <h6 class="mb-0">Sub Category Banner Image </h6>
+                                                                            <div class="row mb-1">
+                                                                                <div class="col-sm-4 text-start">
+                                                                                    <span>Sub Category Banner
+                                                                                        Image</span>
                                                                                 </div>
-                                                                                <div class="col-sm-8 text-secondary">
-                                                                                    <input type="file" name="banner_image"
-                                                                                        class="form-control"
-                                                                                        id="banner_image" accept="image/*" />
-                                                                                    <div class="form-text">Accepts only
-                                                                                        png, jpg, jpeg images</div>
-                                                                                    <img src="{{ asset('storage/' . $sub_cat->banner_image) }}"
-                                                                                        height="80" alt=""
+                                                                                <div
+                                                                                    class="col-sm-6 text-start text-secondary">
+                                                                                    <input type="file"
+                                                                                        name="banner_image"
+                                                                                        class="form-control form-control-sm"
+                                                                                        id="banner_image"
+                                                                                        accept="image/*" />
+                                                                                </div>
+                                                                                <div class="col-sm-3 text-end">
+                                                                                    <img class="rounded-circle"
+                                                                                        src="{{ asset('storage/' . $sub_cat->banner_image) }}"
+                                                                                        weight="40" height="40"
+                                                                                        alt=""
                                                                                         id="showbannerImage">
                                                                                 </div>
                                                                             </div>
 
-                                                                            <div class="row mb-3">
-                                                                                <div class="col-sm-3">
-                                                                                    <h6 class="mb-0">Sub Category Status
-                                                                                    </h6>
+                                                                            <div class="row mb-1">
+                                                                                <div class="col-sm-4 text-start">
+                                                                                    <span>Sub Category Status</span>
                                                                                 </div>
-                                                                                <div
-                                                                                    class="form-group col-sm-4 text-secondary">
+                                                                                <div class="col-sm-8 text-start">
                                                                                     <div class="form-check">
                                                                                         <input class="form-check-input"
                                                                                             type="radio" name="status"
@@ -421,13 +452,11 @@
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
-
-
                                                                             <div class="row">
-                                                                                <div class="col-sm-3"></div>
-                                                                                <div class="col-sm-9 text-secondary">
+                                                                                <div class="col-sm-12 text-end">
                                                                                     <button type="submit"
-                                                                                        class="btn btn-primary">Update</button>
+                                                                                        class="text-white btn btn-sm"
+                                                                                        style="background-color:#247297 !important; padding: 5px 12px 5px;">Update</button>
                                                                                 </div>
                                                                             </div>
 
@@ -441,9 +470,9 @@
                                                         <!---Sub Category Update modal--->
                                                         <a href="{{ route('subcategory.destroy', [$sub_cat->id]) }}"
                                                             class="text-danger delete mx-2">
-                                                            <i class="delete icon-trash"></i>
+                                                            <i
+                                                                class="fa-solid fa-trash p-1 rounded-circle text-danger"></i>
                                                         </a>
-
                                                     </td>
                                                 </tr>
                                             @endforeach
@@ -453,24 +482,35 @@
                             </div>
                         </div>
                     </div>
-
-                    <div class="tab-content">
-                        <div class="tab-pane fade show" id="js-tab3">
-
-                            <div id="table2" class="card cardT">
-                                <div class="card-header">
-                                    <h4 class="mb-0 text-center">All Sub Sub Category</h4>
-                                </div>
-                                <table class="subSubCategoryDT table table-bordered table-hover datatable-highlight">
+                    <div class="tab-content p-0 mx-auto" style="width: 90%;">
+                        <div class="tab-pane fade show" id="sub_sub_category">
+                            <div class="d-flex align-items-center py-2">
+                                {{-- Add Category Modal --}}
+                                <a href="" class=" text-success nav-link cat-tab3" data-bs-toggle="modal"
+                                    data-bs-target="#categoryAdd"
+                                    style="position: relative;
+                                    z-index: 999; margin-bottom: -30px;">
+                                    <span class="ms-2 icon_btn" style="font-weight: 800;" data-bs-toggle="tooltip"
+                                        data-bs-placement="top" title="Add Category">
+                                        <i class="ph-plus icons_design"></i>
+                                    </span>
+                                    <div class="d-flex justify-content-between">
+                                        <span class="ms-1">Add Sub Child Category</span>
+                                    </div>
+                                </a>
+                            </div>
+                            <div>
+                                <table
+                                    class="table sub_sub_category table-bordered table-hover datatable-highlight text-center ">
                                     <thead>
                                         <tr>
-                                            <th width="10%">Sl No:</th>
-                                            <th width="20%">Sub Sub Category Name</th>
-                                            <th width="10%">Sub Sub Category Image</th>
-                                            <th width="10%">Sub Sub Category Banner Image</th>
-                                            <th width="15%">Sub Category Name</th>
-                                            <th width="15%">Category Name</th>
-                                            <th width="10%">Status</th>
+                                            <th width="5%">Id</th>
+                                            <th width="10%">Image</th>
+                                            <th width="10%">Banner Image</th>
+                                            <th width="20%">Name</th>
+                                            <th width="20%">Sub Category Name</th>
+                                            <th width="20%">Category Name</th>
+                                            <th width="5%">Status</th>
                                             <th width="10%" class="text-center">Actions</th>
                                         </tr>
                                     </thead>
@@ -478,34 +518,33 @@
                                         @if ($sub_sub_cats)
                                             @foreach ($sub_sub_cats as $key => $sub_sub_cat)
                                                 <tr>
-                                                    <td>{{ ++$key }}</td>
+                                                    <td class="text-center">{{ ++$key }}</td>
+                                                    <td><img src="{{ asset('storage/' . $sub_sub_cat->image) }}"
+                                                            alt="" width="25px" height="25px"></td>
+                                                    <td><img src="{{ asset('storage/' . $sub_sub_cat->banner_image) }}"
+                                                            alt="" width="25px" height="25px"></td>
                                                     <td>{{ $sub_sub_cat->title }}</td>
-                                                    <td class="text-center">
-                                                        <img src="{{ asset('storage/' . $sub_sub_cat->image) }}"
-                                                            height="40" alt="">
+                                                    <td>
+                                                        {{ App\Models\Admin\SubCategory::where('id', $sub_sub_cat->sub_cat_id)->value('title') }}
                                                     </td>
-                                                    <td class="text-center">
-                                                        <img src="{{ asset('storage/' . $sub_sub_cat->banner_image) }}"
-                                                            height="40" alt="">
-                                                    </td>
-                                                    <td> {{ App\Models\Admin\SubCategory::where('id', $sub_sub_cat->sub_cat_id)->value('title') }}
-                                                    </td>
-                                                    <td> {{ App\Models\Admin\Category::where('id', $sub_sub_cat->cat_id)->value('title') }}
+                                                    <td>
+                                                        {{ App\Models\Admin\Category::where('id', $sub_sub_cat->cat_id)->value('title') }}
                                                     </td>
                                                     <td>
                                                         @if ($sub_sub_cat->status == 'active')
-                                                            <span class="badge bg-success">Active</span>
+                                                            <span class="text-success">Active</span>
                                                         @else
-                                                            <span class="badge bg-danger">Inactive</span>
+                                                            <span class="text-info">Inactive</span>
                                                         @endif
                                                     </td>
                                                     <td class="text-center">
                                                         <a href="javascript:void(0);" class="text-primary"
                                                             data-bs-toggle="modal"
                                                             data-bs-target="#update_sub_sub_cat_{{ $sub_sub_cat->slug }}">
-                                                            <i class="icon-pencil"></i>
+                                                            <i
+                                                                class="fa-solid fa-pen-to-square me-2 p-1 rounded-circle text-primary"></i>
                                                         </a>
-                                                        <!---Sub Sub Category Update modal--->
+                                                        <!---Sub Sub Category edit modal--->
                                                         <div id="update_sub_sub_cat_{{ $sub_sub_cat->slug }}"
                                                             class="modal fade" tabindex="-1" style="display: none;"
                                                             aria-hidden="true">
@@ -527,15 +566,14 @@
                                                                             enctype="multipart/form-data">
                                                                             @csrf
                                                                             @method('PUT')
-                                                                            <div class="row mb-3">
-                                                                                <div class="col-sm-4">
-                                                                                    <h6 class="mb-0">Category Name</h6>
+                                                                            <div class="row mb-1">
+                                                                                <div class="col-sm-4 text-start">
+                                                                                    <span>Category Name</span>
                                                                                 </div>
-                                                                                <div
-                                                                                    class="form-group col-sm-8 text-secondary">
+                                                                                <div class="col-sm-8 text-start">
                                                                                     <select name="cat_id"
                                                                                         class="form-control select"
-                                                                                        data-width="250"
+                                                                                        data-width="100%"
                                                                                         data-minimum-results-for-search="Infinity">
                                                                                         <option value=""> -- Select
                                                                                             Category -- </option>
@@ -550,16 +588,14 @@
                                                                                 </div>
                                                                             </div>
 
-                                                                            <div class="row mb-3">
-                                                                                <div class="col-sm-4">
-                                                                                    <h6 class="mb-0">Sub Category Name
-                                                                                    </h6>
+                                                                            <div class="row mb-1">
+                                                                                <div class="col-sm-4 text-start">
+                                                                                    <span>Sub Category Name</span>
                                                                                 </div>
-                                                                                <div
-                                                                                    class="form-group col-sm-8 text-secondary">
+                                                                                <div class="col-sm-8 text-start">
                                                                                     <select name="sub_cat_id"
                                                                                         class="form-control select"
-                                                                                        data-width="250"
+                                                                                        data-width="100%"
                                                                                         data-minimum-results-for-search="Infinity">
                                                                                         <option value=""> -- Select
                                                                                             Category -- </option>
@@ -574,59 +610,68 @@
                                                                                 </div>
                                                                             </div>
 
-                                                                            <div class="row mb-3">
-                                                                                <div class="col-sm-4">
-                                                                                    <h6 class="mb-0">Sub Sub Category
-                                                                                        Name</h6>
+                                                                            <div class="row mb-1">
+                                                                                <div class="col-sm-4 text-start">
+                                                                                    <span>
+                                                                                        Sub Sub Category
+                                                                                        Name
+                                                                                    </span>
                                                                                 </div>
-                                                                                <div
-                                                                                    class="form-group col-sm-8 text-secondary">
+                                                                                <div class="col-sm-8 ">
                                                                                     <input type="text" name="title"
-                                                                                        class="form-control maxlength"
+                                                                                        class="form-control form-control-sm maxlength"
                                                                                         maxlength="100"
                                                                                         value="{{ $sub_sub_cat->title }}" />
                                                                                 </div>
                                                                             </div>
 
-                                                                            <div class="row mb-3">
-                                                                                <div class="col-sm-4">
-                                                                                    <h6 class="mb-0">Sub Sub Category Image </h6>
+                                                                            <div class="row mb-1">
+                                                                                <div class="col-sm-4 text-start">
+                                                                                    <span>
+                                                                                        Sub Sub Category Image
+                                                                                    </span>
                                                                                 </div>
-                                                                                <div class="col-sm-8 text-secondary">
+                                                                                <div class="col-sm-6 text-start">
                                                                                     <input type="file" name="image"
-                                                                                        class="form-control"
+                                                                                        class="form-control form-control-sm"
                                                                                         id="image2" accept="image/*" />
-                                                                                    <div class="form-text">Accepts only
-                                                                                        png, jpg, jpeg images</div>
-                                                                                    <img id="showImage2"
+                                                                                </div>
+                                                                                <div class="col-sm-3 text-end">
+                                                                                    <img class="rounded-circle"
+                                                                                        id="showImage2"
                                                                                         src="{{ asset('storage/' . $sub_sub_cat->image) }}"
-                                                                                        height="80" alt="">
+                                                                                        width="40" height="40"
+                                                                                        alt="">
                                                                                 </div>
                                                                             </div>
 
-                                                                            <div class="row mb-3">
-                                                                                <div class="col-sm-3">
-                                                                                    <h6 class="mb-0">Sub Sub Category Banner Image </h6>
+                                                                            <div class="row mb-1">
+                                                                                <div class="col-sm-4 text-start">
+                                                                                    <span>Sub Sub Category
+                                                                                        Banner Image</span>
                                                                                 </div>
-                                                                                <div class="col-sm-8 text-secondary">
-                                                                                    <input type="file" name="banner_image"
-                                                                                        class="form-control"
-                                                                                        id="banner_image" accept="image/*" />
-                                                                                    <div class="form-text">Accepts only
-                                                                                        png, jpg, jpeg images</div>
-                                                                                    <img src="{{ asset('storage/' . $sub_sub_cat->banner_image) }}"
-                                                                                        height="80" alt=""
+                                                                                <div class="col-sm-6 text-start">
+                                                                                    <input type="file"
+                                                                                        name="banner_image"
+                                                                                        class="form-control form-control-sm"
+                                                                                        id="banner_image"
+                                                                                        accept="image/*" />
+                                                                                </div>
+                                                                                <div class="col-sm-3 text-end">
+                                                                                    <img class="rounded-circle"
+                                                                                        src="{{ asset('storage/' . $sub_sub_cat->banner_image) }}"
+                                                                                        width="40" height="40"
+                                                                                        alt=""
                                                                                         id="showbannerImage">
                                                                                 </div>
                                                                             </div>
 
-                                                                            <div class="row mb-3">
-                                                                                <div class="col-sm-4">
-                                                                                    <h6 class="mb-0">Sub Sub Category
-                                                                                        Status</h6>
+                                                                            <div class="row mb-1">
+                                                                                <div class="col-sm-4 text-start">
+                                                                                    <span>Sub Sub Category
+                                                                                        Status</span>
                                                                                 </div>
-                                                                                <div
-                                                                                    class="form-group col-sm-4 text-secondary">
+                                                                                <div class="col-sm-4 text-start ">
                                                                                     <div class="form-check">
                                                                                         <input class="form-check-input"
                                                                                             type="radio" name="status"
@@ -654,10 +699,10 @@
 
 
                                                                             <div class="row">
-                                                                                <div class="col-sm-3"></div>
-                                                                                <div class="col-sm-9 text-secondary">
+                                                                                <div class="col-sm-12 text-end">
                                                                                     <button type="submit"
-                                                                                        class="btn btn-primary">Update</button>
+                                                                                        class="text-white btn btn-sm"
+                                                                                        style="background-color:#247297 !important; padding: 5px 12px 5px;">Update</button>
                                                                                 </div>
                                                                             </div>
 
@@ -668,10 +713,12 @@
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                        <!---Sub Sub Category Update modal--->
+                                                        <!---Sub Sub Category edit modal End--->
+
                                                         <a href="{{ route('subsubcategory.destroy', [$sub_sub_cat->id]) }}"
                                                             class="text-danger delete mx-2">
-                                                            <i class="delete icon-trash"></i>
+                                                            <i
+                                                                class="fa-solid fa-trash p-1 rounded-circle text-danger"></i>
                                                         </a>
 
                                                     </td>
@@ -683,22 +730,38 @@
                             </div>
                         </div>
                     </div>
-
-                    <div class="tab-content">
-                        <div class="tab-pane fade show" id="js-tab4">
-
-                            <div id="table2" class="card cardT">
-                                <div class="card-header">
-                                    <h4 class="mb-0 text-center">All Sub Sub Sub Category</h4>
-                                </div>
-                                <table class="subSubSubCategoryDT table table-bordered table-hover datatable-highlight">
+                    <div class="tab-content p-0 mx-auto" style="width: 90%;">
+                        <div class="tab-pane fade show" id="sub_sub_sub_category">
+                            <div class="d-flex align-items-center py-2">
+                                {{-- Add Category Modal --}}
+                                <a href="{{ route('category.create') }}" class=" text-success nav-link cat-tab3"
+                                    data-bs-toggle="modal" data-bs-target="#categoryAdd"
+                                    style="position: relative;
+                                    z-index: 999; margin-bottom: -30px;">
+                                    <span class="ms-2 icon_btn" style="font-weight: 800;" data-bs-toggle="tooltip"
+                                        data-bs-placement="top" title="Add Category">
+                                        <i class="ph-plus icons_design"></i>
+                                    </span>
+                                    <div class="d-flex justify-content-between">
+                                        <span class="ms-1">Add Sub Sub
+                                            Child Category</span>
+                                    </div>
+                                    <div class="d-flex justify-content-between hide_mobile">
+                                        <h6 class="mb-0 text-black text-center" style="margin-left: 27rem !important;">Sub
+                                            Child Category</h6>
+                                    </div>
+                                </a>
+                            </div>
+                            <div>
+                                <table
+                                    class="table sub_sub_sub_category table-bordered table-hover datatable-highlight text-center ">
                                     <thead>
                                         <tr>
-                                            <th width="5%">Sl No:</th>
-                                            <th width="20%">Sub Sub Sub Category Name</th>
-                                            <th width="10%">Sub Sub Sub Category Image</th>
-                                            <th width="10%">Sub Sub Sub Category Banner Image</th>
-                                            <th width="15%">Sub Sub Category Name</th>
+                                            <th width="5%">Id</th>
+                                            <th width="10%">Category Image</th>
+                                            <th width="10%">Category Banner Image</th>
+                                            <th width="20%">Category Name</th>
+                                            <th width="15%">Category Name</th>
                                             <th width="15%">Sub Category Name</th>
                                             <th width="15%">Category Name</th>
                                             <th width="10%" class="text-center">Actions</th>
@@ -708,34 +771,30 @@
                                         @if ($sub_sub_sub_cats)
                                             @foreach ($sub_sub_sub_cats as $key => $sub_sub_sub_cat)
                                                 <tr>
-                                                    <td>{{ ++$key }}</td>
-                                                    <td>{{ $sub_sub_sub_cat->title }}</td>
-                                                    <td class="text-center">
-                                                        <img src="{{ asset('storage/' . $sub_sub_sub_cat->image) }}"
-                                                            height="40" alt="">
+                                                    <td class="text-center">{{ ++$key }}</td>
+                                                    <td><img src="{{ asset('storage/' . $sub_sub_sub_cat->image) }}"
+                                                            alt="" width="25px" height="25px"></td>
+                                                    <td><img src="{{ asset('storage/' . $sub_sub_sub_cat->banner_image) }}"
+                                                            alt="" width="25px" height="25px"></td>
+                                                    <td>{{ App\Models\Admin\SubSubCategory::where('id', $sub_sub_sub_cat->sub_sub_cat_id)->value('title') }}
                                                     </td>
-                                                    <td class="text-center">
-                                                        <img src="{{ asset('storage/' . $sub_sub_sub_cat->banner_image) }}"
-                                                            height="40" alt="">
+                                                    <td>{{ App\Models\Admin\SubCategory::where('id', $sub_sub_sub_cat->sub_cat_id)->value('title') }}
                                                     </td>
-                                                    <td> {{ App\Models\Admin\SubSubCategory::where('id', $sub_sub_sub_cat->sub_sub_cat_id)->value('title') }}
-                                                    </td>
-                                                    <td> {{ App\Models\Admin\SubCategory::where('id', $sub_sub_sub_cat->sub_cat_id)->value('title') }}
-                                                    </td>
-                                                    <td> {{ App\Models\Admin\Category::where('id', $sub_sub_sub_cat->cat_id)->value('title') }}
+                                                    <td>{{ App\Models\Admin\Category::where('id', $sub_sub_sub_cat->cat_id)->value('title') }}
                                                     </td>
                                                     <td>
                                                         @if ($sub_sub_sub_cat->status == 'active')
-                                                            <span class="badge bg-success">Active</span>
+                                                            <span class="text-success">Active</span>
                                                         @else
-                                                            <span class="badge bg-danger">Inactive</span>
+                                                            <span class="text-info">Inactive</span>
                                                         @endif
                                                     </td>
                                                     <td class="text-center">
                                                         <a href="javascript:void(0);" class="text-primary"
                                                             data-bs-toggle="modal"
                                                             data-bs-target="#update_sub_sub_cat_{{ $sub_sub_sub_cat->slug }}">
-                                                            <i class="icon-pencil"></i>
+                                                            <i
+                                                                class="fa-solid fa-pen-to-square me-2 p-1 rounded-circle text-primary"></i>
                                                         </a>
                                                         <!---Sub Sub Category Update modal--->
                                                         <div id="update_sub_sub_cat_{{ $sub_sub_sub_cat->slug }}"
@@ -759,15 +818,14 @@
                                                                             enctype="multipart/form-data">
                                                                             @csrf
                                                                             @method('PUT')
-                                                                            <div class="row mb-3">
-                                                                                <div class="col-sm-4">
-                                                                                    <h6 class="mb-0">Category Name</h6>
+                                                                            <div class="row mb-1">
+                                                                                <div class="col-sm-4 text-start">
+                                                                                    <span>Category Name</span>
                                                                                 </div>
-                                                                                <div
-                                                                                    class="form-group col-sm-8 text-secondary">
+                                                                                <div class="col-sm-8 text-start">
                                                                                     <select name="cat_id"
                                                                                         class="form-control select"
-                                                                                        data-width="250"
+                                                                                        data-width="100%"
                                                                                         data-minimum-results-for-search="Infinity">
                                                                                         <option value=""> -- Select
                                                                                             Category -- </option>
@@ -782,16 +840,14 @@
                                                                                 </div>
                                                                             </div>
 
-                                                                            <div class="row mb-3">
-                                                                                <div class="col-sm-4">
-                                                                                    <h6 class="mb-0">Sub Category Name
-                                                                                    </h6>
+                                                                            <div class="row mb-1">
+                                                                                <div class="col-sm-4 text-start">
+                                                                                    <span>Sub Category Name</span>
                                                                                 </div>
-                                                                                <div
-                                                                                    class="form-group col-sm-8 text-secondary">
+                                                                                <div class="col-sm-8 text-start">
                                                                                     <select name="sub_cat_id"
                                                                                         class="form-control select"
-                                                                                        data-width="250"
+                                                                                        data-width="100%"
                                                                                         data-minimum-results-for-search="Infinity">
                                                                                         <option value=""> -- Select
                                                                                             Category -- </option>
@@ -806,16 +862,15 @@
                                                                                 </div>
                                                                             </div>
 
-                                                                            <div class="row mb-3">
-                                                                                <div class="col-sm-4">
-                                                                                    <h6 class="mb-0">Sub Sub Category
-                                                                                        Name</h6>
+                                                                            <div class="row mb-1">
+                                                                                <div class="col-sm-4 text-start">
+                                                                                    <span>Sub Sub Category
+                                                                                        Name</span>
                                                                                 </div>
-                                                                                <div
-                                                                                    class="form-group col-sm-8 text-secondary">
+                                                                                <div class="col-sm-8 text-start">
                                                                                     <select name="sub_sub_cat_id"
                                                                                         class="form-control select"
-                                                                                        data-width="250"
+                                                                                        data-width="100%"
                                                                                         data-minimum-results-for-search="Infinity">
                                                                                         <option value=""> -- Select
                                                                                             Category -- </option>
@@ -830,59 +885,64 @@
                                                                                 </div>
                                                                             </div>
 
-                                                                            <div class="row mb-3">
-                                                                                <div class="col-sm-4">
-                                                                                    <h6 class="mb-0">Sub Sub Sub Category
-                                                                                        Name</h6>
+                                                                            <div class="row mb-1">
+                                                                                <div class="col-sm-4 text-start">
+                                                                                    <span>Sub Sub Sub Category
+                                                                                        Name</span>
                                                                                 </div>
-                                                                                <div
-                                                                                    class="form-group col-sm-8 text-secondary">
+                                                                                <div class="col-sm-8 text-start">
                                                                                     <input type="text" name="title"
-                                                                                        class="form-control maxlength"
+                                                                                        class="form-control form-control-sm maxlength"
                                                                                         maxlength="100"
                                                                                         value="{{ $sub_sub_sub_cat->title }}" />
                                                                                 </div>
                                                                             </div>
 
-                                                                            <div class="row mb-3">
-                                                                                <div class="col-sm-4">
-                                                                                    <h6 class="mb-0">Sub Sub Sub Category
-                                                                                        Image </h6>
+                                                                            <div class="row mb-1">
+                                                                                <div class="col-sm-4 text-start">
+                                                                                    <span>Sub Sub Sub Category
+                                                                                        Image</span>
                                                                                 </div>
-                                                                                <div class="col-sm-8 text-secondary">
+                                                                                <div class="col-sm-6 text-start">
                                                                                     <input type="file" name="image"
-                                                                                        class="form-control"
+                                                                                        class="form-control form-control-sm"
                                                                                         id="image3" accept="image/*" />
-                                                                                    <div class="form-text">Accepts only
-                                                                                        png, jpg, jpeg images</div>
-                                                                                    <img src="{{ asset('storage/' . $sub_sub_sub_cat->image) }}"
-                                                                                        height="80" alt="">
+                                                                                </div>
+                                                                                <div class="col-sm-3 text-end">
+                                                                                    <img class="rounded-circle"
+                                                                                        src="{{ asset('storage/' . $sub_sub_sub_cat->image) }}"
+                                                                                        width="40" height="40"
+                                                                                        alt="">
                                                                                 </div>
                                                                             </div>
 
-                                                                            <div class="row mb-3">
-                                                                                <div class="col-sm-3">
-                                                                                    <h6 class="mb-0">Sub Sub Sub Category Banner Image </h6>
+                                                                            <div class="row mb-1">
+                                                                                <div class="col-sm-4 text-start">
+                                                                                    <span>Sub Sub Sub Category
+                                                                                        Banner Image </span>
                                                                                 </div>
-                                                                                <div class="col-sm-8 text-secondary">
-                                                                                    <input type="file" name="banner_image"
-                                                                                        class="form-control"
-                                                                                        id="banner_image" accept="image/*" />
-                                                                                    <div class="form-text">Accepts only
-                                                                                        png, jpg, jpeg images</div>
-                                                                                    <img src="{{ asset('storage/' . $sub_sub_sub_cat->banner_image) }}"
-                                                                                        height="80" alt=""
+                                                                                <div class="col-sm-6 text-start">
+                                                                                    <input type="file"
+                                                                                        name="banner_image"
+                                                                                        class="form-control form-control-sm"
+                                                                                        id="banner_image"
+                                                                                        accept="image/*" />
+                                                                                </div>
+                                                                                <div class="col-sm-3 text-end">
+                                                                                    <img class="rounded-circle"
+                                                                                        src="{{ asset('storage/' . $sub_sub_sub_cat->banner_image) }}"
+                                                                                        width="40" height="40"
+                                                                                        alt=""
                                                                                         id="showbannerImage">
                                                                                 </div>
                                                                             </div>
 
-                                                                            <div class="row mb-3">
-                                                                                <div class="col-sm-4">
-                                                                                    <h6 class="mb-0">Sub Sub Sub Category
-                                                                                        Status</h6>
+                                                                            <div class="row mb-1">
+                                                                                <div class="col-sm-4 text-start">
+                                                                                    <span>Sub Sub Sub Category
+                                                                                        Status</span>
                                                                                 </div>
-                                                                                <div
-                                                                                    class="form-group col-sm-4 text-secondary">
+                                                                                <div class="col-sm-4 text-start">
                                                                                     <div class="form-check">
                                                                                         <input class="form-check-input"
                                                                                             type="radio" name="status"
@@ -907,13 +967,11 @@
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
-
-
                                                                             <div class="row">
-                                                                                <div class="col-sm-3"></div>
-                                                                                <div class="col-sm-9 text-secondary">
+                                                                                <div class="col-sm-12 text-end">
                                                                                     <button type="submit"
-                                                                                        class="btn btn-primary">Update</button>
+                                                                                        class="text-white btn btn-sm"
+                                                                                        style="background-color:#247297 !important; padding: 5px 12px 5px;">Update</button>
                                                                                 </div>
                                                                             </div>
 
@@ -927,7 +985,8 @@
                                                         <!---Sub Sub Category Update modal--->
                                                         <a href="{{ route('subsubsubcategory.destroy', [$sub_sub_sub_cat->id]) }}"
                                                             class="text-danger delete mx-2">
-                                                            <i class="delete icon-trash"></i>
+                                                            <i
+                                                                class="fa-solid fa-trash p-1 rounded-circle text-danger"></i>
                                                         </a>
 
                                                     </td>
@@ -936,344 +995,186 @@
                                         @endif
                                     </tbody>
                                 </table>
-
                             </div>
                         </div>
                     </div>
                 </div>
-
-                {{-- <div class="card col-lg-5 mt-1 pt-2">
-                    <div class="tab-content">
-                        <div class="" id="cat-tab1">
-                            <div class="row">
-                                <div class="col-lg-4">
-                                    <div class="row">
-                                        <p class="text-center">Sub Category</p>
-                                        <table class="table table-bordered table-hover text-center">
-                                            <thead>
-                                                <tr class="bg-dark text-white">
-                                                    <th>Name</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-
-                                                <tr>
-                                                    <td><a href="">HomePage</a></td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4">
-                                    <div class="row">
-                                        <p class="text-center">Sub Sub Category</p>
-                                        <table class="table table-bordered table-hover text-center">
-                                            <thead>
-                                                <tr class="bg-dark text-white">
-                                                    <th>Name</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td><a href="">HomePage</a></td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4">
-                                    <div class="row">
-                                        <p class="text-center">Sub Sub Sub Category</p>
-                                        <table class="table table-bordered table-hover text-center">
-                                            <thead>
-                                                <tr class="bg-dark text-white">
-                                                    <th>Name</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td><a href="">HomePage</a></td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
+                {{-- Category Add Modal Content Start --}}
+                <!---Sub Sub Category edit modal--->
+                <div id="categoryAdd" class="modal fade" tabindex="-1" style="display: none;" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Category Add Form</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                             </div>
+
+                            <div class="modal-body border br-7">
+                                <form method="post" action="{{ route('category.store') }}"
+                                    enctype="multipart/form-data">
+                                    @csrf
+                                    <div class="row mb-1">
+                                        <div class="col-sm-4">
+                                            <span>Category Name</span>
+                                        </div>
+                                        <div class="col-sm-8 text-secondary">
+                                            <input type="text" name="title"
+                                                class="form-control form-control-sm maxlength" maxlength="100" required />
+                                        </div>
+                                    </div>
+                                    {{--  --}}
+                                    <div class="row mb-1">
+                                        <div class="col-sm-4">
+                                            <span>Category Image</span>
+                                            <h6 class="mb-0"></h6>
+                                        </div>
+                                        <div class="col-sm-6 text-start">
+                                            <input type="file" name="image" class="form-control form-control-sm"
+                                                id="image2" accept="image/*" required />
+                                        </div>
+                                        <div class="col-sm-2 text-end">
+                                            <img class="rounded-circle" id="showImage2"
+                                                src="https://cdn.pixabay.com/photo/2017/02/07/02/16/cloud-2044823_960_720.png"
+                                                width="40" height="40" alt="">
+                                        </div>
+                                    </div>
+                                    {{--  --}}
+                                    <div class="row mb-1">
+                                        <div class="col-sm-4">
+                                            <span>Category Banner Image</span>
+                                            <h6 class="mb-0"> </h6>
+                                        </div>
+                                        <div class="col-sm-6 text-start">
+                                            <input type="file" name="banner_image"
+                                                class="form-control form-control-sm" id="banner_image" accept="image/*"
+                                                required />
+                                        </div>
+                                        <div class="col-sm-2 text-end">
+                                            <img class="rounded-circle" id="showImage2"
+                                                src="https://cdn.pixabay.com/photo/2017/02/07/02/16/cloud-2044823_960_720.png"
+                                                width="40" height="40" alt="">
+                                        </div>
+                                    </div>
+                                    {{--  --}}
+                                    <div class="row mb-1">
+                                        <div class="col-sm-4">
+                                            <span>Category Status</span>
+                                            <h6 class="mb-0"></h6>
+                                        </div>
+                                        <div class=" col-sm-8 text-secondary">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="status"
+                                                    value="active" id="flexRadioDefault1" checked>
+                                                <label class="form-check-label" for="flexRadioDefault1">
+                                                    Active
+                                                </label>
+                                            </div>
+                                            <div class="form-check mt-2">
+                                                <input class="form-check-input" type="radio" name="status"
+                                                    value="inactive" id="flexRadioDefault2" >
+                                                <label class="form-check-label" for="flexRadioDefault2">
+                                                    Inactive
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row ">
+                                        <div class="col-sm-12 text-secondary d-flex justify-content-end ">
+                                            <button type="submit" class="text-white btn btn-sm"
+                                                style="background-color:#247297 !important; padding: 5px 12px 5px;"
+                                                id="submitbtn">Submit
+                                                <i class="ph-paper-plane-tilt ms-2"></i></button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+
+
                         </div>
                     </div>
-                    <div class="tab-content">
-                        <div class="d-none" id="cat-tab2">
-                            <div class="row">
-                                <div class="col-lg-4">
-                                    <div class="row">
-                                        <p class="strong card-title">Category</p>
-                                        <table class="table table-bordered table-hover text-center">
-                                            <thead>
-                                                <tr class="bg-dark text-white">
-                                                    <th>Name</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                @if ($categorys)
-                                                @foreach ($categorys as $key => $category)
-                                                <tr>
-                                                    <td><a href="javascript:void();" data-bs-toggle="modal" data-bs-target="#categoryshow">{{$category->title}}</a></td>
-                                                </tr>
-                                                @endforeach
-                                                @endif
-
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4">
-                                    <div class="row">
-                                        <p class="strong card-title">Sub Sub Category</p>
-                                        <table class="table table-bordered table-hover text-center">
-                                            <thead>
-                                                <tr class="bg-dark text-white">
-                                                    <th>Name</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td><a href="">HomePage</a></td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4">
-                                    <div class="row">
-                                        <p class="strong card-title">Sub Sub Sub Category</p>
-                                        <table class="table table-bordered table-hover text-center">
-                                            <thead>
-                                                <tr class="bg-dark text-white">
-                                                    <th>Name</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td><a href="">HomePage</a></td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="tab-content">
-                        <div class="d-none" id="cat-tab3">
-                            <div class="row">
-                                <div class="col-lg-4">
-                                    <div class="row">
-                                        <p class="strong card-title">Category</p>
-                                        <table class="table table-bordered table-hover text-center">
-                                                <thead>
-                                                    <tr class="bg-dark text-white">
-                                                        <th>Name</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <tr>
-                                                        <td><a href="">HomePage</a></td>
-                                                    </tr>
-                                                </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4">
-                                    <div class="row">
-                                        <p class="strong card-title">Sub Category</p>
-                                        <table class="table table-bordered table-hover text-center">
-                                                <thead>
-                                                    <tr class="bg-dark text-white">
-                                                        <th>Name</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <tr>
-                                                        <td><a href="">HomePage</a></td>
-                                                    </tr>
-                                                </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4">
-                                    <div class="row">
-                                        <p class="strong card-title">Sub Sub Sub Category</p>
-                                        <table class=" table table-bordered table-hover text-center">
-                                                <thead>
-                                                    <tr class="bg-dark text-white">
-                                                        <th>Name</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <tr>
-                                                        <td><a href="">HomePage</a></td>
-                                                    </tr>
-                                                </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="tab-content">
-                        <div class="d-none" id="cat-tab4">
-                            <div class="row">
-                                <div class="col-lg-4">
-                                    <div class="row">
-                                        <p class="strong card-title">Category</p>
-                                        <table class="table table-bordered table-hover text-center">
-                                                <thead>
-                                                    <tr class="bg-dark text-white">
-                                                        <th>Name</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <tr>
-                                                        <td><a href="">HomePage</a></td>
-                                                    </tr>
-                                                </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4">
-                                    <div class="row">
-                                        <p class="strong card-title">Sub Category</p>
-                                        <table class="table table-bordered table-hover text-center">
-                                                <thead>
-                                                    <tr class="bg-dark text-white">
-                                                        <th>Name</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <tr>
-                                                        <td><a href="">HomePage</a></td>
-                                                    </tr>
-                                                </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4">
-                                    <div class="row">
-                                        <p class="strong card-title">Sub Sub Category</p>
-                                    <table class="table table-bordered table-hover text-center">
-                                            <thead>
-                                                <tr class="bg-dark text-white">
-                                                    <th>Name</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td><a href="">HomePage</a></td>
-                                                </tr>
-                                            </tbody>
-                                    </table>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                </div> --}}
+                </div>
+                <!---Sub Sub Category edit modal End--->
             </div>
-        </div>
+        </section>
+
+
 
     </div>
-    <!-- /content area -->
-    <!-- /inner content -->
-
-    </div>
-    <script>
-        $(document).ready(function() {
-            $(".cat-tab1").click(function() {
-                $("#cat-tab3").addClass('d-none');
-                $("#cat-tab2").addClass('d-none');
-                $("#cat-tab4").addClass('d-none');
-                $("#cat-tab1").removeClass('d-none');
-            });
-            $(".cat-tab2").click(function() {
-                $("#cat-tab1").addClass('d-none');
-                $("#cat-tab3").addClass('d-none');
-                $("#cat-tab4").addClass('d-none');
-                $("#cat-tab2").removeClass('d-none');
-            });
-            $(".cat-tab3").click(function() {
-                $("#cat-tab1").addClass('d-none');
-                $("#cat-tab2").addClass('d-none');
-                $("#cat-tab4").addClass('d-none');
-                $("#cat-tab3").removeClass('d-none');
-            });
-            $(".cat-tab4").click(function() {
-                $("#cat-tab1").addClass('d-none');
-                $("#cat-tab2").addClass('d-none');
-                $("#cat-tab3").addClass('d-none');
-                $("#cat-tab4").removeClass('d-none');
-            });
-        });
-    </script>
-
 @endsection
 
 @once
     @push('scripts')
         <script type="text/javascript">
-            function dropdownCategory() {
-                var selectedTable = document.getElementById("dropdownCategory").value;
-                var elements = document.getElementsByClassName('cardT')
-                for (var i = 0; i < elements.length; i++) {
-                    if (elements[i].id == selectedTable)
-                        elements[i].style.display = '';
-                    else
-                        elements[i].style.display = 'none';
-                }
-            }
+            $('.category ').DataTable({
+                dom: '<"datatable-header"fl><"datatable-scroll"t><"datatable-footer"ip>',
+                "iDisplayLength": 10,
+                "lengthMenu": [10, 26, 30, 10],
+                columnDefs: [{
+                    orderable: false,
+                    targets: [5],
+                }, ],
+            });
         </script>
-
         <script type="text/javascript">
-            $('.categoryDT').DataTable({
+            $('.sub_category').DataTable({
                 dom: '<"datatable-header"fl><"datatable-scroll"t><"datatable-footer"ip>',
                 "iDisplayLength": 10,
-                "lengthMenu": [10, 26, 30, 50],
+                "lengthMenu": [10, 26, 30, 10],
                 columnDefs: [{
                     orderable: false,
-                    targets: [1, 3, 4],
+                    targets: [6],
                 }, ],
             });
-
-            $('.subCategoryDT').DataTable({
+        </script>
+        <script type="text/javascript">
+            $('.sub_sub_category').DataTable({
                 dom: '<"datatable-header"fl><"datatable-scroll"t><"datatable-footer"ip>',
                 "iDisplayLength": 10,
-                "lengthMenu": [10, 26, 30, 50],
+                "lengthMenu": [10, 26, 30, 10],
                 columnDefs: [{
                     orderable: false,
-                    targets: [1, 4, 5],
+                    targets: [7],
                 }, ],
             });
-
-            $('.subSubCategoryDT').DataTable({
+        </script>
+        <script type="text/javascript">
+            $('.sub_sub_sub_category').DataTable({
                 dom: '<"datatable-header"fl><"datatable-scroll"t><"datatable-footer"ip>',
                 "iDisplayLength": 10,
-                "lengthMenu": [10, 26, 30, 50],
+                "lengthMenu": [10, 26, 30, 10],
                 columnDefs: [{
                     orderable: false,
-                    targets: [4, 5],
+                    targets: [7],
                 }, ],
             });
+        </script>
+        <script>
+            $(document).ready(function() {
+                $(".cat-tab1").click(function() {
+                    $("#cat-tab2").addClass('d-none');
+                    $("#cat-tab3").addClass('d-none');
+                    $("#cat-tab1").removeClass('d-none');
+                    $(".saved_title").removeClass('d-none');
+                    $(".completed_title").addClass('d-none');
+                    $(".approved_title").addClass('d-none');
+                });
+                $(".cat-tab2").click(function() {
+                    $("#cat-tab1").addClass('d-none');
+                    $("#cat-tab3").addClass('d-none');
+                    $("#cat-tab2").removeClass('d-none');
+                    $(".approved_title").addClass('d-none');
+                    $(".saved_title").addClass('d-none');
+                    $(".completed_title").removeClass('d-none');
+                });
+                $(".cat-tab3").click(function() {
+                    $("#cat-tab1").addClass('d-none');
+                    $("#cat-tab2").addClass('d-none');
+                    $("#cat-tab3").removeClass('d-none');
+                    $(".saved_title").addClass('d-none');
+                    $(".completed_title").addClass('d-none');
+                    $(".approved_title").removeClass('d-none');
+                });
 
-            $('.subSubSubCategoryDT').DataTable({
-                dom: '<"datatable-header"fl><"datatable-scroll"t><"datatable-footer"ip>',
-                "iDisplayLength": 10,
-                "lengthMenu": [10, 26, 30, 50],
-                columnDefs: [{
-                    orderable: false,
-                    targets: [5, 6],
-                }, ],
             });
         </script>
     @endpush

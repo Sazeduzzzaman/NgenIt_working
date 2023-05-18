@@ -440,7 +440,7 @@
             templates: {
                 button: '<button type="button" class="multiselect dropdown-toggle" data-bs-toggle="dropdown"><span class="multiselect-selected-text"></span></button>',
                 popupContainer: '<div class="multiselect-container dropdown-menu"></div>',
-                filter: '<div class="multiselect-filter"><div class="form-control-feedback form-control-feedback-left input-group"><input type="text" class="multiselect-search form-control"><div class="form-control-feedback-icon"><i class="ph-magnifying-glass text-muted"></i></div><button type="button" class="btn btn-light btn-icon multiselect-clear-filter"><i class="ph-x"></i></button></div></div>',
+                filter: '<div class="multiselect-filter"><div class="form-control-feedback form-control-feedback-left input-group"><input type="text" class="multiselect-search form-control" style="height: 24px !important;"><div class="form-control-feedback-icon"><i class="ph-magnifying-glass text-muted"></i></div><button type="button" class="btn btn-light btn-icon multiselect-clear-filter" style="height: 24px !important;"><i class="ph-x"></i></button></div></div>',
                 option: '<div class="multiselect-item dropdown-item"></div>',
                 divider: '<div class="dropdown-divider"></div>',
                 optionGroup: '<div class="multiselect-item multiselect-group dropdown-item-text"></div>',

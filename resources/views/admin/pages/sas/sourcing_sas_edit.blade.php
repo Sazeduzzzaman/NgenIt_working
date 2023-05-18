@@ -1,302 +1,374 @@
 @extends('admin.master')
 @section('content')
+<style>
+    .datatable-footer {
+    border-top: none !important;
+    padding-top: 0px;
+    padding-left: 0px;
+    padding-right: 0px;
+    padding-bottom: 0px;
+    background: #ffffff !important;
+}
+</style>
     <div class="content-wrapper">
-
         <!-- Inner content -->
-
-
         <!-- Page header -->
         <div class="page-header page-header-light shadow">
-
-
             <div class="page-header-content d-lg-flex border-top">
                 <div class="d-flex">
                     <div class="breadcrumb py-2">
-                        <a href="index.html" class="breadcrumb-item"><i class="ph-house"></i></a>
-                        <a href="{{ route('admin.dashboard') }}" class="breadcrumb-item">Home</a>
-                        <span class="breadcrumb-item active">SAS</span>
+                        <a href="{{ route('admin.dashboard') }}" class="breadcrumb-item"><i class="ph-house me-2"></i> Home</a>
+                        <a href="{{ route('sas.index') }}" class="breadcrumb-item">SAS</a>
+                        <a href="" class="breadcrumb-item">Edit</a>
                     </div>
-
                     <a href="#breadcrumb_elements"
                         class="btn btn-light align-self-center collapsed d-lg-none border-transparent rounded-pill p-0 ms-auto"
                         data-bs-toggle="collapse">
-
                         <i class="ph-caret-down collapsible-indicator ph-sm m-1"></i>
                     </a>
-
                 </div>
             </div>
         </div>
-        <div class="card">
-            <div class="row py-2">
-                <div class="col-lg-6"></div>
-                <div class="col-lg-3">
-                    <a href="{{route('product.approve')}}" type="button" class="btn btn-sm btn-warning btn-labeled btn-labeled-start text-center">
-                        <span class="btn-labeled-icon bg-black bg-opacity-20">
-                            <i class="icon-plus2"></i>
-                        </span>
-                        Back To Product Approval
-                    </a>
-                </div>
-                <div class="col-lg-3">
-                    <a href="{{route('sas.index')}}" type="button" class="btn btn-sm btn-warning btn-labeled btn-labeled-start text-center">
-                        <span class="btn-labeled-icon bg-black bg-opacity-20">
-                            <i class="icon-plus2"></i>
-                        </span>
-                        Back To SAS List
-                    </a>
+        <div class="container mt-3 mb-3">
+            <!-- /Form  header -->
+            <div class="text-center">
+                <div class="text-start">
+                    <div class="row main_bg py-1 rounded-1 d-flex align-items-center gx-0 px-2">
+
+                        <div class="col-lg-4 col-sm-12">
+                            <div>
+                                <a class="btn btn-primary btn-rounded rounded-circle btn-icon back-btn"
+                                    href="{{ route('sas.index') }}">
+                                    <i class="fa-solid fa-arrow-left main_color"></i>
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-4 col-sm-12 d-flex justify-content-center">
+                            <p class="text-white p-0 m-0 fw-bold"> Edit SAS </p>
+                        </div>
+
+                        <div class="col-lg-4 col-sm-12 d-flex justify-content-end">
+                            <a href="{{ route('product.approve') }}" class="btn navigation_btn">
+                                <div class="d-flex align-items-center ">
+                                    <i class="fa-solid fa-nfc-magnifying-glass me-1" style="font-size: 10px;"></i>
+                                    <span>Approval</span>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-        <!-- /page header -->
 
-
-        <!-- Content area -->
-        <div class="content">
-
-
-            <form method="post" action="{{ route('sas.update',[$sourcing->ref_code]) }}">
-                @csrf
-                @method('PUT')
-                <div class="row">
-                    <div class="col-lg-8">
-                        <div class="card">
-                            <div class="card-body">
-                                <div class="table-responsive">
-                                    <table class="text-center sasDT datatable table table-bordered table-hover">
-                                        <thead>
-                                            <tr>
-                                                <th width="60%" colspan="2">SAS Ref: </th>
-                                                <th width="40%">SAS Create Date</th>
-                                            </tr>
-                                            <tr>
-                                                <input type="hidden" name="product_id" value="{{ $product->id }}">
-                                                <td colspan="2">{{ $product->ref_code }} <input type="hidden"
-                                                        name="ref_code" value="{{ $product->ref_code }}"></td>
-
-                                                <input type="hidden" name="create" value="{{ \Carbon\Carbon::now() }}">
-                                                <td>{{ \Carbon\Carbon::now() }}</td>
-                                            </tr>
-                                            <tr>
-                                                <th width="60%">Item Name</th>
-                                                <input type="hidden" name="item_name" value="{{ $product->name }}">
-
-                                                <th width="20%">Cost (Cog Price)</th>
-                                                <th width="20%">Sales</th>
-                                            </tr>
-                                            <tr>
-                                                <td width="60%">{{ $product->name }}</td>
+            <div class="container bg-white">
+                <form method="post" action="{{ route('sas.update', [$sourcing->ref_code]) }}">
+                    @csrf
+                    @method('PUT')
+                    <div class="row">
+                        <div class="col-lg-8">
+                            <div class="table-responsive">
+                                <div class="d-flex align-items-center py-2">
+                                    {{-- Add Details Start --}}
+                                    <div class="text-success nav-link cat-tab3"
+                                        style="position: relative;
+                                        z-index: 999;
+                                        margin-bottom: -40px;">
+                                        {{-- <a href="{{ route('knowledge.create') }}">
+                                            <div class="d-flex align-items-center">
+                                                <span class="ms-2 icon_btn" style="font-weight: 800;" data-bs-toggle="tooltip"
+                                                    data-bs-placement="top" title="Add Solution Details">
+                                                    <i class="ph-plus icons_design"></i> </span>
+                                                <span class="ms-1" style="color: #247297;">Add</span>
+                                            </div>
+                                        </a> --}}
+                                        <div class="text-center" style="margin-left: 160px">
+                                            <h5 class="ms-1" style="color: #247297;">All SAS</h5>
+                                        </div>
+                                    </div>
+                                    {{-- Add Details End --}}
+                                </div>
+                                <table class="table sourcing_sasDT table-bordered table-hover text-center">
+                                    <thead>
+                                        <tr>
+                                            <th width="8%">Id</th>
+                                            <th width="10%">SAS Ref</th>
+                                            <th width="12%">SAS Date</th>
+                                            <th width="40%">Item Name</th>
+                                            <th width="10%">Cost</th>
+                                            <th width="10%">Sales</th>
+                                            <th width="10%" class="text-center">Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>1</td>
+                                            <td>{{ $product->ref_code }}</td>
+                                            <td>{{ \Carbon\Carbon::now() }}</td>
+                                            <td>{{ $product->name }}</td>
+                                            <td>
                                                 @if ($product->source_one_approval == 1)
-                                                    <input type="hidden" id="source_price"
-                                                        value="{{ $product->source_one_approval }}">
-                                                    <td width="20%"><input type="text" name="cog_price" readonly
-                                                            value="{{ $product->source_one_price }}" id="price1">
-                                                    </td>
+                                                    {{ $product->source_one_approval }}
+    
+                                                    {{ $product->source_one_price }}
                                                 @else
-                                                    <td width="20%"><input type="text" name="cog_price" readonly
-                                                            value="{{ $product->source_two_price }}" id="price2">
-                                                    </td>
+                                                    {{ $product->source_two_price }}
                                                 @endif
-
-                                                <td width="20%"><input class="sales_price" type="text"
-                                                        name="sales_price" readonly value="{{ $sourcing->sales_price }}">
-                                                </td>
-                                            </tr>
-                                        </thead>
-
-                                        <tbody class="tb">
-
-
-                                            <tr class="bg-dark text-white">
-                                                <td class="text-white" colspan="3">Expenses</td>
-                                            </tr>
-                                            <tr>
-                                                <td >Bank & Remittance Charge - (1.5%)</td>
-                                                <td >
-                                                    <input class="multiplyValue" type="text" name="bank_charge" value="{{ $sourcing->bank_charge }}">
-                                                </td>
-                                                <td width="20%">
-                                                    <input type="text" class="result" readonly value="">
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td width="60%">Customs & Duty - (5.0%)</td>
-                                                <td width="20%"><input class="multiplyValue" type="text"
-                                                        name="customs" value="{{ $sourcing->customs }}">
-                                                </td>
-                                                <td width="20%"><input type="text" class="result" readonly
-                                                        value="">
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td width="60%">Tax / AIT / VAT - (10.0%)</td>
-                                                <td width="20%"><input class="multiplyValue" type="text"
-                                                        name="tax" value="{{ $sourcing->tax }}">
-                                                </td>
-                                                <td width="20%"><input class="result" type="text" readonly
-                                                        value="">
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td width="60%">HR , Office & Utility Cost- (5.0%)</td>
-                                                <td width="20%"><input class="multiplyValue" type="text"
-                                                        name="utility_cost" value="{{ $sourcing->utility_cost }}">
-                                                </td>
-                                                <td width="20%"><input class="result" type="text" readonly
-                                                        value="">
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td width="60%">Shipping & Handling Cost- (5.0%)</td>
-                                                <td width="20%"><input class="multiplyValue" type="text"
-                                                        name="shiping_cost" value="{{ $sourcing->shiping_cost }}">
-                                                </td>
-                                                <td width="20%"><input class="result" type="text" readonly
-                                                        value="">
-                                                </td>
-                                            </tr>
-
-                                            <tr>
-                                                <td width="60%">Sales / Consultancy Comission - (5.0%)</td>
-                                                <td width="20%"><input class="multiplyValue"
-                                                        value="{{ $sourcing->sales_comission }}" type="text"
-                                                        name="sales_comission">
-                                                </td>
-                                                <td width="20%"><input class="result" type="text" readonly
-                                                        value="">
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td width="60%">Bank Loan / Liability / Debt - (5.0%)</td>
-                                                <td width="20%"><input class="multiplyValue" type="text"
-                                                        name="liability" value="{{ $sourcing->liability }}">
-                                                </td>
-                                                <td width="20%"><input class="result" type="text" readonly
-                                                        value="">
-                                                </td>
-                                            </tr>
-                                            <tr class="bg-dark">
-                                                <td class="text-white" colspan="3">Offering Value Adding</td>
-                                            </tr>
-                                            <tr>
-                                                <td width="60%">Promo / Deal / Regular Discounts</td>
-                                                <td width="20%"><input class="multiplyValue"
-                                                        value="{{ $sourcing->regular_discounts }}" type="text"
-                                                        name="regular_discounts"></td>
-                                                <td width="20%"><input class="result" type="text" readonly
-                                                        value=""></td>
-                                            </tr>
-                                            <tr>
-                                                <td width="60%">Deal Closing / Rebates</td>
-                                                <td width="20%"><input class="multiplyValue" type="text"
-                                                        name="rebates" value="{{ $sourcing->rebates }}"></td>
-                                                <td width="20%"><input class="result" type="text" readonly
-                                                        value=""></td>
-                                            </tr>
-                                            <tr>
-                                                <td colspan="3" class="bg-dark text-white">Other Income</td>
-
-                                            </tr>
-                                            <tr>
-                                                <td width="60%">Loan / Capital / Partner Share - (5%)</td>
-                                                <td width="20%"><input class="multiplyValue" type="text"
-                                                        name="capital_share" value="{{ $sourcing->capital_share }}"></td>
-                                                <td width="20%"><input class="result" type="text" readonly
-                                                        value=""></td>
-                                            </tr>
-                                            <tr>
-                                                <td style="width:60%;">Management Cost - (5%)</td>
-                                                <td style="width:20%;"><input class="multiplyValue" type="text"
-                                                        name="management_cost" value="{{ $sourcing->management_cost }}">
-                                                </td>
-                                                <td style="width:20%;"><input class="result" type="text" readonly
-                                                        value=""></td>
-                                            </tr>
-                                            <tr>
-                                                <td style="width:60%;">Net Profit - (5%)</td>
-                                                <td style="width:20%;"><input class="multiplyValue" type="text"
-                                                        name="net_profit" value="{{ $sourcing->net_profit }}"></td>
-                                                <td style="width:20%;"><input class="result" type="text" readonly
-                                                        value=""></td>
-                                            </tr>
-                                            <tr>
-                                                <td style="width:60%;">Gross Profit (%) between Sales and Cost</td>
-                                                <td style="width:20%;">TK. <input class="gross_profit_subtot"
-                                                        type="text" name="gross_profit" readonly
-                                                        value="{{ $sourcing->gross_profit }}"></td>
-                                                <td style="width: 20%;">TK. <input type="text"
-                                                        class="additional_subtot" readonly
-                                                        value="{{ $sourcing->net_profit }}">
-                                                </td>
-                                            </tr>
-
-                                        </tbody>
-                                    </table>
+                                            </td>
+                                            <td>{{ $sourcing->sales_price }}</td>
+                                            <td>
+                                                <a href="" class="text-primary">
+                                                    <i
+                                                        class="fa-solid fa-pen-to-square me-2 p-1 rounded-circle text-primary"></i>
+                                                </a>
+                                                <a href="" class="text-danger delete">
+                                                    <i class="fa-solid fa-trash p-1 rounded-circle text-danger"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+    
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="table-responsive">
+                                <div class="d-flex align-items-center py-2">
+                                    {{-- Add Details Start --}}
+                                    <div class="text-success nav-link cat-tab3"
+                                        style="position: relative;
+                                        z-index: 999;
+                                        margin-bottom: -40px;">
+                                        {{-- <a href="{{ route('knowledge.create') }}">
+                                            <div class="d-flex align-items-center">
+                                                <span class="ms-2 icon_btn" style="font-weight: 800;" data-bs-toggle="tooltip"
+                                                    data-bs-placement="top" title="Add Solution Details">
+                                                    <i class="ph-plus icons_design"></i> </span>
+                                                <span class="ms-1" style="color: #247297;">Add</span>
+                                            </div>
+                                        </a> --}}
+                                        <div class="text-center" style="margin-left: 45px; margin-bottom: 25px;">
+                                            <h5 class="ms-1" style="color: #247297;">Compare with Competetors</h5>
+                                        </div>
+                                    </div>
+                                    {{-- Add Details End --}}
                                 </div>
+                                <table class="table sourcing_sasDT table-bordered table-hover text-center">
+                                    <thead>
+                                        <tr>
+                                            <th>Competetor Name</th>
+                                            <th>Price</th>
+                                            <th>Our Price</th>
+                                            <th>Difference</th>
+                                        </tr>
+                                    <tbody>
+                                        <tr>
+                                            <td>{{ $product->competetor_one_name }}</td>
+                                            <td>{{ $product->competetor_one_price }} <input type="hidden"
+                                                    id="competetor_price1" value="{{ $product->competetor_one_price }}"></td>
+                                            <td>
+                                                <h6 id="ourprice1"></h6>
+                                            </td>
+                                            <td>
+                                                <h6 id="difference1"></h6>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>{{ $product->competetor_two_name }}</td>
+                                            <td>{{ $product->competetor_two_price }}<input type="hidden"
+                                                    id="competetor_price2" value="{{ $product->competetor_two_price }}"></td>
+                                            <td>
+                                                <h6 id="ourprice2"></h6>
+                                            </td>
+                                            <td>
+                                                <h6 id="difference2"></h6>
+                                            </td>
+                                        </tr>
+    
+                                    </tbody>
+                                    </thead>
+                                </table>
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-4">
-                        <div class="card">
-                            <div class="card-header">
-                                <h5 class="text-center">Compare with Competetors</h5>
-                            </div>
-                            <div class="card-body">
-                                <div class="table-responsive">
-                                    <table class="table text-center datatable table table-bordered table-hover">
-                                        <thead>
-                                            <tr>
-                                                <th>Competetor Name</th>
-                                                <th>Price</th>
-                                                <th>Our Price</th>
-                                                <th>Difference</th>
-                                            </tr>
-                                        <tbody>
-                                            <tr>
-                                                <td>{{ $product->competetor_one_name }}</td>
-                                                <td>{{ $product->competetor_one_price }} <input type="hidden"
-                                                        id="competetor_price1"
-                                                        value="{{ $product->competetor_one_price }}"></td>
-                                                <td>
-                                                    <h6 id="ourprice1"></h6>
-                                                </td>
-                                                <td>
-                                                    <h6 id="difference1"></h6>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>{{ $product->competetor_two_name }}</td>
-                                                <td>{{ $product->competetor_two_price }}<input type="hidden"
-                                                        id="competetor_price2"
-                                                        value="{{ $product->competetor_two_price }}"></td>
-                                                <td>
-                                                    <h6 id="ourprice2"></h6>
-                                                </td>
-                                                <td>
-                                                    <h6 id="difference2"></h6>
-                                                </td>
-                                            </tr>
-
-                                        </tbody>
-                                        </thead>
-                                    </table>
+    
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="table-responsive">
+                                <div class="d-flex align-items-center py-2">
+                                    {{-- Add Details Start --}}
+                                    <div class="text-success nav-link cat-tab3"
+                                        style="position: relative;
+                                        z-index: 999;
+                                        margin-bottom: -40px;">
+                                        {{-- <a href="{{ route('knowledge.create') }}">
+                                            <div class="d-flex align-items-center">
+                                                <span class="ms-2 icon_btn" style="font-weight: 800;" data-bs-toggle="tooltip"
+                                                    data-bs-placement="top" title="Add Solution Details">
+                                                    <i class="ph-plus icons_design"></i> </span>
+                                                <span class="ms-1" style="color: #247297;">Add</span>
+                                            </div>
+                                        </a> --}}
+                                        <div class="text-center"
+                                            style=" margin-left: 505px;
+                                        margin-bottom: 20px;">
+                                            <h5 class="ms-1" style="color: #247297;">All Expenses</h5>
+                                        </div>
+                                    </div>
+                                    {{-- Add Details End --}}
                                 </div>
+                                <table class="table sourcing_sasDT table-bordered table-hover text-center">
+                                    <thead>
+                                        <tr>
+                                            <th colspan="3">Expenses</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Bank & Remittance Charge - (1.5%)</td>
+                                            <td>
+                                                <input class="multiplyValue" type="text" name="bank_charge"
+                                                    value="{{ $sourcing->bank_charge }}">
+                                            </td>
+                                            <td>
+                                                <input type="text" class="result" readonly value="">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Customs & Duty - (5.0%)</td>
+                                            <td ><input class="multiplyValue" type="text" name="customs"
+                                                    value="{{ $sourcing->customs }}">
+                                            </td>
+                                            <td><input type="text" class="result" readonly value="">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Tax / AIT / VAT - (10.0%)</td>
+                                            <td><input class="multiplyValue" type="text"
+                                                    name="tax" value="{{ $sourcing->tax }}">
+                                            </td>
+                                            <td><input class="result" type="text" readonly
+                                                    value="">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>HR , Office & Utility Cost- (5.0%)</td>
+                                            <td><input class="multiplyValue" type="text"
+                                                    name="utility_cost" value="{{ $sourcing->utility_cost }}">
+                                            </td>
+                                            <td><input class="result" type="text" readonly
+                                                    value="">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Shipping & Handling Cost- (5.0%)</td>
+                                            <td><input class="multiplyValue" type="text"
+                                                    name="shiping_cost" value="{{ $sourcing->shiping_cost }}">
+                                            </td>
+                                            <td><input class="result" type="text" readonly
+                                                    value="">
+                                            </td>
+                                        </tr>
+    
+                                        <tr>
+                                            <td>Sales / Consultancy Comission - (5.0%)</td>
+                                            <td><input class="multiplyValue"
+                                                    value="{{ $sourcing->sales_comission }}" type="text"
+                                                    name="sales_comission">
+                                            </td>
+                                            <td><input class="result" type="text" readonly
+                                                    value="">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Bank Loan / Liability / Debt - (5.0%)</td>
+                                            <td><input class="multiplyValue" type="text"
+                                                    name="liability" value="{{ $sourcing->liability }}">
+                                            </td>
+                                            <td><input class="result" type="text" readonly
+                                                    value="">
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+    
+                                <table class="table sourcing_sasDT table-bordered table-hover text-center mt-2">
+                                    <thead>
+                                        <tr>
+                                            <th colspan="3">Offering Value Adding</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Promo / Deal / Regular Discounts</td>
+                                            <td><input class="multiplyValue"
+                                                    value="{{ $sourcing->regular_discounts }}" type="text"
+                                                    name="regular_discounts"></td>
+                                            <td><input class="result" type="text" readonly
+                                                    value=""></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Deal Closing / Rebates</td>
+                                            <td><input class="multiplyValue" type="text"
+                                                    name="rebates" value="{{ $sourcing->rebates }}"></td>
+                                            <td><input class="result" type="text" readonly
+                                                    value=""></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+    
+                                <table class="table sourcing_sasDT table-bordered table-hover text-center mt-2">
+                                    <thead>
+                                        <tr>
+                                            <th colspan="3">Other Income</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Loan / Capital / Partner Share - (5%)</td>
+                                            <td><input class="multiplyValue" type="text"
+                                                    name="capital_share" value="{{ $sourcing->capital_share }}"></td>
+                                            <td><input class="result" type="text" readonly
+                                                    value=""></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Management Cost - (5%)</td>
+                                            <td><input class="multiplyValue" type="text"
+                                                    name="management_cost" value="{{ $sourcing->management_cost }}">
+                                            </td>
+                                            <td><input class="result" type="text" readonly
+                                                    value=""></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Net Profit - (5%)</td>
+                                            <td><input class="multiplyValue" type="text"
+                                                    name="net_profit" value="{{ $sourcing->net_profit }}"></td>
+                                            <td><input class="result" type="text" readonly
+                                                    value=""></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Gross Profit (%) between Sales and Cost</td>
+                                            <td><input class="gross_profit_subtot"
+                                                    type="text" name="gross_profit" readonly
+                                                    value="{{ $sourcing->gross_profit }}"></td>
+                                            <td><input type="text"
+                                                    class="additional_subtot" readonly
+                                                    value="{{ $sourcing->net_profit }}">
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="col-lg-8"></div>
-                    <div class="col-lg-4">
-                        <button type="submit" class="btn btn-primary mx-3">Update SAS
-                            <i class="ph-paper-plane-tilt mx-2"></i></button>
+    
+                    <div class="modal-footer border-0 pt-2 pb-2 pe-0">
+                        <button type="submit" class="submit_btn from-prevent-multiple-submits"
+                            style="padding: 5px;">Submit</button>
                     </div>
-
-                </div>
-            </form>
+                </form>
+            </div>
         </div>
-        <!-- /content area -->
-        <!-- /inner content -->
+
 
     </div>
 @endsection
@@ -304,7 +376,26 @@
 @once
     @push('scripts')
         <script type="text/javascript">
-
+            $('.sourcing_sasDT').DataTable({
+                dom: '<"datatable-header"fl><"datatable-scroll"t><"datatable-footer"ip>',
+                "iDisplayLength": 10,
+                "lengthMenu": [10, 25, 30, 50],
+                columnDefs: [{
+                    orderable: false,
+                    targets: [6],
+                }, ],
+            });
+            $('.sourcing_sasDT2').DataTable({
+                dom: '<"datatable-header"fl><"datatable-scroll"t><"datatable-footer"ip>',
+                "iDisplayLength": 10,
+                "lengthMenu": [10, 25, 30, 50],
+                columnDefs: [{
+                    orderable: false,
+                    targets: [3],
+                }, ],
+            });
+        </script>
+        <script type="text/javascript">
             $('.multiplyValue').on('mouseover keyup change', function() {
 
                 if ($('#source_price').val() == 1) {
@@ -336,8 +427,8 @@
                 });
                 var $additional = additional;
                 var $sales_price = parseFloat($price) + parseFloat($additional);
-                var difference1 =  parseFloat($sales_price) - parseFloat($('#competetor_price1').val()) ;
-                var difference2 =  parseFloat($sales_price) - parseFloat($('#competetor_price2').val()) ;
+                var difference1 = parseFloat($sales_price) - parseFloat($('#competetor_price1').val());
+                var difference2 = parseFloat($sales_price) - parseFloat($('#competetor_price2').val());
 
                 var profit = parseFloat((profit).toFixed(2));
                 var additional = parseFloat((additional).toFixed(2));

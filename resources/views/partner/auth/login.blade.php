@@ -124,8 +124,12 @@
             transform: scale(.6);
         }
 
+        i {
+            cursor: pointer;
+        }
+
         /* Social */
-        @import url("//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css");
+        /* @import url("//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"); */
 
         body {
             background-color: #eee;
@@ -225,31 +229,11 @@
                             <label class="sign_back" for="chk" aria-hidden="true"><span class="text-black mr-2">Already
                                     Have an Account ?</span> Login Now</label>
 
-                            <input class="input_login" type="text" name="name" placeholder="Full name" required
-                                value="{{ old('name') }}">
-                            <input class="input_login" type="email" name="email" placeholder="Email" required
-                                value="{{ old('email') }}">
-                            <input class="input_login" type="number" name="phone" placeholder="Phone" required
-                                value="{{ old('phone') }}">
-                            <input class="input_login" type="text" name="company_name" placeholder="Company Name" required
-                                value="{{ old('company_name') }}">
-                            <div class="row">
-                                <div class="col-lg-6">
-                                    <input class="input_login" type="text" name="company_phone_number" placeholder="Company Phone Number" required
-                                    value="{{ old('company_phone_number') }}">
-                                </div>
-                                <div class="col-lg-6">
-                                    <input class="input_login" type="text" name="tin_number" placeholder="Tin Number" required
-                                    value="{{ old('tin_number') }}">
-                                </div>
-
-
-                            </div>
-
-                            <input class="input_login" type="password" name="password" placeholder="Password" required
-                                value="{{ old('password') }}">
-                            <input class="input_login" type="password" name="password_confirmation"
-                                placeholder="Confirm Password" required>
+                            <input class="input_login" type="text" name="name" placeholder="Full name" required>
+                            <input class="input_login" type="number" name="phone" placeholder="Phone" required>
+                            <input class="input_login" type="email" name="email" placeholder="Email" required>
+                            <input class="input_login" type="text" name="tin_number" placeholder="Tin Number" required>
+                            <input class="input_login" type="password" name="password" placeholder="****" required>
                             <div class="">
                                 <button type="submit" class="logn_btn ">Sign Up</button>
                             </div>
@@ -257,7 +241,8 @@
                     </div>
 
                     <div class="login">
-                        <form id="myform" action="{{ route('partner.login') }}" method="POST" enctype="multipart/form-data">
+                        <form id="myform" action="{{ route('partner.login') }}" method="POST"
+                            enctype="multipart/form-data">
                             @csrf
                             <div class="d-flex justify-content-end" style="margin-right: 5rem;">
                                 <label class="login_btns w-25" for="chk" aria-hidden="true">Login</label>
@@ -265,9 +250,10 @@
                             <label class="sign_back" for="chk" aria-hidden="true" style="padding-top: 3rem;"><span
                                     class="text-black mr-2">Don't Have an Account ?</span> Sign In</label>
 
-                            <input class="input_login" type="email" name="email" placeholder="Email" required="" value="{{ old('email') }}">
-                            <input class="input_login" type="password" name="password" placeholder="Password"
-                                required="" value="{{ old('password') }}">
+                            <input class="input_login" type="email" name="email" placeholder="Email" required=""
+                                value="{{ old('email') }}">
+                            <input class="input_login" type="password" name="password" placeholder="Password" required=""
+                                value="{{ old('password') }}">
                             <button type="submit" class="logn_btn">Login</button>
                         </form>
                         <!-- footer social -->

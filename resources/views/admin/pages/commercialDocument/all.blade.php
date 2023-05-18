@@ -1,23 +1,37 @@
 @extends('admin.master')
 @section('content')
-    <!-- Content area -->
-    <div class="content">
-        <!-- Table components -->
-        <div class="card">
-            <!-- table start -->
-            <div class="card-body ">
-                <div class="row">
-                    <h3 class="text-center"> COMMERCIAL DOCUMENT RECORDS</h3>
+    <div class="content-wrapper">
+        <!-- Content area -->
+        <div class="page-header page-header-light shadow">
+            <div class="page-header-content d-lg-flex border-top">
+                <div class="d-flex">
+                    <div class="breadcrumb py-2">
+                        <a href="index.html" class="breadcrumb-item"><i class="ph-house"></i></a>
+                        <a href="{{ route('admin.dashboard') }}" class="breadcrumb-item">Home</a>
+                        <span class="breadcrumb-item active">Commercial Document Records </span>
+                    </div>
+                    <a href="#breadcrumb_elements"
+                        class="btn btn-light align-self-center collapsed d-lg-none border-transparent rounded-pill p-0 ms-auto"
+                        data-bs-toggle="collapse">
+                        <i class="ph-caret-down collapsible-indicator ph-sm m-1"></i>
+                    </a>
                 </div>
-                <!-- SALES DOCUMENT RECORDS -->
+            </div>
+        </div>
+        <div class="content ">
+            <div class="row">
+                <h3 class="text-center" style="color: #247297;"> Commercial Document Records</h3>
+            </div>
+            <!-- SALES DOCUMENT RECORDS -->
+            <div class="container-fluid  shadow-lg">
                 <div class="row">
                     <table class="table-salecocument-customice">
-                        <tr>
-                            <th colspan="3" class="text-center bg-black text-white bg-opacity-75">Orders
+                        <tr class="table_bg" style="background-color: #247297;">
+                            <th colspan="3" class="text-center text-white">Orders
                             </th>
-                            <th colspan="8" class="text-center bg-black text-white bg-opacity-75">Client
+                            <th colspan="8" class="text-center text-white">Client
                             </th>
-                            <th colspan="6" class="text-center bg-black text-white bg-opacity-75">
+                            <th colspan="6" class="text-center text-white">
                                 Principal
                             </th>
                         </tr>
@@ -47,33 +61,32 @@
                         <a href="#" data-bs-toggle="collapse" data-bs-target="#salesDocument">
                             <table width="100%">
                                 <tr>
-                                    <th width="5%"> <i class="icon-plus2 icon-1x"></i> Jan </th>
-                                    <td width="6%"> Sub Total </td>
-                                    <td width="6%"> 00.00</td>
-                                    <td width="6%"> 00</td>
-                                    <td width="6%"> 00</td>
-                                    <td width="6%"> 00</td>
-                                    <td width="6%"> 00</td>
-                                    <td width="6%"> 00</td>
-                                    <td width="6%"> 00</td>
-                                    <td width="6%"> 00</td>
-                                    <td width="6%"> 00</td>
-                                    <td width="6%"> 00</td>
-                                    <td width="6%"> 00</td>
-                                    <td width="6%"> 00</td>
-                                    <td width="6%"> 00</td>
-                                    <td width="6%"> 00</td>
-                                    <td width="6%"> 00</td>
+                                    <th width="5%" class="text-info"> <i class="icon-plus2 icon-1x"></i> Jan </th>
+                                    <td width="6%" class="text-info"> Sub Total </td>
+                                    <td width="6%" class="text-info"> 00.00</td>
+                                    <td width="6%" class="text-info"> 00</td>
+                                    <td width="6%" class="text-info"> 00</td>
+                                    <td width="6%" class="text-info"> 00</td>
+                                    <td width="6%" class="text-info"> 00</td>
+                                    <td width="6%" class="text-info"> 00</td>
+                                    <td width="6%" class="text-info"> 00</td>
+                                    <td width="6%" class="text-info"> 00</td>
+                                    <td width="6%" class="text-info"> 00</td>
+                                    <td width="6%" class="text-info"> 00</td>
+                                    <td width="6%" class="text-info"> 00</td>
+                                    <td width="6%" class="text-info"> 00</td>
+                                    <td width="6%" class="text-info"> 00</td>
+                                    <td width="6%" class="text-info"> 00</td>
+                                    <td width="6%" class="text-info"> 00</td>
                                 </tr>
                             </table>
                         </a>
-                        <div id="salesDocument" class="accordion-collapse collapse show"
-                            data-bs-parent="#accordion_expanded">
+                        <div id="salesDocument" class="accordion-collapse collapse show" data-bs-parent="#accordion_expanded">
                             <div class="accordion-body">
                                 <table width="100%">
                                     <tr>
                                         <td width="5%"> 2-Jan-22 </td>
-                                        <td width="6%">  </td>
+                                        <td width="6%"> </td>
                                         <td width="6%"> 99,850.00 </td>
                                         <td width="6%">
                                             <select class="PQ-select" name="myPQselect" id="myPQselect">
@@ -95,19 +108,19 @@
                                                             <div class="modal-body">
                                                                 <div class="form-group">
                                                                     <label for="rfq_id">RFQ ID</label>
-                                                                    <select name="rfq_id"
-                                                                        class="form-control form-select-sm" id="rfq_id">
+                                                                    <select name="rfq_id" class="form-control form-select-sm"
+                                                                        id="rfq_id">
                                                                         <option value="">--select--
                                                                         </option>
                                                                         @foreach ($rfqs as $rfq)
-                                                                            <option value="{{ $rfq->id }}">{{ $rfq->name }}</option>
+                                                                            <option value="{{ $rfq->id }}">
+                                                                                {{ $rfq->name }}</option>
                                                                         @endforeach
                                                                     </select>
                                                                 </div>
                                                                 <div class="form-group">
                                                                     <label for="rfq_id">PQ File</label>
-                                                                    <input type="file"
-                                                                        class="form-control form-control-sm"
+                                                                    <input type="file" class="form-control form-control-sm"
                                                                         name="client_pq_file">
                                                                 </div>
                                                             </div>
@@ -143,20 +156,19 @@
                                                             <div class="modal-body">
                                                                 <div class="form-group">
                                                                     <label for="rfq_id">RFQ ID</label>
-                                                                    <select name="rfq_id"
-                                                                        class="form-control form-select-sm"
+                                                                    <select name="rfq_id" class="form-control form-select-sm"
                                                                         id="rfq_id">
                                                                         <option value="">--select--
                                                                         </option>
                                                                         @foreach ($rfqs as $rfq)
-                                                                            <option value="{{ $rfq->id }}">{{ $rfq->name }}</option>
+                                                                            <option value="{{ $rfq->id }}">
+                                                                                {{ $rfq->name }}</option>
                                                                         @endforeach
                                                                     </select>
                                                                 </div>
                                                                 <div class="form-group">
                                                                     <label for="rfq_id">PO File</label>
-                                                                    <input type="file"
-                                                                        class="form-control form-control-sm"
+                                                                    <input type="file" class="form-control form-control-sm"
                                                                         name="po_file">
                                                                 </div>
                                                             </div>
@@ -191,21 +203,20 @@
                                                             <div class="modal-body">
                                                                 <div class="form-group">
                                                                     <label for="rfq_id">RFQ ID</label>
-                                                                    <select name="rfq_id"
-                                                                        class="form-control form-select-sm"
+                                                                    <select name="rfq_id" class="form-control form-select-sm"
                                                                         id="rfq_id">
                                                                         <option value="">--select--
                                                                         </option>
                                                                         @foreach ($rfqs as $rfq)
-                                                                            <option value="{{ $rfq->id }}">{{ $rfq->name }}</option>
+                                                                            <option value="{{ $rfq->id }}">
+                                                                                {{ $rfq->name }}</option>
                                                                         @endforeach
                                                                     </select>
                                                                 </div>
                                                                 <div class="form-group">
                                                                     <label for="rfq_id">Client Invoice
                                                                         File</label>
-                                                                    <input type="file"
-                                                                        class="form-control form-control-sm"
+                                                                    <input type="file" class="form-control form-control-sm"
                                                                         name="client_invoice_file">
                                                                 </div>
                                                             </div>
@@ -240,21 +251,20 @@
                                                             <div class="modal-body">
                                                                 <div class="form-group">
                                                                     <label for="rfq_id">RFQ ID</label>
-                                                                    <select name="rfq_id"
-                                                                        class="form-control form-select-sm"
+                                                                    <select name="rfq_id" class="form-control form-select-sm"
                                                                         id="rfq_id">
                                                                         <option value="">--select--
                                                                         </option>
                                                                         @foreach ($rfqs as $rfq)
-                                                                            <option value="{{ $rfq->id }}">{{ $rfq->name }}</option>
+                                                                            <option value="{{ $rfq->id }}">
+                                                                                {{ $rfq->name }}</option>
                                                                         @endforeach
                                                                     </select>
                                                                 </div>
                                                                 <div class="form-group">
                                                                     <label for="rfq_id">Client Challan
                                                                         File</label>
-                                                                    <input type="file"
-                                                                        class="form-control form-control-sm"
+                                                                    <input type="file" class="form-control form-control-sm"
                                                                         name="client_challan_file">
                                                                 </div>
                                                             </div>
@@ -289,21 +299,20 @@
                                                             <div class="modal-body">
                                                                 <div class="form-group">
                                                                     <label for="rfq_id">RFQ ID</label>
-                                                                    <select name="rfq_id"
-                                                                        class="form-control form-select-sm"
+                                                                    <select name="rfq_id" class="form-control form-select-sm"
                                                                         id="rfq_id">
                                                                         <option value="">--select--
                                                                         </option>
                                                                         @foreach ($rfqs as $rfq)
-                                                                            <option value="{{ $rfq->id }}">{{ $rfq->name }}</option>
+                                                                            <option value="{{ $rfq->id }}">
+                                                                                {{ $rfq->name }}</option>
                                                                         @endforeach
                                                                     </select>
                                                                 </div>
                                                                 <div class="form-group">
                                                                     <label for="rfq_id">Client Payment
                                                                         File</label>
-                                                                    <input type="file"
-                                                                        class="form-control form-control-sm"
+                                                                    <input type="file" class="form-control form-control-sm"
                                                                         name="client_Payment_file">
                                                                 </div>
                                                             </div>
@@ -318,8 +327,7 @@
                                             </form>
                                         </td>
                                         <td width="6%">
-                                            <select class="PQ-select" name="myClientMushokselect"
-                                                id="myClientMushokselect">
+                                            <select class="PQ-select" name="myClientMushokselect" id="myClientMushokselect">
                                                 <option value="No"> No </option>
                                                 <option value="Yes">Yes </option>
                                             </select>
@@ -338,21 +346,20 @@
                                                             <div class="modal-body">
                                                                 <div class="form-group">
                                                                     <label for="rfq_id">RFQ ID</label>
-                                                                    <select name="rfq_id"
-                                                                        class="form-control form-select-sm"
+                                                                    <select name="rfq_id" class="form-control form-select-sm"
                                                                         id="rfq_id">
                                                                         <option value="">--select--
                                                                         </option>
                                                                         @foreach ($rfqs as $rfq)
-                                                                            <option value="{{ $rfq->id }}">{{ $rfq->name }}</option>
+                                                                            <option value="{{ $rfq->id }}">
+                                                                                {{ $rfq->name }}</option>
                                                                         @endforeach
                                                                     </select>
                                                                 </div>
                                                                 <div class="form-group">
                                                                     <label for="rfq_id">Client Mushok
                                                                         File</label>
-                                                                    <input type="file"
-                                                                        class="form-control form-control-sm"
+                                                                    <input type="file" class="form-control form-control-sm"
                                                                         name="client_Mushok_file">
                                                                 </div>
                                                             </div>
@@ -387,21 +394,20 @@
                                                             <div class="modal-body">
                                                                 <div class="form-group">
                                                                     <label for="rfq_id">RFQ ID</label>
-                                                                    <select name="rfq_id"
-                                                                        class="form-control form-select-sm"
+                                                                    <select name="rfq_id" class="form-control form-select-sm"
                                                                         id="rfq_id">
                                                                         <option value="">--select--
                                                                         </option>
                                                                         @foreach ($rfqs as $rfq)
-                                                                            <option value="{{ $rfq->id }}">{{ $rfq->name }}</option>
+                                                                            <option value="{{ $rfq->id }}">
+                                                                                {{ $rfq->name }}</option>
                                                                         @endforeach
                                                                     </select>
                                                                 </div>
                                                                 <div class="form-group">
                                                                     <label for="rfq_id">Client Govt. Chalan
                                                                         File</label>
-                                                                    <input type="file"
-                                                                        class="form-control form-control-sm"
+                                                                    <input type="file" class="form-control form-control-sm"
                                                                         name="client_ClientGovtChalan_file">
                                                                 </div>
                                                             </div>
@@ -435,21 +441,20 @@
                                                             <div class="modal-body">
                                                                 <div class="form-group">
                                                                     <label for="rfq_id">RFQ ID</label>
-                                                                    <select name="rfq_id"
-                                                                        class="form-control form-select-sm"
+                                                                    <select name="rfq_id" class="form-control form-select-sm"
                                                                         id="rfq_id">
                                                                         <option value="">--select--
                                                                         </option>
                                                                         @foreach ($rfqs as $rfq)
-                                                                            <option value="{{ $rfq->id }}">{{ $rfq->name }}</option>
+                                                                            <option value="{{ $rfq->id }}">
+                                                                                {{ $rfq->name }}</option>
                                                                         @endforeach
                                                                     </select>
                                                                 </div>
                                                                 <div class="form-group">
                                                                     <label for="rfq_id">Client SAS
                                                                         File</label>
-                                                                    <input type="file"
-                                                                        class="form-control form-control-sm"
+                                                                    <input type="file" class="form-control form-control-sm"
                                                                         name="client_SAS_file">
                                                                 </div>
                                                             </div>
@@ -464,8 +469,7 @@
                                             </form>
                                         </td>
                                         <td width="6%">
-                                            <select class="PQ-select" name="myPrincipalPQselect"
-                                                id="myPrincipalPQselect">
+                                            <select class="PQ-select" name="myPrincipalPQselect" id="myPrincipalPQselect">
                                                 <option value="No"> No </option>
                                                 <option value="Yes">Yes </option>
                                             </select>
@@ -484,21 +488,20 @@
                                                             <div class="modal-body">
                                                                 <div class="form-group">
                                                                     <label for="rfq_id">RFQ ID</label>
-                                                                    <select name="rfq_id"
-                                                                        class="form-control form-select-sm"
+                                                                    <select name="rfq_id" class="form-control form-select-sm"
                                                                         id="rfq_id">
                                                                         <option value="">--select--
                                                                         </option>
                                                                         @foreach ($rfqs as $rfq)
-                                                                            <option value="{{ $rfq->id }}">{{ $rfq->name }}</option>
+                                                                            <option value="{{ $rfq->id }}">
+                                                                                {{ $rfq->name }}</option>
                                                                         @endforeach
                                                                     </select>
                                                                 </div>
                                                                 <div class="form-group">
                                                                     <label for="rfq_id">Principal PQ
                                                                         File</label>
-                                                                    <input type="file"
-                                                                        class="form-control form-control-sm"
+                                                                    <input type="file" class="form-control form-control-sm"
                                                                         name="PrincipalPQ_file">
                                                                 </div>
                                                             </div>
@@ -513,8 +516,7 @@
                                             </form>
                                         </td>
                                         <td width="6%">
-                                            <select class="PQ-select" name="myPrincipalPOselect"
-                                                id="myPrincipalPOselect">
+                                            <select class="PQ-select" name="myPrincipalPOselect" id="myPrincipalPOselect">
                                                 <option value="No"> No </option>
                                                 <option value="Yes">Yes </option>
                                             </select>
@@ -533,21 +535,20 @@
                                                             <div class="modal-body">
                                                                 <div class="form-group">
                                                                     <label for="rfq_id">RFQ ID</label>
-                                                                    <select name="rfq_id"
-                                                                        class="form-control form-select-sm"
+                                                                    <select name="rfq_id" class="form-control form-select-sm"
                                                                         id="rfq_id">
                                                                         <option value="">--select--
                                                                         </option>
                                                                         @foreach ($rfqs as $rfq)
-                                                                            <option value="{{ $rfq->id }}">{{ $rfq->name }}</option>
+                                                                            <option value="{{ $rfq->id }}">
+                                                                                {{ $rfq->name }}</option>
                                                                         @endforeach
                                                                     </select>
                                                                 </div>
                                                                 <div class="form-group">
                                                                     <label for="rfq_id">Principal PO
                                                                         File</label>
-                                                                    <input type="file"
-                                                                        class="form-control form-control-sm"
+                                                                    <input type="file" class="form-control form-control-sm"
                                                                         name="PrincipalPO_file">
                                                                 </div>
                                                             </div>
@@ -582,21 +583,20 @@
                                                             <div class="modal-body">
                                                                 <div class="form-group">
                                                                     <label for="rfq_id">RFQ ID</label>
-                                                                    <select name="rfq_id"
-                                                                        class="form-control form-select-sm"
+                                                                    <select name="rfq_id" class="form-control form-select-sm"
                                                                         id="rfq_id">
                                                                         <option value="">--select--
                                                                         </option>
                                                                         @foreach ($rfqs as $rfq)
-                                                                            <option value="{{ $rfq->id }}">{{ $rfq->name }}</option>
+                                                                            <option value="{{ $rfq->id }}">
+                                                                                {{ $rfq->name }}</option>
                                                                         @endforeach
                                                                     </select>
                                                                 </div>
                                                                 <div class="form-group">
                                                                     <label for="rfq_id">Principal Invoice
                                                                         File</label>
-                                                                    <input type="file"
-                                                                        class="form-control form-control-sm"
+                                                                    <input type="file" class="form-control form-control-sm"
                                                                         name="PrincipalInvoice_file">
                                                                 </div>
                                                             </div>
@@ -631,21 +631,20 @@
                                                             <div class="modal-body">
                                                                 <div class="form-group">
                                                                     <label for="rfq_id">RFQ ID</label>
-                                                                    <select name="rfq_id"
-                                                                        class="form-control form-select-sm"
+                                                                    <select name="rfq_id" class="form-control form-select-sm"
                                                                         id="rfq_id">
                                                                         <option value="">--select--
                                                                         </option>
                                                                         @foreach ($rfqs as $rfq)
-                                                                            <option value="{{ $rfq->id }}">{{ $rfq->name }}</option>
+                                                                            <option value="{{ $rfq->id }}">
+                                                                                {{ $rfq->name }}</option>
                                                                         @endforeach
                                                                     </select>
                                                                 </div>
                                                                 <div class="form-group">
                                                                     <label for="rfq_id">Principal Challan
                                                                         File</label>
-                                                                    <input type="file"
-                                                                        class="form-control form-control-sm"
+                                                                    <input type="file" class="form-control form-control-sm"
                                                                         name="PrincipalChallan_file">
                                                                 </div>
                                                             </div>
@@ -680,21 +679,20 @@
                                                             <div class="modal-body">
                                                                 <div class="form-group">
                                                                     <label for="rfq_id">RFQ ID</label>
-                                                                    <select name="rfq_id"
-                                                                        class="form-control form-select-sm"
+                                                                    <select name="rfq_id" class="form-control form-select-sm"
                                                                         id="rfq_id">
                                                                         <option value="">--select--
                                                                         </option>
                                                                         @foreach ($rfqs as $rfq)
-                                                                            <option value="{{ $rfq->id }}">{{ $rfq->name }}</option>
+                                                                            <option value="{{ $rfq->id }}">
+                                                                                {{ $rfq->name }}</option>
                                                                         @endforeach
                                                                     </select>
                                                                 </div>
                                                                 <div class="form-group">
                                                                     <label for="rfq_id">Principal Payment
                                                                         File</label>
-                                                                    <input type="file"
-                                                                        class="form-control form-control-sm"
+                                                                    <input type="file" class="form-control form-control-sm"
                                                                         name="PrincipalPayment_file">
                                                                 </div>
                                                             </div>
@@ -729,21 +727,20 @@
                                                             <div class="modal-body">
                                                                 <div class="form-group">
                                                                     <label for="rfq_id">RFQ ID</label>
-                                                                    <select name="rfq_id"
-                                                                        class="form-control form-select-sm"
+                                                                    <select name="rfq_id" class="form-control form-select-sm"
                                                                         id="rfq_id">
                                                                         <option value="">--select--
                                                                         </option>
                                                                         @foreach ($rfqs as $rfq)
-                                                                            <option value="{{ $rfq->id }}">{{ $rfq->name }}</option>
+                                                                            <option value="{{ $rfq->id }}">
+                                                                                {{ $rfq->name }}</option>
                                                                         @endforeach
                                                                     </select>
                                                                 </div>
                                                                 <div class="form-group">
                                                                     <label for="rfq_id">Principal Received
                                                                         File</label>
-                                                                    <input type="file"
-                                                                        class="form-control form-control-sm"
+                                                                    <input type="file" class="form-control form-control-sm"
                                                                         name="PrincipalReceived_file">
                                                                 </div>
                                                             </div>

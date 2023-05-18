@@ -40,7 +40,7 @@
     <section class="container">
         <!--Title-->
         <div class="common_product_item_title">
-            <h3>Featured brands</h3>
+            <h3>Featured brandsssss</h3>
         </div>
         <!--Product brands-->
         <div class="row">

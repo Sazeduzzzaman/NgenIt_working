@@ -7,8 +7,6 @@
 
         <!-- Page header -->
         <div class="page-header page-header-light shadow">
-
-
             <div class="page-header-content d-lg-flex border-top">
                 <div class="d-flex">
                     <div class="breadcrumb py-2">
@@ -29,217 +27,378 @@
 
 
         <!-- Content area -->
-        <div class="content">
-            <div class="row">
-                <div class="col-md-6 grid-margin stretch-card">
-                    <div class="card">
-                        <div class="card-header py-1 bg-light">
-                            <h5 class="card-title text-white-50 text-center m-0 ">Website Name</h5>
-                        </div>
-                        <div class="card-body">
-                            <div class="mb-4">
-                                <label for="inputEstimatedBudget"> Name First Line</label>
-                                <input type="text" readonly id="inputEstimatedBudget" class="form-control"
-                                    value="{{ $setting->name }}">
-                            </div>
-                            <div class="mb-4">
-                                <label for="inputEstimatedBudget"> Tag Line</label>
-                                <input type="text" readonly id="inputEstimatedBudget" class="form-control"
-                                    value="{{ $setting->short_name }}">
-                            </div>
-                            <div class="timeline-footer text-right">
-                                <a href="#" class="btn btn-primary btn-sm" data-bs-toggle="modal"
-                                    data-bs-target="#modal-name">Update</a>
+
+        <form action="{{ route('setting.store') }}" method="post">
+            @csrf
+            <div class="content">
+                <div class="container  w-75 mx-auto mb-1">
+                    <h3 class="text-center" style="color: #247297;"> All Settings</h3>
+                    <div class="row gx-1">
+
+                        <div class="col-lg-6 col-sm-6">
+                            <div class="bg-white rounded py-2 px-2">
+                                <div class="section_title mb-2">
+                                    <span style="color: #247297; border-bottom: 1px solid #247297;"> Website Name</span>
+                                </div>
+                                {{--  --}}
+                                <div class="row mb-1">
+                                    <div class="col-sm-4 d-flex align-items-center">
+                                        <span>Name First Line</span>
+                                    </div>
+                                    <div class="col-sm-8">
+                                        <input type="text" id="inputEstimatedBudget" class="form-control form-control-sm"
+                                            value="{{ $setting->name }}">
+                                    </div>
+                                </div>
+                                {{--  --}}
+                                <div class="row mb-2">
+                                    <div class="col-sm-4 d-flex align-items-center">
+                                        <span>Tag Line</span>
+                                    </div>
+                                    <div class="col-sm-8">
+                                        <input type="text" id="inputEstimatedBudget" class="form-control form-control-sm"
+                                            value="{{ $setting->short_name }}">
+                                    </div>
+                                </div>
+                                {{--  --}}
 
                             </div>
                         </div>
-                        <!-- /.card-body -->
-                    </div>
-                </div>
-                <div class="col-md-6 grid-margin stretch-card">
-                    <div class="card">
-                        <div class="card-header py-1 bg-success">
-                            <h5 class="card-title text-black text-center m-0 ">Social Links</h5>
-                        </div>
-                        <div class="card-body">
-                            <div class="mb-4">
-                                <label for="inputEstimatedBudget">Facebook Url</label>
-                                <input disabled type="text" readonly id="inputEstimatedBudget" class="form-control"
-                                    value="{{ $setting->facebook }}">
-                            </div>
-                            <div class="mb-4">
-                                <label for="inputEstimatedBudget">Twitter Url</label>
-                                <input disabled type="text" readonly id="inputEstimatedBudget" class="form-control"
-                                    value="{{ $setting->twitter }}">
-                            </div>
-                            <div class="mb-4">
-                                <label for="inputEstimatedBudget">Linked In Url</label>
-                                <input disabled type="text" readonly id="inputEstimatedBudget" class="form-control"
-                                    value="{{ $setting->linked_in }}">
-                            </div>
-                            <div class="timeline-footer text-right">
-                                <a href="#" class="btn btn-primary btn-sm" data-bs-toggle="modal"
-                                    data-bs-target="#modal-social">Click</a>
-
-                            </div>
-                        </div>
-                        <!-- /.card-body -->
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-6 grid-margin stretch-card">
-                    <div class="card">
-                        <div class="card-header py-1 bg-warning">
-                            <h5 class="card-title text-black text-center m-0 ">Website Logo</h5>
-                        </div>
-                        <div class="card-body">
-                            <div class="card-body box-profile">
-                                <div class="text-center">
-                                    <img class="profile-user-img img-fluid"
-                                        src="{{ (!file_exists($setting->logo)) ? url('upload/logoimage/'.$setting->logo):url('upload/no_image.jpg') }}"
-                                        alt="Ngen It" width="150" />
-
+                        {{-- Second Column --}}
+                        <div class="col-lg-6 col-sm-6">
+                            <div class="bg-white rounded py-2 px-2">
+                                <div class="section_title mb-2">
+                                    <span style="color: #247297; border-bottom: 1px solid #247297;">Social Links</span>
+                                </div>
+                                {{--  --}}
+                                <div class="row mb-1">
+                                    <div class="col-sm-2 d-flex align-items-center">
+                                        <span>Facebook</span>
+                                    </div>
+                                    <div class="col-sm-10">
+                                        <input type="text" id="inputEstimatedBudget"
+                                            class="form-control form-control-sm" value="{{ $setting->facebook }}">
+                                    </div>
+                                </div>
+                                {{--  --}}
+                                <div class="row mb-2">
+                                    <div class="col-sm-6">
+                                        <div class="d-flex">
+                                            <div class="col-sm-4 d-flex align-items-center me-1">
+                                                <span>Twitter</span>
+                                            </div>
+                                            <div class="col-sm-8">
+                                                <input type="text" id="inputEstimatedBudget"
+                                                    class="form-control form-control-sm" value="{{ $setting->twitter }}">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="d-flex">
+                                            <div class="col-sm-4 d-flex align-items-center">
+                                                <span>Linked In</span>
+                                            </div>
+                                            <div class="col-sm-8">
+                                                <input type="text" id="inputEstimatedBudget"
+                                                    class="form-control form-control-sm" value="{{ $setting->linked_in }}">
+                                            </div>
+                                        </div>
+                                    </div>
 
                                 </div>
-
-                                <h5 class="profile-username text-center">Logo</h5>
-                            </div>
-                            <div class="timeline-footer float-end">
-                                <a href="#" class="btn btn-primary btn-sm" data-bs-toggle="modal"
-                                    data-bs-target="#modal-logo">Update</a>
+                                {{--  --}}
 
                             </div>
                         </div>
-                        <!-- /.card-body -->
                     </div>
-                    <div class="card">
-                        <div class="card-header py-1 bg-primary">
-                            <h5 class="card-title text-black text-center m-0 ">Website Favicon</h5>
-                        </div>
-                        <div class="card-body">
-                            <div class="card-body box-profile">
-                                <div class="text-center">
-                                    <img class="profile-user-img img-fluid"
-                                        src="{{ (!file_exists($setting->favicon)) ? url('upload/faviconimage/'.$setting->favicon):url('upload/no_image.jpg') }}"
-                                        alt="Ngen It" width="100" />
 
+                </div>
+                {{-- Second Container --}}
+                <div class="container  w-75 mx-auto mb-1">
+                    <div class="row gx-1">
+
+                        <div class="col-lg-6 col-sm-6">
+                            <div class="bg-white rounded py-2 px-2">
+                                <div class="section_title mb-2">
+                                    <span style="color: #247297; border-bottom: 1px solid #247297;"> Website Logo</span>
                                 </div>
-
-                                <h5 class="profile-username text-center">Favicon Icon</h5>
-                            </div>
-                            <div class="timeline-footer float-end">
-                                <a href="#" class="btn btn-primary btn-sm" data-bs-toggle="modal"
-                                    data-bs-target="#modal-favicon">Update</a>
+                                {{--  --}}
+                                <div class="row mb-1 d-flex align-items-center">
+                                    <div class="col-sm-4 ">
+                                        <span>Website Logo</span>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <input type="file" name="logo" class="form-control form-control-sm"
+                                            id="image" />
+                                        @error('logo')
+                                            <span class="text-danger">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <img class="rounded-circle" id="showImage"
+                                            src="{{ !empty($setting->logo) ? url('upload/logoimage/' . $setting->logo) : url('upload/no_image.jpg') }}"
+                                            alt="Ngen IT" style="width:50px; height: 50px;">
+                                    </div>
+                                </div>
+                                {{--  --}}
 
                             </div>
                         </div>
-                        <!-- /.card-body -->
+                        {{-- Second Column --}}
+                        <div class="col-lg-6 col-sm-6">
+                            <div class="bg-white rounded py-2 px-2">
+                                <div class="section_title mb-2">
+                                    <span style="color: #247297; border-bottom: 1px solid #247297;"> Website Fav
+                                        Icon</span>
+                                </div>
+                                {{--  --}}
+                                <div class="row mb-1 d-flex align-items-center">
+                                    <div class="col-sm-4 ">
+                                        <span>Website Logo</span>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <input type="file" name="favicon" class="form-control form-control-sm"
+                                            id="image1" />
+                                        @error('favicon')
+                                            <span class="text-danger">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <img class="rounded-circle" id="showImage1"
+                                            src="{{ !empty($setting->favicon) ? url('upload/faviconimage/' . $setting->favicon) : url('upload/no_image.jpg') }}"
+                                            alt="Ngen It" style="width:50px; height: 50px;">
+                                    </div>
+                                </div>
+                                {{--  --}}
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {{-- Third Container --}}
+                <div class="container  w-75 mx-auto mb-1">
+                    <div class="row gx-1">
+
+                        <div class="col-lg-6 col-sm-6">
+                            <div class="bg-white rounded py-2 px-2">
+                                <div class="section_title mb-2">
+                                    <span style="color: #247297; border-bottom: 1px solid #247297;"> Website
+                                        Address</span>
+                                </div>
+                                {{--  --}}
+                                <div class="row mb-1 d-flex align-items-center">
+                                    <div class="col-sm-4 ">
+                                        <span>Address</span>
+                                    </div>
+                                    <div class="col-sm-8">
+                                        <textarea class="form-control" rows="2" placeholder="Enter ...">{{ $setting->address }}</textarea>
+                                    </div>
+                                </div>
+                                {{--  --}}
+                                <div class="row mb-1 d-flex align-items-center">
+                                    <div class="col-sm-4 ">
+                                        <span>Email One</span>
+                                    </div>
+                                    <div class="col-sm-8">
+                                        <input type="text" id="inputEstimatedBudget"
+                                            class="form-control form-control-sm" value="{{ $setting->email1 }}">
+                                    </div>
+                                </div>
+                                {{--  --}}
+                                <div class="row mb-1 d-flex align-items-center">
+                                    <div class="col-sm-4 ">
+                                        <span>Email Two</span>
+                                    </div>
+                                    <div class="col-sm-8">
+                                        <input type="text" id="inputEstimatedBudget"
+                                            class="form-control form-control-sm" value="{{ $setting->email2 }}">
+                                    </div>
+                                </div>
+                                {{--  --}}
+
+                            </div>
+                        </div>
+                        {{-- Second Column --}}
+                        <div class="col-lg-6 col-sm-6">
+                            <div class="bg-white rounded py-2 px-2">
+                                <div class="section_title mb-2">
+                                    <span style="color: #247297; border-bottom: 1px solid #247297;"> Website
+                                        Contact</span>
+                                </div>
+                                {{--  --}}
+                                <div class="row mb-1 d-flex align-items-center">
+                                    <div class="col-sm-4 ">
+                                        <span>Mobile No:</span>
+                                    </div>
+                                    <div class="col-sm-8">
+                                        <input type="text" id="inputEstimatedBudget"
+                                            class="form-control form-control-sm" value="{{ $setting->mobile }}">
+                                    </div>
+                                </div>
+                                {{--  --}}
+                                <div class="row mb-1 d-flex align-items-center">
+                                    <div class="col-sm-4 ">
+                                        <span>Phone No:</span>
+                                    </div>
+                                    <div class="col-sm-8">
+                                        <input type="text" id="inputEstimatedBudget"
+                                            class="form-control form-control-sm" value="{{ $setting->phone }}">
+                                    </div>
+                                </div>
+                                {{--  --}}
+                                <div class="row d-flex align-items-center mb-4">
+                                    <div class="col-sm-4 ">
+                                        <span>Contact Hour</span>
+                                    </div>
+                                    <div class="col-sm-8">
+                                        <input type="text" id="inputEstimatedBudget"
+                                            class="form-control form-control-sm" value="{{ $setting->hour }}">
+                                    </div>
+                                </div>
+                                {{--  --}}
+                            </div>
+                        </div>
                     </div>
                 </div>
 
-                <div class="col-md-6 grid-margin stretch-card">
-                    <div class="card">
-                        <div class="card-header py-1 bg-info">
-                            <h5 class="card-title text-black text-center m-0">Website Address</h5>
+                {{-- Third Container --}}
+                <div class="container  w-75 mx-auto mb-3">
+                    <div class="row gx-1">
+
+                        <div class="col-lg-6 col-sm-6">
+                            <table id="example1" class="table table-bordered table-striped">
+
+                                <thead>
+                                    <tr>
+                                        <th class="text-center" style="width: 70%">Settings</th>
+                                        <th class="text-center">Click this Button</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                    <tr>
+                                        <td>Link Storage</td>
+                                        <td
+                                            style="display: flex;
+                                        justify-content: center;
+                                        align-items: center;">
+                                            <a href="{{ url('/admin/link') }}"
+                                                class="btn d-flex justify-content-center align-content-center"
+                                                style="height:30px; width:30px;border-radius:50%" title="click"><i
+                                                    class="ph-link text-primary"></i></a></td>
+                                    </tr>
+                                    <tr>
+                                        <td> Route Clear</td>
+                                        <td
+                                            style="display: flex;
+                                        justify-content: center;
+                                        align-items: center;">
+                                            <a href="{{ url('/admin/clear-route') }}"
+                                                class="btn d-flex justify-content-center align-content-center"
+                                                style="height:30px; width:30px;border-radius:50%" title="click"><i
+                                                    class="icon-database-refresh text-primary"></i></a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Route Cache</td>
+                                        <td
+                                            style="display: flex;
+                                        justify-content: center;
+                                        align-items: center;">
+                                            <a href="{{ url('/admin/route-cache') }}"
+                                                class="btn d-flex justify-content-center align-content-center"
+                                                style="height:30px; width:30px;border-radius:50%" title="click"><i
+                                                    class="icon-database-refresh text-primary"></i></a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Config Clear</td>
+                                        <td
+                                            style="display: flex;
+                                        justify-content: center;
+                                        align-items: center;">
+                                            <a href="{{ url('/admin/clear-config') }}"
+                                                class="btn d-flex justify-content-center align-content-center"
+                                                style="height:30px; width:30px;border-radius:50%" title="click"><i
+                                                    class="icon-database-refresh text-primary"></i></a></td>
+                                    </tr>
+
+                                </tbody>
+
+                            </table>
                         </div>
-                        <div class="card-body">
-                            <div class="mb-4">
-                                <label>Address</label>
-                                <textarea class="form-control" rows="3" placeholder="Enter ..." readonly>{{ $setting->address }}</textarea>
-                            </div>
+                        {{-- Second Column --}}
+                        <div class="col-lg-6 col-sm-6">
+                            <table id="example1" class="table table-bordered table-striped">
 
-                            <div class="mb-4">
-                                <label for="inputEstimatedBudget">Email - 1</label>
-                                <input type="text" readonly id="inputEstimatedBudget" class="form-control"
-                                    value="{{ $setting->email1 }}">
-                            </div>
+                                <thead>
+                                    <tr>
+                                        <th class="text-center" style="width: 70%">Settings</th>
+                                        <th class="text-center" style="width: 30%">Click this Button</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
 
-                            <div class="mb-4">
-                                <label for="inputEstimatedBudget">Email - 2</label>
-                                <input type="text" readonly id="inputEstimatedBudget" class="form-control"
-                                    value="{{ $setting->email2 }}">
-                            </div>
+                                    <tr>
+                                        <td> CACHE Clear</td>
+                                        <td
+                                            style="display: flex;
+                                        justify-content: center;
+                                        align-items: center;">
+                                            <a href="{{ url('/admin/clear-cache') }}" class="btn"
+                                                style="height:30px; width:30px;border-radius:50%" title="click"><i
+                                                    class="icon-database-refresh text-primary"></i></a></td>
+                                    </tr>
+                                    <tr>
 
-                            <div class="mb-4">
-                                <label for="inputEstimatedBudget">Mobile No:</label>
-                                <input type="text" readonly id="inputEstimatedBudget" class="form-control"
-                                    value="{{ $setting->mobile }}">
-                            </div>
+                                        <td>Optimize</td>
+                                        <td
+                                            style="display: flex;
+                                        justify-content: center;
+                                        align-items: center;">
+                                            <a href="{{ url('/admin/optimize') }}" class="btn"
+                                                style="height:30px; width:30px;border-radius:50%" title="click"><i
+                                                    class="icon-database-refresh text-primary"></i></a></td>
+                                    </tr>
+                                    <tr>
 
-                            <div class="mb-4">
-                                <label for="inputEstimatedBudget">Phone No:</label>
-                                <input type="text" readonly id="inputEstimatedBudget" class="form-control"
-                                    value="{{ $setting->phone }}">
-                            </div>
-                            <div class="mb-4">
-                                <label for="inputEstimatedBudget">Contact Hour</label>
-                                <input type="text" readonly id="inputEstimatedBudget" class="form-control"
-                                    value="{{ $setting->hour }}">
-                            </div>
-                            <div class="timeline-footer text-right">
-                                <a href="#" class="btn btn-primary btn-sm" data-bs-toggle="modal"
-                                    data-bs-target="#modal-address">Update</a>
+                                        <td>View Clear</td>
+                                        <td
+                                            style="display: flex;
+                                        justify-content: center;
+                                        align-items: center;">
+                                            <a href="{{ url('/admin/clear-view') }}" class="btn"
+                                                style="height:30px; width:30px;border-radius:50%" title="click"><i
+                                                    class="icon-database-refresh text-primary"></i></a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Migration</td>
+                                        <td
+                                            style="display: flex;
+                                        justify-content: center;
+                                        align-items: center;">
+                                            <a href="{{ url('/admin/migrate') }}" class="btn"
+                                                style="height:30px; width:30px;border-radius:50%" title="click"><i
+                                                    class="icon-database-refresh text-primary"></i></a></td>
+                                    </tr>
 
-                            </div>
+                                </tbody>
+
+                            </table>
                         </div>
-                        <!-- /.card-body -->
+                    </div>
+                </div>
+
+            </div>
+            <div class="container w-75 mx-auto mb-3">
+                <div class="row">
+                    <div class="col d-flex align-items-center justify-content-center">
+                        <button type="submit" class="submit_btn from-prevent-multiple-submits"
+                            style="padding: 5px;">Save
+                            Changes</button>
                     </div>
                 </div>
             </div>
-            <div class="card">
-                <div class="card-body">
-                    <div class="col-md-2"></div>
-                    <div class="col-md-6">
-                        <table id="example1" class="table table-bordered table-striped">
-
-                            <thead>
-                                <tr>
-                                    <th class="text-center" style="width: 70%">Settings</th>
-                                    <th class="text-center">Click this Button</th>
-                                    <th class="text-center" style="width: 70%">Settings</th>
-                                    <th class="text-center">Click this Button</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-
-                                <tr>
-                                    <td>Link Storage</td>
-                                    <td><a href="{{ url('/admin/link') }}" class="btn btn-primary btn-sm float-left mr-1 mb-2" style="height:30px; width:30px;border-radius:50%"  title="click" ><i class="ph-link"></i></a></td>
-                                    <td> CACHE Clear</td>
-                                    <td><a href="{{ url('/admin/clear-cache') }}" class="btn btn-primary btn-sm float-left mr-1 mb-2" style="height:30px; width:30px;border-radius:50%"  title="click" ><i class="icon-database-refresh"></i></a></td>
-                                </tr>
-                                <tr>
-                                    <td> Route Clear</td>
-                                    <td><a href="{{ url('/admin/clear-route') }}" class="btn btn-primary btn-sm float-left mr-1 mb-2" style="height:30px; width:30px;border-radius:50%"  title="click" ><i class="icon-database-refresh"></i></a></td>
-
-                                    <td>Optimize</td>
-                                    <td><a href="{{ url('/admin/optimize') }}" class="btn btn-primary btn-sm float-left mr-1 mb-2" style="height:30px; width:30px;border-radius:50%"  title="click" ><i class="icon-database-refresh"></i></a></td>
-                                </tr>
-                                <tr>
-                                    <td>Route Cache</td>
-                                    <td><a href="{{ url('/admin/route-cache') }}" class="btn btn-primary btn-sm float-left mr-1 mb-2" style="height:30px; width:30px;border-radius:50%"  title="click" ><i class="icon-database-refresh"></i></a></td>
-
-                                    <td>View Clear</td>
-                                    <td><a href="{{ url('/admin/clear-view') }}" class="btn btn-primary btn-sm float-left mr-1 mb-2" style="height:30px; width:30px;border-radius:50%"  title="click" ><i class="icon-database-refresh"></i></a></td>
-                                </tr>
-                                <tr>
-                                    <td>Config Clear</td>
-                                    <td><a href="{{ url('/admin/clear-config') }}" class="btn btn-primary btn-sm float-left mr-1 mb-2" style="height:30px; width:30px;border-radius:50%"  title="click" ><i class="icon-database-refresh"></i></a></td>
-                                    <td>Migration</td>
-                                    <td><a href="{{ url('/admin/migrate') }}" class="btn btn-primary btn-sm float-left mr-1 mb-2" style="height:30px; width:30px;border-radius:50%"  title="click" ><i class="icon-database-refresh"></i></a></td>
-                                </tr>
-
-                            </tbody>
-
-                        </table>
-                    </div>
-                    <div class="col-md-2"></div>
-                </div>
-            </div>
-        </div>
-        <!-- /content area -->
-
+            <!-- /content area -->
+        </form>
 
 
         @include('admin.partials.modals')

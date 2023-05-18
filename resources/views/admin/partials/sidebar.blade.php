@@ -72,11 +72,11 @@
                         <i class="fa-duotone fa-sidebar-flip side_baricon"></i>
                         <span class="text-start ps-1">Site Contents</span></a>
                 </li>
-                <li class="nav-item {{ Route::current()->getName() == '' ? 'active' : '' }}">
+                {{-- <li class="nav-item {{ Route::current()->getName() == '' ? 'active' : '' }}">
                     <a href="{{ route('crm.index') }}" class="nav-link d-flex align-items-center justify-content-start">
                         <i class="fa-light fa-people-roof side_baricon"></i>
                         <span class="text-start ">CRM</span></a>
-                </li>
+                </li> --}}
                 <li class="nav-item {{ Route::current()->getName() == '' ? 'active' : '' }}">
                     <a href="{{ route('hr-and-admin.index') }}" class="nav-link d-flex align-items-center justify-content-start">
                         <i class="fa-light fa-user-tie side_baricon"></i>

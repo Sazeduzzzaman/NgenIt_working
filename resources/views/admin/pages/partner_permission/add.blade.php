@@ -1,22 +1,20 @@
 @extends('admin.master')
 @section('content')
+    <style>
+        .label_style {
+            width: 151px !important;
+        }
+    </style>
     <div class="content-wrapper">
-
-        <!-- Inner content -->
-
-
         <!-- Page header -->
         <div class="page-header page-header-light shadow">
-
-
             <div class="page-header-content d-lg-flex border-top">
                 <div class="d-flex">
                     <div class="breadcrumb py-2">
-                        <a href="index.html" class="breadcrumb-item"><i class="ph-house"></i></a>
-                        <a href="{{ route('admin.dashboard') }}" class="breadcrumb-item">Home</a>
-                        <span class="breadcrumb-item active">Contact Management</span>
+                        <a href="{{ route('admin.dashboard') }}" class="breadcrumb-item"><i class="ph-house me-2"></i>Home</a>
+                        <a href="{{ route('knowledge.index') }}" class="breadcrumb-item">Partner Permission</a>
+                        <a href="" class="breadcrumb-item">Add</a>
                     </div>
-
                     <a href="#breadcrumb_elements"
                         class="btn btn-light align-self-center collapsed d-lg-none border-transparent rounded-pill p-0 ms-auto"
                         data-bs-toggle="collapse">
@@ -26,183 +24,155 @@
             </div>
         </div>
         <!-- /page header -->
-
-
         <!-- Content area -->
-        <div class="content">
-            <div class="card">
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-lg-7">
-                            <ul class="nav nav-tabs">
-                                <li class="nav-item">
-                                    <a href="#js-tab1" class="nav-link active" data-bs-toggle="tab">
-                                        Category
-                                    </a>
-                                </li>
-
-                                <li class="nav-item">
-                                    <a href="#js-tab2" class="nav-link" data-bs-toggle="tab">
-                                        Sub Category
-                                    </a>
-                                </li>
-
-                                <li class="nav-item">
-                                    <a href="#js-tab3" class="nav-link" data-bs-toggle="tab">
-                                        Sub Sub Category
-                                    </a>
-                                </li>
-
-                                <li class="nav-item">
-                                    <a href="#js-tab4" class="nav-link" data-bs-toggle="tab">
-                                        Sub Sub Sub Category
-                                    </a>
-                                </li>
-                            </ul>
+        <div class="content pt-2 w-50 mx-auto">
+            <div class="text-center">
+                <div class="text-start">
+                    <div class="row main_bg py-1 rounded-1 d-flex align-items-center gx-0 px-2">
+                        <div class="col-lg-4 col-sm-12">
+                            <div>
+                                <a class="btn btn-primary btn-rounded rounded-circle btn-icon back-btn"
+                                    href="{{ route('partnerPermission.index') }}">
+                                    <i class="fa-solid fa-arrow-left main_color"></i>
+                                </a>
+                            </div>
                         </div>
-                        {{-- <div class="col-lg-3">
-                        <label class="text-center" for="category">Chose from the dropdown</label>
-                        <select onchange="dropdownCategory(value)" id="dropdownCategory" name="category"
-                            class="form-control select col-lg-2 category" data-width="250"
-                            data-minimum-results-for-search="Infinity">
-                            <option value="table1">Category</option>
-                            <option value="table2">Sub Category</option>
-                            <option value="table3">Sub Sub Category</option>
-                            <option value="table4">Sub Sub Sub Category</option>
-                        </select>
-                    </div> --}}
-                        <div class="col-lg-3"></div>
-                        <div class="col-lg-2">
-                            <a href="{{ route('clientPermission.index') }}" type="button"
-                                class="btn btn-sm btn-warning btn-labeled btn-labeled-start float-end">
-                                <span class="btn-labeled-icon bg-black bg-opacity-20">
-                                    <i class="icon-eye"></i>
-                                </span>
-                                All Contact
+                        <div class="col-lg-4 col-sm-12 d-flex justify-content-center">
+                            <p class="text-white p-0 m-0 fw-bold"> Add Partner Permission </p>
+                        </div>
+                        <div class="col-lg-4 col-sm-12 d-flex justify-content-end">
+                            <a href="{{ route('row.index') }}" class="btn navigation_btn">
+                                <div class="d-flex align-items-center ">
+                                    <i class="fa-solid fa-nfc-magnifying-glass me-1" style="font-size: 10px;"></i>
+                                    <span>Row</span>
+                                </div>
+                            </a>
+                            <a href="{{ route('solution.index') }}" class="btn navigation_btn ms-2">
+                                <div class="d-flex align-items-center ">
+                                    <i class="fa-solid fa-money-check-dollar-pen me-1" style="font-size: 10px;"></i>
+                                    <span>Solution</span>
+                                </div>
                             </a>
                         </div>
                     </div>
-
                 </div>
             </div>
-
-            <div class="tab-content">
-                <div class="tab-pane fade show active" id="js-tab1">
-                    <div class="row">
-                        <div class="col-lg-3"></div>
-                        <div class="col-lg-6">
-                            <div id="table1" class="card cardTd">
-                                <div class="card-header">
-
-                                    <h5 class="mb-0 text-center">Add Contact Form</h5>
-
-                                </div>
-
-                                <div class="card-body">
-                                    <form method="post" action="{{ route('clientPermission.store') }}">
-                                        @csrf
-
-                                        <div class="row mb-3">
-                                            <div class="col-sm-4">
-                                                <h6 class="mb-0">First Name </h6>
-                                            </div>
-                                            <div class="form-group col-sm-8 text-secondary">
-                                                <input type="text" name="fname" class="form-control maxlength"
-                                                    maxlength="100" />
-                                            </div>
+            <div class="card">
+                <form id="myform" method="post" action="{{ route('partnerPermission.store') }}"
+                    enctype="multipart/form-data">
+                    @csrf
+                    <!--Banner Section-->
+                    <div class="container">
+                        <div class="row g-2 p-1">
+                            <div class="col">
+                                <div class="px-2 py-2 rounded bg-light">
+                                    {{--  --}}
+                                    <div class="row mb-1">
+                                        <div class="col-lg-4 col-sm-12">
+                                            <span>Full Name</span>
                                         </div>
-                                        <div class="row mb-3">
-                                            <div class="col-sm-4">
-                                                <h6 class="mb-0">Last Name </h6>
-                                            </div>
-                                            <div class="form-group col-sm-8 text-secondary">
-                                                <input type="text" name="lname" class="form-control maxlength"
-                                                    maxlength="100" />
-                                            </div>
+                                        <div class="col-lg-8 col-sm-12">
+                                            <input type="text" class="form-control form-control-sm" name="name"
+                                                maxlength="100" required />
                                         </div>
-                                        <div class="row mb-3">
-                                            <div class="col-sm-4">
-                                                <h6 class="mb-0">Phone </h6>
-                                            </div>
-                                            <div class="form-group col-sm-8 text-secondary">
-                                                <input type="text" name="phone" class="form-control maxlength"
-                                                    maxlength="100" />
-                                            </div>
+                                    </div>
+                                    {{--  --}}
+                                    <div class="row mb-1">
+                                        <div class="col-lg-4 col-sm-12">
+                                            <span>Phone</span>
                                         </div>
-                                        <div class="row mb-3">
-                                            <div class="col-sm-4">
-                                                <h6 class="mb-0">State </h6>
-                                            </div>
-                                            <div class="form-group col-sm-8 text-secondary">
-                                                <input type="text" name="state" class="form-control maxlength"
-                                                    maxlength="100" />
-                                            </div>
+                                        <div class="col-lg-8 col-sm-12">
+                                            <input type="number" class="form-control form-control-sm" name="phone"
+                                                maxlength="100" required />
                                         </div>
-                                        <div class="row mb-3">
-                                            <div class="col-sm-4">
-                                                <h6 class="mb-0">Country </h6>
-                                            </div>
-                                            <div class="form-group col-sm-8 text-secondary">
-                                                <input type="text" name="country" class="form-control maxlength"
-                                                    maxlength="100" />
-                                            </div>
+                                    </div>
+                                    {{--  --}}
+                                    <div class="row mb-1">
+                                        <div class="col-lg-4 col-sm-12">
+                                            <span>Email</span>
                                         </div>
-                                        <div class="row mb-3">
-                                            <div class="col-sm-4">
-                                                <h6 class="mb-0">Email </h6>
-                                            </div>
-                                            <div class="form-group col-sm-8 text-secondary">
-                                                <input type="email" name="email" class="form-control maxlength"
-                                                    maxlength="100" />
-                                            </div>
+                                        <div class="col-lg-8 col-sm-12">
+                                            <input type="email" class="form-control form-control-sm" name="email"
+                                                required />
                                         </div>
-                                        <div class="row mb-3">
-                                            <div class="col-sm-4">
-                                                <h6 class="mb-0">Message Type</h6>
-                                            </div>
-                                            <div class="form-group text-secondary col-sm-8">
-                                                <select name="msg_type" class="form-control select"
-                                                    data-minimum-results-for-search="Infinity"
-                                                    data-placeholder="Chose msg_type ">
-                                                    <option></option>
-                                                    <option value="Account creation problem">Account creation problem
+                                    </div>
+                                    {{--  --}}
+                                    <div class="row mb-1">
+                                        <div class="col-lg-4 col-sm-12">
+                                            <span>Address</span>
+                                        </div>
+                                        <div class="col-lg-8 col-sm-12">
+                                            <textarea class="form-control" rows="2" name="address" required></textarea>
+                                        </div>
+                                    </div>
+                                    {{--  --}}
+                                    <div class="row mb-1">
+                                        <div class="col-lg-4 col-sm-12">
+                                            <span>Country</span>
+                                        </div>
+                                        <div class="col-lg-8 col-sm-12">
+                                            <select name="country" class="form-control form-select-sm select"
+                                                data-container-css-class="select-sm" data-placeholder="Chose Country"
+                                                required>
+                                                @foreach ($countries as $item)
+                                                    <option value="{{ $item->country_name }}">{{ $item->country_name }}
                                                     </option>
-                                                    <option value="Cannot login">Cannot login</option>
-                                                    <option value="Client feedback entry">Client feedback entry</option>
-                                                    <option value="General web issue">General web issue</option>
-                                                    <option value="Order return request">Order return request</option>
-                                                    <option value="Order tracking/history">Order tracking/history</option>
-                                                    <option value="Product information request">Product information request
-                                                    </option>
-                                                    <option value="Update my account/email information">Update my
-                                                        account/email information</option>
-                                                </select>
-                                            </div>
+                                                @endforeach
+                                            </select>
                                         </div>
-                                        <div class="row mb-3">
-                                            <div class="col-sm-4">
-                                                <h6 class="mb-0">Message</h6>
-                                            </div>
-                                            <div class="form-group col-sm-8 text-secondary">
-                                                <textarea name="message" id="" class="form-control" cols="30" rows="10"></textarea>
-                                            </div>
+                                    </div>
+                                    {{--  --}}
+                                    <div class="row mb-1">
+                                        <div class="col-lg-4 col-sm-12">
+                                            <span>Postal</span>
                                         </div>
-                                        <div class="row">
-                                            <div class="col-sm-4"></div>
-                                            <div class="col-sm-8 text-secondary">
-                                                <input type="submit" class="btn btn-primary px-4 mt-5" value="Submit" />
-                                            </div>
+                                        <div class="col-lg-8 col-sm-12">
+                                            <input type="text" class="form-control form-select-sm" name="postal"
+                                                required />
                                         </div>
-                                    </form>
+                                    </div>
+                                    {{--  --}}
+                                    <div class="row mb-1">
+                                        <div class="col-lg-4 col-sm-12">
+                                            <span>Profile Picture</span>
+                                        </div>
+                                        <div class="col-lg-8 col-sm-12">
+                                            <input id="image" type="file" class="form-control form-select-sm"
+                                                name="photo" />
+                                        </div>
+                                    </div>
+                                    {{--  --}}
+                                    <div class="row mb-1">
+                                        <div class="col-lg-4 col-sm-12">
+                                            <span>Password</span>
+                                        </div>
+                                        <div class="col-lg-8 col-sm-12">
+                                            <input type="password" name="password"
+                                                class="form-control form-control-sm @error('new_password') is-invalid @enderror"
+                                                id="new_password" placeholder="Password" />
+                                        </div>
+                                    </div>
+                                    {{--  --}}
+                                    <div class="row mb-1">
+                                        <div class="col-lg-4 col-sm-12">
+                                            <span>Confirm Password</span>
+                                        </div>
+                                        <div class="col-lg-8 col-sm-12">
+                                            <input type="password" name="password_confirmation"
+                                                class="form-control form-control-sm" placeholder="Confirm New Password" />
+                                        </div>
+                                    </div>
+                                    {{--  --}}
                                 </div>
                             </div>
                         </div>
                     </div>
-
-                </div>
+                    <div class="modal-footer border-0 pb-2 pe-3 mt-2">
+                        <button type="submit" class="submit_btn from-prevent-multiple-submits" style="padding: 4px 9px;"
+                            id="submitbtn">Submit</button>
+                    </div>
+                </form>
             </div>
-
-
         </div>
         <!-- /content area -->
         <!-- /inner content -->

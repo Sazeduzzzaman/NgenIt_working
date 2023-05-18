@@ -26,7 +26,7 @@
                     style="position: relative;
                     z-index: 999;
                     margin-bottom: -40px;">
-                    <a href="{{route('portfolio-detail.create')}}">
+                    <a href="{{route('solutionDetails.create')}}">
                         <div class="d-flex align-items-center">
                             <span class="ms-2 icon_btn" style="font-weight: 800;" data-bs-toggle="tooltip" data-bs-placement="top"
                             title="Add Solution Details">

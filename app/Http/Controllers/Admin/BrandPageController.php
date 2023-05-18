@@ -24,6 +24,10 @@ class BrandPageController extends Controller
     public function index()
     {
         $data['brandPages'] = BrandPage::orderBy('id' , 'desc')->get();
+        $data['brands'] = Brand::select('brands.id', 'brands.title')->get();
+        $data['solution_cards'] = SolutionCard::select('solution_cards.id', 'solution_cards.title')->get();
+        $data['rows'] = Row::whereNotNull('image')->select('rows.id', 'rows.title')->get();
+        $data['row_with_cols'] = Row::select('rows.id', 'rows.title')->get();
         return view('admin.pages.brandPage.all', $data);
     }
 

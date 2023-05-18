@@ -1,14 +1,9 @@
 @extends('admin.master')
 @section('content')
     <div class="content-wrapper">
-
         <!-- Inner content -->
-
-
         <!-- Page header -->
         <div class="page-header page-header-light shadow">
-
-
             <div class="page-header-content d-lg-flex border-top">
                 <div class="d-flex">
                     <div class="breadcrumb py-2">
@@ -16,7 +11,6 @@
                         <a href="{{ route('admin.dashboard') }}" class="breadcrumb-item">Home</a>
                         <span class="breadcrumb-item active">Industry Management</span>
                     </div>
-
                     <a href="#breadcrumb_elements"
                         class="btn btn-light align-self-center collapsed d-lg-none border-transparent rounded-pill p-0 ms-auto"
                         data-bs-toggle="collapse">
@@ -26,92 +20,236 @@
             </div>
         </div>
         <!-- /page header -->
-
-
-        <!-- Content area -->
-        <div class="content">
-            <div class="row">
-                <div class="col-lg-1"></div>
-                <div class="col-lg-9">
-                    <div class="tab-content">
-                        <div class="tab-pane fade show active" id="js-tab1">
-                            <div class="card">
-                                <div class="card-header">
-                                    <div class="row">
-                                        <div class="col-lg-9">
-                                            <h4 class="mb-0 text-center">All Industries</h4>
-                                        </div>
-                                        <div class="col-lg-3">
-                                            <a href="{{ route('industry.create') }}" type="button"
-                                                class="btn btn-sm btn-success btn-labeled btn-labeled-start float-end">
-                                                <span class="btn-labeled-icon bg-black bg-opacity-20">
-                                                    <i class="icon-plus2"></i>
-                                                </span>
-                                                Add New
-                                            </a>
+        <div class="content pt-0 w-75 mx-auto">
+            <div class="d-flex align-items-center py-2">
+                {{-- Add Details Start --}}
+                <div class="text-success nav-link cat-tab3"
+                    style="position: relative;
+                    z-index: 999;
+                    margin-bottom: -40px;">
+                    <a href="" data-bs-toggle="modal" data-bs-target="#addIndustry">
+                        <div class="d-flex align-items-center">
+                            <span class="ms-2 icon_btn" style="font-weight: 800;" data-bs-toggle="tooltip"
+                                data-bs-placement="top" title="Add Solution Details">
+                                <i class="ph-plus icons_design"></i> </span>
+                            <span class="ms-1" style="color: #247297;">Add</span>
+                        </div>
+                    </a>
+                    <div class="text-center" style="margin-left: 300px">
+                        <h5 class="ms-1" style="color: #247297;">All Industries</h5>
+                    </div>
+                </div>
+                {{-- Add Details End --}}
+            </div>
+            <div>
+                <table class="table newsLetterDt table-bordered table-hover text-center">
+                    <thead>
+                        <tr>
+                            <th width="5%">Id</th>
+                            <th width="15%">Logo</th>
+                            <th width="20%">Name</th>
+                            <th width="45%">Header</th>
+                            <th width="15%">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{-- @php($i = 1) --}}
+                        @foreach ($industrys as $key => $item)
+                            <tr>
+                                <td>{{ ++$key }}</td>
+                                <td>
+                                    <img class="rounded-circle" src="{{ asset('storage/requestImg/' . $item->logo) }}" width="25px"
+                                        height="25px" alt="">
+                                </td>
+                                <td>{{ $item->title }}</td>
+                                <td>{!! Str::limit($item->short_desc, 50, '...') !!}</td>
+                                <td>
+                                    <a href="" class="text-primary" data-bs-toggle="modal"
+                                        data-bs-target="#editIndusty_{{$item->id}}">
+                                        <i class="fa-solid fa-pen-to-square me-2 p-1 rounded-circle text-primary"></i>
+                                    </a>
+                                    <a href="{{ route('industry.destroy', [$item->id]) }}" class="text-danger delete">
+                                        <i class="fa-solid fa-trash p-1 rounded-circle text-danger"></i>
+                                    </a>
+                                    {{-- Edit Success Modal --}}
+                                    <div id="editIndusty_{{$item->id}}" class="modal fade" tabindex="-1">
+                                        <div class="modal-dialog modal-dialog-centered modal-sm">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h6 class="modal-title text-white">Edit News Letter</h6>
+                                                    <a type="button" data-bs-dismiss="modal">
+                                                        <i class="ph ph-x text-white"
+                                                            style="font-weight: 800;font-size: 10px;"></i>
+                                                    </a>
+                                                </div>
+                                                <div class="modal-body p-0 px-2">
+                                                    <form id="myform"
+                                                        method="POST" enctype="multipart/form-data">
+                                                        @csrf
+                                                        @method('PUT')
+                                                        <div class="container">
+                                                            {{--  --}}
+                                                            <div class="row mt-2 d-flex align-items-center mb-1">
+                                                                <div class="col-sm-4 text-start">
+                                                                    <span>Industry Name</span>
+                                                                </div>
+                                                                <div class="col-sm-8">
+                                                                    <input type="email"
+                                                                        name="title"value="{{ $item->title }}"
+                                                                        class="form-control form-control-sm" maxlength="100"
+                                                                        required />
+                                                                </div>
+                                                            </div>
+                                                            {{--  --}}
+                                                            <div class="row mt-2 d-flex align-items-center mb-1">
+                                                                <div class="col-sm-4 text-start">
+                                                                    <span>Industry Logo</span>
+                                                                </div>
+                                                                <div class="col-sm-6">
+                                                                    <input type="file" name="logo"
+                                                                        class="form-control form-control-sm" id="image"
+                                                                        accept="image/*" />
+                                                                </div>
+                                                                <div class="col-sm-2">
+                                                                    <img class="rounded-circle" id="showImage" height="25px" width="25px"
+                                                                        src="{{ asset('storage/requestImg/' . $item->logo) }}"
+                                                                        alt="">
+                                                                </div>
+                                                            </div>
+                                                            {{--  --}}
+                                                            <div class="row mt-2 d-flex align-items-center mb-1">
+                                                                <div class="col-sm-4 text-start">
+                                                                    <span>Banner Image </span>
+                                                                </div>
+                                                                <div class="col-sm-6">
+                                                                    <input type="file" name="image"
+                                                                        class="form-control form-control-sm" id="image1"
+                                                                        accept="image/*" />
+                                                                </div>
+                                                                <div class="col-sm-2">
+                                                                    <img class="rounded-circle" id="showImage1" height="25px" width="25px"
+                                                                        src="{{ asset('storage/requestImg/' . $item->image) }}"
+                                                                        alt="">
+                                                                </div>
+                                                            </div>
+                                                            {{--  --}}
+                                                            <div class="row mt-2 d-flex align-items-center mb-1">
+                                                                <div class="col-sm-4 text-start">
+                                                                    <span>Industry Header</span>
+                                                                </div>
+                                                                <div class="col-sm-8">
+                                                                    <textarea class="form-control form-control-sm" name="short_desc" cols="20" rows="3" required>{{ $item->short_desc }}</textarea>
+                                                                </div>
+                                                            </div>
+                                                            {{--  --}}
+                                                        </div>
+                                                        <div class="modal-footer border-0 pt-3 pb-0 pe-0">
+                                                            <button type="submit"
+                                                                class="submit_btn from-prevent-multiple-submits"
+                                                                style="padding: 5px;">Submit</button>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
+                                    {{-- Edit Success Modal End --}}
+                                </td>
+                            </tr>
+                        @endforeach
+                        {{-- @endif --}}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        {{-- Add Success Modal --}}
+        <div id="addIndustry" class="modal fade" tabindex="-1">
+            <div class="modal-dialog modal-dialog-centered modal-sm">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h6 class="modal-title text-white">Add News Letter</h6>
+                        <a type="button" data-bs-dismiss="modal">
+                            <i class="ph ph-x text-white" style="font-weight: 800;font-size: 10px;"></i>
+                        </a>
+                    </div>
+                    <div class="modal-body p-0 px-2">
+                        <form id="myform" method="post" action="{{ route('industry.store') }}"
+                            enctype="multipart/form-data">
+                            @csrf
+                            <div class="container">
+                                {{--  --}}
+                                <div class="row mt-2 d-flex align-items-center mb-1">
+                                    <div class="col-sm-4">
+                                        <span>Industry Name</span>
+                                    </div>
+                                    <div class="col-sm-8">
+                                        <input type="email" name="title" class="form-control form-control-sm form-control-sm"
+                                            maxlength="100" required />
+                                    </div>
                                 </div>
-
-                                <div class="table-responsive">
-                                    <table class="industryDT table table-bordered table-hover datatable-highlight">
-                                        <thead class="text-center">
-                                            <tr>
-                                                <th width="5%">#</th>
-                                                <th width="15%">Logo</th>
-                                                <th width="20%">Name</th>
-                                                <th width="45%">Header</th>
-                                                <th width="15%">Action</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            @php($i = 1)
-                                            @foreach ($industrys as $item)
-                                                <tr>
-                                                    <td>{{ $i++ }}</td>
-                                                    <td>
-                                                        <img src="{{ asset('storage/requestImg/' . $item->logo) }}"
-                                                            width="70px" alt="">
-                                                    </td>
-                                                    <td>{{ $item->title }}</td>
-                                                    <td>{!! Str::limit($item->short_desc, 50, '...') !!}</td>
-                                                    <td class="text-center">
-                                                        <a href="{{ route('industry.edit', $item->id) }}"
-                                                            class="text-primary">
-                                                            <i class="icon-pencil"></i>
-                                                        </a>
-                                                        <a href="{{ route('industry.destroy', [$item->id]) }}"
-                                                            class="text-danger delete mx-2">
-                                                            <i class="delete icon-trash"></i>
-                                                        </a>
-                                                    </td>
-                                                </tr>
-                                            @endforeach
-
-                                        </tbody>
-                                    </table>
+                                {{--  --}}
+                                <div class="row mt-2 d-flex align-items-center mb-1">
+                                    <div class="col-sm-4">
+                                        <span>Industry Logo</span>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <input type="file" name="logo" class="form-control form-control-sm" id="image"
+                                            accept="image/*" />
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <img class="rounded-circle" id="showImage" height="25px" width="25px"
+                                            src="https://cdn.pixabay.com/photo/2017/02/07/02/16/cloud-2044823_960_720.png"
+                                            alt="">
+                                    </div>
                                 </div>
+                                {{--  --}}
+                                <div class="row mt-2 d-flex align-items-center mb-1">
+                                    <div class="col-sm-4">
+                                        <span>Banner Image </span>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <input type="file" name="image" class="form-control form-control-sm" id="image1"
+                                            accept="image/*" />
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <img class="rounded-circle" id="showImage1" height="25px" width="25px"
+                                            src="https://cdn.pixabay.com/photo/2017/02/07/02/16/cloud-2044823_960_720.png"
+                                            alt="">
+                                    </div>
+                                </div>
+                                {{--  --}}
+                                <div class="row mt-2 d-flex align-items-center mb-1">
+                                    <div class="col-sm-4">
+                                        <span>Industry Header</span>
+                                    </div>
+                                    <div class="col-sm-8">
+                                        <textarea class="form-control form-control-sm" name="short_desc" cols="20" rows="3" required></textarea>
+                                    </div>
+                                </div>
+                                {{--  --}}
                             </div>
-                        </div>
+                            <div class="modal-footer border-0 pt-3 pb-0 pe-0">
+                                <button type="submit" class="submit_btn from-prevent-multiple-submits"
+                                    style="padding: 5px;">Submit</button>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
         </div>
-        <!-- /content area -->
-        <!-- /inner content -->
+        {{-- Add Success Modal End --}}
     </div>
 @endsection
-
 @once
     @push('scripts')
         <script type="text/javascript">
-            $('.industryDT').DataTable({
+            $('.newsLetterDt').DataTable({
                 dom: '<"datatable-header"fl><"datatable-scroll"t><"datatable-footer"ip>',
                 "iDisplayLength": 10,
                 "lengthMenu": [10, 25, 30, 50],
                 columnDefs: [{
                     orderable: false,
-                    targets: [1, 4],
+                    targets: [2],
                 }, ],
             });
         </script>

@@ -1,7 +1,12 @@
 @extends('admin.master')
 @section('content')
     <style>
-
+        .label_style {
+            width: 80px !important;
+        }
+        .note-editor{
+            width: 100% !important;
+        }
     </style>
     <div class="content-wrapper">
         <!-- Page header -->
@@ -23,6 +28,7 @@
             </div>
         </div>
         <!-- /page header -->
+
 
         <!-- Content area -->
         <div class="content pt-2 w-75 mx-auto">
@@ -57,48 +63,16 @@
                 @csrf
                 <div class="card">
                     <!--Banner Section-->
-                    <div class="container">
-                        <div class="row g-2 p-1">
-                            <div class="col">
-                                <span class="mt-1 fw-bold text-info">Writer</span>
-                                <div class="px-2 py-2 rounded bg-light ">
-                                    {{--  --}}
-                                    <div class="d-flex align-items-center pt-1">
-                                        <label
-                                            class="col-form-label label_style col-lg-2 p-0 text-start text-black label_style">Author</label>
-                                        <div class="input-group">
-                                            <input name="created_by" maxlength="255" type="text"
-                                                class="form-control form-control-sm" placeholder="Enter Author" required>
-                                        </div>
-                                    </div>
-                                    {{--  --}}
-                                    <div class="d-flex align-items-center pt-1">
-                                        <label
-                                            class="col-form-label label_style col-lg-2 p-0 text-start text-black label_style">Badge
-                                            Name</label>
-                                        <div class="input-group">
-                                            <input name="badge" maxlength="255" type="text"
-                                                class="form-control form-control-sm" placeholder="Enter Author Badge"
-                                                required>
-                                        </div>
-                                    </div>
-                                    {{--  --}}
-                                    <div class="d-flex align-items-center pt-1 form-switch">
-                                        <label class="form-check-label" for="sc_r_secondary">Featured</label>
-                                        <div class="input-group" style="margin-left: 6.5rem !important;">
-                                            <input type="checkbox" name="featured" value="1"
-                                                class="form-check-input form-check-input-secondary" id="sc_r_secondary">
-                                        </div>
-                                    </div>
-                                    {{--  --}}
-                                </div>
+                    <div class="container py-2">
+                        <div class="row">
+                            <div class="col-lg-4 col-sm-6">
                                 <span class="mt-1 fw-bold text-info">Description</span>
                                 <div class="px-2 py-2 rounded bg-light ">
-                                    {{--  --}}
-                                    <div class="d-flex align-items-center pt-1">
-                                        <label
-                                            class="col-form-label label_style col-lg-2 p-0 text-start text-black label_style">Brands</label>
-                                        <div class="input-group">
+                                    <div class="row mb-1">
+                                        <div class="col-lg-4 d-flex align-items-center">
+                                            <span>Brands</span>
+                                        </div>
+                                        <div class="col-lg-8">
                                             <select name="brand_id[]" class="form-control-sm multiselect btn btn-sm"
                                                 id="select6" multiple="multiple" data-include-select-all-option="true"
                                                 data-enable-filtering="true" data-enable-case-insensitive-filtering="true">
@@ -110,11 +84,12 @@
                                         </div>
                                     </div>
                                     {{--  --}}
-                                    <div class="d-flex align-items-center pt-1">
-                                        <label
-                                            class="col-form-label label_style col-lg-2 p-0 text-start text-black label_style">Categories</label>
-                                        <div class="input-group">
-                                            <select name="brand_id[]" class="form-control-sm multiselect btn btn-sm"
+                                    <div class="row mb-1">
+                                        <div class="col-lg-4 d-flex align-items-center">
+                                            <span>Categories</span>
+                                        </div>
+                                        <div class="col-lg-8">
+                                            <select name="category_id[]" class="form-control-sm multiselect btn btn-sm"
                                                 id="select6" multiple="multiple" data-include-select-all-option="true"
                                                 data-enable-filtering="true" data-enable-case-insensitive-filtering="true">
                                                 <option></option>
@@ -125,11 +100,12 @@
                                         </div>
                                     </div>
                                     {{--  --}}
-                                    <div class="d-flex align-items-center pt-1">
-                                        <label
-                                            class="col-form-label label_style col-lg-2 p-0 text-start text-black label_style">Industries</label>
-                                        <div class="input-group">
-                                            <select name="brand_id[]" class="form-control-sm multiselect btn btn-sm"
+                                    <div class="row mb-1">
+                                        <div class="col-lg-4 d-flex align-items-center">
+                                            <span>Industries</span>
+                                        </div>
+                                        <div class="col-lg-8">
+                                            <select name="industry_id[]" class="form-control-sm multiselect btn btn-sm"
                                                 id="select6" multiple="multiple" data-include-select-all-option="true"
                                                 data-enable-filtering="true"
                                                 data-enable-case-insensitive-filtering="true">
@@ -142,11 +118,12 @@
                                         </div>
                                     </div>
                                     {{--  --}}
-                                    <div class="d-flex align-items-center pt-1">
-                                        <label
-                                            class="col-form-label label_style col-lg-2 p-0 text-start text-black label_style">Solutions</label>
-                                        <div class="input-group">
-                                            <select name="brand_id[]" class="form-control-sm multiselect btn btn-sm"
+                                    <div class="row mb-1">
+                                        <div class="col-lg-4 d-flex align-items-center">
+                                            <span>Solutions</span>
+                                        </div>
+                                        <div class="col-lg-8">
+                                            <select name="solution_id[]" class="form-control-sm multiselect btn btn-sm"
                                                 id="select6" multiple="multiple" data-include-select-all-option="true"
                                                 data-enable-filtering="true"
                                                 data-enable-case-insensitive-filtering="true">
@@ -159,94 +136,130 @@
                                         </div>
                                     </div>
                                 </div>
+                            </div>
+
+                            <div class="col-lg-4 col-sm-6">
                                 <span class="mt-1 fw-bold text-info">Blog Details</span>
                                 <div class="px-2 py-2 rounded bg-light mb-1">
-                                    {{--  --}}
-                                    <div class="d-flex align-items-center pt-1">
-                                        <label
-                                            class="col-form-label label_style col-lg-2 p-0 text-start text-black label_style">Title
-                                        </label>
-                                        <div class="input-group">
+                                    <div class="row mb-1">
+                                        <div class="col-lg-3 d-flex align-items-center">
+                                            <span>Title</span>
+                                        </div>
+                                        <div class="col-lg-9">
                                             <input name="title" maxlength="255" type="text"
-                                                class="form-control form-control-sm" placeholder="Enter Box One Title"
-                                                required>
+                                                class="form-control form-control-sm" placeholder="Enter Blog One Title">
                                         </div>
                                     </div>
                                     {{--  --}}
-
-                                    <div class="d-flex align-items-center pt-1">
-                                        <label
-                                            class="col-form-label label_style col-lg-2 p-0 text-start text-black label_style">Banner
-                                            Image</label>
-                                        <div class="d-flex">
-                                            <div class="" style="width: 70%">
-                                                <input name="image" id="image" accept="image/*" type="file"
-                                                    class="form-control form-control-sm" placeholder="Enter Banner Image">
-                                            </div>
-                                            <div class=" ms-2" style="width: 10%">
-                                                <img class="img-fluid rounded-circle" id="showImage"
-                                                    src="https://cdn.pixabay.com/photo/2017/02/07/02/16/cloud-2044823_960_720.png"
-                                                    alt=""
-                                                    style="width: 30px;
-                                                        height: 30px;
-                                                         margin-left: 2.5rem;">
+                                    <div class="row">
+                                        <div class="col-lg-3 d-flex align-items-center">
+                                            <span>Banner Image</span>
+                                        </div>
+                                        <div class="col-lg-9">
+                                            <div class="row">
+                                                <div class="col-lg-8">
+                                                    <input name="image" id="image" accept="image/*" type="file"
+                                                        class="form-control form-control-sm"
+                                                        placeholder="Enter Banner Image">
+                                                </div>
+                                                <div class="col-lg-4">
+                                                    <img class="img-fluid rounded-circle" id="showImage"
+                                                        src="https://cdn.pixabay.com/photo/2017/02/07/02/16/cloud-2044823_960_720.png" alt=""
+                                                        style="width: 30px;
+                                                        height: 30px;">
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                     {{--  --}}
-                                    <div class="d-flex align-items-center pt-1">
-                                        <label
-                                            class="col-form-label label_style col-lg-2 p-0 text-start text-black label_style">Header</label>
-                                        <div class="input-group">
+                                    <div class="row mb-1">
+                                        <div class="col-lg-3 d-flex align-items-center">
+                                            <span>Header</span>
+                                        </div>
+                                        <div class="col-lg-9">
                                             <textarea class="form-control maxlength" name="header" id="" maxlength="500" cols="30"
                                                 rows="3" placeholder="Enter Header"></textarea>
                                         </div>
                                     </div>
-                                    {{--  --}}
                                 </div>
-                                <span class="mt-1 fw-bold text-info">Blog Details</span>
-                                <div class="px-2 py-2 rounded bg-light">
+                            </div>
+                            <div class="col-lg-4 col-sm-6">
+                                <span class="mt-1 fw-bold text-info">Writer</span>
+                                <div class="px-2 py-2 rounded bg-light ">
                                     {{--  --}}
-                                    <div class="d-flex align-items-center pt-1">
-                                        <label
-                                            class="col-form-label label_style col-lg-2 p-0 text-start text-black label_style">Tags
-                                        </label>
-                                        <div class="input-group">
+                                    <div class="row mb-1">
+                                        <div class="col-lg-4 ">
+                                            <span>Author</span>
+                                        </div>
+                                        <div class="col-lg-8">
+                                            <input name="created_by" maxlength="255" type="text"
+                                                class="form-control form-control-sm" placeholder="Enter Author">
+                                        </div>
+                                    </div>
+                                    {{--  --}}
+                                    <div class="row mb-1">
+                                        <div class="col-lg-4 ">
+                                            <span>Badge
+                                                Name</span>
+                                        </div>
+                                        <div class="col-lg-8">
+                                            <input name="badge" maxlength="255" type="text"
+                                                class="form-control form-control-sm" placeholder="Enter Author Badge">
+                                        </div>
+                                    </div>
+                                    {{--  --}}
+                                    <div class="row mb-1">
+                                        <div class="col-lg-4">
+                                            <label class="form-check-label" for="sc_r_secondary">Featured</label>
+                                        </div>
+                                        <div class="col-lg-8">
+                                            <div class="input-group">
+                                                <input type="checkbox" name="featured" value="1"
+                                                class="form-check-input form-check-input-secondary" id="sc_r_secondary">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {{--  --}}
+                                    <div class="row">
+                                        <div class="col-lg-4">
+                                            <span>Tags</span>
+                                        </div>
+                                        <div class="col-lg-8">
                                             <input name="tags " maxlength="255" type="text"
-                                                class="form-control form-control-sm" placeholder="Enter Releted Tags "
-                                                required>
+                                                class="form-control form-control-sm" placeholder="Enter Releted Tags ">
                                         </div>
                                     </div>
                                     {{--  --}}
                                 </div>
                             </div>
+                        </div>
+
+                        <div class="row">
                             <div class="col">
                                 <span class="mt-1 fw-bold text-info">Blog Details</span>
                                 <div class="px-2 py-2 rounded bg-light">
                                     {{--  --}}
                                     <div class=" pt-1">
                                         <label
-                                            class="col-form-label label_style col-lg-2 p-0 text-start text-black label_style">Tags
+                                            class="col-form-label fw-bold  col-lg-2 p-0 text-start text-black ">Featured Description
                                         </label>
                                         <div class="input-group">
                                             <textarea class="form-control" name="short_des" id="featured_desc" style=" font-size: 12px; font-weight: 500;"></textarea>
                                         </div>
                                     </div>
                                     {{--  --}}
-                                    {{--  --}}
                                     <div class=" pt-1">
                                         <label
-                                            class="col-form-label label_style col-lg-2 p-0 text-start text-black label_style">Tags
+                                            class="col-form-label fw-bold  col-lg-2 p-0 text-start text-black ">Description
                                         </label>
                                         <div class="input-group">
                                             <textarea class="form-control" name="long_des" id="long_desc" style=" font-size: 12px; font-weight: 500;"></textarea>
                                         </div>
                                     </div>
                                     {{--  --}}
-                                    {{--  --}}
                                     <div class=" pt-1">
                                         <label
-                                            class="col-form-label label_style col-lg-2 p-0 text-start text-black label_style">Tags
+                                            class="col-form-label fw-bold  col-lg-2 p-0 text-start text-black">Footer
                                         </label>
                                         <div class="input-group">
                                             <textarea class="form-control" name="footer" id="footer" style=" font-size: 12px; font-weight: 500;"></textarea>
@@ -258,14 +271,14 @@
                         </div>
                     </div>
                     <div class="modal-footer border-0 p-2">
-                        <button type="button" class="submit_close_btn " data-bs-dismiss="modal">Close</button>
-                        <button type="submit" class="submit_btn from-prevent-multiple-submits"
+                        <button type="submit" class="submit_btn from-prevent-multiple-submits" id="submitbtn"
                             style="padding: 4px 9px;">Submit</button>
                     </div>
                 </div>
-            </form>
-        </div>
-        <!-- /content area -->
+        </form>
+    </div>
+    <!-- /content area -->
+
 
     </div>
 @endsection

@@ -18,7 +18,7 @@ class FeedbackController extends Controller
     public function index()
     {
         $data['feedbacks'] = Feedback::latest()->get();
-        return view('admin.pages.feedback.all', $data);
+        return view('admin.pages.feedback.all');
     }
 
     /**

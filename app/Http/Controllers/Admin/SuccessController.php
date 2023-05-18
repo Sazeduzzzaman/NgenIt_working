@@ -17,7 +17,7 @@ class SuccessController extends Controller
      */
     public function index()
     { 
-        $data['success'] = Success::latest()->get();
+        $data['successes'] = Success::latest()->get();
         return view('admin.pages.success.all', $data);
     }
 

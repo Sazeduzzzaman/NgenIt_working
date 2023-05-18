@@ -101,14 +101,14 @@
                                                 </div>
                                                 <div class="form-check mt-2">
                                                     <input class="form-check-input" type="radio" name="condition"
-                                                        value="sale_terms" id="flexRadioDefault2" {{ $policy->condition == 'sale_terms' ? 'checked' : '' }}>
+                                                        value="sale_terms" id="flexRadioDefault2" >
                                                     <label class="form-check-label" for="flexRadioDefault2">
                                                         Terms of Sale
                                                     </label>
                                                 </div>
                                                 <div class="form-check mt-2">
                                                     <input class="form-check-input" type="radio" name="condition"
-                                                        value="service_terms" id="flexRadioDefault2" {{ $policy->condition == 'service_terms' ? 'checked' : '' }}>
+                                                        value="service_terms" id="flexRadioDefault2" >
                                                     <label class="form-check-label" for="flexRadioDefault2">
                                                         Terms of Service
                                                     </label>
@@ -121,7 +121,7 @@
                                                 <h6 class="mb-0">Description </h6>
                                             </div>
                                             <div class="form-group col-sm-12 text-secondary">
-                                                <textarea class="form-control" name="description" id="overview" style=" font-size: 12px; font-weight: 500;">{{ $policy->description }}</textarea>
+                                                <textarea class="form-control" name="description" id="overview" style=" font-size: 12px; font-weight: 500;"></textarea>
                                             </div>
                                         </div>
 

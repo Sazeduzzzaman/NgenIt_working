@@ -53,7 +53,7 @@
                                     <table class="datatable table table-bordered text-center table-hover clientDatabaseDT">
                                         <thead>
                                             <tr>
-                                                <th width="20%">Sl No:</th>
+                                                <th width="20%">Id</th>
                                                 <th width="35%">Deal Type</th>
                                                 <th width="30%">Value</th>
                                                 <th width="20%" class="text-center">Actions</th>

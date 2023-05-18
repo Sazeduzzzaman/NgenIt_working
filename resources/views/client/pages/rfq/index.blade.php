@@ -47,7 +47,7 @@
                                             <table class="table table-bordered table-hover contactDT">
                                                 <thead>
                                                     <tr>
-                                                        <th width="10%">Sl No:</th>
+                                                        <th width="10%">Id</th>
                                                         <th width="15%">Rfq Code</th>
                                                         <th width="40%">Product Name</th>
                                                         <th width="15%">Rfq Status</th>

@@ -29,7 +29,12 @@
 /* font face for Klinic Slab End*/
 
 body {
-    font-size: 11px !important;
+    font-size: 12px !important;
+}
+.sidebar-expand-lg.sidebar-main-resized:not(.sidebar-collapsed):not(
+        .sidebar-main-unfold
+    ) {
+    width: 3.7rem !important;
 }
 #DataTables_Table_0_length select {
     margin-left: 4px !important;
@@ -335,6 +340,7 @@ textarea {
 }
 
 .nav-tabs .nav-link.active {
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
     color: #247297 !important;
     background-color: transparent;
     border: none !important;
@@ -472,6 +478,8 @@ table td {
 
 .form-control-sm {
     padding: 3px 10px !important;
+    height: 25px !important;
+
 }
 .main_color {
     color: #247297;
@@ -525,4 +533,31 @@ table td {
 }
 .form-control-feedback-icon {
     display: none;
+}
+.table_bg{
+    background-color: #247297 !important;
+}
+.PQ-select{
+    border:1px solid #247297 !important;
+    color: #247297 !important;
+}
+/* for all check box */
+.form-check-input {
+    height: 15px;
+    width: 25px;
+}
+/* Modal Button */
+.btn-close{
+    color: #fff !important;
+}
+/* Multi Select */
+.multiselect.btn {
+    cursor: default;
+    height: 24px !important;
+    border-radius: 4px !important;
+  }
+@media only screen and (max-width: 600px) {
+    .label_style {
+        width: 100% !important;
+    }
 }

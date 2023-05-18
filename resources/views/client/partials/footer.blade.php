@@ -1,7 +1,7 @@
-<div class="navbar navbar-sm navbar-footer border-top" style="background: linear-gradient(90deg, #ae0a46, #a80b6e, #582873);">
+<div class="navbar navbar-sm navbar-footer border-top"
+    >
     <div class="container-fluid">
         <span></span>
-
         <ul class="nav">
             {{-- <li class="nav-item">
                 <a href="" class="navbar-nav-link navbar-nav-link-icon rounded" target="_blank">
@@ -12,12 +12,11 @@
                 </a>
             </li> --}}
             <li class="nav-item ms-md-1">
-
-                    <div class="d-flex align-items-center mx-md-1">
-
-                        <span class="d-none d-md-inline-block ms-2">
-                            <strong class="text-white">&copy; {{ date('Y') }} <a href="{{ route('homepage') }}">Ngen It</a></strong></span>
-                    </div>
+                <div class="d-flex align-items-center mx-md-1">
+                    <span class="d-none d-md-inline-block ms-2">
+                        <strong class="text-black">&copy; {{ date('Y') }} <a href="{{ route('homepage') }}">Ngen
+                                It</a></strong></span>
+                </div>
                 </a>
             </li>
         </ul>

@@ -62,7 +62,7 @@
                                         <table class="datatable table table-bordered table-hover rowColDT">
                                             <thead>
                                                 <tr>
-                                                    <th width="10%">Sl No:</th>
+                                                    <th width="10%">Id</th>
                                                     <th width="25">Title</th>
                                                     <th width="25">Column One Title</th>
                                                     <th width="25">Column Two Title</th>

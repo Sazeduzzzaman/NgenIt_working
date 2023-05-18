@@ -19,6 +19,7 @@ class RevisedDealController extends Controller
     public function index()
     {
         $data['revisedDeals'] = RevisedDeal::get();
+        $data['rfqs'] = Rfq::select('rfqs.id', 'rfqs.name')->get();
         return view('admin.pages.revisedDeal.all', $data);
     }
 
