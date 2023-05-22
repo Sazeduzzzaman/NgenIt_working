@@ -554,14 +554,12 @@
 
     <!--======// Header Title //======-->
     <section class="common_product_header"
-        style="background-image: url('https://www.insight.com/content/dam/insight-web/sitesections/solutions/images/heroes/solutions-home-hero.jpg');">
+    style="background-image: linear-gradient(
+        rgba(0,0,0,0.8),
+        rgba(0,0,0,0.8)
+        ),url('https://i.ibb.co/hy9tM3r/Banner-Contact-Us-1.jpg');">
         {{-- style="background-image: url('{{ asset('storage/' . $learnmore->image_banner) }}');"> --}}
-        <div
-            style="background-image: url('https://www.insight.com/content/dam/insight-web/en_US/campaigns/insight/be-ambitious/pattern-background-gradient-full-large.png'); background-repeat: no-repeat;
-background-position: top right;
-background-size: auto;
-min-height: 475px;
-overflow: hidden;">
+        <div>
             <div class="">
                 <div class="container ">
                     {{-- <h1 class="text-capitalize w-50 mx-auto">{{ $learnmore->title }}.</h1> --}}

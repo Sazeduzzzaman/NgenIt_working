@@ -140,7 +140,7 @@ Route::get('/industry/{id}/details', [HomeController::class, 'IndustryDetails'])
 
 
 Route::get('/partner.html', [HomeController::class, 'partner'])->name('partner');
-Route::get('/about.html', [HomeController::class, 'about'])->name('about');
+Route::get('/about', [HomeController::class, 'about'])->name('about');
 
 Route::get('account_benefits', [HomeController::class, 'accountBenefits']);
 

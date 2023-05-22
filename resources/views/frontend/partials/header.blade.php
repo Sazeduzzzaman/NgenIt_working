@@ -306,6 +306,18 @@
     }
 
     /* FOr Category */
+    .data_tabs_content {
+        background-color: white;
+
+    }
+
+    .extra_category {
+        background-color: transparent !important;
+        padding: 0px;
+        border-top: none !important;
+        border: 0px !important;
+    }
+
     .dropdown_area_here {
         background: #ae0a46 !important;
         padding: 22px;
@@ -318,26 +330,6 @@
         color: ae0a46;
     }
 
-    .extra_category {
-        background-color: transparent !important;
-        padding: 0px;
-        border-top: none !important;
-        border: 0px !important;
-    }
-
-    .category_accordion_btn {
-        padding: 10px;
-        background: #ae0a46;
-        color: white;
-        margin-top: 0px;
-        margin-left: 4px;
-    }
-
-    .accordion-button:not(.collapsed) {
-        background: #e7e7ea !important;
-        padding: 16px !important;
-    }
-
     @media screen and (max-width: 600px) {
         .for_sm_menu {
             padding-left: 13px !important;
@@ -348,6 +340,183 @@
     }
 
     /* Slider */
+</style>
+<style>
+    /* For Right Side Active */
+    .nav-pills-custom .nav-link {
+        color: #aaa;
+        background: #fff;
+        position: relative;
+    }
+
+    .nav-pills-custom .nav-link {
+        font-family: 'Allumi Std Extended';
+        color: #161616 !important;
+        background: #e7e7e7;
+        font-weight: normal;
+    }
+
+    .nav-pills-custom .nav-link.active {
+        font-family: 'Allumi Std Extended';
+        color: #ffffff !important;
+        background: #ae0a46;
+        font-weight: normal;
+    }
+
+    /* For Left Side Active */
+    .nav-pills-custom2 .nav-link {
+        color: #aaa;
+        background: #fff;
+        position: relative;
+    }
+
+    .nav-pills-custom2 .nav-link {
+        font-family: 'Allumi Std Extended';
+        color: #161616 !important;
+        background: #e7e7e7;
+        font-weight: normal;
+    }
+
+    .nav-pills-custom2 .nav-link.active {
+        font-family: 'Allumi Std Extended';
+        color: #ffffff !important;
+        background: #ae0a46;
+        font-weight: normal;
+    }
+
+    /* For Left 3 Side Active */
+    .nav-pills-custom3 .nav-link {
+        color: #aaa;
+        background: #fff;
+        position: relative;
+        font-family: 'Allumi Std Extended';
+        color: #161616 !important;
+        background: #e7e7e7;
+        font-weight: normal;
+        width: 52px;
+        height: 44px;
+        display: flex;
+        margin-top: 5px;
+        justify-content: center;
+    }
+
+    .nav-pills-custom3 .nav-link {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .nav-pills-custom3 .nav-link.active {
+        font-family: 'Allumi Std Extended';
+        color: #ffffff !important;
+        background: #ae0a46;
+        font-weight: normal;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .nav-link i {
+        font-size: 15px;
+    }
+
+    .tab-content {
+        background: #e7e7e7 !important;
+        line-height: 25px;
+        padding: 0px !important;
+    }
+
+    .tab_key_btns3 {
+        display: flex;
+        justify-content: end;
+    }
+
+    .tab_area_main {
+        background: white;
+    }
+
+    .tab_area_main3 {
+        background: transparent;
+        padding: 10px;
+    }
+
+    .tab_btn_icon {
+        background: #f7f6f5;
+        padding: 18px;
+        border-radius: 50%;
+        color: #ae0a46;
+    }
+
+    .tab_btn_icon3 {
+        background: #f7f6f5;
+        padding: 20px;
+        border-radius: 50%;
+        color: #ae0a46;
+        margin-left: 200px;
+    }
+
+    /* Add indicator arrow for the active tab */
+    @media (min-width: 992px) {
+
+        /* For Right Side Active */
+        .nav-pills-custom .nav-link::before {
+            content: '';
+            display: block;
+            border-top: 8px solid transparent;
+            border-right: 10px solid #ae0a46;
+            border-bottom: 8px solid transparent;
+            position: absolute;
+            top: 50%;
+            left: -10px;
+            transform: translateY(-50%);
+            opacity: 0;
+        }
+
+        .nav-pills-custom .nav-link.active::before {
+            opacity: 1;
+        }
+
+        /* For Left Side Active */
+        .nav-pills-custom2 .nav-link::before {
+            content: '';
+            display: block;
+            border-top: 8px solid transparent;
+            border-left: 10px solid #ae0a46;
+            border-bottom: 8px solid transparent;
+            position: absolute;
+            top: 50%;
+            right: -10px;
+            transform: translateY(-50%);
+            opacity: 0;
+        }
+
+        .nav-pills-custom2 .nav-link.active::before {
+            opacity: 1;
+        }
+
+        /* For Left Side Active */
+        .nav-pills-custom3 .nav-link::before {
+            content: '';
+            display: block;
+            border-top: 8px solid transparent;
+            border-left: 10px solid #ae0a46;
+            border-bottom: 8px solid transparent;
+            position: absolute;
+            top: 50%;
+            right: -10px;
+            transform: translateY(-50%);
+            opacity: 0;
+        }
+
+        .nav-pills-custom3 .nav-link.active::before {
+            opacity: 1;
+        }
+
+    }
+
+
+
+    /*
 </style>
 <section>
     <div class="container-fluid" style="background-color: #ae0a46;z-index: 999 !important;">
@@ -431,110 +600,243 @@
                 aria-controls="mobileMenuCanvas" aria-expanded=" false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
-                    <li class="nav-item dropdown position-static cool-link ">
-                        {{-- <a class="nav-link dropdown-toggle" href="#" type="button"
-                            id="dropdownMenuClickableInside" data-bs-toggle="dropdown" data-bs-auto-close="outside"
-                            aria-expanded="false">
-                            Our Solution 2
-                        </a> --}}
-                        <a class="nav link dropdown_area_here" href="#" role="button" id="dropdownMenuLink2"
+            <div class="">
+                <div class="">
+                    <div class="dropdown position-static " style="margin-left: 60px;">
+                        <a class="nav tab_btn_icon" href="#" role="button" id="dropdownMenuLink2"
                             data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
-                            Dropdown link
+                            <i class="fa-solid fa-bars" style="font-size: 15px !important;"></i>
                         </a>
 
-                        <ul class="dropdown-menu w-100" aria-labelledby="dropdownMenuLink2">
-                            <div class="container px-4">
-                                <div class="row gx-1">
-                                    <div class="col-lg-4">
-                                        <div>
-                                            <h2 class="accordion-header" id="flush-headingOne">
-                                                <button class="accordion-button collapsed category_accordion_btn"
-                                                    type="button" data-bs-toggle="collapse"
-                                                    data-bs-target="#flush-collapseOne" aria-expanded="false"
-                                                    aria-controls="flush-collapseOne">
-                                                    Accordion Item #1
-                                                </button>
-                                            </h2>
-                                            <h2 class="accordion-header" id="flush-headingTwo">
-                                                <button class="accordion-button collapsed category_accordion_btn"
-                                                    type="button" data-bs-toggle="collapse"
-                                                    data-bs-target="#flush-collapseTwo" aria-expanded="false"
-                                                    aria-controls="flush-collapseTwo">
-                                                    Accordion Item #2
-                                                </button>
-                                            </h2>
-                                            <h2 class="accordion-header" id="flush-headingThree">
-                                                <button class="accordion-button collapsed category_accordion_btn"
-                                                    type="button" data-bs-toggle="collapse"
-                                                    data-bs-target="#flush-collapseThree" aria-expanded="false"
-                                                    aria-controls="flush-collapseThree">
-                                                    Accordion Item #3
-                                                </button>
-                                            </h2>
+                        <ul class="dropdown-menu w-100 extra_category" aria-labelledby="dropdownMenuLink2">
+                            <section class="header" style=" height: 100vh; margin-top: -2px;">
+                                <div class="container">
+                                    <div class="row tab_area_main">
+                                        <div class="col-md-3 tab_key_btns p-0 ">
+                                            <!-- Tabs nav -->
+                                            <div class="nav flex-column nav-pills2 nav-pills-custom2" id="v-pills-tab"
+                                                role="tablist" aria-orientation="vertical">
+
+                                                <a class="nav-link mb-1 p-1 shadow active" id="v-pills-home-tab"
+                                                    data-toggle="pill" href="#v-pills-home" role="tab"
+                                                    aria-controls="v-pills-home" aria-selected="true">
+                                                    <i class="fa-solid fa-list"></i>
+                                                    <span class="">Category One</span></a>
+
+                                                <a class="nav-link mb-1 p-1 shadow" id="v-pills-profile-tab"
+                                                    data-toggle="pill" href="#v-pills-profile" role="tab"
+                                                    aria-controls="v-pills-profile" aria-selected="false">
+                                                    <i class="fa-solid fa-list"></i>
+                                                    <span class="">Category Two</span></a>
+
+                                                <a class="nav-link mb-1 p-1 shadow" id="v-pills-messages-tab"
+                                                    data-toggle="pill" href="#v-pills-messages" role="tab"
+                                                    aria-controls="v-pills-messages" aria-selected="false">
+                                                    <i class="fa-solid fa-list"></i>
+                                                    <span class="">Category Three</span></a>
+
+                                                <a class="nav-link mb-1 p-1 shadow" id="v-pills-settings-tab"
+                                                    data-toggle="pill" href="#v-pills-settings" role="tab"
+                                                    aria-controls="v-pills-settings" aria-selected="false">
+                                                    <i class="fa-solid fa-list"></i>
+                                                    <span class="">Category Four</span></a>
+
+                                                <a class="nav-link mb-1 p-1 shadow" id="v-pills-settings-tab"
+                                                    data-toggle="pill" href="#v-pills-settings" role="tab"
+                                                    aria-controls="v-pills-settings" aria-selected="false">
+                                                    <i class="fa-solid fa-list"></i>
+                                                    <span class="">
+                                                        Category Five</span></a>
+                                                <a class="nav-link mb-1 p-1 shadow" id="v-pills-settings-tab"
+                                                    data-toggle="pill" href="#v-pills-settings" role="tab"
+                                                    aria-controls="v-pills-settings" aria-selected="false">
+                                                    <i class="fa-solid fa-list"></i>
+                                                    <span class="">
+                                                        Category Six</span></a>
+                                                <a class="nav-link mb-1 p-1 shadow" id="v-pills-settings-tab"
+                                                    data-toggle="pill" href="#v-pills-settings" role="tab"
+                                                    aria-controls="v-pills-settings" aria-selected="false">
+                                                    <i class="fa-solid fa-list"></i>
+                                                    <span class="">
+                                                        Category Seven</span></a>
+                                                <a class="nav-link mb-1 p-1 shadow" id="v-pills-settings-tab"
+                                                    data-toggle="pill" href="#v-pills-settings" role="tab"
+                                                    aria-controls="v-pills-settings" aria-selected="false">
+                                                    <i class="fa-solid fa-list"></i>
+                                                    <span class="">
+                                                        Category Eight</span></a>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="col-lg-8">
-                                        <div class="accordion accordion-flush" id="accordionFlushExample">
-                                            <div class="accordion-item border-0" style="    background: #e7e7ea;">
-                                                <div id="flush-collapseOne" class="accordion-collapse collapse"
-                                                    aria-labelledby="flush-headingOne"
-                                                    data-bs-parent="#accordionFlushExample">
-                                                    <div class="accordion-body">Placeholder 1 content for this
-                                                        accordion,
-                                                        which is intended to demonstrate the
-                                                        <code>.accordion-flush</code>
-                                                        class. This is the third item's accordion body. Nothing more
-                                                        exciting happening here in terms of content, but just filling up
-                                                        the
-                                                        space to make it look, at least at first glance, a bit more
-                                                        representative of how this would look in a real-world
-                                                        application.
-                                                    </div>
-                                                </div>
-                                                <div class="accordion-item border-0" style="    background: #e7e7ea;">
-                                                    <div id="flush-collapseTwo" class="accordion-collapse collapse"
-                                                        aria-labelledby="flush-headingTwo"
-                                                        data-bs-parent="#accordionFlushExample">
-                                                        <div class="accordion-body">Placeholder 2 content for this
-                                                            accordion,
-                                                            which is intended to demonstrate the
-                                                            <code>.accordion-flush</code>
-                                                            class. This is the third item's accordion body. Nothing more
-                                                            exciting happening here in terms of content, but just
-                                                            filling up the
-                                                            space to make it look, at least at first glance, a bit more
-                                                            representative of how this would look in a real-world
-                                                            application.
+                                        <div class="col-md-9 p-0 ps-2">
+                                            <!-- Tabs content -->
+                                            <div class="tab-content" id="v-pills-tabContent">
+                                                <div class="tab-pane fade shadow rounded  show active p-1"
+                                                    id="v-pills-home" role="tabpanel"
+                                                    aria-labelledby="v-pills-home-tab">
+                                                    {{-- Content Here --}}
+
+                                                    <div class="row">
+                                                        <div class="col-lg-2">
+                                                            <div class="nav flex-column nav-pills2 nav-pills-custom2"
+                                                                id="v-pills-tab" role="tablist"
+                                                                aria-orientation="vertical">
+                                                                <a class="nav-link mb-1 p-1 shadow active"
+                                                                    id="v-pills-homes-tab" data-toggle="pill"
+                                                                    href="#v-pills-homes2" role="tab"
+                                                                    aria-controls="v-pills-homes"
+                                                                    aria-selected="true">
+                                                                    <i class="fa-solid fa-list"></i>
+                                                                    <span class="">Category One Sub</span>
+                                                                </a>
+                                                                <a class="nav-link mb-1 p-1 shadow active"
+                                                                    id="v-pills-homes-tab" data-toggle="pill"
+                                                                    href="#v-pills-homes2" role="tab"
+                                                                    aria-controls="v-pills-homes"
+                                                                    aria-selected="true">
+                                                                    <i class="fa-solid fa-list"></i>
+                                                                    <span class="">Category Two Sub</span>
+                                                                </a>
+                                                                <a class="nav-link mb-1 p-1 shadow active"
+                                                                    id="v-pills-homes-tab3" data-toggle="pill"
+                                                                    href="#v-pills-homes" role="tab"
+                                                                    aria-controls="v-pills-homes"
+                                                                    aria-selected="true">
+                                                                    <i class="fa-solid fa-list"></i>
+                                                                    <span class="">Category Three Sub</span>
+                                                                </a>
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                    <div class="accordion-item border-0"
-                                                        style="    background: #e7e7ea;">
-                                                        <div id="flush-collapseThree"
-                                                            class="accordion-collapse collapse"
-                                                            aria-labelledby="flush-headingThree"
-                                                            data-bs-parent="#accordionFlushExample">
-                                                            <div class="accordion-body">Placeholder 3 content for this
-                                                                accordion,
-                                                                which is intended to demonstrate the
-                                                                <code>.accordion-flush</code>
-                                                                class. This is the third item's accordion body. Nothing
-                                                                more
-                                                                exciting happening here in terms of content, but just
-                                                                filling up the
-                                                                space to make it look, at least at first glance, a bit
-                                                                more
-                                                                representative of how this would look in a real-world
-                                                                application.
+                                                        <div class="col-lg-8">
+                                                            <div class="tab-pane fade shadow rounded  show active p-1"
+                                                                id="v-pills-homes" role="tabpanel"
+                                                                aria-labelledby="v-pills-homes-tab">
+                                                                {{-- Content Here --}}
+                                                                <h4 class="font-italic mb-4">Bookingsss</h4>
+                                                                <p class="font-italic text-muted mb-2">Lorem ipsum
+                                                                    dolor sit amet consectetur adipisicing elit. Officia
+                                                                    debitis, aliquam vero modi minima ipsum optio totam
+                                                                    quos harum a?</p>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
+
+                                                <div class="tab-pane fade shadow rounded  p-1" id="v-pills-profile"
+                                                    role="tabpanel" aria-labelledby="v-pills-profile-tab">
+                                                    {{-- Content Here --}}
+                                                    <h4 class="font-italic mb-4">Bookings</h4>
+                                                    <p class="font-italic text-muted mb-2">Lorem ipsum dolor
+                                                        sit amet,
+                                                        consectetur adipisicing elit, sed do eiusmod tempor
+                                                        incididunt
+                                                        ut
+                                                        labore et dolore magna aliqua. Ut enim ad minim veniam,
+                                                        quis
+                                                        nostrud
+                                                        exercitation ullamco laboris nisi ut aliquip ex ea
+                                                        commodo
+                                                        consequat. Duis aute irure dolor in reprehenderit in
+                                                        voluptate
+                                                        velit
+                                                        esse cillum dolore eu fugiat nulla pariatur. Excepteur
+                                                        sint
+                                                        occaecat
+                                                        cupidatat non proident, sunt in culpa qui officia
+                                                        deserunt
+                                                        mollit
+                                                        anim id est laborum.</p>
+                                                </div>
+
+                                                <div class="tab-pane fade shadow rounded  p-1" id="v-pills-messages"
+                                                    role="tabpanel" aria-labelledby="v-pills-messages-tab">
+                                                    {{-- Content Here --}}
+                                                    <h4 class="font-italic mb-4">Reviews</h4>
+                                                    <p class="font-italic text-muted mb-2">Lorem ipsum dolor
+                                                        sit amet,
+                                                        consectetur adipisicing elit, sed do eiusmod tempor
+                                                        incididunt
+                                                        ut
+                                                        labore et dolore magna aliqua. Ut enim ad minim veniam,
+                                                        quis
+                                                        nostrud
+                                                        exercitation ullamco laboris nisi ut aliquip ex ea
+                                                        commodo
+                                                        consequat. Duis aute irure dolor in reprehenderit in
+                                                        voluptate
+                                                        velit
+                                                        esse cillum dolore eu fugiat nulla pariatur. Excepteur
+                                                        sint
+                                                        occaecat
+                                                        cupidatat non proident, sunt in culpa qui officia
+                                                        deserunt
+                                                        mollit
+                                                        anim id est laborum.</p>
+                                                </div>
+
+                                                <div class="tab-pane fade shadow rounded  p-1" id="v-pills-settings"
+                                                    role="tabpanel" aria-labelledby="v-pills-settings-tab">
+                                                    {{-- Content Here --}}
+                                                    <h4 class="font-italic mb-4">Confirm booking</h4>
+                                                    <p class="font-italic text-muted mb-2">Lorem ipsum dolor
+                                                        sit amet,
+                                                        consectetur adipisicing elit, sed do eiusmod tempor
+                                                        incididunt
+                                                        ut
+                                                        labore et dolore magna aliqua. Ut enim ad minim veniam,
+                                                        quis
+                                                        nostrud
+                                                        exercitation ullamco laboris nisi ut aliquip ex ea
+                                                        commodo
+                                                        consequat. Duis aute irure dolor in reprehenderit in
+                                                        voluptate
+                                                        velit
+                                                        esse cillum dolore eu fugiat nulla pariatur. Excepteur
+                                                        sint
+                                                        occaecat
+                                                        cupidatat non proident, sunt in culpa qui officia
+                                                        deserunt
+                                                        mollit
+                                                        anim id est laborum.</p>
+                                                </div>
+
+                                                <div class="tab-pane fade shadow rounded  p-1" id="v-pills-settings"
+                                                    role="tabpanel" aria-labelledby="v-pills-settings-tab">
+                                                    {{-- Content Here --}}
+                                                    <h4 class="font-italic mb-4">Confirm booking</h4>
+                                                    <p class="font-italic text-muted mb-2">Lorem ipsum dolor
+                                                        sit amet,
+                                                        consectetur adipisicing elit, sed do eiusmod tempor
+                                                        incididunt
+                                                        ut
+                                                        labore et dolore magna aliqua. Ut enim ad minim veniam,
+                                                        quis
+                                                        nostrud
+                                                        exercitation ullamco laboris nisi ut aliquip ex ea
+                                                        commodo
+                                                        consequat. Duis aute irure dolor in reprehenderit in
+                                                        voluptate
+                                                        velit
+                                                        esse cillum dolore eu fugiat nulla pariatur. Excepteur
+                                                        sint
+                                                        occaecat
+                                                        cupidatat non proident, sunt in culpa qui officia
+                                                        deserunt
+                                                        mollit
+                                                        anim id est laborum.</p>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
+                                </div>
+                            </section>
                         </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+                    <li class="nav-item dropdown position-static">
+
                     </li>
                     <li class="nav-item dropdown position-static cool-link ">
                         <a class="nav-link dropdown-toggle" href="#" type="button"
@@ -1137,6 +1439,142 @@
                                 class="mglass">&#9906;</span></label>
                     </form>
                 </div>
+                <div class="">
+                    <div class="dropdown position-static ">
+
+
+                        <a class="nav tab_btn_icon" href="#" role="button" id="dropdownMenuLink2"
+                            data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
+                            <i class="fa-solid fa-bars" style="font-size: 15px !important;"></i>
+                        </a>
+
+                        <ul class="dropdown-menu w-100 extra_category" aria-labelledby="dropdownMenuLink2">
+                            <section class="header" style=" height: 100vh; margin-top: -2px;">
+                                <div class="container">
+                                    <div class="row tab_area_main">
+                                        <div class="col-md-9">
+                                            <!-- Tabs content -->
+                                            <div class="tab-content" id="v-pills-tabContent">
+                                                <div class="tab-pane fade shadow rounded  show active p-5"
+                                                    id="v-pills-home" role="tabpanel"
+                                                    aria-labelledby="v-pills-home-tab">
+                                                    {{-- Content Here --}}
+                                                    <h4 class="font-italic mb-4">Personal information</h4>
+                                                    <p class="font-italic text-muted mb-2">Lorem ipsum dolor sit amet,
+                                                        consectetur adipisicing elit, sed do eiusmod tempor incididunt
+                                                        ut
+                                                        labore et dolore magna aliqua. Ut enim ad minim veniam, quis
+                                                        nostrud
+                                                        exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                                                        consequat. Duis aute irure dolor in reprehenderit in voluptate
+                                                        velit
+                                                        esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
+                                                        occaecat
+                                                        cupidatat non proident, sunt in culpa qui officia deserunt
+                                                        mollit
+                                                        anim id est laborum.</p>
+                                                </div>
+
+                                                <div class="tab-pane fade shadow rounded  p-5" id="v-pills-profile"
+                                                    role="tabpanel" aria-labelledby="v-pills-profile-tab">
+                                                    {{-- Content Here --}}
+                                                    <h4 class="font-italic mb-4">Bookings</h4>
+                                                    <p class="font-italic text-muted mb-2">Lorem ipsum dolor sit amet,
+                                                        consectetur adipisicing elit, sed do eiusmod tempor incididunt
+                                                        ut
+                                                        labore et dolore magna aliqua. Ut enim ad minim veniam, quis
+                                                        nostrud
+                                                        exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                                                        consequat. Duis aute irure dolor in reprehenderit in voluptate
+                                                        velit
+                                                        esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
+                                                        occaecat
+                                                        cupidatat non proident, sunt in culpa qui officia deserunt
+                                                        mollit
+                                                        anim id est laborum.</p>
+                                                </div>
+
+                                                <div class="tab-pane fade shadow rounded  p-5" id="v-pills-messages"
+                                                    role="tabpanel" aria-labelledby="v-pills-messages-tab">
+                                                    {{-- Content Here --}}
+                                                    <h4 class="font-italic mb-4">Reviews</h4>
+                                                    <p class="font-italic text-muted mb-2">Lorem ipsum dolor sit amet,
+                                                        consectetur adipisicing elit, sed do eiusmod tempor incididunt
+                                                        ut
+                                                        labore et dolore magna aliqua. Ut enim ad minim veniam, quis
+                                                        nostrud
+                                                        exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                                                        consequat. Duis aute irure dolor in reprehenderit in voluptate
+                                                        velit
+                                                        esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
+                                                        occaecat
+                                                        cupidatat non proident, sunt in culpa qui officia deserunt
+                                                        mollit
+                                                        anim id est laborum.</p>
+                                                </div>
+
+                                                <div class="tab-pane fade shadow rounded  p-5" id="v-pills-settings"
+                                                    role="tabpanel" aria-labelledby="v-pills-settings-tab">
+                                                    {{-- Content Here --}}
+                                                    <h4 class="font-italic mb-4">Confirm booking</h4>
+                                                    <p class="font-italic text-muted mb-2">Lorem ipsum dolor sit amet,
+                                                        consectetur adipisicing elit, sed do eiusmod tempor incididunt
+                                                        ut
+                                                        labore et dolore magna aliqua. Ut enim ad minim veniam, quis
+                                                        nostrud
+                                                        exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                                                        consequat. Duis aute irure dolor in reprehenderit in voluptate
+                                                        velit
+                                                        esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
+                                                        occaecat
+                                                        cupidatat non proident, sunt in culpa qui officia deserunt
+                                                        mollit
+                                                        anim id est laborum.</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3 tab_key_btns">
+                                            <!-- Tabs nav -->
+                                            <div class="nav flex-column nav-pills nav-pills-custom" id="v-pills-tab"
+                                                role="tablist" aria-orientation="vertical">
+                                                <a class="nav-link mb-3 p-3 shadow active" id="v-pills-home-tab"
+                                                    data-toggle="pill" href="#v-pills-home" role="tab"
+                                                    aria-controls="v-pills-home" aria-selected="true">
+                                                    <i class="fa fa-user-circle-o mr-2"></i>
+                                                    <span class="font-weight-bold small text-uppercase">Personal
+                                                        information</span></a>
+
+                                                <a class="nav-link mb-3 p-3 shadow" id="v-pills-profile-tab"
+                                                    data-toggle="pill" href="#v-pills-profile" role="tab"
+                                                    aria-controls="v-pills-profile" aria-selected="false">
+                                                    <i class="fa fa-calendar-minus-o mr-2"></i>
+                                                    <span
+                                                        class="font-weight-bold small text-uppercase">Bookings</span></a>
+
+                                                <a class="nav-link mb-3 p-3 shadow" id="v-pills-messages-tab"
+                                                    data-toggle="pill" href="#v-pills-messages" role="tab"
+                                                    aria-controls="v-pills-messages" aria-selected="false">
+                                                    <i class="fa fa-star mr-2"></i>
+                                                    <span
+                                                        class="font-weight-bold small text-uppercase">Reviews</span></a>
+
+                                                <a class="nav-link mb-3 p-3 shadow" id="v-pills-settings-tab"
+                                                    data-toggle="pill" href="#v-pills-settings" role="tab"
+                                                    aria-controls="v-pills-settings" aria-selected="false">
+                                                    <i class="fa fa-check mr-2"></i>
+                                                    <span class="font-weight-bold small text-uppercase">Confirm
+                                                        booking</span></a>
+                                            </div>
+                                        </div>
+
+
+
+                                    </div>
+                                </div>
+                            </section>
+                        </ul>
+                    </div>
+                </div>
             </div>
         </div>
     </nav>
@@ -1589,8 +2027,8 @@
                                                 Technology deals <i class="ph ph-caret-right menu_icons"></i>
                                             </a>
                                         </li>
-                                        <li><a class="dropdown-item py-1 px-0" href="#">Certified refurbished <i
-                                                    class="ph ph-caret-right menu_icons"></i>
+                                        <li><a class="dropdown-item py-1 px-0" href="#">Certified refurbished
+                                                <i class="ph ph-caret-right menu_icons"></i>
                                             </a>
                                         </li>
                                     </div>
@@ -1600,8 +2038,8 @@
                     </li>
                     <li class="nav-item dropdown position-static cool-link">
                         <a class="nav-link dropdown-toggle" href="#" type="button"
-                            id="dropdownMenuClickableInside" data-bs-toggle="dropdown" data-bs-auto-close="outside"
-                            aria-expanded="false">
+                            id="dropdownMenuClickableInside" data-bs-toggle="dropdown"
+                            data-bs-auto-close="outside" aria-expanded="false">
                             Connect Us
                         </a>
                         <ul class="dropdown-menu drpdown_menu w-100 p-0 border-0 shadow-sm"
@@ -1748,14 +2186,15 @@
     <!-- Mobile Navigation Area Here End -->
 
     <!-- Mobile Navigation Area Here Start -->
-    <div class="offcanvas offcanvas-end" tabindex="-1" id="mobileMenuCanvas" aria-labelledby="offcanvasRightLabel">
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="mobileMenuCanvas"
+        aria-labelledby="offcanvasRightLabel">
         <div class="offcanvas-header ">
             <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
                 aria-label="Close"></button>
         </div>
         <div class="offcanvas-body">
             <a class="navbar-brand" href="#">
-                <img src="{{ !file_exists($setting->logo) ? url('upload/no_image.jpg') : url('upload/logoimage/' . $setting->logo) }}"
+                <img src="https://media.licdn.com/dms/image/C560BAQEbJ6BI1AHtBg/company-logo_200_200/0/1519901299549?e=2147483647&v=beta&t=oLXLbsS7b9y2ny-_4JmxQRUug5Mut5LRzh0LMxydLmI"
                     alt="" height="60">
             </a>
 

@@ -45,6 +45,12 @@ class HomeController extends Controller
     {
         return view('frontend.auth.register');
     }
+    public function about()
+    {
+        return view('frontend.pages.about.about');
+    }
+
+
 
 
 

@@ -1,5 +1,5 @@
 <!--Feedback Page-->
-<section>
+{{-- <section>
     <div id="feedback_Sidebar" class="feedbacksidebar">
         <div class="feedback_header_logo">
             <button class="close_feedback" onclick="feedbackButtonClicked()"><i
@@ -55,8 +55,7 @@
                 @endforeach
 
                 <div class="d-flex justify-content-end m-2">
-                    <button type="submit" class="feedback_continue_btn" style="float:right">continue <i
-                            class="fa-solid fa-chevron-right"></i></button>
+                    <button type="submit" class="feedback_continue_btn" style="float:right">continue </button>
                 </div>
         </div>
     </div>
@@ -94,4 +93,4 @@
         background-color: #322B5F;
         border-radius: 50px;
     }
-</style>
+</style> --}}

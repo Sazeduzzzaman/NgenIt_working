@@ -560,6 +560,7 @@
         </div>
     </section>
     <!---------End -------->
+    
     <!--======// Our expert //======-->
     <section class="container mt-3 mb-5">
         <div class="software_feature_title pb-5">
@@ -567,20 +568,17 @@
         </div>
         <div class="row d-flex justify-content-start align-items-center">
             <div class="col-lg-6 col-sm-6">
-                <iframe allow="autoplay; fullscreen; picture-in-picture; camera; microphone; display-capture"
-                    allowfullscreen="" allowtransparency="true" referrerpolicy="no-referrer-when-downgrade"
-                    class="vidyard-iframe-W5NGDbKxgaZQQsSm1eaazn" frameborder="0" height="100%" width="100%"
-                    scrolling="no"
-                    src="https://play.vidyard.com/W5NGDbKxgaZQQsSm1eaazn?disable_popouts=1&amp;v=4.3.10&amp;type=inline"
-                    title="Be Ambitious"
-                    style="opacity: 1; background-color: transparent; height: 300px; max-width: 100%;"></iframe>
+                <iframe width="560" height="300" src="https://www.youtube.com/embed/a-AO31vYdAM?autoplay=1&mute=1"
+                    title="Chand Sifarish |full song |FANAA|Amir Khan,Kajol" frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    allowfullscreen></iframe>
             </div>
             <div class="col-lg-6 col-sm-6">
                 <div class="home_title">
                     <h5 class="home_title_heading" style="text-align: left;"> Areas of expertise </h5>
                     <p class="home_title_text" style="text-align: left;">We’ll help you navigate today’s ever-changing
                         business environment with teams of technical experts and decades of industry experience.</p>
-                    <div class="business_seftion_button">
+                    <div class="business_seftion_button text-start pt-3">
                         <button class="common_button2" href="product_filters.html">Talk to a specialist</button>
                     </div>
                 </div>
@@ -588,6 +586,7 @@
         </div>
     </section>
     <!---------End -------->
+
     <!--======// our clint tab //======-->
     <section class="clint_tab_section">
         <div class="container">
